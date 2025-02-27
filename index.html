@@ -4,104 +4,574 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vahid Faraji - Professional Profile</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            border: 3px solid black;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background-color: #a0d8ef;
+            padding: 15px 0;
+            border-bottom: 3px solid black;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+        
+        .nav-button {
+            background-color: white;
+            color: black;
+            border: 3px solid black;
+            border-radius: 25px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 5px 5px 0px black;
+            text-transform: none;
+            margin-bottom: 5px;
+        }
+        
+        .nav-button.active {
+            background-color: #ffffcc;
+        }
+        
+        .content {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        
+        .profile-section {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+        }
+        
+        .profile-photo-container {
+            flex-shrink: 0;
+            border: 3px solid black;
+            border-radius: 50%;
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .profile-info {
+            flex-grow: 1;
+            min-width: 0;
+            max-width: 100%;
+        }
+        
+        h1 {
+            font-family: 'Courier New', monospace;
+            margin-bottom: 10px;
+            font-size: 1.6em;
+        }
+        
+        h2 {
+            font-size: 1.3em;
+        }
+        
+        h3 {
+            font-size: 1.1em;
+        }
+        
+        a {
+            color: blue;
+            text-decoration: underline;
+            font-weight: bold;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .section {
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background-color: #e0f4ff;
+            border: 2px solid black;
+            border-radius: 20px;
+            padding: 5px 15px;
+            margin: 5px;
+        }
+        
+        .tab-content {
+            display: none;
+            width: 100%;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .skill-pill {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e6f7ff;
+            border-radius: 20px;
+            padding: 8px 15px;
+            border: 1px solid #a0d8ef;
+            margin: 5px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-pill:hover {
+            background-color: #c8e6ff;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .skill-pill .skill-tooltip {
+            visibility: hidden;
+            width: 250px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -125px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+        }
+        
+        .skill-pill:hover .skill-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .news-box {
+            border: 3px solid black;
+            padding: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            box-shadow: 5px 5px 0px black;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .news-title {
+            border: 3px solid black;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            background-color: white;
+            box-shadow: 5px 5px 0px black;
+            font-weight: bold;
+            font-size: 1.2em;
+            transform: translateY(-35px);
+            margin-bottom: -15px;
+        }
+        
+        .news-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .news-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .news-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            font-size: 24px;
+            line-height: 1;
+        }
+        
+        .news-date {
+            font-weight: bold;
+        }
+        
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .card {
+            border: 3px solid black;
+            box-shadow: 5px 5px 0px black;
+            padding: 15px;
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            transition: transform 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            border-bottom: 2px solid #a0d8ef;
+            padding-bottom: 10px;
+        }
+        
+        .card p {
+            font-size: 0.95em;
+        }
+        
+        .card .card-footer {
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        .card .card-link {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #a0d8ef;
+            color: black;
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 2px solid black;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .card .card-link:hover {
+            background-color: #7bc1e5;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 3px solid black;
+            border-radius: 15px;
+            background-color: #f8f8f8;
+            box-shadow: 5px 5px 0px black;
+        }
+        
+        .contact-item strong {
+            min-width: 100px;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            
+            .profile-photo-container {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 20px;
+            }
+            
+            .profile-info {
+                text-align: center;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="header">
         <div class="nav-container">
-            <a href="index.html" class="nav-button active">Home</a>
-            <a href="about.html" class="nav-button">About</a>
-            <a href="experience.html" class="nav-button">Experience</a>
-            <a href="projects.html" class="nav-button">Projects</a>
-            <a href="articles.html" class="nav-button">Articles</a>
-            <a href="contact.html" class="nav-button">Contact</a>
+            <button class="nav-button active" id="btn-home">Home</button>
+            <button class="nav-button" id="btn-about">About</button>
+            <button class="nav-button" id="btn-experience">Experience</button>
+            <button class="nav-button" id="btn-projects">Projects</button>
+            <button class="nav-button" id="btn-articles">Articles</button>
+            <button class="nav-button" id="btn-contact">Contact</button>
         </div>
     </div>
     
     <div class="content">
-        <div class="profile-section">
-            <div class="profile-photo-container">
-                <img src="foto-vahid.jpg" alt="Vahid Faraji" class="profile-photo">
-            </div>
-            <div class="profile-info">
-                <h1>Hello there! My name is Vahid Faraji.</h1>
-                <p>I map data to products, specializing in people, user, and company data at Kariyer.net, Turkey's largest online job platform.</p>
-                
-                <div class="section">
-                    <h2>Focus Areas:</h2>
-                    <ul>
-                        <li>Data Product Architecture & Governance</li>
-                        <li>People Data and Data Monetization</li>
-                        <li>Cross-Domain Product Development</li>
-                        <li>LLM Solutions for Product</li>
-                    </ul>
+        <!-- Home Tab -->
+        <div id="home" class="tab-content active">
+            <div class="profile-section">
+                <div class="profile-photo-container">
+                    <div style="font-size: 12px; text-align: center;">Profile Photo Placeholder</div>
                 </div>
-                
-                <div class="section">
-                    <h2>Core Competencies:</h2>
-                    <div style="font-family: monospace; margin-top: 10px;">
-                        <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                            <span style="width: 140px; display: inline-block;">Data Pipelines</span>
-                            <span style="color: #1565c0;">███████░░░</span>
-                            <span style="margin-left: 10px;">Project Experience</span>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                            <span style="width: 140px; display: inline-block;">Data Governance</span>
-                            <span style="color: #1565c0;">███████░░░</span>
-                            <span style="margin-left: 10px;">Project Experience</span>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                            <span style="width: 140px; display: inline-block;">Agent Development</span>
-                            <span style="color: #1565c0;">██████░░░░</span>
-                            <span style="margin-left: 10px;">Learning & Building</span>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                            <span style="width: 140px; display: inline-block;">LLM Integration</span>
-                            <span style="color: #1565c0;">██████░░░░</span>
-                            <span style="margin-left: 10px;">Actively Using</span>
+                <div class="profile-info">
+                    <h1>Hi there! It's Vahid Faraji.</h1>
+                    <p>I map data to products, specializing in people, user, and company data at Kariyer.net, Turkey's largest online job platform.</p>
+                    
+                    <div class="section">
+                        <h2>Focus Areas:</h2>
+                        <ul>
+                            <li>Data Product Architecture & Governance</li>
+                            <li>People Data </li>
+                            <li>Cross-Domain Product </li>
+                            <li>LLM Solutions </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="section">
+                        <h2>Core Competencies:</h2>
+                        <div style="font-family: monospace; margin-top: 10px;">
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="width: 140px; display: inline-block;">Data Pipelines</span>
+                                <span style="color: #1565c0;">███████░░░</span>
+                                <span style="margin-left: 10px;">Project Experience</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="width: 140px; display: inline-block;">Data Governance</span>
+                                <span style="color: #1565c0;">███████░░░</span>
+                                <span style="margin-left: 10px;">Project Experience</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="width: 140px; display: inline-block;">Agent Development</span>
+                                <span style="color: #1565c0;">██████░░░░</span>
+                                <span style="margin-left: 10px;">Learning & Building</span>
+                            </div>
+                            <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                <span style="width: 140px; display: inline-block;">LLM Integration</span>
+                                <span style="color: #1565c0;">██████░░░░</span>
+                                <span style="margin-left: 10px;">Actively Using</span>
+                            </div>
                         </div>
                     </div>
+                    
+                    <div class="section">
+                        <h2>Tech Stack:</h2>
+                        <p>Product, Azure, Python (Numpy, Pandas), SQL (Dbrewer, MS SQL Server), PowerBI, LangChain, Basic NLP</p>
+                    </div>
                 </div>
-                
-                <div class="section">
-                    <h2>Tech Stack:</h2>
-                    <p>AzureDev, Python (Numpy, Pandas), SQL (Dbrewer, MS SQL Server), PowerBI, LangChain, OpenAI APIs</p>
+            </div>
+            
+            <div class="news-box">
+                <div class="news-title">Latest Activity & Timeline</div>
+                <ul class="news-list">
+                    <li>
+                        <span class="news-date">1 April 2025:</span> Start developing LabOps with Gülenay Özbek.
+                    </li>
+                    <li>
+                        <span class="news-date">20 January 2025:</span> Published article on building a Position Title Agent with LangChain and Tavily.
+                    </li>
+                    <li>
+                        <span class="news-date">17 February 2025:</span> Completed LangGraph certification from LangChain.
+                    </li>
+                    <li>
+                        <span class="news-date">23 January 2025:</span> Implemented new skill extraction pipeline at Kariyer.net, improving job-candidate matching by 37%.
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>Professional Summary:</h2>
+                <p>As a Product Manager focused on Data Products, I transform raw people and labor market data into valuable user-facing solutions. My expertise spans from extracting insights from unstructured text using LLMs to creating data pipeline.</p>
+                <p>At Kariyer.net, I've worked with multiple projects with R&D, Data Platform and cross-domain teams like text data governance, skill extraction, salary analysis, and user feedback. My background in business analytics and people data provides a unique perspective on turning workforce data into practical applications that solve real market challenges.</p>
+            </div>
+        </div>
+        
+        <!-- About Tab -->
+        <div id="about" class="tab-content">
+            <h1>About Me</h1>
+            <div class="section">
+                <h2>Expertise:</h2>
+                <p><strong>Problem Solving:</strong> Defining problems clearly and creating data-driven solutions.</p>
+                <p><strong>Data to Product:</strong> Transforming raw data into valuable products, such as salary match tools and skill-based solutions.</p>
+                <p><strong>Data Management:</strong> Organizing taxonomies, skill indexes, and metadata.</p>
+                <p><strong>AI Applications:</strong> Using large language models (LLMs) to extract skills, patterns, and features from text data.</p>
+            </div>
+            
+            <div class="section">
+                <h2>Tech Stack:</h2>
+                <p><strong>SQL:</strong> Querying and managing data.</p>
+                <p><strong>Python:</strong> Automating and analyzing data.</p>
+            </div>
+            
+            <div class="section">
+                <h2>Skills:</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
+                    <div class="skill-pill">
+                        <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
+                        <span>LangGraph</span>
+                        <span class="skill-tooltip">A framework for building stateful, multi-step applications using LLMs.</span>
+                    </div>
+                    <div class="skill-pill">
+                        <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
+                        <span>LangSmith</span>
+                        <span class="skill-tooltip">A platform for debugging, testing and monitoring LLM applications.</span>
+                    </div>
+                    <div class="skill-pill">
+                        <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
+                        <span>Data Ingestion</span>
+                        <span class="skill-tooltip">Process of importing, transferring, loading and processing data.</span>
+                    </div>
+                    <div class="skill-pill">
+                        <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
+                        <span>ETL</span>
+                        <span class="skill-tooltip">Extract, Transform, Load - process of collecting data from various sources.</span>
+                    </div>
+                    <div class="skill-pill">
+                        <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
+                        <span>SQL</span>
+                        <span class="skill-tooltip">Structured Query Language for managing relational databases.</span>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="news-box">
-            <div class="news-title">Latest Activity & Timeline</div>
-            <ul class="news-list">
-                <li>
-                    <span class="news-date">21 February 2025:</span> Started developing LabOps project with Gülenay Özbek in Luxembourg.
-                </li>
-                <li>
-                    <span class="news-date">20 February 2025:</span> Published article on building a Position Title Agent with LangChain and Tavily.
-                </li>
-                <li>
-                    <span class="news-date">17 February 2025:</span> Completed LangGraph certification from LangChain.
-                </li>
-                <li>
-                    <span class="news-date">23 January 2025:</span> Implemented new skill extraction pipeline at Kariyer.net, improving job-candidate matching by 37%.
-                </li>
-                <li>
-                    <span class="news-date">22 January 2025:</span> Completed LangSmith certification from LangChain.
-                </li>
-                <li>
-                    <span class="news-date">19 December 2024:</span> Released People Data Handbook for Persian-speaking community.
-                </li>
-            </ul>
+        <!-- Experience Tab -->
+        <div id="experience" class="tab-content">
+            <h1>Experience</h1>
+            <div style="margin-bottom: 30px;">
+                <h3>Kariyer.net | Product Manager (Data for Product)</h3>
+                <p><em>October 2022 - Present | Istanbul, Turkey</em></p>
+                <p>Working with Data Platform, Technical, R&D, and Product Teams to develop data-driven solutions for Turkey's largest online job platform.</p>
+                
+                <p><strong>Key Achievements:</strong></p>
+                <ul>
+                    <li>Led the development of a salary matching tool that increased user engagement by 42% and improved data quality for market salary benchmarks</li>
+                    <li>Implemented skill extraction pipelines using LLMs that improved job-candidate matching by 37%</li>
+                    <li>Designed and delivered taxonomies for job titles, skills, and industries that standardized data across the platform</li>
+                </ul>
+            </div>
+            
+            <div style="margin-bottom: 30px;">
+                <h3>Previous Experience</h3>
+                <ul>
+                    <li><strong>Business Analyst (3+ years):</strong> Bridged business requirements with technical solutions</li>
+                    <li><strong>HR/Labor Economics Specialist (5+ years):</strong> Applied workforce data analysis to real-world scenarios</li>
+                </ul>
+            </div>
         </div>
         
-        <div class="section">
-            <h2>Professional Summary:</h2>
-            <p>As a Product Manager focused on Data Products, I transform raw people and labor market data into valuable user-facing solutions. My expertise spans from extracting insights from unstructured text using LLMs to creating data pipelines that power decision-making tools.</p>
-            <p>At Kariyer.net, I've led projects in skill extraction, salary analysis, and job matching algorithms that measurably improve platform performance and user satisfaction. My background in business analytics and people data provides a unique perspective on turning workforce data into practical applications that solve real market challenges.</p>
+        <!-- Projects Tab -->
+        <div id="projects" class="tab-content">
+            <h1>Projects</h1>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3>Skill Extraction</h3>
+                    <p>Developed an AI-powered system that automatically extracts skills from job descriptions and resumes.</p>
+                    <div class="card-footer">Results: Improved candidate-job matching accuracy by 37%</div>
+                </div>
+                
+                <div class="card">
+                    <h3>Position Detector by LLM</h3>
+                    <p>Created a multilingual position title detection and normalization system using LangChain and LLMs.</p>
+                    <div class="card-footer">Impact: Improved search functionality and data consistency</div>
+                    <a href="#" class="card-link">Read Article</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Articles Tab -->
+        <div id="articles" class="tab-content">
+            <h1>Articles & Publications</h1>
+            
+            <div class="card-container">
+                <div class="card">
+                    <h3>A Data Agent for Managing Position Titles in Kariyer.net: A LangGraph Use Case</h3>
+                    <p>A deep dive into creating a multilingual position title detection system using LangChain, LLMs, and the Tavily API.</p>
+                    <div class="card-footer">Published: February 2025</div>
+                    <a href="#" class="card-link">Read on Medium</a>
+                </div>
+                
+                <div class="card">
+                    <h3>The Future Trinity: AI + Data + HR in Türkiye</h3>
+                    <p>An exploration of how the combination of AI, data science, and human resources is transforming the workforce landscape.</p>
+                    <div class="card-footer">Published: January 2024</div>
+                    <a href="#" class="card-link">Read on Medium</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Tab -->
+        <div id="contact" class="tab-content">
+            <h1>Contact</h1>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Email:</strong>
+                    <a href="mailto:vfaraji89@gmail.com">vfaraji89@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong>LinkedIn:</strong>
+                    <a href="#" target="_blank">linkedin.com/in/vahid-faraji-jobehdar</a>
+                </div>
+                <div class="contact-item">
+                    <strong>GitHub:</strong>
+                    <a href="#" target="_blank">github.com/vfaraji89</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Location:</strong>
+                    <span>Istanbul, Turkey</span>
+                </div>
+            </div>
         </div>
     </div>
+    
+    <script>
+        // Simple tab implementation for the preview
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = ['home', 'about', 'experience', 'projects', 'articles', 'contact'];
+            
+            tabs.forEach(tab => {
+                document.getElementById('btn-' + tab).addEventListener('click', function() {
+                    // Hide all tabs
+                    tabs.forEach(t => {
+                        document.getElementById(t).classList.remove('active');
+                        document.getElementById('btn-' + t).classList.remove('active');
+                    });
+                    
+                    // Show selected tab
+                    document.getElementById(tab).classList.add('active');
+                    document.getElementById('btn-' + tab).classList.add('active');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
