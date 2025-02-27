@@ -1205,30 +1205,6 @@
                     <div class="card-footer">lablab.ai | Issued Mar 2023<br>Credential ID: clgksomtk0025dv0r573bwu8z</div>
                 </div>
                 
-                <div class="card">
-                    <h3>Forward Program</h3>
-                    <p>Exclusive business leadership and strategic innovation program by McKinsey & Company.</p>
-                    <div class="card-footer">McKinsey & Company | Issued Aug 2022</div>
-                </div>
-            </div>
-        </div><li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>People Analytics</h3>
-                        <p>Josh Bersin Academy | Issued Feb 2021</p>
-                    </li>
-                    
-                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>People Analytics</h3>
-                        <p>Wharton Online | Issued Jan 2020</p>
-                    </li>
-                    
-                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>Bridging the Gap between Strategy Design and Delivery</h3>
-                        <p>Brightline Initiative | Issued Feb 2019</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
         <!-- Articles Tab -->
         <div id="articles" class="tab-content">
             <h1>Articles & Publications</h1>
@@ -1291,27 +1267,3 @@
             </div>
         </div>
     </div>
-    
-    <script>
-        // Tab switching functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.nav-button');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs and content
-                    document.querySelectorAll('.nav-button').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                    
-                    // Add active class to current tab
-                    this.classList.add('active');
-                    
-                    // Show corresponding content
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-        });
-    </script>
-</body>
-</html>
