@@ -16,19 +16,14 @@
             background-color: #a0d8ef; /* Light blue instead of yellow */
             padding: 15px 0;
             border-bottom: 3px solid black;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
         
         .nav-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
-            flex-wrap: wrap;
-            padding: 0 10px;
         }
         
         .nav-button {
@@ -36,13 +31,12 @@
             color: black;
             border: 3px solid black;
             border-radius: 25px; /* Circular instead of rectangular */
-            padding: 8px 12px;
-            font-size: 13px;
+            padding: 10px 20px;
+            font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 5px 5px 0px black;
             text-transform: none;
-            margin-bottom: 5px;
         }
         
         .nav-button.active {
@@ -51,16 +45,14 @@
         
         .content {
             max-width: 1000px;
-            margin: 30px auto;
+            margin: 40px auto;
             padding: 0 20px;
         }
         
         .profile-section {
             display: flex;
-            gap: 30px;
-            margin-bottom: 30px;
-            flex-wrap: nowrap;
-            align-items: flex-start;
+            gap: 40px;
+            margin-bottom: 40px;
         }
         
         .profile-photo-container {
@@ -68,8 +60,8 @@
             border: 3px solid black;
             border-radius: 50%; /* Circular instead of rectangular */
             overflow: hidden;
-            width: 200px;
-            height: 200px;
+            width: 230px;
+            height: 230px;
         }
         
         .profile-photo {
@@ -80,21 +72,11 @@
         
         .profile-info {
             flex-grow: 1;
-            min-width: 0; /* This allows the element to shrink below its content size */
         }
         
         h1 {
             font-family: monospace;
             margin-bottom: 10px;
-            font-size: 1.6em;
-        }
-        
-        h2 {
-            font-size: 1.3em;
-        }
-        
-        h3 {
-            font-size: 1.1em;
         }
         
         a {
@@ -104,7 +86,7 @@
         }
 
         .section {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .skill-tag {
@@ -124,237 +106,13 @@
             display: block;
         }
         
-        .skill-pill {
-            display: inline-flex;
-            align-items: center;
-            background-color: #e6f7ff;
-            border-radius: 20px;
-            padding: 8px 15px;
-            border: 1px solid #a0d8ef;
-            margin: 5px;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .skill-pill:hover {
-            background-color: #c8e6ff;
-            transform: translateY(-2px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .skill-pill .skill-tooltip {
-            visibility: hidden;
-            width: 250px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 10px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -125px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 14px;
-        }
-        
-        .skill-pill:hover .skill-tooltip {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        .news-box {
-            border: 3px solid black;
-            padding: 20px;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            box-shadow: 5px 5px 0px black;
-        }
-        
-        .news-title {
-            border: 3px solid black;
-            padding: 10px 20px;
-            display: inline-block;
-            margin-bottom: 20px;
-            background-color: white;
-            box-shadow: 5px 5px 0px black;
-            font-weight: bold;
-            font-size: 1.2em;
-            transform: translateY(-35px);
-            margin-bottom: -15px;
-        }
-        
-        .news-list {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        
-        .news-list li {
-            margin-bottom: 15px;
-            padding-left: 25px;
-            position: relative;
-        }
-        
-        .news-list li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            font-size: 24px;
-            line-height: 1;
-        }
-        
-        .news-date {
-            font-weight: bold;
-        }
-        
-        /* Card styles for projects, articles and certifications */
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .card {
-            border: 3px solid black;
-            box-shadow: 5px 5px 0px black;
-            padding: 15px;
-            flex: 1;
-            min-width: 250px;
-            background-color: white;
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card h3 {
-            margin-top: 0;
-            border-bottom: 2px solid #a0d8ef;
-            padding-bottom: 10px;
-        }
-        
-        .card p {
-            font-size: 0.95em;
-        }
-        
-        .card .card-footer {
-            margin-top: 15px;
-            font-style: italic;
-        }
-        
-        .card .card-link {
-            display: inline-block;
-            margin-top: 10px;
-            background-color: #a0d8ef;
-            color: black;
-            padding: 5px 15px;
-            border-radius: 20px;
-            border: 2px solid black;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-        
-        .card .card-link:hover {
-            background-color: #7bc1e5;
-        }
-        
-        @media (max-width: 1200px) {
-            .profile-photo-container {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .card {
-                min-width: 220px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .profile-section {
-                gap: 20px;
-            }
-            
-            .profile-photo-container {
-                width: 160px;
-                height: 160px;
-            }
-            
-            .content {
-                margin: 20px auto;
-            }
-            
-            .card {
-                min-width: 45%;
-            }
-        }
-        
         @media (max-width: 768px) {
             .profile-section {
-                flex-direction: row;
-                gap: 20px;
-                align-items: center;
-            }
-            
-            .profile-photo-container {
-                width: 120px;
-                height: 120px;
-                margin-right: 0;
+                flex-direction: column;
             }
             
             .nav-container {
                 flex-wrap: wrap;
-                gap: 8px;
-            }
-            
-            .nav-button {
-                font-size: 12px;
-                padding: 7px 10px;
-                margin-bottom: 8px;
-            }
-            
-            h1 {
-                font-size: 1.3em;
-                margin-top: 0;
-            }
-            
-            h2 {
-                font-size: 1.2em;
-            }
-            
-            .content {
-                padding: 0 15px;
-                margin: 20px auto;
-            }
-            
-            .profile-info {
-                text-align: left;
-            }
-            
-            .card {
-                min-width: 100%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .profile-section {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-            }
-            
-            .profile-photo-container {
-                width: 150px;
-                height: 150px;
-                margin-bottom: 20px;
-            }
-            
-            .profile-info {
-                text-align: center;
             }
         }
     </style>
@@ -366,7 +124,6 @@
             <button class="nav-button" data-tab="about">About</button>
             <button class="nav-button" data-tab="experience">Experience</button>
             <button class="nav-button" data-tab="projects">Projects</button>
-            <button class="nav-button" data-tab="articles">Articles</button>
             <button class="nav-button" data-tab="certifications">Certifications</button>
             <button class="nav-button" data-tab="contact">Contact</button>
         </div>
@@ -426,30 +183,6 @@
                 </div>
             </div>
             
-            <div class="news-box">
-                <div class="news-title">Latest Activity & Timeline</div>
-                <ul class="news-list">
-                    <li>
-                        <span class="news-date">21 February 2025:</span> Started developing LabOps project with Gülenay Özbek in Luxembourg.
-                    </li>
-                    <li>
-                        <span class="news-date">20 February 2025:</span> Published article on building a Position Title Agent with LangChain and Tavily.
-                    </li>
-                    <li>
-                        <span class="news-date">17 February 2025:</span> Completed LangGraph certification from LangChain.
-                    </li>
-                    <li>
-                        <span class="news-date">23 January 2025:</span> Implemented new skill extraction pipeline at Kariyer.net, improving job-candidate matching by 37%.
-                    </li>
-                    <li>
-                        <span class="news-date">22 January 2025:</span> Completed LangSmith certification from LangChain.
-                    </li>
-                    <li>
-                        <span class="news-date">19 December 2024:</span> Released People Data Handbook for Persian-speaking community.
-                    </li>
-                </ul>
-            </div>
-            
             <div class="section">
                 <h2>Professional Summary:</h2>
                 <p>As a Product Manager focused on Data Products, I transform raw people and labor market data into valuable user-facing solutions. My expertise spans from extracting insights from unstructured text using LLMs to creating data pipelines that power decision-making tools.</p>
@@ -484,138 +217,107 @@
             <div class="section">
                 <h2>Skills:</h2>
                 <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px;">
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>LangGraph</span>
-                        <span class="skill-tooltip">A framework for building stateful, multi-step applications using LLMs. I use it to create complex AI agent workflows with structured memory.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>LangSmith</span>
-                        <span class="skill-tooltip">A platform for debugging, testing and monitoring LLM applications. I leverage this for optimizing LLM pipelines and tracking performance.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Data Ingestion</span>
-                        <span class="skill-tooltip">Process of importing, transferring, loading and processing data for later use. I build robust pipelines to collect structured and unstructured data.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>ETL</span>
-                        <span class="skill-tooltip">Extract, Transform, Load - process of collecting data from various sources, transforming it, and loading into target systems. I design ETL pipelines for people data systems.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>SQL</span>
-                        <span class="skill-tooltip">Structured Query Language for managing relational databases. I write complex queries to analyze labor market data and build data-driven products.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Budgeting</span>
-                        <span class="skill-tooltip">Planning and tracking financial resources. I develop financial models and resource allocation strategies for product development.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Analytical Skills</span>
-                        <span class="skill-tooltip">Ability to collect, organize, visualize and interpret data. I apply these skills to extract meaningful insights from complex datasets.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Teamwork</span>
-                        <span class="skill-tooltip">Collaborating effectively with diverse teams. I coordinate with technical, product, and business teams to deliver successful data products.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Monetization</span>
-                        <span class="skill-tooltip">Converting data assets into revenue-generating products. I develop strategies to create value from labor market and people data.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Product Strategy</span>
-                        <span class="skill-tooltip">Planning product vision, roadmap and features. I align data product development with market needs and business objectives.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Information Visualization</span>
-                        <span class="skill-tooltip">Creating visual representations of data to communicate insights. I design dashboards and reports that make complex data understandable.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>MIS</span>
-                        <span class="skill-tooltip">Management Information Systems - tools and processes to organize and analyze information for decision-making. I implement systems that support data-informed decisions.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Computer Science</span>
-                        <span class="skill-tooltip">Study of computers and computational systems. I apply CS principles to solve complex data and algorithmic challenges.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Datasets</span>
-                        <span class="skill-tooltip">Collections of related data organized for analysis. I build, curate and leverage datasets for labor market insights and product development.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Product Launch</span>
-                        <span class="skill-tooltip">Process of releasing new products to market. I plan and execute successful launches of data-driven products and features.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>UX</span>
-                        <span class="skill-tooltip">User Experience - how users interact with and experience products. I ensure data products are intuitive and provide value to end users.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>OpenAI API</span>
-                        <span class="skill-tooltip">Programming interface for accessing OpenAI's language models. I implement these APIs to extract insights from unstructured text data.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Data Literacy</span>
-                        <span class="skill-tooltip">Ability to read, understand, create and communicate data. I promote data literacy within organizations to enable better decision-making.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>People Data</span>
-                        <span class="skill-tooltip">Information about workforce, skills, and labor markets. I specialize in transforming this data into valuable insights and products.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Labour Market Intelligence</span>
-                        <span class="skill-tooltip">Analysis of employment trends, skills demand, and workforce dynamics. I create solutions that leverage this intelligence for businesses and job seekers.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Business Analysis</span>
-                        <span class="skill-tooltip">Practice of identifying business needs and determining solutions. I bridge technical capabilities with business requirements in data product development.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Python</span>
-                        <span class="skill-tooltip">Programming language used for data analysis and application development. I use Python (NumPy, Pandas) to build data pipelines and analysis tools.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Large Language Models</span>
-                        <span class="skill-tooltip">AI systems trained on vast text data to understand and generate human-like text. I implement LLMs to extract insights from unstructured job and skill data.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>People Analytics</span>
-                        <span class="skill-tooltip">Using data analysis to improve people-related decisions. I develop frameworks and tools that enhance hiring, development, and retention strategies.</span>
                     </div>
-                    <div class="skill-pill">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Product Management</span>
-                        <span class="skill-tooltip">Overseeing product development from conception to launch. I specialize in data-driven products that solve labor market challenges.</span>
                     </div>
-                    <div class="skill-pill">
-                        <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
-                        <span>Prompt Engineering</span>
-                        <span class="skill-tooltip">Crafting effective inputs for AI systems to produce desired outputs. I design prompts that extract structured information from job descriptions and resumes.</span>
-                    </div>
-                </div>
-            </div> 15px; border: 1px solid #a0d8ef;">
+                    <div style="display: flex; align-items: center; background-color: #e6f7ff; border-radius: 20px; padding: 8px 15px; border: 1px solid #a0d8ef;">
                         <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
                         <span>Prompt Engineering</span>
                     </div>
@@ -660,71 +362,53 @@
         <!-- Projects Tab -->
         <div id="projects" class="tab-content">
             <h1>Projects</h1>
+            <div style="margin-bottom: 20px;">
+                <h3>Skill Extraction</h3>
+                <p>Developed an AI-powered system that automatically extracts skills from job descriptions and resumes. This project leverages LLMs to identify both explicit and implicit skills, categorize them, and match them to standardized skill taxonomies. Improved candidate-job matching accuracy by 37% compared to keyword-based approaches.</p>
+            </div>
             
-            <div class="card-container">
-                <div class="card">
-                    <h3>Skill Extraction</h3>
-                    <p>Developed an AI-powered system that automatically extracts skills from job descriptions and resumes. This project leverages LLMs to identify both explicit and implicit skills, categorize them, and match them to standardized skill taxonomies.</p>
-                    <div class="card-footer">Results: Improved candidate-job matching accuracy by 37% compared to keyword-based approaches.</div>
-                </div>
-                
-                <div class="card">
-                    <h3>Position Detector by LLM</h3>
-                    <p>Created a multilingual position title detection and normalization system using LangChain and LLMs that works across Turkish, English, and Spanish job descriptions.</p>
-                    <div class="card-footer">Impact: Improved search functionality and data consistency in Kariyer.net's platform.</div>
-                    <a href="https://lnkd.in/dzVt_svg" target="_blank" class="card-link">Read Article</a>
-                </div>
-                
-                <div class="card">
-                    <h3>People Data Handbook</h3>
-                    <p>Authored a comprehensive 195-page handbook on People Data and People Analytics for the Persian-speaking community. This resource covers practical applications of data in HR and includes code examples.</p>
-                    <div class="card-footer">Reception: Used as a reference by HR analytics practitioners.</div>
-                </div>
-                
-                <div class="card">
-                    <h3>LabOps - Forklift Career Database</h3>
-                    <p>Developing a specialized search and matching system for forklift operator career paths and equipment types with Gülenay Özbek in Luxembourg.</p>
-                    <div class="card-footer">Status: In development - Launching soon</div>
-                </div>
+            <div style="margin-bottom: 20px;">
+                <h3>Position Detector by LLM</h3>
+                <p>Created a multilingual position title detection and normalization system using LangChain and LLMs that works across Turkish, English, and Spanish job descriptions. This tool helps standardize job titles across different languages, improving search functionality and data consistency in Kariyer.net's platform.</p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3>People Data Handbook</h3>
+                <p>Authored a comprehensive 195-page handbook on People Data and People Analytics for the Persian-speaking community. This resource covers practical applications of data in HR, includes code examples, and bridges the gap in quality educational materials in this field. The handbook has received positive feedback from industry professionals and is being used as a reference by HR analytics practitioners.</p>
             </div>
         </div>
         
         <!-- Certifications Tab -->
         <div id="certifications" class="tab-content">
             <h1>Licenses & Certifications</h1>
-            
-            <div class="card-container">
-                <div class="card">
-                    <h3>Introduction to LangGraph</h3>
-                    <p>Completed comprehensive training on building stateful, multi-step applications using LLMs through LangGraph framework.</p>
-                    <div class="card-footer">LangChain | Issued Jan 2025<br>Credential ID: kmcxbhnlzf</div>
-                </div>
-                
-                <div class="card">
-                    <h3>Introduction to LangSmith</h3>
-                    <p>Mastered the platform for debugging, testing and monitoring LLM applications for improved performance.</p>
-                    <div class="card-footer">LangChain | Issued Jan 2025<br>Credential ID: 8n6vgi7fx6</div>
-                </div>
-                
-                <div class="card">
-                    <h3>Data Literacy Professional</h3>
-                    <p>Certification in reading, interpreting, and communicating data effectively across organizations.</p>
-                    <div class="card-footer">DataCamp | Issued Jan 2024<br>Credential ID: 8c19b57bdaebe1746e998ed4e52544e80422e2d5</div>
-                </div>
-                
-                <div class="card">
-                    <h3>ChatGPT API</h3>
-                    <p>Specialized training in implementing and optimizing OpenAI's API for diverse applications.</p>
-                    <div class="card-footer">lablab.ai | Issued Mar 2023<br>Credential ID: clgksomtk0025dv0r573bwu8z</div>
-                </div>
-                
-                <div class="card">
-                    <h3>Forward Program</h3>
-                    <p>Exclusive business leadership and strategic innovation program by McKinsey & Company.</p>
-                    <div class="card-footer">McKinsey & Company | Issued Aug 2022</div>
-                </div>
-            </div>
-        </div><li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+            <div class="section">
+                <ul style="list-style-type: none; padding: 0;">
+                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+                        <h3>Introduction to LangGraph</h3>
+                        <p>LangChain | Issued Jan 2025</p>
+                    </li>
+                    
+                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+                        <h3>Introduction to LangSmith</h3>
+                        <p>LangChain | Issued Jan 2025</p>
+                    </li>
+                    
+                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+                        <h3>Data Literacy Professional</h3>
+                        <p>DataCamp | Issued Jan 2024</p>
+                    </li>
+                    
+                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+                        <h3>ChatGPT API</h3>
+                        <p>lablab.ai | Issued Mar 2023</p>
+                    </li>
+                    
+                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+                        <h3>Forward Program</h3>
+                        <p>McKinsey & Company | Issued Aug 2022</p>
+                    </li>
+                    
+                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
                         <h3>People Analytics</h3>
                         <p>Josh Bersin Academy | Issued Feb 2021</p>
                     </li>
@@ -742,50 +426,14 @@
             </div>
         </div>
         
-        <!-- Articles Tab -->
-        <div id="articles" class="tab-content">
-            <h1>Articles & Publications</h1>
-            
-            <div class="card-container">
-                <div class="card">
-                    <h3>Building a Position Title Agent with LangChain and Tavily</h3>
-                    <p>A deep dive into creating a multilingual position title detection system using LangChain, LLMs, and the Tavily API. This article explores how we built an agent that can research and normalize job titles across Turkish, English, and Spanish.</p>
-                    <div class="card-footer">Published: February 2025</div>
-                    <a href="https://lnkd.in/dzVt_svg" target="_blank" class="card-link">Read on Medium</a>
-                </div>
-                
-                <div class="card">
-                    <h3>People Data Handbook: A Comprehensive Guide</h3>
-                    <p>An overview of the 195-page handbook I created for the Persian-speaking community on People Data and People Analytics. This article discusses why I created this resource and highlights key sections.</p>
-                    <div class="card-footer">Published: January 2024</div>
-                    <a href="#" target="_blank" class="card-link">Learn More</a>
-                </div>
-                
-                <div class="card">
-                    <h3>Skill Extraction: Beyond Keyword Matching</h3>
-                    <p>An exploration of how modern NLP and LLMs can be leveraged to identify both explicit and implicit skills in job descriptions and resumes. This article shares insights from our work at Kariyer.net.</p>
-                    <div class="card-footer">Published: November 2023</div>
-                    <a href="#" target="_blank" class="card-link">Read Article</a>
-                </div>
-                
-                <div class="card">
-                    <h3>The Future of Labor Market Data</h3>
-                    <p>A forward-looking piece on how AI and data analytics are transforming our understanding of employment trends, skill demand, and workforce development. This article examines emerging technologies in labor market intelligence.</p>
-                    <div class="card-footer">Published: June 2023</div>
-                    <a href="#" target="_blank" class="card-link">Read Article</a>
-                </div>
-            </div>
-        </div>
-        
         <!-- Contact Tab -->
         <div id="contact" class="tab-content">
             <h1>Contact</h1>
             <div class="section">
-                <p><strong>Email:</strong> <a href="mailto:vfaraji89@gmail.com">vfaraji89@gmail.com</a></p>
-                <p><strong>Phone:</strong> +90 541 940 2411</p>
-                <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/vahid-faraji-jobehdar/" target="_blank">linkedin.com/in/vahid-faraji-jobehdar</a></p>
                 <p><strong>GitHub:</strong> <a href="https://github.com/vfaraji89" target="_blank">github.com/vfaraji89</a></p>
+                <p><strong>LinkedIn:</strong> <a href="#" target="_blank">Vahid Faraji</a></p>
                 <p><strong>Location:</strong> Istanbul, Turkey</p>
+                <p><strong>Email:</strong> contact@example.com</p>
             </div>
         </div>
     </div>
