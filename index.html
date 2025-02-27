@@ -24,7 +24,7 @@
         .nav-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             max-width: 1200px;
             margin: 0 auto;
             flex-wrap: wrap;
@@ -36,8 +36,8 @@
             color: black;
             border: 3px solid black;
             border-radius: 25px; /* Circular instead of rectangular */
-            padding: 10px 15px;
-            font-size: 14px;
+            padding: 8px 12px;
+            font-size: 13px;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 5px 5px 0px black;
@@ -51,14 +51,14 @@
         
         .content {
             max-width: 1000px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 0 20px;
         }
         
         .profile-section {
             display: flex;
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 30px;
+            margin-bottom: 30px;
             flex-wrap: nowrap;
             align-items: flex-start;
         }
@@ -68,8 +68,8 @@
             border: 3px solid black;
             border-radius: 50%; /* Circular instead of rectangular */
             overflow: hidden;
-            width: 230px;
-            height: 230px;
+            width: 200px;
+            height: 200px;
         }
         
         .profile-photo {
@@ -86,15 +86,15 @@
         h1 {
             font-family: monospace;
             margin-bottom: 10px;
-            font-size: 1.8em;
+            font-size: 1.6em;
         }
         
         h2 {
-            font-size: 1.5em;
+            font-size: 1.3em;
         }
         
         h3 {
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
         
         a {
@@ -104,7 +104,7 @@
         }
 
         .section {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .skill-tag {
@@ -214,16 +214,16 @@
         .card-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 15px;
             margin-top: 15px;
         }
         
         .card {
             border: 3px solid black;
             box-shadow: 5px 5px 0px black;
-            padding: 20px;
+            padding: 15px;
             flex: 1;
-            min-width: 280px;
+            min-width: 250px;
             background-color: white;
             transition: transform 0.3s ease;
         }
@@ -263,6 +263,36 @@
             background-color: #7bc1e5;
         }
         
+        @media (max-width: 1200px) {
+            .profile-photo-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .card {
+                min-width: 220px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .profile-section {
+                gap: 20px;
+            }
+            
+            .profile-photo-container {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .content {
+                margin: 20px auto;
+            }
+            
+            .card {
+                min-width: 45%;
+            }
+        }
+        
         @media (max-width: 768px) {
             .profile-section {
                 flex-direction: row;
@@ -278,12 +308,12 @@
             
             .nav-container {
                 flex-wrap: wrap;
-                gap: 10px;
+                gap: 8px;
             }
             
             .nav-button {
                 font-size: 12px;
-                padding: 8px 12px;
+                padding: 7px 10px;
                 margin-bottom: 8px;
             }
             
@@ -394,6 +424,30 @@
                         <p>AzureDev, Python (Numpy, Pandas), SQL (Dbrewer, MS SQL Server), PowerBI, LangChain, OpenAI APIs</p>
                     </div>
                 </div>
+            </div>
+            
+            <div class="news-box">
+                <div class="news-title">Latest Activity & Timeline</div>
+                <ul class="news-list">
+                    <li>
+                        <span class="news-date">21 February 2025:</span> Started developing LabOps project with Gülenay Özbek in Luxembourg.
+                    </li>
+                    <li>
+                        <span class="news-date">20 February 2025:</span> Published article on building a Position Title Agent with LangChain and Tavily.
+                    </li>
+                    <li>
+                        <span class="news-date">17 February 2025:</span> Completed LangGraph certification from LangChain.
+                    </li>
+                    <li>
+                        <span class="news-date">23 January 2025:</span> Implemented new skill extraction pipeline at Kariyer.net, improving job-candidate matching by 37%.
+                    </li>
+                    <li>
+                        <span class="news-date">22 January 2025:</span> Completed LangSmith certification from LangChain.
+                    </li>
+                    <li>
+                        <span class="news-date">19 December 2024:</span> Released People Data Handbook for Persian-speaking community.
+                    </li>
+                </ul>
             </div>
             
             <div class="section">
@@ -668,24 +722,6 @@
                     <h3>Forward Program</h3>
                     <p>Exclusive business leadership and strategic innovation program by McKinsey & Company.</p>
                     <div class="card-footer">McKinsey & Company | Issued Aug 2022</div>
-                </div>
-                
-                <div class="card">
-                    <h3>People Analytics</h3>
-                    <p>Advanced training in using data analysis techniques to improve HR and people decisions.</p>
-                    <div class="card-footer">Josh Bersin Academy | Issued Feb 2021</div>
-                </div>
-                
-                <div class="card">
-                    <h3>People Analytics</h3>
-                    <p>Comprehensive education in workforce analytics from one of the world's leading business schools.</p>
-                    <div class="card-footer">Wharton Online | Issued Jan 2020<br>Credential ID: E75HN9VB5JH9</div>
-                </div>
-                
-                <div class="card">
-                    <h3>Bridging the Gap between Strategy Design and Delivery</h3>
-                    <p>Training in implementing strategic initiatives effectively across organizations.</p>
-                    <div class="card-footer">Brightline Initiative | Issued Feb 2019<br>Credential ID: TX8NK8KAJM9M</div>
                 </div>
             </div>
         </div><li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
