@@ -4,26 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vahid Faraji - Professional Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: monospace;
+            font-family: 'Roboto Slab', serif;
             margin: 0;
             padding: 0;
             border: 3px solid black;
+            font-size: 16px;
+            overflow-x: hidden;
         }
         
         .header {
             background-color: #a0d8ef; /* Light blue instead of yellow */
             padding: 15px 0;
             border-bottom: 3px solid black;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            width: 100%;
         }
         
         .nav-container {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             max-width: 1200px;
             margin: 0 auto;
+            flex-wrap: wrap;
+            padding: 0 10px;
         }
         
         .nav-button {
@@ -31,12 +42,14 @@
             color: black;
             border: 3px solid black;
             border-radius: 25px; /* Circular instead of rectangular */
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 8px 12px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             box-shadow: 5px 5px 0px black;
             text-transform: none;
+            margin-bottom: 5px;
+            font-family: 'Roboto Slab', serif;
         }
         
         .nav-button.active {
@@ -45,14 +58,18 @@
         
         .content {
             max-width: 1000px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 0 20px;
+            box-sizing: border-box;
+            width: 100%;
         }
         
         .profile-section {
             display: flex;
-            gap: 40px;
-            margin-bottom: 40px;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: nowrap;
+            align-items: flex-start;
         }
         
         .profile-photo-container {
@@ -60,8 +77,8 @@
             border: 3px solid black;
             border-radius: 50%; /* Circular instead of rectangular */
             overflow: hidden;
-            width: 230px;
-            height: 230px;
+            width: 200px;
+            height: 200px;
         }
         
         .profile-photo {
@@ -72,21 +89,38 @@
         
         .profile-info {
             flex-grow: 1;
+            min-width: 0; /* This allows the element to shrink below its content size */
+            max-width: 100%;
         }
         
         h1 {
-            font-family: monospace;
+            font-family: 'Roboto Slab', serif;
             margin-bottom: 10px;
+            font-size: 1.6em;
+            font-weight: 700;
+        }
+        
+        h2 {
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        h3 {
+            font-size: 1.1em;
+            font-weight: 500;
         }
         
         a {
             color: blue;
             text-decoration: underline;
             font-weight: bold;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .section {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            width: 100%;
         }
 
         .skill-tag {
@@ -100,6 +134,7 @@
         
         .tab-content {
             display: none;
+            width: 100%;
         }
         
         .tab-content.active {
@@ -148,13 +183,249 @@
             opacity: 1;
         }
         
+        .news-box {
+            border: 3px solid black;
+            padding: 20px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            box-shadow: 5px 5px 0px black;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .news-title {
+            border: 3px solid black;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+            background-color: white;
+            box-shadow: 5px 5px 0px black;
+            font-weight: bold;
+            font-size: 1.2em;
+            transform: translateY(-35px);
+            margin-bottom: -15px;
+        }
+        
+        .news-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .news-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .news-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            font-size: 24px;
+            line-height: 1;
+        }
+        
+        .news-date {
+            font-weight: bold;
+        }
+        
+        /* Card styles for projects, articles and certifications */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .card {
+            border: 3px solid black;
+            box-shadow: 5px 5px 0px black;
+            padding: 15px;
+            flex: 1;
+            min-width: 250px;
+            background-color: white;
+            transition: transform 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            border-bottom: 2px solid #a0d8ef;
+            padding-bottom: 10px;
+        }
+        
+        .card p {
+            font-size: 0.95em;
+        }
+        
+        .card .card-footer {
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
+        .card .card-link {
+            display: inline-block;
+            margin-top: 10px;
+            background-color: #a0d8ef;
+            color: black;
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 2px solid black;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            font-family: 'Roboto Slab', serif;
+        }
+        
+        .card .card-link:hover {
+            background-color: #7bc1e5;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 3px solid black;
+            border-radius: 15px;
+            background-color: #f8f8f8;
+            box-shadow: 5px 5px 0px black;
+        }
+        
+        .contact-item strong {
+            min-width: 100px;
+            margin-right: 10px;
+        }
+        
+        @media (max-width: 1200px) {
+            .profile-photo-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .card {
+                min-width: 220px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .profile-section {
+                gap: 20px;
+            }
+            
+            .profile-photo-container {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .content {
+                margin: 20px auto;
+            }
+            
+            .card {
+                min-width: 45%;
+                flex-basis: calc(50% - 15px);
+            }
+        }
+        
         @media (max-width: 768px) {
             .profile-section {
-                flex-direction: column;
+                flex-direction: row;
+                gap: 20px;
+                align-items: center;
+            }
+            
+            .profile-photo-container {
+                width: 120px;
+                height: 120px;
+                margin-right: 0;
             }
             
             .nav-container {
                 flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .nav-button {
+                font-size: 12px;
+                padding: 7px 10px;
+                margin-bottom: 8px;
+                flex: 0 0 auto;
+            }
+            
+            h1 {
+                font-size: 1.3em;
+                margin-top: 0;
+            }
+            
+            h2 {
+                font-size: 1.2em;
+            }
+            
+            .content {
+                padding: 0 15px;
+                margin: 20px auto;
+            }
+            
+            .profile-info {
+                text-align: left;
+            }
+            
+            .card {
+                min-width: 100%;
+                flex-basis: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            
+            .profile-photo-container {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 20px;
+            }
+            
+            .profile-info {
+                text-align: center;
+            }
+            
+            .card {
+                padding: 12px;
+            }
+            
+            .news-box {
+                padding: 15px;
+            }
+            
+            .content {
+                padding: 0 10px;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .contact-item strong {
+                margin-bottom: 5px;
             }
         }
     </style>
@@ -167,7 +438,6 @@
             <button class="nav-button" data-tab="experience">Experience</button>
             <button class="nav-button" data-tab="projects">Projects</button>
             <button class="nav-button" data-tab="articles">Articles</button>
-            <button class="nav-button" data-tab="certifications">Certifications</button>
             <button class="nav-button" data-tab="contact">Contact</button>
         </div>
     </div>
@@ -177,7 +447,7 @@
         <div id="home" class="tab-content active">
             <div class="profile-section">
                 <div class="profile-photo-container">
-                    <img src="/api/placeholder/230/230" alt="Vahid Faraji" class="profile-photo">
+                    <img src="foto-vahid.jpg" alt="Vahid Faraji" class="profile-photo">
                 </div>
                 <div class="profile-info">
                     <h1>Hello there! My name is Vahid Faraji.</h1>
@@ -224,6 +494,30 @@
                         <p>AzureDev, Python (Numpy, Pandas), SQL (Dbrewer, MS SQL Server), PowerBI, LangChain, OpenAI APIs</p>
                     </div>
                 </div>
+            </div>
+            
+            <div class="news-box">
+                <div class="news-title">Latest Activity & Timeline</div>
+                <ul class="news-list">
+                    <li>
+                        <span class="news-date">21 February 2025:</span> Started developing LabOps project with Gülenay Özbek in Luxembourg.
+                    </li>
+                    <li>
+                        <span class="news-date">20 February 2025:</span> Published article on building a Position Title Agent with LangChain and Tavily.
+                    </li>
+                    <li>
+                        <span class="news-date">17 February 2025:</span> Completed LangGraph certification from LangChain.
+                    </li>
+                    <li>
+                        <span class="news-date">23 January 2025:</span> Implemented new skill extraction pipeline at Kariyer.net, improving job-candidate matching by 37%.
+                    </li>
+                    <li>
+                        <span class="news-date">22 January 2025:</span> Completed LangSmith certification from LangChain.
+                    </li>
+                    <li>
+                        <span class="news-date">19 December 2024:</span> Released People Data Handbook for Persian-speaking community.
+                    </li>
+                </ul>
             </div>
             
             <div class="section">
@@ -391,187 +685,4 @@
                         <span class="skill-tooltip">Crafting effective inputs for AI systems to produce desired outputs. I design prompts that extract structured information from job descriptions and resumes.</span>
                     </div>
                 </div>
-            </div> 15px; border: 1px solid #a0d8ef;">
-                        <span style="width: 12px; height: 12px; background-color: #1976d2; border-radius: 50%; margin-right: 8px;"></span>
-                        <span>Prompt Engineering</span>
-                    </div>
-                </div>
             </div>
-        </div>
-        
-        <!-- Experience Tab -->
-        <div id="experience" class="tab-content">
-            <h1>Experience</h1>
-            <div style="margin-bottom: 30px;">
-                <h3>Kariyer.net | Product Manager (Data for Product)</h3>
-                <p><em>October 2022 - Present | Istanbul, Turkey</em></p>
-                <p>Working with Data Platform, Technical, R&D, and Product Teams to develop data-driven solutions for Turkey's largest online job platform.</p>
-                
-                <p><strong>Key Achievements:</strong></p>
-                <ul>
-                    <li>Led the development of a salary matching tool that increased user engagement by 42% and improved data quality for market salary benchmarks</li>
-                    <li>Implemented skill extraction pipelines using LLMs that improved job-candidate matching by 37%</li>
-                    <li>Designed and delivered taxonomies for job titles, skills, and industries that standardized data across the platform</li>
-                    <li>Collaborated with cross-functional teams to integrate data solutions into user-facing products</li>
-                </ul>
-                
-                <p><strong>Core Responsibilities:</strong></p>
-                <ul>
-                    <li><strong>People Data & Insights:</strong> Improving data flow, accuracy, and consistency across platform</li>
-                    <li><strong>Labor Market Analysis:</strong> Standardizing job classifications, linking skills to roles, and researching salary trends</li>
-                    <li><strong>AI Implementation:</strong> Applying LLMs to extract insights from job postings and optimize matching algorithms</li>
-                    <li><strong>Product Development:</strong> Transforming labor market data into valuable user-facing features</li>
-                </ul>
-            </div>
-            
-            <div style="margin-bottom: 30px;">
-                <h3>Previous Experience</h3>
-                <ul>
-                    <li><strong>Business Analyst (3+ years):</strong> Bridged business requirements with technical solutions, translating complex data needs into actionable insights</li>
-                    <li><strong>HR/Labor Economics Specialist (5+ years):</strong> Applied workforce data analysis to real-world scenarios, developing expertise in employment trends and market dynamics</li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Projects Tab -->
-        <div id="projects" class="tab-content">
-            <h1>Projects</h1>
-            <div style="margin-bottom: 20px;">
-                <h3>Skill Extraction</h3>
-                <p>Developed an AI-powered system that automatically extracts skills from job descriptions and resumes. This project leverages LLMs to identify both explicit and implicit skills, categorize them, and match them to standardized skill taxonomies. Improved candidate-job matching accuracy by 37% compared to keyword-based approaches.</p>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-                <h3>Position Detector by LLM</h3>
-                <p>Created a multilingual position title detection and normalization system using LangChain and LLMs that works across Turkish, English, and Spanish job descriptions. This tool helps standardize job titles across different languages, improving search functionality and data consistency in Kariyer.net's platform.</p>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-                <h3>People Data Handbook</h3>
-                <p>Authored a comprehensive handbook on People Data and People Analytics for the people data community. This resource covers practical applications of data in HR, includes code examples, and bridges the gap in quality educational materials in this field. The handbook has received positive feedback from industry professionals and is being used as a reference by HR analytics practitioners.</p>
-            </div>
-            
-            <div style="margin-bottom: 20px;">
-                <h3>LabOps - Forklift Career Database (Coming Soon)</h3>
-                <p>Developing a specialized search and matching system for forklift operator career paths and equipment types. This collaborative project with Gülenay Özbek in Luxembourg aims to create a comprehensive database that connects operator skills with specific forklift equipment requirements. The system will help optimize industrial staffing and training programs through data-driven career pathing.</p>
-                <p><em>Status: In development - Launching soon</em></p>
-            </div>
-        </div>
-        
-        <!-- Certifications Tab -->
-        <div id="certifications" class="tab-content">
-            <h1>Licenses & Certifications</h1>
-            <div class="section">
-                <ul style="list-style-type: none; padding: 0;">
-                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>Introduction to LangGraph</h3>
-                        <p>LangChain | Issued Jan 2025</p>
-                    </li>
-                    
-                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>Introduction to LangSmith</h3>
-                        <p>LangChain | Issued Jan 2025</p>
-                    </li>
-                    
-                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>Data Literacy Professional</h3>
-                        <p>DataCamp | Issued Jan 2024</p>
-                    </li>
-                    
-                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>ChatGPT API</h3>
-                        <p>lablab.ai | Issued Mar 2023</p>
-                    </li>
-                    
-                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>Forward Program</h3>
-                        <p>McKinsey & Company | Issued Aug 2022</p>
-                    </li>
-                    
-                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>People Analytics</h3>
-                        <p>Josh Bersin Academy | Issued Feb 2021</p>
-                    </li>
-                    
-                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>People Analytics</h3>
-                        <p>Wharton Online | Issued Jan 2020</p>
-                    </li>
-                    
-                    <li style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
-                        <h3>Bridging the Gap between Strategy Design and Delivery</h3>
-                        <p>Brightline Initiative | Issued Feb 2019</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Articles Tab -->
-        <div id="articles" class="tab-content">
-            <h1>Articles & Publications</h1>
-            <div class="section">
-                <div style="margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 20px;">
-                    <h3>Building a Position Title Agent with LangChain and Tavily</h3>
-                    <p><em>Published: February 2025</em></p>
-                    <p>A deep dive into creating a multilingual position title detection system using LangChain, LLMs, and the Tavily API. This article explores how we built an agent that can research and normalize job titles across Turkish, English, and Spanish.</p>
-                    <p><a href="https://lnkd.in/dzVt_svg" target="_blank">Read on Medium →</a></p>
-                </div>
-                
-                <div style="margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 20px;">
-                    <h3>People Data Handbook: A Comprehensive Guide</h3>
-                    <p><em>Published: January 2024</em></p>
-                    <p>An overview of the 195-page handbook I created for the Persian-speaking community on People Data and People Analytics. This article discusses why I created this resource and highlights key sections covering data management, analysis techniques, and practical applications.</p>
-                    <p><a href="#" target="_blank">Learn More →</a></p>
-                </div>
-                
-                <div style="margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 20px;">
-                    <h3>Skill Extraction: Beyond Keyword Matching</h3>
-                    <p><em>Published: November 2023</em></p>
-                    <p>An exploration of how modern NLP and LLMs can be leveraged to identify both explicit and implicit skills in job descriptions and resumes. This article shares insights from our work at Kariyer.net on building more sophisticated skill extraction systems.</p>
-                    <p><a href="#" target="_blank">Read Article →</a></p>
-                </div>
-                
-                <div style="margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 20px;">
-                    <h3>The Future of Labor Market Data</h3>
-                    <p><em>Published: June 2023</em></p>
-                    <p>A forward-looking piece on how AI and data analytics are transforming our understanding of employment trends, skill demand, and workforce development. This article examines emerging technologies and methodologies in labor market intelligence.</p>
-                    <p><a href="#" target="_blank">Read Article →</a></p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Contact Tab -->
-        <div id="contact" class="tab-content">
-            <h1>Contact</h1>
-            <div class="section">
-                <p><strong>GitHub:</strong> <a href="https://github.com/vfaraji89" target="_blank">github.com/vfaraji89</a></p>
-                <p><strong>LinkedIn:</strong> <a href="#" target="_blank">Vahid Faraji</a></p>
-                <p><strong>Location:</strong> Istanbul, Turkey</p>
-                <p><strong>Email:</strong> contact@example.com</p>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        // Tab switching functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.nav-button');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs and content
-                    document.querySelectorAll('.nav-button').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                    
-                    // Add active class to current tab
-                    this.classList.add('active');
-                    
-                    // Show corresponding content
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-        });
-    </script>
-</body>
-</html>
