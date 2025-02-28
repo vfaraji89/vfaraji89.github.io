@@ -800,3 +800,30 @@
                         <div class="metric">
                             <span class="metric-value">±8%</span>
                             <span class="metric-label">Prediction Accuracy</span>
+
+
+                            document.addEventListener('DOMContentLoaded', function() {
+    // Get all nav buttons
+    const navButtons = document.querySelectorAll('.nav-button');
+    // Get all tab content divs
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    // Add click event listener to each button
+    navButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Get the tab id from data-tab attribute
+            const tabId = this.getAttribute('data-tab');
+            
+            // Hide all tab contents
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Show the selected tab content
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+});
