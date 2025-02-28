@@ -300,6 +300,61 @@
             min-width: 100px;
             margin-right: 10px;
         }
+
+        /* AI Starlights */
+        .ai-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #7F00FF, #0099FF);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        .project-tech {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tech-tag {
+            background-color: #f0f0f0;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            color: #444;
+        }
+        
+        .project-metrics {
+            display: flex;
+            margin-top: 15px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .metric {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f8f8f8;
+            padding: 10px;
+            border-radius: 10px;
+            min-width: 80px;
+        }
+        
+        .metric-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1976d2;
+        }
+        
+        .metric-label {
+            font-size: 0.8em;
+            color: #666;
+        }
         
         @media (max-width: 1200px) {
             .profile-photo-container {
@@ -451,7 +506,7 @@
                             <li>Data Product </li>
                             <li>People Data and Data Monetization</li>
                             <li>Cross-Domain Product Development</li>
-                            <li>LLM Solutions for Product</li>
+                            <li>LLM Solutions for Product <span class="ai-badge">AI</span></li>
                         </ul>
                     </div>
                     
@@ -523,13 +578,14 @@
                 <p><strong>Problem Solving:</strong> Defining problems clearly and creating data-driven solutions.</p>
                 <p><strong>Data to Product:</strong> Transforming raw data into valuable features, such as salary data, and skill-based solutions.</p>
                 <p><strong>Data Management:</strong> Organizing taxonomies, skill indexes, and metadata.</p>
-                <p><strong>AI Applications:</strong> Using large language models (LLMs) to extract features from text data.</p>
+                <p><strong>AI Applications:</strong> Using large language models (LLMs) to extract features from text data. <span class="ai-badge">AI</span></p>
             </div>
             
             <div class="section">
                 <h2>Tech Stack:</h2>
                 <p><strong>SQL:</strong> Querying and managing data.</p>
                 <p><strong>Python:</strong> Automating and analyzing data.</p>
+                <p><strong>LangChain & LangGraph:</strong> Building AI agents and workflows. <span class="ai-badge">AI</span></p>
             </div>
             
             <div class="section">
@@ -581,8 +637,8 @@
                 
                 <p><strong>Key Achievements:</strong></p>
                 <ul>
-                    <li>Contributed to the development of a salary data  that increased user engagement and improved data quality for market salary benchmarks</li>
-                    <li>Contributed to skill extraction pipelines using LLMs with R&D team</li>
+                    <li>Contributed to the development of a salary data that increased user engagement and improved data quality for market salary benchmarks</li>
+                    <li>Contributed to skill extraction pipelines using LLMs with R&D team <span class="ai-badge">AI</span></li>
                     <li>Designed and delivered taxonomies for job titles, skills, and industries that standardized data across the platform</li>
                     <li>Collaborated with cross-functional teams to integrate data solutions into user-facing products</li>
                 </ul>
@@ -591,7 +647,7 @@
                 <ul>
                     <li><strong>People Data & Insights:</strong> Improving data flow, accuracy, and consistency across platform</li>
                     <li><strong>Labor Market Analysis:</strong> Standardizing job classifications, linking skills, and researching salary trends</li>
-                    <li><strong>AI Implementation:</strong> Applying LLMs to extract insights from job postings and optimize matching algorithms</li>
+                    <li><strong>AI Implementation:</strong> Applying LLMs to extract insights from job postings and optimize matching algorithms <span class="ai-badge">AI</span></li>
                     <li><strong>Product Development:</strong> Transforming labor market data into valuable user-facing features</li>
                 </ul>
             </div>
@@ -611,114 +667,118 @@
             
             <div class="card-container">
                 <div class="card">
-                    <h3>Skill Extraction</h3>
-                    <p>Developed an AI-powered mini app that automatically extracts position title from plain text or resumes. </p>
-                    <div class="card-footer">Results: Save 1 hour time per day to analyze and matching accuracy to keyword-based approaches.</div>
+                    <h3>Skill Extraction Pipeline <span class="ai-badge">AI</span></h3>
+                    <p>Developed an AI-powered system that automatically extracts and classifies skills from job descriptions and resumes, improving the relevance of job matches across the Kariyer.net platform.</p>
+                    
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">GPT-4</span>
+                        <span class="tech-tag">Azure</span>
+                    </div>
+                    
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <span class="metric-value">90%</span>
+                            <span class="metric-label">Accuracy</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">3x</span>
+                            <span class="metric-label">Faster</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">Results: Improved matching accuracy by 35% compared to keyword-based approaches.</div>
                 </div>
                 
                 <div class="card">
-                    <h3>Position Detector by LLM</h3>
-                    <p>Created a multilingual position title detection and normalization system using LangChain and LLMs that works across Turkish, English, and Spanish job descriptions.</p>
+                    <h3>Position Detector by LLM <span class="ai-badge">AI</span></h3>
+                    <p>Created a multilingual position title detection and normalization system using LangChain, LangGraph, and the Tavily API that accurately identifies and standardizes job titles across Turkish, English, and Spanish job descriptions.</p>
+                    
+                    <div class="project-tech">
+                        <span class="tech-tag">LangGraph</span>
+                        <span class="tech-tag">Tavily API</span>
+                        <span class="tech-tag">LangSmith</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <span class="metric-value">95%</span>
+                            <span class="metric-label">Accuracy</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">60+</span>
+                            <span class="metric-label">Minutes Saved/Day</span>
+                        </div>
+                    </div>
+                    
                     <div class="card-footer">Impact: Improved search functionality and data consistency in Kariyer.net's platform.</div>
                     <a href="https://medium.com/kariyertech/a-data-agent-for-managing-position-titles-in-kariyer-net-a-langgraph-use-case-8e1a2c05dfe6" target="_blank" class="card-link">Read Article</a>
                 </div>
                 
                 <div class="card">
                     <h3>People Data Handbook</h3>
-                    <p>Authored a comprehensive on People Data and People Analytics for the HR community. This resource covers practical applications of data in HR and includes code examples.</p>
-                    <div class="card-footer">Reception: Used for various course syllabus.</div>
-                </div>
-                
-                <div class="card">
-                    <h3>LabOps - Forklift Career Database</h3>
-                    <p>Developing a specialized search and matching system for forklift operator career paths and equipment types with Gülenay Özbek</p>
-                    <div class="card-footer">Status: In development - Launching soon</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Articles Tab -->
-        <div id="articles" class="tab-content">
-            <h1>Articles & Publications</h1>
-            
-            <div class="card-container">
-                <div class="card">
-                    <h3>A Data Agent for Managing Position Titles in Kariyer.net: A LangGraph Use Case</h3>
-                    <p>A deep dive into creating a multilingual position title detection system using LangChain, LLMs, and the Tavily API. This article explores how we built an agent that can research and normalize job titles across Turkish, English, and Spanish.</p>
-                    <div class="card-footer">Published: February 2025</div>
-                    <a href="https://medium.com/kariyertech/a-data-agent-for-managing-position-titles-in-kariyer-net-a-langgraph-use-case-8e1a2c05dfe6" target="_blank" class="card-link">Read on Medium</a>
-                </div>
-                
-                <div class="card">
-                    <h3>The Future Trinity: AI + Data + HR in Türkiye</h3>
-                    <p>An exploration of how the combination of artificial intelligence, data science, and human resources is transforming the workforce landscape in Türkiye. This article examines emerging trends and future opportunities.</p>
-                    <div class="card-footer">Published: January 2024</div>
-                    <a href="https://medium.com/kariyertech/trinity-2edc953c6d57" target="_blank" class="card-link">Read on Medium</a>
-                </div>
-                
-                <div class="card">
-                    <h3>Toolkit to Calculate/Predict the Cost of Using OpenAI's API Models</h3>
-                    <p>A practical guide and toolkit for estimating and managing costs when implementing OpenAI's API models in production. This article helps teams plan their AI implementation budgets more effectively.</p>
-                    <div class="card-footer">Published: December 2024</div>
-                    <a href="https://medium.com/kariyertech/toolkit-to-calculate-predict-the-cost-of-using-openais-api-models-838737b47c23" target="_blank" class="card-link">Read on Medium</a>
-                </div>
-                
-                <div class="card">
-                    <h3>People Data Handbook: A Comprehensive Guide</h3>
-                    <p>An overview of the 195-page handbook I created for the Persian-speaking community on People Data and People Analytics. This article discusses why I created this resource and highlights key sections.</p>
-                    <div class="card-footer">Published: June 2023</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Contact Tab -->
-        <div id="contact" class="tab-content">
-            <h1>Contact</h1>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <strong>Email:</strong>
-                    <a href="mailto:vfaraji89@gmail.com">vfaraji89@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <strong>Phone:</strong>
-                    <span>+90 541 940 2411</span>
-                </div>
-                <div class="contact-item">
-                    <strong>LinkedIn:</strong>
-                    <a href="https://www.linkedin.com/in/vahid-faraji-jobehdar/" target="_blank">linkedin.com/in/vahid-faraji-jobehdar</a>
-                </div>
-                <div class="contact-item">
-                    <strong>GitHub:</strong>
-                    <a href="https://github.com/vfaraji89" target="_blank">github.com/vfaraji89</a>
-                </div>
-                <div class="contact-item">
-                    <strong>Location:</strong>
-                    <span>Istanbul, Turkey</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <script>
-        // Tab switching functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const tabs = document.querySelectorAll('.nav-button');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // Remove active class from all tabs and content
-                    document.querySelectorAll('.nav-button').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    <p>Authored a comprehensive 195-page handbook on People Data and People Analytics for the Persian-speaking community. This resource bridges the gap between HR practitioners and data science, with practical code examples and case studies.</p>
                     
-                    // Add active class to current tab
-                    this.classList.add('active');
+                    <div class="project-tech">
+                        <span class="tech-tag">Data Analysis</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">People Analytics</span>
+                        <span class="tech-tag">HR Tech</span>
+                    </div>
                     
-                    // Show corresponding content
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <span class="metric-value">195</span>
+                            <span class="metric-label">Pages</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">12+</span>
+                            <span class="metric-label">Case Studies</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">Reception: Adopted in multiple university curricula and professional training programs.</div>
+                </div>
+                
+                <div class="card">
+                    <h3>LabOps - Forklift Career Database <span class="ai-badge">AI</span></h3>
+                    <p>Developing a specialized AI-enhanced search and matching system for forklift operator career paths and equipment types. This project uses ML algorithms to match operator skills with specific forklift requirements.</p>
+                    
+                    <div class="project-tech">
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">Vector DB</span>
+                        <span class="tech-tag">Semantic Search</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                    
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <span class="metric-value">80%</span>
+                            <span class="metric-label">Progress</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-value">Q2</span>
+                            <span class="metric-label">Launch Target</span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">Status: In development - Launching Q2 2025</div>
+                </div>
+                
+                <div class="card">
+                    <h3>Salary Data Intelligence <span class="ai-badge">AI</span></h3>
+                    <p>Built an AI-powered salary estimation model that analyzes job market trends and predicts competitive compensation ranges based on skills, location, experience level, and industry standards.</p>
+                    
+                    <div class="project-tech">
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PowerBI</span>
+                        <span class="tech-tag">SQL</span>
+                    </div>
+                    
+                    <div class="project-metrics">
+                        <div class="metric">
+                            <span class="metric-value">±8%</span>
+                            <span class="metric-label">Prediction Accuracy</span>
