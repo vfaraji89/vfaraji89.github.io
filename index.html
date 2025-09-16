@@ -76,6 +76,8 @@
         .profile-photo-container:hover { transform: scale(1.05) rotate(3deg); }
         .profile-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .profile-header h1 { margin-bottom: 0.5rem; }
+        .job-title-main { font-size: 1.4rem; text-align: center; text-transform: none; margin: 0; min-height: 2.5rem; /* Reserve space */ }
+        .job-title-main .typing-cursor { display: inline-block; background-color: var(--text-color); width: 10px; height: 1.4rem; animation: blink 0.7s infinite; vertical-align: middle; }
         .contact-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; font-size: 1.1rem; }
         .contact-info a { color: var(--secondary-color); text-decoration: none; }
         .contact-info a:hover { color: var(--primary-color); }
@@ -109,17 +111,20 @@
 
         /* --- Generic Grid & Card Styling --- */
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: left; }
-        .card { background-color: #fff; border: 4px solid var(--border-color); padding: 1.5rem; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+        .card { background-color: #fff; border: 4px solid var(--border-color); padding: 1.5rem; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
         .card:hover { transform: translate(-5px, -5px); box-shadow: 8px 8px 0 var(--border-color); }
+        .card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(0deg, rgba(0,0,0,0.1), rgba(0,0,0,0.1) 1px, transparent 1px, transparent 4px); opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+        .card:hover::after { opacity: 1; }
         .card h3 { font-size: 1.1rem; }
         .card p { font-size: 1.1rem; }
         
         /* --- Toolkit Section --- */
-        .skill-list { text-align: left; }
-        .skill-entry { display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start; margin-bottom: 1.5rem; }
-        .skill-name { font-family: var(--font-pixel); font-size: 1rem; color: var(--text-color); }
-        .skill-description { font-size: 1.1rem; color: var(--text-color); margin: 0; }
-        
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .skill-category h3 { font-size: 1.1rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--border-color); }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+        .skill-item { background: #eee; border: 2px solid var(--border-color); padding: 5px 12px; font-size: 1rem; transition: all 0.2s; }
+        .skill-item:hover { background-color: #fff2cc; transform: scale(1.05); animation: shake 0.5s; }
+
         /* --- Education & Publication --- */
         .edu-item, .pub-item { text-align: left; }
         .item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
@@ -146,14 +151,13 @@
         
         /* --- RTL STYLES --- */
         body.rtl { direction: rtl; }
-        body.rtl p, body.rtl .job-title-group, body.rtl .skill-list, body.rtl .edu-item, body.rtl .pub-item { text-align: right; }
+        body.rtl p, body.rtl .job-title-group, body.rtl .edu-item, body.rtl .pub-item { text-align: right; }
         body.rtl h2 .cursor { margin-left: 0; margin-right: 8px; }
         body.rtl .nes-box li::before { left: auto; right: 0; transform: scaleX(-1); }
         body.rtl .nes-box li { padding-left: 0; padding-right: 25px; }
         body.rtl .timeline { border-left: none; border-right: 4px solid var(--border-color); padding-left: 0; padding-right: 2rem; }
         body.rtl .job::before { left: auto; right: -38px; }
         body.rtl .current-job-arrow { margin-left: 0; margin-right: 15px; border-left: none; border-right: 14px solid var(--accent-color); animation-name: bounce-left; }
-        body.rtl .skill-entry { grid-template-columns: 1fr 200px; }
         body.rtl .scroll-to-top { right: auto; left: 20px; }
         body.rtl .lang-switcher { border-left: none; border-right: 3px solid var(--border-color); padding-left: 0; padding-right: 1rem; margin-left: 0; margin-right: 1rem; }
 
@@ -170,14 +174,10 @@
 
         /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
-            body { font-size: 20px; }
-            h1 { font-size: 1.6rem; }
-            h2 { font-size: 1.2rem; }
+            body { font-size: 20px; } h1 { font-size: 1.6rem; } h2 { font-size: 1.2rem; }
             section { padding-top: 6rem; }
             .nav-container { gap: 0.5rem; }
             .lang-switcher { margin: 0; padding: 0; border: none; }
-            .skill-entry { grid-template-columns: 180px 1fr; }
-            body.rtl .skill-entry { grid-template-columns: 1fr 180px; }
         }
         @media (max-width: 480px) {
             h1 { font-size: 1.3rem; } h2 { font-size: 1rem; }
@@ -185,12 +185,10 @@
             .profile-photo-container { width: 150px; height: 150px; }
             .contact-info { flex-direction: column; gap: 0.5rem; align-items: center; }
             .nes-box { padding: 1.5rem; }
-            .grid-container { grid-template-columns: 1fr; }
+            .grid-container, .skills-grid { grid-template-columns: 1fr; }
             .job-header { flex-direction: column; align-items: flex-start; }
             .job-title { font-size: 1.1rem; }
             .item-header { flex-direction: column; align-items: flex-start; }
-            .skill-entry, body.rtl .skill-entry { grid-template-columns: 1fr; }
-            .skill-name { margin-bottom: 0.5rem; }
         }
     </style>
 </head>
@@ -200,7 +198,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <ul class="nav-links">
-                <li><a href="#home" class="active"><span data-lang-key="nav_home">Home</span></a></li>
+                <li><a href="#home"><span data-lang-key="nav_home">Home</span></a></li>
                 <li><a href="#experience"><span data-lang-key="nav_experience">Experience</span></a></li>
                 <li><a href="#projects"><span data-lang-key="nav_projects">Projects</span></a></li>
                 <li><a href="#weekend-quests"><span data-lang-key="nav_quests">Weekend Quests</span></a></li>
@@ -210,7 +208,6 @@
             </ul>
             <div class="lang-switcher">
                 <button data-lang="en" class="active">EN</button>
-                <button data-lang="fa">FA</button>
                 <button data-lang="es">ES</button>
                 <button data-lang="tr">TR</button>
             </div>
@@ -226,7 +223,7 @@
                     <img src="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg" alt="Vahid Faraji" class="profile-photo">
                 </div>
                 <h1>Vahid Faraji</h1>
-                <p style="font-size: 1.4rem; text-align: center; text-transform: none; margin: 0;"><span data-lang-key="job_title_main">Senior Applied AI Specialist</span></p>
+                <p class="job-title-main" data-lang-key="job_title_main">Senior Applied AI Specialist</p>
                 <div class="contact-info">
                     <span><a href="mailto:vfaraji89@gmail.com">vfaraji89@gmail.com</a></span>
                     <span><a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank">LinkedIn</a></span>
@@ -345,23 +342,48 @@
         <!-- TOOLKIT SECTION -->
         <section id="toolkit">
             <header>
-                <h1><span data-lang-key="toolkit_title">Skill Tree</span><span class="cursor"></span></h1>
+                <h1><span data-lang-key="toolkit_title">Power-Ups</span><span class="cursor"></span></h1>
                 <p style="text-align:center;" data-lang-key="toolkit_subtitle">My technical skill inventory.</p>
             </header>
-            <div class="nes-box">
-                <div class="skill-list">
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill1_name">Generative AI</span><p class="skill-description" data-lang-key="skill1_desc">Building and deploying systems using foundational models.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill2_name">OpenAI & Gemini APIs</span><p class="skill-description" data-lang-key="skill2_desc">Integrating leading large language models into applications.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill3_name">Advanced Prompting</span><p class="skill-description" data-lang-key="skill3_desc">Crafting effective prompts to steer model behavior and ensure accuracy.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill4_name">LangSmith</span><p class="skill-description" data-lang-key="skill4_desc">Debugging, testing, and monitoring LLM applications for production readiness.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill5_name">Python</span><p class="skill-description" data-lang-key="skill5_desc">Automating workflows and performing data analysis with Pandas and NumPy.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill6_name">SQL Dialects</span><p class="skill-description" data-lang-key="skill6_desc">Querying complex relational databases for insights and data extraction.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill7_name">ETL Processes</span><p class="skill-description" data-lang-key="skill7_desc">Designing pipelines to Extract, Transform, and Load data for analytics.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill8_name">People Data</span><p class="skill-description" data-lang-key="skill8_desc">Specializing in the analysis and productization of workforce and HR data.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill9_name">Data Products</span><p class="skill-description" data-lang-key="skill9_desc">Conceptualizing and building products with data at their core.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill10_name">API Development</span><p class="skill-description" data-lang-key="skill10_desc">Designing and deploying scalable RESTful services for internal tools.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill11_name">Automation Tools</span><p class="skill-description" data-lang-key="skill11_desc">Using n8n and Power Automate to create robust, automated workflows.</p></div>
-                    <div class="skill-entry"><span class="skill-name" data-lang-key="skill12_name">Azure DevOps & Jira</span><p class="skill-description" data-lang-key="skill12_desc">Managing the product lifecycle from planning to deployment.</p></div>
+            <div class="skills-grid">
+                <div class="nes-box skill-category">
+                    <h3 data-lang-key="skills_cat_ai">AI</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Generative AI</span>
+                        <span class="skill-item">OpenAI API</span>
+                        <span class="skill-item">Google Gemini</span>
+                        <span class="skill-item">Advanced Prompting</span>
+                        <span class="skill-item">LangSmith</span>
+                        <span class="skill-item">Word Embeddings</span>
+                    </div>
+                </div>
+                <div class="nes-box skill-category">
+                    <h3 data-lang-key="skills_cat_product">Product</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Data Product</span>
+                        <span class="skill-item">API Development</span>
+                        <span class="skill-item">Azure DevOps</span>
+                        <span class="skill-item">Jira</span>
+                    </div>
+                </div>
+                 <div class="nes-box skill-category">
+                    <h3 data-lang-key="skills_cat_automation">Automation</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">n8n</span>
+                        <span class="skill-item">Power Automate</span>
+                        <span class="skill-item">Python</span>
+                    </div>
+                </div>
+                <div class="nes-box skill-category">
+                    <h3 data-lang-key="skills_cat_analytics">Analytics</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">SQL Dialects</span>
+                        <span class="skill-item">ETL</span>
+                        <span class="skill-item">People Data</span>
+                        <span class="skill-item">Analytical Skills</span>
+                        <span class="skill-item">Advanced Statistics</span>
+                        <span class="skill-item">Labour Market Research</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -419,7 +441,7 @@
                  <span class="footer-ticker-item">◆</span>
                 <span class="footer-ticker-item" data-lang-key="ticker4">LLM AGENTS</span>
                 <span class="footer-ticker-item">◆</span>
-                <!-- Repeat for seamless loop -->
+                 <!-- Repeat for seamless loop -->
                 <span class="footer-ticker-item" data-lang-key="ticker1_repeat">APPLIED AI</span>
                 <span class="footer-ticker-item">◆</span>
                 <span class="footer-ticker-item" data-lang-key="ticker2_repeat">DATA PRODUCTS</span>
@@ -436,106 +458,82 @@
     <a href="#home" class="scroll-to-top" aria-label="Scroll to top"></a>
 
     <script>
-        // --- TRANSLATION DATA OBJECT ---
         const translations = {
-            skip_link: { en: "Skip to main content", fa: "پرش به محتوای اصلی", es: "Saltar al contenido principal", tr: "Ana içeriğe atla" },
-            nav_home: { en: "Home", fa: "خانه", es: "Inicio", tr: "Anasayfa" },
-            nav_experience: { en: "Experience", fa: "تجربه", es: "Experiencia", tr: "Deneyim" },
-            nav_projects: { en: "Projects", fa: "پروژه ها", es: "Proyectos", tr: "Projeler" },
-            nav_quests: { en: "Weekend Quests", fa: "پروژه های آخر هفته", es: "Proyectos de Fin de Semana", tr: "Hafta Sonu Projeleri" },
-            nav_toolkit: { en: "Toolkit", fa: "ابزارها", es: "Herramientas", tr: "Araçlar" },
-            nav_education: { en: "Education", fa: "تحصیلات", es: "Educación", tr: "Eğitim" },
-            nav_writing: { en: "Writing", fa: "نوشته ها", es: "Escritos", tr: "Yazılar" },
-            job_title_main: { en: "Senior Applied AI Specialist", fa: "متخصص ارشد هوش مصنوعی کاربردی", es: "Especialista Senior en IA Aplicada", tr: "Kıdemli Uygulamalı Yapay Zeka Uzmanı" },
-            home_summary_title: { en: "Mission Briefing", fa: "شرح ماموریت", es: "Resumen de la Misión", tr: "Görev Tanımı" },
-            home_summary_p1: { en: "I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.", fa: "من روی محصولات با هوش مصنوعی کاربردی کار می‌کنم — نمونه‌های اولیه سریع، جریان‌های اتوماسیون و سیستم‌های مبتنی بر عامل یادگیرنده می‌سازم که داده‌های خام انسانی و کاربر را به محصولاتی تبدیل می‌کنند که مردم واقعاً از آنها استفاده می‌کنند.", es: "Trabajo en productos con IA Aplicada, construyendo prototipos rápidos, flujos de automatización y sistemas de aprendizaje basados en agentes que convierten datos brutos de humanos y usuarios en productos que la gente realmente usa.", tr: "Uygulamalı Yapay Zeka ile ürünler üzerinde çalışıyorum - ham insan ve kullanıcı verilerini insanların gerçekten kullandığı ürünlere dönüştüren hızlı prototipler, otomasyon akışları ve öğrenen ajan tabanlı sistemler oluşturuyorum." },
-            home_summary_p2: { en: "My motto: Build more, contribute max, and be less verbose.", fa: "شعار من: بیشتر بساز، حداکثر مشارکت کن و کمتر حرف بزن.", es: "Mi lema: Construir más, contribuir al máximo y ser menos verboso.", tr: "Sloganım: Daha fazlasını inşa et, maksimum katkıda bulun ve daha az konuş." },
-            experience_title: { en: "Level Select", fa: "انتخاب مرحله", es: "Selección de Nivel", tr: "Bölüm Seçimi" },
-            experience_subtitle: { en: "My professional journey and achievements.", fa: "سفر حرفه‌ای و دستاوردهای من.", es: "Mi trayectoria profesional y logros.", tr: "Profesyonel yolculuğum ve başarılarım." },
-            exp1_title: { en: "Senior Applied AI Specialist", fa: "متخصص ارشد هوش مصنوعی کاربردی", es: "Especialista Senior en IA Aplicada", tr: "Kıdemli Uygulamalı Yapay Zeka Uzmanı" },
-            exp1_date: { en: "Oct 2022 - Present", fa: "اکتبر ۲۰۲۲ - اکنون", es: "Oct 2022 - Presente", tr: "Eki 2022 - Halen" },
-            exp1_p1: { en: "Led the technical design and implementation of AI-powered features for a platform with 50M+ users, moving AI concepts from research to production-ready, scalable applications.", fa: "طراحی فنی و پیاده‌سازی ویژگی‌های مبتنی بر هوش مصنوعی را برای پلتفرمی با بیش از ۵۰ میلیون کاربر رهبری کردم و مفاهیم هوش مصنوعی را از تحقیق و آزمایش به برنامه‌های آماده تولید و مقیاس‌پذیر منتقل کردم.", es: "Lideré el diseño técnico y la implementación de funciones impulsadas por IA para una plataforma con más de 50 millones de usuarios, llevando los conceptos de IA de la investigación y experimentación a aplicaciones escalables y listas para producción.", tr: "50 milyondan fazla kullanıcısı olan bir platform için yapay zeka destekli özelliklerin teknik tasarımını ve uygulamasını yönettim, yapay zeka konseptlerini araştırma ve deneyden üretime hazır, ölçeklenebilir uygulamalara taşıdım." },
-            exp1_b1: { en: "<strong>LLM Agent Development:</strong> Designed and implemented Agents using Agno, OpenAI SDK, and LangChain. Developed a Python-based evaluation framework (evals) to systematically test model output.", fa: "<strong>توسعه عامل LLM:</strong> با استفاده از Agno، OpenAI SDK و LangChain، عامل‌ها یا موتورهای مبتنی بر LLM را طراحی و پیاده‌سازی کردم. یک چارچوب ارزیابی مبتنی بر پایتون (evals) برای آزمایش سیستماتیک خروجی مدل برای ارتباط و دقت توسعه دادم.", es: "<strong>Desarrollo de Agentes LLM:</strong> Diseñé e implementé Agentes o motores impulsados por LLM usando Agno, OpenAI SDK y LangChain. Desarrollé un marco de evaluación basado en Python (evals) para probar sistemáticamente la salida del modelo en cuanto a relevancia y precisión.", tr: "<strong>LLM Ajan Geliştirme:</strong> Agno, OpenAI SDK ve LangChain kullanarak Ajanlar veya LLM destekli motorlar tasarladım ve uyguladım. Model çıktısını alaka ve doğruluk açısından sistematik olarak test etmek için Python tabanlı bir değerlendirme çerçevesi (evals) geliştirdim." },
-            exp1_b2: { en: "<strong>Semantic Data Processing:</strong> Built a semantic segmentation pipeline by vectorizing unstructured text data (user bios, job descriptions, skills) to automatically classify and route service requests.", fa: "<strong>پردازش معنایی داده‌ها:</strong> یک خط لوله تقسیم‌بندی معنایی با برداری‌سازی داده‌های متنی بدون ساختار (بیوگرافی کاربر، توضیحات شغلی، مهارت‌ها) برای طبقه‌بندی و مسیریابی خودکار درخواست‌های خدمات ساختم.", es: "<strong>Procesamiento de Datos Semánticos:</strong> Construí una canalización de segmentación semántica vectorizando datos de texto no estructurados (biografías de usuarios, descripciones de trabajos, habilidades) para clasificar y enrutar automáticamente las solicitudes de servicio.", tr: "<strong>Semantik Veri İşleme:</strong> Hizmet taleplerini otomatik olarak sınıflandırmak ve yönlendirmek için yapılandırılmamış metin verilerini (kullanıcı biyografileri, iş tanımları, beceriler) vektörleştirerek bir semantik segmentasyon boru hattı oluşturdum." },
-            exp1_b3: { en: "<strong>Rapid AI Prototyping:</strong> Built interactive UIs with V0 connected to backend models for rapid validation, significantly reducing idea-to-feedback cycle time.", fa: "<strong>نمونه‌سازی سریع هوش مصنوعی:</strong> رابط‌های کاربری تعاملی با V0 متصل به مدل‌های بک‌اند برای اعتبارسنجی سریع ساختم که به طور قابل توجهی چرخه ایده تا بازخورد را کاهش داد.", es: "<strong>Creación Rápida de Prototipos de IA:</strong> Construí interfaces de usuario interactivas con V0 conectadas a modelos de backend para una validación rápida, reduciendo significativamente el ciclo de idea a retroalimentación.", tr: "<strong>Hızlı Yapay Zeka Prototipleme:</strong> Hızlı doğrulama için arka uç modellere bağlı V0 ile etkileşimli kullanıcı arayüzleri oluşturdum ve fikirden geri bildirime kadar olan süreyi önemli ölçüde azalttım." },
-            exp1_b4: { en: "<strong>Deploying Scalable AI Services:</strong> Designed and deployed internal AI services via RESTful APIs with focus on scalability, latency, and cost monitoring, using n8n and Power Automate for pipeline automation.", fa: "<strong>استقرار خدمات مقیاس‌پذیر هوش مصنوعی:</strong> خدمات داخلی هوش مصنوعی را از طریق APIهای RESTful با تمرکز بر مقیاس‌پذیری، تأخیر و نظارت بر هزینه طراحی و مستقر کردم و از n8n و Power Automate برای اتوماسیون خط لوله استفاده کردم.", es: "<strong>Despliegue de Servicios de IA Escalables:</strong> Diseñé y desplegué servicios internos de IA a través de API RESTful con enfoque en escalabilidad, latencia y monitoreo de costos, utilizando n8n y Power Automate para la automatización de canalizaciones.", tr: "<strong>Ölçeklenebilir Yapay Zeka Hizmetleri Dağıtımı:</strong> Ölçeklenebilirlik, gecikme ve maliyet izlemeye odaklanarak RESTful API'ler aracılığıyla dahili yapay zeka hizmetleri tasarladım ve dağıttım, boru hattı otomasyonu için n8n ve Power Automate kullandım." },
-            exp2_title: { en: "Business Analyst (Data & Analytics)", fa: "تحلیلگر کسب و کار (داده و تحلیل)", es: "Analista de Negocios (Datos y Análisis)", tr: "İş Analisti (Veri ve Analitik)" },
-            exp2_date: { en: "Sep 2021 - Oct 2022", fa: "سپتامبر ۲۰۲۱ - اکتبر ۲۰۲۲", es: "Sep 2021 - Oct 2022", tr: "Eyl 2021 - Eki 2022" },
-            exp2_p1: { en: "Owned data analytics and experimentation for a B2B SaaS platform, providing foundational data skills for my subsequent work in applied AI.", fa: "مسئولیت تحلیل داده‌ها و آزمایش‌ها را برای یک پلتفرم SaaS B2B بر عهده داشتم و مهارت‌های داده‌ای بنیادی را برای کارهای بعدی‌ام در هوش مصنوعی کاربردی فراهم کردم.", es: "Fui responsable de las funciones de análisis de datos y experimentación para una plataforma SaaS B2B, lo que me proporcionó las habilidades de datos fundamentales para mi trabajo posterior en IA aplicada.", tr: "Uygulamalı yapay zeka alanındaki sonraki çalışmalarım için temel veri becerileri sağlayan bir B2B SaaS platformu için veri analitiği ve deney işlevlerini yönettim." },
-            exp2_b1: { en: "Designed and analyzed A/B tests to measure the impact of product changes, validating hypotheses and improving user adoption rates.", fa: "آزمون‌های A/B را برای اندازه‌گیری تأثیر تغییرات محصول طراحی و تحلیل کردم، فرضیه‌ها را تأیید کرده و نرخ پذیرش کاربر را بهبود بخشیدم.", es: "Diseñé y analicé pruebas A/B para medir el impacto de los cambios en el producto, validando hipótesis y mejorando las tasas de adopción de los usuarios.", tr: "Ürün değişikliklerinin etkisini ölçmek, hipotezleri doğrulamak ve kullanıcı benimseme oranlarını iyileştirmek için A/B testleri tasarladım ve analiz ettim." },
-            exp3_title: { en: "People Data Lead", fa: "سرپرست داده‌های افراد", es: "Líder de Datos de Personas", tr: "İnsan Verileri Lideri" },
-            exp3_date: { en: "Nov 2019 - Dec 2021", fa: "نوامبر ۲۰۱۹ - دسامبر ۲۰۲۱", es: "Nov 2019 - Dic 2021", tr: "Kas 2019 - Ara 2021" },
-            exp3_p1: { en: "Co-founded a skills intelligence platform, leading the initial technical development and product design from concept to a working MVP.", fa: "یک پلتفرم هوشمند مهارت‌ها را تأسیس کردم و توسعه فنی اولیه و طراحی محصول را از مفهوم تا یک MVP کارآمد رهبری کردم.", es: "Co-fundé una plataforma de inteligencia de habilidades, liderando el desarrollo técnico inicial y el diseño del producto desde el concepto hasta un MVP funcional.", tr: "Bir beceri zekası platformunun kurucu ortağı oldum ve konseptten çalışan bir MVP'ye kadar ilk teknik geliştirme ve ürün tasarımını yönettim." },
-            exp3_b1: { en: "Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.", fa: "توسعه عملی یک MVP را رهبری کردم و منطق اصلی یک موتور توصیه‌گر شغلی مبتنی بر داده را طراحی کردم.", es: "Lideré el desarrollo práctico de un MVP y diseñé la lógica central para un motor de recomendación de carrera basado en datos.", tr: "Bir MVP'nin uygulamalı gelişimini yönettim ve veri odaklı bir kariyer öneri motoru için temel mantığı tasarladım." },
-            projects_title: { en: "Item Inventory", fa: "فهرست آیتم‌ها", es: "Inventario de Artículos", tr: "Eşya Envanteri" },
-            projects_subtitle: { en: "A collection of crafted tools and main quests.", fa: "مجموعه‌ای از ابزارهای ساخته شده و ماموریت‌های اصلی.", es: "Una colección de herramientas creadas y misiones principales.", tr: "Hazırlanmış araçlar ve ana görevler koleksiyonu." },
-            proj1_title: { en: "Position Extraction App", fa: "اپلیکیشن استخراج موقعیت شغلی", es: "Aplicación de Extracción de Posiciones", tr: "Pozisyon Çıkarma Uygulaması" },
-            proj1_desc: { en: "An LLM-driven app to automatically extract and classify positions from job descriptions, improving matching accuracy by over 50%.", fa: "یک اپلیکیشن مبتنی بر LLM برای استخراج و طبقه‌بندی خودکار موقعیت‌های شغلی از توضیحات شغلی، که دقت تطبیق را بیش از ۵۰٪ بهبود می‌بخشد.", es: "Una aplicación impulsada por LLM para extraer y clasificar automáticamente posiciones de las descripciones de trabajo, mejorando la precisión de la coincidencia en más del 50%.", tr: "İş tanımlarından pozisyonları otomatik olarak çıkarmak ve sınıflandırmak için LLM tabanlı bir uygulama, eşleştirme doğruluğunu %50'den fazla artırıyor." },
-            proj2_title: { en: "People Data Handbook", fa: "کتاب راهنمای داده‌های افراد", es: "Manual de Datos de Personas", tr: "İnsan Verileri El Kitabı" },
-            proj2_desc: { en: "Authored a 195-page guide on People Analytics, bridging HR with data science for the Persian-speaking community.", fa: "یک راهنمای ۱۹۵ صفحه‌ای در مورد تحلیل افراد نوشتم که منابع انسانی را با علم داده برای جامعه فارسی‌زبان پیوند می‌دهد.", es: "Autor de una guía de 195 páginas sobre People Analytics, uniendo RR.HH. con la ciencia de datos para la comunidad de habla persa.", tr: "Farsça konuşan topluluk için İK'yı veri bilimiyle birleştiren, İnsan Analitiği üzerine 195 sayfalık bir rehber yazdım." },
-            proj3_title: { en: "LabOps Career Database", fa: "پایگاه داده شغلی LabOps", es: "Base de Datos de Carreras LabOps", tr: "LabOps Kariyer Veritabanı" },
-            proj3_desc: { en: "Developing a vector search system for forklift career paths to create clear upskilling routes for operators.", fa: "در حال توسعه یک سیستم جستجوی برداری برای مسیرهای شغلی اپراتورهای لیفتراک برای ایجاد مسیرهای ارتقاء مهارت واضح.", es: "Desarrollando un sistema de búsqueda vectorial para las trayectorias profesionales de los operadores de montacargas para crear rutas claras de mejora de habilidades.", tr: "Forklift operatörleri için açık beceri geliştirme rotaları oluşturmak amacıyla bir vektör arama sistemi geliştiriyorum." },
-            quests_title: { en: "Weekend Quests", fa: "پروژه‌های آخر هفته", es: "Misiones de Fin de Semana", tr: "Hafta Sonu Görevleri" },
-            quests_subtitle: { en: "Exploring new ideas and building fast.", fa: "کاوش ایده‌های جدید و ساخت سریع.", es: "Explorando nuevas ideas y construyendo rápido.", tr: "Yeni fikirleri keşfetmek ve hızlı inşa etmek." },
-            quest1_title: { en: "Defter-i Mesâlik", fa: "دفتر مسالک", es: "Defter-i Mesâlik", tr: "Defter-i Mesâlik" },
-            quest1_desc: { en: "What if a 'Product Manager' existed in the Ottoman Empire? This question led to a mini-app bridging 21st-century tech jobs with creative, historical titles. I call it The Book of Jobs: \"Her Maharete Bir Unvan.\"", fa: "چه می‌شد اگر یک «مدیر محصول» در امپراتوری عثمانی وجود داشت؟ این سوال منجر به یک مینی‌اپلیکیشن شد که مشاغل فناوری قرن بیست و یکم را با عناوین خلاقانه و تاریخی پیوند می‌دهد. من آن را کتاب مشاغل می‌نامم: «هر مهارته بر عنوان».", es: "¿Y si un 'Gerente de Producto' hubiera existido en el Imperio Otomano? Esta pregunta me llevó a una mini-aplicación que une los trabajos tecnológicos del siglo XXI con títulos creativos e históricos. Lo llamo El Libro de los Oficios: \"Her Maharete Bir Unvan.\"", tr: "Eğer Osmanlı İmparatorluğu'nda bir 'Ürün Yöneticisi' var olsaydı ne olurdu? Bu soru, 21. yüzyıl teknoloji işlerini yaratıcı, tarihi unvanlarla birleştiren bir mini uygulama fikrine yol açtı. Adını Meslekler Kitabı koydum: \"Her Maharete Bir Unvan.\"" },
-            quest1_button: { en: "Try the Defter-i Mesâlik App", fa: "اپلیکیشن دفتر مسالک را امتحان کنید", es: "Prueba la App Defter-i Mesâlik", tr: "Defter-i Mesâlik Uygulamasını Deneyin" },
-            quest2_title: { en: "AI Food Scanner", fa: "اسکنر غذای هوش مصنوعی", es: "Escáner de Alimentos con IA", tr: "Yapay Zeka Gıda Tarayıcı" },
-            quest2_desc: { en: "From idea to a mini AI app in 3 hours: a fast-prototyping challenge to build an AI Food Scanner using Vercel's v0, LibreChat, and Google GenAI. My deep dive into the 'text-to-build' workflow.", fa: "از ایده تا یک مینی‌اپلیکیشن هوش مصنوعی در ۳ ساعت: یک چالش نمونه‌سازی سریع برای ساخت یک اسکنر غذای هوش مصنوعی با استفاده از Vercel v0، LibreChat و Google GenAI. بررسی عمیق من در مورد گردش کار «متن به ساخت».", es: "De la idea a una mini aplicación de IA en 3 horas: un desafío de prototipado rápido para construir un Escáner de Alimentos con IA usando Vercel v0, LibreChat y Google GenAI. Mi inmersión profunda en el flujo de trabajo 'text-to-build'.", tr: "Fikirden mini bir yapay zeka uygulamasına 3 saatte: Vercel'in v0'ı, LibreChat'i ve Google GenAI'yi kullanarak bir Yapay Zeka Gıda Tarayıcı oluşturmak için hızlı bir prototipleme meydan okuması. 'Metinden inşa' iş akışına derinlemesine bir bakışım." },
-            quest2_button: { en: "Read Post on AI Food Scanner", fa: "پست مربوط به اسکنر غذای هوش مصنوعی را بخوانید", es: "Leer Publicación sobre el Escáner de Alimentos con IA", tr: "Yapay Zeka Gıda Tarayıcı Yazısını Oku" },
-            quest3_title: { en: "Posextract Prototype", fa: "نمونه اولیه Posextract", es: "Prototipo Posextract", tr: "Posextract Prototipi" },
-            quest3_desc: { en: "Messy job titles? I prototyped a Python library to extract & normalize titles in English, Turkish & Spanish using a hybrid system: Gemini 1.5 Flash, ontology mapping, and a web agent for low-confidence titles.", fa: "عناوین شغلی نامرتب؟ یک کتابخانه پایتون برای استخراج و نرمال‌سازی عناوین به زبان‌های انگلیسی، ترکی و اسپانیایی با استفاده از یک سیستم ترکیبی نمونه‌سازی کردم: Gemini 1.5 Flash، نگاشت آنتولوژی و یک عامل وب برای عناوین با اطمینان پایین.", es: "¿Títulos de trabajo desordenados? Creé un prototipo de una biblioteca de Python para extraer y normalizar títulos en inglés, turco y español utilizando un sistema híbrido: Gemini 1.5 Flash, mapeo de ontologías y un agente web para títulos de baja confianza.", tr: "Dağınık iş unvanları mı var? İngilizce, Türkçe ve İspanyolca'daki unvanları çıkarmak ve normalleştirmek için hibrit bir sistem kullanarak bir Python kütüphanesi prototipi oluşturdum: Gemini 1.5 Flash, ontoloji eşlemesi ve düşük güvenilirlikli unvanlar için bir web ajanı." },
-            toolkit_title: { en: "Skill Tree", fa: "درخت مهارت", es: "Árbol de Habilidades", tr: "Yetenek Ağacı" },
-            toolkit_subtitle: { en: "My technical skill inventory.", fa: "فهرست مهارت‌های فنی من.", es: "Mi inventario de habilidades técnicas.", tr: "Teknik yetenek envanterim." },
-            skill1_name: { en: "Generative AI", fa: "هوش مصنوعی مولد", es: "IA Generativa", tr: "Üretken Yapay Zeka" },
-            skill1_desc: { en: "Building and deploying systems using foundational models.", fa: "ساخت و استقرار سیستم‌ها با استفاده از مدل‌های بنیادی.", es: "Construcción y despliegue de sistemas utilizando modelos fundacionales.", tr: "Temel modelleri kullanarak sistemler oluşturma ve dağıtma." },
-            skill2_name: { en: "OpenAI & Gemini APIs", fa: "API های OpenAI و Gemini", es: "APIs de OpenAI y Gemini", tr: "OpenAI ve Gemini API'leri" },
-            skill2_desc: { en: "Integrating leading large language models into applications.", fa: "ادغام مدل‌های زبان بزرگ پیشرو در برنامه‌ها.", es: "Integración de los principales modelos de lenguaje grandes en aplicaciones.", tr: "Önde gelen büyük dil modellerini uygulamalara entegre etme." },
-            skill3_name: { en: "Advanced Prompting", fa: "مهندسی پرامپت پیشرفته", es: "Prompting Avanzado", tr: "İleri Düzey Komut Mühendisliği" },
-            skill3_desc: { en: "Crafting effective prompts to steer model behavior and ensure accuracy.", fa: "ساخت پرامپت‌های مؤثر برای هدایت رفتار مدل و تضمین دقت.", es: "Elaboración de prompts efectivos para dirigir el comportamiento del modelo y garantizar la precisión.", tr: "Model davranışını yönlendirmek ve doğruluğu sağlamak için etkili komutlar oluşturma." },
-            skill4_name: { en: "LangSmith", fa: "LangSmith", es: "LangSmith", tr: "LangSmith" },
-            skill4_desc: { en: "Debugging, testing, and monitoring LLM applications for production readiness.", fa: "اشکال‌زدایی، آزمایش و نظارت بر برنامه‌های LLM برای آمادگی تولید.", es: "Depuración, prueba y monitoreo de aplicaciones LLM para su preparación para producción.", tr: "Üretim hazırlığı için LLM uygulamalarını hata ayıklama, test etme ve izleme." },
-            skill5_name: { en: "Python", fa: "پایتون", es: "Python", tr: "Python" },
-            skill5_desc: { en: "Automating workflows and performing data analysis with Pandas and NumPy.", fa: "اتوماسیون گردش کار و انجام تحلیل داده با Pandas و NumPy.", es: "Automatización de flujos de trabajo y realización de análisis de datos con Pandas y NumPy.", tr: "Pandas ve NumPy ile iş akışlarını otomatikleştirme ve veri analizi yapma." },
-            skill6_name: { en: "SQL Dialects", fa: "لهجه های SQL", es: "Dialectos de SQL", tr: "SQL Diyalektleri" },
-            skill6_desc: { en: "Querying complex relational databases for insights and data extraction.", fa: "پرس و جو از پایگاه‌های داده رابطه‌ای پیچیده برای کسب بینش و استخراج داده.", es: "Consulta de bases de datos relacionales complejas para obtener información y extraer datos.", tr: "İçgörüler ve veri çıkarma için karmaşık ilişkisel veritabanlarını sorgulama." },
-            skill7_name: { en: "ETL Processes", fa: "فرآیندهای ETL", es: "Procesos ETL", tr: "ETL Süreçleri" },
-            skill7_desc: { en: "Designing pipelines to Extract, Transform, and Load data for analytics.", fa: "طراحی خطوط لوله برای استخراج، تبدیل و بارگذاری داده برای تحلیل.", es: "Diseño de canalizaciones para Extraer, Transformar y Cargar datos para análisis.", tr: "Analitik için verileri Çıkarma, Dönüştürme ve Yükleme (ETL) boru hatları tasarlama." },
-            skill8_name: { en: "People Data", fa: "داده‌های افراد", es: "Datos de Personas", tr: "İnsan Verileri" },
-            skill8_desc: { en: "Specializing in the analysis and productization of workforce and HR data.", fa: "تخصص در تحلیل و محصول‌سازی داده‌های نیروی کار و منابع انسانی.", es: "Especialización en el análisis y la productización de datos de la fuerza laboral y de RR.HH.", tr: "İş gücü ve İK verilerinin analizi ve ürünleştirilmesi konusunda uzmanlaşma." },
-            skill9_name: { en: "Data Products", fa: "محصولات داده", es: "Productos de Datos", tr: "Veri Ürünleri" },
-            skill9_desc: { en: "Conceptualizing and building products with data at their core.", fa: "مفهوم‌سازی و ساخت محصولاتی که داده در مرکز آنها قرار دارد.", es: "Conceptualización y construcción de productos con datos en su núcleo.", tr: "Veriyi merkezine alan ürünleri kavramsallaştırma ve oluşturma." },
-            skill10_name: { en: "API Development", fa: "توسعه API", es: "Desarrollo de API", tr: "API Geliştirme" },
-            skill10_desc: { en: "Designing and deploying scalable RESTful services for internal tools.", fa: "طراحی و استقرار خدمات RESTful مقیاس‌پذیر برای ابزارهای داخلی.", es: "Diseño y despliegue de servicios RESTful escalables para herramientas internas.", tr: "Dahili araçlar için ölçeklenebilir RESTful hizmetleri tasarlama ve dağıtma." },
-            skill11_name: { en: "Automation Tools", fa: "ابزارهای اتوماسیون", es: "Herramientas de Automatización", tr: "Otomasyon Araçları" },
-            skill11_desc: { en: "Using n8n and Power Automate to create robust, automated workflows.", fa: "استفاده از n8n و Power Automate برای ایجاد گردش کارهای قوی و خودکار.", es: "Uso de n8n y Power Automate para crear flujos de trabajo robustos y automatizados.", tr: "Sağlam, otomatikleştirilmiş iş akışları oluşturmak için n8n ve Power Automate kullanma." },
-            skill12_name: { en: "Azure DevOps & Jira", fa: "Azure DevOps و Jira", es: "Azure DevOps y Jira", tr: "Azure DevOps ve Jira" },
-            skill12_desc: { en: "Managing the product lifecycle from planning to deployment.", fa: "مدیریت چرخه عمر محصول از برنامه‌ریزی تا استقرار.", es: "Gestión del ciclo de vida del producto desde la planificación hasta el despliegue.", tr: "Planlamadan dağıtıma kadar ürün yaşam döngüsünü yönetme." },
-            education_title: { en: "Training Grounds", fa: "محل آموزش", es: "Campos de Entrenamiento", tr: "Eğitim Alanları" },
-            education_subtitle: { en: "My academic background and languages.", fa: "سوابق تحصیلی و زبان‌های من.", es: "Mi formación académica e idiomas.", tr: "Akademik geçmişim ve dillerim." },
-            edu1_title: { en: "M.A. in Economics", fa: "کارشناسی ارشد اقتصاد", es: "Maestría en Economía", tr: "Ekonomi Yüksek Lisans" },
-            edu2_title: { en: "M.A. in International Human Resources", fa: "کارشناسی ارشد منابع انسانی بین‌الملل", es: "Maestría en Recursos Humanos Internacionales", tr: "Uluslararası İnsan Kaynakları Yüksek Lisans" },
-            edu_lang_title: { en: "Languages", fa: "زبان‌ها", es: "Idiomas", tr: "Diller" },
-            edu_lang_desc: { en: "Turkish (Native) | English (Advanced) | Spanish (Advanced)", fa: "ترکی (بومی) | انگلیسی (پیشرفته) | اسپانیایی (پیشرفته)", es: "Turco (Nativo) | Inglés (Avanzado) | Español (Avanzado)", tr: "Türkçe (Anadil) | İngilizce (İleri Düzey) | İspanyolca (İleri Düzey)" },
-            writing_title: { en: "Latest Dispatches", fa: "آخرین نوشته‌ها", es: "Últimos Despachos", tr: "Son Gönderiler" },
-            writing_subtitle: { en: "Sharing insights on AI, data, and product strategy.", fa: "به اشتراک‌گذاری بینش‌ها در مورد هوش مصنوعی، داده و استراتژی محصول.", es: "Compartiendo ideas sobre IA, datos y estrategia de producto.", tr: "Yapay Zeka, veri ve ürün stratejisi üzerine görüşlerimi paylaşıyorum." },
-            writing_desc: { en: "Read my thoughts and analysis on Substack.", fa: "افکار و تحلیل‌های من را در ساب‌استک بخوانید.", es: "Lee mis pensamientos y análisis en Substack.", tr: "Düşüncelerimi ve analizlerimi Substack'te okuyun." },
-            writing_button: { en: "Read my Substack", fa: "ساب‌استک من را بخوانید", es: "Leer mi Substack", tr: "Substack'imi Oku" },
-            footer_text: { en: "Game designed by Vahid Faraji © 2025", fa: "بازی طراحی شده توسط وحید فرجی © ۲۰۲۵", es: "Juego diseñado por Vahid Faraji © 2025", tr: "Oyun Vahid Faraji tarafından tasarlandı © 2025" },
-            ticker1: { en: "APPLIED AI", fa: "هوش مصنوعی کاربردی", es: "IA APLICADA", tr: "UYGULAMALI YZ" },
-            ticker2: { en: "DATA PRODUCTS", fa: "محصولات داده", es: "PRODUCTOS DE DATOS", tr: "VERİ ÜRÜNLERİ" },
-            ticker3: { en: "RAPID PROTOTYPING", fa: "نمونه‌سازی سریع", es: "PROTOTIPADO RÁPIDO", tr: "HIZLI PROTOTİPLEME" },
-            ticker4: { en: "LLM AGENTS", fa: "عامل‌های LLM", es: "AGENTES LLM", tr: "LLM AJANLARI" },
+            skip_link: { en: "Skip to main content", es: "Saltar al contenido principal", tr: "Ana içeriğe atla" },
+            nav_home: { en: "Home", es: "Inicio", tr: "Anasayfa" },
+            nav_experience: { en: "Experience", es: "Experiencia", tr: "Deneyim" },
+            nav_projects: { en: "Projects", es: "Proyectos", tr: "Projeler" },
+            nav_quests: { en: "Weekend Quests", es: "Misiones de Fin de Semana", tr: "Hafta Sonu Görevleri" },
+            nav_toolkit: { en: "Toolkit", es: "Herramientas", tr: "Araç Seti" },
+            nav_education: { en: "Education", es: "Educación", tr: "Eğitim" },
+            nav_writing: { en: "Writing", es: "Escritos", tr: "Yazılarım" },
+            job_title_main: { en: "Senior Applied AI Specialist", es: "Especialista Senior en IA Aplicada", tr: "Kıdemli Uygulamalı Yapay Zeka Uzmanı" },
+            home_summary_title: { en: "Mission Briefing", es: "Resumen de Misión", tr: "Görev Tanımı" },
+            home_summary_p1: { en: "I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.", es: "Trabajo con IA Aplicada, construyendo prototipos rápidos, flujos de automatización y sistemas de agentes que convierten datos de usuarios en productos que la gente realmente usa.", tr: "Uygulamalı Yapay Zeka ile ürünler geliştiriyorum; ham kullanıcı verilerini insanların gerçekten kullandığı ürünlere dönüştüren hızlı prototipler, otomasyon akışları ve ajan tabanlı sistemler inşa ediyorum." },
+            home_summary_p2: { en: "My motto: Build more, contribute max, and be less verbose.", es: "Mi lema: Construir más, contribuir al máximo y ser más conciso.", tr: "Sloganım: Daha çok üret, maksimum katkı sağla ve az konuş." },
+            experience_title: { en: "Level Select", es: "Selección de Nivel", tr: "Bölüm Seçimi" },
+            experience_subtitle: { en: "My professional journey and achievements.", es: "Mi trayectoria profesional y logros.", tr: "Profesyonel yolculuğum ve başarılarım." },
+            exp1_title: { en: "Senior Applied AI Specialist", es: "Especialista Senior en IA Aplicada", tr: "Kıdemli Uygulamalı Yapay Zeka Uzmanı" },
+            exp1_date: { en: "Oct 2022 - Present", es: "Oct 2022 - Presente", tr: "Eki 2022 - Halen" },
+            exp1_p1: { en: "Led the technical design and implementation of AI-powered features for a platform with 50M+ users, moving AI concepts from research to production-ready, scalable applications.", es: "Lideré el diseño técnico y la implementación de funciones de IA para una plataforma con +50M de usuarios, llevando conceptos de IA desde la investigación a aplicaciones escalables y listas para producción.", tr: "50 milyondan fazla kullanıcısı olan bir platform için yapay zeka destekli özelliklerin teknik tasarımını ve uygulamasını yönettim; yapay zeka konseptlerini araştırmadan üretime hazır, ölçeklenebilir uygulamalara taşıdım." },
+            exp1_b1: { en: "<strong>LLM Agent Development:</strong> Designed and implemented Agents using Agno, OpenAI SDK, and LangChain. Developed a Python-based evaluation framework (evals) to systematically test model output.", es: "<strong>Desarrollo de Agentes LLM:</strong> Diseñé e implementé Agentes usando Agno, OpenAI SDK y LangChain. Desarrollé un marco de evaluación en Python (evals) para probar sistemáticamente los resultados del modelo.", tr: "<strong>LLM Ajan Geliştirme:</strong> Agno, OpenAI SDK ve LangChain kullanarak Ajanlar tasarladım ve uyguladım. Model çıktılarını sistematik olarak test etmek için Python tabanlı bir değerlendirme çerçevesi (evals) geliştirdim." },
+            exp1_b2: { en: "<strong>Semantic Data Processing:</strong> Built a semantic segmentation pipeline by vectorizing unstructured text data (user bios, job descriptions, skills) to automatically classify and route service requests.", es: "<strong>Procesamiento de Datos Semánticos:</strong> Construí un pipeline de segmentación semántica vectorizando texto no estructurado (bios de usuario, descripciones de trabajo) para clasificar y enrutar solicitudes.", tr: "<strong>Semantik Veri İşleme:</strong> Servis taleplerini otomatik olarak sınıflandırmak ve yönlendirmek için yapılandırılmamış metin verilerini (kullanıcı biyografileri, iş tanımları, beceriler) vektörleştirerek bir semantik segmentasyon hattı oluşturdum." },
+            exp1_b3: { en: "<strong>Rapid AI Prototyping:</strong> Built interactive UIs with V0 connected to backend models for rapid validation, significantly reducing idea-to-feedback cycle time.", es: "<strong>Prototipado Rápido de IA:</strong> Construí UIs interactivas con V0 conectadas a modelos de backend para validación rápida, reduciendo significativamente el ciclo de idea a feedback.", tr: "<strong>Hızlı Yapay Zeka Prototipleme:</strong> Fikirden geri bildirime kadar olan süreyi önemli ölçüde azaltarak, hızlı doğrulama için arka uç modellere bağlı V0 ile etkileşimli kullanıcı arayüzleri oluşturdum." },
+            exp1_b4: { en: "<strong>Deploying Scalable AI Services:</strong> Designed and deployed internal AI services via RESTful APIs with focus on scalability, latency, and cost monitoring, using n8n and Power Automate for pipeline automation.", es: "<strong>Despliegue de Servicios de IA Escalables:</strong> Diseñé y desplegué servicios internos de IA a través de APIs RESTful con foco en escalabilidad, latencia y costos, usando n8n y Power Automate para automatización.", tr: "<strong>Ölçeklenebilir YZ Hizmetleri:</strong> Ölçeklenebilirlik, gecikme ve maliyet odaklı RESTful API'ler aracılığıyla dahili YZ hizmetleri tasarladım ve dağıttım; otomasyon için n8n ve Power Automate kullandım." },
+            exp2_title: { en: "Business Analyst (Data & Analytics)", es: "Analista de Negocios (Datos y Análisis)", tr: "İş Analisti (Veri ve Analitik)" },
+            exp2_date: { en: "Sep 2021 - Oct 2022", es: "Sep 2021 - Oct 2022", tr: "Eyl 2021 - Eki 2022" },
+            exp2_p1: { en: "Owned data analytics and experimentation for a B2B SaaS platform, providing foundational data skills for my subsequent work in applied AI.", es: "Gestioné el análisis de datos y la experimentación para una plataforma SaaS B2B, adquiriendo habilidades de datos fundamentales para mi trabajo posterior en IA aplicada.", tr: "Bir B2B SaaS platformunun veri analitiği ve deneme süreçlerini yöneterek, uygulamalı yapay zeka alanındaki sonraki çalışmalarım için temel veri becerileri edindim." },
+            exp2_b1: { en: "Designed and analyzed A/B tests to measure the impact of product changes, validating hypotheses and improving user adoption rates.", es: "Diseñé y analicé pruebas A/B para medir el impacto de cambios en el producto, validando hipótesis y mejorando la adopción de los usuarios.", tr: "Ürün değişikliklerinin etkisini ölçmek, hipotezleri doğrulamak ve kullanıcı benimseme oranlarını iyileştirmek için A/B testleri tasarladım ve analiz ettim." },
+            exp3_title: { en: "People Data Lead", es: "Líder de Datos de Personas", tr: "İnsan Verileri Lideri" },
+            exp3_date: { en: "Nov 2019 - Dec 2021", es: "Nov 2019 - Dic 2021", tr: "Kas 2019 - Ara 2021" },
+            exp3_p1: { en: "Co-founded a skills intelligence platform, leading the initial technical development and product design from concept to a working MVP.", es: "Co-fundé una plataforma de inteligencia de habilidades, liderando el desarrollo técnico y diseño de producto desde el concepto hasta un MVP funcional.", tr: "Bir yetenek zekası platformunun kurucu ortağı olarak, konseptten çalışan bir MVP'ye kadar ilk teknik geliştirme ve ürün tasarımını yönettim." },
+            exp3_b1: { en: "Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.", es: "Lideré el desarrollo práctico de un MVP y diseñé la lógica central para un motor de recomendación de carrera basado en datos.", tr: "Veri odaklı bir kariyer öneri motoru için temel mantığı tasarladım ve bir MVP'nin uygulamalı gelişimini yönettim." },
+            projects_title: { en: "Item Inventory", es: "Inventario", tr: "Proje Envanteri" },
+            projects_subtitle: { en: "A collection of crafted tools and main quests.", es: "Una colección de herramientas y misiones principales.", tr: "Özenle hazırlanmış araçlar ve ana görevler koleksiyonu." },
+            proj1_title: { en: "Position Extraction App", es: "App de Extracción de Posiciones", tr: "Pozisyon Çıkarma Uygulaması" },
+            proj1_desc: { en: "An LLM-driven app to automatically extract and classify positions from job descriptions, improving matching accuracy by over 50%.", es: "Una app impulsada por LLM para extraer y clasificar automáticamente cargos de descripciones de trabajo, mejorando la precisión en más del 50%.", tr: "İş tanımlarından pozisyonları otomatik olarak çıkaran ve sınıflandıran, eşleştirme doğruluğunu %50'den fazla artıran LLM tabanlı bir uygulama." },
+            proj2_title: { en: "People Data Handbook", es: "Manual de Datos de Personas", tr: "İnsan Verileri El Kitabı" },
+            proj2_desc: { en: "Authored a 195-page guide on People Analytics, bridging HR with data science for the Persian-speaking community.", es: "Escribí una guía de 195 páginas sobre People Analytics, uniendo RRHH y ciencia de datos para la comunidad de habla persa.", tr: "Farsça konuşan topluluk için İK ile veri bilimi arasında köprü kuran 195 sayfalık bir İnsan Analitiği rehberi yazdım." },
+            proj3_title: { en: "LabOps Career Database", es: "Base de Datos de Carreras LabOps", tr: "LabOps Kariyer Veritabanı" },
+            proj3_desc: { en: "Developing a vector search system for forklift career paths to create clear upskilling routes for operators.", es: "Desarrollando un sistema de búsqueda vectorial para trayectorias profesionales de operadores de montacargas para crear rutas claras de capacitación.", tr: "Forklift operatörleri için net yetenek geliştirme yolları oluşturmak amacıyla bir vektör arama sistemi geliştiriyorum." },
+            quests_title: { en: "Weekend Quests", es: "Misiones de Fin de Semana", tr: "Hafta Sonu Görevleri" },
+            quests_subtitle: { en: "Exploring new ideas and building fast.", es: "Explorando nuevas ideas y construyendo rápido.", tr: "Yeni fikirleri keşfetmek ve hızlı inşa etmek." },
+            quest1_title: { en: "Defter-i Mesâlik", es: "Defter-i Mesâlik", tr: "Defter-i Mesâlik" },
+            quest1_desc: { en: "What if a 'Product Manager' existed in the Ottoman Empire? This question led to a mini-app bridging 21st-century tech jobs with creative, historical titles. I call it The Book of Jobs: \"Her Maharete Bir Unvan.\"", es: "¿Y si un 'Product Manager' hubiera existido en el Imperio Otomano? Esta pregunta me llevó a una mini-app que une los trabajos tecnológicos del siglo XXI con títulos históricos y creativos. La llamo El Libro de los Oficios.", tr: "Eğer Osmanlı'da bir 'Ürün Yöneticisi' olsaydı ne olurdu? Bu soru, 21. yüzyıl teknoloji işlerini yaratıcı, tarihi unvanlarla birleştiren bir mini uygulamaya yol açtı. Adını Meslekler Kitabı koydum: \"Her Maharete Bir Unvan.\"" },
+            quest1_button: { en: "Try the Defter-i Mesâlik App", es: "Probar la App", tr: "Uygulamayı Dene" },
+            quest2_title: { en: "AI Food Scanner", es: "Escáner de Alimentos con IA", tr: "Yapay Zeka Gıda Tarayıcı" },
+            quest2_desc: { en: "From idea to a mini AI app in 3 hours: a fast-prototyping challenge to build an AI Food Scanner using Vercel's v0, LibreChat, and Google GenAI. My deep dive into the 'text-to-build' workflow.", es: "De la idea a una mini app de IA en 3 horas: un reto de prototipado rápido para crear un Escáner de Alimentos con IA usando Vercel v0, LibreChat y Google GenAI. Mi análisis del flujo 'text-to-build'.", tr: "3 saatte fikirden mini bir yapay zeka uygulamasına: Vercel v0, LibreChat ve Google GenAI kullanarak bir YZ Gıda Tarayıcısı oluşturma üzerine hızlı prototipleme denemem ve 'metinden koda' iş akışı üzerine analizim." },
+            quest2_button: { en: "Read Post on AI Food Scanner", es: "Leer el Artículo", tr: "Yazıyı Oku" },
+            quest3_title: { en: "Posextract Prototype", es: "Prototipo Posextract", tr: "Posextract Prototipi" },
+            quest3_desc: { en: "Messy job titles? I prototyped a Python library to extract & normalize titles in English, Turkish & Spanish using a hybrid system: Gemini 1.5 Flash, ontology mapping, and a web agent for low-confidence titles.", es: "¿Títulos de trabajo desordenados? Creé un prototipo de una biblioteca de Python para extraer y normalizar títulos en varios idiomas usando un sistema híbrido: Gemini 1.5 Flash, mapeo de ontologías y un agente web.", tr: "Dağınık iş unvanları için hibrit bir sistemle (Gemini 1.5 Flash, ontoloji eşlemesi ve web ajanı) İngilizce, Türkçe ve İspanyolca'da unvanları çıkaran ve normalleştiren bir Python kütüphanesi prototipi oluşturdum." },
+            toolkit_title: { en: "Power-Ups", es: "Habilidades", tr: "Güçlendirmeler" },
+            toolkit_subtitle: { en: "My technical skill inventory.", es: "Mi inventario de habilidades técnicas.", tr: "Teknik yetenek envanterim." },
+            skills_cat_ai: { en: "AI", es: "IA", tr: "Yapay Zeka" },
+            skills_cat_product: { en: "Product", es: "Producto", tr: "Ürün" },
+            skills_cat_automation: { en: "Automation", es: "Automatización", tr: "Otomasyon" },
+            skills_cat_analytics: { en: "Analytics", es: "Análisis", tr: "Analitik" },
+            education_title: { en: "Training Grounds", es: "Formación", tr: "Eğitim Alanları" },
+            education_subtitle: { en: "My academic background and languages.", es: "Mi formación académica e idiomas.", tr: "Akademik geçmişim ve bildiğim diller." },
+            edu1_title: { en: "M.A. in Economics", es: "Maestría en Economía", tr: "Ekonomi Yüksek Lisans" },
+            edu2_title: { en: "M.A. in International Human Resources", es: "Maestría en Recursos Humanos Internacionales", tr: "Uluslararası İnsan Kaynakları Yüksek Lisans" },
+            edu_lang_title: { en: "Languages", es: "Idiomas", tr: "Diller" },
+            edu_lang_desc: { en: "Turkish (Native) | English (Advanced) | Spanish (Advanced)", es: "Turco (Nativo) | Inglés (Avanzado) | Español (Avanzado)", tr: "Türkçe (Anadil) | İngilizce (İleri Düzey) | İspanyolca (İleri Düzey)" },
+            writing_title: { en: "Latest Dispatches", es: "Últimos Artículos", tr: "Son Yazılar" },
+            writing_subtitle: { en: "Sharing insights on AI, data, and product strategy.", es: "Compartiendo ideas sobre IA, datos y estrategia de producto.", tr: "Yapay Zeka, veri ve ürün stratejisi üzerine görüşlerimi paylaşıyorum." },
+            writing_desc: { en: "Read my thoughts and analysis on Substack.", es: "Lee mis pensamientos y análisis en Substack.", tr: "Düşüncelerimi ve analizlerimi Substack'te okuyun." },
+            writing_button: { en: "Read my Substack", es: "Leer mi Substack", tr: "Substack'imi Oku" },
+            footer_text: { en: "Game designed by Vahid Faraji © 2025", es: "Juego diseñado por Vahid Faraji © 2025", tr: "Oyun Vahid Faraji tarafından tasarlandı © 2025" },
+            ticker1: { en: "APPLIED AI", es: "IA APLICADA", tr: "UYGULAMALI YZ" },
+            ticker2: { en: "DATA PRODUCTS", es: "PRODUCTOS DE DATOS", tr: "VERİ ÜRÜNLERİ" },
+            ticker3: { en: "RAPID PROTOTYPING", es: "PROTOTIPADO RÁPIDO", tr: "HIZLI PROTOTİPLEME" },
+            ticker4: { en: "LLM AGENTS", es: "AGENTES LLM", tr: "LLM AJANLARI" },
         };
         
         // --- SCROLL TO TOP BUTTON SCRIPT ---
         const scrollTopButton = document.querySelector('.scroll-to-top');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) {
-                scrollTopButton.classList.add('visible');
-            } else {
-                scrollTopButton.classList.remove('visible');
-            }
+            if (window.scrollY > 400) { scrollTopButton.classList.add('visible'); } 
+            else { scrollTopButton.classList.remove('visible'); }
         });
 
         // --- ACTIVE NAV LINK ON SCROLL SCRIPT ---
@@ -562,28 +560,23 @@
         // --- LANGUAGE SWITCHER SCRIPT ---
         const langSwitcher = document.querySelector('.lang-switcher');
         const translatableElements = document.querySelectorAll('[data-lang-key]');
-
+        
         const switchLanguage = (lang) => {
-            // Set language and direction
             document.documentElement.lang = lang;
-            document.body.classList.toggle('rtl', lang === 'fa');
+            document.body.classList.remove('rtl'); // Default to LTR
 
-            // Translate elements
             translatableElements.forEach(el => {
                 const key = el.dataset.langKey;
-                if (translations[key] && translations[key][lang]) {
-                    // Handle repeated keys for ticker
-                    const cleanKey = key.replace('_repeat', '');
+                const cleanKey = key.replace('_repeat', '');
+                if (translations[cleanKey] && translations[cleanKey][lang]) {
                     el.innerHTML = translations[cleanKey][lang];
                 }
             });
 
-            // Update active button state
             langSwitcher.querySelectorAll('button').forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.lang === lang);
             });
             
-            // Save preference
             localStorage.setItem('preferredLanguage', lang);
         };
 
@@ -593,10 +586,32 @@
             }
         });
         
-        // On initial load, check for saved language or default to English
+        // --- HEADER TYPING ANIMATION ---
+        const typeSentence = (sentence, eleRef, delay = 100) => {
+            const letters = sentence.split("");
+            let i = 0;
+            eleRef.textContent = ""; // Clear existing text
+            const typingInterval = setInterval(() => {
+                if (i < letters.length) {
+                    eleRef.innerHTML += letters[i];
+                    i++;
+                } else {
+                    clearInterval(typingInterval);
+                    const cursor = eleRef.querySelector('.typing-cursor');
+                    if (cursor) cursor.style.display = 'none'; // Hide cursor when done
+                }
+            }, delay);
+        };
+
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferredLanguage') || 'en';
             switchLanguage(savedLang);
+
+            // Start typing animation after initial load and translation
+            const jobTitleElement = document.querySelector('.job-title-main');
+            const initialTitle = translations.job_title_main[savedLang];
+            jobTitleElement.innerHTML = '<span class="typing-cursor"></span>'; // Add cursor
+            typeSentence(initialTitle, jobTitleElement, 80);
         });
     </script>
 </body>
