@@ -87,21 +87,20 @@
         .nes-box ul { list-style: none; padding-left: 1rem; }
         .nes-box li { position: relative; padding-left: 25px; margin-bottom: 1rem; }
         .nes-box li::before { content: '▶'; font-family: var(--font-pixel); position: absolute; left: 0; top: 0; color: var(--primary-color); }
-
-        /* --- NEW: Attention Visualizer --- */
-        .attention-visualizer { margin-top: 2rem; }
-        .attention-visualizer svg text { font-family: var(--font-pixel); font-size: 12px; fill: var(--text-color); }
-        .attention-visualizer svg path { fill: none; stroke: var(--secondary-color); stroke-width: 3; stroke-linecap: round; animation: pulse 2s ease-in-out infinite; }
-        .attention-visualizer svg path.p2 { animation-delay: -1s; }
-
-        /* --- NEW: Tokenization Engine --- */
-        .tokenization-engine { display: inline-block; border: 3px solid var(--border-color); padding: 10px 20px; background: #fff; margin-top: 1.5rem; font-family: var(--font-pixel); font-size: 1rem; }
-        .token-char { display: inline-block; position: relative; width: 45px; height: 25px; }
-        .token-char .letter, .token-char .number { position: absolute; transition: opacity 0.5s ease-in-out; }
-        .token-char .number { opacity: 0; color: var(--accent-color); font-size: 0.8rem; }
-        .token-char.animate .letter { opacity: 0; }
-        .token-char.animate .number { opacity: 1; }
-
+        
+        /* --- NEW: Transformer Flow Animation --- */
+        .transformer-flow { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 2rem; position: relative; }
+        .flow-box { border: 3px solid var(--border-color); padding: 1rem; flex: 1; height: 120px; text-align: center; transition: all 0.3s ease; }
+        .flow-box.active { border-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); }
+        .flow-box .title { font-family: var(--font-pixel); font-size: 0.8rem; margin-bottom: 0.5rem; }
+        .flow-box .content { font-family: monospace; font-size: 1rem; word-break: break-all; }
+        .flow-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; opacity: 0; }
+        .flow-arrow::before { content: ''; position: absolute; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 15px solid var(--primary-color); }
+        .flow-arrow.arrow1 { left: 33%; }
+        .flow-arrow.arrow2 { left: 66%; }
+        .flow-arrow.fire { animation: fire-arrow-right 0.5s ease-out forwards; }
+        .ai-processor.active { animation: pulse-border 1s infinite; }
+        
         /* --- Experience Section --- */
         .timeline { border-left: 4px solid var(--border-color); padding-left: 2rem; position: relative; margin-top: 2rem; text-align: left; }
         .job { background: #fff; padding: 1.5rem; border: 4px solid var(--border-color); margin-bottom: 2rem; position: relative; }
@@ -175,6 +174,10 @@
         @keyframes text-glitch { 0%, 100% { text-shadow: none; } 25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); } 75% { text-shadow: -2px 2px 0 var(--secondary-color), 2px -2px 0 var(--primary-color); } }
         @keyframes ticker-move { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
         @keyframes pulse { 0%, 100% { stroke-opacity: 0.3; } 50% { stroke-opacity: 1; } }
+        @keyframes shake { 0%, 100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} }
+        @keyframes fire-arrow-right { 0% { opacity: 0; transform: translate(-20px, -50%); } 50% { opacity: 1; } 100% { opacity: 0; transform: translate(20px, -50%); } }
+        @keyframes fire-arrow-down { 0% { opacity: 0; transform: translateY(-20px) rotate(90deg); } 50% { opacity: 1; } 100% { opacity: 0; transform: translateY(20px) rotate(90deg); } }
+        @keyframes pulse-border { 0%, 100% { border-color: var(--border-color); } 50% { border-color: var(--accent-color); } }
 
         /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
@@ -182,6 +185,12 @@
             section { padding-top: 6rem; }
             .nav-container { gap: 0.5rem; }
             .lang-switcher { margin: 0; padding: 0; border: none; }
+            .transformer-flow { flex-direction: column; }
+            .flow-arrow { top: auto; left: 50%; transform: translateX(-50%); }
+            .flow-arrow::before { transform: rotate(90deg); }
+            .flow-arrow.arrow1 { bottom: 66%; }
+            .flow-arrow.arrow2 { bottom: 33%; }
+            .flow-arrow.fire { animation-name: fire-arrow-down; }
         }
         @media (max-width: 480px) {
             h1 { font-size: 1.3rem; } h2 { font-size: 1rem; }
@@ -238,22 +247,22 @@
                 <h2><span data-lang-key="home_summary_title">Mission Briefing</span><span class="cursor"></span></h2>
                 <p data-lang-key="home_summary_p1">I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.</p>
                 <p data-lang-key="home_summary_p2">My motto: Build more, contribute max, and be less verbose.</p>
-                <div class="attention-visualizer">
-                    <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
-                        <text x="10" y="35">{#&lt;.../&gt;}</text>
-                        <text x="160" y="15">AI Model</text>
-                        <text x="290" y="35">{'key':'val'}</text>
-                        <path d="M 90 30 C 140 10, 160 10, 195 20" class="p1"></path>
-                        <path d="M 210 20 C 240 30, 260 50, 285 35" class="p2"></path>
-                    </svg>
+                <div class="transformer-flow">
+                    <div class="flow-box text-input">
+                        <div class="title" data-lang-key="anim_text">Text</div>
+                        <div class="content">{#&lt;.../&gt;}</div>
+                    </div>
+                    <span class="flow-arrow arrow1"></span>
+                    <div class="flow-box ai-processor">
+                        <div class="title" data-lang-key="anim_ai">AI</div>
+                        <div class="content">[...]</div>
+                    </div>
+                    <span class="flow-arrow arrow2"></span>
+                    <div class="flow-box insight-output">
+                        <div class="title" data-lang-key="anim_insight">Insight</div>
+                        <div class="content">{'key':'val'}</div>
+                    </div>
                 </div>
-            </div>
-            <div class="tokenization-engine">
-                <span>[</span>
-                <span class="token-char"><span class="letter">{&gt;λ#}</span><span class="number">§E9</span></span>,
-                <span class="token-char"><span class="letter">{&gt;λ#}</span><span class="number">ƒB2</span></span>,
-                <span class="token-char"><span class="letter">{&gt;λ#}</span><span class="number">ΔC7</span></span>
-                <span>]</span>
             </div>
         </section>
 
@@ -487,6 +496,9 @@
             home_summary_title: { en: "Mission Briefing", es: "Resumen de Misión", tr: "Görev Tanımı" },
             home_summary_p1: { en: "I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.", es: "Trabajo con IA Aplicada, construyendo prototipos rápidos, flujos de automatización y sistemas de agentes que convierten datos de usuarios en productos que la gente realmente usa.", tr: "Uygulamalı Yapay Zeka ile ürünler geliştiriyorum; ham kullanıcı verilerini insanların gerçekten kullandığı ürünlere dönüştüren hızlı prototipler, otomasyon akışları ve ajan tabanlı sistemler inşa ediyorum." },
             home_summary_p2: { en: "My motto: Build more, contribute max, and be less verbose.", es: "Mi lema: Construir más, contribuir al máximo y ser más conciso.", tr: "Sloganım: Daha çok üret, maksimum katkı sağla ve az konuş." },
+            anim_text: { en: "Text", es: "Texto", tr: "Metin" },
+            anim_ai: { en: "AI", es: "IA", tr: "YZ" },
+            anim_insight: { en: "Insight", es: "Insight", tr: "İçgörü" },
             experience_title: { en: "Level Select", es: "Selección de Nivel", tr: "Bölüm Seçimi" },
             experience_subtitle: { en: "My professional journey and achievements.", es: "Mi trayectoria profesional y logros.", tr: "Profesyonel yolculuğum ve başarılarım." },
             exp1_title: { en: "Senior Applied AI Specialist", es: "Especialista Senior en IA Aplicada", tr: "Kıdemli Uygulamalı Yapay Zeka Uzmanı" },
@@ -619,17 +631,32 @@
             }, delay);
         };
         
-        // --- TOKENIZATION ENGINE ANIMATION ---
-        const tokenChars = document.querySelectorAll('.token-char');
-        setInterval(() => {
-            tokenChars.forEach((char, index) => {
-                setTimeout(() => {
-                    char.classList.add('animate');
-                    setTimeout(() => char.classList.remove('animate'), 2000);
-                }, index * 200);
-            });
-        }, 4000);
+        // --- TRANSFORMER FLOW ANIMATION ---
+        const textInput = document.querySelector('.text-input');
+        const aiProcessor = document.querySelector('.ai-processor');
+        const insightOutput = document.querySelector('.insight-output');
+        const arrow1 = document.querySelector('.arrow1');
+        const arrow2 = document.querySelector('.arrow2');
 
+        const runTransformerAnimation = () => {
+            // Reset states
+            [textInput, aiProcessor, insightOutput].forEach(el => el.classList.remove('active'));
+            [arrow1, arrow2].forEach(el => el.classList.remove('fire'));
+
+            // Start sequence
+            setTimeout(() => textInput.classList.add('active'), 500);
+            setTimeout(() => arrow1.classList.add('fire'), 1000);
+            setTimeout(() => {
+                textInput.classList.remove('active');
+                aiProcessor.classList.add('active');
+            }, 1500);
+            setTimeout(() => arrow2.classList.add('fire'), 2500);
+            setTimeout(() => {
+                aiProcessor.classList.remove('active');
+                insightOutput.classList.add('active');
+            }, 3000);
+        };
+        
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferredLanguage') || 'en';
             switchLanguage(savedLang);
@@ -638,6 +665,10 @@
             const initialTitle = translations.job_title_main[savedLang];
             jobTitleElement.innerHTML += '<span class="typing-cursor"></span>';
             typeSentence(initialTitle, jobTitleElement, 80);
+
+            // Run transformer animation on load and loop it
+            runTransformerAnimation();
+            setInterval(runTransformerAnimation, 4500);
         });
     </script>
 </body>
