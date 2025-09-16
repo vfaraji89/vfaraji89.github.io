@@ -25,10 +25,24 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-body);
-            font-size: 24px;
-            line-height: 1.6;
+            font-size: 22px; /* Slightly reduced for readability */
+            line-height: 1.7; /* Increased for better spacing */
             text-align: center;
             overflow-x: hidden;
+            position: relative;
+        }
+        /* Scanline Overlay for retro screen effect */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.03));
+            background-size: 100% 4px, 6px 100%;
+            z-index: -1;
+            pointer-events: none;
             animation: fadeIn 0.8s ease-in-out;
         }
 
@@ -37,27 +51,36 @@
         section:last-of-type { border-bottom: none; }
 
         h1, h2, h3 { font-family: var(--font-pixel); color: var(--border-color); text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 2px; }
-        h1 { font-size: 2.2rem; }
-        h2 { font-size: 1.8rem; margin-top: 3rem; display: inline-block; }
-        h2 .cursor { display: inline-block; width: 1rem; height: 1.8rem; background: var(--accent-color); animation: blink 1s steps(1) infinite; margin-left: 8px; vertical-align: middle; }
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.6rem; margin-top: 3rem; display: inline-block; transition: transform 0.2s ease; }
+        h2:hover { transform: translateX(5px) skewX(-3deg); }
+        h2 .cursor { display: inline-block; width: 1rem; height: 1.6rem; background: var(--accent-color); animation: blink 1s steps(1) infinite; margin-left: 8px; vertical-align: middle; }
         p { margin-bottom: 1.5rem; max-width: 65ch; margin-left: auto; margin-right: auto; text-align: left; }
 
         /* --- Navigation --- */
         .navbar { background-color: #fff; border-bottom: 4px solid var(--border-color); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; width: 100%; }
         .nav-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; list-style: none; }
-        .nav-links a { color: var(--secondary-color); text-decoration: none; font-family: var(--font-pixel); font-size: 0.7rem; padding: 8px 12px; border: 3px solid transparent; transition: all 0.3s ease; }
+        .nav-links a { color: var(--secondary-color); text-decoration: none; font-family: var(--font-pixel); font-size: 0.6rem; padding: 8px 12px; border: 3px solid transparent; transition: all 0.3s ease; }
         .nav-links a:hover, .nav-links a.active { color: var(--primary-color); background-color: #fff2cc; border-color: var(--border-color); box-shadow: 4px 4px 0 var(--border-color); transform: translate(-2px, -2px); }
 
         /* --- Header / Home --- */
         #home { padding-top: 2rem; }
         .profile-header { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
-        .profile-photo-container { width: 200px; height: 200px; border-radius: 50%; border: 5px solid var(--border-color); padding: 5px; background-color: #fff; transition: transform 0.3s ease; }
+        .profile-photo-container { width: 180px; height: 180px; border-radius: 50%; border: 5px solid var(--border-color); padding: 5px; background-color: #fff; transition: transform 0.3s ease; }
         .profile-photo-container:hover { transform: scale(1.05) rotate(3deg); }
         .profile-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .profile-header h1 { margin-bottom: 0.5rem; }
-        .contact-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; font-size: 1.2rem; }
+        .contact-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; font-size: 1.1rem; }
         .contact-info a { color: var(--secondary-color); text-decoration: none; }
         .contact-info a:hover { color: var(--primary-color); }
+        
+        /* --- Calculus Abacus --- */
+        .calculus-abacus { display: inline-block; border: 3px solid var(--border-color); padding: 10px; background: #fff; margin-top: 1.5rem; }
+        .abacus-row { display: flex; gap: 8px; margin: 4px 0; }
+        .abacus-bead { width: 20px; height: 20px; background: var(--secondary-color); border: 2px solid var(--border-color); transition: all 0.3s ease; }
+        .calculus-abacus:hover .abacus-bead:nth-child(1) { transform: translateX(30px); background-color: var(--primary-color); }
+        .calculus-abacus:hover .abacus-bead:nth-child(2) { transform: translateX(-15px); }
+        .calculus-abacus:hover .abacus-bead:nth-child(3) { transform: translateX(10px); background-color: var(--accent-color); }
         
         /* --- General Box/Card Styling --- */
         .nes-box { background-color: #fff; border: 4px solid var(--border-color); padding: 2rem; margin-top: 2rem; text-align: left; position: relative; box-shadow: 8px 8px 0 rgba(0,0,0,0.1); }
@@ -71,91 +94,74 @@
         .job::before { content: ''; position: absolute; left: -38px; top: 15px; width: 20px; height: 20px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10" fill="%23e74c3c"/><rect x="2" y="2" width="6" height="6" fill="%23fff"/></svg>'); background-size: cover; border: 4px solid var(--border-color); }
         .job-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
         .job-title-group { text-align: left; position: relative; }
-        .job-title { font-size: 1.5rem; margin: 0; }
-        .job-company { font-size: 1.2rem; color: var(--secondary-color); margin-top: 0.5rem; }
-        .job-date { font-family: var(--font-pixel); font-size: 0.9rem; color: var(--text-color); background: #eee; padding: 5px 10px; border: 2px solid var(--border-color); white-space: nowrap; }
+        .job-title { font-size: 1.4rem; margin: 0; }
+        .job-company { font-size: 1.1rem; color: var(--secondary-color); margin-top: 0.5rem; }
+        .job-date { font-family: var(--font-pixel); font-size: 0.8rem; color: var(--text-color); background: #eee; padding: 5px 10px; border: 2px solid var(--border-color); white-space: nowrap; }
         .job-details li { margin-bottom: 1rem; }
         .job-details strong { color: var(--border-color); }
-        .current-job-arrow {
-            display: inline-block;
-            width: 0;
-            height: 0;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            border-left: 16px solid var(--accent-color);
-            margin-left: 15px;
-            animation: bounce-right 1.5s infinite;
-        }
+        .current-job-arrow { display: inline-block; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 14px solid var(--accent-color); margin-left: 15px; animation: bounce-right 1.5s infinite; }
 
         /* --- Generic Grid & Card Styling --- */
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: left; }
         .card { background-color: #fff; border: 4px solid var(--border-color); padding: 1.5rem; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
         .card:hover { transform: translate(-5px, -5px); box-shadow: 8px 8px 0 var(--border-color); }
-        .card h3 { font-size: 1.2rem; }
-        .card p { font-size: 1.2rem; }
+        .card h3 { font-size: 1.1rem; }
+        .card p { font-size: 1.1rem; }
         
-        /* --- NEW Toolkit Section --- */
+        /* --- Toolkit Section --- */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .skill-category h3 { font-size: 1.2rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--border-color); }
+        .skill-category h3 { font-size: 1.1rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--border-color); }
         .skill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
-        .skill-item { background: #eee; border: 2px solid var(--border-color); padding: 5px 12px; font-size: 1.1rem; transition: all 0.2s; }
-        .skill-item:hover { background-color: #fff2cc; transform: scale(1.05); }
+        .skill-item { background: #eee; border: 2px solid var(--border-color); padding: 5px 12px; font-size: 1rem; transition: all 0.2s; }
+        .skill-item:hover { background-color: #fff2cc; transform: scale(1.05); animation: shake 0.5s; }
 
         /* --- Education & Publication --- */
         .edu-item, .pub-item { text-align: left; }
         .item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
-        .item-title { font-size: 1.2rem; font-weight: bold; font-family: var(--font-body); text-transform: none; color: var(--text-color); }
-        .item-date { font-family: var(--font-pixel); font-size: 0.9rem; }
-        .item-source, .pub-authors { font-size: 1.1rem; color: var(--secondary-color); }
+        .item-title { font-size: 1.1rem; font-weight: bold; font-family: var(--font-body); text-transform: none; color: var(--text-color); }
+        .item-date { font-family: var(--font-pixel); font-size: 0.8rem; }
+        .item-source, .pub-authors { font-size: 1rem; color: var(--secondary-color); }
         .pub-authors { margin-top: 1rem; }
         .pub-title { margin-top: 0.5rem; font-style: italic; }
         
-        /* --- Writing/Substack --- */
-        .substack-card { background-color: #fff2cc; border: 4px solid var(--border-color); padding: 2rem; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
-        .substack-card:hover { transform: translate(-5px, -5px); box-shadow: 8px 8px 0 var(--border-color); }
-        .substack-card p { font-size: 1.5rem; color: var(--text-color); }
-        .substack-button { display: inline-block; font-family: var(--font-pixel); font-size: 1rem; color: #fff; background-color: var(--primary-color); text-decoration: none; padding: 1rem 2rem; border: 4px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); margin-top: 1rem; transition: all 0.2s ease; }
-        .substack-button:hover { transform: translate(4px, 4px); box-shadow: none; }
+        /* --- Writing/Substack & Link Button --- */
+        .card-button, .substack-button { display: inline-block; font-family: var(--font-pixel); font-size: 0.8rem; color: #fff; background-color: var(--primary-color); text-decoration: none; padding: 0.8rem 1.5rem; border: 4px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); margin-top: 1rem; transition: all 0.2s ease; }
+        .card-button:hover, .substack-button:hover { transform: translate(4px, 4px); box-shadow: none; }
         
         /* --- Footer --- */
         footer { margin-top: 4rem; padding: 2rem 0; border-top: 4px solid var(--border-color); font-family: var(--font-pixel); font-size: 0.7rem; }
 
         /* --- Animations --- */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes blink { 50% { opacity: 0; } }
-        @keyframes bounce-right {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(8px); }
-        }
+        @keyframes bounce-right { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(8px); } }
+        @keyframes shake { 0%, 100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} }
 
-        /* --- RESPONSIVE STYLES START HERE --- */
+        /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
-            body { font-size: 22px; }
-            h1 { font-size: 1.8rem; }
-            h2 { font-size: 1.4rem; }
+            body { font-size: 20px; }
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.2rem; }
             section { padding-top: 6rem; }
             .nav-links { gap: 0.8rem; }
-            .nav-links a { font-size: 0.6rem; padding: 8px; }
+            .nav-links a { font-size: 0.5rem; padding: 8px; }
         }
         @media (max-width: 480px) {
-            body { font-size: 20px; }
-            h1 { font-size: 1.4rem; }
-            h2 { font-size: 1.1rem; }
-            h2 .cursor { height: 1.2rem; }
-            p { font-size: 1.2rem; }
+            h1 { font-size: 1.3rem; }
+            h2 { font-size: 1rem; }
+            h2 .cursor { height: 1.1rem; }
+            p { font-size: 1.1rem; }
             .profile-photo-container { width: 150px; height: 150px; }
             .contact-info { flex-direction: column; gap: 0.5rem; align-items: center; }
             .nav-links { gap: 0.5rem; }
-            .nav-links a { padding: 8px 6px; }
             .nes-box { padding: 1.5rem; }
             .grid-container, .skills-grid { grid-template-columns: 1fr; }
             .job-header { flex-direction: column; align-items: flex-start; }
             .job-date { margin-top: 0.5rem; }
-            .job-title { font-size: 1.2rem; }
+            .job-title { font-size: 1.1rem; }
             .timeline { padding-left: 1.5rem; }
             .job::before { left: -33px; }
             .item-header { flex-direction: column; align-items: flex-start; }
-            .item-date { margin-top: 0.5rem; }
         }
     </style>
 </head>
@@ -166,9 +172,9 @@
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#weekend-quests">Weekend Quests</a></li>
             <li><a href="#toolkit">Toolkit</a></li>
             <li><a href="#education">Education</a></li>
-            <li><a href="#publications">Publications</a></li>
              <li><a href="#writing">Writing</a></li>
         </ul>
     </nav>
@@ -182,7 +188,7 @@
                     <img src="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg" alt="Vahid Faraji" class="profile-photo">
                 </div>
                 <h1>Vahid Faraji</h1>
-                <p style="font-size: 1.5rem; text-align: center; text-transform: none; margin: 0;">Senior Applied AI Specialist</p>
+                <p style="font-size: 1.4rem; text-align: center; text-transform: none; margin: 0;">Senior Applied AI Specialist</p>
                 <div class="contact-info">
                     <span><a href="mailto:vfaraji89@gmail.com">vfaraji89@gmail.com</a></span>
                     <span><a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank">LinkedIn</a></span>
@@ -190,16 +196,15 @@
                 </div>
             </header>
             <div class="nes-box">
-                    <p>Applied AI & Product</p>
-                </div>
-            </header>
-            <div class="nes-box">
                 <h2>Mission Briefing<span class="cursor"></span></h2>
                 <p>I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.</p>
                 <p>My motto: Build more, contribute max, and be less verbose.</p>
             </div>
+            <div class="calculus-abacus">
+                <div class="abacus-row"><div class="abacus-bead"></div><div class="abacus-bead"></div><div class="abacus-bead"></div></div>
+                <div class="abacus-row"><div class="abacus-bead"></div><div class="abacus-bead"></div><div class="abacus-bead"></div></div>
+            </div>
         </section>
-
 
         <!-- EXPERIENCE SECTION -->
         <section id="experience">
@@ -257,7 +262,7 @@
         <section id="projects">
              <header>
                 <h1>Item Inventory<span class="cursor"></span></h1>
-                <p style="text-align:center;">A collection of crafted tools and completed quests.</p>
+                <p style="text-align:center;">A collection of crafted tools and main quests.</p>
             </header>
             <div class="grid-container">
                 <div class="card">
@@ -271,6 +276,30 @@
                 <div class="card">
                     <h3>LabOps Career Database</h3>
                     <p>Developing a vector search system for forklift career paths to create clear upskilling routes for operators.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- WEEKEND LEARNING SECTION -->
+        <section id="weekend-quests">
+            <header>
+                <h1>Weekend Quests<span class="cursor"></span></h1>
+                <p style="text-align:center;">Exploring new ideas and building fast.</p>
+            </header>
+             <div class="grid-container">
+                <div class="card">
+                    <h3>Defter-i Mesâlik</h3>
+                    <p>What if a 'Product Manager' existed in the Ottoman Empire? This question led to a mini-app bridging 21st-century tech jobs with creative, historical titles. I call it The Book of Jobs: "Her Maharete Bir Unvan."</p>
+                    <a href="https://defter-i-mesalik.vercel.app/" target="_blank" class="card-button">Try the App</a>
+                </div>
+                <div class="card">
+                    <h3>AI Food Scanner</h3>
+                    <p>From idea to a mini AI app in 3 hours: a fast-prototyping challenge to build an AI Food Scanner using Vercel's v0, LibreChat, and Google GenAI. My deep dive into the 'text-to-build' workflow.</p>
+                    <a href="https://vahidfaraji.substack.com/p/from-idea-to-a-mini-ai-app-in-3" target="_blank" class="card-button">Read the Post</a>
+                </div>
+                <div class="card">
+                    <h3>Posextract Prototype</h3>
+                    <p>Messy job titles? I prototyped a Python library to extract & normalize titles in English, Turkish & Spanish using a hybrid system: Gemini 1.5 Flash, ontology mapping, and a web agent for low-confidence titles.</p>
                 </div>
             </div>
         </section>
@@ -325,24 +354,26 @@
                 <h1>Training Grounds<span class="cursor"></span></h1>
                 <p style="text-align:center;">My academic background and languages.</p>
             </header>
-            <div class="card edu-item">
-                <div class="item-header">
-                    <span class="item-title">M.A. in Economics</span>
-                    <span class="item-date">2019-2021</span>
+            <div class="grid-container">
+                <div class="card edu-item">
+                    <div class="item-header">
+                        <span class="item-title">M.A. in Economics</span>
+                        <span class="item-date">2019-2021</span>
+                    </div>
+                    <p class="item-source">Ibn Haldun University</p>
                 </div>
-                <p class="item-source">Ibn Haldun University</p>
-            </div>
-            <div class="card edu-item">
-                <div class="item-header">
-                    <span class="item-title">M.A. in International Human Resources</span>
-                    <span class="item-date">2013-2015</span>
+                <div class="card edu-item">
+                    <div class="item-header">
+                        <span class="item-title">M.A. in International Human Resources</span>
+                        <span class="item-date">2013-2015</span>
+                    </div>
+                    <p class="item-source">University of Tehran</p>
                 </div>
-                <p class="item-source">University of Tehran</p>
+                 <div class="card">
+                    <h3>Languages</h3>
+                    <p style="text-align:left;">Turkish (Native) | English (Advanced) | Spanish (Advanced)</p>
+                 </div>
             </div>
-             <div class="card">
-                <h3>Languages</h3>
-                <p style="text-align:left;">Turkish (Native) | English (Advanced) | Spanish (Advanced)</p>
-             </div>
         </section>
 
         <!-- PUBLICATIONS SECTION -->
@@ -386,7 +417,7 @@
     <script>
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.4 };
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 }; // Adjusted threshold
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
