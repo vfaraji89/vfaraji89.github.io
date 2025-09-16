@@ -19,11 +19,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <style>
-        /* 
-         * Note on Performance: For a single-page site, inline CSS is acceptable. 
-         * For larger projects, extracting this to a separate .css file is recommended 
-         * to allow for browser caching and better performance.
-        */
         :root {
             --bg-color: #F0F8FF;
             --text-color: #2c3e50;
@@ -47,10 +42,6 @@
             overflow-x: hidden;
             position: relative;
         }
-        /* 
-         * Note on Performance: The scanline overlay is a lightweight CSS effect, but could be 
-         * removed if performance issues are noticed on very low-powered devices.
-        */
         body::after {
             content: "";
             position: fixed;
@@ -72,27 +63,13 @@
         h1, h2, h3 { font-family: var(--font-pixel); color: var(--border-color); text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 2px; }
         h1 { font-size: 2rem; }
         h2 { font-size: 1.6rem; margin-top: 3rem; display: inline-block; transition: transform 0.2s ease; }
-        h2:hover { transform: translateX(5px) skewX(-3deg); }
+        h2:hover { transform: translateX(5px) skewX(-3deg); animation: text-glitch 0.3s linear; }
         h2 .cursor { display: inline-block; width: 1rem; height: 1.6rem; background: var(--accent-color); animation: blink 1s steps(1) infinite; margin-left: 8px; vertical-align: middle; }
         p { margin-bottom: 1.5rem; max-width: 65ch; margin-left: auto; margin-right: auto; text-align: left; }
         
         /* Accessibility: Skip to Content Link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--primary-color);
-            color: white;
-            padding: 8px;
-            z-index: 1001;
-            transition: top 0.3s ease;
-            font-family: var(--font-pixel);
-            font-size: 0.8rem;
-            border: 3px solid var(--border-color);
-        }
-        .skip-link:focus {
-            top: 10px;
-        }
+        .skip-link { position: absolute; top: -100px; left: 0; background: var(--primary-color); color: white; padding: 8px; z-index: 1001; transition: top 0.3s ease; font-family: var(--font-pixel); font-size: 0.8rem; border: 3px solid var(--border-color); }
+        .skip-link:focus { top: 10px; }
 
         /* --- Navigation --- */
         .navbar { background-color: #fff; border-bottom: 4px solid var(--border-color); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; width: 100%; }
@@ -114,11 +91,11 @@
         /* --- Calculus Abacus --- */
         .calculus-abacus { display: inline-block; border: 3px solid var(--border-color); padding: 10px; background: #fff; margin-top: 1.5rem; }
         .abacus-row { display: flex; gap: 8px; margin: 4px 0; }
-        .abacus-bead { width: 20px; height: 20px; background: var(--secondary-color); border: 2px solid var(--border-color); transition: all 0.3s ease; }
-        .calculus-abacus:hover .abacus-bead:nth-child(1) { transform: translateX(30px); background-color: var(--primary-color); }
-        .calculus-abacus:hover .abacus-bead:nth-child(2) { transform: translateX(-15px); }
-        .calculus-abacus:hover .abacus-bead:nth-child(3) { transform: translateX(10px); background-color: var(--accent-color); }
-        
+        .abacus-bead { width: 20px; height: 20px; background: var(--secondary-color); border: 2px solid var(--border-color); }
+        .abacus-bead.b1 { animation: slide-bead-1 4s ease-in-out infinite; }
+        .abacus-bead.b2 { animation: slide-bead-2 5s ease-in-out infinite; }
+        .abacus-bead.b3 { animation: slide-bead-3 3.5s ease-in-out infinite; }
+
         /* --- General Box/Card Styling --- */
         .nes-box { background-color: #fff; border: 4px solid var(--border-color); padding: 2rem; margin-top: 2rem; text-align: left; position: relative; box-shadow: 8px 8px 0 rgba(0,0,0,0.1); }
         .nes-box ul { list-style: none; padding-left: 1rem; }
@@ -146,12 +123,12 @@
         .card p { font-size: 1.1rem; }
         
         /* --- Toolkit Section --- */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .skill-category h3 { font-size: 1.1rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--border-color); }
-        .skill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
-        .skill-item { background: #eee; border: 2px solid var(--border-color); padding: 5px 12px; font-size: 1rem; transition: all 0.2s; }
-        .skill-item:hover { background-color: #fff2cc; transform: scale(1.05); animation: shake 0.5s; }
-
+        .skill-list { text-align: left; }
+        .skill-entry { display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start; margin-bottom: 1.5rem; }
+        .skill-name { font-family: var(--font-pixel); font-size: 1rem; color: var(--text-color); }
+        .skill-description { font-size: 1.1rem; color: var(--text-color); margin: 0; }
+        .skill-entry::before { content: '>'; font-weight: bold; color: var(--primary-color); font-size: 1.5rem; margin-right: 1rem; grid-column: 1 / 1; display: none; } /* Hide for grid layout */
+        
         /* --- Education & Publication --- */
         .edu-item, .pub-item { text-align: left; }
         .item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
@@ -162,17 +139,56 @@
         .pub-title { margin-top: 0.5rem; font-style: italic; }
         
         /* --- Link Buttons --- */
-        .card-button, .substack-button { display: inline-block; font-family: var(--font-pixel); font-size: 0.8rem; color: #fff; background-color: var(--primary-color); text-decoration: none; padding: 0.8rem 1.5rem; border: 4px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); margin-top: auto; /* Aligns button to bottom of card */ transition: all 0.2s ease; }
+        .card-button, .substack-button { display: inline-block; font-family: var(--font-pixel); font-size: 0.8rem; color: #fff; background-color: var(--primary-color); text-decoration: none; padding: 0.8rem 1.5rem; border: 4px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); margin-top: auto; transition: all 0.2s ease; }
         .card-button:hover, .substack-button:hover { transform: translate(4px, 4px); box-shadow: none; }
         
+        /* --- Scroll to Top Button --- */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            border: 3px solid var(--border-color);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            z-index: 999;
+        }
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-to-top::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 14px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 15px solid white;
+        }
+        
         /* --- Footer --- */
-        footer { margin-top: 4rem; padding: 2rem 0; border-top: 4px solid var(--border-color); font-family: var(--font-pixel); font-size: 0.7rem; }
+        footer { margin-top: 4rem; padding: 2rem 0; border-top: 4px solid var(--border-color); font-family: var(--font-pixel); font-size: 0.7rem; overflow: hidden; }
+        .footer-ticker-wrap { width: 100%; }
+        .footer-ticker-move { display: inline-block; white-space: nowrap; animation: ticker-move 20s linear infinite; }
+        .footer-ticker-item { display: inline-block; padding: 0 1rem; font-size: 0.8rem; color: var(--secondary-color); }
 
         /* --- Animations --- */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes blink { 50% { opacity: 0; } }
         @keyframes bounce-right { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(8px); } }
         @keyframes shake { 0%, 100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} }
+        @keyframes text-glitch { 0%, 100% { text-shadow: none; } 25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); } 75% { text-shadow: -2px 2px 0 var(--secondary-color), 2px -2px 0 var(--primary-color); } }
+        @keyframes ticker-move { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+        @keyframes slide-bead-1 { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(25px); background: var(--primary-color); } }
+        @keyframes slide-bead-2 { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-10px); } }
+        @keyframes slide-bead-3 { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); background: var(--accent-color); } }
 
         /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
@@ -180,25 +196,22 @@
             h1 { font-size: 1.6rem; }
             h2 { font-size: 1.2rem; }
             section { padding-top: 6rem; }
-            .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.5rem; padding: 8px; }
+            .skill-entry { grid-template-columns: 180px 1fr; }
         }
         @media (max-width: 480px) {
             h1 { font-size: 1.3rem; }
             h2 { font-size: 1rem; }
-            h2 .cursor { height: 1.1rem; }
             p { font-size: 1.1rem; }
             .profile-photo-container { width: 150px; height: 150px; }
             .contact-info { flex-direction: column; gap: 0.5rem; align-items: center; }
-            .nav-links { gap: 0.5rem; }
             .nes-box { padding: 1.5rem; }
-            .grid-container, .skills-grid { grid-template-columns: 1fr; }
+            .grid-container { grid-template-columns: 1fr; }
             .job-header { flex-direction: column; align-items: flex-start; }
-            .job-date { margin-top: 0.5rem; }
             .job-title { font-size: 1.1rem; }
-            .timeline { padding-left: 1.5rem; }
-            .job::before { left: -33px; }
             .item-header { flex-direction: column; align-items: flex-start; }
+            .skill-entry { grid-template-columns: 1fr; }
+            .skill-name { margin-bottom: 0.5rem; }
         }
     </style>
 </head>
@@ -222,7 +235,6 @@
         <!-- HOME SECTION -->
         <section id="home">
             <header class="profile-header">
-                <!-- Best Practice: Compress this image and host it locally for faster load times. -->
                  <div class="profile-photo-container">
                     <img src="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg" alt="Vahid Faraji" class="profile-photo">
                 </div>
@@ -231,7 +243,7 @@
                 <div class="contact-info">
                     <span><a href="mailto:vfaraji89@gmail.com">vfaraji89@gmail.com</a></span>
                     <span><a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank">LinkedIn</a></span>
-                    <span><a href="https://huggingface.co/vfaraji89" target="_blank">Hugging Face</a></span>
+                    <span><a href="https://vfaraji89.github.io" target="_blank">GitHub</a></span>
                 </div>
             </header>
             <div class="nes-box">
@@ -240,8 +252,8 @@
                 <p>My motto: Build more, contribute max, and be less verbose.</p>
             </div>
             <div class="calculus-abacus">
-                <div class="abacus-row"><div class="abacus-bead"></div><div class="abacus-bead"></div><div class="abacus-bead"></div></div>
-                <div class="abacus-row"><div class="abacus-bead"></div><div class="abacus-bead"></div><div class="abacus-bead"></div></div>
+                <div class="abacus-row"><div class="abacus-bead b1"></div><div class="abacus-bead b2"></div><div class="abacus-bead b3"></div></div>
+                <div class="abacus-row"><div class="abacus-bead b3"></div><div class="abacus-bead b1"></div><div class="abacus-bead b2"></div></div>
             </div>
         </section>
 
@@ -329,12 +341,12 @@
                 <div class="card">
                     <h3>Defter-i Mesâlik</h3>
                     <p>What if a 'Product Manager' existed in the Ottoman Empire? This question led to a mini-app bridging 21st-century tech jobs with creative, historical titles. I call it The Book of Jobs: "Her Maharete Bir Unvan."</p>
-                    <a href="https://defter-i-mesalik.vercel.app/" target="_blank" class="card-button">Try the Defter-i Mesâlik App</a>
+                    <a href="https://defter-i-mesalik.vercel.app/" target="_blank" class="card-button" aria-label="Try the Defter-i Mesâlik App">Try the App</a>
                 </div>
                 <div class="card">
                     <h3>AI Food Scanner</h3>
                     <p>From idea to a mini AI app in 3 hours: a fast-prototyping challenge to build an AI Food Scanner using Vercel's v0, LibreChat, and Google GenAI. My deep dive into the 'text-to-build' workflow.</p>
-                    <a href="https://vahidfaraji.substack.com/p/fastprototyping-with-vercel" target="_blank" class="card-button">Read Post on AI Food Scanner</a>
+                    <a href="https://vahidfaraji.substack.com/p/from-idea-to-a-mini-ai-app-in-3" target="_blank" class="card-button" aria-label="Read the post about building an AI Food Scanner">Read the Post</a>
                 </div>
                 <div class="card">
                     <h3>Posextract Prototype</h3>
@@ -346,43 +358,23 @@
         <!-- TOOLKIT SECTION -->
         <section id="toolkit">
             <header>
-                <h1>Power-Ups<span class="cursor"></span></h1>
+                <h1>Skill Tree<span class="cursor"></span></h1>
                 <p style="text-align:center;">My technical skill inventory.</p>
             </header>
-            <div class="skills-grid">
-                <div class="nes-box skill-category">
-                    <h3>AI & LLMs</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Generative AI</span>
-                        <span class="skill-item">OpenAI API</span>
-                        <span class="skill-item">Google Gemini</span>
-                        <span class="skill-item">Advanced Prompt</span>
-                        <span class="skill-item">LangSmith</span>
-                        <span class="skill-item">Word Embeddings</span>
-                    </div>
-                </div>
-                <div class="nes-box skill-category">
-                    <h3>Data & Analytics</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">SQL Dialects</span>
-                        <span class="skill-item">ETL</span>
-                        <span class="skill-item">People Data</span>
-                        <span class="skill-item">Analytical Skills</span>
-                        <span class="skill-item">Advanced Statistics</span>
-                        <span class="skill-item">Labour Market Research</span>
-                    </div>
-                </div>
-                <div class="nes-box skill-category">
-                    <h3>Product & Automation</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Data Product</span>
-                        <span class="skill-item">API Development</span>
-                        <span class="skill-item">Microsoft Power Automate</span>
-                        <span class="skill-item">n8n</span>
-                        <span class="skill-item">Jira</span>
-                        <span class="skill-item">Azure DevOps</span>
-                    </div>
+            <div class="nes-box">
+                <div class="skill-list">
+                    <div class="skill-entry"><span class="skill-name">Generative AI</span><p class="skill-description">Building and deploying systems using foundational models.</p></div>
+                    <div class="skill-entry"><span class="skill-name">OpenAI & Gemini APIs</span><p class="skill-description">Integrating leading large language models into applications.</p></div>
+                    <div class="skill-entry"><span class="skill-name">Advanced Prompting</span><p class="skill-description">Crafting effective prompts to steer model behavior and ensure accuracy.</p></div>
+                    <div class="skill-entry"><span class="skill-name">LangSmith</span><p class="skill-description">Debugging, testing, and monitoring LLM applications for production readiness.</p></div>
+                    <div class="skill-entry"><span class="skill-name">Python</span><p class="skill-description">Automating workflows and performing data analysis with Pandas and NumPy.</p></div>
+                    <div class="skill-entry"><span class="skill-name">SQL Dialects</span><p class="skill-description">Querying complex relational databases for insights and data extraction.</p></div>
+                    <div class="skill-entry"><span class="skill-name">ETL Processes</span><p class="skill-description">Designing pipelines to Extract, Transform, and Load data for analytics.</p></div>
+                    <div class="skill-entry"><span class="skill-name">People Data</span><p class="skill-description">Specializing in the analysis and productization of workforce and HR data.</p></div>
+                    <div class="skill-entry"><span class="skill-name">Data Products</span><p class="skill-description">Conceptualizing and building products with data at their core.</p></div>
+                    <div class="skill-entry"><span class="skill-name">API Development</span><p class="skill-description">Designing and deploying scalable RESTful services for internal tools.</p></div>
+                    <div class="skill-entry"><span class="skill-name">Automation Tools</span><p class="skill-description">Using n8n and Power Automate to create robust, automated workflows.</p></div>
+                    <div class="skill-entry"><span class="skill-name">Azure DevOps & Jira</span><p class="skill-description">Managing the product lifecycle from planning to deployment.</p></div>
                 </div>
             </div>
         </section>
@@ -443,17 +435,51 @@
             </header>
             <div class="card">
                 <p style="text-align: center;">Read my thoughts and analysis on Substack.</p>
-                <a href="https://vahidfaraji.substack.com/" target="_blank" class="substack-button">Read my Substack Articles</a>
+                <a href="https://vahidfaraji.substack.com/" target="_blank" class="substack-button" aria-label="Read my articles on Substack">Read my Substack</a>
             </div>
         </section>
 
     </main>
     
     <footer>
-        <p>Designed by Vahid Faraji © 2025</p>
+        <div class="footer-ticker-wrap">
+            <div class="footer-ticker-move">
+                <span class="footer-ticker-item">APPLIED AI</span>
+                <span class="footer-ticker-item">◆</span>
+                <span class="footer-ticker-item">DATA PRODUCTS</span>
+                 <span class="footer-ticker-item">◆</span>
+                <span class="footer-ticker-item">RAPID PROTOTYPING</span>
+                 <span class="footer-ticker-item">◆</span>
+                <span class="footer-ticker-item">LLM AGENTS</span>
+                <span class="footer-ticker-item">◆</span>
+                 <!-- Repeat for seamless loop -->
+                <span class="footer-ticker-item">APPLIED AI</span>
+                <span class="footer-ticker-item">◆</span>
+                <span class="footer-ticker-item">DATA PRODUCTS</span>
+                 <span class="footer-ticker-item">◆</span>
+                <span class="footer-ticker-item">RAPID PROTOTYPING</span>
+                 <span class="footer-ticker-item">◆</span>
+                <span class="footer-ticker-item">LLM AGENTS</span>
+                <span class="footer-ticker-item">◆</span>
+            </div>
+        </div>
+        <p style="text-align:center; margin-top: 1.5rem;">Game designed by Vahid Faraji © 2025</p>
     </footer>
 
+    <a href="#home" class="scroll-to-top" aria-label="Scroll to top"></a>
+
     <script>
+        // --- SCROLL TO TOP BUTTON SCRIPT ---
+        const scrollTopButton = document.querySelector('.scroll-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) { // Show button after scrolling 400px
+                scrollTopButton.classList.add('visible');
+            } else {
+                scrollTopButton.classList.remove('visible');
+            }
+        });
+
+        // --- ACTIVE NAV LINK ON SCROLL SCRIPT ---
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
         const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
