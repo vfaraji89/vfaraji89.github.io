@@ -1,70 +1,393 @@
-<div class="container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vahid Faraji | Applied AI & Product</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #212529;
+            --muted-color: #6c757d;
+            --accent-color: #00BFA5; /* A vibrant, professional turquoise */
+            --border-color: #dee2e6;
+            --card-bg: #f8f9fa;
+        }
 
-    <header>
-        <h1>Vahid Faraji</h1>
-        <p class="subtitle">
-            Work on product with <span class="turquoise">Applied AI</span> — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use. My motto is to build more, to contribute max and less verbose.
-        </p>
-    </header>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    <div class="section">
-        <h2 class="section-title">Focus</h2>
-        <p>
-            My focus is on organizing messy data into taxonomies, extracting insights from unstructured signals, and shaping patterns into scalable systems. I like to get granular — digging into the small details.
-        </p>
-    </div>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    <div class="section">
-        <h2 class="section-title">Toolkit</h2>
-        <p>
-            My toolkit spans SQL for data management, Python for automation and analysis, and AI frameworks and workflow automation platforms. I’m also learning vector databases and Docker to better understand how to scale in production.
-        </p>
-        <div class="label-container">
-            <span class="label">SQL</span>
-            <span class="label">Python</span>
-            <span class="label">LangChain</span>
-            <span class="label">n8n</span>
-            <span class="label">Agno</span>
-            <span class="label">Google Genkit</span>
-            <span class="label">Vercel</span>
-            <span class="label">Vector Databases</span>
-            <span class="label">Docker</span>
-        </div>
-    </div>
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
 
-    <div class="section">
-        <h2 class="section-title">Experience</h2>
-        <p>
-            Can bring <span class="turquoise">8+ years</span> in product and user data, <span class="turquoise">3 years</span> bridging business needs with AI technical solutions, and <span class="turquoise">5+ years</span> in product and applied research — helping me connect what’s technically possible with what actually matters to users.
-        </p>
+        /* --- Header --- */
+        .header {
+            text-align: left;
+            margin-bottom: 4rem;
+        }
 
-        <div class="experience-item">
-            <h3 class="experience-title">Senior Applied AI Specialist @ Kariyer.net</h3>
-            <p class="experience-details">September 2025 - Present</p>
-            <p>API monitoring & cost optimization, ensuring scalable and efficient AI deployments. Reporting automation (e.g., text-to-SQL) tools to boost profitability and empower non-technical teams.</p>
-        </div>
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .header .summary {
+            font-size: 1.1rem;
+            max-width: 75ch;
+            color: var(--muted-color);
+        }
         
-        <div class="experience-item">
-            <h3 class="experience-title">Sr. Product Manager (Data for Product) @ Kariyer.net</h3>
-            <p class="experience-details">October 2022 - September 2025</p>
-            <p>Improved the flow and accuracy of people and company data. Worked with text-based data, like job titles and skills, to make the data easier to use. Analyzed numerical data to provide useful insights for decision-making.</p>
-        </div>
+        .header .contact-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .header .contact-links a {
+            color: var(--muted-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .header .contact-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .section p {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        /* --- Tag/Pill Styling --- */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .tag {
+            background-color: #e0f7fa;
+            color: #00796b;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        /* --- Experience Section --- */
+        .job {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        .job::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            border: 2px solid var(--bg-color);
+        }
+        
+        .timeline {
+            border-left: 2px solid var(--border-color);
+            padding-left: 20px;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .job-company {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--muted-color);
+            margin-bottom: 1rem;
+        }
+        
+        .job-description ul {
+            list-style-position: outside;
+            padding-left: 1.2rem;
+            color: var(--text-color);
+        }
+
+        .job-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* --- Projects Section --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .project-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: var(--muted-color);
+            flex-grow: 1;
+        }
+        
+        .project-card .tag-container {
+             margin-top: 1rem;
+        }
+
+        /* --- Education & Certs --- */
+        .education-item, .cert-item {
+            margin-bottom: 1.5rem;
+        }
+        .item-title {
+            font-weight: 700;
+        }
+        .item-issuer, .item-details {
+            color: var(--muted-color);
+            font-size: 0.95rem;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 2px solid var(--border-color);
+            color: var(--muted-color);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+            .header h1 {
+                font-size: 2rem;
+            }
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+            .job::before {
+                left: -28px;
+            }
+            .timeline {
+                padding-left: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <header class="header">
+            <h1>Vahid Faraji</h1>
+            <p class="subtitle">Applied AI & Product</p>
+            <p class="summary">
+                I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use. My motto is to build more, contribute max, and be less verbose.
+            </p>
+            <div class="contact-links">
+                <a href="mailto:vfaraji89@gmail.com" target="_blank">Email</a>
+                <a href="https://www.linkedin.com/in/vahid-faraji-jobehdar/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/vfaraji89" target="_blank">GitHub</a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">Focus</h2>
+            <p>
+                My focus is on organizing messy data into taxonomies, extracting insights from unstructured signals, and shaping patterns into scalable systems. I like to get granular — digging into the small details to connect what’s technically possible with what actually matters to users.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Toolkit</h2>
+             <div class="tag-container">
+                <span class="tag">Python</span>
+                <span class="tag">SQL</span>
+                <span class="tag">LangChain</span>
+                <span class="tag">Vector DBs</span>
+                <span class="tag">Docker</span>
+                <span class="tag">n8n</span>
+                <span class="tag">Agno</span>
+                <span class="tag">Google Genkit</span>
+                <span class="tag">Vercel</span>
+                <span class="tag">PowerBI</span>
+                <span class="tag">AzureDev</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="job">
+                    <h3 class="job-title">Senior Applied AI Specialist</h3>
+                    <p class="job-company">Kariyer.net • Sep 2025 - Present</p>
+                    <div class="job-description">
+                        <ul>
+                            <li>Lead API monitoring & cost optimization to ensure scalable and efficient AI deployments.</li>
+                            <li>Develop reporting automation tools (e.g., text-to-SQL) to boost profitability.</li>
+                            <li>Apply vectorization & unstructured data extraction for semantic matching.</li>
+                            <li>Prototype and learn latest AI trends (Devpost, OpenAI Cookbook, Google Techbyte).</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="job">
+                    <h3 class="job-title">Sr. Product Manager (Data for Product)</h3>
+                    <p class="job-company">Kariyer.net • Oct 2022 - Sep 2025</p>
+                    <div class="job-description">
+                        <ul>
+                            <li>Improved the flow and accuracy of people and company data to ensure clarity and consistency.</li>
+                            <li>Standardized text-based data like job titles and skills to make data easier to use.</li>
+                            <li>Analyzed numerical data, including salaries and hiring rates, to provide actionable insights.</li>
+                            <li>Organized job classifications and linked skills to roles to improve job-candidate matching.</li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="job">
+                    <h3 class="job-title">Business Analytics (Financial Data and Reporting)</h3>
+                    <p class="job-company">WorqCompany • Sep 2021 - Oct 2022</p>
+                    <div class="job-description">
+                       <ul>
+                            <li>Designed and implemented financial tracking systems for a shared revenue platform.</li>
+                            <li>Built financial models to analyze and forecast cash flow statements.</li>
+                            <li>Performed time series analysis to identify revenue trends and seasonal patterns.</li>
+                        </ul>
+                    </div>
+                </div>
+                 <div class="job">
+                    <h3 class="job-title">People Data Lead</h3>
+                    <p class="job-company">defaro OÜ • Nov 2019 - Dec 2021</p>
+                     <div class="job-description">
+                       <ul>
+                            <li>Helped develop a prototype for an upskilling and reskilling platform.</li>
+                            <li>Managed research process from ideation to product implementation.</li>
+                            <li>Focused on skill indexing, skill footprint, and profiling to improve platform effectiveness.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Position Extraction App</h3>
+                    <p>Developed an LLM-driven mini app to automatically extract and classify positions from job descriptions, improving matching accuracy by over 50%.</p>
+                    <div class="tag-container">
+                        <span class="tag">Python</span>
+                        <span class="tag">LangChain</span>
+                        <span class="tag">Gradio</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>People Data Handbook</h3>
+                    <p>Authored a 195-page handbook on People Analytics for the Persian-speaking community, bridging HR with data science through practical cases.</p>
+                     <div class="tag-container">
+                        <span class="tag">People Analytics</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>LabOps - Career Database</h3>
+                    <p>Developing a vector search matching system for forklift career paths and equipment types to create clear upskilling routes.</p>
+                     <div class="tag-container">
+                        <span class="tag">Vector DB</span>
+                        <span class="tag">Semantic Search</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                 <p class="item-title">Master of Economics</p>
+                 <p class="item-details">Ibn Haldun University • 2020 - 2023</p>
+            </div>
+             <div class="education-item">
+                 <p class="item-title">Master’s Degree, International Human Resource</p>
+                 <p class="item-details">University of Tehran • 2013 - 2015</p>
+            </div>
+        </section>
+        
+        <section class="section">
+             <h2 class="section-title">Licenses & Certifications</h2>
+             <div class="cert-item">
+                 <p class="item-title">Introduction to LangGraph</p>
+                 <p class="item-issuer">LangChain • Issued Jan 2025</p>
+             </div>
+             <div class="cert-item">
+                 <p class="item-title">Introduction to LangSmith</p>
+                 <p class="item-issuer">LangChain • Issued Jan 2025</p>
+             </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 Vahid Faraji. Designed with simplicity.</p>
+        </footer>
 
     </div>
-
-    <div class="section">
-        <h2 class="section-title">Top Skills</h2>
-        <div class="label-container">
-            <span class="label">People Data</span>
-            <span class="label">Labour Market Research</span>
-            <span class="label">Financial Analysis</span>
-            <span class="label">Transact-SQL (T-SQL)</span>
-            <span class="label">Advanced Statistics</span>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2025 Vahid Faraji</p>
-    </footer>
-
-</div>
+</body>
+</html>
