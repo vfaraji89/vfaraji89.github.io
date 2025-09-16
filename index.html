@@ -118,12 +118,42 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Responsive */
+        /* --- RESPONSIVE STYLES START HERE --- */
+        
+        /* Tablet Breakpoint */
         @media (max-width: 768px) {
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.2rem; }
-            body { font-size: 20px; }
+            body { font-size: 22px; }
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
             section { padding-top: 6rem; }
+            .nav-links { gap: 0.8rem; }
+            .nav-links a { font-size: 0.6rem; padding: 8px; }
+        }
+
+        /* Mobile Breakpoint */
+        @media (max-width: 480px) {
+            body { font-size: 20px; }
+            h1 { font-size: 1.4rem; }
+            h2 { font-size: 1.1rem; }
+            h2 .cursor { height: 1.2rem; }
+            p { font-size: 1.2rem; }
+
+            .profile-photo-container { width: 150px; height: 150px; }
+            .contact-info { flex-direction: column; gap: 0.5rem; align-items: center; }
+
+            .nav-links { gap: 0.5rem; }
+            .nav-links a { padding: 8px 6px; }
+
+            .nes-box { padding: 1.5rem; }
+            .grid-container { grid-template-columns: 1fr; } /* Stack cards in a single column */
+
+            .job-header { flex-direction: column; align-items: flex-start; }
+            .job-date { margin-top: 0.5rem; }
+            .timeline { padding-left: 1.5rem; }
+            .job::before { left: -33px; }
+
+            .item-header { flex-direction: column; align-items: flex-start; }
+            .item-date { margin-top: 0.5rem; }
         }
     </style>
 </head>
@@ -313,22 +343,19 @@
         <section id="publications">
             <header>
                 <h1>Discovered Lore<span class="cursor"></span></h1>
-                 <p style="text-align:center;">Submitted academic manuscripts and research.</p>
+                 <p style="text-align:center;">Submitted academic manuscripts and other quests.</p>
             </header>
             <div class="nes-box pub-item">
                 <p class="pub-title">Leveraging LLMs for Turkish Skill Extraction.</p>
                 <p class="pub-authors">Ezgi Arslan İltüzer, Vahid Farajijobehdar, Özgür Anıl Özlü, Gülşen Eryiğit.</p>
                 <p style="font-size: 1.1rem; margin-top: 1rem;">Submitted manuscript, 2025. ORCID: 0000-0002-9153-0765</p>
             </div>
-             <div class="grid-container" style="margin-top: 2rem;">
-                <div class="card">
-                    <h3>Research Thesis</h3>
-                    <p>Focused on using Econometrics and skill data to analyze and model labor market dynamics.</p>
-                </div>
-                <div class="card">
-                    <h3>Side Quests</h3>
-                    <p>Led tours as a Professional Tourist Guide (5+ years) and coordinated the 17th WFTGA Convention in Iran.</p>
-                </div>
+             <div class="nes-box" style="margin-top: 2rem;">
+                <h3>Side Quests</h3>
+                <ul>
+                    <li><strong>Coordinator, 17th WFTGA Convention, Iran:</strong> Orchestrated an international tourism conference with hundreds of delegates, managing logistics and communications.</li>
+                    <li><strong>Professional Tourist Guide (5+ Years):</strong> Led tours in Spanish, English, and Turkish, strengthening cross-cultural communication and problem-solving skills.</li>
+                </ul>
             </div>
         </section>
         
