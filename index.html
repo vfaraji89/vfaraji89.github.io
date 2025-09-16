@@ -93,35 +93,13 @@
         .card:hover { transform: translate(-5px, -5px); box-shadow: 8px 8px 0 var(--border-color); }
         .card h3 { font-size: 1.2rem; }
         .card p { font-size: 1.2rem; }
-
-        /* --- Toolkit Section --- */
-        h3.skill-category-title { font-size: 1.2rem; margin: 2.5rem 0 1.5rem; text-align: left; }
-        .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1.5rem; }
-        .skill-box {
-            background: #fff;
-            border: 3px solid var(--border-color);
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-        .skill-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 6px 6px 0 var(--border-color);
-            background: #fff2cc;
-        }
-        .skill-box img {
-            height: 48px;
-            width: 48px;
-            margin-bottom: 0.75rem;
-        }
-        .skill-box span {
-            font-family: var(--font-body);
-            font-size: 1.2rem;
-            color: var(--text-color);
-        }
+        
+        /* --- NEW Toolkit Section --- */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .skill-category h3 { font-size: 1.2rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--border-color); }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
+        .skill-item { background: #eee; border: 2px solid var(--border-color); padding: 5px 12px; font-size: 1.1rem; transition: all 0.2s; }
+        .skill-item:hover { background-color: #fff2cc; transform: scale(1.05); }
 
         /* --- Education & Publication --- */
         .edu-item, .pub-item { text-align: left; }
@@ -158,7 +136,6 @@
             section { padding-top: 6rem; }
             .nav-links { gap: 0.8rem; }
             .nav-links a { font-size: 0.6rem; padding: 8px; }
-            .skill-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
         }
         @media (max-width: 480px) {
             body { font-size: 20px; }
@@ -171,7 +148,7 @@
             .nav-links { gap: 0.5rem; }
             .nav-links a { padding: 8px 6px; }
             .nes-box { padding: 1.5rem; }
-            .grid-container { grid-template-columns: 1fr; }
+            .grid-container, .skills-grid { grid-template-columns: 1fr; }
             .job-header { flex-direction: column; align-items: flex-start; }
             .job-date { margin-top: 0.5rem; }
             .job-title { font-size: 1.2rem; }
@@ -179,9 +156,6 @@
             .job::before { left: -33px; }
             .item-header { flex-direction: column; align-items: flex-start; }
             .item-date { margin-top: 0.5rem; }
-            .skill-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 1rem; }
-            .skill-box img { height: 40px; width: 40px; }
-            .skill-box span { font-size: 1rem; }
         }
     </style>
 </head>
@@ -215,12 +189,17 @@
                     <span><a href="https://vfaraji89.github.io" target="_blank">GitHub</a></span>
                 </div>
             </header>
-         <div class="nes-box">
-            <h2>Mission Briefing<span class="cursor"></span></h2>
-            <p>I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.</p>
-        <p>My motto: Build more, contribute max, and be less verbose.</p>
-    </div>
-</section>
+            <div class="nes-box">
+                    <p>Applied AI & Product</p>
+                </div>
+            </header>
+            <div class="nes-box">
+                <h2>Mission Briefing<span class="cursor"></span></h2>
+                <p>I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.</p>
+                <p>My motto: Build more, contribute max, and be less verbose.</p>
+            </div>
+        </section>
+
 
         <!-- EXPERIENCE SECTION -->
         <section id="experience">
@@ -299,32 +278,44 @@
         <!-- TOOLKIT SECTION -->
         <section id="toolkit">
             <header>
-                <h1>Skill Tree<span class="cursor"></span></h1>
-                <p style="text-align:center;">The abilities and power-ups I use on my quests.</p>
+                <h1>Power-Ups<span class="cursor"></span></h1>
+                <p style="text-align:center;">My technical skill inventory.</p>
             </header>
-            
-            <h3 class="skill-category-title">AI</h3>
-            <div class="skill-grid">
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE3LjUgMEMxNS4yNDE0IDAgMTMuNDM4OSA MS43MDkgMTMuNDM4OSAzLjkzNzQ0VjQuMDYyNThDMTMuNDM4OSA2LjI5MDkgMTUuMjQxNCA4IDE3LjUgOEgxOS4zMTI2VjYuMDYyNThIMTcuNUMxNi4yNzI4IDYuMDYyNTggMTUuMjgxNSA1LjExMTIzIDE1LjI4MTUgMy45Mzc0NFYyLjA2MjU4QzE1LjI4MTUgMC44ODg3NjYgMTYuMjcyOCAtMC4wMDEyMDYzMyAxNy41IC0wLjAwMTIwNjMzSDE5LjMxMjZWMEgxNy41Wk0xMS44MTI0IDBDOS41NDE0NCAwIDcuNzM4OTUgMS43MDkgNy43Mzg5NSA0VjguMDYyNDJDNy43Mzg5NSAxMC4yOTA5IDkuNTQxNDQgMTIgMTEuODEyNCAxMkgxMy42ODc0VjEwLjA2MjZIMTEuODEyNEMxMC41NzI4IDEwLjA2MjYgOS41ODE1NCA5LjExMTI5IDkuNTgxNTQgOC4wNjI0MlYyLjA2MjU4QzkuNTgxNTQgMC44ODg3NjYgMTAuNTcyOCAtMC4wMDEyMDYzMyAxMS44MTI0IC0wLjAwMTIwNjMzSDEzLjY4NzRWMEgxMS44MTI0Wk02LjEyNDg4IDBDMy44MjYwMSAwIDEuOTQyMTQgMS43MDkgMS45NDIxNCA0VjEyLjA2MjZDMS45NDIxNCAxNC4yOTEgMy44MjYwMSAxNiA2LjEyNDg4IDE2SDguMDAwMDJWMTRINi4xMjQ4OEM0Ljg4NTI5IDE0IDMuNzkxOTYgMTIuOTQ5NCAzLjc5MTk2IDEyLjA2MjZWMi4wNjI1OFMzLjg0ODE2IDAuODg4NjQ2IDYuMTI0ODggMC44ODg3MDZDOC40MDE2MSAwLjg4ODc2NiA4LjAwMDAyIDIuMDYyNTggOC4wMDAwMiA0VjE2SDkuODc1MDJWMTRDOC45Mzc0NCAxNCA4LjkzNzQ0IDE0IDguMDAwMDIgMTRINi4xMjQ4OEM0Ljg4NTI5IDE0IDMuNzkxOTYgMTIuOTQ5NCAzLjc5MTk2IDEyLjA2MjZWMi4wNjI1OHMzLjg0ODE2IDAuODg4NjQ2IDYuMTI0ODggMC44ODg3MDZDOC40MDE2MSAwLjg4ODc2NiA4LjAwMDAyIDIuMDYyNTggOC4wMDAwMiA0VjhIOS44NzUwMlY2SDguMDAwMDJWNEg5Ljg3NTAyVjJINy44NzUwMlYwSDYuMTI0ODhaTTYuMTI0ODggMTguMDYyNFYxOC4wNjI0QzQuODg1MDIgMTguMDYyNCAzLjg3NDg4IDE5LjAzNSA3LjAzMTA5IDI0SDEuNjU2MDlMMi45Njg2NCAyMC4yMTg4QzMuMjE4NjQgMTkuNTkzNiAzLjEyNDg4IDE4Ljg0MzYgMi42NTYwOSAxOC4zNzVDMi4xODczMSAxNy45MDYzIDEuNDM3MzEgMTcuODQzNiAwLjk2ODYzNyAxOC4yODEyTDAgMTkuMDMxMlYyNEgxNy41QzE5LjcwODYgMjQgMjEuNTAwMSAyMi4yOTEgMjEuNTAwMSAyMEgxOS41QzE5LjUwMDEgMjEuMTMyNCAxOC42OTE1IDIyLjA2MjQgMTcuNSAyMi4wNjI0SDkuNTk0MDVMMC40MDYxOTQgMjIuMDYyNEw2LjEyNDg4IDE4LjA2MjRaIiBmaWxsPSIjMmMyZTUwIi8+PC9zdmc+"><span>OpenAI</span></div>
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTMwIDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6TTggMGgtMnYyaDRWMGgtMnpNNCAwaC0ydjJoNFYwaC0yem0yNiA0aC0ydjJoNFY0aC0yem0wIDRoLTJ2Mmg0VjhoLTJ6bTAgNGgtMnYyaDR2LTJoLTJ6bTAgNGgtMnYyaDR2LTJoLTJ6bTAgNGgtMnYyaDR2LTIyLTJ6bTAgNGgtMnYyaDR2LTIyLTJ6TTIgNGgtMnYyaDRWNGgtMnpNNCA0SDB2NEgydjJoMlY0em0tMiA4aC0ydjJoNHYtMmgtMnpNNCAxNkgwdjRIMnYyaDJ2LTR6bS0yIDhoLTJ2Mmg0di0yaC0yem0wIDRoLTJ2Mmg0di0yaC0yem00IDI4aDIwdi0yaDR2LTRoMnYtMmgydi00aDJ2LTRoMnYtNGgydi00aC0ydi0yaC0yVjRoLTJWMEg4djJoNHYyaDR2MmgydjJoMnY0aDJ2NGgtMnYyaC0ydjRoLTJ2NGgtMnYyaC00djJoLTR2Mmg0djRoNHY0aDR2MmgtMnY0aDR2Mmg0djJoMnYtMmgtMnYtMmgtMnYtNGgtMnYtNGgtMnYtMmgtNFY4aC0ydi0yaC0ydi0yaC00VjBoMnYyaDJ2MmgydjJoMnY0aDR2NGg0djRoLTR2NGgtNHY0aC00djRoMnY0aDR2LTJoMnYtMmgydi0yaC0yem0yLTI2aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0xNiA4aC0ydjJoMnYtMnptLTQgMGgtMnYyaDJ2LTJ6bS00IDBoLTJ2MmgzdjJoM3YtMmgtMnYtMnoiLz48L3N2Zz4=" alt="AI Icon" class="skill-icon"><span>LangChain</span></div>
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTQgMGMtMiAwLTIgMi0yIDJoMnY0aDRWMmg0VjB6bTggMGgtMnYyaDJ6bTYgMGgtMnYyaDJ6bTggMmMwLTIgMC0yLTItMmg0djRoNFYyYzAtMiAwLTItMi0yek0yIDhoMnYtMmgtMnptOCAwaDJ2LTJoLTJ6bTYgMGgydi0yaC0yek0yIDExaDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDE0aDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDE3aDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDIwaDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDIzaDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDI2aDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDI5aDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek02IDMyYzIgMCAyLTIgMi0yaC00djJ6bTQtMmg0djJoNHYtMmg0di0yaDR2LTJoNFYyaC00VjBoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYyaC0ydjRoMnYyaDJ2MmgydjJoMnY0aDR2LTRoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoMnptMTQgMmg0djJoNHYtMmg0di0yYzAgMiAwIDIgMiAyaC00di00aC00djR6Ii8+PC9zdmc+" alt="Python Icon" class="skill-icon"><span>Python</span></div>
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTQgMGgyNHY0SDR6bTIgNmgyMHY0SDZ6bTIgNmgyMHY0SDh6bTIgNmgyMHY0aC0yem0xNSAwaDJ2MmgtMnptLTIgMGgydjJoLTJ6bS0yIDBoMnYyaC0yek0wIDBoMnYzaDR2Mmg0djJoNHYyaDR2Mmg0djJoMnYyMWgtMnYtMmgtMnYtMmgtMnYtMmgtNHYtMmgtNHYtMmgtNHYtM2gtNFYySDB6Ii8+PC9zdmc+" alt="Database Icon" class="skill-icon"><span>Vector DBs</span></div>
-            </div>
-
-            <h3 class="skill-category-title">Prototyping & Automation</h3>
-             <div class="skill-grid">
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGw3LjU1IDEyTDQgMjRoMTZMNy41IDEyIDEyIDB6IiBmaWxsPSIjMmMyZTUwIi8+PC9zdmc+"><span>V0.dev</span></div>
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE2LjQ0IDEyLjIzN2wtNC4wMDQgNC4wMDQtNC4wMDQtNC4wMDRMMCAxMS45OThsMy43MiAzLjcyYy4xMTQuMTE0LjM2NC4wMDguNDQ3LS4wODVsNC4yNTYtNC43NGMuMDM2LS4wNC4xLS4wNC4xMzYgMGw0LjI1NiA0Ljc0Yy4wODQuMDkzLjMzMy4xOTguNDQ3LjA4NWwzLjcyLTMuNzItOC40MzYtLjI1eiIgZmlsbD0iIzJjM2U1MCIvPjxwYXRoIGQ9Ik0zLjcwMyAxMS42ODVsOC4zMTQtOC4zMTRjLjAyMy0uMDIzLjA4LS4wMDQuMDkuMDI0bOC4yNyA4LjI5My04LjI3IDguMjkzYy0uMDIzLjAyMy0uMDguMDA0LS4wOS0uMDI0TDMuNzAzIDExLjY4NXoiIGZpbGw9IiMyYzNlNTAiLz48L3N2Zz4="><span>n8n</span></div>
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjU2IiBoZWlnaHQ9IjI1NiIgdmlld0JveD0iMCAwIDI1NiAyNTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEyOCAwQzU3LjMxIDAgMCA1Ny4zMSAwIDEyOHM1Ny4zMSAxMjggMTI4IDEyOGgxMDguNVYxNzAuNkgxMjhhNDIuNCA0Mi40IDAgMSAxIDAtODQuOGgxMDguNFYwSDEyOHoiIGZpbGw9IiMyYzNlNTAiLz48L3N2Zz4="><span>Power Automate</span></div>
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTAgNmgydjJoMnYyaDJ2MmgydjRoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtNGgydi0yaDJ2LTJoMnYtMnoiLz48cGF0aCBkPSJNMCAwaDIwdjJIODJWMEgwem0yMyAwaDJ2MmgtMnptMyAwaDJ2MmgtMnptMyAwaDJ2MmgtMnptLTMgM2gydjJoLTJ6bTMgM2gydjJoLTJ6bS02IDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0tMy0zVjZoLTJ2MmgtMnYyaC0ydjRoMnYyaDJ2Mmgydi0yem0zIDBWNmgtMnYyaC0ydjJoLTJ2NGgydjJoMnYyaDJ2LTJ6Ii8+PC9zdmc+"><span>Docker</span></div>
-            </div>
-
-            <h3 class="skill-category-title">Data & Product</h3>
-            <div class="skill-grid">
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTIgNGgyOHYtMkgwem0yOCAxMEgwdjJoMzJ6TTIgMjBoMjh2LTJIMHptMCA2aDI4di0ySDB6bTE4LTE4aC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bTEyIDEwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptMTYgMTBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptMTIgNmgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6Ii8+PC9zdmc+"><span>SQL</span></div>
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTIgMGgyOHYySDJ6bTMgNGgxMHYyMkg1em0xNSAwaDhhMTIgMTIgMCAxIDEgMCAyNEgxOHYyMmgxMGE4IDggMCAxIDAtMTYgMEgxOHptLTMgMTZoOHYtMmgtOHptMCA0aDh2LTJoLTh6Ii8+PC9zdmc+"><span>PowerBI</span></div>
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTE5Ljc3NSA1LjIwMmE1LjA0MSA1LjA0MSAwIDAgMC01LjUzMS0xLjI0MyA1LjA0MSA1LjA0MSAwIDAgMC00LjQ4OCA2LjA4NGwtNi4wNjcgNi4wNjdBNS4wNDIgNS4wNDIgMCAxIDAgOS43NTcgMjAuMjVsNi4wNjctNi4wNjdBNTUuMDQxIDUuMDQxIDAgMSAwIDE5Ljc3NSA1LjIwMnptLTUuMzgyIDguOTQ0bC0uMDIyLjAyMi0uMzY5LjM2OWExIDEgMCAwIDEtMS40MTQgMGwtLjM3LS4zN2ExIDEgMCAwIDEgMC0xLjQxNGwuMzctLjM2OWExIDEgMCAwIDEgMS40MTQgMGwuMzY5LjM3YS45OTUuOTk1IDAgMCAxIC4wMjIgMS4zOTJ6IiBmaWxsPSIjMmMyZTUwIi8+PC9zdmc+"><span>Mixpanel</span></div>
-                <div class="skill-box"><img src="data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIyLjA0MSAxMC40SDI0VjIuODg0TDEzLjYsMGgtMy4yTDI0IDEwLjRIMjEuOTU5TDEwLjQgMS42di40TDE5LjIgMTBoLTcuNnYyLjRIMTlsLTIuNCAyLjRIMTYuMmwxLjYtMS42aC00LjJ2Mi40aDQuOGwtMy4yIDMuMkgxMy4ybDEuNi0xLjZoLTUuNHYyLjRoNi4zbC0zLjYgMy42aC0uNEwxMC40IDE2djZoMy4ybDEwLjQ0MS0xMy42SDI0djYuNjg0TDIyLjA0MSAxMC40ek0xMC40IDEzLjZ2LTEuNmg1LjRsLTEuNiAxLjZIMTAuNHptMCA0LjhWMTZoNy41bC0xLjYgMS42LTEuNS0xLjZoLS44bC0xLjYgMS42LTEuMi0xLjJoLS44bC0xLjYtMS42LTEuNiAxLjZWMjRoMS4ydjEuNmgxLjJWMjRoMi40di0xLjZIMTJWMTYuOEwxMC40IDE4LjR6bTAgNS4yaC0uNHYtMS4yaC40djEuMnpNMi43NTkgMTEuNkwxLjYgMTAuNEgwdjEuNmgyLjE1OUwwIDEzLjZ2MS42TDEuNiAxMy42SDMuNnYtMS42SDIuNzU5ek00LjggNC45MTVWOS42SDZWMy4xMTVsLS40LjRMNCAyLjQgNS43MTUgLjcgNi44IDEuNmwzLjIgMy4yLjguOHYtLjhsLS40LS40LTEuMi0xLjItMS42LTEuNkw0LjggNC45MTV6IiBmaWxsPSIjMmMyZTUwIi8+PC9zdmc+"><span>JIRA</span></div>
+            <div class="skills-grid">
+                <div class="nes-box skill-category">
+                    <h3>AI & LLMs</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Generative AI</span>
+                        <span class="skill-item">OpenAI API</span>
+                        <span class="skill-item">Google Gemini</span>
+                        <span class="skill-item">Advanced Prompt</span>
+                        <span class="skill-item">LangSmith</span>
+                        <span class="skill-item">Word Embeddings</span>
+                    </div>
+                </div>
+                <div class="nes-box skill-category">
+                    <h3>Data & Analytics</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">SQL Dialects</span>
+                        <span class="skill-item">ETL</span>
+                        <span class="skill-item">People Data</span>
+                        <span class="skill-item">Analytical Skills</span>
+                        <span class="skill-item">Advanced Statistics</span>
+                        <span class="skill-item">Labour Market Research</span>
+                    </div>
+                </div>
+                <div class="nes-box skill-category">
+                    <h3>Product & Automation</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Data Product</span>
+                        <span class="skill-item">API Development</span>
+                        <span class="skill-item">Microsoft Power Automate</span>
+                        <span class="skill-item">n8n</span>
+                        <span class="skill-item">Jira</span>
+                        <span class="skill-item">Azure DevOps</span>
+                    </div>
+                </div>
             </div>
         </section>
 
