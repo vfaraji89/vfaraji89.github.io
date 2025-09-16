@@ -76,25 +76,29 @@
         .profile-photo-container:hover { transform: scale(1.05) rotate(3deg); }
         .profile-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
         .profile-header h1 { margin-bottom: 0.5rem; }
-        .job-title-main { font-size: 1.4rem; text-align: center; text-transform: none; margin: 0; min-height: 2.5rem; /* Reserve space */ }
-        .job-title-main .typing-cursor { display: inline-block; background-color: var(--text-color); width: 10px; height: 1.4rem; animation: blink 0.7s infinite; vertical-align: middle; }
         .contact-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; font-size: 1.1rem; }
         .contact-info a { color: var(--secondary-color); text-decoration: none; }
         .contact-info a:hover { color: var(--primary-color); }
-        
-        /* --- Calculus Abacus --- */
-        .calculus-abacus { display: inline-block; border: 3px solid var(--border-color); padding: 10px; background: #fff; margin-top: 1.5rem; }
-        .abacus-row { display: flex; gap: 8px; margin: 4px 0; }
-        .abacus-bead { width: 20px; height: 20px; background: var(--secondary-color); border: 2px solid var(--border-color); }
-        .abacus-bead.b1 { animation: slide-bead-1 4s ease-in-out infinite; }
-        .abacus-bead.b2 { animation: slide-bead-2 5s ease-in-out infinite; }
-        .abacus-bead.b3 { animation: slide-bead-3 3.5s ease-in-out infinite; }
         
         /* --- General Box/Card Styling --- */
         .nes-box { background-color: #fff; border: 4px solid var(--border-color); padding: 2rem; margin-top: 2rem; text-align: left; position: relative; box-shadow: 8px 8px 0 rgba(0,0,0,0.1); }
         .nes-box ul { list-style: none; padding-left: 1rem; }
         .nes-box li { position: relative; padding-left: 25px; margin-bottom: 1rem; }
         .nes-box li::before { content: '▶'; font-family: var(--font-pixel); position: absolute; left: 0; top: 0; color: var(--primary-color); }
+
+        /* --- NEW: Attention Visualizer --- */
+        .attention-visualizer { margin-top: 2rem; }
+        .attention-visualizer svg text { font-family: var(--font-pixel); font-size: 12px; fill: var(--text-color); }
+        .attention-visualizer svg path { fill: none; stroke: var(--secondary-color); stroke-width: 3; stroke-linecap: round; animation: pulse 2s ease-in-out infinite; }
+        .attention-visualizer svg path.p2 { animation-delay: -1s; }
+
+        /* --- NEW: Vectorization Engine --- */
+        .vectorization-engine { display: inline-block; border: 3px solid var(--border-color); padding: 10px 20px; background: #fff; margin-top: 1.5rem; font-family: var(--font-pixel); font-size: 1rem; }
+        .vector-char { display: inline-block; position: relative; width: 45px; height: 25px; }
+        .vector-char .letter, .vector-char .number { position: absolute; transition: opacity 0.5s ease-in-out; }
+        .vector-char .number { opacity: 0; color: var(--accent-color); font-size: 0.8rem; }
+        .vector-char.animate .letter { opacity: 0; }
+        .vector-char.animate .number { opacity: 1; }
 
         /* --- Experience Section --- */
         .timeline { border-left: 4px solid var(--border-color); padding-left: 2rem; position: relative; margin-top: 2rem; text-align: left; }
@@ -119,12 +123,11 @@
         .card p { font-size: 1.1rem; }
         
         /* --- Toolkit Section --- */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .skill-category h3 { font-size: 1.1rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--border-color); }
-        .skill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 1rem; }
-        .skill-item { background: #eee; border: 2px solid var(--border-color); padding: 5px 12px; font-size: 1rem; transition: all 0.2s; }
-        .skill-item:hover { background-color: #fff2cc; transform: scale(1.05); animation: shake 0.5s; }
-
+        .skill-list { text-align: left; }
+        .skill-entry { display: grid; grid-template-columns: 200px 1fr; gap: 1rem; align-items: start; margin-bottom: 1.5rem; }
+        .skill-name { font-family: var(--font-pixel); font-size: 1rem; color: var(--text-color); }
+        .skill-description { font-size: 1.1rem; color: var(--text-color); margin: 0; }
+        
         /* --- Education & Publication --- */
         .edu-item, .pub-item { text-align: left; }
         .item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
@@ -151,7 +154,7 @@
         
         /* --- RTL STYLES --- */
         body.rtl { direction: rtl; }
-        body.rtl p, body.rtl .job-title-group, body.rtl .edu-item, body.rtl .pub-item { text-align: right; }
+        body.rtl p, body.rtl .job-title-group, body.rtl .edu-item, body.rtl .pub-item, body.rtl .skill-list { text-align: right; }
         body.rtl h2 .cursor { margin-left: 0; margin-right: 8px; }
         body.rtl .nes-box li::before { left: auto; right: 0; transform: scaleX(-1); }
         body.rtl .nes-box li { padding-left: 0; padding-right: 25px; }
@@ -160,6 +163,7 @@
         body.rtl .current-job-arrow { margin-left: 0; margin-right: 15px; border-left: none; border-right: 14px solid var(--accent-color); animation-name: bounce-left; }
         body.rtl .scroll-to-top { right: auto; left: 20px; }
         body.rtl .lang-switcher { border-left: none; border-right: 3px solid var(--border-color); padding-left: 0; padding-right: 1rem; margin-left: 0; margin-right: 1rem; }
+        body.rtl .skill-entry { grid-template-columns: 1fr 200px; }
 
         /* --- Animations --- */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -171,6 +175,7 @@
         @keyframes slide-bead-1 { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(25px); background: var(--primary-color); } }
         @keyframes slide-bead-2 { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(-10px); } }
         @keyframes slide-bead-3 { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); background: var(--accent-color); } }
+        @keyframes pulse { 0%, 100% { stroke-opacity: 0.3; } 50% { stroke-opacity: 1; } }
 
         /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
@@ -178,6 +183,7 @@
             section { padding-top: 6rem; }
             .nav-container { gap: 0.5rem; }
             .lang-switcher { margin: 0; padding: 0; border: none; }
+            .skill-entry, body.rtl .skill-entry { grid-template-columns: 180px 1fr; }
         }
         @media (max-width: 480px) {
             h1 { font-size: 1.3rem; } h2 { font-size: 1rem; }
@@ -189,6 +195,8 @@
             .job-header { flex-direction: column; align-items: flex-start; }
             .job-title { font-size: 1.1rem; }
             .item-header { flex-direction: column; align-items: flex-start; }
+            .skill-entry, body.rtl .skill-entry { grid-template-columns: 1fr; }
+            .skill-name { margin-bottom: 0.5rem; }
         }
     </style>
 </head>
@@ -234,10 +242,23 @@
                 <h2><span data-lang-key="home_summary_title">Mission Briefing</span><span class="cursor"></span></h2>
                 <p data-lang-key="home_summary_p1">I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.</p>
                 <p data-lang-key="home_summary_p2">My motto: Build more, contribute max, and be less verbose.</p>
+                <div class="attention-visualizer">
+                    <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
+                        <text x="10" y="35">Raw Text</text>
+                        <text x="160" y="15">AI Model</text>
+                        <text x="300" y="35">Structured Insights</text>
+                        <path d="M 90 30 C 140 10, 160 10, 195 20" class="p1"></path>
+                        <path d="M 210 20 C 240 30, 260 50, 295 35" class="p2"></path>
+                    </svg>
+                </div>
             </div>
-            <div class="calculus-abacus">
-                <div class="abacus-row"><div class="abacus-bead b1"></div><div class="abacus-bead b2"></div><div class="abacus-bead b3"></div></div>
-                <div class="abacus-row"><div class="abacus-bead b3"></div><div class="abacus-bead b1"></div><div class="abacus-bead b2"></div></div>
+            <div class="vectorization-engine">
+                <span>[</span>
+                <span class="vector-char" id="vc1"><span class="letter">T</span><span class="number">0.12</span></span>,
+                <span class="vector-char" id="vc2"><span class="letter">E</span><span class="number">-0.58</span></span>,
+                <span class="vector-char" id="vc3"><span class="letter">X</span><span class="number">0.99</span></span>,
+                <span class="vector-char" id="vc4"><span class="letter">T</span><span class="number">-0.21</span></span>
+                <span>]</span>
             </div>
         </section>
 
@@ -285,7 +306,7 @@
                         </div>
                          <span class="job-date" data-lang-key="exp3_date">Nov 2019 - Dec 2021</span>
                     </div>
-                    <p data-lang-key="exp3_p1">Co-founded a skills intelligence platform, leading initial technical development and product design from concept to a working MVP.</p>
+                    <p data-lang-key="exp3_p1">Co-founded a skills intelligence platform, leading the initial technical development and product design from concept to a working MVP.</p>
                      <ul class="job-details">
                         <li data-lang-key="exp3_b1">Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.</li>
                     </ul>
@@ -452,7 +473,7 @@
                 <span class="footer-ticker-item">◆</span>
             </div>
         </div>
-        <p style="text-align:center; margin-top: 1.5rem;" data-lang-key="footer_text">Game designed by Vahid Faraji © 2025</p>
+        <p style="text-align:center; margin-top: 1.5rem;" data-lang-key="footer_text"> Designed by Vahid Faraji © 2025</p>
     </footer>
 
     <a href="#home" class="scroll-to-top" aria-label="Scroll to top"></a>
@@ -499,7 +520,7 @@
             quests_title: { en: "Weekend Quests", es: "Misiones de Fin de Semana", tr: "Hafta Sonu Görevleri" },
             quests_subtitle: { en: "Exploring new ideas and building fast.", es: "Explorando nuevas ideas y construyendo rápido.", tr: "Yeni fikirleri keşfetmek ve hızlı inşa etmek." },
             quest1_title: { en: "Defter-i Mesâlik", es: "Defter-i Mesâlik", tr: "Defter-i Mesâlik" },
-            quest1_desc: { en: "What if a 'Product Manager' existed in the Ottoman Empire? This question led to a mini-app bridging 21st-century tech jobs with creative, historical titles. I call it The Book of Jobs: \"Her Maharete Bir Unvan.\"", es: "¿Y si un 'Product Manager' hubiera existido en el Imperio Otomano? Esta pregunta me llevó a una mini-app que une los trabajos tecnológicos del siglo XXI con títulos históricos y creativos. La llamo El Libro de los Oficios.", tr: "Eğer Osmanlı'da bir 'Ürün Yöneticisi' olsaydı ne olurdu? Bu soru, 21. yüzyıl teknoloji işlerini yaratıcı, tarihi unvanlarla birleştiren bir mini uygulamaya yol açtı. Adını Meslekler Kitabı koydum: \"Her Maharete Bir Unvan.\"" },
+            quest1_desc: { en: "What if a 'Product Manager' existed in the Ottoman Empire? This question led to a mini-app bridging 21st-century tech jobs with creative, historical titles. I call it The Book of Jobs: \"Her Maharete Bir Unvan.\"", es: "¿Y si un 'Product Manager' hubiera existido en el Imperio Otomano? Esta pregunta me llevó a una mini-aplicación que une los trabajos tecnológicos del siglo XXI con títulos creativos e históricos. Lo llamo El Libro de los Oficios.", tr: "Eğer Osmanlı'da bir 'Ürün Yöneticisi' olsaydı ne olurdu? Bu soru, 21. yüzyıl teknoloji işlerini yaratıcı, tarihi unvanlarla birleştiren bir mini uygulamaya yol açtı. Adını Meslekler Kitabı koydum: \"Her Maharete Bir Unvan.\"" },
             quest1_button: { en: "Try the Defter-i Mesâlik App", es: "Probar la App", tr: "Uygulamayı Dene" },
             quest2_title: { en: "AI Food Scanner", es: "Escáner de Alimentos con IA", tr: "Yapay Zeka Gıda Tarayıcı" },
             quest2_desc: { en: "From idea to a mini AI app in 3 hours: a fast-prototyping challenge to build an AI Food Scanner using Vercel's v0, LibreChat, and Google GenAI. My deep dive into the 'text-to-build' workflow.", es: "De la idea a una mini app de IA en 3 horas: un reto de prototipado rápido para crear un Escáner de Alimentos con IA usando Vercel v0, LibreChat y Google GenAI. Mi análisis del flujo 'text-to-build'.", tr: "3 saatte fikirden mini bir yapay zeka uygulamasına: Vercel v0, LibreChat ve Google GenAI kullanarak bir YZ Gıda Tarayıcısı oluşturma üzerine hızlı prototipleme denemem ve 'metinden koda' iş akışı üzerine analizim." },
@@ -563,7 +584,7 @@
         
         const switchLanguage = (lang) => {
             document.documentElement.lang = lang;
-            document.body.classList.remove('rtl'); // Default to LTR
+            document.body.classList.remove('rtl');
 
             translatableElements.forEach(el => {
                 const key = el.dataset.langKey;
@@ -590,7 +611,7 @@
         const typeSentence = (sentence, eleRef, delay = 100) => {
             const letters = sentence.split("");
             let i = 0;
-            eleRef.textContent = ""; // Clear existing text
+            eleRef.textContent = "";
             const typingInterval = setInterval(() => {
                 if (i < letters.length) {
                     eleRef.innerHTML += letters[i];
@@ -598,19 +619,29 @@
                 } else {
                     clearInterval(typingInterval);
                     const cursor = eleRef.querySelector('.typing-cursor');
-                    if (cursor) cursor.style.display = 'none'; // Hide cursor when done
+                    if (cursor) cursor.style.display = 'none';
                 }
             }, delay);
         };
+        
+        // --- VECTORIZATION ENGINE ANIMATION ---
+        const vectorChars = document.querySelectorAll('.vector-char');
+        setInterval(() => {
+            vectorChars.forEach((char, index) => {
+                setTimeout(() => {
+                    char.classList.add('animate');
+                    setTimeout(() => char.classList.remove('animate'), 2000);
+                }, index * 200);
+            });
+        }, 4000);
 
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferredLanguage') || 'en';
             switchLanguage(savedLang);
 
-            // Start typing animation after initial load and translation
             const jobTitleElement = document.querySelector('.job-title-main');
             const initialTitle = translations.job_title_main[savedLang];
-            jobTitleElement.innerHTML = '<span class="typing-cursor"></span>'; // Add cursor
+            jobTitleElement.innerHTML += '<span class="typing-cursor"></span>';
             typeSentence(initialTitle, jobTitleElement, 80);
         });
     </script>
