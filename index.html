@@ -3,32 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vahid Faraji | Applied AI & Product</title>
+    <title>Vahid Faraji | Senior Applied AI Specialist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #F0F8FF; /* Light Sky Blue */
+            --bg-color: #F0F8FF;
             --text-color: #2c3e50;
             --primary-color: #e74c3c; /* Nintendo Red */
             --secondary-color: #3498db; /* Mario Blue */
-            --accent-color: #2ecc71; /* Luigi Green / Turquoise Power-up */
+            --accent-color: #2ecc71; /* Luigi Green */
             --border-color: #2c3e50;
             --font-pixel: 'Press Start 2P', cursive;
             --font-body: 'VT323', monospace;
         }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -40,310 +32,97 @@
             animation: fadeIn 0.8s ease-in-out;
         }
 
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        
-        section {
-            padding-top: 5rem;
-            padding-bottom: 2rem;
-            border-bottom: 4px dashed var(--border-color);
-        }
-        section:last-of-type {
-            border-bottom: none;
-        }
+        .container { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
+        section { padding: 5rem 0 3rem; border-bottom: 4px dashed var(--border-color); }
+        section:last-of-type { border-bottom: none; }
 
-        h1, h2, h3 {
-            font-family: var(--font-pixel);
-            color: var(--border-color);
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            letter-spacing: 2px;
-        }
-
-        h1 { font-size: 2.5rem; }
-        h2 { 
-            font-size: 1.8rem; 
-            margin-top: 3rem; 
-            display: inline-block;
-        }
-        h2 .cursor {
-            display: inline-block;
-            width: 1rem;
-            height: 1.8rem;
-            background: var(--accent-color);
-            animation: blink 1s steps(1) infinite;
-            margin-left: 8px;
-            vertical-align: middle;
-        }
-
-        p { margin-bottom: 1.5rem; max-width: 65ch; margin-left: auto; margin-right: auto; }
+        h1, h2, h3 { font-family: var(--font-pixel); color: var(--border-color); text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 2px; }
+        h1 { font-size: 2.2rem; }
+        h2 { font-size: 1.8rem; margin-top: 3rem; display: inline-block; }
+        h2 .cursor { display: inline-block; width: 1rem; height: 1.8rem; background: var(--accent-color); animation: blink 1s steps(1) infinite; margin-left: 8px; vertical-align: middle; }
+        p { margin-bottom: 1.5rem; max-width: 65ch; margin-left: auto; margin-right: auto; text-align: left; }
 
         /* --- Navigation --- */
-        .navbar {
-            background-color: #fff;
-            border-bottom: 4px solid var(--border-color);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            width: 100%;
-        }
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            list-style: none;
-        }
-        .nav-links a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-family: var(--font-pixel);
-            font-size: 0.8rem;
-            padding: 10px 15px;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-color);
-            background-color: #fff2cc;
-            border-color: var(--border-color);
-            box-shadow: 4px 4px 0 var(--border-color);
-            transform: translate(-2px, -2px);
-        }
+        .navbar { background-color: #fff; border-bottom: 4px solid var(--border-color); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; width: 100%; }
+        .nav-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; list-style: none; }
+        .nav-links a { color: var(--secondary-color); text-decoration: none; font-family: var(--font-pixel); font-size: 0.7rem; padding: 8px 12px; border: 3px solid transparent; transition: all 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); background-color: #fff2cc; border-color: var(--border-color); box-shadow: 4px 4px 0 var(--border-color); transform: translate(-2px, -2px); }
 
+        /* --- Header / Home --- */
+        #home { padding-top: 2rem; }
+        .profile-header { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+        .profile-photo-container { width: 200px; height: 200px; border-radius: 50%; border: 5px solid var(--border-color); padding: 5px; background-color: #fff; transition: transform 0.3s ease; }
+        .profile-photo-container:hover { transform: scale(1.05) rotate(3deg); }
+        .profile-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .profile-header h1 { margin-bottom: 0.5rem; }
+        .contact-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; font-size: 1.2rem; }
+        .contact-info a { color: var(--secondary-color); text-decoration: none; }
+        .contact-info a:hover { color: var(--primary-color); }
+        
         /* --- General Box/Card Styling --- */
-        .nes-box {
-            background-color: #fff;
-            border: 4px solid var(--border-color);
-            padding: 2rem;
-            margin-top: 2rem;
-            text-align: left;
-            position: relative;
-            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
-        }
-        .nes-box::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background-color: var(--secondary-color);
-            bottom: 10px;
-            right: 10px;
-            box-shadow: -4px -4px 0 var(--border-color), 0 0 0 4px var(--secondary-color);
-        }
-
-        /* --- Home Section --- */
-        .profile-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .profile-photo-container {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 5px solid var(--border-color);
-            padding: 5px;
-            background-color: #fff;
-            transition: transform 0.3s ease;
-        }
-        .profile-photo-container:hover {
-            transform: scale(1.05) rotate(3deg);
-        }
-        .profile-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-        }
-        .profile-intro h1 { font-size: 2rem; }
-        .profile-intro p { font-size: 1.5rem; text-align: center; }
-
-        /* --- AI Tag --- */
-        .ai-tag {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: #fff;
-            font-family: var(--font-pixel);
-            font-size: 0.7rem;
-            padding: 5px 10px;
-            border: 2px solid var(--border-color);
-            border-radius: 4px;
-            margin-left: 10px;
-            vertical-align: middle;
-            animation: pulse 1.5s infinite;
-        }
+        .nes-box { background-color: #fff; border: 4px solid var(--border-color); padding: 2rem; margin-top: 2rem; text-align: left; position: relative; box-shadow: 8px 8px 0 rgba(0,0,0,0.1); }
+        .nes-box ul { list-style: none; padding-left: 1rem; }
+        .nes-box li { position: relative; padding-left: 25px; margin-bottom: 1rem; }
+        .nes-box li::before { content: '▶'; font-family: var(--font-pixel); position: absolute; left: 0; top: 0; color: var(--primary-color); }
 
         /* --- Experience Section --- */
-        .timeline {
-            border-left: 4px solid var(--border-color);
-            padding-left: 2rem;
-            position: relative;
-            margin-top: 2rem;
-            text-align: left;
-        }
-        .timeline::before {
-            content: '▶';
-            font-family: var(--font-pixel);
-            position: absolute;
-            left: -20px;
-            top: -10px;
-            font-size: 2rem;
-            color: var(--primary-color);
-        }
-        .job {
-            background: #fff;
-            padding: 1.5rem;
-            border: 4px solid var(--border-color);
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        .job::before {
-            content: '';
-            position: absolute;
-            left: -38px;
-            top: 15px;
-            width: 20px;
-            height: 20px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10" fill="%23e74c3c"/><rect x="2" y="2" width="6" height="6" fill="%23fff"/></svg>');
-            background-size: cover;
-            border: 4px solid var(--border-color);
-        }
-        .job-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 1rem;
-        }
-        .company-logo {
-            height: 40px;
-            transition: transform 0.3s ease;
-        }
-        .company-logo:hover {
-            transform: scale(1.1);
-        }
+        .timeline { border-left: 4px solid var(--border-color); padding-left: 2rem; position: relative; margin-top: 2rem; text-align: left; }
+        .job { background: #fff; padding: 1.5rem; border: 4px solid var(--border-color); margin-bottom: 2rem; position: relative; }
+        .job::before { content: ''; position: absolute; left: -38px; top: 15px; width: 20px; height: 20px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10" fill="%23e74c3c"/><rect x="2" y="2" width="6" height="6" fill="%23fff"/></svg>'); background-size: cover; border: 4px solid var(--border-color); }
+        .job-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
+        .job-title-group { text-align: left; }
         .job-title { font-size: 1.5rem; margin: 0; }
-        .job-company { font-size: 1.2rem; color: var(--secondary-color); margin-bottom: 1rem; }
-        .job ul { list-style: none; }
-        .job li::before { content: '>'; margin-right: 10px; font-weight: bold; }
+        .job-company { font-size: 1.2rem; color: var(--secondary-color); margin-top: 0.5rem; }
+        .job-date { font-family: var(--font-pixel); font-size: 0.9rem; color: var(--text-color); background: #eee; padding: 5px 10px; border: 2px solid var(--border-color); white-space: nowrap; }
+        .job-details li { margin-bottom: 1rem; }
+        .job-details strong { color: var(--border-color); }
 
         /* --- Generic Grid & Card Styling --- */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            text-align: left;
-        }
-        .card {
-            background-color: #fff;
-            border: 4px solid var(--border-color);
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .card:hover {
-            transform: translate(-5px, -5px);
-            box-shadow: 8px 8px 0 var(--border-color);
-        }
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: left; }
+        .card { background-color: #fff; border: 4px solid var(--border-color); padding: 1.5rem; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+        .card:hover { transform: translate(-5px, -5px); box-shadow: 8px 8px 0 var(--border-color); }
         .card h3 { font-size: 1.2rem; }
+        .card p { font-size: 1.2rem; }
 
         /* --- Toolkit Card --- */
-        .skill-card {
-            text-align: center;
-        }
-        .skill-card .skill-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 1rem;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .skill-card:hover .skill-icon {
-            transform: scale(1.2) rotate(-5deg);
-        }
-        .skill-card h3 { font-size: 1.2rem; }
-        .skill-card p { font-size: 1.2rem; text-align: center; margin-top: 1rem; }
-        .skill-tag {
-            font-family: var(--font-pixel);
-            font-size: 0.7rem;
-            padding: 4px 8px;
-            border: 2px solid var(--border-color);
-            display: inline-block;
-            margin-top: 1rem;
-        }
+        .skill-card { text-align: center; }
+        .skill-card .skill-icon { width: 64px; height: 64px; margin: 0 auto 1rem; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .skill-card:hover .skill-icon { transform: scale(1.2) rotate(-5deg); }
+        .skill-card h3 { font-size: 1.1rem; }
+        .skill-card p { font-size: 1.1rem; text-align: center; margin-top: 1rem; flex-grow: 1;}
+        .skill-tag { font-family: var(--font-pixel); font-size: 0.7rem; padding: 4px 8px; border: 2px solid var(--border-color); display: inline-block; margin-top: 1rem; }
         .tag-ai { background-color: var(--accent-color); color: white; }
         .tag-data { background-color: var(--secondary-color); color: white; }
         .tag-product { background-color: var(--primary-color); color: white; }
-        
-        /* --- Substack Card --- */
-        .substack-card {
-            background-color: #fff2cc;
-            border: 4px solid var(--border-color);
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .substack-card:hover {
-            transform: translate(-5px, -5px);
-            box-shadow: 8px 8px 0 var(--border-color);
-        }
-        .substack-card p {
-            font-size: 1.5rem;
-            color: var(--text-color);
-        }
-        .substack-button {
-            display: inline-block;
-            font-family: var(--font-pixel);
-            font-size: 1rem;
-            color: #fff;
-            background-color: var(--primary-color);
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border: 4px solid var(--border-color);
-            box-shadow: 4px 4px 0 var(--border-color);
-            margin-top: 1rem;
-            transition: all 0.2s ease;
-        }
-        .substack-button:hover {
-            transform: translate(4px, 4px);
-            box-shadow: none;
-        }
 
+        /* --- Education & Publication --- */
+        .edu-item, .pub-item { text-align: left; }
+        .item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
+        .item-title { font-size: 1.2rem; font-weight: bold; font-family: var(--font-body); text-transform: none; color: var(--text-color); }
+        .item-date { font-family: var(--font-pixel); font-size: 0.9rem; }
+        .item-source, .pub-authors { font-size: 1.1rem; color: var(--secondary-color); }
+        .pub-authors { margin-top: 1rem; }
+        .pub-title { margin-top: 0.5rem; font-style: italic; }
+        
+        /* --- Writing/Substack --- */
+        .substack-card { background-color: #fff2cc; border: 4px solid var(--border-color); padding: 2rem; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
+        .substack-card:hover { transform: translate(-5px, -5px); box-shadow: 8px 8px 0 var(--border-color); }
+        .substack-card p { font-size: 1.5rem; color: var(--text-color); }
+        .substack-button { display: inline-block; font-family: var(--font-pixel); font-size: 1rem; color: #fff; background-color: var(--primary-color); text-decoration: none; padding: 1rem 2rem; border: 4px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); margin-top: 1rem; transition: all 0.2s ease; }
+        .substack-button:hover { transform: translate(4px, 4px); box-shadow: none; }
+        
         /* --- Footer --- */
-        footer {
-            margin-top: 4rem;
-            padding: 2rem 0;
-            border-top: 4px solid var(--border-color);
-            font-family: var(--font-pixel);
-            font-size: 0.7rem;
-        }
+        footer { margin-top: 4rem; padding: 2rem 0; border-top: 4px solid var(--border-color); font-family: var(--font-pixel); font-size: 0.7rem; }
 
         /* --- Animations --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
-            70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(46, 204, 113, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
-        }
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes blink { 50% { opacity: 0; } }
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            h2 { font-size: 1.4rem; }
+            h1 { font-size: 1.5rem; }
+            h2 { font-size: 1.2rem; }
             body { font-size: 20px; }
-            .nav-links { gap: 0.5rem; }
-            .nav-links a { font-size: 0.6rem; padding: 8px; }
             section { padding-top: 6rem; }
         }
     </style>
@@ -355,9 +134,10 @@
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
-            <li><a href="#research">Research</a></li>
             <li><a href="#toolkit">Toolkit</a></li>
-            <li><a href="#writing">Writing</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#publications">Publications</a></li>
+             <li><a href="#writing">Writing</a></li>
         </ul>
     </nav>
 
@@ -366,18 +146,20 @@
         <!-- HOME SECTION -->
         <section id="home">
             <header class="profile-header">
-                <div class="profile-photo-container">
+                 <div class="profile-photo-container">
                     <img src="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg" alt="Vahid Faraji" class="profile-photo">
                 </div>
-                <div class="profile-intro">
-                    <h1>Vahid Faraji</h1>
-                    <p>Applied AI & Product</p>
+                <h1>Vahid Faraji</h1>
+                <p style="font-size: 1.5rem; text-align: center; text-transform: none; margin: 0;">Senior Applied AI Specialist</p>
+                <div class="contact-info">
+                    <span><a href="mailto:vfaraji89@gmail.com">vfaraji89@gmail.com</a></span>
+                    <span><a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank">LinkedIn</a></span>
+                    <span><a href="https://vfaraji89.github.io" target="_blank">GitHub</a></span>
                 </div>
             </header>
             <div class="nes-box">
-                <h2>Mission Briefing<span class="cursor"></span></h2>
-                <p>I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.</p>
-                <p>My motto: Build more, contribute max, and be less verbose.</p>
+                <h2>Professional Summary<span class="cursor"></span></h2>
+                <p>As a hands-on Senior Applied AI Specialist with over five years of experience, my focus is on building AI that delivers real business results. I specialize in transforming raw text data into intelligent systems for personalization and automation. I use vectorization and Large Language Models to build these products, and I'm meticulous about the details—from rigorous model evaluation and API design to ensuring our solutions are scalable and cost-effective. My background in product management means I don't just build technology; I build solutions that bridge the gap between technical implementation and tangible value on large-scale digital platforms.</p>
             </div>
         </section>
 
@@ -385,31 +167,49 @@
         <section id="experience">
             <header>
                 <h1>Level Select<span class="cursor"></span></h1>
-                <p>A journey through past missions and achievements.</p>
+                <p style="text-align:center;">My professional journey and achievements.</p>
             </header>
             <div class="timeline">
                 <div class="job">
                     <div class="job-header">
-                        <img src="https://www.kariyer.net/website/assets/dist/img/logo-white.svg" alt="Kariyer.net Logo" class="company-logo" style="background-color: #2c3e50; padding: 5px; border-radius: 4px;">
-                        <h3 class="job-title">Senior Applied AI Specialist <span class="ai-tag">AI</span></h3>
+                        <div class="job-title-group">
+                            <h3 class="job-title">Senior Applied AI Specialist</h3>
+                            <p class="job-company">Kariyer Group</p>
+                        </div>
+                        <span class="job-date">Oct 2022 - Present</span>
                     </div>
-                    <p class="job-company">Kariyer.net | Sep 2025 - Present</p>
-                    <ul>
-                        <li>Lead API monitoring & cost optimization for scalable AI deployments.</li>
-                        <li>Develop reporting automation tools (e.g., text-to-SQL).</li>
-                        <li>Apply vectorization & unstructured data extraction.</li>
+                    <p>Led the technical design and implementation of AI-powered features for a platform with 50M+ users, moving AI concepts from research to production-ready, scalable applications.</p>
+                    <ul class="job-details">
+                        <li><strong>LLM Agent Development:</strong> Designed and implemented Agents using Agno, OpenAI SDK, and LangChain. Developed a Python-based evaluation framework (evals) to systematically test model output.</li>
+                        <li><strong>Semantic Data Processing:</strong> Built a semantic segmentation pipeline by vectorizing unstructured text data (user bios, job descriptions, skills) to automatically classify and route service requests.</li>
+                        <li><strong>Rapid AI Prototyping:</strong> Built interactive UIs with V0 connected to backend models for rapid validation, significantly reducing idea-to-feedback cycle time.</li>
+                        <li><strong>Deploying Scalable AI Services:</strong> Designed and deployed internal AI services via RESTful APIs with focus on scalability, latency, and cost monitoring, using n8n and Power Automate for pipeline automation.</li>
                     </ul>
                 </div>
                 <div class="job">
-                    <div class="job-header">
-                         <img src="https://www.kariyer.net/website/assets/dist/img/logo-white.svg" alt="Kariyer.net Logo" class="company-logo" style="background-color: #2c3e50; padding: 5px; border-radius: 4px;">
-                        <h3 class="job-title">Sr. Product Manager (Data)</h3>
+                     <div class="job-header">
+                        <div class="job-title-group">
+                            <h3 class="job-title">Business Analyst (Data & Analytics)</h3>
+                            <p class="job-company">WorqCompany</p>
+                        </div>
+                        <span class="job-date">Sep 2021 - Oct 2022</span>
                     </div>
-                    <p class="job-company">Kariyer.net | Oct 2022 - Sep 2025</p>
-                    <ul>
-                        <li>Improved the flow and accuracy of people and company data.</li>
-                        <li>Standardized text-based data like job titles and skills.</li>
-                        <li>Analyzed numerical data to provide actionable insights.</li>
+                    <p>Owned data analytics and experimentation for a B2B SaaS platform, providing foundational data skills for my subsequent work in applied AI.</p>
+                     <ul class="job-details">
+                        <li>Designed and analyzed A/B tests to measure the impact of product changes, validating hypotheses and improving user adoption rates.</li>
+                    </ul>
+                </div>
+                 <div class="job">
+                    <div class="job-header">
+                        <div class="job-title-group">
+                            <h3 class="job-title">People Data Lead</h3>
+                            <p class="job-company">Defaro.io</p>
+                        </div>
+                         <span class="job-date">Nov 2019 - Dec 2021</span>
+                    </div>
+                    <p>Co-founded a skills intelligence platform, leading initial technical development and product design from concept to a working MVP.</p>
+                     <ul class="job-details">
+                        <li>Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.</li>
                     </ul>
                 </div>
             </div>
@@ -419,11 +219,11 @@
         <section id="projects">
              <header>
                 <h1>Item Inventory<span class="cursor"></span></h1>
-                <p>A collection of crafted tools and completed quests.</p>
+                <p style="text-align:center;">A collection of crafted tools and completed quests.</p>
             </header>
             <div class="grid-container">
                 <div class="card">
-                    <h3>Position Extraction App <span class="ai-tag">AI</span></h3>
+                    <h3>Position Extraction App</h3>
                     <p>An LLM-driven app to automatically extract and classify positions from job descriptions, improving matching accuracy by over 50%.</p>
                 </div>
                 <div class="card">
@@ -431,26 +231,8 @@
                     <p>Authored a 195-page guide on People Analytics, bridging HR with data science for the Persian-speaking community.</p>
                 </div>
                 <div class="card">
-                    <h3>LabOps Career Database <span class="ai-tag">AI</span></h3>
+                    <h3>LabOps Career Database</h3>
                     <p>Developing a vector search system for forklift career paths to create clear upskilling routes for operators.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ACADEMIC RESEARCH SECTION -->
-        <section id="research">
-            <header>
-                <h1>Side Quests<span class="cursor"></span></h1>
-                <p>Venturing into the world of academic research.</p>
-            </header>
-            <div class="grid-container">
-                <div class="card">
-                    <h3>Research Thesis</h3>
-                    <p>Focused on using Econometrics and skill data to analyze and model labor market dynamics and future of work trends.</p>
-                </div>
-                <div class="card">
-                    <h3>Research Fellowship</h3>
-                    <p>Engaged in dedicated research on the labor market, contributing to a deeper understanding of workforce data and employment patterns.</p>
                 </div>
             </div>
         </section>
@@ -459,53 +241,102 @@
         <section id="toolkit">
             <header>
                 <h1>Skill Tree<span class="cursor"></span></h1>
-                <p>The abilities and power-ups I use on my quests.</p>
+                <p style="text-align:center;">The abilities and power-ups I use on my quests.</p>
             </header>
             <div class="grid-container">
-                <div class="skill-card">
+                <div class="skill-card card">
                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTMwIDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6TTggMGgtMnYyaDRWMGgtMnpNNCAwaC0ydjJoNFYwaC0yem0yNiA0aC0ydjJoNFY0aC0yem0wIDRoLTJ2Mmg0VjhoLTJ6bTAgNGgtMnYyaDR2LTJoLTJ6bTAgNGgtMnYyaDR2LTJoLTJ6bTAgNGgtMnYyaDR2LTIyLTJ6bTAgNGgtMnYyaDR2LTIyLTJ6TTIgNGgtMnYyaDRWNGgtMnpNNCA0SDB2NEgydjJoMlY0em0tMiA4aC0ydjJoNHYtMmgtMnpNNCAxNkgwdjRIMnYyaDJ2LTR6bS0yIDhoLTJ2Mmg0di0yaC0yem0wIDRoLTJ2Mmg0di0yaC0yem00IDI4aDIwdi0yaDR2LTRoMnYtMmgydi00aDJ2LTRoMnYtNGgydi00aC0ydi0yaC0yVjRoLTJWMEg4djJoNHYyaDR2MmgydjJoMnY0aDJ2NGgtMnYyaC0ydjRoLTJ2NGgtMnYyaC00djJoLTR2Mmg0djRoNHY0aDR2MmgtMnY0aDR2Mmg0djJoMnYtMmgtMnYtMmgtMnYtNGgtMnYtNGgtMnYtMmgtNFY4aC0ydi0yaC0ydi0yaC00VjBoMnYyaDJ2MmgydjJoMnY0aDR2NGg0djRoLTR2NGgtNHY0aC00djRoMnY0aDR2LTJoMnYtMmgydi0yaC0yem0yLTI2aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0xNiA4aC0ydjJoMnYtMnptLTQgMGgtMnYyaDJ2LTJ6bS00IDBoLTJ2MmgzdjJoM3YtMmgtMnYtMnoiLz48L3N2Zz4=" alt="AI Icon" class="skill-icon">
-                    <h3>LangChain</h3>
-                    <p>Building agentic workflows and LLM-powered applications.</p>
+                    <h3>LLMs & Agents</h3>
+                    <p>Using OpenAI, LangChain & RAG to build intelligent, automated systems.</p>
                     <span class="skill-tag tag-ai">[AI]</span>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card card">
                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTQgMGgyNHY0SDR6bTIgNmgyMHY0SDZ6bTIgNmgyMHY0SDh6bTIgNmgyMHY0aC0yem0xNSAwaDJ2MmgtMnptLTIgMGgydjJoLTJ6bS0yIDBoMnYyaC0yek0wIDBoMnYzaDR2Mmg0djJoNHYyaDR2Mmg0djJoMnYyMWgtMnYtMmgtMnYtMmgtMnYtMmgtNHYtMmgtNHYtMmgtNHYtM2gtNFYySDB6Ii8+PC9zdmc+" alt="Database Icon" class="skill-icon">
-                    <h3>Vector DBs</h3>
-                    <p>Storing and querying embeddings for semantic search.</p>
+                    <h3>Vectorization</h3>
+                    <p>Transforming text into embeddings for semantic search and data processing.</p>
                     <span class="skill-tag tag-ai">[AI]</span>
                 </div>
-                 <div class="skill-card">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTQgMGMtMiAwLTIgMi0yIDJoMnY0aDRWMmg0VjB6bTggMGgtMnYyaDJ6bTYgMGgtMnYyaDJ6bTggMmMwLTIgMC0yLTItMmg0djRoNFYyYzAtMiAwLTItMi0yek0yIDhoMnYtMmgtMnptOCAwaDJ2LTJoLTJ6bTYgMGgydi0yaC0yek0yIDExaDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDE0aDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDE3aDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDIwaDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDIzaDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDI2aDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDI5aDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek02IDMyYzIgMCAyLTIgMi0yaC00djJ6bTQtMmg0djJoNHYtMmg0di0yaDR2LTJoNFYyaC00VjBoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYyaC0ydjRoMnYyaDJ2MmgydjJoMnY0aDR2LTRoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoMnptMTQgMmg0djJoNHYtMmg0di0yYzAgMiAwIDIgMiAyaC00di00aC00djR6Ii8+PC9zdmc+" alt="Python Icon" class="skill-icon">
-                    <h3>Python</h3>
-                    <p>Automating tasks and analyzing data with Pandas & NumPy.</p>
-                    <span class="skill-tag tag-data">[Data]</span>
-                </div>
-                 <div class="skill-card">
+                <div class="skill-card card">
                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTIgNGgyOHYtMkgwem0yOCAxMEgwdjJoMzJ6TTIgMjBoMjh2LTJIMHptMCA2aDI4di0ySDB6bTE4LTE4aC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bTEyIDEwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptMTYgMTBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptMTIgNmgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6Ii8+PC9zdmc+" alt="SQL Icon" class="skill-icon">
-                    <h3>SQL</h3>
-                    <p>Querying and managing relational data for product insights.</p>
+                    <h3>Advanced SQL</h3>
+                    <p>Querying and managing relational data for product insights and ETL processes.</p>
                     <span class="skill-tag tag-data">[Data]</span>
                 </div>
-                <div class="skill-card">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTIgMGgyOHYySDJ6bTMgNGgxMHYyMkg1em0xNSAwaDhhMTIgMTIgMCAxIDEgMCAyNEgxOHYyMmgxMGE4IDggMCAxIDAtMTYgMEgxOHptLTMgMTZoOHYtMmgtOHptMCA0aDh2LTJoLTh6Ii8+PC9zdmc+" alt="Power BI Icon" class="skill-icon">
-                    <h3>PowerBI</h3>
-                    <p>Creating dashboards and visualizing data for stakeholders.</p>
+                <div class="skill-card card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTAgNmgydjJoMnYyaDJ2MmgydjRoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtNGgydi0yaDJ2LTJoMnYtMnoiLz48cGF0aCBkPSJNMCAwaDIwdjJIODJWMEgwem0yMyAwaDJ2MmgtMnptMyAwaDJ2MmgtMnptMyAwaDJ2MmgtMnptLTMgM2gydjJoLTJ6bTMgM2gydjJoLTJ6bS02IDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0tMy0zVjZoLTJ2MmgtMnYyaC0ydjRoMnYyaDJ2Mmgydi0yem0zIDBWNmgtMnYyaC0ydjJoLTJ2NGgydjJoMnYyaDJ2LTJ6Ii8+PC9zdmc+" alt="Docker Icon" class="skill-icon">
+                    <h3>Prototyping</h3>
+                    <p>Using Docker, V0, and n8n to quickly build and automate testable AI services.</p>
                     <span class="skill-tag tag-product">[Product]</span>
                 </div>
-                <div class="skill-card">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTAgNmgydjJoMnYyaDJ2MmgydjRoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtNGgydi0yaDJ2LTJoMnYtMnoiLz48cGF0aCBkPSJNMCAwaDIwdjJIODJWMEgwem0yMyAwaDJ2MmgtMnptMyAwaDJ2MmgtMnptMyAwaDJ2MmgtMnptLTMgM2gydjJoLTJ6bTMgM2gydjJoLTJ6bS02IDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0tMy0zVjZoLTJ2MmgtMnYyaC0ydjRoMnYyaDJ2Mmgydi0yem0zIDBWNmgtMnYyaC0ydjJoLTJ2NGgydjJoMnYyaDJ2LTJ6Ii8+PC9zdmc+" alt="Docker Icon" class="skill-icon">
-                    <h3>Docker</h3>
-                    <p>Containerizing applications for scalable production environments.</p>
+                <div class="skill-card card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTIgMGgyOHYySDJ6bTMgNGgxMHYyMkg1em0xNSAwaDhhMTIgMTIgMCAxIDEgMCAyNEgxOHYyMmgxMGE4IDggMCAxIDAtMTYgMEgxOHptLTMgMTZoOHYtMmgtOHptMCA0aDh2LTJoLTh6Ii8+PC9zdmc+" alt="Power BI Icon" class="skill-icon">
+                    <h3>Data Analysis</h3>
+                    <p>Leveraging PowerBI, Mixpanel, A/B Testing, and statistics for product strategy.</p>
                     <span class="skill-tag tag-product">[Product]</span>
+                </div>
+                <div class="skill-card card">
+                     <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTQgMGMtMiAwLTIgMi0yIDJoMnY0aDRWMmg0VjB6bTggMGgtMnYyaDJ6bTYgMGgtMnYyaDJ6bTggMmMwLTIgMC0yLTItMmg0djRoNFYyYzAtMiAwLTItMi0yek0yIDhoMnYtMmgtMnptOCAwaDJ2LTJoLTJ6bTYgMGgydi0yaC0yek0yIDExaDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDE0aDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDE3aDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDIwaDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDIzaDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDI2aDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDI5aDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek02IDMyYzIgMCAyLTIgMi0yaC00djJ6bTQtMmg0djJoNHYtMmg0di0yaDR2LTJoNFYyaC00VjBoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYyaC0ydjRoMnYyaDJ2MmgydjJoMnY0aDR2LTRoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoMnptMTQgMmg0djJoNHYtMmg0di0yYzAgMiAwIDIgMiAyaC00di00aC00djR6Ii8+PC9zdmc+" alt="Python Icon" class="skill-icon">
+                    <h3>Python</h3>
+                    <p>Automating workflows and analyzing data with Pandas, NumPy, and scripting.</p>
+                    <span class="skill-tag tag-data">[Data]</span>
                 </div>
             </div>
         </section>
 
+        <!-- EDUCATION SECTION -->
+        <section id="education">
+            <header>
+                <h1>Training Grounds<span class="cursor"></span></h1>
+                <p style="text-align:center;">My academic background and languages.</p>
+            </header>
+            <div class="card edu-item">
+                <div class="item-header">
+                    <span class="item-title">M.A. in Economics</span>
+                    <span class="item-date">2019-2021</span>
+                </div>
+                <p class="item-source">Ibn Haldun University</p>
+            </div>
+            <div class="card edu-item">
+                <div class="item-header">
+                    <span class="item-title">M.A. in International Human Resources</span>
+                    <span class="item-date">2013-2015</span>
+                </div>
+                <p class="item-source">University of Tehran</p>
+            </div>
+             <div class="card">
+                <h3>Languages</h3>
+                <p style="text-align:left;">Turkish (Native) | English (Advanced) | Spanish (Advanced)</p>
+             </div>
+        </section>
+
+        <!-- PUBLICATIONS SECTION -->
+        <section id="publications">
+            <header>
+                <h1>Discovered Lore<span class="cursor"></span></h1>
+                 <p style="text-align:center;">Submitted academic manuscripts and research.</p>
+            </header>
+            <div class="nes-box pub-item">
+                <p class="pub-title">Leveraging LLMs for Turkish Skill Extraction.</p>
+                <p class="pub-authors">Ezgi Arslan İltüzer, Vahid Farajijobehdar, Özgür Anıl Özlü, Gülşen Eryiğit.</p>
+                <p style="font-size: 1.1rem; margin-top: 1rem;">Submitted manuscript, 2025. ORCID: 0000-0002-9153-0765</p>
+            </div>
+             <div class="grid-container" style="margin-top: 2rem;">
+                <div class="card">
+                    <h3>Research Thesis</h3>
+                    <p>Focused on using Econometrics and skill data to analyze and model labor market dynamics.</p>
+                </div>
+                <div class="card">
+                    <h3>Side Quests</h3>
+                    <p>Led tours as a Professional Tourist Guide (5+ years) and coordinated the 17th WFTGA Convention in Iran.</p>
+                </div>
+            </div>
+        </section>
+        
         <!-- WRITING SECTION -->
         <section id="writing">
             <header>
                 <h1>Latest Dispatches<span class="cursor"></span></h1>
-                <p>Sharing insights on AI, data, and product strategy.</p>
+                <p style="text-align:center;">Sharing insights on AI, data, and product strategy.</p>
             </header>
             <div class="substack-card">
                 <p>Read my thoughts and analysis on Substack.</p>
@@ -520,16 +351,9 @@
     </footer>
 
     <script>
-        // JAVASCRIPT FOR ACTIVE NAV LINK ON SCROLL
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
-
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.4
-        };
-
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.4 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -543,10 +367,7 @@
                 }
             });
         }, observerOptions);
-
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+        sections.forEach(section => { observer.observe(section); });
     </script>
 </body>
 </html>
