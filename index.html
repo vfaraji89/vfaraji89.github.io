@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <style>
-        /* CSS STYLES EMBEDDED HERE */
         :root {
             --bg-color: #F0F8FF; /* Light Sky Blue */
             --text-color: #2c3e50;
@@ -47,10 +46,13 @@
             padding: 0 1rem;
         }
         
-        /* Section padding to avoid navbar overlap */
         section {
             padding-top: 5rem;
             padding-bottom: 2rem;
+            border-bottom: 4px dashed var(--border-color);
+        }
+        section:last-of-type {
+            border-bottom: none;
         }
 
         h1, h2, h3 {
@@ -62,7 +64,21 @@
         }
 
         h1 { font-size: 2.5rem; }
-        h2 { font-size: 1.8rem; margin-top: 3rem; }
+        h2 { 
+            font-size: 1.8rem; 
+            margin-top: 3rem; 
+            display: inline-block;
+        }
+        h2 .cursor {
+            display: inline-block;
+            width: 1rem;
+            height: 1.8rem;
+            background: var(--accent-color);
+            animation: blink 1s steps(1) infinite;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
         p { margin-bottom: 1.5rem; max-width: 65ch; margin-left: auto; margin-right: auto; }
 
         /* --- Navigation --- */
@@ -75,14 +91,12 @@
             z-index: 1000;
             width: 100%;
         }
-
         .nav-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             list-style: none;
         }
-
         .nav-links a {
             color: var(--secondary-color);
             text-decoration: none;
@@ -92,7 +106,6 @@
             border: 3px solid transparent;
             transition: all 0.3s ease;
         }
-
         .nav-links a:hover, .nav-links a.active {
             color: var(--primary-color);
             background-color: #fff2cc;
@@ -101,7 +114,7 @@
             transform: translate(-2px, -2px);
         }
 
-        /* --- Content Box Styling --- */
+        /* --- General Box/Card Styling --- */
         .nes-box {
             background-color: #fff;
             border: 4px solid var(--border-color);
@@ -111,7 +124,6 @@
             position: relative;
             box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
         }
-
         .nes-box::after {
             content: '';
             position: absolute;
@@ -123,7 +135,7 @@
             box-shadow: -4px -4px 0 var(--border-color), 0 0 0 4px var(--secondary-color);
         }
 
-        /* --- Home Page Specifics --- */
+        /* --- Home Section --- */
         .profile-header {
             display: flex;
             flex-direction: column;
@@ -131,7 +143,6 @@
             gap: 1.5rem;
             margin-top: 2rem;
         }
-
         .profile-photo-container {
             width: 200px;
             height: 200px;
@@ -141,26 +152,17 @@
             background-color: #fff;
             transition: transform 0.3s ease;
         }
-
         .profile-photo-container:hover {
             transform: scale(1.05) rotate(3deg);
         }
-
         .profile-photo {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
         }
-
-        .profile-intro h1 {
-            font-size: 2rem;
-        }
-
-        .profile-intro p {
-            font-size: 1.5rem;
-            text-align: center;
-        }
+        .profile-intro h1 { font-size: 2rem; }
+        .profile-intro p { font-size: 1.5rem; text-align: center; }
 
         /* --- AI Tag --- */
         .ai-tag {
@@ -177,7 +179,7 @@
             animation: pulse 1.5s infinite;
         }
 
-        /* --- Experience Page --- */
+        /* --- Experience Section --- */
         .timeline {
             border-left: 4px solid var(--border-color);
             padding-left: 2rem;
@@ -212,12 +214,25 @@
             background-size: cover;
             border: 4px solid var(--border-color);
         }
-        .job-title { font-size: 1.5rem; }
+        .job-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+        .company-logo {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+        .company-logo:hover {
+            transform: scale(1.1);
+        }
+        .job-title { font-size: 1.5rem; margin: 0; }
         .job-company { font-size: 1.2rem; color: var(--secondary-color); margin-bottom: 1rem; }
         .job ul { list-style: none; }
         .job li::before { content: '>'; margin-right: 10px; font-weight: bold; }
 
-        /* --- Projects & Toolkit Page --- */
+        /* --- Generic Grid & Card Styling --- */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -237,13 +252,66 @@
             box-shadow: 8px 8px 0 var(--border-color);
         }
         .card h3 { font-size: 1.2rem; }
-        .card .tag-container { margin-top: auto; padding-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .tag {
-            background-color: #eee;
-            padding: 5px 10px;
-            font-family: var(--font-body);
-            font-size: 1rem;
+
+        /* --- Toolkit Card --- */
+        .skill-card {
+            text-align: center;
+        }
+        .skill-card .skill-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1rem;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .skill-card:hover .skill-icon {
+            transform: scale(1.2) rotate(-5deg);
+        }
+        .skill-card h3 { font-size: 1.2rem; }
+        .skill-card p { font-size: 1.2rem; text-align: center; margin-top: 1rem; }
+        .skill-tag {
+            font-family: var(--font-pixel);
+            font-size: 0.7rem;
+            padding: 4px 8px;
             border: 2px solid var(--border-color);
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        .tag-ai { background-color: var(--accent-color); color: white; }
+        .tag-data { background-color: var(--secondary-color); color: white; }
+        .tag-product { background-color: var(--primary-color); color: white; }
+        
+        /* --- Substack Card --- */
+        .substack-card {
+            background-color: #fff2cc;
+            border: 4px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .substack-card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 8px 8px 0 var(--border-color);
+        }
+        .substack-card p {
+            font-size: 1.5rem;
+            color: var(--text-color);
+        }
+        .substack-button {
+            display: inline-block;
+            font-family: var(--font-pixel);
+            font-size: 1rem;
+            color: #fff;
+            background-color: var(--primary-color);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border: 4px solid var(--border-color);
+            box-shadow: 4px 4px 0 var(--border-color);
+            margin-top: 1rem;
+            transition: all 0.2s ease;
+        }
+        .substack-button:hover {
+            transform: translate(4px, 4px);
+            box-shadow: none;
         }
 
         /* --- Footer --- */
@@ -260,11 +328,13 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes pulse {
             0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
             70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(46, 204, 113, 0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
         }
 
         /* Responsive */
@@ -285,7 +355,9 @@
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#research">Research</a></li>
             <li><a href="#toolkit">Toolkit</a></li>
+            <li><a href="#writing">Writing</a></li>
         </ul>
     </nav>
 
@@ -303,25 +375,24 @@
                 </div>
             </header>
             <div class="nes-box">
-                <h2>Mission Briefing</h2>
+                <h2>Mission Briefing<span class="cursor"></span></h2>
                 <p>I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.</p>
                 <p>My motto: Build more, contribute max, and be less verbose.</p>
-            </div>
-            <div class="nes-box">
-                <h2>Core Focus</h2>
-                <p>My focus is organizing messy data into taxonomies, extracting insights from unstructured signals, and shaping patterns into scalable systems. I like to get granular — digging into the small details to connect what’s technically possible with what actually matters to users.</p>
             </div>
         </section>
 
         <!-- EXPERIENCE SECTION -->
         <section id="experience">
             <header>
-                <h1>Level Select</h1>
+                <h1>Level Select<span class="cursor"></span></h1>
                 <p>A journey through past missions and achievements.</p>
             </header>
             <div class="timeline">
                 <div class="job">
-                    <h3 class="job-title">Senior Applied AI Specialist <span class="ai-tag">AI</span></h3>
+                    <div class="job-header">
+                        <img src="https://www.kariyer.net/website/assets/dist/img/logo-white.svg" alt="Kariyer.net Logo" class="company-logo" style="background-color: #2c3e50; padding: 5px; border-radius: 4px;">
+                        <h3 class="job-title">Senior Applied AI Specialist <span class="ai-tag">AI</span></h3>
+                    </div>
                     <p class="job-company">Kariyer.net | Sep 2025 - Present</p>
                     <ul>
                         <li>Lead API monitoring & cost optimization for scalable AI deployments.</li>
@@ -330,29 +401,15 @@
                     </ul>
                 </div>
                 <div class="job">
-                    <h3 class="job-title">Sr. Product Manager (Data)</h3>
+                    <div class="job-header">
+                         <img src="https://www.kariyer.net/website/assets/dist/img/logo-white.svg" alt="Kariyer.net Logo" class="company-logo" style="background-color: #2c3e50; padding: 5px; border-radius: 4px;">
+                        <h3 class="job-title">Sr. Product Manager (Data)</h3>
+                    </div>
                     <p class="job-company">Kariyer.net | Oct 2022 - Sep 2025</p>
                     <ul>
                         <li>Improved the flow and accuracy of people and company data.</li>
                         <li>Standardized text-based data like job titles and skills.</li>
                         <li>Analyzed numerical data to provide actionable insights.</li>
-                    </ul>
-                </div>
-                 <div class="job">
-                    <h3 class="job-title">Business Analytics</h3>
-                    <p class="job-company">WorqCompany | Sep 2021 - Oct 2022</p>
-                     <ul>
-                        <li>Designed financial tracking systems for a shared revenue platform.</li>
-                        <li>Built models to analyze and forecast cash flow.</li>
-                        <li>Performed time series analysis to identify revenue trends.</li>
-                    </ul>
-                </div>
-                 <div class="job">
-                    <h3 class="job-title">People Data Lead</h3>
-                    <p class="job-company">defaro OÜ | Nov 2019 - Dec 2021</p>
-                    <ul>
-                        <li>Developed a prototype for an upskilling platform.</li>
-                        <li>Managed research in skill indexing and profiling.</li>
                     </ul>
                 </div>
             </div>
@@ -361,33 +418,39 @@
         <!-- PROJECTS SECTION -->
         <section id="projects">
              <header>
-                <h1>Item Inventory</h1>
+                <h1>Item Inventory<span class="cursor"></span></h1>
                 <p>A collection of crafted tools and completed quests.</p>
             </header>
             <div class="grid-container">
                 <div class="card">
                     <h3>Position Extraction App <span class="ai-tag">AI</span></h3>
                     <p>An LLM-driven app to automatically extract and classify positions from job descriptions, improving matching accuracy by over 50%.</p>
-                    <div class="tag-container">
-                        <span class="tag">Python</span>
-                        <span class="tag">LangChain</span>
-                    </div>
                 </div>
                 <div class="card">
                     <h3>People Data Handbook</h3>
-                    <p>Authored a 195-page guide on People Analytics for the Persian-speaking community, bridging HR with data science.</p>
-                    <div class="tag-container">
-                        <span class="tag">Analytics</span>
-                        <span class="tag">Python</span>
-                    </div>
+                    <p>Authored a 195-page guide on People Analytics, bridging HR with data science for the Persian-speaking community.</p>
                 </div>
                 <div class="card">
                     <h3>LabOps Career Database <span class="ai-tag">AI</span></h3>
                     <p>Developing a vector search system for forklift career paths to create clear upskilling routes for operators.</p>
-                    <div class="tag-container">
-                        <span class="tag">Vector DB</span>
-                        <span class="tag">Semantic Search</span>
-                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACADEMIC RESEARCH SECTION -->
+        <section id="research">
+            <header>
+                <h1>Side Quests<span class="cursor"></span></h1>
+                <p>Venturing into the world of academic research.</p>
+            </header>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Research Thesis</h3>
+                    <p>Focused on using Econometrics and skill data to analyze and model labor market dynamics and future of work trends.</p>
+                </div>
+                <div class="card">
+                    <h3>Research Fellowship</h3>
+                    <p>Engaged in dedicated research on the labor market, contributing to a deeper understanding of workforce data and employment patterns.</p>
                 </div>
             </div>
         </section>
@@ -395,26 +458,58 @@
         <!-- TOOLKIT SECTION -->
         <section id="toolkit">
             <header>
-                <h1>Skill Tree</h1>
+                <h1>Skill Tree<span class="cursor"></span></h1>
                 <p>The abilities and power-ups I use on my quests.</p>
             </header>
-            <h2>AI & Data Science <span class="ai-tag">AI</span></h2>
             <div class="grid-container">
-                <div class="card"><h3>LangChain</h3></div>
-                <div class="card"><h3>Vector DBs</h3></div>
-                <div class="card"><h3>Python</h3></div>
+                <div class="skill-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTMwIDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6bS00IDBoLTJ2Mmg0VjBoLTJ6TTggMGgtMnYyaDRWMGgtMnpNNCAwaC0ydjJoNFYwaC0yem0yNiA0aC0ydjJoNFY0aC0yem0wIDRoLTJ2Mmg0VjhoLTJ6bTAgNGgtMnYyaDR2LTJoLTJ6bTAgNGgtMnYyaDR2LTJoLTJ6bTAgNGgtMnYyaDR2LTIyLTJ6bTAgNGgtMnYyaDR2LTIyLTJ6TTIgNGgtMnYyaDRWNGgtMnpNNCA0SDB2NEgydjJoMlY0em0tMiA4aC0ydjJoNHYtMmgtMnpNNCAxNkgwdjRIMnYyaDJ2LTR6bS0yIDhoLTJ2Mmg0di0yaC0yem0wIDRoLTJ2Mmg0di0yaC0yem00IDI4aDIwdi0yaDR2LTRoMnYtMmgydi00aDJ2LTRoMnYtNGgydi00aC0ydi0yaC0yVjRoLTJWMEg4djJoNHYyaDR2MmgydjJoMnY0aDJ2NGgtMnYyaC0ydjRoLTJ2NGgtMnYyaC00djJoLTR2Mmg0djRoNHY0aDR2MmgtMnY0aDR2Mmg0djJoMnYtMmgtMnYtMmgtMnYtNGgtMnYtNGgtMnYtMmgtNFY4aC0ydi0yaC0ydi0yaC00VjBoMnYyaDJ2MmgydjJoMnY0aDR2NGg0djRoLTR2NGgtNHY0aC00djRoMnY0aDR2LTJoMnYtMmgydi0yaC0yem0yLTI2aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0yMCA0aC0ydjJoMnYtMnptLTIwIDBoMnYtMmgtMnYyem0xNiA4aC0ydjJoMnYtMnptLTQgMGgtMnYyaDJ2LTJ6bS00IDBoLTJ2MmgzdjJoM3YtMmgtMnYtMnoiLz48L3N2Zz4=" alt="AI Icon" class="skill-icon">
+                    <h3>LangChain</h3>
+                    <p>Building agentic workflows and LLM-powered applications.</p>
+                    <span class="skill-tag tag-ai">[AI]</span>
+                </div>
+                <div class="skill-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTQgMGgyNHY0SDR6bTIgNmgyMHY0SDZ6bTIgNmgyMHY0SDh6bTIgNmgyMHY0aC0yem0xNSAwaDJ2MmgtMnptLTIgMGgydjJoLTJ6bS0yIDBoMnYyaC0yek0wIDBoMnYzaDR2Mmg0djJoNHYyaDR2Mmg0djJoMnYyMWgtMnYtMmgtMnYtMmgtMnYtMmgtNHYtMmgtNHYtMmgtNHYtM2gtNFYySDB6Ii8+PC9zdmc+" alt="Database Icon" class="skill-icon">
+                    <h3>Vector DBs</h3>
+                    <p>Storing and querying embeddings for semantic search.</p>
+                    <span class="skill-tag tag-ai">[AI]</span>
+                </div>
+                 <div class="skill-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTQgMGMtMiAwLTIgMi0yIDJoMnY0aDRWMmg0VjB6bTggMGgtMnYyaDJ6bTYgMGgtMnYyaDJ6bTggMmMwLTIgMC0yLTItMmg0djRoNFYyYzAtMiAwLTItMi0yek0yIDhoMnYtMmgtMnptOCAwaDJ2LTJoLTJ6bTYgMGgydi0yaC0yek0yIDExaDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDE0aDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDE3aDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDIwaDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDIzaDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek0yIDI2aDJ2LTJoLTJ6bTggMGgydi0yaC0yek0yIDI5aDJ2LTJoLTJ6bTE0IDBoMnYtMmgtMnptLTYgMGgydi0yaC0yek02IDMyYzIgMCAyLTIgMi0yaC00djJ6bTQtMmg0djJoNHYtMmg0di0yaDR2LTJoNFYyaC00VjBoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYyaC0ydjRoMnYyaDJ2MmgydjJoMnY0aDR2LTRoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoLTJ2LTJoMnptMTQgMmg0djJoNHYtMmg0di0yYzAgMiAwIDIgMiAyaC00di00aC00djR6Ii8+PC9zdmc+" alt="Python Icon" class="skill-icon">
+                    <h3>Python</h3>
+                    <p>Automating tasks and analyzing data with Pandas & NumPy.</p>
+                    <span class="skill-tag tag-data">[Data]</span>
+                </div>
+                 <div class="skill-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTIgNGgyOHYtMkgwem0yOCAxMEgwdjJoMzJ6TTIgMjBoMjh2LTJIMHptMCA2aDI4di0ySDB6bTE4LTE4aC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bTEyIDEwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptMTYgMTBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptMTIgNmgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6bS00IDBoLTJ2LTJoMnptLTQgMGgtMnYtMmgyem0tNCAwaC0ydi0yaDJ6Ii8+PC9zdmc+" alt="SQL Icon" class="skill-icon">
+                    <h3>SQL</h3>
+                    <p>Querying and managing relational data for product insights.</p>
+                    <span class="skill-tag tag-data">[Data]</span>
+                </div>
+                <div class="skill-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTIgMGgyOHYySDJ6bTMgNGgxMHYyMkg1em0xNSAwaDhhMTIgMTIgMCAxIDEgMCAyNEgxOHYyMmgxMGE4IDggMCAxIDAtMTYgMEgxOHptLTMgMTZoOHYtMmgtOHptMCA0aDh2LTJoLTh6Ii8+PC9zdmc+" alt="Power BI Icon" class="skill-icon">
+                    <h3>PowerBI</h3>
+                    <p>Creating dashboards and visualizing data for stakeholders.</p>
+                    <span class="skill-tag tag-product">[Product]</span>
+                </div>
+                <div class="skill-card">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0iIzJjM2U1MCI+PHBhdGggZD0iTTAgNmgydjJoMnYyaDJ2MmgydjRoLTJ2MmgtMnYyaC0ydjJoLTJ2MmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtNGgydi0yaDJ2LTJoMnYtMnoiLz48cGF0aCBkPSJNMCAwaDIwdjJIODJWMEgwem0yMyAwaDJ2MmgtMnptMyAwaDJ2MmgtMnptMyAwaDJ2MmgtMnptLTMgM2gydjJoLTJ6bTMgM2gydjJoLTJ6bS02IDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0wIDNoMnYyaC0yem0tMy0zVjZoLTJ2MmgtMnYyaC0ydjRoMnYyaDJ2Mmgydi0yem0zIDBWNmgtMnYyaC0ydjJoLTJ2NGgydjJoMnYyaDJ2LTJ6Ii8+PC9zdmc+" alt="Docker Icon" class="skill-icon">
+                    <h3>Docker</h3>
+                    <p>Containerizing applications for scalable production environments.</p>
+                    <span class="skill-tag tag-product">[Product]</span>
+                </div>
             </div>
-            <h2>Automation & Ops</h2>
-            <div class="grid-container">
-                <div class="card"><h3>Docker</h3></div>
-                <div class="card"><h3>n8n</h3></div>
-                <div class="card"><h3>Vercel</h3></div>
-            </div>
-            <h2>Core Abilities</h2>
-            <div class="grid-container">
-                <div class="card"><h3>SQL</h3></div>
-                <div class="card"><h3>PowerBI</h3></div>
-                <div class="card"><h3>AzureDev</h3></div>
+        </section>
+
+        <!-- WRITING SECTION -->
+        <section id="writing">
+            <header>
+                <h1>Latest Dispatches<span class="cursor"></span></h1>
+                <p>Sharing insights on AI, data, and product strategy.</p>
+            </header>
+            <div class="substack-card">
+                <p>Read my thoughts and analysis on Substack.</p>
+                <a href="https://vahidfaraji.substack.com/" target="_blank" class="substack-button">Level Up!</a>
             </div>
         </section>
 
@@ -429,22 +524,29 @@
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
 
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 150) { // Adjust offset as needed
-                    current = section.getAttribute('id');
-                }
-            });
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.4
+        };
 
-            navLinks.forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href') === '#' + current) {
-                    a.classList.add('active');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentId = entry.target.id;
+                    navLinks.forEach(a => {
+                        a.classList.remove('active');
+                        if (a.getAttribute('href') === '#' + currentId) {
+                            a.classList.add('active');
+                        }
+                    });
                 }
             });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
         });
     </script>
 </body>
-</html>```
+</html>
