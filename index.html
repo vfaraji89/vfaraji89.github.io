@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vahid Faraji | Senior Applied AI Specialist</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="The personal portfolio of Vahid Faraji, a Senior Applied AI Specialist. Explore projects in LLMs, data products, and rapid prototyping, all with a retro Nintendo theme.">
+    
+    <!-- Open Graph / Social Sharing Meta Tags -->
+    <meta property="og:title" content="Vahid Faraji | Senior Applied AI Specialist">
+    <meta property="og:description" content="Explore projects in LLMs, data products, and rapid prototyping, all with a retro Nintendo theme.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vfaraji89.github.io/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <style>
+        /* 
+         * Note on Performance: For a single-page site, inline CSS is acceptable. 
+         * For larger projects, extracting this to a separate .css file is recommended 
+         * to allow for browser caching and better performance.
+        */
         :root {
             --bg-color: #F0F8FF;
             --text-color: #2c3e50;
@@ -25,13 +41,16 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: var(--font-body);
-            font-size: 22px; /* Slightly reduced for readability */
-            line-height: 1.7; /* Increased for better spacing */
+            font-size: 22px;
+            line-height: 1.7;
             text-align: center;
             overflow-x: hidden;
             position: relative;
         }
-        /* Scanline Overlay for retro screen effect */
+        /* 
+         * Note on Performance: The scanline overlay is a lightweight CSS effect, but could be 
+         * removed if performance issues are noticed on very low-powered devices.
+        */
         body::after {
             content: "";
             position: fixed;
@@ -56,6 +75,24 @@
         h2:hover { transform: translateX(5px) skewX(-3deg); }
         h2 .cursor { display: inline-block; width: 1rem; height: 1.6rem; background: var(--accent-color); animation: blink 1s steps(1) infinite; margin-left: 8px; vertical-align: middle; }
         p { margin-bottom: 1.5rem; max-width: 65ch; margin-left: auto; margin-right: auto; text-align: left; }
+        
+        /* Accessibility: Skip to Content Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 1001;
+            transition: top 0.3s ease;
+            font-family: var(--font-pixel);
+            font-size: 0.8rem;
+            border: 3px solid var(--border-color);
+        }
+        .skip-link:focus {
+            top: 10px;
+        }
 
         /* --- Navigation --- */
         .navbar { background-color: #fff; border-bottom: 4px solid var(--border-color); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; width: 100%; }
@@ -124,8 +161,8 @@
         .pub-authors { margin-top: 1rem; }
         .pub-title { margin-top: 0.5rem; font-style: italic; }
         
-        /* --- Writing/Substack & Link Button --- */
-        .card-button, .substack-button { display: inline-block; font-family: var(--font-pixel); font-size: 0.8rem; color: #fff; background-color: var(--primary-color); text-decoration: none; padding: 0.8rem 1.5rem; border: 4px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); margin-top: 1rem; transition: all 0.2s ease; }
+        /* --- Link Buttons --- */
+        .card-button, .substack-button { display: inline-block; font-family: var(--font-pixel); font-size: 0.8rem; color: #fff; background-color: var(--primary-color); text-decoration: none; padding: 0.8rem 1.5rem; border: 4px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); margin-top: auto; /* Aligns button to bottom of card */ transition: all 0.2s ease; }
         .card-button:hover, .substack-button:hover { transform: translate(4px, 4px); box-shadow: none; }
         
         /* --- Footer --- */
@@ -166,6 +203,7 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <nav class="navbar">
         <ul class="nav-links">
@@ -179,11 +217,12 @@
         </ul>
     </nav>
 
-    <main class="container">
+    <main id="main-content" class="container">
 
         <!-- HOME SECTION -->
         <section id="home">
             <header class="profile-header">
+                <!-- Best Practice: Compress this image and host it locally for faster load times. -->
                  <div class="profile-photo-container">
                     <img src="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg" alt="Vahid Faraji" class="profile-photo">
                 </div>
@@ -192,7 +231,7 @@
                 <div class="contact-info">
                     <span><a href="mailto:vfaraji89@gmail.com">vfaraji89@gmail.com</a></span>
                     <span><a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank">LinkedIn</a></span>
-                    <span><a href="https://vfaraji89.github.io" target="_blank">GitHub</a></span>
+                    <span><a href="https://huggingface.co/vfaraji89" target="_blank">Hugging Face</a></span>
                 </div>
             </header>
             <div class="nes-box">
@@ -290,12 +329,12 @@
                 <div class="card">
                     <h3>Defter-i Mesâlik</h3>
                     <p>What if a 'Product Manager' existed in the Ottoman Empire? This question led to a mini-app bridging 21st-century tech jobs with creative, historical titles. I call it The Book of Jobs: "Her Maharete Bir Unvan."</p>
-                    <a href="https://defter-i-mesalik.vercel.app/" target="_blank" class="card-button">Try the App</a>
+                    <a href="https://defter-i-mesalik.vercel.app/" target="_blank" class="card-button">Try the Defter-i Mesâlik App</a>
                 </div>
                 <div class="card">
                     <h3>AI Food Scanner</h3>
                     <p>From idea to a mini AI app in 3 hours: a fast-prototyping challenge to build an AI Food Scanner using Vercel's v0, LibreChat, and Google GenAI. My deep dive into the 'text-to-build' workflow.</p>
-                    <a href="https://vahidfaraji.substack.com/p/from-idea-to-a-mini-ai-app-in-3" target="_blank" class="card-button">Read the Post</a>
+                    <a href="https://vahidfaraji.substack.com/p/fastprototyping-with-vercel" target="_blank" class="card-button">Read Post on AI Food Scanner</a>
                 </div>
                 <div class="card">
                     <h3>Posextract Prototype</h3>
@@ -402,30 +441,32 @@
                 <h1>Latest Dispatches<span class="cursor"></span></h1>
                 <p style="text-align:center;">Sharing insights on AI, data, and product strategy.</p>
             </header>
-            <div class="substack-card">
-                <p>Read my thoughts and analysis on Substack.</p>
-                <a href="https://vahidfaraji.substack.com/" target="_blank" class="substack-button">Level Up!</a>
+            <div class="card">
+                <p style="text-align: center;">Read my thoughts and analysis on Substack.</p>
+                <a href="https://vahidfaraji.substack.com/" target="_blank" class="substack-button">Read my Substack Articles</a>
             </div>
         </section>
 
     </main>
     
     <footer>
-        <p>Game designed by Vahid Faraji © 2025</p>
+        <p>Designed by Vahid Faraji © 2025</p>
     </footer>
 
     <script>
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 }; // Adjusted threshold
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const currentId = entry.target.id;
                     navLinks.forEach(a => {
                         a.classList.remove('active');
+                        a.removeAttribute('aria-current');
                         if (a.getAttribute('href') === '#' + currentId) {
                             a.classList.add('active');
+                            a.setAttribute('aria-current', 'page');
                         }
                     });
                 }
