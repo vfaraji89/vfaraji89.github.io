@@ -3,52 +3,448 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vahid Faraji | Skill Tree</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Vahid Faraji | Applied AI & Product</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <style>
+        /* CSS STYLES EMBEDDED HERE */
+        :root {
+            --bg-color: #F0F8FF; /* Light Sky Blue */
+            --text-color: #2c3e50;
+            --primary-color: #e74c3c; /* Nintendo Red */
+            --secondary-color: #3498db; /* Mario Blue */
+            --accent-color: #2ecc71; /* Luigi Green / Turquoise Power-up */
+            --border-color: #2c3e50;
+            --font-pixel: 'Press Start 2P', cursive;
+            --font-body: 'VT323', monospace;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            font-size: 24px;
+            line-height: 1.6;
+            text-align: center;
+            overflow-x: hidden;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Section padding to avoid navbar overlap */
+        section {
+            padding-top: 5rem;
+            padding-bottom: 2rem;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-pixel);
+            color: var(--border-color);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 1.8rem; margin-top: 3rem; }
+        p { margin-bottom: 1.5rem; max-width: 65ch; margin-left: auto; margin-right: auto; }
+
+        /* --- Navigation --- */
+        .navbar {
+            background-color: #fff;
+            border-bottom: 4px solid var(--border-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-family: var(--font-pixel);
+            font-size: 0.8rem;
+            padding: 10px 15px;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-color);
+            background-color: #fff2cc;
+            border-color: var(--border-color);
+            box-shadow: 4px 4px 0 var(--border-color);
+            transform: translate(-2px, -2px);
+        }
+
+        /* --- Content Box Styling --- */
+        .nes-box {
+            background-color: #fff;
+            border: 4px solid var(--border-color);
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: left;
+            position: relative;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+        }
+
+        .nes-box::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: var(--secondary-color);
+            bottom: 10px;
+            right: 10px;
+            box-shadow: -4px -4px 0 var(--border-color), 0 0 0 4px var(--secondary-color);
+        }
+
+        /* --- Home Page Specifics --- */
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .profile-photo-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid var(--border-color);
+            padding: 5px;
+            background-color: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo-container:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-intro h1 {
+            font-size: 2rem;
+        }
+
+        .profile-intro p {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        /* --- AI Tag --- */
+        .ai-tag {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            font-family: var(--font-pixel);
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            margin-left: 10px;
+            vertical-align: middle;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* --- Experience Page --- */
+        .timeline {
+            border-left: 4px solid var(--border-color);
+            padding-left: 2rem;
+            position: relative;
+            margin-top: 2rem;
+            text-align: left;
+        }
+        .timeline::before {
+            content: '▶';
+            font-family: var(--font-pixel);
+            position: absolute;
+            left: -20px;
+            top: -10px;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        .job {
+            background: #fff;
+            padding: 1.5rem;
+            border: 4px solid var(--border-color);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .job::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 15px;
+            width: 20px;
+            height: 20px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10" fill="%23e74c3c"/><rect x="2" y="2" width="6" height="6" fill="%23fff"/></svg>');
+            background-size: cover;
+            border: 4px solid var(--border-color);
+        }
+        .job-title { font-size: 1.5rem; }
+        .job-company { font-size: 1.2rem; color: var(--secondary-color); margin-bottom: 1rem; }
+        .job ul { list-style: none; }
+        .job li::before { content: '>'; margin-right: 10px; font-weight: bold; }
+
+        /* --- Projects & Toolkit Page --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            text-align: left;
+        }
+        .card {
+            background-color: #fff;
+            border: 4px solid var(--border-color);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translate(-5px, -5px);
+            box-shadow: 8px 8px 0 var(--border-color);
+        }
+        .card h3 { font-size: 1.2rem; }
+        .card .tag-container { margin-top: auto; padding-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tag {
+            background-color: #eee;
+            padding: 5px 10px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 4px solid var(--border-color);
+            font-family: var(--font-pixel);
+            font-size: 0.7rem;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 10px 15px rgba(46, 204, 113, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            body { font-size: 20px; }
+            .nav-links { gap: 0.5rem; }
+            .nav-links a { font-size: 0.6rem; padding: 8px; }
+            section { padding-top: 6rem; }
+        }
+    </style>
 </head>
 <body>
 
     <nav class="navbar">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="experience.html">Experience</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="toolkit.html" class="active">Toolkit</a></li>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#toolkit">Toolkit</a></li>
         </ul>
     </nav>
 
     <main class="container">
-        <header>
-            <h1>Skill Tree</h1>
-            <p>The abilities and power-ups I use on my quests.</p>
-        </header>
 
-        <h2>AI & Data Science <span class="ai-tag">AI</span></h2>
-        <div class="grid-container">
-            <div class="card"><h3>LangChain</h3></div>
-            <div class="card"><h3>Vector DBs</h3></div>
-            <div class="card"><h3>Python</h3></div>
-        </div>
+        <!-- HOME SECTION -->
+        <section id="home">
+            <header class="profile-header">
+                <div class="profile-photo-container">
+                    <img src="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg" alt="Vahid Faraji" class="profile-photo">
+                </div>
+                <div class="profile-intro">
+                    <h1>Vahid Faraji</h1>
+                    <p>Applied AI & Product</p>
+                </div>
+            </header>
+            <div class="nes-box">
+                <h2>Mission Briefing</h2>
+                <p>I work on products with Applied AI — building fast prototypes, automation flows, and learning agent-based systems that turn raw human and user data into products people actually use.</p>
+                <p>My motto: Build more, contribute max, and be less verbose.</p>
+            </div>
+            <div class="nes-box">
+                <h2>Core Focus</h2>
+                <p>My focus is organizing messy data into taxonomies, extracting insights from unstructured signals, and shaping patterns into scalable systems. I like to get granular — digging into the small details to connect what’s technically possible with what actually matters to users.</p>
+            </div>
+        </section>
 
-        <h2>Automation & Ops</h2>
-        <div class="grid-container">
-            <div class="card"><h3>Docker</h3></div>
-            <div class="card"><h3>n8n</h3></div>
-            <div class="card"><h3>Vercel</h3></div>
-        </div>
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience">
+            <header>
+                <h1>Level Select</h1>
+                <p>A journey through past missions and achievements.</p>
+            </header>
+            <div class="timeline">
+                <div class="job">
+                    <h3 class="job-title">Senior Applied AI Specialist <span class="ai-tag">AI</span></h3>
+                    <p class="job-company">Kariyer.net | Sep 2025 - Present</p>
+                    <ul>
+                        <li>Lead API monitoring & cost optimization for scalable AI deployments.</li>
+                        <li>Develop reporting automation tools (e.g., text-to-SQL).</li>
+                        <li>Apply vectorization & unstructured data extraction.</li>
+                    </ul>
+                </div>
+                <div class="job">
+                    <h3 class="job-title">Sr. Product Manager (Data)</h3>
+                    <p class="job-company">Kariyer.net | Oct 2022 - Sep 2025</p>
+                    <ul>
+                        <li>Improved the flow and accuracy of people and company data.</li>
+                        <li>Standardized text-based data like job titles and skills.</li>
+                        <li>Analyzed numerical data to provide actionable insights.</li>
+                    </ul>
+                </div>
+                 <div class="job">
+                    <h3 class="job-title">Business Analytics</h3>
+                    <p class="job-company">WorqCompany | Sep 2021 - Oct 2022</p>
+                     <ul>
+                        <li>Designed financial tracking systems for a shared revenue platform.</li>
+                        <li>Built models to analyze and forecast cash flow.</li>
+                        <li>Performed time series analysis to identify revenue trends.</li>
+                    </ul>
+                </div>
+                 <div class="job">
+                    <h3 class="job-title">People Data Lead</h3>
+                    <p class="job-company">defaro OÜ | Nov 2019 - Dec 2021</p>
+                    <ul>
+                        <li>Developed a prototype for an upskilling platform.</li>
+                        <li>Managed research in skill indexing and profiling.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <h2>Core Abilities</h2>
-        <div class="grid-container">
-            <div class="card"><h3>SQL</h3></div>
-            <div class="card"><h3>PowerBI</h3></div>
-            <div class="card"><h3>AzureDev</h3></div>
-        </div>
+        <!-- PROJECTS SECTION -->
+        <section id="projects">
+             <header>
+                <h1>Item Inventory</h1>
+                <p>A collection of crafted tools and completed quests.</p>
+            </header>
+            <div class="grid-container">
+                <div class="card">
+                    <h3>Position Extraction App <span class="ai-tag">AI</span></h3>
+                    <p>An LLM-driven app to automatically extract and classify positions from job descriptions, improving matching accuracy by over 50%.</p>
+                    <div class="tag-container">
+                        <span class="tag">Python</span>
+                        <span class="tag">LangChain</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>People Data Handbook</h3>
+                    <p>Authored a 195-page guide on People Analytics for the Persian-speaking community, bridging HR with data science.</p>
+                    <div class="tag-container">
+                        <span class="tag">Analytics</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>LabOps Career Database <span class="ai-tag">AI</span></h3>
+                    <p>Developing a vector search system for forklift career paths to create clear upskilling routes for operators.</p>
+                    <div class="tag-container">
+                        <span class="tag">Vector DB</span>
+                        <span class="tag">Semantic Search</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOOLKIT SECTION -->
+        <section id="toolkit">
+            <header>
+                <h1>Skill Tree</h1>
+                <p>The abilities and power-ups I use on my quests.</p>
+            </header>
+            <h2>AI & Data Science <span class="ai-tag">AI</span></h2>
+            <div class="grid-container">
+                <div class="card"><h3>LangChain</h3></div>
+                <div class="card"><h3>Vector DBs</h3></div>
+                <div class="card"><h3>Python</h3></div>
+            </div>
+            <h2>Automation & Ops</h2>
+            <div class="grid-container">
+                <div class="card"><h3>Docker</h3></div>
+                <div class="card"><h3>n8n</h3></div>
+                <div class="card"><h3>Vercel</h3></div>
+            </div>
+            <h2>Core Abilities</h2>
+            <div class="grid-container">
+                <div class="card"><h3>SQL</h3></div>
+                <div class="card"><h3>PowerBI</h3></div>
+                <div class="card"><h3>AzureDev</h3></div>
+            </div>
+        </section>
 
     </main>
-
+    
     <footer>
         <p>Game designed by Vahid Faraji © 2025</p>
     </footer>
 
+    <script>
+        // JAVASCRIPT FOR ACTIVE NAV LINK ON SCROLL
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) { // Adjust offset as needed
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === '#' + current) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
-</html>
+</html>```
