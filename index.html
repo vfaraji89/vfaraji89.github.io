@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!-- Language attribute is dynamically updated by JS -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,6 +90,7 @@
         .contact-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 3px solid var(--border-color); background-color: var(--secondary-color); color: white; text-decoration: none; transition: all 0.2s ease; }
         .contact-icon:hover { background-color: var(--primary-color); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--border-color); }
         .contact-icon svg { width: 24px; height: 24px; fill: currentColor; }
+        .contact-icon.emoji { font-size: 24px; }
         
         /* --- General Box/Card Styling --- */
         .nes-box { background-color: #fff; border: 4px solid var(--border-color); padding: 1.5rem; margin-top: 1.5rem; text-align: left; position: relative; box-shadow: 6px 6px 0 rgba(0,0,0,0.1); }
@@ -97,19 +98,13 @@
         .nes-box li { position: relative; padding-left: 20px; margin-bottom: 0.8rem; }
         .nes-box li::before { content: '▶'; font-family: var(--font-pixel); position: absolute; left: 0; top: 0; color: var(--primary-color); }
         
-        /* --- Transformer Flow Animation --- */
-        .transformer-flow { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.5rem; position: relative; }
-        .flow-box { border: 3px solid var(--border-color); padding: 0.8rem; flex: 1; height: 100px; text-align: center; transition: all 0.3s ease; }
-        .flow-box.active { border-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); }
-        .flow-box .title { font-family: var(--font-pixel); font-size: 0.7rem; margin-bottom: 0.5rem; }
-        .flow-box .content { font-family: monospace; font-size: 0.9rem; word-break: break-all; }
-        .flow-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; opacity: 0; }
-        .flow-arrow::before { content: ''; position: absolute; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid var(--primary-color); }
-        .flow-arrow.arrow1 { left: 33%; }
-        .flow-arrow.arrow2 { left: 66%; }
-        .flow-arrow.fire { animation: fire-arrow-right 0.5s ease-out forwards; }
-        .ai-processor.active { animation: pulse-border 1s infinite; }
-        
+        /* --- NEW: Three Motions Text Animation --- */
+        .mission-text-container { position: relative; min-height: 80px; text-align: left; }
+        .mission-text { position: absolute; width: 100%; opacity: 0; animation: cycle-text 9s infinite; font-size: 1.1rem; }
+        .mission-1 { color: var(--primary-color); animation-delay: 0s; }
+        .mission-2 { color: var(--secondary-color); animation-delay: 3s; }
+        .mission-3 { color: var(--accent-color); animation-delay: 6s; }
+
         /* --- Experience Section --- */
         .timeline { border-left: 4px solid var(--border-color); padding-left: 1.5rem; position: relative; margin-top: 1.5rem; text-align: left; }
         .job { background: #fff; border: 4px solid var(--border-color); margin-bottom: 1.5rem; position: relative; padding: 0; }
@@ -175,10 +170,12 @@
         @keyframes text-glitch { 0%, 100% { text-shadow: none; } 25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); } 75% { text-shadow: -2px 2px 0 var(--secondary-color), 2px -2px 0 var(--primary-color); } }
         @keyframes ticker-move { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
         @keyframes shake { 0%, 100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} }
-        @keyframes fire-arrow-right { 0% { opacity: 0; transform: translate(-20px, -50%); } 50% { opacity: 1; } 100% { opacity: 0; transform: translate(20px, -50%); } }
-        @keyframes fire-arrow-down { 0% { opacity: 0; transform: translateY(-20px) rotate(90deg); } 50% { opacity: 1; } 100% { opacity: 0; transform: translateY(20px) rotate(90deg); } }
-        @keyframes pulse-border { 0%, 100% { border-color: var(--border-color); } 50% { border-color: var(--accent-color); } }
         @keyframes wave-flag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-10deg); } }
+        @keyframes cycle-text {
+            0%, 100% { opacity: 0; transform: translateY(10px); }
+            4%, 30% { opacity: 1; transform: translateY(0); }
+            34% { opacity: 0; transform: translateY(-10px); }
+        }
 
         /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
@@ -186,12 +183,6 @@
             section { padding-top: 5rem; }
             .nav-container { gap: 0.5rem; }
             .nav-toggles { border: none; padding: 0; margin: 0; }
-            .transformer-flow { flex-direction: column; }
-            .flow-arrow { top: auto; left: 50%; transform: translateX(-50%); }
-            .flow-arrow::before { transform: rotate(90deg); }
-            .flow-arrow.arrow1 { bottom: 66%; }
-            .flow-arrow.arrow2 { bottom: 33%; }
-            .flow-arrow.fire { animation-name: fire-arrow-down; }
         }
         @media (max-width: 480px) {
             h1 { font-size: 1.2rem; } h2 { font-size: 0.9rem; }
@@ -267,31 +258,20 @@
                     <a href="mailto:vfaraji89@gmail.com" class="contact-icon" title="Email">
                         <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                     </a>
-                    <a href="https://huggingface.co/vfaraji89" class="contact-icon" title="Hugging Face" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M20.24,6.26l-1.06,1.06a8,8,0,0,0-13.36,4.82l-1.5,1.5A10,10,0,0,1,19.18,5.2l1.06-1.06ZM12,18a4,4,0,0,0,4-4H8a4,4,0,0,0,4,4Zm-8.74.24a8,8,0,0,0,13.36-4.82l1.5-1.5A10,10,0,0,1,4.82,18.8l-1.06,1.06,1.06-1.06Z"/></svg>
+                    <a href="https://www.datacamp.com/profile/vfaraji89" class="contact-icon" title="DataCamp" target="_blank">
+                        <svg viewBox="0 0 24 24"><path d="M21.582.001l-14.82 9.771v14.228h14.82V.001zM9.167 9.771L-.001.001v23.998l9.168-14.228z"/></svg>
                     </a>
+                    <a href="https://huggingface.co/vfaraji89" class="contact-icon emoji" title="Hugging Face" target="_blank">🤗</a>
                 </div>
             </header>
             <div class="nes-box">
                 <h2>Mission Briefing<span class="cursor"></span></h2>
-                <p>Work on products with Applied AI — fast prototypes, automation flows, and agent-based systems that turn raw human/user data into products.</p>
-                <p>My motto: Build (+more), contribute (^max), and be (>less) verbose.</p>
-                <div class="transformer-flow">
-                    <div class="flow-box text-input">
-                        <div class="title">Text</div>
-                        <div class="content">{#&lt;.../&gt;}</div>
-                    </div>
-                    <span class="flow-arrow arrow1"></span>
-                    <div class="flow-box ai-processor">
-                        <div class="title">AI</div>
-                        <div class="content">[...]</div>
-                    </div>
-                    <span class="flow-arrow arrow2"></span>
-                    <div class="flow-box insight-output">
-                        <div class="title">Insight</div>
-                        <div class="content">{'key':'val'}</div>
-                    </div>
+                <div class="mission-text-container">
+                    <p class="mission-text mission-1">Work on products with Applied AI — fast prototypes,</p>
+                    <p class="mission-text mission-2">automation flows, and agent-based systems,</p>
+                    <p class="mission-text mission-3">that turn raw human/user data into products.</p>
                 </div>
+                <p>My motto: Build (+more), contribute (^max), and be (>less) verbose.</p>
             </div>
         </section>
 
