@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> <!-- Language attribute is dynamically updated by JS -->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,11 +53,16 @@
 
         h1, h2, h3 { font-family: var(--font-pixel); color: var(--border-color); text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 2px; }
         h1 { font-size: 1.8rem; }
-        h2 { font-size: 1.5rem; margin-top: 2.5rem; display: inline-block; transition: transform 0.2s ease; }
-        h2:hover { transform: translateX(5px) skewX(-3deg); animation: text-glitch 0.3s linear; }
+        h2 { font-size: 1.5rem; }
         h2 .cursor { display: inline-block; width: 0.9rem; height: 1.5rem; background: var(--accent-color); animation: blink 1s steps(1) infinite; margin-left: 8px; vertical-align: middle; }
         p { margin-bottom: 1rem; max-width: 65ch; margin-left: auto; margin-right: auto; text-align: left; }
         
+        /* Section Title Box */
+        .section-header { margin-bottom: 2rem; }
+        .section-title-box { display: inline-block; border: 4px solid var(--primary-color); background-color: #fff; padding: 0.5rem 1.5rem; box-shadow: 6px 6px 0 var(--border-color); transition: all 0.2s ease; }
+        .section-title-box h1, .section-title-box h2 { margin: 0; font-size: 1.5rem; }
+        .section-title-box:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--border-color); }
+
         /* Accessibility: Skip to Content Link */
         .skip-link { position: absolute; top: -100px; left: 0; background: var(--primary-color); color: white; padding: 8px; z-index: 1001; transition: top 0.3s ease; font-family: var(--font-pixel); font-size: 0.8rem; border: 3px solid var(--border-color); }
         .skip-link:focus { top: 10px; }
@@ -80,17 +85,17 @@
         /* --- Header / Home --- */
         #home { padding-top: 2rem; }
         .profile-header { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 2rem; }
+        .profile-header h1 { animation: hue-cycle 5s linear infinite; }
         .profile-photo-container { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--border-color); padding: 4px; background-color: #fff; transition: transform 0.3s ease; }
         .profile-photo-container:hover { transform: scale(1.05) rotate(3deg); }
         .profile-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; image-rendering: pixelated; transition: filter 0.3s; }
         .profile-photo:hover { filter: grayscale(1); }
         .job-title-main { font-size: 1.3rem; text-align: center; text-transform: none; margin: 0; min-height: 2.2rem; }
-        .job-title-main .typing-cursor { display: inline-block; background-color: var(--text-color); width: 8px; height: 1.3rem; animation: blink 0.7s infinite; vertical-align: middle; }
         .contact-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; font-size: 1rem; }
         .contact-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 3px solid var(--border-color); background-color: var(--secondary-color); color: white; text-decoration: none; transition: all 0.2s ease; }
         .contact-icon:hover { background-color: var(--primary-color); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--border-color); }
         .contact-icon svg { width: 24px; height: 24px; fill: currentColor; }
-        .contact-icon.emoji { font-size: 24px; }
+        .contact-icon.emoji { font-size: 24px; line-height: 1; }
         
         /* --- General Box/Card Styling --- */
         .nes-box { background-color: #fff; border: 4px solid var(--border-color); padding: 1.5rem; margin-top: 1.5rem; text-align: left; position: relative; box-shadow: 6px 6px 0 rgba(0,0,0,0.1); }
@@ -98,13 +103,19 @@
         .nes-box li { position: relative; padding-left: 20px; margin-bottom: 0.8rem; }
         .nes-box li::before { content: '▶'; font-family: var(--font-pixel); position: absolute; left: 0; top: 0; color: var(--primary-color); }
         
-        /* --- NEW: Three Motions Text Animation --- */
-        .mission-text-container { position: relative; min-height: 80px; text-align: left; }
-        .mission-text { position: absolute; width: 100%; opacity: 0; animation: cycle-text 9s infinite; font-size: 1.1rem; }
-        .mission-1 { color: var(--primary-color); animation-delay: 0s; }
-        .mission-2 { color: var(--secondary-color); animation-delay: 3s; }
-        .mission-3 { color: var(--accent-color); animation-delay: 6s; }
-
+        /* --- Transformer Flow Animation --- */
+        .transformer-flow { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.5rem; position: relative; }
+        .flow-box { border: 3px solid var(--border-color); padding: 0.8rem; flex: 1; height: 100px; text-align: center; transition: all 0.3s ease; }
+        .flow-box.active { border-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); }
+        .flow-box .title { font-family: var(--font-pixel); font-size: 0.7rem; margin-bottom: 0.5rem; }
+        .flow-box .content { font-family: monospace; font-size: 0.9rem; word-break: break-all; }
+        .flow-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; opacity: 0; }
+        .flow-arrow::before { content: ''; position: absolute; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid var(--primary-color); }
+        .flow-arrow.arrow1 { left: 33%; }
+        .flow-arrow.arrow2 { left: 66%; }
+        .flow-arrow.fire { animation: fire-arrow-right 0.5s ease-out forwards; }
+        .ai-processor.active { animation: pulse-border 1s infinite; }
+        
         /* --- Experience Section --- */
         .timeline { border-left: 4px solid var(--border-color); padding-left: 1.5rem; position: relative; margin-top: 1.5rem; text-align: left; }
         .job { background: #fff; border: 4px solid var(--border-color); margin-bottom: 1.5rem; position: relative; padding: 0; }
@@ -164,18 +175,24 @@
         .footer-ticker-move { display: inline-block; white-space: nowrap; animation: ticker-move 20s linear infinite; }
         .footer-ticker-item { display: inline-block; padding: 0 1rem; font-size: 0.8rem; color: var(--secondary-color); }
         
+        /* --- Konami Code Coin Rain --- */
+        #coin-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
+        .coin { position: absolute; width: 20px; height: 20px; background-color: #FFD700; border: 2px solid var(--border-color); animation: fall 5s linear; }
+        .coin::before { content: '$'; font-family: var(--font-pixel); font-size: 12px; color: var(--border-color); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
         /* --- Animations --- */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes blink { 50% { opacity: 0; } }
         @keyframes text-glitch { 0%, 100% { text-shadow: none; } 25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); } 75% { text-shadow: -2px 2px 0 var(--secondary-color), 2px -2px 0 var(--primary-color); } }
         @keyframes ticker-move { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
         @keyframes shake { 0%, 100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} }
+        @keyframes fire-arrow-right { 0% { opacity: 0; transform: translate(-20px, -50%); } 50% { opacity: 1; } 100% { opacity: 0; transform: translate(20px, -50%); } }
+        @keyframes fire-arrow-down { 0% { opacity: 0; transform: translateY(-20px) rotate(90deg); } 50% { opacity: 1; } 100% { opacity: 0; transform: translateY(20px) rotate(90deg); } }
+        @keyframes pulse-border { 0%, 100% { border-color: var(--border-color); } 50% { border-color: var(--accent-color); } }
+        @keyframes fall { from { top: -20px; transform: rotate(0deg); } to { top: 100vh; transform: rotate(720deg); } }
         @keyframes wave-flag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-10deg); } }
-        @keyframes cycle-text {
-            0%, 100% { opacity: 0; transform: translateY(10px); }
-            4%, 30% { opacity: 1; transform: translateY(0); }
-            34% { opacity: 0; transform: translateY(-10px); }
-        }
+        @keyframes hue-cycle { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
+
 
         /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
@@ -183,6 +200,12 @@
             section { padding-top: 5rem; }
             .nav-container { gap: 0.5rem; }
             .nav-toggles { border: none; padding: 0; margin: 0; }
+            .transformer-flow { flex-direction: column; }
+            .flow-arrow { top: auto; left: 50%; transform: translateX(-50%); }
+            .flow-arrow::before { transform: rotate(90deg); }
+            .flow-arrow.arrow1 { bottom: 66%; }
+            .flow-arrow.arrow2 { bottom: 33%; }
+            .flow-arrow.fire { animation-name: fire-arrow-down; }
         }
         @media (max-width: 480px) {
             h1 { font-size: 1.2rem; } h2 { font-size: 0.9rem; }
@@ -215,6 +238,7 @@
     </script>
 </head>
 <body>
+    <div id="coin-container"></div>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <nav class="navbar">
@@ -266,20 +290,34 @@
             </header>
             <div class="nes-box">
                 <h2>Mission Briefing<span class="cursor"></span></h2>
-                <div class="mission-text-container">
-                    <p class="mission-text mission-1">Work on products with Applied AI — fast prototypes,</p>
-                    <p class="mission-text mission-2">automation flows, and agent-based systems,</p>
-                    <p class="mission-text mission-3">that turn raw human/user data into products.</p>
-                </div>
+                <p>Work on products with Applied AI — fast prototypes, automation flows, and agent-based systems that turn raw human/user data into products.</p>
                 <p>My motto: Build (+more), contribute (^max), and be (>less) verbose.</p>
+                <div class="transformer-flow">
+                    <div class="flow-box text-input">
+                        <div class="title">Text</div>
+                        <div class="content">{#&lt;.../&gt;}</div>
+                    </div>
+                    <span class="flow-arrow arrow1"></span>
+                    <div class="flow-box ai-processor">
+                        <div class="title">AI</div>
+                        <div class="content">[...]</div>
+                    </div>
+                    <span class="flow-arrow arrow2"></span>
+                    <div class="flow-box insight-output">
+                        <div class="title">Insight</div>
+                        <div class="content">{'key':'val'}</div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- EXPERIENCE SECTION -->
         <section id="experience">
-            <header>
-                <h1>Level Select<span class="cursor"></span></h1>
-                <p style="text-align:center;">My professional journey and achievements.</p>
+            <header class="section-header">
+                <div class="section-title-box">
+                    <h1>Level Select<span class="cursor"></span></h1>
+                </div>
+                <p style="text-align:center; margin-top: 1.5rem;">My professional journey and achievements.</p>
             </header>
             <div class="timeline">
                 <div class="job">
@@ -335,9 +373,11 @@
 
         <!-- PROJECTS SECTION -->
         <section id="projects">
-             <header>
-                <h1>Item Inventory<span class="cursor"></span></h1>
-                <p style="text-align:center;">A collection of crafted tools and main quests.</p>
+             <header class="section-header">
+                <div class="section-title-box">
+                    <h1>Item Inventory<span class="cursor"></span></h1>
+                </div>
+                <p style="text-align:center; margin-top: 1.5rem;">A collection of crafted tools and main quests.</p>
             </header>
             <div class="grid-container">
                 <div class="card">
@@ -357,9 +397,11 @@
         
         <!-- WEEKEND LEARNING SECTION -->
         <section id="weekend-quests">
-            <header>
-                <h1>Weekend Quests<span class="cursor"></span></h1>
-                <p style="text-align:center;">Exploring new ideas and building fast.</p>
+            <header class="section-header">
+                <div class="section-title-box">
+                    <h1>Weekend Quests<span class="cursor"></span></h1>
+                </div>
+                <p style="text-align:center; margin-top: 1.5rem;">Exploring new ideas and building fast.</p>
             </header>
              <div class="grid-container">
                 <div class="card">
@@ -396,9 +438,11 @@
 
         <!-- TOOLKIT SECTION -->
         <section id="toolkit">
-            <header>
-                <h1>Power-Ups<span class="cursor"></span></h1>
-                <p style="text-align:center;">My technical skill inventory.</p>
+            <header class="section-header">
+                <div class="section-title-box">
+                    <h1>Power-Ups<span class="cursor"></span></h1>
+                </div>
+                <p style="text-align:center; margin-top: 1.5rem;">My technical skill inventory.</p>
             </header>
             <div class="skills-grid">
                 <div class="nes-box skill-category">
@@ -461,9 +505,11 @@
 
         <!-- EDUCATION SECTION -->
         <section id="education">
-            <header>
-                <h1>Training Grounds<span class="cursor"></span></h1>
-                <p style="text-align:center;">My academic background.</p>
+            <header class="section-header">
+                <div class="section-title-box">
+                    <h1>Training Grounds<span class="cursor"></span></h1>
+                </div>
+                <p style="text-align:center; margin-top: 1.5rem;">My academic background.</p>
             </header>
             <div class="grid-container">
                 <div class="card edu-item">
@@ -485,9 +531,11 @@
         
         <!-- WRITING SECTION -->
         <section id="writing">
-            <header>
-                <h1>Latest Dispatches<span class="cursor"></span></h1>
-                <p style="text-align:center;">Sharing insights on AI, data, and product strategy.</p>
+            <header class="section-header">
+                <div class="section-title-box">
+                    <h1>Latest Dispatches<span class="cursor"></span></h1>
+                </div>
+                <p style="text-align:center; margin-top: 1.5rem;">Sharing insights on AI, data, and product strategy.</p>
             </header>
             <div class="nes-box pub-item">
                 <p class="pub-title">Leveraging LLMs for Turkish Skill Extraction.</p>
