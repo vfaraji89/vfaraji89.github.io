@@ -76,7 +76,6 @@
         .toggle-switch .slider::before { content: ''; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; background: white; transition: 0.3s; }
         .toggle-switch input:checked + .slider { background: var(--accent-color); }
         .toggle-switch input:checked + .slider::before { transform: translateX(18px); }
-        .toggle-switch .icon { font-size: 0.8rem; margin-right: 8px; }
 
         /* --- Header / Home --- */
         #home { padding-top: 2rem; }
@@ -248,11 +247,6 @@
                 <li><a href="#writing">Writing</a></li>
             </ul>
             <div class="nav-toggles">
-                <label class="toggle-switch" for="mute-toggle" title="Toggle Sound">
-                    <span class="label icon">🔊</span>
-                    <input type="checkbox" id="mute-toggle">
-                    <div class="slider"></div>
-                </label>
                 <label class="toggle-switch" for="crt-toggle" title="Toggle CRT Scanlines">
                     <span class="label">CRT</span>
                     <input type="checkbox" id="crt-toggle">
@@ -433,7 +427,7 @@
             </header>
             <div class="skills-grid">
                 <div class="nes-box skill-category">
-                    <h3>AI</h3>
+                    <h3>AI & LLMs</h3>
                     <div class="skill-list">
                         <span class="skill-item">Generative AI</span>
                         <span class="skill-item">OpenAI API</span>
@@ -444,31 +438,34 @@
                     </div>
                 </div>
                 <div class="nes-box skill-category">
-                    <h3>Product</h3>
+                    <h3>Product & Automation</h3>
                     <div class="skill-list">
                         <span class="skill-item">Data Product</span>
                         <span class="skill-item">API Development</span>
                         <span class="skill-item">Azure DevOps</span>
                         <span class="skill-item">Jira</span>
-                    </div>
-                </div>
-                 <div class="nes-box skill-category">
-                    <h3>Automation</h3>
-                    <div class="skill-list">
                         <span class="skill-item">n8n</span>
                         <span class="skill-item">Power Automate</span>
-                        <span class="skill-item">Python</span>
                     </div>
                 </div>
                 <div class="nes-box skill-category">
-                    <h3>Analytics</h3>
+                    <h3>Analytics & Research</h3>
                     <div class="skill-list">
+                        <span class="skill-item">Python</span>
                         <span class="skill-item">SQL Dialects</span>
                         <span class="skill-item">ETL</span>
                         <span class="skill-item">People Data</span>
                         <span class="skill-item">Analytical Skills</span>
                         <span class="skill-item">Advanced Statistics</span>
                         <span class="skill-item">Labour Market Research</span>
+                    </div>
+                </div>
+                <div class="nes-box skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Turkish (Native)</span>
+                        <span class="skill-item">English (Advanced)</span>
+                        <span class="skill-item">Spanish (Advanced)</span>
                     </div>
                 </div>
             </div>
@@ -478,7 +475,7 @@
         <section id="education">
             <header>
                 <h1>Training Grounds<span class="cursor"></span></h1>
-                <p style="text-align:center;">My academic background and languages.</p>
+                <p style="text-align:center;">My academic background.</p>
             </header>
             <div class="grid-container">
                 <div class="card edu-item">
@@ -495,10 +492,6 @@
                     </div>
                     <p class="item-source">University of Tehran</p>
                 </div>
-                 <div class="card">
-                    <h3>Languages</h3>
-                    <p style="text-align:left;">Turkish (Native) | English (Advanced) | Spanish (Advanced)</p>
-                 </div>
             </div>
         </section>
         
@@ -508,8 +501,13 @@
                 <h1>Latest Dispatches<span class="cursor"></span></h1>
                 <p style="text-align:center;">Sharing insights on AI, data, and product strategy.</p>
             </header>
-            <div class="card">
-                <p style="text-align: center;">Read my thoughts and analysis on Substack.</p>
+            <div class="nes-box pub-item">
+                <p class="pub-title">Leveraging LLMs for Turkish Skill Extraction.</p>
+                <p class="pub-authors">Ezgi Arslan İltüzer, Vahid Farajijobehdar, Özgür Anıl Özlü, Gülşen Eryiğit.</p>
+                <p style="font-size: 1.1rem; margin-top: 1rem;">Submitted manuscript, 2025. ORCID: 0000-0002-9153-0765</p>
+            </div>
+            <div class="card" style="margin-top: 1.5rem; text-align: center;">
+                <p>Read more of my thoughts and analysis on Substack.</p>
                 <a href="https://vahidfaraji.substack.com/" target="_blank" class="substack-button" aria-label="Read my articles on Substack">Read my Substack</a>
             </div>
         </section>
@@ -543,12 +541,6 @@
 
     <a href="#home" class="scroll-to-top" aria-label="Scroll to top"></a>
 
-    <!-- Audio elements for sound effects -->
-    <audio id="sfx-hover" src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAACAgICA" preload="auto"></audio>
-    <audio id="sfx-click" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAACAgIA=" preload="auto"></audio>
-    <audio id="sfx-toggle" src="data:audio/wav;base64,UklGRiYAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQIAAADAgICA" preload="auto"></audio>
-    <audio id="sfx-success" src="data:audio/wav;base64,UklGRlIAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YUwAAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA=" preload="auto"></audio>
-
     <script>
         // --- PWA Service Worker Registration ---
         if ('serviceWorker' in navigator) {
@@ -566,25 +558,6 @@
         const arrow2 = document.querySelector('.arrow2');
         const crtToggle = document.getElementById('crt-toggle');
         const proofToggle = document.getElementById('proof-toggle');
-        const muteToggle = document.getElementById('mute-toggle');
-        
-        let isMuted = true;
-
-        const sounds = {
-            hover: document.getElementById('sfx-hover'),
-            click: document.getElementById('sfx-click'),
-            toggle: document.getElementById('sfx-toggle'),
-            success: document.getElementById('sfx-success')
-        };
-        
-        function playSound(soundName) {
-            if (isMuted) return;
-            const sound = sounds[soundName];
-            if (sound) {
-                sound.currentTime = 0;
-                sound.play().catch(e => {});
-            }
-        }
         
         window.addEventListener('scroll', () => {
             scrollTopButton.classList.toggle('visible', window.scrollY > 400);
@@ -615,7 +588,6 @@
                 } else {
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
-                playSound('toggle');
             });
         });
 
@@ -632,19 +604,11 @@
         crtToggle.addEventListener('change', () => {
             document.body.classList.toggle('crt-effect', crtToggle.checked);
             localStorage.setItem('isCrtOn', crtToggle.checked);
-            playSound('toggle');
         });
 
         proofToggle.addEventListener('change', () => {
             document.body.classList.toggle('proof-mode-on', proofToggle.checked);
             localStorage.setItem('isProofModeOn', proofToggle.checked);
-            playSound('toggle');
-        });
-
-        muteToggle.addEventListener('change', () => {
-            isMuted = !muteToggle.checked;
-            localStorage.setItem('isMuted', isMuted);
-            playSound('toggle');
         });
 
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
@@ -662,7 +626,6 @@
         });
 
         function rainCoins() {
-            playSound('success');
             const container = document.getElementById('coin-container');
             for (let i = 0; i < 40; i++) {
                 const coin = document.createElement('div');
@@ -674,13 +637,6 @@
                 setTimeout(() => coin.remove(), 5000);
             }
         }
-        
-        document.querySelectorAll('a, button, .toggle-switch, .accordion-header, .skill-item').forEach(el => {
-            el.addEventListener('mouseenter', () => playSound('hover'));
-        });
-         document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('click', () => playSound('click'));
-        });
 
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('isCrtOn') === 'true') {
@@ -691,8 +647,6 @@
                 proofToggle.checked = true;
                 document.body.classList.add('proof-mode-on');
             }
-            isMuted = localStorage.getItem('isMuted') !== 'false'; // Muted by default
-            muteToggle.checked = !isMuted;
 
             runTransformerAnimation();
             setInterval(runTransformerAnimation, 4500);
