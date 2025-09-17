@@ -60,7 +60,7 @@
         /* Section Title Box */
         .section-header { margin-bottom: 2rem; }
         .section-title-box { display: inline-block; border: 4px solid var(--primary-color); background-color: #fff; padding: 0.5rem 1.5rem; box-shadow: 6px 6px 0 var(--border-color); transition: all 0.2s ease; }
-        .section-title-box h1, .section-title-box h2 { margin: 0; font-size: 1.5rem; }
+        .section-title-box h1 { margin: 0; font-size: 1.5rem; }
         .section-title-box:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--border-color); }
 
         /* Accessibility: Skip to Content Link */
@@ -69,8 +69,8 @@
 
         /* --- Navigation & Toggles --- */
         .navbar { background-color: #fff; border-bottom: 4px solid var(--border-color); padding: 0.8rem 1rem; position: sticky; top: 0; z-index: 1000; width: 100%; }
-        .nav-container { display: flex; justify-content: center; align-items: center; width: 100%; max-width: 960px; margin: 0 auto; }
-        .nav-brand { font-family: var(--font-pixel); font-size: 0.8rem; color: var(--border-color); text-decoration: none; display: none; } /* Hidden on desktop, shown on mobile */
+        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 960px; margin: 0 auto; }
+        .nav-brand { font-family: var(--font-pixel); font-size: 0.8rem; color: var(--border-color); text-decoration: none; display: none; }
         .nav-menu { display: flex; align-items: center; gap: 1rem; }
         .nav-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; list-style: none; }
         .nav-links a { color: var(--secondary-color); text-decoration: none; font-family: var(--font-pixel); font-size: 0.5rem; padding: 6px 10px; border: 3px solid transparent; transition: all 0.3s ease; }
@@ -83,12 +83,17 @@
         .toggle-switch .slider::before { content: ''; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; background: white; transition: 0.3s; }
         .toggle-switch input:checked + .slider { background: var(--accent-color); }
         .toggle-switch input:checked + .slider::before { transform: translateX(18px); }
-        .hamburger-menu { display: none; /* Hidden by default */ }
+        .hamburger-menu { display: none; }
         
         /* --- Header / Home --- */
         #home { padding-top: 2rem; }
         .profile-header { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 2rem; }
-        .profile-header h1 { animation: hue-cycle 5s linear infinite; }
+        .name-container { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+        .name-container h1 { position: relative; min-height: 2.2rem; width: 380px; text-align: center; margin-bottom: 0; }
+        .animated-name { position: absolute; width: 100%; left: 0; opacity: 0; animation: cycle-text 9s infinite; }
+        .name-1 { color: var(--border-color); animation-delay: 0s; }
+        .name-2 { color: var(--primary-color); animation-delay: 3s; }
+        .name-3 { color: var(--secondary-color); animation-delay: 6s; }
         .profile-photo-container { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--border-color); padding: 4px; background-color: #fff; transition: transform 0.3s ease; }
         .profile-photo-container:hover { transform: scale(1.05) rotate(3deg); }
         .profile-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; image-rendering: pixelated; transition: filter 0.3s; }
@@ -106,12 +111,12 @@
         .nes-box li { position: relative; padding-left: 20px; margin-bottom: 0.8rem; }
         .nes-box li::before { content: '▶'; font-family: var(--font-pixel); position: absolute; left: 0; top: 0; color: var(--primary-color); }
         
-        /* --- Animated Three Motions Summary --- */
-        .mission-text-container { position: relative; min-height: 80px; text-align: left; }
-        .mission-text { position: absolute; width: 100%; opacity: 0; animation: cycle-text 9s infinite; font-size: 1.1rem; }
-        .mission-1 { color: var(--primary-color); animation-delay: 0s; }
-        .mission-2 { color: var(--secondary-color); animation-delay: 3s; }
-        .mission-3 { color: var(--accent-color); animation-delay: 6s; }
+        /* --- Joystick Animation --- */
+        .joystick { cursor: pointer; width: 60px; height: 60px; }
+        .joystick:hover .joystick-stick { transform: rotate(-25deg) translate(-4px, -4px); }
+        .joystick:hover .joystick-base { transform: scale(1.05); }
+        .joystick-stick { transition: transform 0.2s ease-out; transform-origin: bottom center; }
+        .joystick-base { transition: transform 0.2s ease-out; }
         
         /* --- Experience Section --- */
         .timeline { border-left: 4px solid var(--border-color); padding-left: 1.5rem; position: relative; margin-top: 1.5rem; text-align: left; }
@@ -122,7 +127,10 @@
         .job-details { padding: 0 1.5rem 1rem; }
         .job-details li { margin-bottom: 0.8rem; }
         .job-details strong { color: var(--border-color); }
-        .current-job-flag { display: inline-block; font-size: 1.2rem; margin-left: 10px; animation: wave-flag 2s infinite; transform-origin: bottom left; }
+        .current-job-flag { display: inline-block; position: relative; width: 24px; height: 28px; margin-left: 10px; vertical-align: middle; }
+        .flag-pole { position: absolute; bottom: 0; left: 0; width: 4px; height: 100%; background: var(--border-color); }
+        .flag-cloth { position: absolute; top: 0; left: 4px; width: 18px; height: 12px; background: var(--primary-color); transform-origin: left center; }
+        .job-title-group:hover .flag-cloth { animation: wave-flag 1s infinite; }
 
         /* --- Accordion System --- */
         .accordion-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 1.5rem; }
@@ -171,18 +179,28 @@
         .footer-ticker-wrap { width: 100%; }
         .footer-ticker-move { display: inline-block; white-space: nowrap; animation: ticker-move 20s linear infinite; }
         .footer-ticker-item { display: inline-block; padding: 0 1rem; font-size: 0.8rem; color: var(--secondary-color); }
-        
+
         /* --- Animations --- */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes blink { 50% { opacity: 0; } }
-        @keyframes text-glitch { 0%, 100% { text-shadow: none; } 25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); } 75% { text-shadow: -2px 2px 0 var(--secondary-color), 2px -2px 0 var(--primary-color); } }
         @keyframes ticker-move { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
         @keyframes shake { 0%, 100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} }
-        @keyframes wave-flag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-10deg); } }
+        @keyframes wave-flag { 0%, 100% { transform: skewX(0); } 50% { transform: skewX(-25deg); } }
         @keyframes hue-cycle { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
-        @keyframes cycle-text { 0%, 100% { opacity: 0; transform: translateY(10px); } 4%, 30% { opacity: 1; transform: translateY(0); } 34% { opacity: 0; transform: translateY(-10px); } }
+        @keyframes glitch-text {
+            0% { text-shadow: none; opacity: 1; }
+            25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); opacity: 1; }
+            50% { text-shadow: none; opacity: 1; }
+            75% { text-shadow: 2px -2px 0 var(--accent-color), -2px 2px 0 var(--secondary-color); opacity: 1; }
+            100% { text-shadow: none; opacity: 1; }
+        }
+        @keyframes cycle-text {
+            0%, 100% { opacity: 0; transform: translateY(10px); }
+            4%, 30% { opacity: 1; transform: translateY(0); }
+            34% { opacity: 0; transform: translateY(-10px); }
+        }
 
-        /* --- RESPONSIVE & MOBILE MENU STYLES --- */
+        /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
             body { font-size: 18px; } h1 { font-size: 1.5rem; } h2 { font-size: 1.1rem; }
             section { padding-top: 5rem; }
@@ -198,7 +216,6 @@
             .nav-links { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
             .nav-links a { font-size: 1rem; }
             .nav-toggles { border: none; padding: 0; margin: 0; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-            .toggle-switch .label { font-size: 1rem; }
         }
     </style>
     <!-- JSON-LD Schema for SEO -->
@@ -243,7 +260,7 @@
                     </label>
                 </div>
             </div>
-            <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
+             <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
                 <div class="bar bar1"></div>
                 <div class="bar bar2"></div>
                 <div class="bar bar3"></div>
@@ -259,7 +276,24 @@
                  <div class="profile-photo-container">
                     <img src="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg" alt="Vahid Faraji" class="profile-photo">
                 </div>
-                <h1>Vahid Faraji</h1>
+                <div class="name-container">
+                    <h1>
+                        <span class="animated-name name-1">Vahid Faraji</span>
+                        <span class="animated-name name-2">Applied AI</span>
+                        <span class="animated-name name-3">Data Product</span>
+                    </h1>
+                    <svg class="joystick" viewBox="0 0 80 80">
+                        <g class="joystick-base">
+                            <rect x="20" y="50" width="40" height="20" fill="#a0a0a0" stroke="#2c3e50" stroke-width="3"/>
+                            <rect x="23" y="53" width="34" height="14" fill="#c0c0c0"/>
+                        </g>
+                        <g class="joystick-stick">
+                            <rect x="37" y="20" width="6" height="35" fill="#a0a0a0" stroke="#2c3e50" stroke-width="3"/>
+                            <circle cx="40" cy="15" r="12" fill="#e74c3c" stroke="#2c3e50" stroke-width="3"/>
+                            <circle cx="42" cy="13" r="3" fill="white"/>
+                        </g>
+                    </svg>
+                </div>
                 <p class="job-title-main">Senior Applied AI Specialist</p>
                 <div class="contact-info">
                     <a href="https://www.linkedin.com/in/vahid-faraji-jobehdar" class="contact-icon" title="LinkedIn" target="_blank">
@@ -279,11 +313,7 @@
             </header>
             <div class="nes-box">
                 <h2>Mission Briefing<span class="cursor"></span></h2>
-                <div class="mission-text-container">
-                    <p class="mission-text mission-1">Work on products with Applied AI — fast prototypes,</p>
-                    <p class="mission-text mission-2">automation flows, and agent-based systems,</p>
-                    <p class="mission-text mission-3">that turn raw human/user data into products.</p>
-                </div>
+                <p>Work on products with Applied AI — fast prototypes, automation flows, and agent-based systems that turn raw human/user data into products.</p>
                 <p>My motto: Build (+more), contribute (^max), and be (>less) verbose.</p>
             </div>
         </section>
@@ -300,7 +330,7 @@
                 <div class="job">
                     <div class="accordion-header">
                         <div class="accordion-title">
-                            <h3 class="job-title">Senior Applied AI Specialist <span class="current-job-flag">🚩</span></h3>
+                            <h3 class="job-title">Senior Applied AI Specialist <span class="current-job-flag"><div class="flag-pole"></div><div class="flag-cloth"></div></span></h3>
                             <p class="job-company">Kariyer Group</p>
                         </div>
                         <span class="accordion-indicator">▶</span>
@@ -602,39 +632,48 @@
             document.body.classList.toggle('crt-effect', crtToggle.checked);
             localStorage.setItem('isCrtOn', crtToggle.checked);
         });
-
-        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-        let konamiIndex = 0;
-        document.addEventListener('keydown', (e) => {
-            if (e.key === konamiCode[konamiIndex]) {
-                konamiIndex++;
-                if (konamiIndex === konamiCode.length) {
-                    konamiIndex = 0;
-                    rainCoins();
-                }
-            } else {
-                konamiIndex = 0;
-            }
+        
+        // --- Mobile Menu ---
+        const hamburger = document.querySelector('.hamburger-menu');
+        const navMenu = document.querySelector('.nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
-
-        function rainCoins() {
-            const container = document.getElementById('coin-container');
-            for (let i = 0; i < 40; i++) {
-                const coin = document.createElement('div');
-                coin.classList.add('coin');
-                coin.style.left = `${Math.random() * 100}vw`;
-                coin.style.animationDuration = `${Math.random() * 2 + 3}s`;
-                coin.style.animationDelay = `${Math.random() * 2}s`;
-                container.appendChild(coin);
-                setTimeout(() => coin.remove(), 5000);
-            }
-        }
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
 
         document.addEventListener('DOMContentLoaded', () => {
             if (localStorage.getItem('isCrtOn') === 'true') {
                 crtToggle.checked = true;
                 document.body.classList.add('crt-effect');
             }
+
+            // --- Three Motions Text Animation ---
+            const missionTexts = document.querySelectorAll('#home .mission-text');
+            let missionIndex = 0;
+            function cycleMissionText() {
+                missionTexts.forEach(text => text.classList.remove('active'));
+                missionTexts[missionIndex].classList.add('active');
+                missionIndex = (missionIndex + 1) % missionTexts.length;
+            }
+            cycleMissionText();
+            setInterval(cycleMissionText, 3000);
+
+            // --- Writing Section Animation ---
+            const writingTexts = document.querySelectorAll('#writing .mission-text');
+            let writingIndex = 0;
+            function cycleWritingText() {
+                writingTexts.forEach(text => text.classList.remove('active'));
+                writingTexts[writingIndex].classList.add('active');
+                writingIndex = (writingIndex + 1) % writingTexts.length;
+            }
+            cycleWritingText();
+            setInterval(cycleWritingText, 3000);
         });
     </script>
 </body>
