@@ -68,8 +68,10 @@
         .skip-link:focus { top: 10px; }
 
         /* --- Navigation & Toggles --- */
-        .navbar { background-color: #fff; border-bottom: 4px solid var(--border-color); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; width: 100%; }
-        .nav-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .navbar { background-color: #fff; border-bottom: 4px solid var(--border-color); padding: 0.8rem 1rem; position: sticky; top: 0; z-index: 1000; width: 100%; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 960px; margin: 0 auto; }
+        .nav-brand { font-family: var(--font-pixel); font-size: 0.8rem; color: var(--border-color); text-decoration: none; display: none; }
+        .nav-menu { display: flex; align-items: center; gap: 1rem; }
         .nav-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; list-style: none; }
         .nav-links a { color: var(--secondary-color); text-decoration: none; font-family: var(--font-pixel); font-size: 0.5rem; padding: 6px 10px; border: 3px solid transparent; transition: all 0.3s ease; }
         .nav-links a:hover, .nav-links a.active { color: var(--primary-color); background-color: #fff2cc; border-color: var(--border-color); box-shadow: 4px 4px 0 var(--border-color); transform: translate(-2px, -2px); }
@@ -81,7 +83,8 @@
         .toggle-switch .slider::before { content: ''; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; background: white; transition: 0.3s; }
         .toggle-switch input:checked + .slider { background: var(--accent-color); }
         .toggle-switch input:checked + .slider::before { transform: translateX(18px); }
-
+        .hamburger-menu { display: none; }
+        
         /* --- Header / Home --- */
         #home { padding-top: 2rem; }
         .profile-header { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 2rem; }
@@ -104,10 +107,10 @@
         .nes-box li::before { content: '▶'; font-family: var(--font-pixel); position: absolute; left: 0; top: 0; color: var(--primary-color); }
         
         /* --- Three Motions Text Animation --- */
-        .mission-text-container { position: relative; min-height: 100px; text-align: left; }
+        .mission-text-container { position: relative; min-height: 80px; text-align: left; }
         .mission-text { font-family: var(--font-pixel); font-size: 0.9rem; line-height: 1.4; position: absolute; width: 100%; opacity: 0; }
         .mission-text.active { animation: glitch-text 0.6s steps(2, end) forwards; }
-        
+
         /* --- Joystick Animation --- */
         .joystick-container { display: flex; justify-content: center; align-items: center; margin-top: 1.5rem; }
         .joystick { cursor: pointer; }
@@ -126,7 +129,10 @@
         .job-details { padding: 0 1.5rem 1rem; }
         .job-details li { margin-bottom: 0.8rem; }
         .job-details strong { color: var(--border-color); }
-        .current-job-flag { display: inline-block; font-size: 1.2rem; margin-left: 10px; animation: wave-flag 2s infinite; transform-origin: bottom left; }
+        .current-job-flag { display: inline-block; position: relative; width: 24px; height: 28px; margin-left: 10px; vertical-align: middle; }
+        .flag-pole { position: absolute; bottom: 0; left: 0; width: 4px; height: 100%; background: var(--border-color); }
+        .flag-cloth { position: absolute; top: 0; left: 4px; width: 18px; height: 12px; background: var(--primary-color); transform-origin: left center; }
+        .job-title-group:hover .flag-cloth { animation: wave-flag 1s infinite; }
 
         /* --- Accordion System --- */
         .accordion-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 1.5rem; }
@@ -181,19 +187,10 @@
         @keyframes blink { 50% { opacity: 0; } }
         @keyframes ticker-move { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
         @keyframes shake { 0%, 100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} }
-        @keyframes wave-flag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-10deg); } }
+        @keyframes wave-flag { 0%, 100% { transform: skewX(0); } 50% { transform: skewX(-25deg); } }
         @keyframes hue-cycle { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
-        @keyframes glitch-text {
-            0% { text-shadow: none; opacity: 1; }
-            25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); opacity: 1; }
-            50% { text-shadow: none; opacity: 1; }
-            75% { text-shadow: 2px -2px 0 var(--accent-color), -2px 2px 0 var(--secondary-color); opacity: 1; }
-            100% { text-shadow: none; opacity: 1; }
-        }
-        @keyframes charge-thunder {
-            0%, 100% { fill: yellow; stroke: var(--border-color); }
-            50% { fill: white; stroke: yellow; }
-        }
+        @keyframes glitch-text { 0% { text-shadow: none; opacity: 1; } 25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); opacity: 1; } 50% { text-shadow: none; opacity: 1; } 75% { text-shadow: 2px -2px 0 var(--accent-color), -2px 2px 0 var(--secondary-color); opacity: 1; } 100% { text-shadow: none; opacity: 1; } }
+        @keyframes charge-thunder { 0%, 100% { fill: yellow; stroke: var(--border-color); } 50% { fill: white; stroke: yellow; } }
 
         /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
