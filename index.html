@@ -68,8 +68,10 @@
         .skip-link:focus { top: 10px; }
 
         /* --- Navigation & Toggles --- */
-        .navbar { background-color: #fff; border-bottom: 4px solid var(--border-color); padding: 0.8rem 0; position: sticky; top: 0; z-index: 1000; width: 100%; }
-        .nav-container { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .navbar { background-color: #fff; border-bottom: 4px solid var(--border-color); padding: 0.8rem 1rem; position: sticky; top: 0; z-index: 1000; width: 100%; }
+        .nav-container { display: flex; justify-content: center; align-items: center; width: 100%; max-width: 960px; margin: 0 auto; }
+        .nav-brand { font-family: var(--font-pixel); font-size: 0.8rem; color: var(--border-color); text-decoration: none; display: none; } /* Hidden on desktop, shown on mobile */
+        .nav-menu { display: flex; align-items: center; gap: 1rem; }
         .nav-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; list-style: none; }
         .nav-links a { color: var(--secondary-color); text-decoration: none; font-family: var(--font-pixel); font-size: 0.5rem; padding: 6px 10px; border: 3px solid transparent; transition: all 0.3s ease; }
         .nav-links a:hover, .nav-links a.active { color: var(--primary-color); background-color: #fff2cc; border-color: var(--border-color); box-shadow: 4px 4px 0 var(--border-color); transform: translate(-2px, -2px); }
@@ -81,7 +83,8 @@
         .toggle-switch .slider::before { content: ''; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; background: white; transition: 0.3s; }
         .toggle-switch input:checked + .slider { background: var(--accent-color); }
         .toggle-switch input:checked + .slider::before { transform: translateX(18px); }
-
+        .hamburger-menu { display: none; /* Hidden by default */ }
+        
         /* --- Header / Home --- */
         #home { padding-top: 2rem; }
         .profile-header { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 2rem; }
@@ -103,18 +106,12 @@
         .nes-box li { position: relative; padding-left: 20px; margin-bottom: 0.8rem; }
         .nes-box li::before { content: '▶'; font-family: var(--font-pixel); position: absolute; left: 0; top: 0; color: var(--primary-color); }
         
-        /* --- Transformer Flow Animation --- */
-        .transformer-flow { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.5rem; position: relative; }
-        .flow-box { border: 3px solid var(--border-color); padding: 0.8rem; flex: 1; height: 100px; text-align: center; transition: all 0.3s ease; }
-        .flow-box.active { border-color: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); }
-        .flow-box .title { font-family: var(--font-pixel); font-size: 0.7rem; margin-bottom: 0.5rem; }
-        .flow-box .content { font-family: monospace; font-size: 0.9rem; word-break: break-all; }
-        .flow-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; opacity: 0; }
-        .flow-arrow::before { content: ''; position: absolute; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid var(--primary-color); }
-        .flow-arrow.arrow1 { left: 33%; }
-        .flow-arrow.arrow2 { left: 66%; }
-        .flow-arrow.fire { animation: fire-arrow-right 0.5s ease-out forwards; }
-        .ai-processor.active { animation: pulse-border 1s infinite; }
+        /* --- Animated Three Motions Summary --- */
+        .mission-text-container { position: relative; min-height: 80px; text-align: left; }
+        .mission-text { position: absolute; width: 100%; opacity: 0; animation: cycle-text 9s infinite; font-size: 1.1rem; }
+        .mission-1 { color: var(--primary-color); animation-delay: 0s; }
+        .mission-2 { color: var(--secondary-color); animation-delay: 3s; }
+        .mission-3 { color: var(--accent-color); animation-delay: 6s; }
         
         /* --- Experience Section --- */
         .timeline { border-left: 4px solid var(--border-color); padding-left: 1.5rem; position: relative; margin-top: 1.5rem; text-align: left; }
@@ -175,48 +172,33 @@
         .footer-ticker-move { display: inline-block; white-space: nowrap; animation: ticker-move 20s linear infinite; }
         .footer-ticker-item { display: inline-block; padding: 0 1rem; font-size: 0.8rem; color: var(--secondary-color); }
         
-        /* --- Konami Code Coin Rain --- */
-        #coin-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
-        .coin { position: absolute; width: 20px; height: 20px; background-color: #FFD700; border: 2px solid var(--border-color); animation: fall 5s linear; }
-        .coin::before { content: '$'; font-family: var(--font-pixel); font-size: 12px; color: var(--border-color); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-
         /* --- Animations --- */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes blink { 50% { opacity: 0; } }
         @keyframes text-glitch { 0%, 100% { text-shadow: none; } 25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); } 75% { text-shadow: -2px 2px 0 var(--secondary-color), 2px -2px 0 var(--primary-color); } }
         @keyframes ticker-move { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
         @keyframes shake { 0%, 100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} }
-        @keyframes fire-arrow-right { 0% { opacity: 0; transform: translate(-20px, -50%); } 50% { opacity: 1; } 100% { opacity: 0; transform: translate(20px, -50%); } }
-        @keyframes fire-arrow-down { 0% { opacity: 0; transform: translateY(-20px) rotate(90deg); } 50% { opacity: 1; } 100% { opacity: 0; transform: translateY(20px) rotate(90deg); } }
-        @keyframes pulse-border { 0%, 100% { border-color: var(--border-color); } 50% { border-color: var(--accent-color); } }
-        @keyframes fall { from { top: -20px; transform: rotate(0deg); } to { top: 100vh; transform: rotate(720deg); } }
         @keyframes wave-flag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-10deg); } }
         @keyframes hue-cycle { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
+        @keyframes cycle-text { 0%, 100% { opacity: 0; transform: translateY(10px); } 4%, 30% { opacity: 1; transform: translateY(0); } 34% { opacity: 0; transform: translateY(-10px); } }
 
-
-        /* --- RESPONSIVE STYLES --- */
+        /* --- RESPONSIVE & MOBILE MENU STYLES --- */
         @media (max-width: 768px) {
             body { font-size: 18px; } h1 { font-size: 1.5rem; } h2 { font-size: 1.1rem; }
             section { padding-top: 5rem; }
-            .nav-container { gap: 0.5rem; }
-            .nav-toggles { border: none; padding: 0; margin: 0; }
-            .transformer-flow { flex-direction: column; }
-            .flow-arrow { top: auto; left: 50%; transform: translateX(-50%); }
-            .flow-arrow::before { transform: rotate(90deg); }
-            .flow-arrow.arrow1 { bottom: 66%; }
-            .flow-arrow.arrow2 { bottom: 33%; }
-            .flow-arrow.fire { animation-name: fire-arrow-down; }
-        }
-        @media (max-width: 480px) {
-            h1 { font-size: 1.2rem; } h2 { font-size: 0.9rem; }
-            p { font-size: 1rem; }
-            .profile-photo-container { width: 120px; height: 120px; }
-            .contact-info { gap: 0.5rem; }
-            .nes-box { padding: 1rem; }
-            .grid-container, .skills-grid { grid-template-columns: 1fr; }
-            .job-header { flex-direction: column; align-items: flex-start; }
-            .job-title { font-size: 1rem; }
-            .item-header { flex-direction: column; align-items: flex-start; }
+            .nav-container { justify-content: space-between; }
+            .nav-brand { display: block; }
+            .hamburger-menu { display: flex; flex-direction: column; justify-content: space-around; width: 30px; height: 30px; background: transparent; border: none; cursor: pointer; z-index: 1001; }
+            .hamburger-menu .bar { width: 100%; height: 4px; background: var(--border-color); transition: all 0.3s ease; }
+            .hamburger-menu.active .bar1 { transform: rotate(45deg) translate(8px, 8px); }
+            .hamburger-menu.active .bar2 { opacity: 0; }
+            .hamburger-menu.active .bar3 { transform: rotate(-45deg) translate(8px, -8px); }
+            .nav-menu { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: white; border-left: 4px solid var(--border-color); flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 6rem 2rem; gap: 2rem; transition: right 0.4s ease-in-out; }
+            .nav-menu.active { right: 0; }
+            .nav-links { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+            .nav-links a { font-size: 1rem; }
+            .nav-toggles { border: none; padding: 0; margin: 0; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+            .toggle-switch .label { font-size: 1rem; }
         }
     </style>
     <!-- JSON-LD Schema for SEO -->
@@ -238,27 +220,34 @@
     </script>
 </head>
 <body>
-    <div id="coin-container"></div>
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <nav class="navbar">
         <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#weekend-quests">Weekend Quests</a></li>
-                <li><a href="#toolkit">Toolkit</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#writing">Writing</a></li>
-            </ul>
-            <div class="nav-toggles">
-                <label class="toggle-switch" for="crt-toggle" title="Toggle CRT Scanlines">
-                    <span class="label">CRT</span>
-                    <input type="checkbox" id="crt-toggle">
-                    <div class="slider"></div>
-                </label>
+            <a href="#home" class="nav-brand">V. Faraji</a>
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#weekend-quests">Weekend Quests</a></li>
+                    <li><a href="#toolkit">Toolkit</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#writing">Writing</a></li>
+                </ul>
+                <div class="nav-toggles">
+                    <label class="toggle-switch" for="crt-toggle" title="Toggle CRT Scanlines">
+                        <span class="label">CRT</span>
+                        <input type="checkbox" id="crt-toggle">
+                        <div class="slider"></div>
+                    </label>
+                </div>
             </div>
+            <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
+                <div class="bar bar1"></div>
+                <div class="bar bar2"></div>
+                <div class="bar bar3"></div>
+            </button>
         </div>
     </nav>
 
@@ -290,24 +279,12 @@
             </header>
             <div class="nes-box">
                 <h2>Mission Briefing<span class="cursor"></span></h2>
-                <p>Work on products with Applied AI — fast prototypes, automation flows, and agent-based systems that turn raw human/user data into products.</p>
-                <p>My motto: Build (+more), contribute (^max), and be (>less) verbose.</p>
-                <div class="transformer-flow">
-                    <div class="flow-box text-input">
-                        <div class="title">Text</div>
-                        <div class="content">{#&lt;.../&gt;}</div>
-                    </div>
-                    <span class="flow-arrow arrow1"></span>
-                    <div class="flow-box ai-processor">
-                        <div class="title">AI</div>
-                        <div class="content">[...]</div>
-                    </div>
-                    <span class="flow-arrow arrow2"></span>
-                    <div class="flow-box insight-output">
-                        <div class="title">Insight</div>
-                        <div class="content">{'key':'val'}</div>
-                    </div>
+                <div class="mission-text-container">
+                    <p class="mission-text mission-1">Work on products with Applied AI — fast prototypes,</p>
+                    <p class="mission-text mission-2">automation flows, and agent-based systems,</p>
+                    <p class="mission-text mission-3">that turn raw human/user data into products.</p>
                 </div>
+                <p>My motto: Build (+more), contribute (^max), and be (>less) verbose.</p>
             </div>
         </section>
 
@@ -587,11 +564,6 @@
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
         const accordionHeaders = document.querySelectorAll('.accordion-header');
-        const textInput = document.querySelector('.text-input');
-        const aiProcessor = document.querySelector('.ai-processor');
-        const insightOutput = document.querySelector('.insight-output');
-        const arrow1 = document.querySelector('.arrow1');
-        const arrow2 = document.querySelector('.arrow2');
         const crtToggle = document.getElementById('crt-toggle');
         
         window.addEventListener('scroll', () => {
@@ -625,16 +597,6 @@
                 }
             });
         });
-
-        const runTransformerAnimation = () => {
-            [textInput, aiProcessor, insightOutput].forEach(el => el.classList.remove('active'));
-            [arrow1, arrow2].forEach(el => el.classList.remove('fire'));
-            setTimeout(() => textInput.classList.add('active'), 500);
-            setTimeout(() => arrow1.classList.add('fire'), 1000);
-            setTimeout(() => { textInput.classList.remove('active'); aiProcessor.classList.add('active'); }, 1500);
-            setTimeout(() => arrow2.classList.add('fire'), 2500);
-            setTimeout(() => { aiProcessor.classList.remove('active'); insightOutput.classList.add('active'); }, 3000);
-        };
         
         crtToggle.addEventListener('change', () => {
             document.body.classList.toggle('crt-effect', crtToggle.checked);
@@ -673,9 +635,6 @@
                 crtToggle.checked = true;
                 document.body.classList.add('crt-effect');
             }
-            
-            runTransformerAnimation();
-            setInterval(runTransformerAnimation, 4500);
         });
     </script>
 </body>
