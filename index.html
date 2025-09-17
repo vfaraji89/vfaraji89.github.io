@@ -118,10 +118,7 @@
         .job-details { padding: 0 1.5rem 1rem; }
         .job-details li { margin-bottom: 0.8rem; }
         .job-details strong { color: var(--border-color); }
-        .current-job-arrow { display: inline-block; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid var(--accent-color); margin-left: 10px; animation: bounce-right 1.5s infinite; }
-        .badge { background: var(--secondary-color); color: white; padding: 2px 8px; font-family: var(--font-pixel); font-size: 0.6rem; margin-right: 8px; position: relative; }
-        .badge .badge-proof { display: none; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: var(--border-color); color: white; padding: 5px 10px; font-size: 0.7rem; white-space: nowrap; z-index: 10; border-radius: 4px; }
-        .proof-mode-on .badge:hover .badge-proof { display: block; }
+        .current-job-flag { display: inline-block; font-size: 1.2rem; margin-left: 10px; animation: wave-flag 2s infinite; transform-origin: bottom left; }
 
         /* --- Accordion System --- */
         .accordion-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 1.5rem; }
@@ -179,7 +176,6 @@
         /* --- Animations --- */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes blink { 50% { opacity: 0; } }
-        @keyframes bounce-right { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
         @keyframes text-glitch { 0%, 100% { text-shadow: none; } 25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); } 75% { text-shadow: -2px 2px 0 var(--secondary-color), 2px -2px 0 var(--primary-color); } }
         @keyframes ticker-move { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
         @keyframes shake { 0%, 100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} }
@@ -187,6 +183,7 @@
         @keyframes fire-arrow-down { 0% { opacity: 0; transform: translateY(-20px) rotate(90deg); } 50% { opacity: 1; } 100% { opacity: 0; transform: translateY(20px) rotate(90deg); } }
         @keyframes pulse-border { 0%, 100% { border-color: var(--border-color); } 50% { border-color: var(--accent-color); } }
         @keyframes fall { from { top: -20px; transform: rotate(0deg); } to { top: 100vh; transform: rotate(720deg); } }
+        @keyframes wave-flag { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-10deg); } }
 
         /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
@@ -252,11 +249,6 @@
                     <input type="checkbox" id="crt-toggle">
                     <div class="slider"></div>
                 </label>
-                 <label class="toggle-switch" for="proof-toggle" title="Toggle Proof Mode">
-                    <span class="label">Proof</span>
-                    <input type="checkbox" id="proof-toggle">
-                    <div class="slider"></div>
-                </label>
             </div>
         </div>
     </nav>
@@ -310,7 +302,7 @@
                 <div class="job">
                     <div class="accordion-header">
                         <div class="accordion-title">
-                            <h3 class="job-title">Senior Applied AI Specialist <span class="current-job-arrow"></span></h3>
+                            <h3 class="job-title">Senior Applied AI Specialist <span class="current-job-flag">🚩</span></h3>
                             <p class="job-company">Kariyer Group</p>
                         </div>
                         <span class="accordion-indicator">▶</span>
@@ -318,10 +310,10 @@
                     <div class="accordion-content">
                         <p>Led the technical design and implementation of AI-powered features for a platform with 50M+ users, moving AI concepts from research to production-ready, scalable applications.</p>
                         <ul class="job-details">
-                            <li><span class="badge">🏆<span class="badge-proof">Used Agno, OpenAI SDK, LangChain</span></span><strong>LLM Agent Development:</strong> Designed and implemented Agents and developed a Python-based evaluation framework (evals) to systematically test model output.</li>
-                            <li><span class="badge">🧠<span class="badge-proof">Vectorized user bios, skills, etc.</span></span><strong>Semantic Data Processing:</strong> Built a semantic segmentation pipeline by vectorizing unstructured text data to automatically classify and route service requests.</li>
-                            <li><span class="badge">⚡<span class="badge-proof">Reduced idea-to-feedback time</span></span><strong>Rapid AI Prototyping:</strong> Built interactive UIs with V0 connected to backend models for rapid validation.</li>
-                            <li><span class="badge">⚙️<span class="badge-proof">Used n8n, Power Automate</span></span><strong>Deploying Scalable AI Services:</strong> Designed and deployed internal AI services via RESTful APIs with focus on scalability, latency, and cost monitoring.</li>
+                            <li><strong>LLM Agent Development:</strong> Designed and implemented Agents and developed a Python-based evaluation framework (evals) to systematically test model output.</li>
+                            <li><strong>Semantic Data Processing:</strong> Built a semantic segmentation pipeline by vectorizing unstructured text data to automatically classify and route service requests.</li>
+                            <li><strong>Rapid AI Prototyping:</strong> Built interactive UIs with V0 connected to backend models for rapid validation.</li>
+                            <li><strong>Deploying Scalable AI Services:</strong> Designed and deployed internal AI services via RESTful APIs with focus on scalability, latency, and cost monitoring.</li>
                         </ul>
                     </div>
                 </div>
@@ -336,7 +328,7 @@
                      <div class="accordion-content">
                         <p>Owned data analytics and experimentation for a B2B SaaS platform, providing foundational data skills for my subsequent work in applied AI.</p>
                          <ul class="job-details">
-                            <li><span class="badge">📈<span class="badge-proof">Improved user adoption rates</span></span>Designed and analyzed A/B tests to measure the impact of product changes and validate hypotheses.</li>
+                            <li>Designed and analyzed A/B tests to measure the impact of product changes and validate hypotheses.</li>
                         </ul>
                     </div>
                 </div>
@@ -351,7 +343,7 @@
                     <div class="accordion-content">
                         <p>Co-founded a skills intelligence platform, leading initial technical development and product design from concept to a working MVP.</p>
                          <ul class="job-details">
-                            <li><span class="badge">🚀<span class="badge-proof">From concept to working MVP</span></span>Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.</li>
+                            <li>Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.</li>
                         </ul>
                     </div>
                 </div>
@@ -431,30 +423,43 @@
                     <div class="skill-list">
                         <span class="skill-item">Generative AI</span>
                         <span class="skill-item">OpenAI API</span>
-                        <span class="skill-item">Google Gemini</span>
-                        <span class="skill-item">Advanced Prompting</span>
+                        <span class="skill-item">Google GenAI Kit</span>
                         <span class="skill-item">LangSmith</span>
                         <span class="skill-item">Word Embeddings</span>
+                        <span class="skill-item">MCP</span>
                     </div>
                 </div>
                 <div class="nes-box skill-category">
-                    <h3>Product & Automation</h3>
+                    <h3>Product</h3>
                     <div class="skill-list">
                         <span class="skill-item">Data Product</span>
                         <span class="skill-item">API Development</span>
                         <span class="skill-item">Azure DevOps</span>
                         <span class="skill-item">Jira</span>
+                    </div>
+                </div>
+                 <div class="nes-box skill-category">
+                    <h3>Automation</h3>
+                    <div class="skill-list">
                         <span class="skill-item">n8n</span>
                         <span class="skill-item">Power Automate</span>
+                        <span class="skill-item">Python</span>
                     </div>
                 </div>
                 <div class="nes-box skill-category">
-                    <h3>Analytics & Research</h3>
+                    <h3>Analytics</h3>
                     <div class="skill-list">
-                        <span class="skill-item">Python</span>
                         <span class="skill-item">SQL Dialects</span>
                         <span class="skill-item">ETL</span>
+                        <span class="skill-item">Text Analysis</span>
                         <span class="skill-item">People Data</span>
+                        <span class="skill-item">Advanced Spreadsheets</span>
+                    </div>
+                </div>
+                <div class="nes-box skill-category">
+                    <h3>Research</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Deep Research</span>
                         <span class="skill-item">Analytical Skills</span>
                         <span class="skill-item">Advanced Statistics</span>
                         <span class="skill-item">Labour Market Research</span>
@@ -557,7 +562,6 @@
         const arrow1 = document.querySelector('.arrow1');
         const arrow2 = document.querySelector('.arrow2');
         const crtToggle = document.getElementById('crt-toggle');
-        const proofToggle = document.getElementById('proof-toggle');
         
         window.addEventListener('scroll', () => {
             scrollTopButton.classList.toggle('visible', window.scrollY > 400);
@@ -606,11 +610,6 @@
             localStorage.setItem('isCrtOn', crtToggle.checked);
         });
 
-        proofToggle.addEventListener('change', () => {
-            document.body.classList.toggle('proof-mode-on', proofToggle.checked);
-            localStorage.setItem('isProofModeOn', proofToggle.checked);
-        });
-
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
         let konamiIndex = 0;
         document.addEventListener('keydown', (e) => {
@@ -643,11 +642,7 @@
                 crtToggle.checked = true;
                 document.body.classList.add('crt-effect');
             }
-            if (localStorage.getItem('isProofModeOn') === 'true') {
-                proofToggle.checked = true;
-                document.body.classList.add('proof-mode-on');
-            }
-
+            
             runTransformerAnimation();
             setInterval(runTransformerAnimation, 4500);
         });
