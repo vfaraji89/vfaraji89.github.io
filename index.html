@@ -76,13 +76,14 @@
         .toggle-switch .slider::before { content: ''; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; background: white; transition: 0.3s; }
         .toggle-switch input:checked + .slider { background: var(--accent-color); }
         .toggle-switch input:checked + .slider::before { transform: translateX(18px); }
+        .toggle-switch .icon { font-size: 0.8rem; margin-right: 8px; }
 
         /* --- Header / Home --- */
         #home { padding-top: 2rem; }
         .profile-header { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 2rem; }
         .profile-photo-container { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--border-color); padding: 4px; background-color: #fff; transition: transform 0.3s ease; }
         .profile-photo-container:hover { transform: scale(1.05) rotate(3deg); }
-        .profile-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; image-rendering: pixelated; /* Default pixelated */ transition: filter 0.3s; }
+        .profile-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; image-rendering: pixelated; transition: filter 0.3s; }
         .profile-photo:hover { filter: grayscale(1); }
         .job-title-main { font-size: 1.3rem; text-align: center; text-transform: none; margin: 0; min-height: 2.2rem; }
         .job-title-main .typing-cursor { display: inline-block; background-color: var(--text-color); width: 8px; height: 1.3rem; animation: blink 0.7s infinite; vertical-align: middle; }
@@ -120,7 +121,7 @@
         .job-details strong { color: var(--border-color); }
         .current-job-arrow { display: inline-block; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 12px solid var(--accent-color); margin-left: 10px; animation: bounce-right 1.5s infinite; }
         .badge { background: var(--secondary-color); color: white; padding: 2px 8px; font-family: var(--font-pixel); font-size: 0.6rem; margin-right: 8px; position: relative; }
-        .badge-proof { display: none; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: var(--border-color); color: white; padding: 5px 10px; font-size: 0.7rem; white-space: nowrap; z-index: 10; }
+        .badge .badge-proof { display: none; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background: var(--border-color); color: white; padding: 5px 10px; font-size: 0.7rem; white-space: nowrap; z-index: 10; border-radius: 4px; }
         .proof-mode-on .badge:hover .badge-proof { display: block; }
 
         /* --- Accordion System --- */
@@ -247,6 +248,11 @@
                 <li><a href="#writing">Writing</a></li>
             </ul>
             <div class="nav-toggles">
+                <label class="toggle-switch" for="mute-toggle" title="Toggle Sound">
+                    <span class="label icon">🔊</span>
+                    <input type="checkbox" id="mute-toggle">
+                    <div class="slider"></div>
+                </label>
                 <label class="toggle-switch" for="crt-toggle" title="Toggle CRT Scanlines">
                     <span class="label">CRT</span>
                     <input type="checkbox" id="crt-toggle">
@@ -318,10 +324,10 @@
                     <div class="accordion-content">
                         <p>Led the technical design and implementation of AI-powered features for a platform with 50M+ users, moving AI concepts from research to production-ready, scalable applications.</p>
                         <ul class="job-details">
-                            <li><span class="badge" data-proof="Used Agno, OpenAI SDK, LangChain">🏆</span><strong>LLM Agent Development:</strong> Designed and implemented Agents and developed a Python-based evaluation framework (evals) to systematically test model output.</li>
-                            <li><span class="badge" data-proof="Vectorized user bios, skills, etc.">🧠</span><strong>Semantic Data Processing:</strong> Built a semantic segmentation pipeline by vectorizing unstructured text data to automatically classify and route service requests.</li>
-                            <li><span class="badge" data-proof="Reduced idea-to-feedback time">⚡</span><strong>Rapid AI Prototyping:</strong> Built interactive UIs with V0 connected to backend models for rapid validation.</li>
-                            <li><span class="badge" data-proof="Used n8n, Power Automate">⚙️</span><strong>Deploying Scalable AI Services:</strong> Designed and deployed internal AI services via RESTful APIs with focus on scalability, latency, and cost monitoring.</li>
+                            <li><span class="badge">🏆<span class="badge-proof">Used Agno, OpenAI SDK, LangChain</span></span><strong>LLM Agent Development:</strong> Designed and implemented Agents and developed a Python-based evaluation framework (evals) to systematically test model output.</li>
+                            <li><span class="badge">🧠<span class="badge-proof">Vectorized user bios, skills, etc.</span></span><strong>Semantic Data Processing:</strong> Built a semantic segmentation pipeline by vectorizing unstructured text data to automatically classify and route service requests.</li>
+                            <li><span class="badge">⚡<span class="badge-proof">Reduced idea-to-feedback time</span></span><strong>Rapid AI Prototyping:</strong> Built interactive UIs with V0 connected to backend models for rapid validation.</li>
+                            <li><span class="badge">⚙️<span class="badge-proof">Used n8n, Power Automate</span></span><strong>Deploying Scalable AI Services:</strong> Designed and deployed internal AI services via RESTful APIs with focus on scalability, latency, and cost monitoring.</li>
                         </ul>
                     </div>
                 </div>
@@ -336,7 +342,7 @@
                      <div class="accordion-content">
                         <p>Owned data analytics and experimentation for a B2B SaaS platform, providing foundational data skills for my subsequent work in applied AI.</p>
                          <ul class="job-details">
-                            <li><span class="badge" data-proof="Improved user adoption rates">📈</span>Designed and analyzed A/B tests to measure the impact of product changes and validate hypotheses.</li>
+                            <li><span class="badge">📈<span class="badge-proof">Improved user adoption rates</span></span>Designed and analyzed A/B tests to measure the impact of product changes and validate hypotheses.</li>
                         </ul>
                     </div>
                 </div>
@@ -351,7 +357,7 @@
                     <div class="accordion-content">
                         <p>Co-founded a skills intelligence platform, leading initial technical development and product design from concept to a working MVP.</p>
                          <ul class="job-details">
-                            <li><span class="badge" data-proof="From concept to working MVP">🚀</span>Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.</li>
+                            <li><span class="badge">🚀<span class="badge-proof">From concept to working MVP</span></span>Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.</li>
                         </ul>
                     </div>
                 </div>
@@ -537,44 +543,69 @@
 
     <a href="#home" class="scroll-to-top" aria-label="Scroll to top"></a>
 
+    <!-- Audio elements for sound effects -->
+    <audio id="sfx-hover" src="data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAACAgICA" preload="auto"></audio>
+    <audio id="sfx-click" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAACAgIA=" preload="auto"></audio>
+    <audio id="sfx-toggle" src="data:audio/wav;base64,UklGRiYAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQIAAADAgICA" preload="auto"></audio>
+    <audio id="sfx-success" src="data:audio/wav;base64,UklGRlIAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YUwAAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA=" preload="auto"></audio>
+
     <script>
         // --- PWA Service Worker Registration ---
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('data:application/javascript,', { scope: '.' }).catch(error => {
-                console.error('Service Worker registration failed:', error);
-            });
+            navigator.serviceWorker.register('data:application/javascript,', { scope: '.' }).catch(error => {});
         }
-
-        // --- SCROLL TO TOP BUTTON SCRIPT ---
+        
         const scrollTopButton = document.querySelector('.scroll-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 400) { scrollTopButton.classList.add('visible'); } 
-            else { scrollTopButton.classList.remove('visible'); }
-        });
-
-        // --- ACTIVE NAV LINK ON SCROLL SCRIPT ---
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        const textInput = document.querySelector('.text-input');
+        const aiProcessor = document.querySelector('.ai-processor');
+        const insightOutput = document.querySelector('.insight-output');
+        const arrow1 = document.querySelector('.arrow1');
+        const arrow2 = document.querySelector('.arrow2');
+        const crtToggle = document.getElementById('crt-toggle');
+        const proofToggle = document.getElementById('proof-toggle');
+        const muteToggle = document.getElementById('mute-toggle');
+        
+        let isMuted = true;
+
+        const sounds = {
+            hover: document.getElementById('sfx-hover'),
+            click: document.getElementById('sfx-click'),
+            toggle: document.getElementById('sfx-toggle'),
+            success: document.getElementById('sfx-success')
+        };
+        
+        function playSound(soundName) {
+            if (isMuted) return;
+            const sound = sounds[soundName];
+            if (sound) {
+                sound.currentTime = 0;
+                sound.play().catch(e => {});
+            }
+        }
+        
+        window.addEventListener('scroll', () => {
+            scrollTopButton.classList.toggle('visible', window.scrollY > 400);
+        });
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const currentId = entry.target.id;
                     navLinks.forEach(a => {
-                        a.classList.remove('active');
-                        a.removeAttribute('aria-current');
-                        if (a.getAttribute('href') === '#' + currentId) {
-                            a.classList.add('active');
-                            a.setAttribute('aria-current', 'page');
-                        }
+                        const isActive = a.getAttribute('href') === '#' + currentId;
+                        a.classList.toggle('active', isActive);
+                        if (isActive) a.setAttribute('aria-current', 'page');
+                        else a.removeAttribute('aria-current');
                     });
                 }
             });
-        }, observerOptions);
-        sections.forEach(section => { observer.observe(section); });
+        }, { root: null, rootMargin: '0px', threshold: 0.3 });
         
-        // --- ACCORDION SCRIPT ---
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        sections.forEach(section => observer.observe(section));
+        
         accordionHeaders.forEach(header => {
             header.addEventListener('click', () => {
                 const content = header.nextElementSibling;
@@ -584,15 +615,9 @@
                 } else {
                     content.style.maxHeight = content.scrollHeight + "px";
                 }
+                playSound('toggle');
             });
         });
-
-        // --- TRANSFORMER FLOW ANIMATION ---
-        const textInput = document.querySelector('.text-input');
-        const aiProcessor = document.querySelector('.ai-processor');
-        const insightOutput = document.querySelector('.insight-output');
-        const arrow1 = document.querySelector('.arrow1');
-        const arrow2 = document.querySelector('.arrow2');
 
         const runTransformerAnimation = () => {
             [textInput, aiProcessor, insightOutput].forEach(el => el.classList.remove('active'));
@@ -604,21 +629,24 @@
             setTimeout(() => { aiProcessor.classList.remove('active'); insightOutput.classList.add('active'); }, 3000);
         };
         
-        // --- CRT & PROOF MODE TOGGLES ---
-        const crtToggle = document.getElementById('crt-toggle');
-        const proofToggle = document.getElementById('proof-toggle');
-        
         crtToggle.addEventListener('change', () => {
             document.body.classList.toggle('crt-effect', crtToggle.checked);
             localStorage.setItem('isCrtOn', crtToggle.checked);
+            playSound('toggle');
         });
 
         proofToggle.addEventListener('change', () => {
             document.body.classList.toggle('proof-mode-on', proofToggle.checked);
             localStorage.setItem('isProofModeOn', proofToggle.checked);
+            playSound('toggle');
         });
 
-        // --- KONAMI CODE EASTER EGG ---
+        muteToggle.addEventListener('change', () => {
+            isMuted = !muteToggle.checked;
+            localStorage.setItem('isMuted', isMuted);
+            playSound('toggle');
+        });
+
         const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
         let konamiIndex = 0;
         document.addEventListener('keydown', (e) => {
@@ -634,20 +662,27 @@
         });
 
         function rainCoins() {
+            playSound('success');
             const container = document.getElementById('coin-container');
             for (let i = 0; i < 40; i++) {
                 const coin = document.createElement('div');
                 coin.classList.add('coin');
                 coin.style.left = `${Math.random() * 100}vw`;
-                coin.style.animationDuration = `${Math.random() * 2 + 3}s`; // 3-5 seconds
+                coin.style.animationDuration = `${Math.random() * 2 + 3}s`;
                 coin.style.animationDelay = `${Math.random() * 2}s`;
                 container.appendChild(coin);
                 setTimeout(() => coin.remove(), 5000);
             }
         }
+        
+        document.querySelectorAll('a, button, .toggle-switch, .accordion-header, .skill-item').forEach(el => {
+            el.addEventListener('mouseenter', () => playSound('hover'));
+        });
+         document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('click', () => playSound('click'));
+        });
 
         document.addEventListener('DOMContentLoaded', () => {
-            // Apply saved toggle preferences
             if (localStorage.getItem('isCrtOn') === 'true') {
                 crtToggle.checked = true;
                 document.body.classList.add('crt-effect');
@@ -656,6 +691,8 @@
                 proofToggle.checked = true;
                 document.body.classList.add('proof-mode-on');
             }
+            isMuted = localStorage.getItem('isMuted') !== 'false'; // Muted by default
+            muteToggle.checked = !isMuted;
 
             runTransformerAnimation();
             setInterval(runTransformerAnimation, 4500);
