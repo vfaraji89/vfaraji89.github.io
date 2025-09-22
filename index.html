@@ -16,7 +16,7 @@
     <meta property="og:image" content="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg">
 
     <!-- PWA Manifest Link -->
-    <link rel="manifest" href="data:application/manifest+json,{&quot;name&quot;:&quot;Vahid Faraji | Portfolio&quot;,&quot;short_name&quot;:&quot;V. Faraji&quot;,&quot;start_url&quot;:&quot;.&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#F0F8FF&quot;,&quot;theme_color&quot;:&quot;#2c3e50&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg&quot;,&quot;sizes&quot;:&quot;192x192&quot;,&quot;type&quot;:&quot;image/jpeg&quot;}]}">
+    <link rel="manifest" href="data:application/manifest+json,{'name':'Vahid Faraji | Portfolio','short_name':'V. Faraji','start_url':'.','display':'standalone','background_color':'#F0F8FF','theme_color':'#2c3e50','icons':[{'src':'https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg','sizes':'192x192','type':'image/jpeg'}]}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -144,7 +144,7 @@
 
         /* --- Generic Grid & Card Styling --- */
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; text-align: left; }
-        .card { background-color: #fff; border: 4px solid var(--border-color); padding: 0; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
+        .card { background-color: #fff; border: 4px solid var(--border-color); padding: 1.5rem; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
         .card:hover { transform: translate(-5px, -5px); box-shadow: 6px 6px 0 var(--border-color); }
         .card .accordion-content { padding: 0 1.5rem 1rem; }
         .card p { font-size: 1rem; }
@@ -166,7 +166,7 @@
         .pub-title { margin-top: 0.5rem; font-style: italic; }
         
         /* --- Link Buttons --- */
-        .card-button, .substack-button { display: inline-block; font-family: var(--font-pixel); font-size: 0.7rem; color: #fff; background-color: var(--primary-color); text-decoration: none; padding: 0.7rem 1.2rem; border: 3px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); margin-top: auto; transition: all 0.2s ease; }
+        .card-button, .substack-button { display: inline-block; font-family: var(--font-pixel); font-size: 0.7rem; color: #fff; background-color: var(--primary-color); text-decoration: none; padding: 0.7rem 1.2rem; border: 3px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); margin-top: auto; transition: all 0.2s ease; text-align: center;}
         .card-button:hover, .substack-button:hover { transform: translate(4px, 4px); box-shadow: none; }
         
         /* --- Scroll to Top Button --- */
@@ -203,6 +203,7 @@
         /* --- RESPONSIVE STYLES --- */
         @media (max-width: 768px) {
             body { font-size: 18px; } h1 { font-size: 1.5rem; } h2 { font-size: 1.1rem; }
+            .card {padding: 1rem;}
             section { padding-top: 5rem; }
             .nav-container { justify-content: space-between; }
             .nav-brand { display: block; }
@@ -329,19 +330,21 @@
                 <div class="job">
                     <div class="accordion-header">
                         <div class="accordion-title">
-                            <h3 class="job-title">Senior Applied AI Specialist <span class="current-job-flag"><div class="flag-pole"></div><div class="flag-cloth"></div></span></h3>
+                            <h3 class="job-title-group">Senior Applied AI Specialist <span class="current-job-flag"><div class="flag-pole"></div><div class="flag-cloth"></div></span></h3>
                             <p class="job-company">Kariyer Group</p>
                         </div>
                         <span class="accordion-indicator">▶</span>
                     </div>
                     <div class="accordion-content">
-                        <p>Led the technical design and implementation of AI-powered features for a platform with 50M+ users, moving AI concepts from research to production-ready, scalable applications.</p>
-                        <ul class="job-details">
-                            <li><strong>LLM Agent Development:</strong> Designed and implemented Agents and developed a Python-based evaluation framework (evals) to systematically test model output.</li>
-                            <li><strong>Semantic Data Processing:</strong> Built a semantic segmentation pipeline by vectorizing unstructured text data to automatically classify and route service requests.</li>
-                            <li><strong>Rapid AI Prototyping:</strong> Built interactive UIs with V0 connected to backend models for rapid validation.</li>
-                            <li><strong>Deploying Scalable AI Services:</strong> Designed and deployed internal AI services via RESTful APIs with focus on scalability, latency, and cost monitoring.</li>
-                        </ul>
+                        <div class="job-details">
+                            <p>Led the technical design and implementation of AI-powered features for a platform with 50M+ users, moving AI concepts from research to production-ready, scalable applications.</p>
+                            <ul>
+                                <li><strong>LLM Agent Development:</strong> Designed and implemented Agents and developed a Python-based evaluation framework (evals) to systematically test model output.</li>
+                                <li><strong>Semantic Data Processing:</strong> Built a semantic segmentation pipeline by vectorizing unstructured text data to automatically classify and route service requests.</li>
+                                <li><strong>Rapid AI Prototyping:</strong> Built interactive UIs with V0 connected to backend models for rapid validation.</li>
+                                <li><strong>Deploying Scalable AI Services:</strong> Designed and deployed internal AI services via RESTful APIs with focus on scalability, latency, and cost monitoring.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="job">
@@ -353,10 +356,12 @@
                         <span class="accordion-indicator">▶</span>
                     </div>
                      <div class="accordion-content">
-                        <p>Owned data analytics and experimentation for a B2B SaaS platform, providing foundational data skills for my subsequent work in applied AI.</p>
-                         <ul class="job-details">
-                            <li>Designed and analyzed A/B tests to measure the impact of product changes and validate hypotheses.</li>
-                        </ul>
+                        <div class="job-details">
+                            <p>Owned data analytics and experimentation for a B2B SaaS platform, providing foundational data skills for my subsequent work in applied AI.</p>
+                             <ul>
+                                <li>Designed and analyzed A/B tests to measure the impact of product changes and validate hypotheses.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                  <div class="job">
@@ -368,10 +373,12 @@
                         <span class="accordion-indicator">▶</span>
                     </div>
                     <div class="accordion-content">
-                        <p>Co-founded a skills intelligence platform, leading initial technical development and product design from concept to a working MVP.</p>
-                         <ul class="job-details">
-                            <li>Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.</li>
-                        </ul>
+                        <div class="job-details">
+                            <p>Co-founded a skills intelligence platform, leading initial technical development and product design from concept to a working MVP.</p>
+                             <ul>
+                                <li>Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -410,33 +417,39 @@
                 <p style="text-align:center; margin-top: 1.5rem;">Exploring new ideas and building fast.</p>
             </header>
              <div class="grid-container">
-                <div class="card">
+                <div class="card" style="padding:0;">
                     <div class="accordion-header">
                         <h3 class="accordion-title">Defter-i Mesâlik</h3>
                         <span class="accordion-indicator">▶</span>
                     </div>
                     <div class="accordion-content">
-                        <p>What if a 'Product Manager' existed in the Ottoman Empire? This question led to a mini-app bridging 21st-century tech jobs with creative, historical titles. I call it The Book of Jobs: "Her Maharete Bir Unvan."</p>
-                        <a href="https://defter-i-mesalik.vercel.app/" target="_blank" class="card-button" aria-label="Try the Defter-i Mesâlik App">Try the App</a>
+                        <div style="padding: 0 1.5rem 1.5rem;">
+                            <p>What if a 'Product Manager' existed in the Ottoman Empire? This question led to a mini-app bridging 21st-century tech jobs with creative, historical titles. I call it The Book of Jobs: "Her Maharete Bir Unvan."</p>
+                            <a href="https://defter-i-mesalik.vercel.app/" target="_blank" class="card-button" aria-label="Try the Defter-i Mesâlik App">Try the App</a>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" style="padding:0;">
                     <div class="accordion-header">
                         <h3 class="accordion-title">AI Food Scanner</h3>
                         <span class="accordion-indicator">▶</span>
                     </div>
                     <div class="accordion-content">
-                        <p>From idea to a mini AI app in 3 hours: a fast-prototyping challenge to build an AI Food Scanner using Vercel's v0, LibreChat, and Google GenAI. My deep dive into the 'text-to-build' workflow.</p>
-                        <a href="https://vahidfaraji.substack.com/p/from-idea-to-a-mini-ai-app-in-3" target="_blank" class="card-button" aria-label="Read the post about building an AI Food Scanner">Read the Post</a>
+                         <div style="padding: 0 1.5rem 1.5rem;">
+                            <p>From idea to a mini AI app in 3 hours: a fast-prototyping challenge to build an AI Food Scanner using Vercel's v0, LibreChat, and Google GenAI. My deep dive into the 'text-to-build' workflow.</p>
+                            <a href="https://vahidfaraji.substack.com/p/from-idea-to-a-mini-ai-app-in-3" target="_blank" class="card-button" aria-label="Read the post about building an AI Food Scanner">Read the Post</a>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card" style="padding:0;">
                     <div class="accordion-header">
                         <h3 class="accordion-title">Posextract Prototype</h3>
                         <span class="accordion-indicator">▶</span>
                     </div>
                     <div class="accordion-content">
-                        <p>Messy job titles? I prototyped a Python library to extract & normalize titles in English, Turkish & Spanish using a hybrid system: Gemini 1.5 Flash, ontology mapping, and a web agent for low-confidence titles.</p>
+                        <div style="padding: 0 1.5rem 1.5rem;">
+                            <p>Messy job titles? I prototyped a Python library to extract & normalize titles in English, Turkish & Spanish using a hybrid system: Gemini 1.5 Flash, ontology mapping, and a web agent for low-confidence titles.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -549,7 +562,7 @@
                 <p style="font-size: 1.1rem; margin-top: 1rem;">Submitted manuscript, 2025. ORCID: 0000-0002-9153-0765</p>
             </div>
             <div class="card" style="margin-top: 1.5rem; text-align: center;">
-                <p>Read more of my thoughts and analysis on Substack.</p>
+                <p style="text-align:center;">Read more of my thoughts and analysis on Substack.</p>
                 <a href="https://vahidfaraji.substack.com/" target="_blank" class="substack-button" aria-label="Read my articles on Substack">Read my Substack</a>
             </div>
         </section>
@@ -584,95 +597,83 @@
     <a href="#home" class="scroll-to-top" aria-label="Scroll to top"></a>
 
     <script>
-        // --- PWA Service Worker Registration ---
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('data:application/javascript,', { scope: '.' }).catch(error => {});
-        }
-        
-        const scrollTopButton = document.querySelector('.scroll-to-top');
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-links a');
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-        const crtToggle = document.getElementById('crt-toggle');
-        
-        window.addEventListener('scroll', () => {
-            scrollTopButton.classList.toggle('visible', window.scrollY > 400);
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const currentId = entry.target.id;
-                    navLinks.forEach(a => {
-                        const isActive = a.getAttribute('href') === '#' + currentId;
-                        a.classList.toggle('active', isActive);
-                        if (isActive) a.setAttribute('aria-current', 'page');
-                        else a.removeAttribute('aria-current');
-                    });
-                }
-            });
-        }, { root: null, rootMargin: '0px', threshold: 0.3 });
-        
-        sections.forEach(section => observer.observe(section));
-        
-        accordionHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                const content = header.nextElementSibling;
-                header.classList.toggle('active');
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
-            });
-        });
-        
-        crtToggle.addEventListener('change', () => {
-            document.body.classList.toggle('crt-effect', crtToggle.checked);
-            localStorage.setItem('isCrtOn', crtToggle.checked);
-        });
-        
-        // --- Mobile Menu ---
-        const hamburger = document.querySelector('.hamburger-menu');
-        const navMenu = document.querySelector('.nav-menu');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
         document.addEventListener('DOMContentLoaded', () => {
+            // --- PWA Service Worker Registration ---
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('data:application/javascript,', { scope: '.' }).catch(error => {});
+            }
+            
+            const scrollTopButton = document.querySelector('.scroll-to-top');
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            const crtToggle = document.getElementById('crt-toggle');
+            
+            // --- Scroll to Top Visibility ---
+            window.addEventListener('scroll', () => {
+                scrollTopButton.classList.toggle('visible', window.scrollY > 400);
+            });
+
+            // --- Active Nav Link on Scroll ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentId = entry.target.id;
+                        navLinks.forEach(a => {
+                            const isActive = a.getAttribute('href') === '#' + currentId;
+                            a.classList.toggle('active', isActive);
+                            if (isActive) a.setAttribute('aria-current', 'page');
+                            else a.removeAttribute('aria-current');
+                        });
+                    }
+                });
+            }, { root: null, rootMargin: '0px', threshold: 0.4 });
+            
+            sections.forEach(section => observer.observe(section));
+            
+            // --- Accordion Functionality ---
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const isActive = header.classList.contains('active');
+                    
+                    header.classList.toggle('active');
+                    
+                    if (isActive) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+            
+            // --- CRT Effect Toggle ---
+            crtToggle.addEventListener('change', () => {
+                document.body.classList.toggle('crt-effect', crtToggle.checked);
+                localStorage.setItem('isCrtOn', crtToggle.checked);
+            });
+            
+            // --- Mobile Menu Toggle ---
+            const hamburger = document.querySelector('.hamburger-menu');
+            const navMenu = document.querySelector('.nav-menu');
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+
+            // --- Load Preferences ---
             if (localStorage.getItem('isCrtOn') === 'true') {
                 crtToggle.checked = true;
                 document.body.classList.add('crt-effect');
             }
-
-            // --- Three Motions Text Animation ---
-            const missionTexts = document.querySelectorAll('#home .mission-text');
-            let missionIndex = 0;
-            function cycleMissionText() {
-                missionTexts.forEach(text => text.classList.remove('active'));
-                missionTexts[missionIndex].classList.add('active');
-                missionIndex = (missionIndex + 1) % missionTexts.length;
-            }
-            cycleMissionText();
-            setInterval(cycleMissionText, 3000);
-
-            // --- Writing Section Animation ---
-            const writingTexts = document.querySelectorAll('#writing .mission-text');
-            let writingIndex = 0;
-            function cycleWritingText() {
-                writingTexts.forEach(text => text.classList.remove('active'));
-                writingTexts[writingIndex].classList.add('active');
-                writingIndex = (writingIndex + 1) % writingTexts.length;
-            }
-            cycleWritingText();
-            setInterval(cycleWritingText, 3000);
         });
     </script>
 </body>
