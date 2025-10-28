@@ -256,6 +256,8 @@
             border: 1px solid rgba(30, 24, 24, 0.06);
             box-shadow: 0 24px 60px rgba(30, 24, 24, 0.08);
             overflow: hidden;
+            display: grid;
+            gap: 1.75rem;
         }
 
         .hero-visual::before {
@@ -267,6 +269,107 @@
             pointer-events: none;
         }
 
+        .flight-hud {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 18px;
+            background: radial-gradient(circle at 60% 20%, rgba(216, 84, 84, 0.18) 0%, rgba(216, 84, 84, 0) 55%),
+                linear-gradient(135deg, rgba(216, 84, 84, 0.12) 0%, rgba(216, 84, 84, 0.02) 100%);
+            border: 1px solid rgba(216, 84, 84, 0.22);
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .flight-hud::after {
+            content: "";
+            position: absolute;
+            inset: 18% 22% auto;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(216, 84, 84, 0) 0%, rgba(216, 84, 84, 0.45) 45%, rgba(216, 84, 84, 0) 100%);
+        }
+
+        .flight-path {
+            position: absolute;
+            inset: 10%;
+            width: 80%;
+            height: 80%;
+            stroke: rgba(216, 84, 84, 0.45);
+            stroke-width: 3;
+            stroke-linecap: round;
+            fill: none;
+            stroke-dasharray: 6 10;
+            animation: drawPath 18s linear infinite;
+        }
+
+        .waypoint {
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: #fff;
+            color: var(--accent);
+            border: 1px solid rgba(216, 84, 84, 0.3);
+            box-shadow: 0 12px 30px rgba(30, 24, 24, 0.08);
+        }
+
+        .waypoint.departure {
+            top: 64%;
+            left: 12%;
+        }
+
+        .waypoint.arrival {
+            top: 22%;
+            right: 10%;
+        }
+
+        .aircraft {
+            position: absolute;
+            inset: 0;
+            offset-path: path('M 10 120 C 28 40 92 30 125 70 Q 98 60 70 120');
+            offset-rotate: auto;
+            animation: planeFlight 18s cubic-bezier(0.54, 0.04, 0.29, 1) infinite;
+            will-change: offset-distance;
+        }
+
+        .plane-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, rgba(216, 84, 84, 0.7) 100%);
+            color: #fff;
+            font-size: 1.5rem;
+            transform: rotate(var(--plane-bank, 0deg));
+            transition: transform 180ms ease;
+            box-shadow: 0 16px 38px rgba(216, 84, 84, 0.35);
+        }
+
+        .contrail {
+            position: absolute;
+            left: -72px;
+            top: 50%;
+            width: 70px;
+            height: 2px;
+            transform: translateY(-50%);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(216, 84, 84, 0.55) 100%);
+            filter: blur(0.4px);
+            transform-origin: right center;
+        }
+
+        .flight-stats {
+            margin-top: 0;
+            display: grid;
+            gap: 1.25rem;
+        }
+
         .flight-tag {
             display: inline-flex;
             align-items: center;
@@ -275,12 +378,6 @@
             letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--text-secondary);
-        }
-
-        .flight-stats {
-            margin-top: 2rem;
-            display: grid;
-            gap: 1.5rem;
         }
 
         .flight-stats dl {
@@ -298,6 +395,17 @@
 
         section {
             margin-top: clamp(3.5rem, 6vw, 4.5rem);
+        }
+
+        section[data-motion] {
+            opacity: 0;
+            transform: translateY(44px);
+            transition: transform 360ms ease-out, opacity 360ms ease-out;
+        }
+
+        section[data-motion].in-view {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .section-header {
@@ -496,6 +604,34 @@
                 transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
+
+            .aircraft {
+                animation: none !important;
+                offset-distance: 100% !important;
+            }
+
+            section[data-motion] {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        @keyframes drawPath {
+            0% {
+                stroke-dashoffset: 0;
+            }
+            100% {
+                stroke-dashoffset: -240;
+            }
+        }
+
+        @keyframes planeFlight {
+            0% {
+                offset-distance: 0%;
+            }
+            100% {
+                offset-distance: 100%;
+            }
         }
     </style>
 </head>
@@ -541,6 +677,17 @@
             </div>
             <div class="hero-visual" aria-hidden="true">
                 <span class="flight-tag">Flight plan · VF-890</span>
+                <div class="flight-hud">
+                    <svg class="flight-path" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 120 C 30 40, 95 30, 130 70 Q 96 58, 70 120" />
+                    </svg>
+                    <div class="waypoint departure">IST</div>
+                    <div class="waypoint arrival">AI</div>
+                    <div class="aircraft">
+                        <span class="plane-icon">✈</span>
+                        <span class="contrail"></span>
+                    </div>
+                </div>
                 <div class="flight-stats">
                     <dl>
                         <dt>Current mission</dt>
@@ -551,16 +698,10 @@
                         <dd>Applied AI, data products, automation flows</dd>
                     </dl>
                 </div>
-                <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute; bottom:1.5rem; right:1.5rem;">
-                    <path d="M15 92 C60 68 90 74 125 45" stroke="rgba(216,84,84,0.45)" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 8" />
-                    <path d="M110 35 L130 45 L120 58" fill="var(--accent)" />
-                    <path d="M110 35 L100 49 L120 58" fill="rgba(216,84,84,0.7)" />
-                    <circle cx="15" cy="92" r="6" fill="var(--accent)" />
-                </svg>
             </div>
         </section>
 
-        <section id="experience">
+        <section id="experience" data-motion>
             <div class="section-header">
                 <h2>Flight Log</h2>
                 <p>Positions that sharpened my navigation of AI products.</p>
@@ -595,7 +736,7 @@
             </div>
         </section>
 
-        <section id="projects">
+        <section id="projects" data-motion>
             <div class="section-header">
                 <h2>Hangar Projects</h2>
                 <p>Primary missions shipped and in active rotation.</p>
@@ -616,7 +757,7 @@
             </div>
         </section>
 
-        <section id="weekend-quests">
+        <section id="weekend-quests" data-motion>
             <div class="section-header">
                 <h2>Weekend Test Flights</h2>
                 <p>Short sorties that keep my build cadence sharp.</p>
@@ -639,7 +780,7 @@
             </div>
         </section>
 
-        <section id="toolkit">
+        <section id="toolkit" data-motion>
             <div class="section-header">
                 <h2>Onboard Systems</h2>
                 <p>Capabilities I bring to every mission.</p>
@@ -672,7 +813,7 @@
             </div>
         </section>
 
-        <section id="education">
+        <section id="education" data-motion>
             <div class="section-header">
                 <h2>Training Grounds</h2>
                 <p>Academic foundations.</p>
@@ -689,7 +830,7 @@
             </div>
         </section>
 
-        <section id="writing">
+        <section id="writing" data-motion>
             <div class="section-header">
                 <h2>Dispatches</h2>
                 <p>Notes from the field.</p>
@@ -733,6 +874,7 @@
         });
 
         const sections = document.querySelectorAll('main section');
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -745,11 +887,23 @@
                             link.removeAttribute('aria-current');
                         }
                     });
+
+                    if (entry.target.dataset.motion !== undefined) {
+                        entry.target.classList.add('in-view');
+                    }
                 }
             });
         }, { threshold: 0.4 });
 
         sections.forEach(section => observer.observe(section));
+
+        if (reduceMotion.matches) {
+            sections.forEach(section => {
+                if (section.dataset.motion !== undefined) {
+                    section.classList.add('in-view');
+                }
+            });
+        }
 
         window.addEventListener('scroll', () => {
             const shouldShow = window.scrollY > 360;
@@ -763,6 +917,45 @@
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('service-worker.js').catch(() => {});
         }
+
+        const heroVisual = document.querySelector('.hero-visual');
+        const planeIcon = heroVisual?.querySelector('.plane-icon');
+
+        if (heroVisual && planeIcon && window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+            const updateBank = (event) => {
+                const rect = heroVisual.getBoundingClientRect();
+                const relativeX = (event.clientX - rect.left) / rect.width;
+                const bounded = Math.min(Math.max(relativeX, 0), 1);
+                const bank = (bounded - 0.5) * 20;
+                planeIcon.style.setProperty('--plane-bank', `${bank.toFixed(2)}deg`);
+            };
+
+            heroVisual.addEventListener('pointermove', updateBank);
+            heroVisual.addEventListener('pointerleave', () => {
+                planeIcon.style.removeProperty('--plane-bank');
+            });
+        }
     </script>
 </body>
 </html>
+manifest.webmanifest
+New
++16
+-0
+
+{
+  "name": "Vahid Faraji | Applied AI Flight Deck",
+  "short_name": "VF Flight",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#d85454",
+  "description": "Aviation-inspired portfolio for Vahid Faraji featuring applied AI projects, experiments, and research.",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ]
+}
