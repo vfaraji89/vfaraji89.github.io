@@ -3,32 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vahid Faraji | Applied AI Portfolio</title>
-    <meta name="description" content="Explore Vahid Faraji's applied AI portfolio with interactive visualizations, modern UI, and highlights of LLM, data, and automation work.">
-    <meta property="og:title" content="Vahid Faraji | Applied AI Portfolio">
-    <meta property="og:description" content="Interactive showcase of applied AI, data products, and rapid prototyping projects.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://vfaraji89.github.io/">
-    <meta property="og:image" content="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg">
+    <title>Vahid Faraji | Applied AI Flight Deck</title>
+    <meta name="description" content="Minimal aviation-inspired portfolio for Vahid Faraji showcasing applied AI work, rapid prototyping, and research." />
+    <meta property="og:title" content="Vahid Faraji | Applied AI Flight Deck" />
+    <meta property="og:description" content="Explore projects, experiments, and research from Senior Applied AI Specialist Vahid Faraji." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vfaraji89.github.io/" />
+    <meta property="og:image" content="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg" />
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            color-scheme: dark light;
-            --bg-primary: #040314;
-            --bg-secondary: #111029;
-            --accent: #63f5c8;
-            --accent-strong: #4cc4ff;
-            --accent-warm: #ff7ab8;
-            --text-high: #f5f7ff;
-            --text-mid: rgba(232, 235, 255, 0.75);
-            --card-glass: rgba(17, 16, 41, 0.6);
-            --stroke-soft: rgba(255, 255, 255, 0.08);
-            --blur-radius: 24px;
-            --max-width: 1120px;
-            font-size: clamp(14px, 1.1vw + 12px, 18px);
+            color-scheme: light;
+            --background: #ffffff;
+            --background-alt: #f7f3f3;
+            --text-primary: #1d1b1b;
+            --text-secondary: #6a5b5b;
+            --accent: #d85454;
+            --accent-soft: #f7d7d7;
+            --stroke: rgba(216, 84, 84, 0.28);
+            --max-width: 1080px;
+            --transition: 180ms ease;
         }
 
         *, *::before, *::after {
@@ -37,36 +34,10 @@
 
         body {
             margin: 0;
-            font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: radial-gradient(circle at 20% 20%, rgba(99, 245, 200, 0.16), transparent 55%),
-                        radial-gradient(circle at 80% 15%, rgba(76, 196, 255, 0.18), transparent 60%),
-                        radial-gradient(circle at 50% 80%, rgba(255, 122, 184, 0.12), transparent 55%),
-                        var(--bg-primary);
-            color: var(--text-high);
+            font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(180deg, var(--accent-soft) 0%, rgba(255, 255, 255, 0) 30%), var(--background);
+            color: var(--text-primary);
             min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(99, 245, 200, 0.15), rgba(76, 196, 255, 0.05));
-            mix-blend-mode: screen;
-            opacity: 0.4;
-            pointer-events: none;
-            z-index: -2;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background-image: url('data:image/svg+xml,%3Csvg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"%3E%3Cpath d="M0 0H160V160H0z"/%3E%3Ccircle cx="80" cy="80" r="32"/%3E%3Ccircle cx="80" cy="80" r="64"/%3E%3C/g%3E%3C/svg%3E');
-            opacity: 0.35;
-            pointer-events: none;
-            z-index: -3;
         }
 
         a {
@@ -74,19 +45,40 @@
             text-decoration: none;
         }
 
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
         .container {
             width: min(100%, var(--max-width));
             margin: 0 auto;
-            padding: clamp(1.5rem, 3vw, 3rem);
+            padding: clamp(1.25rem, 3vw, 2.5rem);
         }
 
-        .navbar {
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            padding: 0.5rem 0.85rem;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 999px;
+            z-index: 999;
+            transition: top var(--transition);
+        }
+
+        .skip-link:focus {
+            top: 1rem;
+        }
+
+        header.navbar {
             position: sticky;
             top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(16px);
-            background: color-mix(in srgb, var(--bg-primary) 70%, transparent);
-            border-bottom: 1px solid var(--stroke-soft);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.94);
+            border-bottom: 1px solid rgba(30, 24, 24, 0.06);
+            backdrop-filter: blur(12px);
         }
 
         .nav-inner {
@@ -95,950 +87,677 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: clamp(0.75rem, 1vw, 1rem) clamp(1.5rem, 3vw, 2.5rem);
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1.25rem, 3vw, 2rem);
         }
 
         .brand {
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            letter-spacing: 0.16em;
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+            gap: 0.65rem;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
+            font-size: clamp(0.95rem, 1.3vw, 1.1rem);
         }
 
         .brand::before {
             content: "";
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-            box-shadow: 0 0 12px rgba(99, 245, 200, 0.8);
+            width: 32px;
+            height: 8px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent) 0%, rgba(216, 84, 84, 0.2) 100%);
         }
 
-        .nav-links {
+        nav {
             display: flex;
             align-items: center;
-            gap: clamp(0.8rem, 1.2vw, 1.6rem);
-            font-size: clamp(0.85rem, 1vw, 1rem);
+            gap: 1.2rem;
+            font-size: clamp(0.85rem, 1vw, 0.95rem);
         }
 
-        .nav-links a {
-            padding: 0.35rem 0.7rem;
+        nav a {
+            padding: 0.4rem 0.65rem;
             border-radius: 999px;
-            transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
-            color: var(--text-mid);
+            color: var(--text-secondary);
+            transition: background var(--transition), color var(--transition);
         }
 
-        .nav-links a:hover,
-        .nav-links a:focus-visible,
-        .nav-links a.active {
-            background: linear-gradient(135deg, rgba(99, 245, 200, 0.25), rgba(76, 196, 255, 0.2));
-            color: var(--text-high);
-            transform: translateY(-2px);
+        nav a:hover,
+        nav a:focus-visible,
+        nav a.active {
+            background: rgba(216, 84, 84, 0.12);
+            color: var(--text-primary);
         }
 
-        .primary-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.15rem;
-            border-radius: 999px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-            color: #020205;
-            font-weight: 600;
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
-            box-shadow: 0 8px 24px rgba(76, 196, 255, 0.35);
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: 0;
+            padding: 0.2rem;
         }
 
-        .primary-btn:hover,
-        .primary-btn:focus-visible {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 12px 32px rgba(76, 196, 255, 0.45);
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 5px 0;
+            transition: transform var(--transition);
+        }
+
+        main {
+            padding-block: clamp(2rem, 5vw, 4rem);
         }
 
         .hero {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: clamp(1.5rem, 3vw, 3rem);
+            gap: clamp(1.5rem, 4vw, 3rem);
             align-items: center;
             position: relative;
+        }
+
+        .hero-copy {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .overline {
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.1rem, 4vw, 3.2rem);
+            line-height: 1.15;
+            margin: 0;
+        }
+
+        .hero p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 1.3vw, 1.1rem);
+        }
+
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .primary-btn,
+        .ghost-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 1.2rem;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+        }
+
+        .primary-btn {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 12px 30px rgba(216, 84, 84, 0.25);
+        }
+
+        .primary-btn:hover,
+        .primary-btn:focus-visible {
+            transform: translateY(-1px);
+            box-shadow: 0 16px 36px rgba(216, 84, 84, 0.32);
+        }
+
+        .ghost-btn {
+            border: 1px solid var(--stroke);
+            color: var(--text-primary);
+            background: #fff;
+        }
+
+        .ghost-btn:hover,
+        .ghost-btn:focus-visible {
+            background: rgba(216, 84, 84, 0.08);
+        }
+
+        .contact-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 0.6rem;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .contact-list a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.65rem 0.85rem;
+            border: 1px solid rgba(30, 24, 24, 0.07);
+            border-radius: 14px;
+            color: var(--text-secondary);
+            transition: border var(--transition), color var(--transition);
+        }
+
+        .contact-list a:hover,
+        .contact-list a:focus-visible {
+            border-color: var(--accent);
+            color: var(--text-primary);
         }
 
         .hero-visual {
             position: relative;
-            isolation: isolate;
-        }
-
-        .hero-visual::before,
-        .hero-visual::after {
-            content: "";
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.8;
-            animation: pulse 12s ease-in-out infinite;
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            background: #fff;
+            border-radius: 24px;
+            border: 1px solid rgba(30, 24, 24, 0.06);
+            box-shadow: 0 24px 60px rgba(30, 24, 24, 0.08);
+            overflow: hidden;
         }
 
         .hero-visual::before {
-            inset: -30% 15% 30% -25%;
-            background: radial-gradient(circle, rgba(99, 245, 200, 0.3), transparent 55%);
+            content: "";
+            position: absolute;
+            inset: 1.5rem;
+            border: 1px dashed rgba(216, 84, 84, 0.4);
+            border-radius: 16px 60px 16px 16px;
+            pointer-events: none;
         }
 
-        .hero-visual::after {
-            inset: 25% -20% -20% 20%;
-            background: radial-gradient(circle, rgba(255, 122, 184, 0.35), transparent 60%);
-            animation-delay: -4s;
-        }
-
-        .profile-card {
-            position: relative;
-            padding: clamp(2rem, 3vw, 3rem);
-            border-radius: 28px;
-            background: color-mix(in srgb, var(--card-glass) 70%, rgba(255,255,255,0.08));
-            backdrop-filter: blur(var(--blur-radius));
-            border: 1px solid color-mix(in srgb, transparent 70%, var(--accent) 30%);
-            box-shadow: 0 24px 60px rgba(4, 3, 20, 0.55);
-        }
-
-        .profile-card header {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-
-        .hero-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2.4rem, 5vw, 3.6rem);
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            margin: 0;
-        }
-
-        .hero-title span {
-            background: linear-gradient(135deg, var(--accent), var(--accent-strong), var(--accent-warm));
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2.2vw, 1.35rem);
-            color: var(--text-mid);
-            margin: 0;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0 0;
-        }
-
-        .tag {
-            padding: 0.4rem 0.9rem;
-            border-radius: 999px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: var(--text-mid);
+        .flight-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
             font-size: 0.85rem;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
+            color: var(--text-secondary);
         }
 
-        .profile-info {
+        .flight-stats {
+            margin-top: 2rem;
             display: grid;
-            gap: 1.25rem;
-            margin-top: 1.75rem;
+            gap: 1.5rem;
         }
 
-        .contact-grid {
+        .flight-stats dl {
+            margin: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 0.85rem;
+            grid-template-columns: auto 1fr;
+            gap: 0.35rem 1rem;
+            font-size: 0.95rem;
         }
 
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.65rem 0.85rem;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            background: color-mix(in srgb, transparent 70%, rgba(255,255,255,0.05) 30%);
-            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-            color: var(--text-high);
-            font-weight: 500;
-            gap: 0.6rem;
-        }
-
-        .contact-link:hover,
-        .contact-link:focus-visible {
-            transform: translateY(-2px);
-            border-color: rgba(99, 245, 200, 0.65);
-            background: color-mix(in srgb, transparent 50%, rgba(99,245,200,0.18) 50%);
-        }
-
-        .contact-icon {
-            width: 1.25rem;
-            height: 1.25rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .flight-stats dt {
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         section {
-            margin-top: clamp(3.5rem, 6vw, 6rem);
+            margin-top: clamp(3.5rem, 6vw, 4.5rem);
         }
 
         .section-header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: baseline;
             gap: 1rem;
             flex-wrap: wrap;
-            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+            border-left: 3px solid var(--accent);
+            padding-left: 1rem;
         }
 
-        .section-title {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(1.4rem, 2.4vw, 2rem);
-            letter-spacing: -0.01em;
+        .section-header h2 {
+            margin: 0;
+            font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
         }
 
-        .section-title::before {
-            content: "";
-            width: 14px;
-            height: 14px;
-            border-radius: 4px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
-            box-shadow: 0 0 18px rgba(99, 245, 200, 0.6);
+        .section-header p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
-        .section-summary {
-            color: var(--text-mid);
-            max-width: 520px;
-            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
-        }
-
-        .grid {
+        .card-grid {
+            margin-top: clamp(1.5rem, 3vw, 2.5rem);
             display: grid;
-            gap: clamp(1.5rem, 3vw, 2.5rem);
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: clamp(1rem, 2.5vw, 1.75rem);
         }
 
-        .grid.two-col {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        .card {
+            border: 1px solid rgba(30, 24, 24, 0.08);
+            border-radius: 20px;
+            padding: clamp(1.25rem, 2vw, 1.75rem);
+            background: #fff;
+            box-shadow: 0 16px 36px rgba(30, 24, 24, 0.06);
+            display: grid;
+            gap: 0.75rem;
         }
 
-        .grid.three-col {
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        .card h3 {
+            margin: 0;
+            font-size: 1.15rem;
         }
 
-        .glass-card {
-            position: relative;
-            padding: clamp(1.8rem, 2.5vw, 2.4rem);
-            border-radius: 24px;
-            background: color-mix(in srgb, var(--card-glass) 80%, rgba(255,255,255,0.04));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(var(--blur-radius));
-            box-shadow: 0 18px 50px rgba(4, 3, 20, 0.45);
-        }
-
-        .glass-card h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-            margin-top: 0;
-            margin-bottom: 0.75rem;
-            letter-spacing: -0.01em;
-        }
-
-        .glass-card p,
-        .glass-card li {
-            color: var(--text-mid);
-            line-height: 1.7;
+        .card p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         .timeline {
-            position: relative;
-            padding-left: clamp(1.5rem, 3vw, 2.5rem);
-            border-left: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            left: -0.4rem;
-            top: 0.35rem;
-            bottom: 0;
-            width: 0.75rem;
-            background: linear-gradient(180deg, rgba(99, 245, 200, 0.15), rgba(255, 122, 184, 0.15));
-            filter: blur(12px);
+            margin-top: clamp(1.5rem, 3vw, 2rem);
+            display: grid;
+            gap: 1.25rem;
         }
 
         .timeline-item {
             position: relative;
-            padding-bottom: clamp(1.8rem, 2.8vw, 2.6rem);
-        }
-
-        .timeline-item:last-child {
-            padding-bottom: 0;
+            padding-left: 2.5rem;
         }
 
         .timeline-item::before {
             content: "";
             position: absolute;
-            left: -2.2rem;
+            left: 0.6rem;
             top: 0.25rem;
-            width: 0.75rem;
-            height: 0.75rem;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-            box-shadow: 0 0 18px rgba(76, 196, 255, 0.8);
+            bottom: -0.5rem;
+            width: 1px;
+            background: rgba(216, 84, 84, 0.25);
         }
 
-        .timeline-item time {
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 50%;
+            border: 3px solid var(--accent-soft);
+            background: var(--accent);
+        }
+
+        .timeline-item:last-child::before {
+            bottom: auto;
+            height: calc(100% - 1.25rem);
+        }
+
+        .timeline-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .timeline-heading h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .timeline-heading span {
             font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--text-secondary);
             letter-spacing: 0.16em;
             text-transform: uppercase;
         }
 
-        .timeline-item h4 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(1.15rem, 1.9vw, 1.45rem);
-            margin: 0.35rem 0 0.5rem;
+        .timeline p {
+            margin: 0.5rem 0 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
-        .timeline-item strong {
-            color: var(--text-high);
-        }
-
-        .data-visual {
-            position: relative;
-            border-radius: 28px;
-            background: radial-gradient(circle at 25% 20%, rgba(99, 245, 200, 0.22), transparent 60%),
-                        radial-gradient(circle at 70% 30%, rgba(76, 196, 255, 0.18), transparent 55%),
-                        color-mix(in srgb, var(--card-glass) 85%, rgba(6, 6, 20, 0.7));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(calc(var(--blur-radius) * 0.9));
-            box-shadow: 0 20px 60px rgba(4, 3, 20, 0.55);
-            overflow: hidden;
-            min-height: 340px;
-            padding: clamp(1.8rem, 3vw, 2.4rem);
-        }
-
-        .data-visual canvas {
-            width: 100%;
-            height: 100%;
-        }
-
-        .data-caption {
-            position: absolute;
-            bottom: clamp(1.1rem, 2vw, 1.6rem);
-            left: clamp(1.2rem, 2.5vw, 2rem);
-            color: var(--text-mid);
-            font-size: 0.9rem;
-            max-width: 280px;
-        }
-
-        .projects-grid {
-            display: grid;
-            gap: clamp(1.4rem, 2.6vw, 2.4rem);
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        }
-
-        .project-card {
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-        }
-
-        .project-pill {
-            align-self: flex-start;
-            font-size: 0.75rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        ul {
-            margin: 0;
-            padding-left: 1.1rem;
-        }
-
-        ul li {
-            margin-bottom: 0.45rem;
+        .list-inline {
+            margin: 0.75rem 0 0;
+            padding-left: 1.2rem;
+            color: var(--text-secondary);
         }
 
         footer {
-            margin-top: clamp(4rem, 6vw, 6.5rem);
-            border-top: 1px solid var(--stroke-soft);
-            padding: clamp(1.8rem, 3vw, 2.6rem) 0 clamp(2.4rem, 4vw, 3.4rem);
-            text-align: center;
-            color: rgba(232, 235, 255, 0.6);
-            font-size: 0.9rem;
+            margin-top: clamp(3rem, 5vw, 4.5rem);
+            border-top: 1px solid rgba(30, 24, 24, 0.08);
+            padding: clamp(1.5rem, 3vw, 2.5rem) 0;
         }
 
-        .footer-marquee {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-            letter-spacing: 0.28em;
-            text-transform: uppercase;
-            font-size: 0.8rem;
+        footer p {
+            text-align: center;
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 0.16em;
         }
 
         .scroll-top {
             position: fixed;
-            bottom: clamp(1.5rem, 4vw, 2.75rem);
-            right: clamp(1.2rem, 4vw, 2.75rem);
-            width: 48px;
-            height: 48px;
-            border-radius: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: linear-gradient(135deg, rgba(99, 245, 200, 0.4), rgba(76, 196, 255, 0.35));
-            color: var(--bg-primary);
+            right: 1.5rem;
+            bottom: 1.5rem;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 0;
+            background: rgba(216, 84, 84, 0.9);
+            color: #fff;
+            font-size: 1.2rem;
             display: grid;
             place-items: center;
+            cursor: pointer;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 16px 36px rgba(76, 196, 255, 0.28);
+            transition: opacity var(--transition), visibility var(--transition);
         }
 
         .scroll-top.visible {
             opacity: 1;
             visibility: visible;
-            transform: translateY(-6px);
         }
 
-        .floating-orb {
-            position: absolute;
-            width: clamp(200px, 25vw, 280px);
-            aspect-ratio: 1;
-            background: radial-gradient(circle at 35% 35%, rgba(99, 245, 200, 0.45), transparent 65%),
-                        radial-gradient(circle at 70% 60%, rgba(76, 196, 255, 0.5), transparent 60%);
-            filter: blur(12px);
-            opacity: 0.75;
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float 16s ease-in-out infinite;
-            mix-blend-mode: screen;
-        }
+        @media (max-width: 760px) {
+            nav {
+                position: fixed;
+                inset: 0 0 0 40%;
+                padding: 4.5rem 1.5rem;
+                background: rgba(255, 255, 255, 0.96);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                transform: translateX(100%);
+                transition: transform var(--transition);
+            }
 
-        .floating-orb:nth-of-type(1) {
-            top: -8%;
-            right: 5%;
-            animation-delay: -6s;
-        }
+            nav.open {
+                transform: translateX(0);
+            }
 
-        .floating-orb:nth-of-type(2) {
-            bottom: 12%;
-            left: -8%;
-            animation-delay: -2s;
-        }
+            .menu-toggle {
+                display: inline-flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 3px;
+                cursor: pointer;
+            }
 
-        .floating-orb:nth-of-type(3) {
-            top: 45%;
-            left: 55%;
-            animation-delay: -11s;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.08);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translate3d(0, 0, 0) scale(1);
-            }
-            50% {
-                transform: translate3d(10px, -25px, 0) scale(1.05);
-            }
-        }
-
-        @media (max-width: 720px) {
-            .nav-links {
-                display: none;
-            }
-            .hero {
-                grid-template-columns: 1fr;
-            }
-            .profile-card {
-                padding: clamp(1.8rem, 4vw, 2.6rem);
-            }
-            .timeline {
-                padding-left: 1.5rem;
-            }
-            .timeline-item::before {
-                left: -1.8rem;
+            .nav-inner {
+                gap: 1rem;
             }
         }
 
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
-                animation-duration: 0.001ms !important;
+                animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
-                transition-duration: 0.001ms !important;
+                transition-duration: 0.01ms !important;
                 scroll-behavior: auto !important;
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-orb" aria-hidden="true"></div>
-    <div class="floating-orb" aria-hidden="true"></div>
-    <div class="floating-orb" aria-hidden="true"></div>
+    <a href="#main" class="skip-link">Skip to main content</a>
 
-    <nav class="navbar" aria-label="Primary">
+    <header class="navbar" role="banner">
         <div class="nav-inner">
-            <a class="brand" href="#home">Vahid Faraji</a>
-            <div class="nav-links" role="list">
-                <a href="#experience" data-nav>Experience</a>
-                <a href="#projects" data-nav>Projects</a>
-                <a href="#quests" data-nav>Weekend Quests</a>
-                <a href="#toolkit" data-nav>Toolkit</a>
-                <a href="#education" data-nav>Education</a>
-                <a href="#writing" data-nav>Dispatches</a>
-            </div>
-            <a class="primary-btn" href="mailto:vfaraji89@gmail.com">
-                <span aria-hidden="true">✶</span>
-                Start a build sprint
-            </a>
+            <a class="brand" href="#home">V. Faraji</a>
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav aria-label="Primary">
+                <a href="#home" class="active">Home</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#weekend-quests">Weekend Quests</a>
+                <a href="#toolkit">Toolkit</a>
+                <a href="#education">Education</a>
+                <a href="#writing">Writing</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <main id="home" class="container">
-        <section class="hero" aria-labelledby="hero-title">
+    <main id="main" class="container">
+        <section id="home" class="hero">
+            <div class="hero-copy">
+                <p class="overline">Senior Applied AI Specialist</p>
+                <h1>Designing flight-ready AI systems that move products from runway to runway.</h1>
+                <p>I build dependable applied AI services, rapid prototypes, and agent-based automations that help teams launch faster. My background spans LLM evaluation, semantic routing, and product experimentation.</p>
+                <div class="cta-group">
+                    <a class="primary-btn" href="mailto:vfaraji89@gmail.com">Schedule a briefing</a>
+                    <a class="ghost-btn" href="https://www.linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noreferrer">LinkedIn</a>
+                </div>
+                <ul class="contact-list">
+                    <li><a href="https://github.com/vfaraji89" target="_blank" rel="noreferrer">GitHub</a></li>
+                    <li><a href="https://vahidfaraji.substack.com/" target="_blank" rel="noreferrer">Substack</a></li>
+                    <li><a href="https://huggingface.co/vfaraji89" target="_blank" rel="noreferrer">Hugging Face</a></li>
+                    <li><a href="https://www.datacamp.com/profile/vfaraji89" target="_blank" rel="noreferrer">DataCamp</a></li>
+                </ul>
+            </div>
             <div class="hero-visual" aria-hidden="true">
-                <div class="data-visual" role="img" aria-label="Animated constellation inspired visualization of Vahid's skill clusters">
-                    <canvas id="nebulaCanvas" width="540" height="540"></canvas>
-                    <p class="data-caption">Interactive "Frog Nebula" rendering inspired by OpenAI's playful frog visuals, mapping core skill clusters and collaboration orbits.</p>
+                <span class="flight-tag">Flight plan · VF-890</span>
+                <div class="flight-stats">
+                    <dl>
+                        <dt>Current mission</dt>
+                        <dd>Kariyer Group · 50M+ users</dd>
+                        <dt>Navigation</dt>
+                        <dd>LLM agents · Semantic systems · Rapid prototyping</dd>
+                        <dt>Flight hours</dt>
+                        <dd>Applied AI, data products, automation flows</dd>
+                    </dl>
                 </div>
+                <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute; bottom:1.5rem; right:1.5rem;">
+                    <path d="M15 92 C60 68 90 74 125 45" stroke="rgba(216,84,84,0.45)" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 8" />
+                    <path d="M110 35 L130 45 L120 58" fill="var(--accent)" />
+                    <path d="M110 35 L100 49 L120 58" fill="rgba(216,84,84,0.7)" />
+                    <circle cx="15" cy="92" r="6" fill="var(--accent)" />
+                </svg>
             </div>
-            <article class="profile-card">
-                <header>
-                    <h1 id="hero-title" class="hero-title">Applied AI Specialist crafting <span>intelligent products</span></h1>
-                    <p class="hero-subtitle">Transforming ambiguous ideas into production-ready, human-centric AI systems for teams that move fast.</p>
-                </header>
-                <div class="tags" role="list">
-                    <span class="tag" role="listitem">LLM Agents</span>
-                    <span class="tag" role="listitem">Semantic Systems</span>
-                    <span class="tag" role="listitem">Rapid Prototyping</span>
-                    <span class="tag" role="listitem">Data Products</span>
-                </div>
-                <div class="profile-info">
-                    <div class="contact-grid">
-                        <a class="contact-link" href="https://www.linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noreferrer noopener">
-                            <span class="contact-icon" aria-hidden="true">🔗</span>
-                            LinkedIn
-                        </a>
-                        <a class="contact-link" href="https://github.com/vfaraji89" target="_blank" rel="noreferrer noopener">
-                            <span class="contact-icon" aria-hidden="true">🐙</span>
-                            GitHub
-                        </a>
-                        <a class="contact-link" href="https://vahidfaraji.substack.com" target="_blank" rel="noreferrer noopener">
-                            <span class="contact-icon" aria-hidden="true">✍️</span>
-                            Substack
-                        </a>
-                        <a class="contact-link" href="https://huggingface.co/vfaraji89" target="_blank" rel="noreferrer noopener">
-                            <span class="contact-icon" aria-hidden="true">🤗</span>
-                            Hugging Face
-                        </a>
+        </section>
+
+        <section id="experience">
+            <div class="section-header">
+                <h2>Flight Log</h2>
+                <p>Positions that sharpened my navigation of AI products.</p>
+            </div>
+            <div class="timeline">
+                <article class="timeline-item">
+                    <div class="timeline-heading">
+                        <h3>Senior Applied AI Specialist · Kariyer Group</h3>
+                        <span>2023 — Present</span>
                     </div>
-                    <p>Currently shipping AI-first capabilities for <strong>Kariyer Group</strong> and collaborating on automation systems that connect labour-market data with human decisions.</p>
-                </div>
-            </article>
-        </section>
-
-        <section id="experience" aria-labelledby="experience-title">
-            <div class="section-header">
-                <h2 id="experience-title" class="section-title">Experience Atlas</h2>
-                <p class="section-summary">A vector of roles where strategy, product, and machine intelligence intersect.</p>
-            </div>
-            <div class="grid two-col">
-                <div class="timeline" aria-label="Career timeline">
-                    <article class="timeline-item glass-card">
-                        <time datetime="2022">2022 — Present</time>
-                        <h4>Senior Applied AI Specialist · Kariyer Group</h4>
-                        <p>Leading design and delivery of AI-powered experiences for a platform with 50M+ users, bridging research-grade concepts into production.</p>
-                        <ul>
-                            <li><strong>Agents & EvalOps:</strong> Created autonomous agents and a Python evaluation harness to continuously score LLM outputs.</li>
-                            <li><strong>Semantic pipelines:</strong> Engineered vector search & classification flows to triage service requests automatically.</li>
-                            <li><strong>Launch velocity:</strong> Built interactive UIs connected to live models using Vercel v0 for rapid validation.</li>
-                            <li><strong>Scalable AI services:</strong> Deployed observability-rich REST services with latency and cost guardrails.</li>
-                        </ul>
-                    </article>
-                    <article class="timeline-item glass-card">
-                        <time datetime="2020">2020 — 2022</time>
-                        <h4>Business Analyst · WorqCompany</h4>
-                        <p>Owned product experimentation and analytics for a B2B SaaS platform, establishing the data foundations for applied AI work.</p>
-                        <ul>
-                            <li>Designed measurement frameworks and executed A/B tests to focus roadmap bets.</li>
-                        </ul>
-                    </article>
-                    <article class="timeline-item glass-card">
-                        <time datetime="2017">2017 — 2020</time>
-                        <h4>Co-Founder & People Data Lead · Defaro.io</h4>
-                        <p>Co-created a skills intelligence platform, architecting the MVP and career recommendation engine from 0 → 1.</p>
-                        <ul>
-                            <li>Shipped multilingual skill normalization logic and interactive dashboards for clients.</li>
-                        </ul>
-                    </article>
-                </div>
-                <div class="glass-card" aria-live="polite">
-                    <h3>Impact Snapshot</h3>
-                    <p>Teams trust me when they need:</p>
-                    <ul>
-                        <li><strong>LLM orchestration</strong> that balances creativity with deterministic guardrails.</li>
-                        <li><strong>Product delivery</strong> across ambiguous discovery, prototyping, and launch.</li>
-                        <li><strong>Analytics fluency</strong> to link usage signals with business outcomes.</li>
+                    <p>Transitioned research ideas into resilient AI services for a 50M+ talent platform, measuring impact end-to-end.</p>
+                    <ul class="list-inline">
+                        <li>Designed evaluation harnesses and production agents for LLM experiences.</li>
+                        <li>Shaped semantic routing pipelines that classify and route service requests.</li>
+                        <li>Delivered REST APIs with tight latency monitoring and cost visibility.</li>
                     </ul>
-                    <p>I pair technical builds with storytelling, documentation, and stakeholder rituals that keep momentum high.</p>
-                </div>
+                </article>
+                <article class="timeline-item">
+                    <div class="timeline-heading">
+                        <h3>Business Analyst (Data & Analytics) · WorqCompany</h3>
+                        <span>2021 — 2023</span>
+                    </div>
+                    <p>Built experimentation frameworks and data instrumentation for a B2B SaaS product.</p>
+                </article>
+                <article class="timeline-item">
+                    <div class="timeline-heading">
+                        <h3>People Data Lead · Defaro.io</h3>
+                        <span>2018 — 2021</span>
+                    </div>
+                    <p>Co-founded a skills intelligence platform, guiding product design, MVP development, and matching logic.</p>
+                </article>
             </div>
         </section>
 
-        <section id="projects" aria-labelledby="projects-title">
+        <section id="projects">
             <div class="section-header">
-                <h2 id="projects-title" class="section-title">Flagship Launches</h2>
-                <p class="section-summary">Selected releases that blend LLM reasoning, automation, and design craft.</p>
+                <h2>Hangar Projects</h2>
+                <p>Primary missions shipped and in active rotation.</p>
             </div>
-            <div class="projects-grid">
-                <article class="glass-card project-card">
-                    <span class="project-pill">LLM Product</span>
+            <div class="card-grid">
+                <article class="card">
                     <h3>Position Extraction App</h3>
-                    <p>Autonomous LLM pipeline that extracts & normalizes job positions, boosting matching accuracy by 50% for Kariyer Group.</p>
-                    <ul>
-                        <li>Hybrid stack combining structured prompts, embeddings, and evaluation harness.</li>
-                        <li>Delivered monitoring dashboards covering precision, latency, and cost.</li>
-                    </ul>
+                    <p>LLM-driven pipeline that extracts and normalizes job positions, lifting matching accuracy by 50%+.</p>
                 </article>
-                <article class="glass-card project-card">
-                    <span class="project-pill">Thought Leadership</span>
+                <article class="card">
                     <h3>People Data Handbook</h3>
-                    <p>195-page guide demystifying people analytics for the Persian-speaking community with applied tactics and tooling.</p>
+                    <p>A 195-page playbook introducing People Analytics to the Persian-speaking community.</p>
                 </article>
-                <article class="glass-card project-card">
-                    <span class="project-pill">AI Ops</span>
-                    <h3>Forkyops (w/ Gülenay Özbek)</h3>
-                    <p>Developing an AI reasoning layer to orchestrate safety, health, and performance interventions for frontline operators.</p>
+                <article class="card">
+                    <h3>Forkyops with Gülenay Özbek</h3>
+                    <p>AI reasoning layer that monitors operator safety, health, and performance.</p>
                 </article>
             </div>
         </section>
 
-        <section id="quests" aria-labelledby="quests-title">
+        <section id="weekend-quests">
             <div class="section-header">
-                <h2 id="quests-title" class="section-title">Weekend Quests</h2>
-                <p class="section-summary">Experiments in speculative design and rapid prototyping.</p>
+                <h2>Weekend Test Flights</h2>
+                <p>Short sorties that keep my build cadence sharp.</p>
             </div>
-            <div class="projects-grid">
-                <article class="glass-card project-card">
-                    <span class="project-pill">Speculative Design</span>
+            <div class="card-grid">
+                <article class="card">
                     <h3>Defter-i Mesâlik</h3>
-                    <p>Playful Ottoman-era job generator bridging modern tech roles with historical titles.</p>
-                    <a class="primary-btn" href="https://defter-i-mesalik.vercel.app/" target="_blank" rel="noreferrer noopener">Launch mini-app</a>
+                    <p>Playful mini-app matching 21st-century tech roles with imaginative Ottoman-era job titles.</p>
+                    <a class="ghost-btn" href="https://defter-i-mesalik.vercel.app/" target="_blank" rel="noreferrer">View app</a>
                 </article>
-                <article class="glass-card project-card">
-                    <span class="project-pill">Rapid Build</span>
+                <article class="card">
                     <h3>AI Food Scanner</h3>
-                    <p>3-hour sprint using Vercel v0, LibreChat, and Google GenAI to demo text-to-build workflows.</p>
-                    <a class="primary-btn" href="https://vahidfaraji.substack.com/p/from-idea-to-a-mini-ai-app-in-3" target="_blank" rel="noreferrer noopener">Read the story</a>
+                    <p>Three-hour prototype challenge combining Vercel v0, LibreChat, and Google GenAI into a functional scanner.</p>
+                    <a class="ghost-btn" href="https://vahidfaraji.substack.com/p/from-idea-to-a-mini-ai-app-in-3" target="_blank" rel="noreferrer">Read post</a>
                 </article>
-                <article class="glass-card project-card">
-                    <span class="project-pill">Applied Research</span>
+                <article class="card">
                     <h3>Posextract Prototype</h3>
-                    <p>Hybrid system fusing Gemini 1.5 Flash, ontology mapping, and web agents to normalize multilingual job titles.</p>
+                    <p>Hybrid library for multilingual title extraction using Gemini 1.5 Flash, ontologies, and agentic lookups.</p>
                 </article>
             </div>
         </section>
 
-        <section id="toolkit" aria-labelledby="toolkit-title">
+        <section id="toolkit">
             <div class="section-header">
-                <h2 id="toolkit-title" class="section-title">Toolkit Halo</h2>
-                <p class="section-summary">A living map of languages, frameworks, and rituals I deploy the most.</p>
+                <h2>Onboard Systems</h2>
+                <p>Capabilities I bring to every mission.</p>
             </div>
-            <div class="grid two-col">
-                <div class="data-visual" role="img" aria-label="Radar chart of technical toolkit focus areas">
-                    <canvas id="skillRadar" width="520" height="520"></canvas>
-                    <p class="data-caption">Skill radar pulses animate based on the relative weight of AI, product, automation, analytics, research, and language workstreams.</p>
-                </div>
-                <div class="glass-card">
-                    <h3>Signals from the Stack</h3>
-                    <ul>
-                        <li><strong>AI & LLMs:</strong> OpenAI, Google GenAI, LangChain / LangGraph, embeddings, MCP agents.</li>
-                        <li><strong>Product Systems:</strong> API design, service blueprints, Vercel v0, Azure DevOps, Jira.</li>
-                        <li><strong>Automation:</strong> n8n, Power Automate, Python micro-services.</li>
-                        <li><strong>Analytics:</strong> SQL dialects, experimentation, advanced spreadsheets, labour market research.</li>
-                        <li><strong>Languages:</strong> Turkish (Native), English (Advanced), Spanish (Advanced).</li>
-                    </ul>
-                </div>
+            <div class="card-grid">
+                <article class="card">
+                    <h3>AI & LLMs</h3>
+                    <p>Generative AI · OpenAI API · Google GenAI Kit · LangSmith · Word Embeddings · MCP</p>
+                </article>
+                <article class="card">
+                    <h3>Product Ops</h3>
+                    <p>Data products · API design · Azure DevOps · Jira · Experimentation</p>
+                </article>
+                <article class="card">
+                    <h3>Automation</h3>
+                    <p>n8n · Power Automate · Python</p>
+                </article>
+                <article class="card">
+                    <h3>Analytics</h3>
+                    <p>SQL · ETL · Text analytics · People data · Advanced spreadsheets</p>
+                </article>
+                <article class="card">
+                    <h3>Research</h3>
+                    <p>Deep research · Analytical modelling · Labour market intelligence</p>
+                </article>
+                <article class="card">
+                    <h3>Languages</h3>
+                    <p>Turkish · English · Spanish</p>
+                </article>
             </div>
         </section>
 
-        <section id="education" aria-labelledby="education-title">
+        <section id="education">
             <div class="section-header">
-                <h2 id="education-title" class="section-title">Training Grounds</h2>
-                <p class="section-summary">Academic chapters that shaped the analytical lens.</p>
+                <h2>Training Grounds</h2>
+                <p>Academic foundations.</p>
             </div>
-            <div class="grid two-col">
-                <article class="glass-card">
+            <div class="card-grid">
+                <article class="card">
                     <h3>M.A. Economics</h3>
                     <p>Ibn Haldun University · 2019 — 2021</p>
                 </article>
-                <article class="glass-card">
+                <article class="card">
                     <h3>M.A. International Human Resources</h3>
                     <p>University of Tehran · 2013 — 2015</p>
                 </article>
             </div>
         </section>
 
-        <section id="writing" aria-labelledby="writing-title">
+        <section id="writing">
             <div class="section-header">
-                <h2 id="writing-title" class="section-title">Latest Dispatches</h2>
-                <p class="section-summary">Published research and long-form writing.</p>
+                <h2>Dispatches</h2>
+                <p>Notes from the field.</p>
             </div>
-            <div class="grid two-col">
-                <article class="glass-card">
+            <div class="card-grid">
+                <article class="card">
                     <h3>Leveraging LLMs for Turkish Skill Extraction</h3>
-                    <p>Ezgi Arslan İltüzer, Vahid Farajijobehdar, Özgür Anıl Özlü, Gülşen Eryiğit · Submitted manuscript, 2025. ORCID: 0000-0002-9153-0765</p>
+                    <p>Submitted manuscript, 2025. With Ezgi Arslan İltüzer, Özgür Anıl Özlü, and Gülşen Eryiğit. ORCID: 0000-0002-9153-0765.</p>
                 </article>
-                <article class="glass-card">
-                    <h3>Stay in the Loop</h3>
-                    <p>Read more systems thinking, AI notes, and product breakdowns on Substack.</p>
-                    <a class="primary-btn" href="https://vahidfaraji.substack.com/" target="_blank" rel="noreferrer noopener">Visit Substack</a>
+                <article class="card">
+                    <h3>Substack</h3>
+                    <p>Read more thoughts on AI, product, and research.</p>
+                    <a class="ghost-btn" href="https://vahidfaraji.substack.com/" target="_blank" rel="noreferrer">Visit Substack</a>
                 </article>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-marquee" aria-hidden="true">
-            <span>Applied AI</span>
-            <span>◎</span>
-            <span>Data Products</span>
-            <span>◎</span>
-            <span>Rapid Prototyping</span>
-            <span>◎</span>
-            <span>LLM Agents</span>
-        </div>
-        <p>Designed by Vahid Faraji · © <span id="year"></span></p>
+        <p>Cleared for takeoff · Designed by Vahid Faraji © 2025</p>
     </footer>
 
-    <button class="scroll-top" type="button" aria-label="Scroll to top">↑</button>
+    <button class="scroll-top" type="button" aria-label="Scroll back to top">↑</button>
 
     <script>
-        const scrollButton = document.querySelector('.scroll-top');
-        window.addEventListener('scroll', () => {
-            scrollButton.classList.toggle('visible', window.scrollY > 420);
-        });
-        scrollButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        const nav = document.querySelector('nav');
+        const toggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelectorAll('nav a');
+        const scrollTopButton = document.querySelector('.scroll-top');
+
+        toggle.addEventListener('click', () => {
+            const open = nav.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', open);
         });
 
-        const yearEl = document.getElementById('year');
-        yearEl.textContent = new Date().getFullYear();
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+            });
+        });
 
-        const navLinks = document.querySelectorAll('[data-nav]');
-        const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href')));
+        const sections = document.querySelectorAll('main section');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                const index = sections.indexOf(entry.target);
-                if (index >= 0) {
-                    navLinks[index].classList.toggle('active', entry.isIntersecting);
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        const isActive = link.getAttribute('href') === '#' + entry.target.id;
+                        link.classList.toggle('active', isActive);
+                        if (isActive) {
+                            link.setAttribute('aria-current', 'page');
+                        } else {
+                            link.removeAttribute('aria-current');
+                        }
+                    });
                 }
             });
-        }, { threshold: 0.45 });
+        }, { threshold: 0.4 });
 
-        sections.forEach(section => {
-            if (section) observer.observe(section);
+        sections.forEach(section => observer.observe(section));
+
+        window.addEventListener('scroll', () => {
+            const shouldShow = window.scrollY > 360;
+            scrollTopButton.classList.toggle('visible', shouldShow);
         });
 
-        function animateNebula() {
-            const canvas = document.getElementById('nebulaCanvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const width = canvas.width;
-            const height = canvas.height;
-            const center = { x: width / 2, y: height / 2 };
-            const layers = 5;
-            let tick = 0;
-
-            function draw() {
-                ctx.clearRect(0, 0, width, height);
-                ctx.globalCompositeOperation = 'lighter';
-
-                for (let i = 0; i < layers; i++) {
-                    const radius = 60 + i * 45;
-                    const angleOffset = tick * (0.004 + i * 0.0012);
-                    const hue = 160 + i * 20;
-                    const alpha = 0.18 + i * 0.05;
-
-                    const gradient = ctx.createRadialGradient(center.x, center.y, radius * 0.2, center.x, center.y, radius);
-                    gradient.addColorStop(0, `hsla(${hue}, 85%, 62%, ${alpha})`);
-                    gradient.addColorStop(1, 'rgba(4,3,20,0)');
-
-                    ctx.fillStyle = gradient;
-                    ctx.beginPath();
-                    ctx.arc(center.x, center.y, radius * (1 + Math.sin(angleOffset) * 0.05), 0, Math.PI * 2);
-                    ctx.fill();
-
-                    const orbitCount = 6 + i;
-                    for (let j = 0; j < orbitCount; j++) {
-                        const orbitAngle = angleOffset + (Math.PI * 2 * j) / orbitCount;
-                        const orbitRadius = radius * 0.75;
-                        const x = center.x + Math.cos(orbitAngle) * orbitRadius;
-                        const y = center.y + Math.sin(orbitAngle) * orbitRadius;
-                        const orbitSize = 16 + i * 4 + Math.sin(tick * 0.02 + j) * 6;
-                        const orbitGradient = ctx.createRadialGradient(x, y, 0, x, y, orbitSize);
-                        orbitGradient.addColorStop(0, `hsla(${hue + 30}, 85%, 70%, 0.65)`);
-                        orbitGradient.addColorStop(1, 'rgba(4,3,20,0)');
-                        ctx.fillStyle = orbitGradient;
-                        ctx.beginPath();
-                        ctx.arc(x, y, orbitSize, 0, Math.PI * 2);
-                        ctx.fill();
-                    }
-                }
-
-                tick++;
-                requestAnimationFrame(draw);
-            }
-            draw();
-        }
-
-        function drawSkillRadar() {
-            const canvas = document.getElementById('skillRadar');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const width = canvas.width;
-            const height = canvas.height;
-            const center = { x: width / 2, y: height / 2 };
-            const radius = Math.min(width, height) * 0.36;
-            const labels = ['AI', 'Product', 'Automation', 'Analytics', 'Research', 'Languages'];
-            const values = [0.95, 0.82, 0.76, 0.88, 0.7, 0.74];
-            let pulse = 0;
-
-            function drawGrid() {
-                ctx.clearRect(0, 0, width, height);
-                ctx.save();
-                ctx.translate(center.x, center.y);
-                ctx.strokeStyle = 'rgba(255,255,255,0.08)';
-                ctx.lineWidth = 1;
-                for (let i = 1; i <= 5; i++) {
-                    ctx.beginPath();
-                    for (let j = 0; j < labels.length; j++) {
-                        const angle = (Math.PI * 2 * j) / labels.length - Math.PI / 2;
-                        const r = (radius / 5) * i;
-                        const x = Math.cos(angle) * r;
-                        const y = Math.sin(angle) * r;
-                        if (j === 0) ctx.moveTo(x, y);
-                        else ctx.lineTo(x, y);
-                    }
-                    ctx.closePath();
-                    ctx.stroke();
-                }
-
-                ctx.strokeStyle = 'rgba(99, 245, 200, 0.25)';
-                for (let j = 0; j < labels.length; j++) {
-                    const angle = (Math.PI * 2 * j) / labels.length - Math.PI / 2;
-                    ctx.beginPath();
-                    ctx.moveTo(0, 0);
-                    ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
-                    ctx.stroke();
-                }
-                ctx.restore();
-            }
-
-            function drawLabels() {
-                ctx.save();
-                ctx.translate(center.x, center.y);
-                ctx.fillStyle = 'rgba(232,235,255,0.7)';
-                ctx.font = '16px "Space Grotesk"';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                for (let j = 0; j < labels.length; j++) {
-                    const angle = (Math.PI * 2 * j) / labels.length - Math.PI / 2;
-                    const x = Math.cos(angle) * (radius + 30);
-                    const y = Math.sin(angle) * (radius + 30);
-                    ctx.fillText(labels[j], x, y);
-                }
-                ctx.restore();
-            }
-
-            function drawData() {
-                ctx.save();
-                ctx.translate(center.x, center.y);
-                const gradient = ctx.createRadialGradient(0, 0, radius * 0.2, 0, 0, radius * 1.1);
-                gradient.addColorStop(0, 'rgba(76, 196, 255, 0.35)');
-                gradient.addColorStop(1, 'rgba(255, 122, 184, 0.25)');
-                ctx.fillStyle = gradient;
-                ctx.globalAlpha = 0.7 + Math.sin(pulse) * 0.08;
-                ctx.beginPath();
-                values.forEach((value, index) => {
-                    const angle = (Math.PI * 2 * index) / labels.length - Math.PI / 2;
-                    const r = radius * value * (1 + Math.sin(pulse + index) * 0.02);
-                    const x = Math.cos(angle) * r;
-                    const y = Math.sin(angle) * r;
-                    if (index === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                });
-                ctx.closePath();
-                ctx.fill();
-
-                ctx.globalAlpha = 1;
-                ctx.strokeStyle = 'rgba(99, 245, 200, 0.85)';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                values.forEach((value, index) => {
-                    const angle = (Math.PI * 2 * index) / labels.length - Math.PI / 2;
-                    const r = radius * value * (1 + Math.sin(pulse + index) * 0.02);
-                    const x = Math.cos(angle) * r;
-                    const y = Math.sin(angle) * r;
-                    if (index === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                });
-                ctx.closePath();
-                ctx.stroke();
-
-                values.forEach((value, index) => {
-                    const angle = (Math.PI * 2 * index) / labels.length - Math.PI / 2;
-                    const r = radius * value * (1 + Math.sin(pulse + index) * 0.02);
-                    const x = Math.cos(angle) * r;
-                    const y = Math.sin(angle) * r;
-                    const pointGradient = ctx.createRadialGradient(x, y, 0, x, y, 10);
-                    pointGradient.addColorStop(0, 'rgba(255,255,255,0.95)');
-                    pointGradient.addColorStop(1, 'rgba(99,245,200,0)');
-                    ctx.fillStyle = pointGradient;
-                    ctx.beginPath();
-                    ctx.arc(x, y, 10, 0, Math.PI * 2);
-                    ctx.fill();
-                });
-                ctx.restore();
-            }
-
-            function render() {
-                drawGrid();
-                drawLabels();
-                drawData();
-                pulse += 0.02;
-                requestAnimationFrame(render);
-            }
-
-            render();
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            animateNebula();
-            drawSkillRadar();
+        scrollTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
         if ('serviceWorker' in navigator) {
@@ -1047,24 +766,3 @@
     </script>
 </body>
 </html>
-manifest.webmanifest
-New
-+16
--0
-
-{
-  "name": "Vahid Faraji | Applied AI Portfolio",
-  "short_name": "VFaraji",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#040314",
-  "theme_color": "#63f5c8",
-  "description": "Interactive portfolio for Vahid Faraji showcasing applied AI projects, experiments, and research.",
-  "icons": [
-    {
-      "src": "https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg",
-      "sizes": "192x192",
-      "type": "image/jpeg"
-    }
-  ]
-}
