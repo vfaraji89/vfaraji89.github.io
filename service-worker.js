@@ -1,7 +1,9 @@
-self.addEventListener('install', () => {
-  self.skipWaiting();
+// This is a minimal service worker. 
+// In a real-world scenario, you would add caching strategies here.
+self.addEventListener('install', (event) => {
+  console.log('Service Worker installing.');
 });
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil(self.clients.claim());
+self.addEventListener('fetch', (event) => {
+  // Offline functionality would be handled here.
 });
