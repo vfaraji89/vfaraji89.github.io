@@ -3,678 +3,1068 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vahid Faraji | Senior Applied AI Specialist</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="The personal portfolio of Vahid Faraji, a Senior Applied AI Specialist. Explore projects in LLMs, data products, and rapid prototyping, all with a retro Nintendo theme.">
-    
-    <!-- Open Graph / Social Sharing Meta Tags -->
-    <meta property="og:title" content="Vahid Faraji | Senior Applied AI Specialist">
-    <meta property="og:description" content="Explore projects in LLMs, data products, and rapid prototyping.">
+    <title>Vahid Faraji | Applied AI Portfolio</title>
+    <meta name="description" content="Explore Vahid Faraji's applied AI portfolio with interactive visualizations, modern UI, and highlights of LLM, data, and automation work.">
+    <meta property="og:title" content="Vahid Faraji | Applied AI Portfolio">
+    <meta property="og:description" content="Interactive showcase of applied AI, data products, and rapid prototyping projects.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vfaraji89.github.io/">
     <meta property="og:image" content="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg">
-
-    <!-- PWA Manifest Link -->
-    <link rel="manifest" href="data:application/manifest+json,{'name':'Vahid Faraji | Portfolio','short_name':'V. Faraji','start_url':'.','display':'standalone','background_color':'#F0F8FF','theme_color':'#2c3e50','icons':[{'src':'https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg','sizes':'192x192','type':'image/jpeg'}]}">
-
+    <link rel="manifest" href="manifest.webmanifest">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #F0F8FF;
-            --text-color: #2c3e50;
-            --primary-color: #e74c3c; /* Nintendo Red */
-            --secondary-color: #3498db; /* Mario Blue */
-            --accent-color: #2ecc71; /* Luigi Green */
-            --border-color: #2c3e50;
-            --font-pixel: 'Press Start 2P', cursive;
-            --font-body: 'VT323', monospace;
+            color-scheme: dark light;
+            --bg-primary: #040314;
+            --bg-secondary: #111029;
+            --accent: #63f5c8;
+            --accent-strong: #4cc4ff;
+            --accent-warm: #ff7ab8;
+            --text-high: #f5f7ff;
+            --text-mid: rgba(232, 235, 255, 0.75);
+            --card-glass: rgba(17, 16, 41, 0.6);
+            --stroke-soft: rgba(255, 255, 255, 0.08);
+            --blur-radius: 24px;
+            --max-width: 1120px;
+            font-size: clamp(14px, 1.1vw + 12px, 18px);
         }
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-body);
-            font-size: 20px;
-            line-height: 1.6;
-            text-align: center;
+            margin: 0;
+            font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at 20% 20%, rgba(99, 245, 200, 0.16), transparent 55%),
+                        radial-gradient(circle at 80% 15%, rgba(76, 196, 255, 0.18), transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(255, 122, 184, 0.12), transparent 55%),
+                        var(--bg-primary);
+            color: var(--text-high);
+            min-height: 100vh;
+            position: relative;
             overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 245, 200, 0.15), rgba(76, 196, 255, 0.05));
+            mix-blend-mode: screen;
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url('data:image/svg+xml,%3Csvg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"%3E%3Cpath d="M0 0H160V160H0z"/%3E%3Ccircle cx="80" cy="80" r="32"/%3E%3Ccircle cx="80" cy="80" r="64"/%3E%3C/g%3E%3C/svg%3E');
+            opacity: 0.35;
+            pointer-events: none;
+            z-index: -3;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(100%, var(--max-width));
+            margin: 0 auto;
+            padding: clamp(1.5rem, 3vw, 3rem);
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(16px);
+            background: color-mix(in srgb, var(--bg-primary) 70%, transparent);
+            border-bottom: 1px solid var(--stroke-soft);
+        }
+
+        .nav-inner {
+            width: min(100%, var(--max-width));
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: clamp(0.75rem, 1vw, 1rem) clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            letter-spacing: 0.16em;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+            text-transform: uppercase;
+        }
+
+        .brand::before {
+            content: "";
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            box-shadow: 0 0 12px rgba(99, 245, 200, 0.8);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: clamp(0.8rem, 1.2vw, 1.6rem);
+            font-size: clamp(0.85rem, 1vw, 1rem);
+        }
+
+        .nav-links a {
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+            color: var(--text-mid);
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible,
+        .nav-links a.active {
+            background: linear-gradient(135deg, rgba(99, 245, 200, 0.25), rgba(76, 196, 255, 0.2));
+            color: var(--text-high);
+            transform: translateY(-2px);
+        }
+
+        .primary-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.15rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            color: #020205;
+            font-weight: 600;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            box-shadow: 0 8px 24px rgba(76, 196, 255, 0.35);
+        }
+
+        .primary-btn:hover,
+        .primary-btn:focus-visible {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(76, 196, 255, 0.45);
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(1.5rem, 3vw, 3rem);
+            align-items: center;
             position: relative;
         }
-        body.crt-effect::after { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.03)); background-size: 100% 4px, 6px 100%; z-index: 1002; pointer-events: none; animation: fadeIn 0.8s ease-in-out; }
 
-        .container { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
-        section { padding: 4rem 0 2rem; border-bottom: 4px dashed var(--border-color); }
-        section:last-of-type { border-bottom: none; }
-
-        h1, h2, h3 { font-family: var(--font-pixel); color: var(--border-color); text-transform: uppercase; margin-bottom: 1rem; letter-spacing: 2px; }
-        h1 { font-size: 1.8rem; }
-        h2 { font-size: 1.5rem; }
-        h2 .cursor { display: inline-block; width: 0.9rem; height: 1.5rem; background: var(--accent-color); animation: blink 1s steps(1) infinite; margin-left: 8px; vertical-align: middle; }
-        p { margin-bottom: 1rem; max-width: 65ch; margin-left: auto; margin-right: auto; text-align: left; }
-        
-        /* Section Title Box */
-        .section-header { margin-bottom: 2rem; }
-        .section-title-box { display: inline-block; border: 4px solid var(--primary-color); background-color: #fff; padding: 0.5rem 1.5rem; box-shadow: 6px 6px 0 var(--border-color); transition: all 0.2s ease; }
-        .section-title-box h1 { margin: 0; font-size: 1.5rem; }
-        .section-title-box:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--border-color); }
-
-        /* Accessibility: Skip to Content Link */
-        .skip-link { position: absolute; top: -100px; left: 0; background: var(--primary-color); color: white; padding: 8px; z-index: 1001; transition: top 0.3s ease; font-family: var(--font-pixel); font-size: 0.8rem; border: 3px solid var(--border-color); }
-        .skip-link:focus { top: 10px; }
-
-        /* --- Navigation & Toggles --- */
-        .navbar { background-color: #fff; border-bottom: 4px solid var(--border-color); padding: 0.8rem 1rem; position: sticky; top: 0; z-index: 1000; width: 100%; }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 960px; margin: 0 auto; }
-        .nav-brand { font-family: var(--font-pixel); font-size: 0.8rem; color: var(--border-color); text-decoration: none; display: none; }
-        .nav-menu { display: flex; align-items: center; gap: 1rem; }
-        .nav-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; list-style: none; }
-        .nav-links a { color: var(--secondary-color); text-decoration: none; font-family: var(--font-pixel); font-size: 0.5rem; padding: 6px 10px; border: 3px solid transparent; transition: all 0.3s ease; }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); background-color: #fff2cc; border-color: var(--border-color); box-shadow: 4px 4px 0 var(--border-color); transform: translate(-2px, -2px); }
-        .nav-toggles { display: flex; gap: 1rem; border-left: 3px solid var(--border-color); padding-left: 1rem; margin-left: 1rem; }
-        .toggle-switch { display: flex; align-items: center; cursor: pointer; }
-        .toggle-switch input { display: none; }
-        .toggle-switch .label { font-family: var(--font-pixel); font-size: 0.5rem; margin-right: 8px; }
-        .toggle-switch .slider { width: 40px; height: 20px; background: #ccc; border: 2px solid var(--border-color); position: relative; }
-        .toggle-switch .slider::before { content: ''; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; background: white; transition: 0.3s; }
-        .toggle-switch input:checked + .slider { background: var(--accent-color); }
-        .toggle-switch input:checked + .slider::before { transform: translateX(18px); }
-        .hamburger-menu { display: none; }
-        
-        /* --- Header / Home --- */
-        #home { padding-top: 2rem; }
-        .profile-header { display: flex; flex-direction: column; align-items: center; gap: 1rem; margin-bottom: 2rem; }
-        .name-container { display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-        .name-container h1 { position: relative; min-height: 2.2rem; width: 380px; text-align: center; margin-bottom: 0; }
-        .animated-name { position: absolute; width: 100%; left: 0; opacity: 0; animation: cycle-text 9s infinite; }
-        .name-1 { color: var(--border-color); animation-delay: 0s; }
-        .name-2 { color: var(--primary-color); animation-delay: 3s; }
-        .name-3 { color: var(--secondary-color); animation-delay: 6s; }
-        .profile-photo-container { width: 160px; height: 160px; border-radius: 50%; border: 4px solid var(--border-color); padding: 4px; background-color: #fff; transition: transform 0.3s ease; }
-        .profile-photo-container:hover { transform: scale(1.05) rotate(3deg); }
-        .profile-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; image-rendering: pixelated; transition: filter 0.3s; }
-        .profile-photo:hover { filter: grayscale(1); }
-        .job-title-main { font-size: 1.3rem; text-align: center; text-transform: none; margin: 0; min-height: 2.2rem; }
-        .contact-info { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; font-size: 1rem; }
-        .contact-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 3px solid var(--border-color); background-color: var(--secondary-color); color: white; text-decoration: none; transition: all 0.2s ease; }
-        .contact-icon:hover { background-color: var(--primary-color); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--border-color); }
-        .contact-icon svg { width: 24px; height: 24px; fill: currentColor; }
-        .contact-icon.emoji { font-size: 24px; line-height: 1; }
-        
-        /* --- General Box/Card Styling --- */
-        .nes-box { background-color: #fff; border: 4px solid var(--border-color); padding: 1.5rem; margin-top: 1.5rem; text-align: left; position: relative; box-shadow: 6px 6px 0 rgba(0,0,0,0.1); }
-        .nes-box ul { list-style: none; padding-left: 1rem; }
-        .nes-box li { position: relative; padding-left: 20px; margin-bottom: 0.8rem; }
-        .nes-box li::before { content: '▶'; font-family: var(--font-pixel); position: absolute; left: 0; top: 0; color: var(--primary-color); }
-        
-        /* --- Joystick Animation --- */
-        .joystick { cursor: pointer; width: 60px; height: 60px; }
-        .joystick:hover .joystick-stick { transform: rotate(-25deg) translate(-4px, -4px); }
-        .joystick:hover .joystick-base { transform: scale(1.05); }
-        .joystick-stick { transition: transform 0.2s ease-out; transform-origin: bottom center; }
-        .joystick-base { transition: transform 0.2s ease-out; }
-        
-        /* --- Experience Section --- */
-        .timeline { border-left: 4px solid var(--border-color); padding-left: 1.5rem; position: relative; margin-top: 1.5rem; text-align: left; }
-        .job { background: #fff; border: 4px solid var(--border-color); margin-bottom: 1.5rem; position: relative; padding: 0; }
-        .job::before { content: ''; position: absolute; left: -33px; top: 15px; width: 18px; height: 18px; background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><rect width="10" height="10" fill="%23e74c3c"/><rect x="2" y="2" width="6" height="6" fill="%23fff"/></svg>'); background-size: cover; border: 3px solid var(--border-color); }
-        .job-company { font-size: 1rem; color: var(--secondary-color); margin-top: 0.5rem; }
-        .job-date { font-family: var(--font-pixel); font-size: 0.7rem; color: var(--text-color); background: #eee; padding: 4px 8px; border: 2px solid var(--border-color); white-space: nowrap; }
-        .job-details { padding: 0 1.5rem 1rem; }
-        .job-details li { margin-bottom: 0.8rem; }
-        .job-details strong { color: var(--border-color); }
-        .current-job-flag { display: inline-block; position: relative; width: 24px; height: 28px; margin-left: 10px; vertical-align: middle; }
-        .flag-pole { position: absolute; bottom: 0; left: 0; width: 4px; height: 100%; background: var(--border-color); }
-        .flag-cloth { position: absolute; top: 0; left: 4px; width: 18px; height: 12px; background: var(--primary-color); transform-origin: left center; }
-        .job-title-group:hover .flag-cloth { animation: wave-flag 1s infinite; }
-
-        /* --- Accordion System --- */
-        .accordion-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 1.5rem; }
-        .accordion-header:hover { background-color: #fff2cc; }
-        .accordion-title { text-align: left; }
-        .accordion-title h3 { font-size: 1.2rem; margin: 0; }
-        .accordion-indicator { font-family: var(--font-pixel); font-size: 1.5rem; color: var(--primary-color); transition: transform 0.3s ease; animation: blink 1.5s infinite; }
-        .accordion-header.active .accordion-indicator { transform: rotate(90deg); animation: none; }
-        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
-        .accordion-content p, .accordion-content ul { margin-top: 1rem; }
-
-        /* --- Generic Grid & Card Styling --- */
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; text-align: left; }
-        .card { background-color: #fff; border: 4px solid var(--border-color); padding: 1.5rem; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
-        .card:hover { transform: translate(-5px, -5px); box-shadow: 6px 6px 0 var(--border-color); }
-        .card .accordion-content { padding: 0 1.5rem 1rem; }
-        .card p { font-size: 1rem; }
-        
-        /* --- Toolkit Section --- */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .skill-category h3 { font-size: 1rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--border-color); }
-        .skill-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1rem; }
-        .skill-item { background: #eee; border: 2px solid var(--border-color); padding: 4px 10px; font-size: 0.9rem; transition: all 0.2s; }
-        .skill-item:hover { background-color: #fff2cc; transform: scale(1.05); animation: shake 0.5s; }
-
-        /* --- Education & Publication --- */
-        .edu-item, .pub-item { text-align: left; }
-        .item-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; }
-        .item-title { font-size: 1rem; font-weight: bold; font-family: var(--font-body); text-transform: none; color: var(--text-color); }
-        .item-date { font-family: var(--font-pixel); font-size: 0.7rem; }
-        .item-source, .pub-authors { font-size: 0.9rem; color: var(--secondary-color); }
-        .pub-authors { margin-top: 0.8rem; }
-        .pub-title { margin-top: 0.5rem; font-style: italic; }
-        
-        /* --- Link Buttons --- */
-        .card-button, .substack-button { display: inline-block; font-family: var(--font-pixel); font-size: 0.7rem; color: #fff; background-color: var(--primary-color); text-decoration: none; padding: 0.7rem 1.2rem; border: 3px solid var(--border-color); box-shadow: 4px 4px 0 var(--border-color); margin-top: auto; transition: all 0.2s ease; text-align: center;}
-        .card-button:hover, .substack-button:hover { transform: translate(4px, 4px); box-shadow: none; }
-        
-        /* --- Scroll to Top Button --- */
-        .scroll-to-top { position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px; background-color: var(--primary-color); border: 3px solid var(--border-color); cursor: pointer; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 999; }
-        .scroll-to-top.visible { opacity: 1; visibility: visible; }
-        .scroll-to-top::after { content: ''; position: absolute; top: 13px; left: 12px; width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 12px solid white; }
-        
-        /* --- Footer --- */
-        footer { margin-top: 4rem; padding: 2rem 0; border-top: 4px solid var(--border-color); font-family: var(--font-pixel); font-size: 0.7rem; overflow: hidden; }
-        .footer-ticker-wrap { width: 100%; }
-        .footer-ticker-move { display: inline-block; white-space: nowrap; animation: ticker-move 20s linear infinite; }
-        .footer-ticker-item { display: inline-block; padding: 0 1rem; font-size: 0.8rem; color: var(--secondary-color); }
-
-        /* --- Animations --- */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes blink { 50% { opacity: 0; } }
-        @keyframes ticker-move { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
-        @keyframes shake { 0%, 100% {transform: rotate(0);} 25% {transform: rotate(3deg);} 75% {transform: rotate(-3deg);} }
-        @keyframes wave-flag { 0%, 100% { transform: skewX(0); } 50% { transform: skewX(-25deg); } }
-        @keyframes hue-cycle { 0% { filter: hue-rotate(0deg); } 100% { filter: hue-rotate(360deg); } }
-        @keyframes glitch-text {
-            0% { text-shadow: none; opacity: 1; }
-            25% { text-shadow: 2px 2px 0 var(--secondary-color), -2px -2px 0 var(--primary-color); opacity: 1; }
-            50% { text-shadow: none; opacity: 1; }
-            75% { text-shadow: 2px -2px 0 var(--accent-color), -2px 2px 0 var(--secondary-color); opacity: 1; }
-            100% { text-shadow: none; opacity: 1; }
-        }
-        @keyframes cycle-text {
-            0%, 100% { opacity: 0; transform: translateY(10px); }
-            4%, 30% { opacity: 1; transform: translateY(0); }
-            34% { opacity: 0; transform: translateY(-10px); }
+        .hero-visual {
+            position: relative;
+            isolation: isolate;
         }
 
-        /* --- RESPONSIVE STYLES --- */
-        @media (max-width: 768px) {
-            body { font-size: 18px; } h1 { font-size: 1.5rem; } h2 { font-size: 1.1rem; }
-            .card {padding: 1rem;}
-            section { padding-top: 5rem; }
-            .nav-container { justify-content: space-between; }
-            .nav-brand { display: block; }
-            .hamburger-menu { display: flex; flex-direction: column; justify-content: space-around; width: 30px; height: 30px; background: transparent; border: none; cursor: pointer; z-index: 1001; }
-            .hamburger-menu .bar { width: 100%; height: 4px; background: var(--border-color); transition: all 0.3s ease; }
-            .hamburger-menu.active .bar1 { transform: rotate(45deg) translate(8px, 8px); }
-            .hamburger-menu.active .bar2 { opacity: 0; }
-            .hamburger-menu.active .bar3 { transform: rotate(-45deg) translate(8px, -8px); }
-            .nav-menu { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: white; border-left: 4px solid var(--border-color); flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 6rem 2rem; gap: 2rem; transition: right 0.4s ease-in-out; }
-            .nav-menu.active { right: 0; }
-            .nav-links { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-            .nav-links a { font-size: 1rem; }
-            .nav-toggles { border: none; padding: 0; margin: 0; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+        .hero-visual::before,
+        .hero-visual::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.8;
+            animation: pulse 12s ease-in-out infinite;
+        }
+
+        .hero-visual::before {
+            inset: -30% 15% 30% -25%;
+            background: radial-gradient(circle, rgba(99, 245, 200, 0.3), transparent 55%);
+        }
+
+        .hero-visual::after {
+            inset: 25% -20% -20% 20%;
+            background: radial-gradient(circle, rgba(255, 122, 184, 0.35), transparent 60%);
+            animation-delay: -4s;
+        }
+
+        .profile-card {
+            position: relative;
+            padding: clamp(2rem, 3vw, 3rem);
+            border-radius: 28px;
+            background: color-mix(in srgb, var(--card-glass) 70%, rgba(255,255,255,0.08));
+            backdrop-filter: blur(var(--blur-radius));
+            border: 1px solid color-mix(in srgb, transparent 70%, var(--accent) 30%);
+            box-shadow: 0 24px 60px rgba(4, 3, 20, 0.55);
+        }
+
+        .profile-card header {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .hero-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong), var(--accent-warm));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.2vw, 1.35rem);
+            color: var(--text-mid);
+            margin: 0;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0 0;
+        }
+
+        .tag {
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-mid);
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .profile-info {
+            display: grid;
+            gap: 1.25rem;
+            margin-top: 1.75rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.85rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.65rem 0.85rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: color-mix(in srgb, transparent 70%, rgba(255,255,255,0.05) 30%);
+            transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+            color: var(--text-high);
+            font-weight: 500;
+            gap: 0.6rem;
+        }
+
+        .contact-link:hover,
+        .contact-link:focus-visible {
+            transform: translateY(-2px);
+            border-color: rgba(99, 245, 200, 0.65);
+            background: color-mix(in srgb, transparent 50%, rgba(99,245,200,0.18) 50%);
+        }
+
+        .contact-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        section {
+            margin-top: clamp(3.5rem, 6vw, 6rem);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        .section-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.4rem, 2.4vw, 2rem);
+            letter-spacing: -0.01em;
+        }
+
+        .section-title::before {
+            content: "";
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+            box-shadow: 0 0 18px rgba(99, 245, 200, 0.6);
+        }
+
+        .section-summary {
+            color: var(--text-mid);
+            max-width: 520px;
+            font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+        }
+
+        .grid {
+            display: grid;
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        .grid.two-col {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .grid.three-col {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        .glass-card {
+            position: relative;
+            padding: clamp(1.8rem, 2.5vw, 2.4rem);
+            border-radius: 24px;
+            background: color-mix(in srgb, var(--card-glass) 80%, rgba(255,255,255,0.04));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(var(--blur-radius));
+            box-shadow: 0 18px 50px rgba(4, 3, 20, 0.45);
+        }
+
+        .glass-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .glass-card p,
+        .glass-card li {
+            color: var(--text-mid);
+            line-height: 1.7;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: clamp(1.5rem, 3vw, 2.5rem);
+            border-left: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: -0.4rem;
+            top: 0.35rem;
+            bottom: 0;
+            width: 0.75rem;
+            background: linear-gradient(180deg, rgba(99, 245, 200, 0.15), rgba(255, 122, 184, 0.15));
+            filter: blur(12px);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: clamp(1.8rem, 2.8vw, 2.6rem);
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -2.2rem;
+            top: 0.25rem;
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+            box-shadow: 0 0 18px rgba(76, 196, 255, 0.8);
+        }
+
+        .timeline-item time {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .timeline-item h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.15rem, 1.9vw, 1.45rem);
+            margin: 0.35rem 0 0.5rem;
+        }
+
+        .timeline-item strong {
+            color: var(--text-high);
+        }
+
+        .data-visual {
+            position: relative;
+            border-radius: 28px;
+            background: radial-gradient(circle at 25% 20%, rgba(99, 245, 200, 0.22), transparent 60%),
+                        radial-gradient(circle at 70% 30%, rgba(76, 196, 255, 0.18), transparent 55%),
+                        color-mix(in srgb, var(--card-glass) 85%, rgba(6, 6, 20, 0.7));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(calc(var(--blur-radius) * 0.9));
+            box-shadow: 0 20px 60px rgba(4, 3, 20, 0.55);
+            overflow: hidden;
+            min-height: 340px;
+            padding: clamp(1.8rem, 3vw, 2.4rem);
+        }
+
+        .data-visual canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .data-caption {
+            position: absolute;
+            bottom: clamp(1.1rem, 2vw, 1.6rem);
+            left: clamp(1.2rem, 2.5vw, 2rem);
+            color: var(--text-mid);
+            font-size: 0.9rem;
+            max-width: 280px;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: clamp(1.4rem, 2.6vw, 2.4rem);
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .project-pill {
+            align-self: flex-start;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 1.1rem;
+        }
+
+        ul li {
+            margin-bottom: 0.45rem;
+        }
+
+        footer {
+            margin-top: clamp(4rem, 6vw, 6.5rem);
+            border-top: 1px solid var(--stroke-soft);
+            padding: clamp(1.8rem, 3vw, 2.6rem) 0 clamp(2.4rem, 4vw, 3.4rem);
+            text-align: center;
+            color: rgba(232, 235, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer-marquee {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: clamp(1.5rem, 4vw, 2.75rem);
+            right: clamp(1.2rem, 4vw, 2.75rem);
+            width: 48px;
+            height: 48px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, rgba(99, 245, 200, 0.4), rgba(76, 196, 255, 0.35));
+            color: var(--bg-primary);
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 16px 36px rgba(76, 196, 255, 0.28);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-6px);
+        }
+
+        .floating-orb {
+            position: absolute;
+            width: clamp(200px, 25vw, 280px);
+            aspect-ratio: 1;
+            background: radial-gradient(circle at 35% 35%, rgba(99, 245, 200, 0.45), transparent 65%),
+                        radial-gradient(circle at 70% 60%, rgba(76, 196, 255, 0.5), transparent 60%);
+            filter: blur(12px);
+            opacity: 0.75;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 16s ease-in-out infinite;
+            mix-blend-mode: screen;
+        }
+
+        .floating-orb:nth-of-type(1) {
+            top: -8%;
+            right: 5%;
+            animation-delay: -6s;
+        }
+
+        .floating-orb:nth-of-type(2) {
+            bottom: 12%;
+            left: -8%;
+            animation-delay: -2s;
+        }
+
+        .floating-orb:nth-of-type(3) {
+            top: 45%;
+            left: 55%;
+            animation-delay: -11s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+            50% {
+                transform: translate3d(10px, -25px, 0) scale(1.05);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .nav-links {
+                display: none;
+            }
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .profile-card {
+                padding: clamp(1.8rem, 4vw, 2.6rem);
+            }
+            .timeline {
+                padding-left: 1.5rem;
+            }
+            .timeline-item::before {
+                left: -1.8rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
         }
     </style>
-    <!-- JSON-LD Schema for SEO -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Vahid Faraji",
-      "jobTitle": "Senior Applied AI Specialist",
-      "url": "https://vfaraji89.github.io/",
-      "image": "https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg",
-      "sameAs": [
-        "https://linkedin.com/in/vahid-faraji-jobehdar",
-        "https://github.com/vfaraji89",
-        "https://vahidfaraji.substack.com/"
-      ],
-      "knowsAbout": ["Applied AI", "Data Products", "LLM", "Rapid Prototyping", "People Data"]
-    }
-    </script>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="floating-orb" aria-hidden="true"></div>
+    <div class="floating-orb" aria-hidden="true"></div>
+    <div class="floating-orb" aria-hidden="true"></div>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#home" class="nav-brand">V. Faraji</a>
-            <div class="nav-menu">
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#weekend-quests">Weekend Quests</a></li>
-                    <li><a href="#toolkit">Toolkit</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#writing">Writing</a></li>
-                </ul>
-                <div class="nav-toggles">
-                    <label class="toggle-switch" for="crt-toggle" title="Toggle CRT Scanlines">
-                        <span class="label">CRT</span>
-                        <input type="checkbox" id="crt-toggle">
-                        <div class="slider"></div>
-                    </label>
-                </div>
+    <nav class="navbar" aria-label="Primary">
+        <div class="nav-inner">
+            <a class="brand" href="#home">Vahid Faraji</a>
+            <div class="nav-links" role="list">
+                <a href="#experience" data-nav>Experience</a>
+                <a href="#projects" data-nav>Projects</a>
+                <a href="#quests" data-nav>Weekend Quests</a>
+                <a href="#toolkit" data-nav>Toolkit</a>
+                <a href="#education" data-nav>Education</a>
+                <a href="#writing" data-nav>Dispatches</a>
             </div>
-             <button class="hamburger-menu" aria-label="Toggle menu" aria-expanded="false">
-                <div class="bar bar1"></div>
-                <div class="bar bar2"></div>
-                <div class="bar bar3"></div>
-            </button>
+            <a class="primary-btn" href="mailto:vfaraji89@gmail.com">
+                <span aria-hidden="true">✶</span>
+                Start a build sprint
+            </a>
         </div>
     </nav>
 
-    <main id="main-content" class="container">
-
-        <!-- HOME SECTION -->
-        <section id="home">
-            <header class="profile-header">
-                 <div class="profile-photo-container">
-                    <img src="https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg" alt="Vahid Faraji" class="profile-photo">
+    <main id="home" class="container">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-visual" aria-hidden="true">
+                <div class="data-visual" role="img" aria-label="Animated constellation inspired visualization of Vahid's skill clusters">
+                    <canvas id="nebulaCanvas" width="540" height="540"></canvas>
+                    <p class="data-caption">Interactive "Frog Nebula" rendering inspired by OpenAI's playful frog visuals, mapping core skill clusters and collaboration orbits.</p>
                 </div>
-                <div class="name-container">
-                    <h1>
-                        <span class="animated-name name-1">Vahid Faraji</span>
-                        <span class="animated-name name-2">Applied AI</span>
-                        <span class="animated-name name-3">Data Product</span>
-                    </h1>
-                    <svg class="joystick" viewBox="0 0 80 80">
-                        <g class="joystick-base">
-                            <rect x="20" y="50" width="40" height="20" fill="#a0a0a0" stroke="#2c3e50" stroke-width="3"/>
-                            <rect x="23" y="53" width="34" height="14" fill="#c0c0c0"/>
-                        </g>
-                        <g class="joystick-stick">
-                            <rect x="37" y="20" width="6" height="35" fill="#a0a0a0" stroke="#2c3e50" stroke-width="3"/>
-                            <circle cx="40" cy="15" r="12" fill="#e74c3c" stroke="#2c3e50" stroke-width="3"/>
-                            <circle cx="42" cy="13" r="3" fill="white"/>
-                        </g>
-                    </svg>
-                </div>
-                <div class="contact-info">
-                    <a href="https://www.linkedin.com/in/vahid-faraji-jobehdar" class="contact-icon" title="LinkedIn" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-                    </a>
-                    <a href="https://github.com/vfaraji89" class="contact-icon" title="Web Portfolio" target="_blank">
-                         <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 22 12 10 10 0 0 0 12 2z"/></svg>
-                    </a>
-                    <a href="mailto:vfaraji89@gmail.com" class="contact-icon" title="Email">
-                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                    </a>
-                    <a href="https://www.datacamp.com/profile/vfaraji89" class="contact-icon" title="DataCamp" target="_blank">
-                        <svg viewBox="0 0 24 24"><path d="M21.582.001l-14.82 9.771v14.228h14.82V.001zM9.167 9.771L-.001.001v23.998l9.168-14.228z"/></svg>
-                    </a>
-                    <a href="https://huggingface.co/vfaraji89" class="contact-icon emoji" title="Hugging Face" target="_blank">🤗</a>
-                </div>
-            </header>
-            <div class="nes-box">
-                <h2>Mission Briefing<span class="cursor"></span></h2>
-                <p>Work on products with Applied AI — fast prototypes, automation flows, and agent-based systems that turn raw human/user data into products.</p>
-                <p>My motto: Build (+more), contribute (^max), and be (>less) verbose.</p>
             </div>
+            <article class="profile-card">
+                <header>
+                    <h1 id="hero-title" class="hero-title">Applied AI Specialist crafting <span>intelligent products</span></h1>
+                    <p class="hero-subtitle">Transforming ambiguous ideas into production-ready, human-centric AI systems for teams that move fast.</p>
+                </header>
+                <div class="tags" role="list">
+                    <span class="tag" role="listitem">LLM Agents</span>
+                    <span class="tag" role="listitem">Semantic Systems</span>
+                    <span class="tag" role="listitem">Rapid Prototyping</span>
+                    <span class="tag" role="listitem">Data Products</span>
+                </div>
+                <div class="profile-info">
+                    <div class="contact-grid">
+                        <a class="contact-link" href="https://www.linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noreferrer noopener">
+                            <span class="contact-icon" aria-hidden="true">🔗</span>
+                            LinkedIn
+                        </a>
+                        <a class="contact-link" href="https://github.com/vfaraji89" target="_blank" rel="noreferrer noopener">
+                            <span class="contact-icon" aria-hidden="true">🐙</span>
+                            GitHub
+                        </a>
+                        <a class="contact-link" href="https://vahidfaraji.substack.com" target="_blank" rel="noreferrer noopener">
+                            <span class="contact-icon" aria-hidden="true">✍️</span>
+                            Substack
+                        </a>
+                        <a class="contact-link" href="https://huggingface.co/vfaraji89" target="_blank" rel="noreferrer noopener">
+                            <span class="contact-icon" aria-hidden="true">🤗</span>
+                            Hugging Face
+                        </a>
+                    </div>
+                    <p>Currently shipping AI-first capabilities for <strong>Kariyer Group</strong> and collaborating on automation systems that connect labour-market data with human decisions.</p>
+                </div>
+            </article>
         </section>
 
-        <!-- EXPERIENCE SECTION -->
-        <section id="experience">
-            <header class="section-header">
-                <div class="section-title-box">
-                    <h1>Level Select<span class="cursor"></span></h1>
+        <section id="experience" aria-labelledby="experience-title">
+            <div class="section-header">
+                <h2 id="experience-title" class="section-title">Experience Atlas</h2>
+                <p class="section-summary">A vector of roles where strategy, product, and machine intelligence intersect.</p>
+            </div>
+            <div class="grid two-col">
+                <div class="timeline" aria-label="Career timeline">
+                    <article class="timeline-item glass-card">
+                        <time datetime="2022">2022 — Present</time>
+                        <h4>Senior Applied AI Specialist · Kariyer Group</h4>
+                        <p>Leading design and delivery of AI-powered experiences for a platform with 50M+ users, bridging research-grade concepts into production.</p>
+                        <ul>
+                            <li><strong>Agents & EvalOps:</strong> Created autonomous agents and a Python evaluation harness to continuously score LLM outputs.</li>
+                            <li><strong>Semantic pipelines:</strong> Engineered vector search & classification flows to triage service requests automatically.</li>
+                            <li><strong>Launch velocity:</strong> Built interactive UIs connected to live models using Vercel v0 for rapid validation.</li>
+                            <li><strong>Scalable AI services:</strong> Deployed observability-rich REST services with latency and cost guardrails.</li>
+                        </ul>
+                    </article>
+                    <article class="timeline-item glass-card">
+                        <time datetime="2020">2020 — 2022</time>
+                        <h4>Business Analyst · WorqCompany</h4>
+                        <p>Owned product experimentation and analytics for a B2B SaaS platform, establishing the data foundations for applied AI work.</p>
+                        <ul>
+                            <li>Designed measurement frameworks and executed A/B tests to focus roadmap bets.</li>
+                        </ul>
+                    </article>
+                    <article class="timeline-item glass-card">
+                        <time datetime="2017">2017 — 2020</time>
+                        <h4>Co-Founder & People Data Lead · Defaro.io</h4>
+                        <p>Co-created a skills intelligence platform, architecting the MVP and career recommendation engine from 0 → 1.</p>
+                        <ul>
+                            <li>Shipped multilingual skill normalization logic and interactive dashboards for clients.</li>
+                        </ul>
+                    </article>
                 </div>
-                <p style="text-align:center; margin-top: 1.5rem;">My professional journey and achievements.</p>
-            </header>
-            <div class="timeline">
-                <div class="job">
-                    <div class="accordion-header">
-                        <div class="accordion-title">
-                            <h3 class="job-title-group">Senior Applied AI Specialist <span class="current-job-flag"><div class="flag-pole"></div><div class="flag-cloth"></div></span></h3>
-                            <p class="job-company">Kariyer Group</p>
-                        </div>
-                        <span class="accordion-indicator">▶</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="job-details">
-                            <p>Led the technical design and implementation of AI-powered features for a platform with 50M+ users, moving AI concepts from research to production-ready, scalable applications.</p>
-                            <ul>
-                                <li><strong>LLM Agent Development:</strong> Designed and implemented Agents and developed a Python-based evaluation framework (evals) to systematically test model output.</li>
-                                <li><strong>Semantic Data Processing:</strong> Built a semantic segmentation pipeline by vectorizing unstructured text data to automatically classify and route service requests.</li>
-                                <li><strong>Rapid AI Prototyping:</strong> Built interactive UIs with V0 connected to backend models for rapid validation.</li>
-                                <li><strong>Deploying Scalable AI Services:</strong> Designed and deployed internal AI services via RESTful APIs with focus on scalability, latency, and cost monitoring.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="job">
-                    <div class="accordion-header">
-                        <div class="accordion-title">
-                            <h3 class="job-title">Business Analyst (Data & Analytics)</h3>
-                            <p class="job-company">WorqCompany</p>
-                        </div>
-                        <span class="accordion-indicator">▶</span>
-                    </div>
-                     <div class="accordion-content">
-                        <div class="job-details">
-                            <p>Owned data analytics and experimentation for a B2B SaaS platform, providing foundational data skills for my subsequent work in applied AI.</p>
-                             <ul>
-                                <li>Designed and analyzed A/B tests to measure the impact of product changes and validate hypotheses.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                 <div class="job">
-                    <div class="accordion-header">
-                        <div class="accordion-title">
-                            <h3 class="job-title">People Data Lead</h3>
-                            <p class="job-company">Defaro.io</p>
-                        </div>
-                        <span class="accordion-indicator">▶</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div class="job-details">
-                            <p>Co-founded a skills intelligence platform, leading initial technical development and product design from concept to a working MVP.</p>
-                             <ul>
-                                <li>Led the hands-on development of an MVP and designed the core logic for a data-driven career recommendation engine.</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="glass-card" aria-live="polite">
+                    <h3>Impact Snapshot</h3>
+                    <p>Teams trust me when they need:</p>
+                    <ul>
+                        <li><strong>LLM orchestration</strong> that balances creativity with deterministic guardrails.</li>
+                        <li><strong>Product delivery</strong> across ambiguous discovery, prototyping, and launch.</li>
+                        <li><strong>Analytics fluency</strong> to link usage signals with business outcomes.</li>
+                    </ul>
+                    <p>I pair technical builds with storytelling, documentation, and stakeholder rituals that keep momentum high.</p>
                 </div>
             </div>
         </section>
 
-        <!-- PROJECTS SECTION -->
-        <section id="projects">
-             <header class="section-header">
-                <div class="section-title-box">
-                    <h1>Item Inventory<span class="cursor"></span></h1>
-                </div>
-                <p style="text-align:center; margin-top: 1.5rem;">A collection of crafted tools and main quests.</p>
-            </header>
-            <div class="grid-container">
-                <div class="card">
+        <section id="projects" aria-labelledby="projects-title">
+            <div class="section-header">
+                <h2 id="projects-title" class="section-title">Flagship Launches</h2>
+                <p class="section-summary">Selected releases that blend LLM reasoning, automation, and design craft.</p>
+            </div>
+            <div class="projects-grid">
+                <article class="glass-card project-card">
+                    <span class="project-pill">LLM Product</span>
                     <h3>Position Extraction App</h3>
-                    <p>An LLM-driven app to automatically extract and classify positions from job descriptions, improving matching accuracy by over 50%.</p>
-                </div>
-                <div class="card">
+                    <p>Autonomous LLM pipeline that extracts & normalizes job positions, boosting matching accuracy by 50% for Kariyer Group.</p>
+                    <ul>
+                        <li>Hybrid stack combining structured prompts, embeddings, and evaluation harness.</li>
+                        <li>Delivered monitoring dashboards covering precision, latency, and cost.</li>
+                    </ul>
+                </article>
+                <article class="glass-card project-card">
+                    <span class="project-pill">Thought Leadership</span>
                     <h3>People Data Handbook</h3>
-                    <p>Authored a 195-page guide on People Analytics, bridging HR with data science for the Persian-speaking community.</p>
-                </div>
-                <div class="card">
-                    <h3>Forkyops /w Gülenay Özbek</h3>
-                    <p>Developing a system to manage safety, health and performance of operators with AI reasoning.</p>
-                </div>
+                    <p>195-page guide demystifying people analytics for the Persian-speaking community with applied tactics and tooling.</p>
+                </article>
+                <article class="glass-card project-card">
+                    <span class="project-pill">AI Ops</span>
+                    <h3>Forkyops (w/ Gülenay Özbek)</h3>
+                    <p>Developing an AI reasoning layer to orchestrate safety, health, and performance interventions for frontline operators.</p>
+                </article>
             </div>
         </section>
-        
-        <!-- WEEKEND LEARNING SECTION -->
-        <section id="weekend-quests">
-            <header class="section-header">
-                <div class="section-title-box">
-                    <h1>Weekend Quests<span class="cursor"></span></h1>
+
+        <section id="quests" aria-labelledby="quests-title">
+            <div class="section-header">
+                <h2 id="quests-title" class="section-title">Weekend Quests</h2>
+                <p class="section-summary">Experiments in speculative design and rapid prototyping.</p>
+            </div>
+            <div class="projects-grid">
+                <article class="glass-card project-card">
+                    <span class="project-pill">Speculative Design</span>
+                    <h3>Defter-i Mesâlik</h3>
+                    <p>Playful Ottoman-era job generator bridging modern tech roles with historical titles.</p>
+                    <a class="primary-btn" href="https://defter-i-mesalik.vercel.app/" target="_blank" rel="noreferrer noopener">Launch mini-app</a>
+                </article>
+                <article class="glass-card project-card">
+                    <span class="project-pill">Rapid Build</span>
+                    <h3>AI Food Scanner</h3>
+                    <p>3-hour sprint using Vercel v0, LibreChat, and Google GenAI to demo text-to-build workflows.</p>
+                    <a class="primary-btn" href="https://vahidfaraji.substack.com/p/from-idea-to-a-mini-ai-app-in-3" target="_blank" rel="noreferrer noopener">Read the story</a>
+                </article>
+                <article class="glass-card project-card">
+                    <span class="project-pill">Applied Research</span>
+                    <h3>Posextract Prototype</h3>
+                    <p>Hybrid system fusing Gemini 1.5 Flash, ontology mapping, and web agents to normalize multilingual job titles.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="toolkit" aria-labelledby="toolkit-title">
+            <div class="section-header">
+                <h2 id="toolkit-title" class="section-title">Toolkit Halo</h2>
+                <p class="section-summary">A living map of languages, frameworks, and rituals I deploy the most.</p>
+            </div>
+            <div class="grid two-col">
+                <div class="data-visual" role="img" aria-label="Radar chart of technical toolkit focus areas">
+                    <canvas id="skillRadar" width="520" height="520"></canvas>
+                    <p class="data-caption">Skill radar pulses animate based on the relative weight of AI, product, automation, analytics, research, and language workstreams.</p>
                 </div>
-                <p style="text-align:center; margin-top: 1.5rem;">Exploring new ideas and building fast.</p>
-            </header>
-             <div class="grid-container">
-                <div class="card" style="padding:0;">
-                    <div class="accordion-header">
-                        <h3 class="accordion-title">Defter-i Mesâlik</h3>
-                        <span class="accordion-indicator">▶</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div style="padding: 0 1.5rem 1.5rem;">
-                            <p>What if a 'Product Manager' existed in the Ottoman Empire? This question led to a mini-app bridging 21st-century tech jobs with creative, historical titles. I call it The Book of Jobs: "Her Maharete Bir Unvan."</p>
-                            <a href="https://defter-i-mesalik.vercel.app/" target="_blank" class="card-button" aria-label="Try the Defter-i Mesâlik App">Try the App</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" style="padding:0;">
-                    <div class="accordion-header">
-                        <h3 class="accordion-title">AI Food Scanner</h3>
-                        <span class="accordion-indicator">▶</span>
-                    </div>
-                    <div class="accordion-content">
-                         <div style="padding: 0 1.5rem 1.5rem;">
-                            <p>From idea to a mini AI app in 3 hours: a fast-prototyping challenge to build an AI Food Scanner using Vercel's v0, LibreChat, and Google GenAI. My deep dive into the 'text-to-build' workflow.</p>
-                            <a href="https://vahidfaraji.substack.com/p/from-idea-to-a-mini-ai-app-in-3" target="_blank" class="card-button" aria-label="Read the post about building an AI Food Scanner">Read the Post</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card" style="padding:0;">
-                    <div class="accordion-header">
-                        <h3 class="accordion-title">Posextract Prototype</h3>
-                        <span class="accordion-indicator">▶</span>
-                    </div>
-                    <div class="accordion-content">
-                        <div style="padding: 0 1.5rem 1.5rem;">
-                            <p>Messy job titles? I prototyped a Python library to extract & normalize titles in English, Turkish & Spanish using a hybrid system: Gemini 1.5 Flash, ontology mapping, and a web agent for low-confidence titles.</p>
-                        </div>
-                    </div>
+                <div class="glass-card">
+                    <h3>Signals from the Stack</h3>
+                    <ul>
+                        <li><strong>AI & LLMs:</strong> OpenAI, Google GenAI, LangChain / LangGraph, embeddings, MCP agents.</li>
+                        <li><strong>Product Systems:</strong> API design, service blueprints, Vercel v0, Azure DevOps, Jira.</li>
+                        <li><strong>Automation:</strong> n8n, Power Automate, Python micro-services.</li>
+                        <li><strong>Analytics:</strong> SQL dialects, experimentation, advanced spreadsheets, labour market research.</li>
+                        <li><strong>Languages:</strong> Turkish (Native), English (Advanced), Spanish (Advanced).</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- TOOLKIT SECTION -->
-        <section id="toolkit">
-            <header class="section-header">
-                <div class="section-title-box">
-                    <h1>Power-Ups<span class="cursor"></span></h1>
-                </div>
-                <p style="text-align:center; margin-top: 1.5rem;">My technical skill inventory.</p>
-            </header>
-            <div class="skills-grid">
-                <div class="nes-box skill-category">
-                    <h3>AI & LLMs</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Generative AI</span>
-                        <span class="skill-item">OpenAI API</span>
-                        <span class="skill-item">Google GenAI Kit</span>
-                        <span class="skill-item">LangSmith</span>
-                        <span class="skill-item">Word Embeddings</span>
-                        <span class="skill-item">MCP</span>
-                    </div>
-                </div>
-                <div class="nes-box skill-category">
-                    <h3>Product</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Data Product</span>
-                        <span class="skill-item">API Development</span>
-                        <span class="skill-item">Azure DevOps</span>
-                        <span class="skill-item">Jira</span>
-                    </div>
-                </div>
-                 <div class="nes-box skill-category">
-                    <h3>Automation</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">n8n</span>
-                        <span class="skill-item">Power Automate</span>
-                        <span class="skill-item">Python</span>
-                    </div>
-                </div>
-                <div class="nes-box skill-category">
-                    <h3>Analytics</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">SQL Dialects</span>
-                        <span class="skill-item">ETL</span>
-                        <span class="skill-item">Text Analysis</span>
-                        <span class="skill-item">People Data</span>
-                        <span class="skill-item">Advanced Spreadsheets</span>
-                    </div>
-                </div>
-                <div class="nes-box skill-category">
-                    <h3>Research</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Deep Research</span>
-                        <span class="skill-item">Analytical Skills</span>
-                        <span class="skill-item">Advanced Statistics</span>
-                        <span class="skill-item">Labour Market Research</span>
-                    </div>
-                </div>
-                <div class="nes-box skill-category">
-                    <h3>Languages</h3>
-                    <div class="skill-list">
-                        <span class="skill-item">Turkish (Native)</span>
-                        <span class="skill-item">English (Advanced)</span>
-                        <span class="skill-item">Spanish (Advanced)</span>
-                    </div>
-                </div>
+        <section id="education" aria-labelledby="education-title">
+            <div class="section-header">
+                <h2 id="education-title" class="section-title">Training Grounds</h2>
+                <p class="section-summary">Academic chapters that shaped the analytical lens.</p>
+            </div>
+            <div class="grid two-col">
+                <article class="glass-card">
+                    <h3>M.A. Economics</h3>
+                    <p>Ibn Haldun University · 2019 — 2021</p>
+                </article>
+                <article class="glass-card">
+                    <h3>M.A. International Human Resources</h3>
+                    <p>University of Tehran · 2013 — 2015</p>
+                </article>
             </div>
         </section>
 
-        <!-- EDUCATION SECTION -->
-        <section id="education">
-            <header class="section-header">
-                <div class="section-title-box">
-                    <h1>Training Grounds<span class="cursor"></span></h1>
-                </div>
-                <p style="text-align:center; margin-top: 1.5rem;">My academic background.</p>
-            </header>
-            <div class="grid-container">
-                <div class="card edu-item">
-                    <div class="item-header">
-                        <span class="item-title">M.A. in Economics</span>
-                        <span class="item-date">2019-2021</span>
-                    </div>
-                    <p class="item-source">Ibn Haldun University</p>
-                </div>
-                <div class="card edu-item">
-                    <div class="item-header">
-                        <span class="item-title">M.A. in International Human Resources</span>
-                        <span class="item-date">2013-2015</span>
-                    </div>
-                    <p class="item-source">University of Tehran</p>
-                </div>
+        <section id="writing" aria-labelledby="writing-title">
+            <div class="section-header">
+                <h2 id="writing-title" class="section-title">Latest Dispatches</h2>
+                <p class="section-summary">Published research and long-form writing.</p>
+            </div>
+            <div class="grid two-col">
+                <article class="glass-card">
+                    <h3>Leveraging LLMs for Turkish Skill Extraction</h3>
+                    <p>Ezgi Arslan İltüzer, Vahid Farajijobehdar, Özgür Anıl Özlü, Gülşen Eryiğit · Submitted manuscript, 2025. ORCID: 0000-0002-9153-0765</p>
+                </article>
+                <article class="glass-card">
+                    <h3>Stay in the Loop</h3>
+                    <p>Read more systems thinking, AI notes, and product breakdowns on Substack.</p>
+                    <a class="primary-btn" href="https://vahidfaraji.substack.com/" target="_blank" rel="noreferrer noopener">Visit Substack</a>
+                </article>
             </div>
         </section>
-        
-        <!-- WRITING SECTION -->
-        <section id="writing">
-            <header class="section-header">
-                <div class="section-title-box">
-                    <h1>Latest Dispatches<span class="cursor"></span></h1>
-                </div>
-                <p style="text-align:center; margin-top: 1.5rem;">Sharing insights on AI, data, and product strategy.</p>
-            </header>
-            <div class="nes-box pub-item">
-                <p class="pub-title">Leveraging LLMs for Turkish Skill Extraction.</p>
-                <p class="pub-authors">Ezgi Arslan İltüzer, Vahid Farajijobehdar, Özgür Anıl Özlü, Gülşen Eryiğit.</p>
-                <p style="font-size: 1.1rem; margin-top: 1rem;">Submitted manuscript, 2025. ORCID: 0000-0002-9153-0765</p>
-            </div>
-            <div class="card" style="margin-top: 1.5rem; text-align: center;">
-                <p style="text-align:center;">Read more of my thoughts and analysis on Substack.</p>
-                <a href="https://vahidfaraji.substack.com/" target="_blank" class="substack-button" aria-label="Read my articles on Substack">Read my Substack</a>
-            </div>
-        </section>
-
     </main>
-    
+
     <footer>
-        <div class="footer-ticker-wrap">
-            <div class="footer-ticker-move">
-                <span class="footer-ticker-item">APPLIED AI</span>
-                <span class="footer-ticker-item">◆</span>
-                <span class="footer-ticker-item">DATA PRODUCTS</span>
-                 <span class="footer-ticker-item">◆</span>
-                <span class="footer-ticker-item">RAPID PROTOTYPING</span>
-                 <span class="footer-ticker-item">◆</span>
-                <span class="footer-ticker-item">LLM AGENTS</span>
-                <span class="footer-ticker-item">◆</span>
-                 <!-- Repeat for seamless loop -->
-                <span class="footer-ticker-item">APPLIED AI</span>
-                <span class="footer-ticker-item">◆</span>
-                <span class="footer-ticker-item">DATA PRODUCTS</span>
-                 <span class="footer-ticker-item">◆</span>
-                <span class="footer-ticker-item">RAPID PROTOTYPING</span>
-                 <span class="footer-ticker-item">◆</span>
-                <span class="footer-ticker-item">LLM AGENTS</span>
-                <span class="footer-ticker-item">◆</span>
-            </div>
+        <div class="footer-marquee" aria-hidden="true">
+            <span>Applied AI</span>
+            <span>◎</span>
+            <span>Data Products</span>
+            <span>◎</span>
+            <span>Rapid Prototyping</span>
+            <span>◎</span>
+            <span>LLM Agents</span>
         </div>
-        <p style="text-align:center; margin-top: 1.5rem;">Designed by Vahid Faraji © 2025</p>
+        <p>Designed by Vahid Faraji · © <span id="year"></span></p>
     </footer>
 
-    <a href="#home" class="scroll-to-top" aria-label="Scroll to top"></a>
+    <button class="scroll-top" type="button" aria-label="Scroll to top">↑</button>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- PWA Service Worker Registration ---
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('data:application/javascript,', { scope: '.' }).catch(error => {});
-            }
-            
-            const scrollTopButton = document.querySelector('.scroll-to-top');
-            const sections = document.querySelectorAll('main section');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            const accordionHeaders = document.querySelectorAll('.accordion-header');
-            const crtToggle = document.getElementById('crt-toggle');
-            
-            // --- Scroll to Top Visibility ---
-            window.addEventListener('scroll', () => {
-                scrollTopButton.classList.toggle('visible', window.scrollY > 400);
-            });
-
-            // --- Active Nav Link on Scroll ---
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const currentId = entry.target.id;
-                        navLinks.forEach(a => {
-                            const isActive = a.getAttribute('href') === '#' + currentId;
-                            a.classList.toggle('active', isActive);
-                            if (isActive) a.setAttribute('aria-current', 'page');
-                            else a.removeAttribute('aria-current');
-                        });
-                    }
-                });
-            }, { root: null, rootMargin: '0px', threshold: 0.4 });
-            
-            sections.forEach(section => observer.observe(section));
-            
-            // --- Accordion Functionality ---
-            accordionHeaders.forEach(header => {
-                header.addEventListener('click', () => {
-                    const content = header.nextElementSibling;
-                    const isActive = header.classList.contains('active');
-                    
-                    header.classList.toggle('active');
-                    
-                    if (isActive) {
-                        content.style.maxHeight = null;
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                    }
-                });
-            });
-            
-            // --- CRT Effect Toggle ---
-            crtToggle.addEventListener('change', () => {
-                document.body.classList.toggle('crt-effect', crtToggle.checked);
-                localStorage.setItem('isCrtOn', crtToggle.checked);
-            });
-            
-            // --- Mobile Menu Toggle ---
-            const hamburger = document.querySelector('.hamburger-menu');
-            const navMenu = document.querySelector('.nav-menu');
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-                document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-            });
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            });
-
-            // --- Load Preferences ---
-            if (localStorage.getItem('isCrtOn') === 'true') {
-                crtToggle.checked = true;
-                document.body.classList.add('crt-effect');
-            }
+        const scrollButton = document.querySelector('.scroll-top');
+        window.addEventListener('scroll', () => {
+            scrollButton.classList.toggle('visible', window.scrollY > 420);
         });
+        scrollButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const yearEl = document.getElementById('year');
+        yearEl.textContent = new Date().getFullYear();
+
+        const navLinks = document.querySelectorAll('[data-nav]');
+        const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href')));
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const index = sections.indexOf(entry.target);
+                if (index >= 0) {
+                    navLinks[index].classList.toggle('active', entry.isIntersecting);
+                }
+            });
+        }, { threshold: 0.45 });
+
+        sections.forEach(section => {
+            if (section) observer.observe(section);
+        });
+
+        function animateNebula() {
+            const canvas = document.getElementById('nebulaCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            const center = { x: width / 2, y: height / 2 };
+            const layers = 5;
+            let tick = 0;
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.globalCompositeOperation = 'lighter';
+
+                for (let i = 0; i < layers; i++) {
+                    const radius = 60 + i * 45;
+                    const angleOffset = tick * (0.004 + i * 0.0012);
+                    const hue = 160 + i * 20;
+                    const alpha = 0.18 + i * 0.05;
+
+                    const gradient = ctx.createRadialGradient(center.x, center.y, radius * 0.2, center.x, center.y, radius);
+                    gradient.addColorStop(0, `hsla(${hue}, 85%, 62%, ${alpha})`);
+                    gradient.addColorStop(1, 'rgba(4,3,20,0)');
+
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(center.x, center.y, radius * (1 + Math.sin(angleOffset) * 0.05), 0, Math.PI * 2);
+                    ctx.fill();
+
+                    const orbitCount = 6 + i;
+                    for (let j = 0; j < orbitCount; j++) {
+                        const orbitAngle = angleOffset + (Math.PI * 2 * j) / orbitCount;
+                        const orbitRadius = radius * 0.75;
+                        const x = center.x + Math.cos(orbitAngle) * orbitRadius;
+                        const y = center.y + Math.sin(orbitAngle) * orbitRadius;
+                        const orbitSize = 16 + i * 4 + Math.sin(tick * 0.02 + j) * 6;
+                        const orbitGradient = ctx.createRadialGradient(x, y, 0, x, y, orbitSize);
+                        orbitGradient.addColorStop(0, `hsla(${hue + 30}, 85%, 70%, 0.65)`);
+                        orbitGradient.addColorStop(1, 'rgba(4,3,20,0)');
+                        ctx.fillStyle = orbitGradient;
+                        ctx.beginPath();
+                        ctx.arc(x, y, orbitSize, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                tick++;
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        function drawSkillRadar() {
+            const canvas = document.getElementById('skillRadar');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            const center = { x: width / 2, y: height / 2 };
+            const radius = Math.min(width, height) * 0.36;
+            const labels = ['AI', 'Product', 'Automation', 'Analytics', 'Research', 'Languages'];
+            const values = [0.95, 0.82, 0.76, 0.88, 0.7, 0.74];
+            let pulse = 0;
+
+            function drawGrid() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.save();
+                ctx.translate(center.x, center.y);
+                ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+                ctx.lineWidth = 1;
+                for (let i = 1; i <= 5; i++) {
+                    ctx.beginPath();
+                    for (let j = 0; j < labels.length; j++) {
+                        const angle = (Math.PI * 2 * j) / labels.length - Math.PI / 2;
+                        const r = (radius / 5) * i;
+                        const x = Math.cos(angle) * r;
+                        const y = Math.sin(angle) * r;
+                        if (j === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    }
+                    ctx.closePath();
+                    ctx.stroke();
+                }
+
+                ctx.strokeStyle = 'rgba(99, 245, 200, 0.25)';
+                for (let j = 0; j < labels.length; j++) {
+                    const angle = (Math.PI * 2 * j) / labels.length - Math.PI / 2;
+                    ctx.beginPath();
+                    ctx.moveTo(0, 0);
+                    ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+                    ctx.stroke();
+                }
+                ctx.restore();
+            }
+
+            function drawLabels() {
+                ctx.save();
+                ctx.translate(center.x, center.y);
+                ctx.fillStyle = 'rgba(232,235,255,0.7)';
+                ctx.font = '16px "Space Grotesk"';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                for (let j = 0; j < labels.length; j++) {
+                    const angle = (Math.PI * 2 * j) / labels.length - Math.PI / 2;
+                    const x = Math.cos(angle) * (radius + 30);
+                    const y = Math.sin(angle) * (radius + 30);
+                    ctx.fillText(labels[j], x, y);
+                }
+                ctx.restore();
+            }
+
+            function drawData() {
+                ctx.save();
+                ctx.translate(center.x, center.y);
+                const gradient = ctx.createRadialGradient(0, 0, radius * 0.2, 0, 0, radius * 1.1);
+                gradient.addColorStop(0, 'rgba(76, 196, 255, 0.35)');
+                gradient.addColorStop(1, 'rgba(255, 122, 184, 0.25)');
+                ctx.fillStyle = gradient;
+                ctx.globalAlpha = 0.7 + Math.sin(pulse) * 0.08;
+                ctx.beginPath();
+                values.forEach((value, index) => {
+                    const angle = (Math.PI * 2 * index) / labels.length - Math.PI / 2;
+                    const r = radius * value * (1 + Math.sin(pulse + index) * 0.02);
+                    const x = Math.cos(angle) * r;
+                    const y = Math.sin(angle) * r;
+                    if (index === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.closePath();
+                ctx.fill();
+
+                ctx.globalAlpha = 1;
+                ctx.strokeStyle = 'rgba(99, 245, 200, 0.85)';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                values.forEach((value, index) => {
+                    const angle = (Math.PI * 2 * index) / labels.length - Math.PI / 2;
+                    const r = radius * value * (1 + Math.sin(pulse + index) * 0.02);
+                    const x = Math.cos(angle) * r;
+                    const y = Math.sin(angle) * r;
+                    if (index === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                ctx.closePath();
+                ctx.stroke();
+
+                values.forEach((value, index) => {
+                    const angle = (Math.PI * 2 * index) / labels.length - Math.PI / 2;
+                    const r = radius * value * (1 + Math.sin(pulse + index) * 0.02);
+                    const x = Math.cos(angle) * r;
+                    const y = Math.sin(angle) * r;
+                    const pointGradient = ctx.createRadialGradient(x, y, 0, x, y, 10);
+                    pointGradient.addColorStop(0, 'rgba(255,255,255,0.95)');
+                    pointGradient.addColorStop(1, 'rgba(99,245,200,0)');
+                    ctx.fillStyle = pointGradient;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 10, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                ctx.restore();
+            }
+
+            function render() {
+                drawGrid();
+                drawLabels();
+                drawData();
+                pulse += 0.02;
+                requestAnimationFrame(render);
+            }
+
+            render();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            animateNebula();
+            drawSkillRadar();
+        });
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js').catch(() => {});
+        }
     </script>
 </body>
 </html>
+manifest.webmanifest
+New
++16
+-0
+
+{
+  "name": "Vahid Faraji | Applied AI Portfolio",
+  "short_name": "VFaraji",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#040314",
+  "theme_color": "#63f5c8",
+  "description": "Interactive portfolio for Vahid Faraji showcasing applied AI projects, experiments, and research.",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ]
+}
