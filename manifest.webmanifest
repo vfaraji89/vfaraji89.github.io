@@ -1,0 +1,16 @@
+{
+  "name": "Vahid Faraji | Applied AI Portfolio",
+  "short_name": "VFaraji",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#040314",
+  "theme_color": "#63f5c8",
+  "description": "Interactive portfolio for Vahid Faraji showcasing applied AI projects, experiments, and research.",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    }
+  ]
+}
