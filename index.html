@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vahid Faraji | Senior Applied AI Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Fonts: Inter for UI, JetBrains Mono for Code -->
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
+    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <script>
@@ -19,441 +19,304 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        bg: '#F2F2F2',       // Claude Cream
-                        sidebar: '#EAEAEA',  // Slightly darker
+                        bg: '#F2F2F2',       
+                        sidebar: '#EAEAEA', 
                         border: '#D4D4D4',
-                        textMain: '#1C1C1C', // Near Black
+                        textMain: '#1C1C1C', 
                         textMuted: '#6E6E6E',
-                        accent: '#2563EB',   // Subtle Blue for focus
+                        termBg: '#1e1e1e', // VS Code Dark Terminal
+                        termText: '#d4d4d4',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom Scrollbar for that IDE feel */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #D4D4D4; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #A3A3A3; }
         
         .tab-active { background-color: #F2F2F2; border-top: 2px solid #2563EB; color: #1C1C1C; }
         .tab-inactive { background-color: #EAEAEA; color: #6E6E6E; border-top: 2px solid transparent; }
+        
+        /* Terminal Specifics */
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
         
         .fade-in { animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="bg-bg text-textMain font-sans h-screen flex overflow-hidden selection:bg-textMain selection:text-white">
+<body class="bg-bg text-textMain font-sans h-screen flex overflow-hidden">
 
-    <!-- 1. SIDEBAR (The Explorer) -->
+    <!-- 1. SIDEBAR (Explorer) -->
     <aside class="w-64 bg-sidebar border-r border-border flex flex-col hidden md:flex">
-        <!-- Profile Header -->
         <div class="p-4 border-b border-border">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-textMain text-white flex items-center justify-center font-bold text-sm">VF</div>
+                <div class="w-8 h-8 rounded bg-blue-600 text-white flex items-center justify-center font-bold text-xs">VF</div>
                 <div>
                     <h2 class="text-sm font-bold">Vahid Faraji</h2>
-                    <p class="text-[10px] text-textMuted uppercase tracking-wider">Operator</p>
+                    <p class="text-[10px] text-textMuted uppercase">Workspace</p>
                 </div>
             </div>
         </div>
 
-        <!-- Explorer Tree -->
         <div class="flex-1 overflow-y-auto py-4 font-mono text-sm">
             <div class="px-4 mb-2 text-xs font-bold text-textMuted uppercase tracking-widest">Explorer</div>
-            
-            <!-- Folder Structure -->
             <ul class="space-y-1">
-                <!-- Open Folder: vfaraji-portfolio -->
                 <li>
-                    <button class="flex items-center px-4 py-1 w-full hover:bg-white text-textMain group">
+                    <button class="flex items-center px-4 py-1 w-full hover:bg-white text-textMain">
                         <i data-lucide="chevron-down" class="w-4 h-4 mr-1 text-textMuted"></i>
-                        <span class="font-bold">vfaraji-portfolio</span>
+                        <span class="font-bold">portfolio-v2</span>
                     </button>
-                    
-                    <!-- Files -->
                     <ul class="ml-4 border-l border-border pl-2 mt-1 space-y-1">
                         <li>
-                            <button onclick="openTab('readme')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain transition-colors">
-                                <i data-lucide="file-text" class="w-4 h-4 mr-2 text-blue-500"></i>
-                                README.md
+                            <button onclick="openTab('readme')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain">
+                                <i data-lucide="file-text" class="w-4 h-4 mr-2 text-blue-500"></i> README.md
                             </button>
                         </li>
                         <li>
-                            <button onclick="openTab('stack')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain transition-colors">
-                                <i data-lucide="cpu" class="w-4 h-4 mr-2 text-yellow-600"></i>
-                                stack.json
+                            <button onclick="openTab('projects')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain">
+                                <i data-lucide="code-2" class="w-4 h-4 mr-2 text-purple-500"></i> projects.py
                             </button>
                         </li>
-                        
-                        <!-- Folder: src -->
-                        <li class="mt-2">
-                            <div class="flex items-center px-2 py-1 text-textMuted">
-                                <i data-lucide="folder" class="w-4 h-4 mr-2"></i>
-                                <span>src / projects</span>
-                            </div>
-                            <ul class="ml-4 border-l border-border pl-2 mt-1">
-                                <li>
-                                    <button onclick="openTab('projects')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain transition-colors">
-                                        <i data-lucide="code-2" class="w-4 h-4 mr-2 text-purple-500"></i>
-                                        index.tsx
-                                    </button>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <!-- Folder: docs -->
-                        <li class="mt-2">
-                            <div class="flex items-center px-2 py-1 text-textMuted">
-                                <i data-lucide="folder" class="w-4 h-4 mr-2"></i>
-                                <span>docs</span>
-                            </div>
-                            <ul class="ml-4 border-l border-border pl-2 mt-1">
-                                <li>
-                                    <button onclick="openTab('experience')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain transition-colors">
-                                        <i data-lucide="git-commit" class="w-4 h-4 mr-2 text-green-600"></i>
-                                        changelog.log
-                                    </button>
-                                </li>
-                                <li>
-                                    <button onclick="openTab('certs')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain transition-colors">
-                                        <i data-lucide="award" class="w-4 h-4 mr-2 text-orange-500"></i>
-                                        certs.verified
-                                    </button>
-                                </li>
-                            </ul>
+                         <li>
+                            <button onclick="openTab('experience')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain">
+                                <i data-lucide="git-commit" class="w-4 h-4 mr-2 text-green-600"></i> history.log
+                            </button>
                         </li>
                     </ul>
                 </li>
             </ul>
         </div>
-
-        <!-- Sidebar Footer -->
-        <div class="p-4 border-t border-border">
-            <div class="flex gap-4 justify-center">
-                <a href="https://github.com/vfaraji89" class="text-textMuted hover:text-textMain"><i data-lucide="github" class="w-5 h-5"></i></a>
-                <a href="https://linkedin.com" class="text-textMuted hover:text-textMain"><i data-lucide="linkedin" class="w-5 h-5"></i></a>
-                <a href="mailto:vfaraji89@gmail.com" class="text-textMuted hover:text-textMain"><i data-lucide="mail" class="w-5 h-5"></i></a>
-            </div>
-        </div>
     </aside>
 
-    <!-- 2. MAIN CONTENT AREA -->
-    <main class="flex-1 flex flex-col h-screen">
+    <!-- 2. MAIN LAYOUT (Split Screen) -->
+    <main class="flex-1 flex flex-col h-screen relative">
         
-        <!-- Tab Bar -->
-        <header class="h-10 bg-sidebar border-b border-border flex items-end overflow-x-auto">
-            <div id="tab-readme" class="tab-active px-4 py-2 text-xs font-mono border-r border-border cursor-pointer flex items-center min-w-fit" onclick="openTab('readme')">
-                <i data-lucide="file-text" class="w-3 h-3 mr-2 text-blue-500"></i> README.md
-            </div>
-            <div id="tab-projects" class="tab-inactive px-4 py-2 text-xs font-mono border-r border-border cursor-pointer flex items-center min-w-fit" onclick="openTab('projects')">
-                <i data-lucide="code-2" class="w-3 h-3 mr-2 text-purple-500"></i> index.tsx
-            </div>
-            <div id="tab-experience" class="tab-inactive px-4 py-2 text-xs font-mono border-r border-border cursor-pointer flex items-center min-w-fit" onclick="openTab('experience')">
-                <i data-lucide="git-commit" class="w-3 h-3 mr-2 text-green-600"></i> changelog.log
-            </div>
-        </header>
+        <!-- TOP: EDITOR VIEW -->
+        <div class="flex-1 flex flex-col overflow-hidden h-[60%]">
+            <!-- Tabs -->
+            <header class="h-10 bg-sidebar border-b border-border flex items-end">
+                <div id="tab-readme" class="tab-active px-4 py-2 text-xs font-mono border-r border-border cursor-pointer flex items-center" onclick="openTab('readme')">
+                    <i data-lucide="file-text" class="w-3 h-3 mr-2 text-blue-500"></i> README.md
+                </div>
+                <div id="tab-projects" class="tab-inactive px-4 py-2 text-xs font-mono border-r border-border cursor-pointer flex items-center" onclick="openTab('projects')">
+                    <i data-lucide="code-2" class="w-3 h-3 mr-2 text-purple-500"></i> projects.py
+                </div>
+                <div id="tab-experience" class="tab-inactive px-4 py-2 text-xs font-mono border-r border-border cursor-pointer flex items-center" onclick="openTab('experience')">
+                    <i data-lucide="git-commit" class="w-3 h-3 mr-2 text-green-600"></i> history.log
+                </div>
+            </header>
 
-        <!-- Breadcrumbs & Stats -->
-        <div class="h-8 bg-white border-b border-border flex items-center px-4 text-xs font-mono text-textMuted justify-between">
-            <div id="breadcrumbs">vahid-portfolio > README.md</div>
-            <div class="flex gap-4">
-                <span class="flex items-center"><i data-lucide="check-circle" class="w-3 h-3 mr-1 text-green-500"></i> All checks passed</span>
-                <span class="flex items-center"><i data-lucide="git-branch" class="w-3 h-3 mr-1"></i> main</span>
-            </div>
-        </div>
-
-        <!-- CONTENT VIEWPORT -->
-        <div class="flex-1 overflow-y-auto p-6 md:p-12 relative bg-bg">
-            
-            <!-- ---------------- SECTION: README (HOME) ---------------- -->
-            <section id="view-readme" class="fade-in max-w-4xl mx-auto">
-                <div class="border border-border bg-white rounded-md p-8 md:p-12 shadow-sm">
-                    <div class="mb-6">
-                        <span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-mono rounded font-bold">Latest build: 2025</span>
-                    </div>
-                    <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-                        Applied AI. <br>
-                        Structured Flows.
-                    </h1>
-                    <p class="text-xl md:text-2xl text-textMuted font-light leading-relaxed mb-8">
-                        I operate the loop between raw data and product outcomes. 
-                        No fluff—just engineered flows using <span class="text-textMain font-medium">LangGraph</span>, 
-                        <span class="text-textMain font-medium">MCP</span>, and reliable economics.
+            <!-- Content Area -->
+            <div class="flex-1 overflow-y-auto p-8 bg-bg">
+                
+                <!-- VIEW: README -->
+                <section id="view-readme" class="fade-in max-w-3xl mx-auto">
+                    <h1 class="text-4xl font-bold mb-4">Senior Applied AI Specialist</h1>
+                    <p class="text-lg text-textMuted mb-8">
+                        I turn unstructured data into structured product flows. 
+                        Specializing in <span class="text-textMain font-semibold">Agentic AI</span>, <span class="text-textMain font-semibold">Cost Optimization</span>, and <span class="text-textMain font-semibold">Data Governance</span>.
                     </p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 pt-12 border-t border-border">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div class="bg-white p-4 rounded border border-border">
+                            <div class="text-2xl font-bold">20M+</div>
+                            <div class="text-xs text-textMuted uppercase">Users Impacted</div>
+                        </div>
+                        <div class="bg-white p-4 rounded border border-border">
+                            <div class="text-2xl font-bold">-20%</div>
+                            <div class="text-xs text-textMuted uppercase">API Costs</div>
+                        </div>
+                        <div class="bg-white p-4 rounded border border-border">
+                            <div class="text-2xl font-bold">MCP</div>
+                            <div class="text-xs text-textMuted uppercase">Protocol Expert</div>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-blue-50 text-blue-800 rounded border border-blue-100 text-sm">
+                        <i data-lucide="info" class="w-4 h-4 inline mr-1"></i> 
+                        <strong>Tip:</strong> Use the Python Terminal below to interact with my profile data!
+                    </div>
+                </section>
+
+                <!-- VIEW: PROJECTS -->
+                <section id="view-projects" class="hidden fade-in max-w-4xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Project Cards with Images -->
+                        <div class="bg-white border border-border rounded overflow-hidden hover:shadow-lg transition">
+                            <img src="https://placehold.co/600x300/2563EB/FFFFFF?text=LangGraph+Agents" class="w-full h-32 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold">Company Data Agent</h3>
+                                <p class="text-xs text-textMuted mt-1">Multi-agent entity resolution using MCP & LangGraph.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white border border-border rounded overflow-hidden hover:shadow-lg transition">
+                            <img src="https://placehold.co/600x300/7C3AED/FFFFFF?text=Title+Standardizer" class="w-full h-32 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold">Job Title AI</h3>
+                                <p class="text-xs text-textMuted mt-1">Classified 30K+ titles using autonomous NLP agents.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white border border-border rounded overflow-hidden hover:shadow-lg transition">
+                            <img src="https://placehold.co/600x300/059669/FFFFFF?text=Text-to-SQL" class="w-full h-32 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold">Salary Enrichment</h3>
+                                <p class="text-xs text-textMuted mt-1">RAG pipeline converting surveys to SQL queries.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW: EXPERIENCE -->
+                <section id="view-experience" class="hidden fade-in max-w-3xl mx-auto">
+                    <div class="space-y-6 border-l-2 border-border pl-6">
                         <div>
-                            <div class="text-3xl font-mono font-bold">20M+</div>
-                            <div class="text-sm text-textMuted mt-1">Users Scaled (Kariyer.net)</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-mono font-bold">-20%</div>
-                            <div class="text-sm text-textMuted mt-1">API Cost Reduction</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-mono font-bold">30K+</div>
-                            <div class="text-sm text-textMuted mt-1">Job Titles Standardized</div>
-                        </div>
-                    </div>
-
-                    <div class="mt-12 flex gap-4">
-                        <button onclick="openTab('projects')" class="bg-textMain text-white px-6 py-3 rounded font-mono text-sm hover:bg-gray-800 transition">
-                            View Repositories
-                        </button>
-                        <a href="mailto:vfaraji89@gmail.com" class="border border-border px-6 py-3 rounded font-mono text-sm hover:bg-gray-100 transition">
-                            Contact
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ---------------- SECTION: PROJECTS (GRID) ---------------- -->
-            <section id="view-projects" class="hidden fade-in max-w-5xl mx-auto">
-                <div class="mb-8 font-mono text-sm text-textMuted">
-                    <span class="text-purple-600">import</span> { Projects } <span class="text-purple-600">from</span> './portfolio';
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
-                    <!-- Project 1 -->
-                    <div class="group bg-white border border-border rounded-md overflow-hidden hover:shadow-md transition-all">
-                        <div class="h-48 bg-gray-100 overflow-hidden relative">
-                            <!-- Image Holder -->
-                            <img src="https://placehold.co/600x400/EAEAEA/6E6E6E?text=LangGraph+Agent" alt="Agent Diagram" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <div class="absolute top-4 right-4 bg-textMain text-white text-xs font-mono px-2 py-1 rounded">Private Repo</div>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-lg font-bold">Company Data Agent</h3>
-                                <i data-lucide="git-merge" class="w-4 h-4 text-textMuted"></i>
-                            </div>
-                            <p class="text-sm text-textMuted mb-4">Multi-agent entity resolution using MCP. Connects fragmented datasets into a single source of truth.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs border border-border px-2 py-1 rounded font-mono">LangGraph</span>
-                                <span class="text-xs border border-border px-2 py-1 rounded font-mono">MCP</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="group bg-white border border-border rounded-md overflow-hidden hover:shadow-md transition-all">
-                        <div class="h-48 bg-gray-100 overflow-hidden relative">
-                            <img src="https://placehold.co/600x400/EAEAEA/6E6E6E?text=NLP+Classifier" alt="NLP Classifier" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-lg font-bold">Job Title Standardizer</h3>
-                                <i data-lucide="git-pull-request" class="w-4 h-4 text-textMuted"></i>
-                            </div>
-                            <p class="text-sm text-textMuted mb-4">Autonomous agent classifying 30K+ titles against global taxonomies (O*NET, ESCO).</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs border border-border px-2 py-1 rounded font-mono">Python</span>
-                                <span class="text-xs border border-border px-2 py-1 rounded font-mono">NLP</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="group bg-white border border-border rounded-md overflow-hidden hover:shadow-md transition-all">
-                        <div class="h-48 bg-gray-100 overflow-hidden relative">
-                            <img src="https://placehold.co/600x400/EAEAEA/6E6E6E?text=Text-to-SQL" alt="SQL System" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-lg font-bold">Salary Enrichment System</h3>
-                                <i data-lucide="database" class="w-4 h-4 text-textMuted"></i>
-                            </div>
-                            <p class="text-sm text-textMuted mb-4">Agentic text-to-SQL with RAG. Parses unstructured surveys into actionable SQL queries.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs border border-border px-2 py-1 rounded font-mono">RAG</span>
-                                <span class="text-xs border border-border px-2 py-1 rounded font-mono">PostgreSQL</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 4 -->
-                    <div class="group bg-white border border-border rounded-md overflow-hidden hover:shadow-md transition-all">
-                        <div class="h-48 bg-gray-100 overflow-hidden relative">
-                            <img src="https://placehold.co/600x400/EAEAEA/6E6E6E?text=Forky+Micro-App" alt="UI Prototype" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-lg font-bold">Forky App</h3>
-                                <i data-lucide="layout" class="w-4 h-4 text-textMuted"></i>
-                            </div>
-                            <p class="text-sm text-textMuted mb-4">Micro-app showcasing modern UX. Built with the Vibe Stack to demonstrate rapid prototyping.</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="text-xs border border-border px-2 py-1 rounded font-mono">React</span>
-                                <span class="text-xs border border-border px-2 py-1 rounded font-mono">Vibe Stack</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- ---------------- SECTION: STACK (JSON) ---------------- -->
-            <section id="view-stack" class="hidden fade-in max-w-3xl mx-auto">
-                 <div class="bg-[#1C1C1C] text-gray-300 p-6 rounded-md font-mono text-sm shadow-xl overflow-x-auto">
-<pre>
-<span class="text-purple-400">const</span> <span class="text-yellow-300">TechnicalArsenal</span> = {
-  <span class="text-blue-300">"data_infrastructure"</span>: [
-    "Python (Pandas/NumPy)", 
-    "SQL (PostgreSQL)", 
-    "ETL Pipelines",
-    "Data Modelling"
-  ],
-  <span class="text-blue-300">"agentic_ai"</span>: {
-    <span class="text-green-300">"orchestration"</span>: ["LangGraph", "LangChain", "Agno"],
-    <span class="text-green-300">"integration"</span>: ["MCP", "OpenAI API", "Tool Calling"],
-    <span class="text-green-300">"status"</span>: "Production Ready"
-  },
-  <span class="text-blue-300">"governance"</span>: [
-    "DataHub (Metadata)",
-    "KPI Design",
-    "Scope Definition"
-  ]
-}
-</pre>
-                </div>
-            </section>
-
-            <!-- ---------------- SECTION: EXPERIENCE (LOG) ---------------- -->
-            <section id="view-experience" class="hidden fade-in max-w-4xl mx-auto">
-                <div class="mb-8 font-mono text-sm text-textMuted border-b border-border pb-4">
-                    > git log --pretty=format:"%h - %an, %ar : %s"
-                </div>
-
-                <div class="space-y-8 relative border-l border-border ml-3 pl-8 pb-8">
-                    
-                    <!-- Role 1 -->
-                    <div class="relative">
-                        <div class="absolute -left-[39px] top-1 h-5 w-5 rounded-full bg-textMain border-4 border-white shadow-sm"></div>
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-baseline mb-2">
-                            <h3 class="font-bold text-lg">Senior Applied AI Specialist</h3>
-                            <span class="font-mono text-xs text-textMuted">Kariyer.net // Current</span>
-                        </div>
-                        <ul class="list-disc ml-4 space-y-1 text-sm text-textMuted">
-                            <li>Scaled AI search to <strong class="text-textMain">20M+ users</strong>.</li>
-                            <li>Engineered caching strategies reducing costs by 20%.</li>
-                            <li>Deployed DataHub for 50M+ datapoint governance.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Role 2 -->
-                    <div class="relative">
-                        <div class="absolute -left-[39px] top-1 h-5 w-5 rounded-full bg-border border-4 border-white shadow-sm"></div>
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-baseline mb-2">
-                            <h3 class="font-bold text-lg">Business Analyst</h3>
-                            <span class="font-mono text-xs text-textMuted">WorqCompany // 2021-2022</span>
-                        </div>
-                        <ul class="list-disc ml-4 space-y-1 text-sm text-textMuted">
-                            <li>Financial modelling for credit risk.</li>
-                            <li>Designed revenue distribution logic.</li>
-                        </ul>
-                    </div>
-
-                    <!-- Role 3 -->
-                    <div class="relative">
-                        <div class="absolute -left-[39px] top-1 h-5 w-5 rounded-full bg-border border-4 border-white shadow-sm"></div>
-                        <div class="flex flex-col sm:flex-row justify-between sm:items-baseline mb-2">
-                            <h3 class="font-bold text-lg">Co-founder & Data Lead</h3>
-                            <span class="font-mono text-xs text-textMuted">Defaro.io // 2019-2021</span>
-                        </div>
-                        <ul class="list-disc ml-4 space-y-1 text-sm text-textMuted">
-                            <li>Skills intelligence MVP builder.</li>
-                            <li>$10K grant winner for labor market analysis.</li>
-                        </ul>
-                    </div>
-
-                </div>
-            </section>
-
-             <!-- ---------------- SECTION: CERTS ---------------- -->
-             <section id="view-certs" class="hidden fade-in max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="border border-border bg-white p-6 rounded flex items-center gap-4">
-                        <div class="p-3 bg-blue-50 text-blue-600 rounded">
-                            <i data-lucide="check-circle" class="w-6 h-6"></i>
+                            <h3 class="font-bold">Senior Applied AI Specialist</h3>
+                            <p class="text-sm text-textMuted">Kariyer.net | 2022 - Present</p>
+                            <p class="text-sm mt-2">Leading AI search & agentic workflows.</p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-sm">Generative AI Leader</h4>
-                            <p class="text-xs text-textMuted">Google Cloud, 2025</p>
-                        </div>
-                    </div>
-                    <div class="border border-border bg-white p-6 rounded flex items-center gap-4">
-                        <div class="p-3 bg-purple-50 text-purple-600 rounded">
-                            <i data-lucide="check-circle" class="w-6 h-6"></i>
+                            <h3 class="font-bold">Business Analyst</h3>
+                            <p class="text-sm text-textMuted">WorqCompany | 2021 - 2022</p>
+                            <p class="text-sm mt-2">Financial modelling & risk logic.</p>
                         </div>
                         <div>
-                            <h4 class="font-bold text-sm">LangChain & LangGraph</h4>
-                            <p class="text-xs text-textMuted">Verified Certification, 2025</p>
+                            <h3 class="font-bold">Co-Founder</h3>
+                            <p class="text-sm text-textMuted">Defaro.io | 2019 - 2021</p>
+                            <p class="text-sm mt-2">Labor market analytics startup.</p>
                         </div>
                     </div>
-                </div>
-            </section>
-
+                </section>
+            </div>
         </div>
 
-        <!-- Terminal / Status Bar -->
-        <div class="bg-textMain text-gray-400 text-[10px] font-mono py-1 px-4 flex justify-between items-center">
+        <!-- BOTTOM: INTERACTIVE TERMINAL -->
+        <div class="h-[40%] bg-termBg border-t border-gray-700 flex flex-col font-mono text-sm shadow-2xl">
+            <!-- Terminal Toolbar -->
+            <div class="bg-[#2d2d2d] px-4 py-2 flex items-center justify-between border-b border-black">
+                <div class="flex gap-2">
+                    <span class="text-xs text-gray-400 uppercase tracking-wider">Terminal - Python 3.12</span>
+                </div>
+                <!-- Quick Actions for Non-Coders -->
+                <div class="flex gap-2">
+                    <button onclick="runCmd('about')" class="px-2 py-0.5 bg-blue-700 text-white text-[10px] rounded hover:bg-blue-600 transition">Run 'about'</button>
+                    <button onclick="runCmd('skills')" class="px-2 py-0.5 bg-purple-700 text-white text-[10px] rounded hover:bg-purple-600 transition">Run 'skills'</button>
+                    <button onclick="runCmd('contact')" class="px-2 py-0.5 bg-green-700 text-white text-[10px] rounded hover:bg-green-600 transition">Run 'contact'</button>
+                </div>
+            </div>
+
+            <!-- Terminal Output Area -->
+            <div id="terminal-output" class="flex-1 overflow-y-auto p-4 text-termText space-y-2">
+                <div class="text-gray-500">Microsoft Windows [Version 10.0.19045.4291]<br>(c) 2025 Vahid Corp. All rights reserved.</div>
+                <br>
+                <div><span class="text-green-500">➜</span> <span class="text-blue-400">~</span> python main.py</div>
+                <div class="text-yellow-300">Welcome to Vahid's Interactive Portfolio!</div>
+                <div>Type <span class="text-white font-bold">'help'</span> to see available commands.</div>
+                <br>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 pt-0 flex items-center bg-termBg">
+                <span class="text-green-500 mr-2">>>></span>
+                <input type="text" id="term-input" class="bg-transparent border-none outline-none text-white w-full font-mono" placeholder="Type a command..." autocomplete="off" autofocus>
+            </div>
+        </div>
+
+        <!-- STATUS BAR -->
+        <div class="bg-blue-600 text-white text-[10px] font-mono py-1 px-4 flex justify-between items-center select-none">
             <div class="flex gap-4">
-                <span><i data-lucide="terminal" class="w-3 h-3 inline mr-1"></i>TERMINAL</span>
-                <span>PORTS: 3000</span>
+                <span><i data-lucide="git-branch" class="w-3 h-3 inline mr-1"></i>main*</span>
+                <span><i data-lucide="alert-circle" class="w-3 h-3 inline mr-1"></i>0 errors, 0 warnings</span>
             </div>
             <div>
-                <span>Ln 1, Col 1</span>
-                <span class="ml-4">UTF-8</span>
-                <span class="ml-4">Javascript</span>
+                <span>Python 3.12.0</span>
+                <span class="ml-4">Prettier: On</span>
             </div>
         </div>
 
     </main>
 
-    <!-- 3. JAVASCRIPT LOGIC FOR TABS -->
+    <!-- LOGIC -->
     <script>
-        // Initialize Icons
         lucide.createIcons();
 
+        // --- TAB LOGIC ---
         function openTab(tabName) {
-            // 1. Hide all sections
-            const sections = ['readme', 'projects', 'stack', 'experience', 'certs'];
-            sections.forEach(sec => {
-                document.getElementById('view-' + sec).classList.add('hidden');
-            });
-
-            // 2. Show selected section
+            const sections = ['readme', 'projects', 'experience'];
+            sections.forEach(sec => document.getElementById('view-' + sec).classList.add('hidden'));
             document.getElementById('view-' + tabName).classList.remove('hidden');
 
-            // 3. Update Breadcrumbs
-            let fileName = "";
-            if(tabName === 'readme') fileName = "README.md";
-            if(tabName === 'projects') fileName = "src/projects/index.tsx";
-            if(tabName === 'stack') fileName = "stack.json";
-            if(tabName === 'experience') fileName = "docs/changelog.log";
-            if(tabName === 'certs') fileName = "docs/certs.verified";
-            
-            document.getElementById('breadcrumbs').innerText = "vahid-portfolio > " + fileName;
-
-            // 4. Update Tab Styles (Visual active state for top bar)
-            // Reset all
             const tabs = ['readme', 'projects', 'experience'];
             tabs.forEach(t => {
-                const el = document.getElementById('tab-' + t);
-                if(el) {
-                    el.classList.remove('tab-active');
-                    el.classList.add('tab-inactive');
-                }
+                document.getElementById('tab-' + t).classList.remove('tab-active');
+                document.getElementById('tab-' + t).classList.add('tab-inactive');
             });
+            document.getElementById('tab-' + tabName).classList.add('tab-active');
+            document.getElementById('tab-' + tabName).classList.remove('tab-inactive');
+        }
 
-            // Set active
-            const activeTab = document.getElementById('tab-' + tabName);
-            if (activeTab) {
-                activeTab.classList.remove('tab-inactive');
-                activeTab.classList.add('tab-active');
+        // --- TERMINAL LOGIC ---
+        const termInput = document.getElementById('term-input');
+        const termOutput = document.getElementById('terminal-output');
+
+        // The "Brain" of the terminal
+        const commands = {
+            help: "Available commands: <span class='text-yellow-300'>about</span>, <span class='text-yellow-300'>skills</span>, <span class='text-yellow-300'>projects</span>, <span class='text-yellow-300'>contact</span>, <span class='text-yellow-300'>clear</span>",
+            
+            about: "Name: Vahid Faraji\nRole: Senior Applied AI Specialist\nMission: Bridging Economics & AI Engineering.\nFocus: Transforming unstructured data into structured, profitable flows.",
+            
+            skills: "<span class='text-blue-400'>[Data]</span> Python, SQL, ETL, DataHub\n<span class='text-purple-400'>[AI]</span> LangGraph, MCP, OpenAI, RAG, Agno\n<span class='text-green-400'>[Biz]</span> KPI Design, Cost Optimization, Product Strategy",
+            
+            contact: "Email: <a href='mailto:vfaraji89@gmail.com' class='underline text-blue-400'>vfaraji89@gmail.com</a>\nLinkedIn: <a href='#' class='underline text-blue-400'>linkedin.com/in/vfaraji</a>\nGitHub: <a href='#' class='underline text-blue-400'>github.com/vfaraji89</a>",
+            
+            projects: "Loading projects view... (Check the top panel!)",
+            
+            hire_me: "Great choice! Initiating email protocol... (Check your mail client)"
+        };
+
+        // Handle typing
+        termInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const input = this.value.trim().toLowerCase();
+                processCommand(input);
+                this.value = '';
             }
+        });
+
+        // Handle buttons
+        function runCmd(cmd) {
+            processCommand(cmd);
+        }
+
+        function processCommand(cmd) {
+            // Echo user input
+            const historyDiv = document.createElement('div');
+            historyDiv.innerHTML = `<span class="text-green-500">>>></span> ${cmd}`;
+            termOutput.appendChild(historyDiv);
+
+            // Process response
+            if (cmd === 'clear') {
+                termOutput.innerHTML = '';
+            } else if (cmd === 'projects') {
+                const responseDiv = document.createElement('div');
+                responseDiv.className = "text-gray-300 mb-2 whitespace-pre-wrap";
+                responseDiv.innerHTML = commands[cmd];
+                termOutput.appendChild(responseDiv);
+                openTab('projects'); // Interactive: Switch tab automatically
+            } else if (commands[cmd]) {
+                const responseDiv = document.createElement('div');
+                responseDiv.className = "text-gray-300 mb-2 whitespace-pre-wrap";
+                responseDiv.innerHTML = commands[cmd];
+                termOutput.appendChild(responseDiv);
+            } else {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = "text-red-400 mb-2";
+                errorDiv.textContent = `NameError: name '${cmd}' is not defined. Type 'help' for commands.`;
+                termOutput.appendChild(errorDiv);
+            }
+
+            // Auto scroll to bottom
+            termOutput.scrollTop = termOutput.scrollHeight;
         }
     </script>
 </body>
