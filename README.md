@@ -4,7 +4,7 @@
 
 ## > Focus
 
-Learning **Agentic AI** [Gk. *agein* - to lead, drive] and **MCP Protocol** while leveraging strengths in documentation, context design, and productivity optimization.
+Learning **Agentic AI** [Gk. *agein* - to lead, drive] and **Applied AI Concepts** while leveraging strengths in documentation, context design, and productivity optimization.
 
 ## ::  Core Competencies
 
