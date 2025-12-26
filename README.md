@@ -1,54 +1,81 @@
-# Vahid Faraji - Professional Profile
+# Vahid Faraji
 
-This repository contains the code for my personal portfolio website. The website is a static HTML and CSS page designed to showcase my skills, experience, and projects in the field of data products and Applied AI.
+**Applied AI Specialist** // Learning in public, building with agents
 
-## About Me
+## > Focus
 
-I specialize in transforming raw human and user data into valuable products. My focus is on organizing unstructured data, extracting meaningful insights, and building scalable, agent-based systems and automation flows. I am passionate about diving into the details to create impactful solutions.
+Learning **Agentic AI** [Gk. *agein* - to lead, drive] and **MCP Protocol** while leveraging strengths in documentation, context design, and productivity optimization.
 
-My professional background includes over eight years in product and user data, three years of experience connecting business needs with AI-powered technical solutions, and more than five years in product and applied research. This diverse experience allows me to bridge the gap between technical possibilities and user-centric value.
+## ::  Core Competencies
 
-## Tech Stack
+**Documentation & Context Design** => Master at creating clear, structured documentation that makes complex systems tractable  
+**Planning & Product Strategy** => Connecting business needs with technical solutions  
+**Data Product Development** => Transforming unstructured ~> structured workflows  
+**Productivity Engineering** => Building systems that optimize cognitive load
 
-My toolkit includes a range of technologies for data management, automation, and analysis:
+## ~ Currently Learning
 
-*   **Languages:** SQL, Python (including NumPy and Pandas)
-*   **AI Frameworks & Tools:** LangChain, LangGraph, LangSmith, OpenAI APIs
-*   **Data Management:** Vector Databases, ETL processes, Data Ingestion
-*   **Workflow Automation:** n8n, Agno, Google Genkit, Vercel
-*   **DevOps:** AzureDev, Docker (currently learning)
-*   **BI & Visualization:** PowerBI
+```
+├── Multi-agent systems (LangGraph)
+├── MCP [Model Context Protocol]
+├── Advanced agentic AI patterns
+└── Open source contribution workflows
+```
 
-## Experience
+## $ Tech Stack
 
-### **Kariyer.net** | Istanbul, Turkey
+```python
+AI_TOOLS = ["LangChain", "Agno", "OpenAI", "RAG", "Agent Garden"]
+LANGUAGES = ["Python", "SQL"]
+DATA_STACK = ["Vector DBs", "ETL", "Data Ingestion"]
+AUTOMATION = ["n8n", "Power Automate"]
+DEVOPS = ["PowerBI", "AzureDev", "Docker"]  # learning
+```
 
-*   **Senior Applied AI Specialist** (September 2025 - Present)
-    *   Focus on API monitoring, cost optimization, and ensuring the scalable and efficient deployment of AI solutions.
-    *   Developing reporting automation tools (e.g., text-to-SQL) to enhance profitability and empower non-technical teams.
-    *   Applying vectorization and unstructured data extraction for semantic matching and large-scale dataset processing.
-*   **Sr. Product Manager (Data for Product)** (October 2022 - September 2025)
-    *   Improved the flow and accuracy of people and company data, ensuring clarity, reliability, and consistency.
-    *   Worked with text-based data, such as job titles and skills, to enhance data usability.
-    *   Analyzed numerical data, including salaries and hiring rates, to provide actionable insights for decision-making.
+## @ Projects
 
-For a more detailed overview of my professional experience, please visit the "Experience" tab on my portfolio website.
+**[PosExtract]** => LLM-powered position title extraction  
+  `// etymology: L. positio "a placing" + extrahere "to draw out"`
 
-## Projects
+**[People Data Handbook]** => Analytics guide for Persian-speaking community  
+  `// democratizing data literacy across linguistic boundaries`
 
-I have worked on a variety of projects that demonstrate my skills in data analysis, AI, and product development. Some of these include:
+**ForkyOps** => Vector search for career pathways  
+  `// semantic matching at scale`
 
-*   **Position Extraction App:** An LLM-driven application that automatically extracts and classifies position titles from unstructured text.
-*   **People Data Handbook:** A comprehensive guide to People Analytics for the Persian-speaking community.
-*   **LabOps - Forklift Career Database:** A vector search matching system for forklift operator career paths.
-*   **Salary Data Model:** A statistical model that analyzes job market trends to provide compensation insights.
+**Salary Data Model** => Job market trend analysis  
+  `// statistical inference for compensation insights`
 
-More details about these and other projects can be found on the "Projects" tab of my portfolio.
+[PosExtract]: https://github.com/vfaraji89/posextract
+[People Data Handbook]:  https://github.com/vfaraji89/peopledata
 
-## Contact
+```yaml
+status: seeking_open_source_collaborations
+focus: [AI_agents, productivity_tools, automation]
+```
 
-I am always open to connecting with other professionals and discussing new opportunities. You can reach me through the following channels:
+## && Connect
 
-*   **Email:** [vfaraji89@gmail.com](mailto:vfaraji89@gmail.com)
-*   **LinkedIn:** [linkedin.com/in/vahid-faraji-jobehdar](https://www.linkedin.com/in/vahid-faraji-jobehdar/)
-*   **GitHub:** [github.com/vfaraji89](https://github.com/vfaraji89)
+```bash
+$ echo "vfaraji89@gmail.com"
+$ curl https://linkedin.com/in/vahid-faraji-jobehdar
+$ open https://vfaraji89.github.io
+```
+
+---
+
+*Building with AI // Learning in public // Optimizing for clarity*
+
+---
+
+**Legend:**
+```
+//  comments & context
+::   scope resolution
+=>  transformation/yields
+~>  pipeline flow
+>   prompt/input
+$   execution/command
+@   decorator/annotation
+&&  logical AND/connection
+```
