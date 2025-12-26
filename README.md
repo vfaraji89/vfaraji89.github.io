@@ -17,7 +17,6 @@ Learning **Agentic AI** [Gk. *agein* - to lead, drive] and **Applied AI Concepts
 
 ```
 ├── Multi-agent systems (LangGraph)
-├── MCP [Model Context Protocol]
 ├── Advanced agentic AI patterns
 └── Open source contribution workflows
 ```
