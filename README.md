@@ -1,10 +1,10 @@
 # Vahid Faraji
 
-**Applied AI Specialist** // Learning in public, building with agents
+**Applied AI Specialist** // Learning in public, building with automation
 
 ## > Focus
 
-Learning **Agentic AI** [Gk. *agein* - to lead, drive] and **Applied AI Concepts** while leveraging strengths in documentation, context design, and productivity optimization.
+Learning **Agentic Flow** and **Applied AI Concepts** while leveraging strengths in documentation, context design, and productivity optimization.
 
 ## ::  Core Competencies
 
@@ -16,15 +16,15 @@ Learning **Agentic AI** [Gk. *agein* - to lead, drive] and **Applied AI Concepts
 ## ~ Currently Learning
 
 ```
-├── Multi-agent systems (LangGraph)
-├── Advanced agentic AI patterns
+├── Multi-flow systems (LangGraph)
+├── Advanced automation and flow patterns
 └── Open source contribution workflows
 ```
 
 ## $ Tech Stack
 
 ```python
-AI_TOOLS = ["LangChain", "Agno", "OpenAI", "RAG", "Agent Garden"]
+AI_TOOLS = ["LangChain", "Agno", "OpenAI", "RAG", "Automation Tools"]
 LANGUAGES = ["Python", "SQL"]
 DATA_STACK = ["Vector DBs", "ETL", "Data Ingestion"]
 AUTOMATION = ["n8n", "Power Automate"]
@@ -50,7 +50,7 @@ DEVOPS = ["PowerBI", "AzureDev", "Docker"]  # learning
 
 ```yaml
 status: seeking_open_source_collaborations
-focus: [AI_agents, productivity_tools, automation]
+focus: [automation, productivity_tools, learning_agentic_flow]
 ```
 
 ## && Connect
