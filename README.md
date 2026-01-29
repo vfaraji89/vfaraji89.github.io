@@ -18,7 +18,7 @@ Learning **Agentic AI** [Gk. *agein* - to lead, drive] and **Applied AI Concepts
 ```
 ├── Multi-agent systems (LangGraph)
 ├── Advanced agentic AI patterns
-└── Open source contribution workflows
+└── Open source contribution workflows (business usecases)
 ```
 
 ## $ Tech Stack
