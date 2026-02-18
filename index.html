@@ -3,321 +3,867 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vahid Faraji | Senior Applied AI Specialist</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Vahid Faraji — Applied AI Engineer</title>
+    <meta name="description" content="Technical Data Product / Applied AI with 8+ years leading cross-functional teams. Enterprise automation, AI pipelines, and structured data systems.">
+    <meta name="theme-color" content="#e3120b">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>⚡</text></svg>">
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                    },
-                    colors: {
-                        bg: '#F2F2F2',       
-                        sidebar: '#EAEAEA', 
-                        border: '#D4D4D4',
-                        textMain: '#1C1C1C', 
-                        textMuted: '#6E6E6E',
-                        termBg: '#1e1e1e', // VS Code Dark Terminal
-                        termText: '#d4d4d4',
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Vahid Faraji — Applied AI Engineer">
+    <meta property="og:description" content="Technical Data Product / Applied AI with 8+ years. Enterprise automation, AI pipelines, and structured data systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vfaraji89.github.io">
+    
     <style>
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #D4D4D4; border-radius: 4px; }
-        
-        .tab-active { background-color: #F2F2F2; border-top: 2px solid #2563EB; color: #1C1C1C; }
-        .tab-inactive { background-color: #EAEAEA; color: #6E6E6E; border-top: 2px solid transparent; }
-        
-        /* Terminal Specifics */
-        .cursor-blink { animation: blink 1s step-end infinite; }
-        @keyframes blink { 50% { opacity: 0; } }
-        
-        .fade-in { animation: fadeIn 0.3s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        /* ─── Design Tokens (tokalator.wiki) ─── */
+        :root {
+            --font-primary: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: "SF Mono", ui-monospace, SFMono-Regular, "Cascadia Code", monospace;
+
+            --black: #000000;
+            --grey-900: #111111;
+            --grey-800: #1a1a1a;
+            --grey-700: #333333;
+            --grey-600: #555555;
+            --grey-500: #777777;
+            --grey-400: #999999;
+            --grey-300: #bbbbbb;
+            --grey-200: #dddddd;
+            --grey-100: #f0f0f0;
+            --grey-50: #f8f8f8;
+            --white: #ffffff;
+            --red: #e3120b;
+            --red-light: rgba(227, 18, 11, 0.08);
+
+            --bg: var(--white);
+            --bg-subtle: var(--grey-50);
+            --bg-muted: var(--grey-100);
+            --border: var(--grey-200);
+            --text-primary: var(--black);
+            --text-secondary: var(--grey-600);
+            --text-muted: var(--grey-400);
+            --accent: var(--red);
+            --accent-bg: var(--red-light);
+        }
+
+        /* ─── Reset ─── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text-primary);
+            font-family: var(--font-primary);
+            font-weight: 400;
+            line-height: 1.6;
+            font-size: 0.9375rem;
+        }
+
+        /* ─── Typography ─── */
+        h1, h2, h3, h4 {
+            font-family: var(--font-primary);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            color: var(--text-primary);
+        }
+
+        p { color: var(--text-secondary); line-height: 1.7; }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 0.8125rem;
+            background: var(--bg-muted);
+            padding: 0.15em 0.4em;
+            border-radius: 4px;
+        }
+
+        /* ─── Layout ─── */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            padding: 4rem 0 3rem;
+        }
+
+        .hero-header {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-photo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border);
+        }
+
+        .hero-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-role {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.125rem;
+        }
+
+        .hero-bio {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 560px;
+        }
+
+        .hero-bio strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.25rem;
+            font-size: 0.8125rem;
+        }
+
+        .hero-links a {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .hero-links a:hover {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .hero-links svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+            margin-top: 1rem;
+        }
+
+        .hero-tags span {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            background: var(--bg-muted);
+            color: var(--text-secondary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+            padding: 0.5rem 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--white);
+            background: var(--black);
+            border: 1px solid var(--grey-700);
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .btn-download:hover {
+            background: var(--grey-800);
+            border-color: var(--grey-600);
+            text-decoration: none;
+        }
+
+        .btn-download svg {
+            width: 13px;
+            height: 13px;
+        }
+
+        /* ─── Pixel Hover Cards ─── */
+        .pixel-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .pixel-card {
+            position: relative;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem 1.25rem;
+            overflow: hidden;
+            cursor: default;
+            transition: border-color 0.3s;
+        }
+
+        .pixel-card:hover {
+            border-color: var(--grey-300);
+        }
+
+        .pixel-card .dot-grid {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            --dot-color: var(--grey-200);
+            --dot-size: 1px;
+            --dot-gap: 16px;
+            background-image: radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size));
+            background-size: var(--dot-gap) var(--dot-gap);
+            background-position: center;
+            mask-image: radial-gradient(circle 80px at var(--mx, -100px) var(--my, -100px), black 0%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle 80px at var(--mx, -100px) var(--my, -100px), black 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .pixel-card:hover .dot-grid {
+            opacity: 1;
+            --dot-color: var(--accent);
+        }
+
+        .pixel-card .glow {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle 120px at var(--mx, -100px) var(--my, -100px), var(--accent-bg), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .pixel-card:hover .glow {
+            opacity: 1;
+        }
+
+        .pixel-card .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pixel-card .card-icon {
+            font-family: var(--font-mono);
+            font-size: 0.625rem;
+            letter-spacing: 0.04em;
+            background: var(--bg-muted);
+            color: var(--text-secondary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        .pixel-card:hover .card-icon {
+            background: var(--accent-bg);
+            border-color: rgba(227, 18, 11, 0.15);
+            color: var(--accent);
+        }
+
+        .pixel-card .card-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .pixel-card .card-detail {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ─── Project Cards ─── */
+        .project-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+            transition: border-color 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: var(--grey-300);
+        }
+
+        .project-card.featured {
+            background: var(--accent-bg);
+            border-color: rgba(227, 18, 11, 0.15);
+        }
+
+        .project-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tag {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            background: var(--bg-muted);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        .project-card.featured .project-tag {
+            background: rgba(227, 18, 11, 0.12);
+            color: var(--accent);
+        }
+
+        .project-title {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .project-title a {
+            color: var(--text-primary);
+        }
+
+        .project-card.featured .project-title a {
+            color: var(--accent);
+        }
+
+        .project-desc {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .project-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+            margin-top: 0.75rem;
+        }
+
+        .project-stack span {
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+
+        /* ─── Experience Timeline ─── */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 1rem;
+        }
+
+        .timeline-period {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            padding-top: 0.125rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .timeline-content .org {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            margin-top: 0.125rem;
+        }
+
+        .timeline-content .desc {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-top: 0.375rem;
+            line-height: 1.6;
+        }
+
+        /* ─── Skills ─── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .skills-group h4 {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-group ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .skills-group li {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+
+        /* ─── Footer ─── */
+        .site-footer {
+            padding: 3rem 0 2.5rem;
+            border-top: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-status {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.375rem 1.25rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .footer-status span {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            display: inline-block;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .footer-quote {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            text-align: center;
+            max-width: 400px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.25rem;
+            font-size: 0.6875rem;
+            font-family: var(--font-mono);
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ─── Animations ─── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.5s ease-out both;
+        }
+
+        .delay-1 { animation-delay: 0.05s; }
+        .delay-2 { animation-delay: 0.1s; }
+        .delay-3 { animation-delay: 0.15s; }
+        .delay-4 { animation-delay: 0.2s; }
+        .delay-5 { animation-delay: 0.25s; }
+        .delay-6 { animation-delay: 0.3s; }
+
+        .animate-scale {
+            animation: scaleIn 0.35s ease-out both;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 640px) {
+            .hero { padding: 2.5rem 0 2rem; }
+            .hero-name { font-size: 1.25rem; }
+            .pixel-grid { grid-template-columns: 1fr !important; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+            }
+            .footer-status { flex-direction: column; align-items: center; }
+        }
     </style>
 </head>
-<body class="bg-bg text-textMain font-sans h-screen flex overflow-hidden">
+<body>
 
-    <!-- 1. SIDEBAR (Explorer) -->
-    <aside class="w-64 bg-sidebar border-r border-border flex flex-col hidden md:flex">
-        <div class="p-4 border-b border-border">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded bg-blue-600 text-white flex items-center justify-center font-bold text-xs">VF</div>
+    <main class="container">
+
+        <!-- ─── Hero ─── -->
+        <section class="hero animate-in">
+            <div class="hero-header">
+                <img src="vfoto-vahid.jpg" alt="Vahid Faraji" class="hero-photo">
                 <div>
-                    <h2 class="text-sm font-bold">Vahid Faraji</h2>
-                    <p class="text-[10px] text-textMuted uppercase">Workspace</p>
+                    <div class="hero-name">Vahid Faraji</div>
+                    <div class="hero-role">Senior Applied AI Specialist</div>
                 </div>
             </div>
-        </div>
+            <p class="hero-bio">
+                Technical Data Product / Applied AI with 8+ years leading cross-functional teams.
+                I turn <strong>noisy text into structured taxonomies</strong> and scale them into enterprise automation.
+                From position classification to sales report pipelines, I build the data layer that makes AI products ship.
+            </p>
+            <div class="hero-tags">
+                <span>Azure</span>
+                <span>Google Cloud</span>
+                <span>AI Automation</span>
+                <span>EN / ES / TR</span>
+            </div>
+            <div class="hero-links">
+                <a href="https://github.com/vfaraji89" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/vfaraji" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:vfaraji89@gmail.com">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M.05 3.555A2 2 0 012 2h12a2 2 0 011.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 002 14h12a2 2 0 001.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zM16 11.801V4.697l-5.803 3.546L16 11.801z"/></svg>
+                    Email
+                </a>
+                <a href="https://tokalator.wiki" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 8a8 8 0 1116 0A8 8 0 010 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 005.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 01.64-1.539 6.7 6.7 0 01.597-.933A7.025 7.025 0 002.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 00-.656 2.5h2.49zM4.847 5a12.5 12.5 0 00-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 00-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 00.337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 01-.597-.933A9.268 9.268 0 014.09 12H2.255a7.024 7.024 0 003.072 2.472zM3.82 11a13.652 13.652 0 01-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0013.745 12H11.91a9.27 9.27 0 01-.64 1.539 6.688 6.688 0 01-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 01-.312 2.5zm2.802-3.5a6.959 6.959 0 00-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 00-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 00-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/></svg>
+                    tokalator.wiki
+                </a>
+            </div>
+            <a href="https://drive.google.com/file/d/1cA-HWS3yolKlwgDHMUKB4rjmEibp3WfU/view?usp=sharing" target="_blank" rel="noopener" class="btn-download">
+                <svg viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
+                Download CV
+            </a>
+        </section>
 
-        <div class="flex-1 overflow-y-auto py-4 font-mono text-sm">
-            <div class="px-4 mb-2 text-xs font-bold text-textMuted uppercase tracking-widest">Explorer</div>
-            <ul class="space-y-1">
-                <li>
-                    <button class="flex items-center px-4 py-1 w-full hover:bg-white text-textMain">
-                        <i data-lucide="chevron-down" class="w-4 h-4 mr-1 text-textMuted"></i>
-                        <span class="font-bold">portfolio-v2</span>
-                    </button>
-                    <ul class="ml-4 border-l border-border pl-2 mt-1 space-y-1">
-                        <li>
-                            <button onclick="openTab('readme')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain">
-                                <i data-lucide="file-text" class="w-4 h-4 mr-2 text-blue-500"></i> README.md
-                            </button>
-                        </li>
-                        <li>
-                            <button onclick="openTab('projects')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain">
-                                <i data-lucide="code-2" class="w-4 h-4 mr-2 text-purple-500"></i> projects.py
-                            </button>
-                        </li>
-                         <li>
-                            <button onclick="openTab('experience')" class="flex items-center px-2 py-1 w-full hover:bg-white rounded text-textMuted hover:text-textMain">
-                                <i data-lucide="git-commit" class="w-4 h-4 mr-2 text-green-600"></i> history.log
-                            </button>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </aside>
+        <!-- ─── Signals ─── -->
+        <section class="animate-in delay-1">
+            <div class="section-label">Signals</div>
+            <div class="pixel-grid" id="pixel-grid">
+                <div class="pixel-card animate-scale delay-2">
+                    <div class="dot-grid"></div>
+                    <div class="glow"></div>
+                    <div class="card-content">
+                        <span class="card-icon">text_data</span>
+                        <div class="card-title">Noisy Text → Taxonomy</div>
+                        <div class="card-detail">30K+ job titles classified into O*NET & ESCO — replaced 6 months of manual work</div>
+                    </div>
+                </div>
+                <div class="pixel-card animate-scale delay-3">
+                    <div class="dot-grid"></div>
+                    <div class="glow"></div>
+                    <div class="card-content">
+                        <span class="card-icon">token_budget</span>
+                        <div class="card-title">Token Economics</div>
+                        <div class="card-detail">Built tokalator.wiki — open-source cost calculator, caching ROI tools & VS Code extension</div>
+                    </div>
+                </div>
+                <div class="pixel-card animate-scale delay-4">
+                    <div class="dot-grid"></div>
+                    <div class="glow"></div>
+                    <div class="card-content">
+                        <span class="card-icon">salary_data</span>
+                        <div class="card-title">Compensation Intelligence</div>
+                        <div class="card-detail">Automated salary data pipelines — enrichment, benchmarking & reporting with GitHub Copilot workflows</div>
+                    </div>
+                </div>
+                <div class="pixel-card animate-scale delay-5">
+                    <div class="dot-grid"></div>
+                    <div class="glow"></div>
+                    <div class="card-content">
+                        <span class="card-icon">agent_mode</span>
+                        <div class="card-title">Agent Orchestration</div>
+                        <div class="card-detail">Multi-agent systems with MCP, LangGraph & Agno serving 20M+ users at scale</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- 2. MAIN LAYOUT (Split Screen) -->
-    <main class="flex-1 flex flex-col h-screen relative">
-        
-        <!-- TOP: EDITOR VIEW -->
-        <div class="flex-1 flex flex-col overflow-hidden h-[60%]">
-            <!-- Tabs -->
-            <header class="h-10 bg-sidebar border-b border-border flex items-end">
-                <div id="tab-readme" class="tab-active px-4 py-2 text-xs font-mono border-r border-border cursor-pointer flex items-center" onclick="openTab('readme')">
-                    <i data-lucide="file-text" class="w-3 h-3 mr-2 text-blue-500"></i> README.md
-                </div>
-                <div id="tab-projects" class="tab-inactive px-4 py-2 text-xs font-mono border-r border-border cursor-pointer flex items-center" onclick="openTab('projects')">
-                    <i data-lucide="code-2" class="w-3 h-3 mr-2 text-purple-500"></i> projects.py
-                </div>
-                <div id="tab-experience" class="tab-inactive px-4 py-2 text-xs font-mono border-r border-border cursor-pointer flex items-center" onclick="openTab('experience')">
-                    <i data-lucide="git-commit" class="w-3 h-3 mr-2 text-green-600"></i> history.log
-                </div>
-            </header>
-
-            <!-- Content Area -->
-            <div class="flex-1 overflow-y-auto p-8 bg-bg">
-                
-                <!-- VIEW: README -->
-                <section id="view-readme" class="fade-in max-w-3xl mx-auto">
-                    <h1 class="text-4xl font-bold mb-4">Senior Applied AI Specialist</h1>
-                    <p class="text-lg text-textMuted mb-8">
-                        I turn unstructured data into structured product flows. 
-                        Specializing in <span class="text-textMain font-semibold">Agentic AI</span>, <span class="text-textMain font-semibold">Cost Optimization</span>, and <span class="text-textMain font-semibold">Data Governance</span>.
+        <!-- ─── Projects ─── -->
+        <section class="animate-in delay-2">
+            <div class="section-label">Projects</div>
+            <div class="project-grid">
+                <div class="project-card featured animate-scale delay-3">
+                    <div class="project-meta">
+                        <span class="project-tag">open source</span>
+                    </div>
+                    <div class="project-title">
+                        <a href="https://tokalator.wiki" target="_blank" rel="noopener">Tokalator</a>
+                    </div>
+                    <p class="project-desc">
+                        Token calculator, context engineering wiki, and VS Code extension. 
+                        Count tokens like beads on an abacus — pricing tools, caching ROI, model comparison.
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                        <div class="bg-white p-4 rounded border border-border">
-                            <div class="text-2xl font-bold">20M+</div>
-                            <div class="text-xs text-textMuted uppercase">Users Impacted</div>
-                        </div>
-                        <div class="bg-white p-4 rounded border border-border">
-                            <div class="text-2xl font-bold">-20%</div>
-                            <div class="text-xs text-textMuted uppercase">API Costs</div>
-                        </div>
-                        <div class="bg-white p-4 rounded border border-border">
-                            <div class="text-2xl font-bold">MCP</div>
-                            <div class="text-xs text-textMuted uppercase">Protocol Expert</div>
-                        </div>
+                    <div class="project-stack">
+                        <span>Next.js</span> <span>·</span>
+                        <span>React 19</span> <span>·</span>
+                        <span>VS Code Extension</span> <span>·</span>
+                        <span>Prisma</span>
                     </div>
-                    <div class="p-4 bg-blue-50 text-blue-800 rounded border border-blue-100 text-sm">
-                        <i data-lucide="info" class="w-4 h-4 inline mr-1"></i> 
-                        <strong>Tip:</strong> Use the Python Terminal below to interact with my profile data!
-                    </div>
-                </section>
-
-                <!-- VIEW: PROJECTS -->
-                <section id="view-projects" class="hidden fade-in max-w-4xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- Project Cards with Images -->
-                        <div class="bg-white border border-border rounded overflow-hidden hover:shadow-lg transition">
-                            <img src="https://placehold.co/600x300/2563EB/FFFFFF?text=LangGraph+Agents" class="w-full h-32 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold">Company Data Agent</h3>
-                                <p class="text-xs text-textMuted mt-1">Multi-agent entity resolution using MCP & LangGraph.</p>
-                            </div>
-                        </div>
-                        <div class="bg-white border border-border rounded overflow-hidden hover:shadow-lg transition">
-                            <img src="https://placehold.co/600x300/7C3AED/FFFFFF?text=Title+Standardizer" class="w-full h-32 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold">Job Title AI</h3>
-                                <p class="text-xs text-textMuted mt-1">Classified 30K+ titles using autonomous NLP agents.</p>
-                            </div>
-                        </div>
-                        <div class="bg-white border border-border rounded overflow-hidden hover:shadow-lg transition">
-                            <img src="https://placehold.co/600x300/059669/FFFFFF?text=Text-to-SQL" class="w-full h-32 object-cover">
-                            <div class="p-4">
-                                <h3 class="font-bold">Salary Enrichment</h3>
-                                <p class="text-xs text-textMuted mt-1">RAG pipeline converting surveys to SQL queries.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- VIEW: EXPERIENCE -->
-                <section id="view-experience" class="hidden fade-in max-w-3xl mx-auto">
-                    <div class="space-y-6 border-l-2 border-border pl-6">
-                        <div>
-                            <h3 class="font-bold">Senior Applied AI Specialist</h3>
-                            <p class="text-sm text-textMuted">Kariyer.net | 2022 - Present</p>
-                            <p class="text-sm mt-2">Leading AI search & agentic workflows.</p>
-                        </div>
-                        <div>
-                            <h3 class="font-bold">Business Analyst</h3>
-                            <p class="text-sm text-textMuted">WorqCompany | 2021 - 2022</p>
-                            <p class="text-sm mt-2">Financial modelling & risk logic.</p>
-                        </div>
-                        <div>
-                            <h3 class="font-bold">Co-Founder</h3>
-                            <p class="text-sm text-textMuted">Defaro.io | 2019 - 2021</p>
-                            <p class="text-sm mt-2">Labor market analytics startup.</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        <!-- BOTTOM: INTERACTIVE TERMINAL -->
-        <div class="h-[40%] bg-termBg border-t border-gray-700 flex flex-col font-mono text-sm shadow-2xl">
-            <!-- Terminal Toolbar -->
-            <div class="bg-[#2d2d2d] px-4 py-2 flex items-center justify-between border-b border-black">
-                <div class="flex gap-2">
-                    <span class="text-xs text-gray-400 uppercase tracking-wider">Terminal - Python 3.12</span>
                 </div>
-                <!-- Quick Actions for Non-Coders -->
-                <div class="flex gap-2">
-                    <button onclick="runCmd('about')" class="px-2 py-0.5 bg-blue-700 text-white text-[10px] rounded hover:bg-blue-600 transition">Run 'about'</button>
-                    <button onclick="runCmd('skills')" class="px-2 py-0.5 bg-purple-700 text-white text-[10px] rounded hover:bg-purple-600 transition">Run 'skills'</button>
-                    <button onclick="runCmd('contact')" class="px-2 py-0.5 bg-green-700 text-white text-[10px] rounded hover:bg-green-600 transition">Run 'contact'</button>
+
+                <div class="project-card animate-scale delay-4">
+                    <div class="project-meta">
+                        <span class="project-tag">production</span>
+                    </div>
+                    <div class="project-title"><a href="#">Position Agent</a></div>
+                    <p class="project-desc">
+                        Autonomous NLP pipeline classifying 30K+ free-text job titles into O*NET / ESCO taxonomies. 
+                        Replaced a manual 6-month mapping with an agentic workflow.
+                    </p>
+                    <div class="project-stack">
+                        <span>Python</span> <span>·</span>
+                        <span>LangGraph</span> <span>·</span>
+                        <span>O*NET</span> <span>·</span>
+                        <span>ESCO</span>
+                    </div>
+                </div>
+
+                <div class="project-card animate-scale delay-5">
+                    <div class="project-meta">
+                        <span class="project-tag">production</span>
+                    </div>
+                    <div class="project-title"><a href="#">Reporting Automation</a></div>
+                    <p class="project-desc">
+                        Automated salary data enrichment and reporting pipelines. 
+                        GitHub Copilot and context engineering workflows replacing manual spreadsheet processes.
+                    </p>
+                    <div class="project-stack">
+                        <span>GitHub Copilot</span> <span>·</span>
+                        <span>Context Engineering</span> <span>·</span>
+                        <span>Python</span> <span>·</span>
+                        <span>SQL</span>
+                    </div>
+                </div>
+
+                <div class="project-card animate-scale delay-6">
+                    <div class="project-meta">
+                        <span class="project-tag">production</span>
+                    </div>
+                    <div class="project-title"><a href="#">Company Data Agent</a></div>
+                    <p class="project-desc">
+                        Multi-agent entity resolution system for company data deduplication and enrichment 
+                        using MCP servers and LangGraph orchestration.
+                    </p>
+                    <div class="project-stack">
+                        <span>MCP</span> <span>·</span>
+                        <span>LangGraph</span> <span>·</span>
+                        <span>Agno</span>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Terminal Output Area -->
-            <div id="terminal-output" class="flex-1 overflow-y-auto p-4 text-termText space-y-2">
-                <div class="text-gray-500">Microsoft Windows [Version 10.0.19045.4291]<br>(c) 2025 Vahid Corp. All rights reserved.</div>
-                <br>
-                <div><span class="text-green-500">➜</span> <span class="text-blue-400">~</span> python main.py</div>
-                <div class="text-yellow-300">Welcome to Vahid's Interactive Portfolio!</div>
-                <div>Type <span class="text-white font-bold">'help'</span> to see available commands.</div>
-                <br>
+        <!-- ─── Experience ─── -->
+        <section class="animate-in delay-3">
+            <div class="section-label">Experience</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-period">2025 — Present</div>
+                    <div class="timeline-content">
+                        <h3>Senior Applied AI Specialist</h3>
+                        <div class="org">Kariyer.net</div>
+                        <div class="desc">Enterprise-scale LLM pipelines (Sales Report Automation, Finance text-to-SQL). AI-powered feedback automation serving 100+ users, reducing manual tasks by 60%. Token-efficient prompt/context engineering adopted as org standard. Generative AI Leader certified by Google, ilab grant of $40K USD Perplexity.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">2022 — 2025</div>
+                    <div class="timeline-content">
+                        <h3>Applied AI Specialist</h3>
+                        <div class="org">Kariyer.net</div>
+                        <div class="desc">AI-powered search, agentic workflows, and cost optimization for Turkey's largest job platform serving 20M+ users.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">2021 — 2022</div>
+                    <div class="timeline-content">
+                        <h3>Business Analyst</h3>
+                        <div class="org">WorqCompany</div>
+                        <div class="desc">Financial modelling, risk logic, and KPI design for HR-tech products.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-period">2019 — 2021</div>
+                    <div class="timeline-content">
+                        <h3>Co-Founder</h3>
+                        <div class="org">Defaro.io</div>
+                        <div class="desc">Labor market analytics startup — built the data pipeline and product strategy from scratch.</div>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <!-- Input Area -->
-            <div class="p-4 pt-0 flex items-center bg-termBg">
-                <span class="text-green-500 mr-2">>>></span>
-                <input type="text" id="term-input" class="bg-transparent border-none outline-none text-white w-full font-mono" placeholder="Type a command..." autocomplete="off" autofocus>
+        <!-- ─── Stack ─── -->
+        <section class="animate-in delay-4">
+            <div class="section-label">Stack</div>
+            <div class="skills-grid">
+                <div class="skills-group">
+                    <h4>AI & Agents</h4>
+                    <ul>
+                        <li>LangGraph</li>
+                        <li>MCP Protocol</li>
+                        <li>GitHub Copilot</li>
+                        <li>Context Engineering</li>
+                        <li>Power Automate</li>
+                    </ul>
+                </div>
+                <div class="skills-group">
+                    <h4>Data</h4>
+                    <ul>
+                        <li>Python</li>
+                        <li>SQL / Text-to-SQL</li>
+                        <li>Text Data Pipelines</li>
+                        <li>Salary Data</li>
+                        <li>DataHub</li>
+                    </ul>
+                </div>
+                <div class="skills-group">
+                    <h4>Cloud & Product</h4>
+                    <ul>
+                        <li>Azure</li>
+                        <li>Google Cloud</li>
+                        <li>Agile / Scrum</li>
+                        <li>Next.js / React</li>
+                        <li>VS Code Extensions</li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- STATUS BAR -->
-        <div class="bg-blue-600 text-white text-[10px] font-mono py-1 px-4 flex justify-between items-center select-none">
-            <div class="flex gap-4">
-                <span><i data-lucide="git-branch" class="w-3 h-3 inline mr-1"></i>main*</span>
-                <span><i data-lucide="alert-circle" class="w-3 h-3 inline mr-1"></i>0 errors, 0 warnings</span>
+        <!-- ─── Talks ─── -->
+        <section class="animate-in delay-5">
+            <div class="section-label">Talks</div>
+            <div class="project-card">
+                <div class="project-meta">
+                    <span class="project-tag">2025</span>
+                </div>
+                <div class="project-title"><a href="https://lu.ma/onlybuildersclub" target="_blank" rel="noopener">Only Builders Club</a></div>
+                <p class="project-desc">
+                    Token economics and context engineering for AI-native development — 
+                    how to budget, cache, and optimize your LLM spend.
+                </p>
             </div>
-            <div>
-                <span>Python 3.12.0</span>
-                <span class="ml-4">Prettier: On</span>
-            </div>
-        </div>
+        </section>
 
     </main>
 
-    <!-- LOGIC -->
+    <!-- ─── Footer ─── -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-status">
+                    <span><span class="status-dot"></span> Building in Istanbul</span>
+                    <span>// fueled by Turkish coffee</span>
+                    <span>-- shipping to production</span>
+                </div>
+                <p class="footer-quote">
+                    "Every messy spreadsheet is a taxonomy waiting to happen."
+                </p>
+                <div class="footer-links">
+                    <a href="https://github.com/vfaraji89">github</a>
+                    <a href="https://linkedin.com/in/vfaraji">linkedin</a>
+                    <a href="https://tokalator.wiki">tokalator</a>
+                    <a href="mailto:vfaraji89@gmail.com">email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ─── Pixel Hover Effect ─── -->
     <script>
-        lucide.createIcons();
-
-        // --- TAB LOGIC ---
-        function openTab(tabName) {
-            const sections = ['readme', 'projects', 'experience'];
-            sections.forEach(sec => document.getElementById('view-' + sec).classList.add('hidden'));
-            document.getElementById('view-' + tabName).classList.remove('hidden');
-
-            const tabs = ['readme', 'projects', 'experience'];
-            tabs.forEach(t => {
-                document.getElementById('tab-' + t).classList.remove('tab-active');
-                document.getElementById('tab-' + t).classList.add('tab-inactive');
+        document.querySelectorAll('.pixel-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mx', x + 'px');
+                card.style.setProperty('--my', y + 'px');
             });
-            document.getElementById('tab-' + tabName).classList.add('tab-active');
-            document.getElementById('tab-' + tabName).classList.remove('tab-inactive');
-        }
-
-        // --- TERMINAL LOGIC ---
-        const termInput = document.getElementById('term-input');
-        const termOutput = document.getElementById('terminal-output');
-
-        // The "Brain" of the terminal
-        const commands = {
-            help: "Available commands: <span class='text-yellow-300'>about</span>, <span class='text-yellow-300'>skills</span>, <span class='text-yellow-300'>projects</span>, <span class='text-yellow-300'>contact</span>, <span class='text-yellow-300'>clear</span>",
-            
-            about: "Name: Vahid Faraji\nRole: Senior Applied AI Specialist\nMission: Bridging Economics & AI Engineering.\nFocus: Transforming unstructured data into structured, profitable flows.",
-            
-            skills: "<span class='text-blue-400'>[Data]</span> Python, SQL, ETL, DataHub\n<span class='text-purple-400'>[AI]</span> LangGraph, MCP, OpenAI, RAG, Agno\n<span class='text-green-400'>[Biz]</span> KPI Design, Cost Optimization, Product Strategy",
-            
-            contact: "Email: <a href='mailto:vfaraji89@gmail.com' class='underline text-blue-400'>vfaraji89@gmail.com</a>\nLinkedIn: <a href='#' class='underline text-blue-400'>linkedin.com/in/vfaraji</a>\nGitHub: <a href='#' class='underline text-blue-400'>github.com/vfaraji89</a>",
-            
-            projects: "Loading projects view... (Check the top panel!)",
-            
-            hire_me: "Great choice! Initiating email protocol... (Check your mail client)"
-        };
-
-        // Handle typing
-        termInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                const input = this.value.trim().toLowerCase();
-                processCommand(input);
-                this.value = '';
-            }
+            card.addEventListener('mouseleave', () => {
+                card.style.setProperty('--mx', '-100px');
+                card.style.setProperty('--my', '-100px');
+            });
         });
-
-        // Handle buttons
-        function runCmd(cmd) {
-            processCommand(cmd);
-        }
-
-        function processCommand(cmd) {
-            // Echo user input
-            const historyDiv = document.createElement('div');
-            historyDiv.innerHTML = `<span class="text-green-500">>>></span> ${cmd}`;
-            termOutput.appendChild(historyDiv);
-
-            // Process response
-            if (cmd === 'clear') {
-                termOutput.innerHTML = '';
-            } else if (cmd === 'projects') {
-                const responseDiv = document.createElement('div');
-                responseDiv.className = "text-gray-300 mb-2 whitespace-pre-wrap";
-                responseDiv.innerHTML = commands[cmd];
-                termOutput.appendChild(responseDiv);
-                openTab('projects'); // Interactive: Switch tab automatically
-            } else if (commands[cmd]) {
-                const responseDiv = document.createElement('div');
-                responseDiv.className = "text-gray-300 mb-2 whitespace-pre-wrap";
-                responseDiv.innerHTML = commands[cmd];
-                termOutput.appendChild(responseDiv);
-            } else {
-                const errorDiv = document.createElement('div');
-                errorDiv.className = "text-red-400 mb-2";
-                errorDiv.textContent = `NameError: name '${cmd}' is not defined. Type 'help' for commands.`;
-                termOutput.appendChild(errorDiv);
-            }
-
-            // Auto scroll to bottom
-            termOutput.scrollTop = termOutput.scrollHeight;
-        }
     </script>
+
 </body>
 </html>

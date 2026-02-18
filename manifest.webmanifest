@@ -1,11 +1,11 @@
 {
-  "name": "Vahid Faraji | Applied AI",
+  "name": "Vahid Faraji — Applied AI Engineer",
   "short_name": "VF",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#d85454",
-  "description": "Aviation-inspired portfolio for Vahid Faraji featuring applied AI projects, experiments, and research.",
+  "theme_color": "#e3120b",
+  "description": "Senior Applied AI Specialist. Turning noisy text into structured taxonomies and scalable systems.",
   "icons": [
     {
       "src": "https://raw.githubusercontent.com/vfaraji89/vfaraji89.github.io/main/vfoto-vahid.jpg",
