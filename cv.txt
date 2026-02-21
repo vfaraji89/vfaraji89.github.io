@@ -1,0 +1,133 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{charter}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{0.8em}{0.4em}
+
+% ========== DOCUMENT START ==========
+\begin{document}
+
+% ---------- HEADER ----------
+{\LARGE\bfseries Vahid Faraji}\\[0.2em]
+{\large Sr. Applied AI Specialist}
+\vspace{0.3em}
+
+{\small \href{mailto:vfaraji89@gmail.com}{vfaraji89@gmail.com}  $\cdot$ \href{https://linkedin.com/in/vahid-faraji-jobehdar}{LinkedIn} $\cdot$ \href{https://github.com/vfaraji89}{GitHub} }
+\vspace{0.5em}
+
+% ---------- PROFESSIONAL SUMMARY ----------
+\section{Summary}
+
+Applied AI Specialist with 8+ years leading cross-functional teams in data products, multi-agent systems, and enterprise AI transformation. Expertise in multi-agent orchestration (LangGraph, MCP, Agno), context engineering, and agentic workflow design with enterprise hand-off. Builder of open-source tooling (Tokalator) and production AI pipelines serving 20M+ users. Strong track record in documentation \& context design, productivity optimization, and stakeholder management. Multilingual (English, Spanish, Turkish). Skilled in cloud platforms (Azure, Google Cloud), FastAPI, TypeScript, and modern AI infrastructure.
+% ---------- PROFESSIONAL EXPERIENCE ----------
+\section{Experience}
+
+\textbf{Senior Applied AI Specialist} \hfill Kariyer.net | Mar 2025 -- Present
+\begin{itemize}
+\item Enterprise-scale LLM pipeline projects (Sales Report Automation, Finance data and text-to-sql), managing scope, prototype, and resource allocation across engineering and product teams.
+
+\item Directed AI-powered feedback automation project serving 100+ users, reducing manual operational tasks by 60\% through intelligent workflow orchestration (SQL, Power Automate, Python); managed requirements, timeline, and stakeholder communication
+
+
+\item Designed and implemented token-efficient prompt/context engineering frameworks adopted as organizational standard; active member of AI-transformation in Kariyer.net and ilab (grant of 40 K USD of perplexity, generative ai leader certified by Google)
+
+\item Managed technical specifications, design reviews, and cross-functional coordination with engineering, product, and operations teams
+\end{itemize}
+
+\textbf{Product Manager -- Data} \hfill Kariyer.net | Oct 2022 -- Mar 2025
+\begin{itemize}
+\item Metadata management system serving 300M+ data-points (text and numerical data); coordinated architecture design, implementation phases, and team execution
+\item Spearheaded organizational adoption of AI frameworks and context engineering standards; conducted training and cross-functional alignment with C-level stakeholders
+\item Built and maintained real-time analytics pipeline informing strategic product decisions; managed data infrastructure, quality assurance, and reporting to executive leadership
+\item Established data governance and weekly reporting cadence tracking budget control and milestone completion
+\end{itemize}
+
+\textbf{Business Analyst -- Data Analytics \& Operations} \hfill WorqCompany | Sep 2021 -- Oct 2022
+\begin{itemize}
+\item Led analytics initiative designing forecasting and financial models used by executive team for strategic planning; gathered requirements, managed stakeholders, and delivered on-time
+\item Conducted statistical analysis for revenue forecasting and risk assessment; improved prediction accuracy supporting business decision-making
+\item Documented processes, created operational dashboards, and improved team efficiency through analysis-driven recommendations
+\item Collaborated across finance, operations, and product teams to deliver insights supporting business transformation initiatives
+\end{itemize}
+
+\textbf{Co-Founder} \hfill Defaro.io | 2019 -- 2021
+\begin{itemize}
+\item Labor market analytics startup --- built the data pipeline and product strategy from scratch; granted by \"{O}zy\c{e}\u{g}in University
+\item Developed compensation intelligence tools and career pathway analytics for the Turkish labor market
+\item Archived due to team change and difficulty of visa-based startup operations in T\"{u}rkiye
+\end{itemize}
+
+\section{Selected Projects}
+
+\textbf{Tokalator --- Context Engineering Toolkit} \textit{(Open Source)} \\
+VS Code extension (GitHub Copilot) for real-time token budget monitoring, tab relevance scoring, and context optimization with 11 chat commands. Web platform with Cobb-Douglas quality-of-output calculators. Reusable catalog of context engineering prompts, agents \& instructions. Covers 15 models across Anthropic, OpenAI \& Google with formal cost models for optimal token allocation and caching break-even analysis.
+\hfill \textit{Next.js, React, VS Code Extension, Token Economics}
+
+\textbf{Multi-Agent Position Classification} \textit{(Research)} \\
+MCP-based multi-agent system for cross-lingual normalization of free-form job titles to O*NET \& ESCO taxonomies. Hierarchical agent framework with root Content Agent delegating to specialized sub-agents (web search, content extraction, DB queries, trend analysis) with multi-layered memory. Evaluated on 14K+ positions --- 72.5\% reduction in classification time, 86.2\% rule-based segment accuracy, 95\% LLM segment accuracy (0.94 avg confidence).
+\hfill \textit{MCP, LangGraph, O*NET, ESCO, Multi-Agent}
+
+\textbf{AI Transformation (Sales, Finance \& R\&D)} \\
+Enterprise AI transformation across Sales, Finance and R\&D --- designing, building and testing agentic workflows with full enterprise hand-off.
+\hfill \textit{FastAPI, LangGraph, Agno, Pydantic}
+
+\textbf{Text-to-SQL (Text to Report)} \\
+Natural-language to SQL pipeline turning business questions into structured reports via RAG and query generation agents. Reduced analytics team backlog by 40\% enabling self-service analytics.
+\hfill \textit{Python, SQL, RAG, BigQuery}
+
+\textbf{Self-Learning Agents} \\
+Autonomous agents that improve through feedback loops --- designed, built and tested with enterprise hand-off methodology.
+\hfill \textit{LangGraph, MCP, Agno, Arize}
+
+\textbf{Workflow Automation Program} \\
+Automated 20+ hours/week of manual operational processes; achieved 75\% reduction in manual preparation time.
+\hfill \textit{Power Automate, n8n, Python}
+
+\section{Technical Skills}
+
+\textbf{AI \& Agents:} LangGraph, MCP, Agno, LangChain, OpenAI, RAG, Context Engineering, Agent Eval \& Benchmarking, Agent Garden (Google), Observability (Arize)
+
+\textbf{Languages \& Frameworks:} Python (FastAPI, Async), TypeScript, SQL / Text-to-SQL, Pydantic, Next.js / React (Vercel, V0)
+
+\textbf{Data \& Infrastructure:} PostgreSQL, Supabase, Azure Synapse, BigQuery, Vector DBs, ETL / Data Ingestion, DataHub, Docker
+
+\textbf{Automation \& DevOps:} n8n, Power Automate, GitHub Copilot, VS Code Extensions, Azure, Google Cloud, PowerBI
+
+\textbf{Core Competencies:} Documentation \& Context Design, Planning \& Product Strategy, Data Product Development, Productivity Engineering, Agile/Scrum, Stakeholder Management
+
+\section{Education}
+
+M.A. in Economics \hfill Ibn Haldun University | 2019 -- 2023
+
+Thesis: Real-Time Labor Market Analysis: A Data-Driven Approach
+
+Teaching Assistant for Econometrics I | Research Fellowship
+
+\section{Talks \& Conferences}
+
+Only Builders Club --- Token Economics \& Context Engineering for AI-Native Development \hfill 2025 \\
+Deep Agent for SaaS --- Bridge Summit '25 \hfill 2025 \\
+Prompt Engineering \& Applied AI --- Kayseri University (techcareer) \hfill 2025 \\
+Prompt Engineering \& Applied AI --- Van University (techcareer) \hfill 2025
+
+\section{Additional}
+
+\textbf{Languages:} Turkish (Native), English (C1), Spanish (Instructor Level), Portuguese (Basic)
+
+\textbf{Community \& Leadership:} Career Mentor at TEV | Speaker on AI Architecture and Technical Project Management
+
+\textbf{Publication:} Leveraging LLMs For Turkish Skill Extraction | \href{https://arxiv.org/abs/2601.22885}{arXiv:2601.22885} (January 2026)
+
+\textbf{Open Source:} \href{https://tokalator.wiki}{Tokalator} --- Context engineering toolkit for AI coding assistants
+
+\end{document}

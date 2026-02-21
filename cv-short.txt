@@ -1,0 +1,110 @@
+\documentclass[10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{hyperref}
+\usepackage{charter}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage{multicol}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\titleformat{\section}{\normalsize\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{0.6em}{0.3em}
+
+\setlist[itemize]{nosep, leftmargin=1.2em, topsep=2pt}
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+\pagestyle{empty}
+
+% ========== DOCUMENT START ==========
+\begin{document}
+
+% ---------- HEADER ----------
+\begin{center}
+{\Large\bfseries Vahid Faraji}\\[0.15em]
+{\small Sr. Applied AI Specialist}\\[0.3em]
+{\footnotesize
+\href{mailto:vfaraji89@gmail.com}{vfaraji89@gmail.com} $\cdot$
+\href{https://linkedin.com/in/vahid-faraji-jobehdar}{LinkedIn} $\cdot$
+\href{https://github.com/vfaraji89}{GitHub} $\cdot$
+\href{https://tokalator.wiki}{tokalator.wiki}
+}
+\end{center}
+
+\vspace{-0.3em}
+
+% ---------- SUMMARY ----------
+\section{At a Glance}
+
+Applied AI Specialist (8+ yrs) building multi-agent systems with enterprise hand-off. Expertise in LangGraph, MCP, context engineering, and production AI pipelines serving 20M+ users. Open-source builder (\href{https://tokalator.wiki}{Tokalator}). Multilingual: EN / ES / TR.
+
+% ---------- EXPERIENCE ----------
+\section{Experience}
+
+\textbf{Senior Applied AI Specialist} \hfill Kariyer.net | 2025 -- Present\\
+{\small Enterprise LLM pipelines (Sales, Finance, Text-to-SQL). AI feedback automation (--60\% manual tasks). Token-efficient context engineering adopted as org standard. Google Generative AI Leader; ilab grant \$40K.}
+
+\medskip
+
+\textbf{Product Manager -- Data} \hfill Kariyer.net | 2022 -- 2025\\
+{\small Metadata system (300M+ data-points). AI framework adoption \& C-level alignment. Real-time analytics pipeline. Data governance \& reporting cadence.}
+
+\medskip
+
+\textbf{Business Analyst} \hfill WorqCompany | 2021 -- 2022\\
+{\small Forecasting models, financial analysis, operational dashboards for HR-tech.}
+
+\medskip
+
+\textbf{Co-Founder} \hfill Defaro.io | 2019 -- 2021\\
+{\small Labor market analytics startup. Granted by \"{O}zy\c{e}\u{g}in University. Archived due to team change \& visa-startup difficulty in T\"{u}rkiye.}
+
+% ---------- KEY PROJECTS ----------
+\section{Key Projects}
+
+\begin{tabular}{@{}p{0.28\linewidth} p{0.68\linewidth}@{}}
+\textbf{Tokalator} \textit{\footnotesize(open src)} & VS Code extension + web platform for token budget monitoring, context optimization \& LLM cost models. 15 models, 3 providers. \\[0.3em]
+\textbf{Position Classification} \textit{\footnotesize(research)} & MCP multi-agent system mapping 14K+ job titles to O*NET/ESCO. 95\% LLM accuracy, 72.5\% faster. \\[0.3em]
+\textbf{AI Transformation} & Agentic workflows across Sales, Finance \& R\&D with enterprise hand-off. \\[0.3em]
+\textbf{Text-to-SQL} & NL-to-SQL pipeline via RAG agents. --40\% analytics backlog. \\[0.3em]
+\textbf{Self-Learning Agents} & Autonomous agents with feedback loops (LangGraph, MCP, Arize).
+\end{tabular}
+
+% ---------- SKILLS ----------
+\section{Tech Stack}
+
+\begin{multicols}{2}
+{\small
+\textbf{AI:} LangGraph, MCP, Agno, LangChain, RAG, Arize\\
+\textbf{Lang:} Python (FastAPI), TypeScript, SQL, Pydantic\\
+\textbf{Data:} PostgreSQL, Supabase, BigQuery, Azure Synapse\\
+\textbf{Dev:} Docker, Next.js/React, VS Code Ext., GitHub Copilot\\
+\textbf{Auto:} n8n, Power Automate, PowerBI\\
+\textbf{Core:} Context Engineering, Agent Eval, Doc Design
+}
+\end{multicols}
+
+% ---------- EDUCATION ----------
+\section{Education}
+
+\textbf{M.A. Economics} \hfill Ibn Haldun University | 2019 -- 2023\\
+{\small Thesis: Real-Time Labor Market Analysis. TA for Econometrics I. Research Fellowship.}
+
+% ---------- TALKS & PUBLICATION ----------
+\section{Talks \& Publication}
+
+{\small
+Only Builders Club -- Token Economics (2025) $\cdot$
+Bridge Summit '25 -- Deep Agent for SaaS $\cdot$
+Kayseri \& Van Universities -- Prompt Engineering (techcareer, 2025)\\[0.2em]
+\textbf{Pub:} \href{https://arxiv.org/abs/2601.22885}{Leveraging LLMs For Turkish Skill Extraction} (arXiv, Jan 2026)
+}
+
+% ---------- LANGUAGES ----------
+\vspace{0.3em}
+{\small \textbf{Languages:} Turkish (Native) $\cdot$ English (C1) $\cdot$ Spanish (Instructor) $\cdot$ Portuguese (Basic)}
+
+\end{document}

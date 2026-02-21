@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{charter}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\noindent
+{\large\bfseries Vahid Faraji}\\[0.2em]
+{\small
+\href{mailto:vfaraji89@gmail.com}{vfaraji89@gmail.com} $\cdot$
+\href{https://linkedin.com/in/vahid-faraji-jobehdar}{LinkedIn} $\cdot$
+\href{https://github.com/vfaraji89}{GitHub} $\cdot$
+\href{https://tokalator.wiki}{tokalator.wiki}
+}
+
+\vspace{1.5em}
+
+\noindent
+\today
+
+\vspace{1.5em}
+
+\noindent
+Dear Hiring Manager,
+
+\vspace{0.8em}
+
+\noindent
+I am writing to express my interest in contributing to your team as an Applied AI professional. With 8+ years of experience leading cross-functional teams in data products, multi-agent systems, and enterprise AI transformation, I bring a combination of hands-on technical depth and strategic product thinking that translates directly into measurable business outcomes.
+
+\vspace{0.5em}
+
+\noindent
+In my current role as Senior Applied AI Specialist at Kariyer.net --- Turkey's largest job platform serving 20M+ users --- I design and ship enterprise-scale LLM pipelines across Sales, Finance, and R\&D. I led an AI-powered feedback automation project that reduced manual operational tasks by 60\%, and built token-efficient context engineering frameworks now adopted as the organizational standard. I was awarded the Google Generative AI Leader certification and secured a \$40K ilab grant from Perplexity for AI innovation.
+
+\vspace{0.5em}
+
+\noindent
+Beyond my day role, I actively contribute to the applied AI community through open-source work and research:
+
+\begin{itemize}
+\setlength{\itemsep}{0.2em}
+\item \textbf{Tokalator} (\href{https://tokalator.wiki}{tokalator.wiki}) --- an open-source context engineering toolkit featuring a VS Code extension, interactive LLM cost calculators, and a reusable catalog of prompts and agents covering 15 models across three providers.
+\item \textbf{Multi-Agent Position Classification} --- a research project using MCP-orchestrated agents to normalize 14K+ free-form job titles into O*NET \& ESCO taxonomies, achieving 95\% LLM segment accuracy and 72.5\% faster classification.
+\item \textbf{Publication:} \href{https://arxiv.org/abs/2601.22885}{Leveraging LLMs For Turkish Skill Extraction} (arXiv, January 2026).
+\end{itemize}
+
+\vspace{0.3em}
+
+\noindent
+My technical stack spans the modern AI engineering landscape --- LangGraph, MCP, Agno, FastAPI, TypeScript, Pydantic, Docker, PostgreSQL, BigQuery, and Next.js/React --- and I have practical experience with agent evaluation, observability (Arize), and coding agent context design. I am equally comfortable architecting a multi-agent system, writing a formal cost model, or presenting to C-level stakeholders.
+
+\vspace{0.5em}
+
+\noindent
+I am multilingual (English C1, Spanish at instructor level, Turkish native) and have spoken at conferences including Bridge Summit '25 and university workshops on prompt engineering through techcareer. I thrive in environments where documentation, clarity, and structured thinking multiply team output.
+
+\vspace{0.5em}
+
+\noindent
+I would welcome the opportunity to discuss how my experience in multi-agent orchestration, context engineering, and enterprise AI delivery can contribute to your goals. Thank you for your time and consideration.
+
+\vspace{1.5em}
+
+\noindent
+Sincerely,\\
+Vahid Faraji
+
+\end{document}
