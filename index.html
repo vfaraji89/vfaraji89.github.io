@@ -436,7 +436,12 @@
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
+            gap: 1.25rem;
+        }
+
+        .skills-grid.two-col {
+            grid-template-columns: repeat(2, 1fr);
+            margin-top: 1.25rem;
         }
 
         .skills-group h4 {
@@ -581,17 +586,13 @@
                 </div>
             </div>
             <p class="hero-bio">
-                Design, build & test <strong>multi-agent systems</strong> with enterprise hand-off.
-                Specializing in multi-agent orchestration, context engineering & AI transformation across Sales, Finance and R&D.
+                Learning <strong>Agentic AI</strong> <em style="font-size:0.75rem;color:var(--text-muted)">[Gk. agein — to lead, drive]</em> and Applied AI concepts while leveraging strengths in documentation, context design, and productivity optimization.
             </p>
             <div class="hero-tags">
-                <span>FastAPI + Async Python</span>
-                <span>TypeScript</span>
-                <span>LangGraph</span>
-                <span>MCP</span>
-                <span>Context Engineering</span>
-                <span>Next.js / React</span>
-                <span>Docker</span>
+                <span>Documentation & Context Design</span>
+                <span>Planning & Product Strategy</span>
+                <span>Data Product Development</span>
+                <span>Productivity Engineering</span>
                 <span>EN / ES / TR</span>
             </div>
             <div class="hero-links">
@@ -792,55 +793,114 @@
 
         <!-- ─── Stack ─── -->
         <section class="animate-in delay-4">
-            <div class="section-label">Stack</div>
+            <div class="section-label">$ Tech Stack</div>
             <div class="skills-grid">
                 <div class="skills-group">
-                    <h4>AI & Agents</h4>
+                    <h4>AI_TOOLS</h4>
                     <ul>
                         <li>LangGraph / MCP / Agno</li>
                         <li>LangChain</li>
+                        <li>OpenAI / RAG</li>
+                        <li>Agent Garden (Google)</li>
                         <li>Context Engineering</li>
                         <li>Agent Eval & Benchmarking</li>
-                        <li>Agent Garden (Google)</li>
                         <li>Observability (Arize)</li>
                     </ul>
                 </div>
                 <div class="skills-group">
-                    <h4>Backend & Data</h4>
+                    <h4>LANGUAGES</h4>
                     <ul>
-                        <li>FastAPI + Async Python</li>
+                        <li>Python (FastAPI, Async)</li>
                         <li>TypeScript</li>
+                        <li>SQL / Text-to-SQL</li>
                         <li>Pydantic</li>
-                        <li>Docker</li>
-                        <li>PostgreSQL / Supabase</li>
-                        <li>Azure Synapse / BigQuery</li>
                     </ul>
                 </div>
                 <div class="skills-group">
-                    <h4>Frontend & Cloud</h4>
+                    <h4>DATA_STACK</h4>
                     <ul>
-                        <li>Next.js / React (Vercel, V0)</li>
-                        <li>Azure / Google Cloud</li>
-                        <li>Coding Agent Context Design</li>
-                        <li>VS Code Extensions</li>
-                        <li>GitHub Copilot</li>
+                        <li>PostgreSQL / Supabase</li>
+                        <li>Azure Synapse / BigQuery</li>
+                        <li>Vector DBs</li>
+                        <li>ETL / Data Ingestion</li>
+                        <li>DataHub</li>
                     </ul>
                 </div>
+            </div>
+            <div class="skills-grid two-col">
+                <div class="skills-group">
+                    <h4>AUTOMATION</h4>
+                    <ul>
+                        <li>n8n</li>
+                        <li>Power Automate</li>
+                        <li>GitHub Copilot Workflows</li>
+                    </ul>
+                </div>
+                <div class="skills-group">
+                    <h4>AI Dev Kit</h4>
+                    <ul>
+                        <li>Docker</li>
+                        <li>Azure / Google Cloud</li>
+                        <li>Next.js / React (Vercel, V0)</li>
+                        <li>VS Code, Claude Code </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Currently Learning -->
+            <div style="margin-top:1.5rem; padding:1rem 1.25rem; background:var(--bg-subtle); border:1px solid var(--border); border-radius:8px;">
+                <h4 style="font-size:0.75rem; font-weight:500; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.5rem;">~ Currently Learning</h4>
+                <ul style="list-style:none; display:flex; flex-direction:column; gap:0.25rem;">
+                    <li style="font-size:0.8125rem; color:var(--text-secondary);"><span style="color:var(--text-muted);">├──</span> Multi-agent systems (LangGraph)</li>
+                    <li style="font-size:0.8125rem; color:var(--text-secondary);"><span style="color:var(--text-muted);">├──</span> Advanced agentic AI patterns</li>
+                    <li style="font-size:0.8125rem; color:var(--text-secondary);"><span style="color:var(--text-muted);">└──</span> Open source contribution workflows (business use cases)</li>
+                </ul>
             </div>
         </section>
 
         <!-- ─── Talks ─── -->
         <section class="animate-in delay-5">
             <div class="section-label">Talks</div>
-            <div class="project-card">
-                <div class="project-meta">
-                    <span class="project-tag">2025</span>
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-meta">
+                        <span class="project-tag">2025</span>
+                    </div>
+                    <div class="project-title"><a href="https://lu.ma/onlybuildersclub" target="_blank" rel="noopener">Only Builders Club</a></div>
+                    <p class="project-desc">
+                        Token economics and context engineering for AI-native development — 
+                        how to budget, cache, and optimize your LLM spend.
+                    </p>
                 </div>
-                <div class="project-title"><a href="https://lu.ma/onlybuildersclub" target="_blank" rel="noopener">Only Builders Club</a></div>
-                <p class="project-desc">
-                    Token economics and context engineering for AI-native development — 
-                    how to budget, cache, and optimize your LLM spend.
-                </p>
+                <div class="project-card">
+                    <div class="project-meta">
+                        <span class="project-tag">2025</span>
+                    </div>
+                    <div class="project-title"><a href="#">Deep Agent for SaaS — Bridge Summit '25</a></div>
+                    <p class="project-desc">
+                        Deep agent architecture patterns for SaaS products.
+                    </p>
+                </div>
+                <div class="project-card">
+                    <div class="project-meta">
+                        <span class="project-tag">2025</span>
+                        <span class="project-tag">techcareer × university</span>
+                    </div>
+                    <div class="project-title"><a href="#">Prompt Engineering & Applied AI — Kayseri University</a></div>
+                    <p class="project-desc">
+                        University talk on prompt engineering fundamentals and applied AI concepts.
+                    </p>
+                </div>
+                <div class="project-card">
+                    <div class="project-meta">
+                        <span class="project-tag">2025</span>
+                        <span class="project-tag">techcareer × university</span>
+                    </div>
+                    <div class="project-title"><a href="#">Prompt Engineering & Applied AI — Van University</a></div>
+                    <p class="project-desc">
+                        University talk on prompt engineering fundamentals and applied AI concepts.
+                    </p>
+                </div>
             </div>
         </section>
 
