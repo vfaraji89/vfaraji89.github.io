@@ -1,374 +1,761 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vahid Faraji — Applied AI & Agentic Systems</title>
-  <meta name="description" content="Applied AI specialist building multi-agent systems, RAG pipelines, and AI tooling. First-author at ACM CAIS '26 and creator of Tokalator.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vahid Faraji — Applied AI</title>
+    <meta name="description" content="Applied AI specialist designing agentic systems, context engineering workflows, and evaluation-driven automation for enterprise use cases. First-author ACM CAIS '26.">
+    <meta name="theme-color" content="#e3120b">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🧮</text></svg>">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Vahid Faraji — Applied AI & Agentic Systems">
-  <meta property="og:description" content="Applied AI specialist building multi-agent systems, RAG pipelines, and AI tooling. First-author at ACM CAIS '26 and creator of Tokalator.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://vfaraji89.github.io">
-  <meta property="og:image" content="https://vfaraji89.github.io/vfoto-vahid.jpg">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Vahid Faraji — Applied AI">
+    <meta property="og:description" content="Senior Applied AI designing agentic systems, context engineering workflows, and evaluation-driven automation for enterprise use cases.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vfaraji89.github.io">
+    <meta property="og:image" content="https://vfaraji89.github.io/vfoto-vahid.jpg">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@vfaraji89">
+    <meta name="twitter:title" content="Vahid Faraji — Applied AI">
+    <meta name="twitter:description" content="Senior Applied AI, designing agentic systems, context engineering workflows, and evaluation-driven automation for enterprise use cases.">
+    <meta name="twitter:image" content="https://vfaraji89.github.io/vfoto-vahid.jpg">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:site" content="@vfaraji89">
-  <meta name="twitter:title" content="Vahid Faraji — Applied AI & Agentic Systems">
-  <meta name="twitter:description" content="Applied AI specialist building multi-agent systems, RAG pipelines, and AI tooling. First-author at ACM CAIS '26 and creator of Tokalator.">
-  <meta name="twitter:image" content="https://vfaraji89.github.io/vfoto-vahid.jpg">
+    <style>
+        /* ─── Design Tokens ─── */
+        :root {
+            --font-primary: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: "SF Mono", ui-monospace, SFMono-Regular, "Cascadia Code", monospace;
 
-  <style>
-    /* ─── Design Tokens (light red, green, grey, black) ─── */
-    :root {
-      --font-primary: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: "SF Mono", ui-monospace, SFMono-Regular, "Cascadia Code", monospace;
+            --black: #000000;
+            --grey-900: #111111;
+            --grey-800: #1a1a1a;
+            --grey-700: #333333;
+            --grey-600: #555555;
+            --grey-500: #777777;
+            --grey-400: #999999;
+            --grey-300: #bbbbbb;
+            --grey-200: #dddddd;
+            --grey-100: #f0f0f0;
+            --grey-50:  #f8f8f8;
+            --white:    #ffffff;
 
-      --black: #111111;
-      --grey-900: #1a1a1a;
-      --grey-800: #2b2b2b;
-      --grey-700: #444444;
-      --grey-600: #666666;
-      --grey-500: #888888;
-      --grey-400: #b0b0b0;
-      --grey-300: #d4d4d4;
-      --grey-200: #e6e6e6;
-      --grey-100: #f3f3f3;
-      --grey-50:  #fafafa;
+            --red:       #e3120b;
+            --red-light: rgba(227, 18, 11, 0.08);
+            --green:     #2f9e44;
+            --green-light: rgba(47, 158, 68, 0.09);
 
-      /* light red + soft green */
-      --red: #e34234;            /* primary accent */
-      --red-light: rgba(227, 66, 52, 0.08);
-      --green: #2f9e44;          /* supporting accent */
-      --green-light: rgba(47, 158, 68, 0.08);
+            --bg:           var(--white);
+            --bg-subtle:    var(--grey-50);
+            --bg-muted:     var(--grey-100);
+            --border:       var(--grey-200);
+            --text-primary: var(--black);
+            --text-secondary: var(--grey-600);
+            --text-muted:   var(--grey-400);
+            --accent:       var(--red);
+            --accent-bg:    var(--red-light);
+            --accent2:      var(--green);
+            --accent2-bg:   var(--green-light);
+        }
 
-      --bg: var(--grey-50);
-      --bg-subtle: #ffffff;
-      --bg-muted: var(--grey-100);
-      --border: var(--grey-200);
-      --text-primary: var(--black);
-      --text-secondary: var(--grey-700);
-      --text-muted: var(--grey-500);
-      --accent: var(--red);
-      --accent-bg: var(--red-light);
-    }
+        /* ─── Dark Mode ─── */
+        [data-theme="dark"] {
+            --bg:           #0d0d0d;
+            --bg-subtle:    #161616;
+            --bg-muted:     #1e1e1e;
+            --border:       #2a2a2a;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --text-muted:   #666666;
+            --accent:       #ff4136;
+            --accent-bg:    rgba(255, 65, 54, 0.08);
+            --accent2:      #4ade80;
+            --accent2-bg:   rgba(74, 222, 128, 0.08);
+        }
+        [data-theme="dark"] .hero-photo    { border-color: var(--border); }
+        [data-theme="dark"] .status-dot    { background: #4ade80; }
+        [data-theme="dark"] .pixel-card .dot-grid { --dot-color: #2a2a2a; }
 
-    /* ─── Dark Mode ─── */
-    [data-theme="dark"] {
-      --bg: #101010;
-      --bg-subtle: #151515;
-      --bg-muted: #1d1d1d;
-      --border: #2a2a2a;
-      --text-primary: #f3f3f3;
-      --text-secondary: #c2c2c2;
-      --text-muted: #8a8a8a;
-      --accent: #ff6b5a;          /* warmer red in dark */
-      --accent-bg: rgba(255, 107, 90, 0.12);
-    }
+        /* ─── Theme Toggle ─── */
+        .theme-toggle {
+            position: fixed; top: 1.25rem; right: 1.25rem;
+            width: 36px; height: 36px; border-radius: 50%;
+            border: 1px solid var(--border); background: var(--bg-subtle);
+            color: var(--text-secondary); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 100; transition: border-color 0.2s, background 0.2s;
+        }
+        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+        .theme-toggle svg   { width: 16px; height: 16px; }
 
-    [data-theme="dark"] .hero-photo {
-      border-color: var(--border);
-    }
+        /* ─── Reset ─── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+        }
+        body {
+            background: var(--bg); color: var(--text-primary);
+            font-family: var(--font-primary); font-weight: 400;
+            line-height: 1.6; font-size: 0.9375rem;
+        }
 
-    [data-theme="dark"] .status-dot {
-      background: #4ade80;
-    }
+        /* ─── Typography ─── */
+        h1, h2, h3, h4 {
+            font-family: var(--font-primary); font-weight: 600;
+            letter-spacing: -0.02em; line-height: 1.3; color: var(--text-primary);
+        }
+        p   { color: var(--text-secondary); line-height: 1.7; }
+        a   { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        code {
+            font-family: var(--font-mono); font-size: 0.8125rem;
+            background: var(--bg-muted); padding: 0.15em 0.4em; border-radius: 4px;
+        }
 
-    /* ─── Theme Toggle ─── */
-    .theme-toggle {
-      position: fixed;
-      top: 1.25rem;
-      right: 1.25rem;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--bg-subtle);
-      color: var(--text-secondary);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      transition: border-color 0.2s, background 0.2s, color 0.2s;
-    }
+        /* ─── Layout ─── */
+        .container  { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+        section     { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+        section:last-of-type { border-bottom: none; }
 
-    .theme-toggle:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+        .section-label {
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--text-muted); margin-bottom: 1.25rem;
+        }
 
-    .theme-toggle svg {
-      width: 16px;
-      height: 16px;
-    }
+        /* ─── Hero ─── */
+        .hero { padding: 4rem 0 3rem; }
+        .hero-header { display: flex; align-items: center; gap: 1.25rem; margin-bottom: 1.5rem; }
+        .hero-photo  { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+        .hero-name   { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; }
+        .hero-role   { font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.125rem; }
 
-    /* ─── Reset ─── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        .hero-bio { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; max-width: 560px; }
+        .hero-bio strong { color: var(--text-primary); font-weight: 600; }
 
-    html {
-      font-size: 16px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      scroll-behavior: smooth;
-    }
+        .hero-links { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.25rem; font-size: 0.8125rem; }
+        .hero-links a { color: var(--text-secondary); display: flex; align-items: center; gap: 0.375rem; }
+        .hero-links a:hover { color: var(--accent); text-decoration: none; }
+        .hero-links svg { width: 14px; height: 14px; }
 
-    body {
-      background: var(--bg);
-      color: var(--text-primary);
-      font-family: var(--font-primary);
-      font-weight: 400;
-      line-height: 1.6;
-      font-size: 0.9375rem;
-    }
+        .hero-tags  { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 1rem; }
+        .hero-tags span {
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            background: var(--bg-muted); color: var(--text-secondary);
+            padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid var(--border);
+        }
+        .hero-tags span.green {
+            background: var(--accent2-bg); color: var(--accent2);
+            border-color: rgba(47,158,68,0.2);
+        }
 
-    /* ─── Typography ─── */
-    h1, h2, h3, h4 {
-      font-family: var(--font-primary);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.3;
-      color: var(--text-primary);
-    }
+        /* ─── Download Buttons ─── */
+        .btn-download {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            margin-top: 1.25rem; padding: 0.5rem 1rem;
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--white); background: var(--black);
+            border: 1px solid var(--grey-700); border-radius: 6px;
+            text-decoration: none; transition: background 0.2s, border-color 0.2s;
+        }
+        .btn-download:hover { background: var(--grey-800); border-color: var(--grey-600); text-decoration: none; }
+        .btn-download svg   { width: 13px; height: 13px; }
+        .btn-download + .btn-download { margin-left: 0.75rem; }
 
-    p { color: var(--text-secondary); line-height: 1.7; }
+        /* ─── Pixel Hover Cards (Signals) ─── */
+        .pixel-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .pixel-card {
+            position: relative; background: var(--bg-subtle);
+            border: 1px solid var(--border); border-radius: 8px;
+            padding: 1.5rem 1.25rem; overflow: hidden;
+            cursor: default; transition: border-color 0.3s;
+        }
+        .pixel-card:hover { border-color: var(--grey-300); }
+        .pixel-card .dot-grid {
+            position: absolute; inset: 0; pointer-events: none;
+            --dot-color: var(--grey-200); --dot-size: 1px; --dot-gap: 16px;
+            background-image: radial-gradient(circle, var(--dot-color) var(--dot-size), transparent var(--dot-size));
+            background-size: var(--dot-gap) var(--dot-gap); background-position: center;
+            mask-image: radial-gradient(circle 80px at var(--mx,-100px) var(--my,-100px), black 0%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle 80px at var(--mx,-100px) var(--my,-100px), black 0%, transparent 100%);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .pixel-card:hover .dot-grid { opacity: 1; --dot-color: var(--accent); }
+        .pixel-card .glow {
+            position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(circle 120px at var(--mx,-100px) var(--my,-100px), var(--accent-bg), transparent 70%);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .pixel-card:hover .glow { opacity: 1; }
+        .pixel-card .card-content { position: relative; z-index: 1; }
+        .pixel-card .card-icon {
+            font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.04em;
+            background: var(--bg-muted); color: var(--text-secondary);
+            padding: 0.2rem 0.5rem; border-radius: 4px; border: 1px solid var(--border);
+            display: inline-block; margin-bottom: 0.75rem;
+        }
+        .pixel-card:hover .card-icon { background: var(--accent-bg); border-color: rgba(227,18,11,0.15); color: var(--accent); }
+        .pixel-card .card-title  { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .pixel-card .card-detail { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); line-height: 1.5; }
 
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+        /* ─── Project Cards ─── */
+        .project-grid { display: grid; gap: 1rem; }
+        .project-card { border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; transition: border-color 0.2s; }
+        .project-card:hover { border-color: var(--grey-300); }
+        .project-card.featured { background: var(--accent-bg); border-color: rgba(227,18,11,0.15); }
+        .project-card.green    { background: var(--accent2-bg); border-color: rgba(47,158,68,0.18); }
 
-    code {
-      font-family: var(--font-mono);
-      font-size: 0.8125rem;
-      background: var(--bg-muted);
-      padding: 0.15em 0.4em;
-      border-radius: 4px;
-    }
+        .project-meta  { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+        .project-tag   {
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            background: var(--bg-muted); padding: 0.15rem 0.5rem;
+            border-radius: 4px; color: var(--text-secondary);
+        }
+        .project-card.featured .project-tag { background: rgba(227,18,11,0.12); color: var(--accent); }
+        .project-card.green    .project-tag { background: rgba(47,158,68,0.12); color: var(--accent2); }
 
-    /* ─── Layout ─── */
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 0 1.5rem 3rem;
-    }
+        .project-title   { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .project-title a { color: var(--text-primary); }
+        .project-card.featured .project-title a { color: var(--accent); }
+        .project-card.green    .project-title a { color: var(--accent2); }
 
-    section {
-      padding: 3rem 0;
-      border-bottom: 1px solid var(--border);
-    }
+        .project-desc  { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; }
+        .project-stack { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.75rem; }
+        .project-stack span { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); }
 
-    section:last-of-type {
-      border-bottom: none;
-    }
+        /* Agent architecture line */
+        .agent-arch {
+            margin-top: 0.625rem; padding: 0.5rem 0.75rem;
+            background: var(--bg-muted); border-radius: 5px;
+            font-family: var(--font-mono); font-size: 0.6rem;
+            color: var(--text-muted); letter-spacing: 0.02em; line-height: 1.6;
+        }
+        .project-card.featured .agent-arch { background: rgba(227,18,11,0.06); }
+        .project-card.green    .agent-arch { background: rgba(47,158,68,0.07); }
 
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      margin-bottom: 1.25rem;
-    }
+        /* ─── Publications ─── */
+        .pub-card {
+            border: 1px solid var(--border); border-radius: 8px;
+            padding: 1.125rem 1.25rem; margin-bottom: 0.75rem;
+            transition: border-color 0.2s;
+        }
+        .pub-card:hover { border-color: var(--grey-300); }
+        .pub-card.acm   { background: var(--accent2-bg); border-color: rgba(47,158,68,0.2); }
+        .pub-badge {
+            font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.07em;
+            padding: 0.15rem 0.5rem; border-radius: 3px; margin-right: 0.5rem;
+        }
+        .pub-badge.acm    { background: rgba(47,158,68,0.15); color: var(--accent2); }
+        .pub-badge.arxiv  { background: var(--bg-muted); color: var(--text-muted); }
+        .pub-title  { font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin: 0.375rem 0 0.2rem; }
+        .pub-title a { color: inherit; }
+        .pub-title a:hover { color: var(--accent2); text-decoration: underline; }
+        .pub-meta   { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
 
-    /* ─── Hero ─── */
-    .hero {
-      padding: 4rem 0 3rem;
-    }
+        /* ─── Experience Timeline ─── */
+        .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
+        .timeline-item { display: grid; grid-template-columns: 140px 1fr; gap: 1rem; }
+        .timeline-period { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); padding-top: 0.125rem; }
+        .timeline-content h3  { font-size: 0.875rem; font-weight: 600; }
+        .timeline-content .org  { font-size: 0.8125rem; color: var(--text-secondary); margin-top: 0.125rem; }
+        .timeline-content .desc { font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.375rem; line-height: 1.6; }
+        .timeline-content .impact {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            margin-top: 0.5rem; font-family: var(--font-mono); font-size: 0.6rem;
+            color: var(--accent2); letter-spacing: 0.04em; text-transform: uppercase;
+        }
 
-    .hero-card {
-      background: var(--bg-subtle);
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      padding: 1.75rem 1.5rem 1.75rem;
-    }
+        /* ─── Skills ─── */
+        .skills-grid     { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+        .skills-grid.two-col { grid-template-columns: repeat(2,1fr); margin-top: 1.25rem; }
+        .skills-group h4 { font-size: 0.75rem; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+        .skills-group ul { list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
+        .skills-group li { font-size: 0.8125rem; color: var(--text-secondary); }
 
-    .hero-header {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      margin-bottom: 1.25rem;
-    }
+        /* ─── Footer ─── */
+        .site-footer { padding: 3rem 0 2.5rem; border-top: 1px solid var(--border); margin-top: 1rem; }
+        .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        .footer-status {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 0.375rem 1.25rem; font-size: 0.75rem; color: var(--text-muted);
+        }
+        .footer-status span { display: flex; align-items: center; gap: 0.375rem; }
+        .status-dot {
+            width: 6px; height: 6px; border-radius: 50%; background: #22c55e;
+            display: inline-block; animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
-    .hero-photo {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid var(--border);
-    }
+        .footer-quote {
+            font-size: 0.8125rem; color: var(--text-secondary); font-style: italic;
+            text-align: center; max-width: 400px; line-height: 1.6;
+        }
+        .footer-links { display: flex; gap: 1.25rem; font-size: 0.6875rem; font-family: var(--font-mono); }
+        .footer-links a { color: var(--text-muted); }
+        .footer-links a:hover { color: var(--accent); }
 
-    .hero-name {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
+        /* ─── Animations ─── */
+        @keyframes fadeInUp  { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes scaleIn   { from{opacity:0;transform:scale(0.96)}      to{opacity:1;transform:scale(1)} }
+        .animate-in    { animation: fadeInUp 0.5s ease-out both; }
+        .animate-scale { animation: scaleIn  0.35s ease-out both; }
+        .delay-1 { animation-delay: 0.05s; }
+        .delay-2 { animation-delay: 0.1s; }
+        .delay-3 { animation-delay: 0.15s; }
+        .delay-4 { animation-delay: 0.2s; }
+        .delay-5 { animation-delay: 0.25s; }
+        .delay-6 { animation-delay: 0.3s; }
 
-    .hero-role {
-      font-size: 0.875rem;
-      color: var(--text-secondary);
-      margin-top: 0.125rem;
-    }
-
-    .hero-bio {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      max-width: 560px;
-    }
-
-    .hero-bio strong {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    .hero-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-top: 1.25rem;
-      font-size: 0.8125rem;
-    }
-
-    .hero-links a {
-      color: var(--text-secondary);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.375rem;
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--bg-muted);
-    }
-
-    .hero-links a:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      text-decoration: none;
-      background: var(--accent-bg);
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 1.25rem;
-    }
-
-    .hero-tags span {
-      font-family: var(--font-mono);
-      font-size: 0.6875rem;
-      background: var(--bg-muted);
-      color: var(--text-secondary);
-      padding: 0.18rem 0.5rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-    }
-
-    /* subtle green highlight tag */
-    .hero-tags span.highlight {
-      border-color: var(--green);
-      background: var(--green-light);
-      color: var(--green);
-    }
-
-    /* ─── Publications section (minimal) ─── */
-    .pub-card {
-      background: var(--bg-subtle);
-      border-radius: 10px;
-      border: 1px dashed var(--border);
-      padding: 1rem 1.1rem;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    .pub-card p + p {
-      margin-top: 0.4rem;
-    }
-
-    @media (max-width: 640px) {
-      .hero-card { padding: 1.4rem 1.1rem 1.5rem; }
-      .hero-header { align-items: flex-start; }
-      .hero-name { font-size: 1.35rem; }
-      .hero-links { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
+        /* ─── Responsive ─── */
+        @media (max-width: 640px) {
+            .hero { padding: 2.5rem 0 2rem; }
+            .hero-name { font-size: 1.25rem; }
+            .pixel-grid { grid-template-columns: 1fr !important; }
+            .skills-grid, .skills-grid.two-col { grid-template-columns: 1fr; }
+            .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
+            .footer-status { flex-direction: column; align-items: center; }
+            .btn-download + .btn-download { margin-left: 0; margin-top: 0.5rem; }
+        }
+    </style>
 </head>
 <body>
-  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
-    <!-- simple sun/moon icon -->
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="currentColor" d="M12 4.5a1 1 0 0 1 1 1V7a1 1 0 0 1-2 0V5.5a1 1 0 0 1 1-1zm0 12.5a1 1 0 0 1 1 1V19a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zm7.5-5.5a1 1 0 0 1 1 1h0a1 1 0 1 1-2 0h0a1 1 0 0 1 1-1zM5.5 12a1 1 0 0 1 1 1h0a1 1 0 1 1-2 0h0a1 1 0 0 1 1-1zm10.95-5.45a1 1 0 0 1 1.41 0l.71.71a1 1 0 0 1-1.41 1.41l-.71-.71a1 1 0 0 1 0-1.41zM6.43 16.57a1 1 0 0 1 1.41 0l.71.71a1 1 0 0 1-1.41 1.41l-.71-.71a1 1 0 0 1 0-1.41zm0-9.14a1 1 0 0 1 1.41-1.41l.71.71A1 1 0 0 1 7.14 8.14l-.71-.71a1 1 0 0 1 0-1.41zm9.14 9.14a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1-1.41-1.41zM12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/>
-    </svg>
-  </button>
 
-  <main class="container">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-card">
-        <div class="hero-header">
-          <img src="vfoto-vahid.jpg" alt="Vahid Faraji" class="hero-photo">
-          <div>
-            <div class="hero-name">Vahid Faraji</div>
-            <div class="hero-role">Sr. Applied AI Specialist · Multi-Agent Systems</div>
-          </div>
+    <!-- ─── Dark Mode Toggle ─── -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <svg id="icon-sun" viewBox="0 0 16 16" fill="currentColor" style="display:none;"><path d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2A.5.5 0 018 0zm0 13a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2A.5.5 0 018 13zm8-5a.5.5 0 01-.5.5h-2a.5.5 0 010-1h2a.5.5 0 01.5.5zM3 8a.5.5 0 01-.5.5h-2a.5.5 0 010-1h2A.5.5 0 013 8zm10.657-5.657a.5.5 0 010 .707l-1.414 1.415a.5.5 0 11-.707-.708l1.414-1.414a.5.5 0 01.707 0zm-9.193 9.193a.5.5 0 010 .707L3.05 13.657a.5.5 0 01-.707-.707l1.414-1.414a.5.5 0 01.707 0zm9.193 2.121a.5.5 0 01-.707 0l-1.414-1.414a.5.5 0 01.707-.707l1.414 1.414a.5.5 0 010 .707zM4.464 4.465a.5.5 0 01-.707 0L2.343 3.05a.5.5 0 11.707-.707l1.414 1.414a.5.5 0 010 .708z"/></svg>
+        <svg id="icon-moon" viewBox="0 0 16 16" fill="currentColor"><path d="M6 .278a.768.768 0 01.08.858 7.208 7.208 0 00-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 01.81.316.733.733 0 01-.031.893A8.349 8.349 0 018.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 016 .278z"/></svg>
+    </button>
+
+    <main class="container">
+
+        <!-- ─── Hero ─── -->
+        <section class="hero animate-in">
+            <div class="hero-header">
+                <img src="vfoto-vahid.jpg" alt="Vahid Faraji" class="hero-photo" width="64" height="64" loading="eager">
+                <div>
+                    <div class="hero-name">Vahid Faraji</div>
+                    <div class="hero-role">Senior Applied AI Specialist — Agentic Systems & Context Engineering</div>
+                </div>
+            </div>
+
+            <p class="hero-bio">
+                Senior Applied AI who designs <strong>agentic systems</strong>, <strong>context engineering workflows</strong>, and evaluation-driven LLM automation for enterprise use cases. 8+ years in analytics and data, expert on multi-agent architecture, retrieval pipelines, and cost-aware AI tooling that turn unstructured business tasks into reliable production systems. Hands on experience on enterprise data, agentic develop and cloud infra.
+            </p>
+            <p class="hero-bio" style="margin-top:0.75rem;">
+                Creator of <a href="https://tokalator.wiki" target="_blank" rel="noopener"><strong>Tokalator</strong></a>: open-source infrastructure for context optimization and cost-aware agent execution across 15 models. Google-certified <strong>Generative AI Leader</strong>. 
+            </p>
+
+            <div class="hero-tags">
+                <span class="green">Agentic Systems Design</span>
+                <span class="green">Multi-Agent Design</span>
+                <span class="green">Product Engineer</span>
+                <span class="green">Context Engineering</span>
+                <span class="green">Token Economics</span>
+                <span class="green">Enterprise Data</span>
+                <span class="green">RAG Pipelines</span>
+                <span>DB Vector</span>
+                <span>MCP and Tool Call</span>
+            </div>
+
+            <div class="hero-links">
+                <a href="https://github.com/vfaraji89" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="mailto:vfaraji89@gmail.com">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M.05 3.555A2 2 0 012 2h12a2 2 0 011.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 002 14h12a2 2 0 001.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zM16 11.801V4.697l-5.803 3.546L16 11.801z"/></svg>
+                    Email
+                </a>
+                <a href="https://tokalator.wiki" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 8a8 8 0 1116 0A8 8 0 010 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 005.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 01.64-1.539 6.7 6.7 0 01.597-.933A7.025 7.025 0 002.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 00-.656 2.5h2.49zM4.847 5a12.5 12.5 0 00-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 00-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 00.337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 01-.597-.933A9.268 9.268 0 014.09 12H2.255a7.024 7.024 0 003.072 2.472zM3.82 11a13.652 13.652 0 01-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0013.745 12H11.91a9.27 9.27 0 01-.64 1.539 6.688 6.688 0 01-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 01-.312 2.5zm2.802-3.5a6.959 6.959 0 00-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 00-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 00-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z"/></svg>
+                    tokalator.wiki
+                </a>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem;">
+                <a href="cv_vahid-appliedai%20(202602).pdf" target="_blank" rel="noopener" class="btn-download">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
+                    Download CV
+                </a>
+                <a href="short-cv.pdf" target="_blank" rel="noopener" class="btn-download" style="background:var(--grey-700);border-color:var(--grey-600);">
+                    <svg viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
+                    Short CV (1-page)
+                </a>
+            </div>
+        </section>
+
+        <!-- ─── Signals ─── -->
+        <section class="animate-in delay-1">
+            <div class="section-label">Signals</div>
+            <div class="pixel-grid" id="pixel-grid">
+                <div class="pixel-card animate-scale delay-2">
+                    <div class="dot-grid"></div><div class="glow"></div>
+                    <div class="card-content">
+                        <span class="card-icon">agent_arch</span>
+                        <div class="card-title">Multi-Agent Orchestration</div>
+                        <div class="card-detail">Designed hierarchical agent frameworks (planner → specialist → reviewer → tool) deployed at 20M+ user scale</div>
+                    </div>
+                </div>
+                <div class="pixel-card animate-scale delay-3">
+                    <div class="dot-grid"></div><div class="glow"></div>
+                    <div class="card-content">
+                        <span class="card-icon">eval_loop</span>
+                        <div class="card-title">Evaluation-Driven AI</div>
+                        <div class="card-detail">95% LLM accuracy, 86.2% rule-based segment accuracy, 0.94 avg confidence — measured on 14K+ positions</div>
+                    </div>
+                </div>
+                <div class="pixel-card animate-scale delay-4">
+                    <div class="dot-grid"></div><div class="glow"></div>
+                    <div class="card-content">
+                        <span class="card-icon">token_budget</span>
+                        <div class="card-title">Context & Cost Engineering</div>
+                        <div class="card-detail">Built tokalator.wiki — open-source context optimization toolkit, VS Code extension & caching ROI calculators</div>
+                    </div>
+                </div>
+                <div class="pixel-card animate-scale delay-5">
+                    <div class="dot-grid"></div><div class="glow"></div>
+                    <div class="card-content">
+                        <span class="card-icon">prod_impact</span>
+                        <div class="card-title">Production Impact</div>
+                        <div class="card-detail">30K+ job titles normalized, 72.5% faster classification, 60% fewer manual tasks — shipped to real users</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── Projects ─── -->
+        <section class="animate-in delay-2">
+            <div class="section-label">Projects</div>
+            <div class="project-grid">
+
+                <div class="project-card featured animate-scale delay-3">
+                    <div class="project-meta">
+                        <span class="project-tag">open source</span>
+                        <span class="project-tag">infrastructure</span>
+                    </div>
+                    <div class="project-title">
+                        <a href="https://tokalator.wiki" target="_blank" rel="noopener">Tokalator — Context Engineering Toolkit</a>
+                    </div>
+                    <p class="project-desc">
+                        Open-source infrastructure for context optimization and cost-aware agent execution. (1) VS Code extension with real-time token budget monitoring, tab relevance scoring, and 11 chat commands; (2) web platform with Cobb-Douglas quality-of-output calculators; (3) reusable catalog of context engineering prompts, agents & instructions. Covers 15 models across Anthropic, OpenAI & Google with formal cost models, caching break-even analysis, and token allocation optimization.
+                    </p>
+                    <div class="agent-arch">arch: context_layer → budget_monitor → relevance_scorer → cost_optimizer → 15_model_coverage</div>
+                    <div class="project-stack">
+                        <span>Next.js</span><span>·</span><span>React 19</span><span>·</span>
+                        <span>VS Code Extension</span><span>·</span><span>Context Engineering</span><span>·</span><span>Token Economics</span>
+                    </div>
+                </div>
+
+                <div class="project-card featured animate-scale delay-4">
+                    <div class="project-meta">
+                        <span class="project-tag">research</span>
+                        <span class="project-tag">ACM CAIS '26</span>
+                    </div>
+                    <div class="project-title"><a href="#">Multi-Agent Position Classification</a></div>
+                    <p class="project-desc">
+                        MCP-based multi-agent system for cross-lingual normalization of free-form job titles to O*NET & ESCO taxonomies. Root Content Agent delegates to specialized sub-agents (web search, content extraction, DB queries, trend analysis) with multi-layered memory. Evaluated on 14K+ positions — 72.5% reduction in classification time, 86.2% rule-based accuracy, 95% LLM accuracy (0.94 avg confidence). Accepted as demo paper at ACM CAIS '26.
+                    </p>
+                    <div class="agent-arch">arch: planner_agent → [search_agent | db_agent | extract_agent | trend_agent] → evaluator → taxonomy_output</div>
+                    <div class="project-stack">
+                        <span>MCP</span><span>·</span><span>LangGraph</span><span>·</span>
+                        <span>O*NET</span><span>·</span><span>ESCO</span><span>·</span><span>Multi-Agent</span><span>·</span><span>Evaluation</span>
+                    </div>
+                </div>
+
+                <div class="project-card animate-scale delay-5">
+                    <div class="project-meta">
+                        <span class="project-tag">production</span>
+                        <span class="project-tag">enterprise</span>
+                    </div>
+                    <div class="project-title"><a href="#">Enterprise AI Transformation</a></div>
+                    <p class="project-desc">
+                        Agentic workflows across Sales (report automation), Finance (text-to-SQL), and R&D — designed, evaluated, and handed off to enterprise operations. AI-powered feedback automation serving 100+ users with 60% reduction in manual tasks. Token-efficient prompt and context engineering adopted as org standard.
+                    </p>
+                    <div class="agent-arch">arch: task_decomposer → specialist_agents → human_checkpoint → eval_loop → enterprise_handoff</div>
+                    <div class="project-stack">
+                        <span>FastAPI</span><span>·</span><span>LangGraph</span><span>·</span>
+                        <span>Agno</span><span>·</span><span>Pydantic</span><span>·</span><span>Arize</span>
+                    </div>
+                </div>
+
+                <div class="project-card animate-scale delay-5">
+                    <div class="project-meta">
+                        <span class="project-tag">production</span>
+                    </div>
+                    <div class="project-title"><a href="#">Text-to-SQL — Natural Language Reporting</a></div>
+                    <p class="project-desc">
+                        Natural-language to SQL pipeline turning business questions into structured reports. RAG-augmented query generation agent with schema grounding, guardrails for query safety, and human escalation for ambiguous inputs.
+                    </p>
+                    <div class="agent-arch">arch: nl_parser → schema_rag → sql_generator → validator → report_renderer</div>
+                    <div class="project-stack">
+                        <span>Python</span><span>·</span><span>SQL</span><span>·</span>
+                        <span>RAG</span><span>·</span><span>BigQuery</span><span>·</span><span>Azure Synapse</span>
+                    </div>
+                </div>
+
+                <div class="project-card animate-scale delay-6">
+                    <div class="project-meta">
+                        <span class="project-tag">production</span>
+                    </div>
+                    <div class="project-title"><a href="#">Self-Learning Agents</a></div>
+                    <p class="project-desc">
+                        Autonomous agents that improve through feedback loops — evaluation-first design with Arize observability, LangSmith tracing, structured failure recovery, and controlled autonomy boundaries.
+                    </p>
+                    <div class="agent-arch">arch: executor → outcome_evaluator → feedback_store → self_refinement → human_gate</div>
+                    <div class="project-stack">
+                        <span>LangGraph</span><span>·</span><span>MCP</span><span>·</span>
+                        <span>Agno</span><span>·</span><span>Arize</span><span>·</span><span>LangSmith</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ─── Publications ─── -->
+        <section class="animate-in delay-3">
+            <div class="section-label">Publications</div>
+
+            <div class="pub-card acm">
+                <div>
+                    <span class="pub-badge acm">ACM CAIS '26</span>
+                    <span class="pub-badge arxiv">demo paper</span>
+                </div>
+                <div class="pub-title">
+                    <a href="#" target="_blank" rel="noopener">Tool-Augmented Multi-Agent Systems for Job Position Normalisation</a>
+                </div>
+                <div class="pub-meta">Vahid Faraji et al. · Kariyer.net R&D · ACM CAIS 2026 · Accepted</div>
+            </div>
+
+            <div class="pub-card">
+                <div>
+                    <span class="pub-badge arxiv">arXiv 2601.22885</span>
+                </div>
+                <div class="pub-title">
+                    <a href="https://arxiv.org/abs/2601.22885" target="_blank" rel="noopener">Leveraging LLMs For Turkish Skill Extraction</a>
+                </div>
+                <div class="pub-meta">Vahid Faraji et al. · arXiv preprint · 2026</div>
+            </div>
+
+            <div class="pub-card">
+                <div>
+                    <span class="pub-badge arxiv">arXiv 2604.08290</span>
+                </div>
+                <div class="pub-title">
+                    <a href="https://arxiv.org/abs/2604.08290" target="_blank" rel="noopener">Tokalator: A Context Engineering Toolkit for AI Coding Assistants</a>
+                </div>
+                <div class="pub-meta">Vahid Faraji · arXiv preprint · 2026</div>
+            </div>
+        </section>
+
+        <!-- ─── Experience ─── -->
+        <section class="animate-in delay-3">
+            <div class="section-label">Experience</div>
+            <div class="timeline">
+
+                <div class="timeline-item">
+                    <div class="timeline-period">2025 — Present</div>
+                    <div class="timeline-content">
+                        <h3>Senior Applied AI Specialist</h3>
+                        <div class="org">Kariyer.net</div>
+                        <div class="desc">Designed agentic reporting pipelines (Sales automation, Finance text-to-SQL) and implemented evaluation loops for LLM-powered workflows. Introduced token-efficient prompt and context engineering standards adopted org-wide. AI feedback automation serving 100+ users, 60% reduction in manual tasks.</div>
+                        <div class="impact">↑ Google GenAI Leader · Perplexity ilab $40K · ACM CAIS '26 first author</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-period">2022 — 2025</div>
+                    <div class="timeline-content">
+                        <h3>Senior Data Product Manager</h3>
+                        <div class="org">Kariyer.net</div>
+                        <div class="desc">Built AI-powered search, agentic workflows, and cost optimization systems for Turkey's largest job platform. Led cross-functional teams delivering data products to 20M+ users. Normalized 30K+ job titles into O*NET & ESCO taxonomies — replaced 6 months of manual work.</div>
+                        <div class="impact">↑ 20M+ users · 30K+ positions normalized · agentic search shipped</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-period">2021 — 2022</div>
+                    <div class="timeline-content">
+                        <h3>Business Analyst</h3>
+                        <div class="org">WorqCompany</div>
+                        <div class="desc">Financial modelling, risk logic, and KPI design for HR-tech products.</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-period">2019 — 2021</div>
+                    <div class="timeline-content">
+                        <h3>Co-Founder</h3>
+                        <div class="org">Defaro.io</div>
+                        <div class="desc">Labor market analytics startup — built the data pipeline and product strategy from scratch.</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ─── Certifications ─── -->
+        <section class="animate-in delay-4">
+            <div class="section-label">Certifications</div>
+            <div class="project-grid">
+                <div class="project-card green">
+                    <div class="project-meta">
+                        <span class="project-tag">Google</span>
+                        <span class="project-tag">Dec 2025 — Dec 2028</span>
+                    </div>
+                    <div class="project-title"><a href="https://www.credential.net/8b3ec400734d456e92f8e65729ed3cde" target="_blank" rel="noopener">Generative AI Leader</a></div>
+                    <p class="project-desc">Generative AI, Google Gemini, AI strategy & leadership.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-meta">
+                        <span class="project-tag">LangChain</span>
+                        <span class="project-tag">Jan 2025</span>
+                    </div>
+                    <div class="project-title"><a href="https://academy.langchain.com/certificates/8n6vgi7fx6" target="_blank" rel="noopener">Introduction to LangSmith</a></div>
+                    <p class="project-desc">LLM observability, tracing, evaluation and debugging with LangSmith.</p>
+                </div>
+                <div class="project-card">
+                    <div class="project-meta">
+                        <span class="project-tag">Techcareer.net</span>
+                        <span class="project-tag">2026</span>
+                    </div>
+                    <div class="project-title">Uygulamalı AI Araçlar, Agent'lar ve Otomasyon</div>
+                    <p class="project-desc">Practical AI tools, agents and automation — agentic workflows and enterprise AI delivery.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── Stack ─── -->
+        <section class="animate-in delay-4">
+            <div class="section-label">$ Tech Stack</div>
+            <div class="skills-grid">
+                <div class="skills-group">
+                    <h4>Agent Systems</h4>
+                    <ul>
+                        <li>LangGraph / MCP / Agno</li>
+                        <li>OpenAI Agents SDK</li>
+                        <li>LangChain</li>
+                        <li>Agent Eval & Benchmarking</li>
+                        <li>Observability (Arize, LangSmith)</li>
+                        <li>Guardrails & Safety</li>
+                        <li>Agent Garden (Google)</li>
+                    </ul>
+                </div>
+                <div class="skills-group">
+                    <h4>Languages</h4>
+                    <ul>
+                        <li>Python (FastAPI, Async)</li>
+                        <li>TypeScript</li>
+                        <li>SQL / Text-to-SQL</li>
+                        <li>Pydantic</li>
+                    </ul>
+                </div>
+                <div class="skills-group">
+                    <h4>Data & Retrieval</h4>
+                    <ul>
+                        <li>PostgreSQL / Supabase</li>
+                        <li>Azure Synapse / BigQuery</li>
+                        <li>Vector DBs / RAG</li>
+                        <li>ETL / Data Ingestion</li>
+                        <li>DataHub</li>
+                        <li>Metadata Management</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skills-grid two-col">
+                <div class="skills-group">
+                    <h4>Automation</h4>
+                    <ul>
+                        <li>n8n</li>
+                        <li>Power Automate</li>
+                        <li>GitHub Copilot Workflows</li>
+                    </ul>
+                </div>
+                <div class="skills-group">
+                    <h4>AI Dev Kit</h4>
+                    <ul>
+                        <li>Docker</li>
+                        <li>Azure / Google Cloud</li>
+                        <li>Next.js / React (Vercel, V0)</li>
+                        <li>VS Code, Claude Code</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Currently Building -->
+            <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:var(--bg-subtle);border:1px solid var(--border);border-radius:8px;">
+                <h4 style="font-size:0.75rem;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem;">~ Currently Building</h4>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.25rem;">
+                    <li style="font-size:0.8125rem;color:var(--text-secondary);"><span style="color:var(--text-muted);">├──</span> Long-horizon agent reliability patterns</li>
+                    <li style="font-size:0.8125rem;color:var(--text-secondary);"><span style="color:var(--text-muted);">├──</span> Structured evaluation frameworks for agentic systems</li>
+                    <li style="font-size:0.8125rem;color:var(--text-secondary);"><span style="color:var(--text-muted);">├──</span> Cost-aware multi-agent orchestration at enterprise scale</li>
+                    <li style="font-size:0.8125rem;color:var(--text-secondary);"><span style="color:var(--text-muted);">└──</span> Tokalator v2 — expanded model coverage + agent-native context APIs</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ─── Footer ─── -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-status">
+                    <span><span class="status-dot"></span> Open to senior AI roles</span>
+                    <span>Istanbul, Turkey</span>
+                    <span>ACM CAIS '26 · arXiv 2601.22885 · arXiv 2604.08290</span>
+                </div>
+                <p class="footer-quote">"Structure the context, control the cost, evaluate the outcome — then ship."</p>
+                <div class="footer-links">
+                    <a href="https://github.com/vfaraji89" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://tokalator.wiki" target="_blank" rel="noopener">Tokalator</a>
+                    <a href="mailto:vfaraji89@gmail.com">Email</a>
+                </div>
+                <div style="font-size:0.6875rem;font-family:var(--font-mono);color:var(--text-muted);">
+                    © 2026 Vahid Faraji · vfaraji89.github.io
+                </div>
+            </div>
         </div>
+    </footer>
 
-        <p class="hero-bio">
-          I build multi-agent systems, RAG pipelines, and AI tooling for enterprises that actually ship. First-author at <strong>ACM CAIS ’26</strong> on tool-augmented agents, and creator of <strong>Tokalator</strong>, an open-source context engineering toolkit for AI coding assistants. Currently leading applied AI workflows at Kariyer.net.
-        </p>
-
-        <div class="hero-links">
-          <a href="cv-vahid-faraji-202604.pdf" target="_blank" rel="noopener">Full CV (PDF)</a>
-          <a href="short-cv-202604.pdf" target="_blank" rel="noopener">One-page CV</a>
-          <a href="https://tokalator.wiki" target="_blank" rel="noopener">Tokalator</a>
-          <a href="mailto:vfaraji89@gmail.com">Contact</a>
-        </div>
-
-        <div class="hero-tags">
-          <span class="highlight">ACM CAIS ’26</span>
-          <span>Multi-Agent Systems</span>
-          <span>RAG &amp; Context Engineering</span>
-          <span>Tokalator</span>
-          <span>Azure / GCP</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Publications (minimal) -->
-    <section>
-      <div class="section-label">PUBLICATIONS</div>
-      <div class="pub-card">
-        <p>
-          Tool-Augmented Multi-Agent Systems for Job Position Normalisation (ACM CAIS ’26) ·
-          Leveraging LLMs For Turkish Skill Extraction (arXiv 2601.22885) ·
-          Tokalator: A Context Engineering Toolkit for AI Coding Assistants (arXiv 2604.08290)
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <script>
-    // Simple theme toggle with localStorage
-    (function () {
-      const root = document.documentElement;
-      const toggle = document.getElementById('theme-toggle');
-      const stored = localStorage.getItem('theme');
-      if (stored) {
-        root.setAttribute('data-theme', stored);
-      }
-
-      toggle.addEventListener('click', () => {
-        const current = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', current);
-        localStorage.setItem('theme', current);
-      });
+    <script>
+    // ─── Dark Mode Toggle ───
+    (function(){
+        const btn = document.getElementById('theme-toggle');
+        const sun = document.getElementById('icon-sun');
+        const moon = document.getElementById('icon-moon');
+        const root = document.documentElement;
+        let dark = window.matchMedia('(prefers-color-scheme:dark)').matches;
+        function apply(d) {
+            root.setAttribute('data-theme', d ? 'dark' : 'light');
+            sun.style.display  = d ? 'block' : 'none';
+            moon.style.display = d ? 'none'  : 'block';
+        }
+        apply(dark);
+        btn.addEventListener('click', () => { dark = !dark; apply(dark); });
     })();
-  </script>
+
+    // ─── Pixel Card Mouse Glow ───
+    document.querySelectorAll('.pixel-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = e.clientX - r.left, y = e.clientY - r.top;
+            card.style.setProperty('--mx', x + 'px');
+            card.style.setProperty('--my', y + 'px');
+            card.querySelector('.dot-grid').style.setProperty('--mx', x + 'px');
+            card.querySelector('.dot-grid').style.setProperty('--my', y + 'px');
+            card.querySelector('.glow').style.setProperty('--mx', x + 'px');
+            card.querySelector('.glow').style.setProperty('--my', y + 'px');
+        });
+    });
+    </script>
 </body>
 </html>
