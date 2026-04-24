@@ -217,10 +217,10 @@
         .project-card.featured .project-tag { background: rgba(227,18,11,0.12); color: var(--accent); }
         .project-card.green    .project-tag { background: rgba(47,158,68,0.12); color: var(--accent2); }
 
-        .project-title   { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .project-title a { color: var(--text-primary); }
-        .project-card.featured .project-title a { color: var(--accent); }
-        .project-card.green    .project-title a { color: var(--accent2); }
+        .project-title   { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--text-primary); }
+        .project-title a { color: inherit; }
+        .project-card.featured .project-title { color: var(--accent); }
+        .project-card.green    .project-title { color: var(--accent2); }
 
         .project-desc  { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.6; }
         .project-stack { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.75rem; }
@@ -310,11 +310,77 @@
         .delay-5 { animation-delay: 0.25s; }
         .delay-6 { animation-delay: 0.3s; }
 
+        /* ─── Gallery ─── */
+        .gallery-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+        .gallery-item {
+            border: 1px solid var(--border); border-radius: 8px;
+            overflow: hidden; background: var(--bg-subtle);
+            transition: border-color 0.2s;
+        }
+        .gallery-item:hover { border-color: var(--grey-300); }
+        .gallery-item a { display: block; color: inherit; text-decoration: none; }
+        .gallery-item a:hover { text-decoration: none; }
+        .gallery-thumb {
+            aspect-ratio: 16 / 10; width: 100%;
+            background: var(--bg-muted); position: relative; overflow: hidden;
+        }
+        .gallery-thumb::before {
+            content: attr(data-fallback);
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-mono); font-size: 0.6875rem;
+            color: var(--text-muted); letter-spacing: 0.08em;
+            text-transform: uppercase; text-align: center; padding: 0 1rem;
+        }
+        .gallery-thumb img {
+            position: relative; z-index: 1;
+            width: 100%; height: 100%; object-fit: cover;
+            display: block; transition: transform 0.4s ease;
+        }
+        .gallery-item:hover .gallery-thumb img { transform: scale(1.02); }
+        .gallery-caption {
+            padding: 0.75rem 1rem;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 0.5rem;
+        }
+        .gallery-title {
+            font-size: 0.8125rem; color: var(--text-primary);
+            font-weight: 500; line-height: 1.4;
+        }
+        .gallery-tag {
+            font-family: var(--font-mono); font-size: 0.625rem;
+            background: var(--bg-muted); color: var(--text-muted);
+            padding: 0.15rem 0.45rem; border-radius: 4px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        /* ─── Utility: hero downloads, building box, footer copy ─── */
+        .hero-downloads { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+        .hero-downloads .btn-download + .btn-download { margin-left: 0; }
+        .btn-download.secondary { background: var(--grey-700); border-color: var(--grey-600); }
+        .btn-download.secondary:hover { background: var(--grey-600); border-color: var(--grey-500); }
+
+        .building-box {
+            margin-top: 1.5rem; padding: 1rem 1.25rem;
+            background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 8px;
+        }
+        .building-box h4 {
+            font-size: 0.75rem; font-weight: 500; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem;
+        }
+        .building-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.25rem; }
+        .building-box li { font-size: 0.8125rem; color: var(--text-secondary); }
+        .building-box .branch { color: var(--text-muted); }
+
+        .footer-copy { font-size: 0.6875rem; font-family: var(--font-mono); color: var(--text-muted); }
+
         /* ─── Responsive ─── */
         @media (max-width: 640px) {
             .hero { padding: 2.5rem 0 2rem; }
             .hero-name { font-size: 1.25rem; }
             .pixel-grid { grid-template-columns: 1fr !important; }
+            .gallery-grid { grid-template-columns: 1fr; }
             .skills-grid, .skills-grid.two-col { grid-template-columns: 1fr; }
             .timeline-item { grid-template-columns: 1fr; gap: 0.25rem; }
             .footer-status { flex-direction: column; align-items: center; }
@@ -380,12 +446,12 @@
                 </a>
             </div>
 
-            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem;">
+            <div class="hero-downloads">
                 <a href="cv_vahid-appliedai%20(202602).pdf" target="_blank" rel="noopener" class="btn-download">
                     <svg viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
                     Download CV
                 </a>
-                <a href="short-cv.pdf" target="_blank" rel="noopener" class="btn-download" style="background:var(--grey-700);border-color:var(--grey-600);">
+                <a href="short-cv.pdf" target="_blank" rel="noopener" class="btn-download secondary">
                     <svg viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
                     Short CV (1-page)
                 </a>
@@ -459,7 +525,7 @@
                         <span class="project-tag">research</span>
                         <span class="project-tag">ACM CAIS '26</span>
                     </div>
-                    <div class="project-title"><a href="#">Multi-Agent Position Classification</a></div>
+                    <div class="project-title">Multi-Agent Position Classification</div>
                     <p class="project-desc">
                         MCP-based multi-agent system for cross-lingual normalization of free-form job titles to O*NET & ESCO taxonomies. Root Content Agent delegates to specialized sub-agents (web search, content extraction, DB queries, trend analysis) with multi-layered memory. Evaluated on 14K+ positions — 72.5% reduction in classification time, 86.2% rule-based accuracy, 95% LLM accuracy (0.94 avg confidence). Accepted as demo paper at ACM CAIS '26.
                     </p>
@@ -475,7 +541,7 @@
                         <span class="project-tag">production</span>
                         <span class="project-tag">enterprise</span>
                     </div>
-                    <div class="project-title"><a href="#">Enterprise AI Transformation</a></div>
+                    <div class="project-title">Enterprise AI Transformation</div>
                     <p class="project-desc">
                         Agentic workflows across Sales (report automation), Finance (text-to-SQL), and R&D — designed, evaluated, and handed off to enterprise operations. AI-powered feedback automation serving 100+ users with 60% reduction in manual tasks. Token-efficient prompt and context engineering adopted as org standard.
                     </p>
@@ -490,7 +556,7 @@
                     <div class="project-meta">
                         <span class="project-tag">production</span>
                     </div>
-                    <div class="project-title"><a href="#">Text-to-SQL — Natural Language Reporting</a></div>
+                    <div class="project-title">Text-to-SQL — Natural Language Reporting</div>
                     <p class="project-desc">
                         Natural-language to SQL pipeline turning business questions into structured reports. RAG-augmented query generation agent with schema grounding, guardrails for query safety, and human escalation for ambiguous inputs.
                     </p>
@@ -505,7 +571,7 @@
                     <div class="project-meta">
                         <span class="project-tag">production</span>
                     </div>
-                    <div class="project-title"><a href="#">Self-Learning Agents</a></div>
+                    <div class="project-title">Self-Learning Agents</div>
                     <p class="project-desc">
                         Autonomous agents that improve through feedback loops — evaluation-first design with Arize observability, LangSmith tracing, structured failure recovery, and controlled autonomy boundaries.
                     </p>
@@ -514,6 +580,86 @@
                         <span>LangGraph</span><span>·</span><span>MCP</span><span>·</span>
                         <span>Agno</span><span>·</span><span>Arize</span><span>·</span><span>LangSmith</span>
                     </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ─── Gallery ─── -->
+        <section class="animate-in delay-3">
+            <div class="section-label">Gallery</div>
+            <div class="gallery-grid">
+
+                <div class="gallery-item animate-scale delay-3">
+                    <a href="gallery/tokalator-site.png" target="_blank" rel="noopener">
+                        <div class="gallery-thumb" data-fallback="tokalator.wiki — coming soon">
+                            <img src="gallery/tokalator-site.png" alt="Tokalator marketing site" loading="lazy">
+                        </div>
+                        <div class="gallery-caption">
+                            <span class="gallery-title">Tokalator — Marketing Site</span>
+                            <span class="gallery-tag">product</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="gallery-item animate-scale delay-3">
+                    <a href="gallery/tokalator-vscode.png" target="_blank" rel="noopener">
+                        <div class="gallery-thumb" data-fallback="vs code extension — coming soon">
+                            <img src="gallery/tokalator-vscode.png" alt="Tokalator VS Code extension in action" loading="lazy">
+                        </div>
+                        <div class="gallery-caption">
+                            <span class="gallery-title">Tokalator — VS Code Extension</span>
+                            <span class="gallery-tag">product</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="gallery-item animate-scale delay-4">
+                    <a href="gallery/acm-cais-arch.png" target="_blank" rel="noopener">
+                        <div class="gallery-thumb" data-fallback="acm cais '26 figure — coming soon">
+                            <img src="gallery/acm-cais-arch.png" alt="Multi-agent architecture from ACM CAIS '26" loading="lazy">
+                        </div>
+                        <div class="gallery-caption">
+                            <span class="gallery-title">Multi-Agent Architecture — ACM CAIS '26</span>
+                            <span class="gallery-tag">paper</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="gallery-item animate-scale delay-4">
+                    <a href="gallery/talk-bridge-summit.jpg" target="_blank" rel="noopener">
+                        <div class="gallery-thumb" data-fallback="bridge summit — coming soon">
+                            <img src="gallery/talk-bridge-summit.jpg" alt="Bridge Summit talk" loading="lazy">
+                        </div>
+                        <div class="gallery-caption">
+                            <span class="gallery-title">Bridge Summit</span>
+                            <span class="gallery-tag">talk</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="gallery-item animate-scale delay-5">
+                    <a href="gallery/talk-kayseri.jpg" target="_blank" rel="noopener">
+                        <div class="gallery-thumb" data-fallback="kayseri university — coming soon">
+                            <img src="gallery/talk-kayseri.jpg" alt="Kayseri University talk" loading="lazy">
+                        </div>
+                        <div class="gallery-caption">
+                            <span class="gallery-title">Kayseri University</span>
+                            <span class="gallery-tag">talk</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="gallery-item animate-scale delay-5">
+                    <a href="gallery/talk-van.jpg" target="_blank" rel="noopener">
+                        <div class="gallery-thumb" data-fallback="van university — coming soon">
+                            <img src="gallery/talk-van.jpg" alt="Van University talk" loading="lazy">
+                        </div>
+                        <div class="gallery-caption">
+                            <span class="gallery-title">Van University</span>
+                            <span class="gallery-tag">talk</span>
+                        </div>
+                    </a>
                 </div>
 
             </div>
@@ -528,9 +674,7 @@
                     <span class="pub-badge acm">ACM CAIS '26</span>
                     <span class="pub-badge arxiv">demo paper</span>
                 </div>
-                <div class="pub-title">
-                    <a href="#" target="_blank" rel="noopener">Tool-Augmented Multi-Agent Systems for Job Position Normalisation</a>
-                </div>
+                <div class="pub-title">Tool-Augmented Multi-Agent Systems for Job Position Normalisation</div>
                 <div class="pub-meta">Vahid Faraji et al. · Kariyer.net R&D · ACM CAIS 2026 · Accepted</div>
             </div>
 
@@ -690,13 +834,13 @@
             </div>
 
             <!-- Currently Building -->
-            <div style="margin-top:1.5rem;padding:1rem 1.25rem;background:var(--bg-subtle);border:1px solid var(--border);border-radius:8px;">
-                <h4 style="font-size:0.75rem;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem;">~ Currently Building</h4>
-                <ul style="list-style:none;display:flex;flex-direction:column;gap:0.25rem;">
-                    <li style="font-size:0.8125rem;color:var(--text-secondary);"><span style="color:var(--text-muted);">├──</span> Long-horizon agent reliability patterns</li>
-                    <li style="font-size:0.8125rem;color:var(--text-secondary);"><span style="color:var(--text-muted);">├──</span> Structured evaluation frameworks for agentic systems</li>
-                    <li style="font-size:0.8125rem;color:var(--text-secondary);"><span style="color:var(--text-muted);">├──</span> Cost-aware multi-agent orchestration at enterprise scale</li>
-                    <li style="font-size:0.8125rem;color:var(--text-secondary);"><span style="color:var(--text-muted);">└──</span> Tokalator v2 — expanded model coverage + agent-native context APIs</li>
+            <div class="building-box">
+                <h4>~ Currently Building</h4>
+                <ul>
+                    <li><span class="branch">├──</span> Long-horizon agent reliability patterns</li>
+                    <li><span class="branch">├──</span> Structured evaluation frameworks for agentic systems</li>
+                    <li><span class="branch">├──</span> Cost-aware multi-agent orchestration at enterprise scale</li>
+                    <li><span class="branch">└──</span> Tokalator v2 — expanded model coverage + agent-native context APIs</li>
                 </ul>
             </div>
         </section>
@@ -719,7 +863,7 @@
                     <a href="https://tokalator.wiki" target="_blank" rel="noopener">Tokalator</a>
                     <a href="mailto:vfaraji89@gmail.com">Email</a>
                 </div>
-                <div style="font-size:0.6875rem;font-family:var(--font-mono);color:var(--text-muted);">
+                <div class="footer-copy">
                     © 2026 Vahid Faraji · vfaraji89.github.io
                 </div>
             </div>
@@ -755,6 +899,11 @@
             card.querySelector('.glow').style.setProperty('--mx', x + 'px');
             card.querySelector('.glow').style.setProperty('--my', y + 'px');
         });
+    });
+
+    // ─── Gallery: drop broken/missing images so the fallback label shows ───
+    document.querySelectorAll('.gallery-thumb img').forEach(img => {
+        img.addEventListener('error', () => img.remove());
     });
     </script>
 </body>
