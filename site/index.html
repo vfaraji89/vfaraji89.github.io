@@ -1340,12 +1340,52 @@
 
 
 
-        /* Hero role subline */
-        .hero-role {
-            font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.5rem;
-            font-variation-settings: "MONO" 0.8, "CASL" 0; font-weight: 400;
-            letter-spacing: 0.01em; max-width: 40rem;
+        /* Hiring CTA — phase-cycling role with scramble */
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
         }
+        .hire-cta {
+            display: inline-flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+            margin-top: 1.125rem; padding: 0.5rem 0.5rem 0.5rem 0.875rem;
+            border: 1px solid var(--border); border-radius: 999px;
+            background: var(--bg-subtle);
+            font-size: 0.8125rem;
+            font-variation-settings: "MONO" 0.6, "CASL" 0;
+            transition: border-color var(--transition), background var(--transition);
+        }
+        .hire-cta:hover { border-color: var(--accent); }
+        .hire-lead { color: var(--text-muted); }
+        .hire-role {
+            color: var(--accent); font-weight: 600;
+            font-variation-settings: "MONO" 1, "CASL" 0;
+            min-width: 13.5rem; display: inline-block;
+            letter-spacing: 0.01em;
+        }
+        .hire-q { color: var(--text-muted); margin-left: -0.375rem; }
+        .hire-btn {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            margin-left: 0.25rem; padding: 0.35rem 0.875rem;
+            border-radius: 999px; background: var(--accent); color: var(--white);
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+            font-variation-settings: "MONO" 0.8, "CASL" 0;
+            transition: background var(--transition), transform var(--transition);
+        }
+        .hire-btn:hover { background: #c50f09; text-decoration: none; transform: translateX(2px); }
+        [data-theme="dark"] .hire-btn { color: #0d0d0d; }
+        [data-theme="dark"] .hire-btn:hover { background: #ff6a5c; }
+
+        /* four-phase indicator, mirroring the hero icon's cycle */
+        .hire-phase { display: inline-flex; gap: 3px; align-items: center; }
+        .hire-ph { width: 4px; height: 4px; border-radius: 50%; background: var(--border-strong); }
+        .hire-ph-1 { animation: ph-1 14s ease-in-out infinite; }
+        .hire-ph-2 { animation: ph-2 14s ease-in-out infinite; }
+        .hire-ph-3 { animation: ph-3 14s ease-in-out infinite; }
+        .hire-ph-4 { animation: ph-4 14s ease-in-out infinite; }
+        @keyframes ph-1 { 0%,18%{background:var(--accent);transform:scale(1.35)} 25%,100%{background:var(--border-strong);transform:scale(1)} }
+        @keyframes ph-2 { 0%,25%{background:var(--border-strong);transform:scale(1)} 30%,43%{background:var(--accent);transform:scale(1.35)} 50%,100%{background:var(--border-strong);transform:scale(1)} }
+        @keyframes ph-3 { 0%,50%{background:var(--border-strong);transform:scale(1)} 55%,68%{background:var(--accent);transform:scale(1.35)} 75%,100%{background:var(--border-strong);transform:scale(1)} }
+        @keyframes ph-4 { 0%,75%{background:var(--border-strong);transform:scale(1)} 80%,93%{background:var(--accent);transform:scale(1.35)} 100%{background:var(--border-strong);transform:scale(1)} }
 
         /* Demoted CTAs */
         .cta-secondary {
@@ -1493,7 +1533,13 @@
             .bio-tag { font-size: 0.625rem; padding: 0.2rem 0.5rem; flex-shrink: 0; }
             .hero-ctas { flex-direction: column; align-items: stretch; }
             .cta-secondary { justify-content: center; margin-top: 0.25rem; }
-            .hero-role { font-size: 0.75rem; }
+            .hire-cta {
+                width: 100%; border-radius: var(--radius);
+                padding: 0.75rem 0.875rem; font-size: 0.75rem;
+                justify-content: flex-start;
+            }
+            .hire-role { min-width: 0; flex: 1 1 auto; }
+            .hire-btn { margin-left: auto; }
             .recruiter-card { padding: 1.25rem; }
             .rec-field { grid-template-columns: 1fr; gap: 0.2rem; }
             .rec-actions { flex-direction: column; }
@@ -1621,7 +1667,19 @@
             <hr class="hero-rule">
 
             <p class="hero-tagline">I build the agent systems enterprises actually put into production.</p>
-            <p class="hero-role">Senior Applied AI Specialist &middot; agent architecture, context engineering, solution design &middot; 9+ yrs &middot; Istanbul, GMT+3</p>
+            <div class="hire-cta" id="hire-cta">
+                <span class="hire-phase" aria-hidden="true">
+                    <span class="hire-ph hire-ph-1"></span>
+                    <span class="hire-ph hire-ph-2"></span>
+                    <span class="hire-ph hire-ph-3"></span>
+                    <span class="hire-ph hire-ph-4"></span>
+                </span>
+                <span class="hire-lead">Hiring for</span>
+                <span class="hire-role" id="hire-role" aria-hidden="true">AI Solutions Architect</span>
+                <span class="hire-q">?</span>
+                <span class="sr-only">Open to AI Solutions Architect, Agentic AI Architect, Applied AI Engineer, AI Product Manager and AI Platform Architect roles.</span>
+                <a href="#" class="hire-btn" onclick="openBooking();return false;">Let&rsquo;s talk <span aria-hidden="true">&rarr;</span></a>
+            </div>
 
             <div class="recruiter-switch">
                 <button type="button" class="rec-toggle" id="rec-toggle" aria-pressed="false" aria-controls="recruiter-card">
@@ -2563,6 +2621,89 @@
         setTimeout(function() {
             scrambleOut(function() { setTimeout(next, 150); });
         }, 2500);
+    })();
+
+    (function hireCta() {
+        var el = document.getElementById('hire-role');
+        if (!el) return;
+
+        var ROLES = [
+            'AI Solutions Architect',
+            'Agentic AI Architect',
+            'Applied AI Engineer',
+            'AI Product Manager',
+            'AI Platform Architect'
+        ];
+        var GLYPHS = '/@#$%&*=+<>_~^|:.\u2500\u2502\u253c';
+
+        // Reduced motion: show the first role, no cycling.
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+        if (reduce.matches) { el.textContent = ROLES[0]; return; }
+
+        // Smooth scramble: every character gets its own start and settle frame,
+        // so the string dissolves and re-forms as a wave instead of resolving
+        // strictly left to right.
+        function scramble(from, to, done) {
+            var len = Math.max(from.length, to.length);
+            var plan = [];
+            for (var i = 0; i < len; i++) {
+                plan.push({
+                    from: from[i] || '',
+                    to: to[i] || '',
+                    start: Math.floor(Math.random() * 18),
+                    end: 18 + Math.floor(Math.random() * 22),
+                    glyph: ''
+                });
+            }
+            var frame = 0;
+            function tick() {
+                var out = '';
+                var settled = 0;
+                for (var i = 0; i < plan.length; i++) {
+                    var c = plan[i];
+                    if (frame >= c.end) { out += c.to; settled++; }
+                    else if (frame >= c.start) {
+                        if (!c.glyph || Math.random() < 0.28) {
+                            c.glyph = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+                        }
+                        out += c.glyph;
+                    } else {
+                        out += c.from;
+                    }
+                }
+                el.textContent = out;
+                if (settled === plan.length) { el._raf = 0; if (done) done(); return; }
+                frame++;
+                el._raf = requestAnimationFrame(tick);
+            }
+            if (el._raf) cancelAnimationFrame(el._raf);
+            el._raf = requestAnimationFrame(tick);
+        }
+
+        var idx = 0;
+        var paused = false;
+        var timer;
+
+        function next() {
+            if (paused || document.hidden) return;
+            var from = ROLES[idx];
+            idx = (idx + 1) % ROLES.length;
+            scramble(from, ROLES[idx]);
+        }
+
+        // Hold on hover so the role can actually be read before it changes.
+        var cta = document.getElementById('hire-cta');
+        if (cta) {
+            cta.addEventListener('mouseenter', function () { paused = true; });
+            cta.addEventListener('mouseleave', function () { paused = false; });
+        }
+
+        el.textContent = ROLES[0];
+        timer = setInterval(next, 3500);
+        window.addEventListener('pagehide', function () {
+            clearInterval(timer);
+            cancelAnimationFrame(el._raf);
+        });
     })();
 
     (function recruiterView() {
