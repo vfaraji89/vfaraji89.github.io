@@ -140,6 +140,14 @@
                     "Enterprise AI transformation and solution architecture",
                     "Applied AI research and peer-reviewed publication",
                     "Technical training for engineering and data teams"
+                ],
+                "qualifications": "9+ years shipping production systems; M.A. Economics; peer-reviewed publication at ACM CAIS '26",
+                "alternateName": [
+                    "Applied AI Engineer",
+                    "AI Solutions Architect",
+                    "AI Platform Lead",
+                    "Applied Research Engineer",
+                    "Senior Machine Learning Engineer"
                 ]
             },
             "knowsAbout": [
@@ -250,7 +258,20 @@
             },
             "seeks": {
                 "@type": "Demand",
-                "name": "Applied AI advisory, agent-system architecture, and enterprise AI training engagements"
+                "name": "Senior applied AI roles, advisory engagements, and enterprise AI training",
+                "itemOffered": {
+                    "@type": "JobPosting",
+                    "title": "Applied AI Engineer / AI Solutions Architect",
+                    "employmentType": [
+                        "FULL_TIME",
+                        "CONTRACTOR"
+                    ],
+                    "jobLocationType": "TELECOMMUTE",
+                    "applicantLocationRequirements": {
+                        "@type": "Country",
+                        "name": "Turkey"
+                    }
+                }
             }
         },
         {
@@ -553,7 +574,7 @@
                     "name": "Is Vahid Faraji available to hire or consult?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Yes — for applied AI advisory, agent-system architecture reviews, and enterprise AI training. He is based in Istanbul (GMT+3) and works with distributed teams. The fastest route is to book a call directly on his calendar or email vfaraji89@gmail.com; the site also has a “suggest a time” form that proposes a slot in your own timezone."
+                        "text": "Yes — open to senior applied AI roles (Applied AI Engineer, AI Solutions Architect, AI Platform Lead, Applied Research Engineer), advisory engagements, and enterprise AI training. Based in Istanbul (GMT+3) and remote-friendly with distributed teams. The fastest route is to book a call directly on his calendar or email vfaraji89@gmail.com. A condensed hiring summary — role fit, seniority, stack, proof and contact — is at https://vfaraji89.github.io/?hire"
                     }
                 },
                 {
@@ -746,18 +767,6 @@
         /* Hero */
         .hero { padding: 4rem 0; position: relative; }
 
-        .latest-pill {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            font-size: 0.6875rem; letter-spacing: 0.04em;
-            font-variation-settings: "MONO" 0.8, "CASL" 0; font-weight: 420;
-            background: var(--bg); color: var(--text-secondary);
-            border: 1px solid var(--border);
-            padding: 0.375rem 0.875rem; border-radius: var(--radius); margin-bottom: 2.5rem;
-            transition: border-color var(--transition), color var(--transition);
-            text-decoration: none;
-        }
-        .latest-pill:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
-        .latest-pill .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pulse-dot 2s ease-in-out infinite; }
         @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
         .hero-label {
@@ -769,33 +778,6 @@
         .hero-icon { width: 80px; height: 80px; }
         .hero-name { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.035em; line-height: 1.1; }
 
-        /* Cycling hero chips — ticket tear */
-        .hero-snippets {
-            position: relative; height: 2.25rem; overflow: hidden;
-            display: flex; justify-content: flex-start; margin-bottom: 0.125rem;
-        }
-        .hero-chip {
-            position: absolute; left: 0; top: 0;
-            margin-bottom: 0;
-            opacity: 0; pointer-events: none;
-            will-change: transform, opacity;
-        }
-        .hero-chip.active {
-            opacity: 1; pointer-events: auto;
-            animation: slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        .hero-chip.tear-out {
-            opacity: 1; pointer-events: none;
-            animation: slide-out 0.35s cubic-bezier(0.55, 0, 1, 0.45) forwards;
-        }
-        @keyframes slide-in {
-            0% { opacity: 0; transform: translateX(24px); }
-            100% { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes slide-out {
-            0% { opacity: 1; transform: translateX(0); }
-            100% { opacity: 0; transform: translateX(-24px); }
-        }
 
 
         .hero-rule { display: block; width: 100%; height: 3px; background: var(--accent); border: none; margin: 1.25rem 0 1rem; }
@@ -804,7 +786,6 @@
             font-variation-settings: "MONO" 0.2, "CASL" 0.2; font-weight: 500;
             max-width: 34rem;
         }
-        .hero-bio { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.8; max-width: 640px; }
         .bio-tags {
             display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; margin-bottom: 0.25rem;
         }
@@ -1337,6 +1318,82 @@
         .booking-error { font-size: 0.75rem; color: var(--accent); text-align: center; margin-top: 0.5rem; }
 
 
+
+        /* Hero role subline */
+        .hero-role {
+            font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.5rem;
+            font-variation-settings: "MONO" 0.8, "CASL" 0; font-weight: 400;
+            letter-spacing: 0.01em; max-width: 40rem;
+        }
+
+        /* Demoted CTAs */
+        .cta-secondary {
+            display: inline-flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+            font-size: 0.75rem; font-variation-settings: "MONO" 0.6, "CASL" 0;
+        }
+        .cta-secondary a { color: var(--text-secondary); }
+        .cta-secondary a:hover { color: var(--accent); }
+        .cta-sep { color: var(--border-strong); }
+
+        /* Recruiter view */
+        .recruiter-switch {
+            display: flex; align-items: center; gap: 0.625rem;
+            margin-top: 1.75rem; flex-wrap: wrap;
+        }
+        .rec-toggle {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.4rem 0.75rem; border-radius: 999px; cursor: pointer;
+            border: 1px solid var(--border); background: var(--bg-subtle);
+            color: var(--text-secondary); font-family: var(--font);
+            font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.03em;
+            font-variation-settings: "MONO" 0.8, "CASL" 0;
+            transition: border-color var(--transition), color var(--transition);
+        }
+        .rec-toggle:hover { border-color: var(--accent); color: var(--accent); }
+        .rec-toggle[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+        .rec-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); transition: background var(--transition); }
+        .rec-toggle[aria-pressed="true"] .rec-dot { background: var(--accent); }
+        .rec-track {
+            width: 26px; height: 14px; border-radius: 999px; position: relative;
+            background: var(--border-strong); transition: background var(--transition);
+        }
+        .rec-toggle[aria-pressed="true"] .rec-track { background: var(--accent); }
+        .rec-knob {
+            position: absolute; top: 2px; left: 2px; width: 10px; height: 10px;
+            border-radius: 50%; background: var(--bg);
+            transition: transform var(--transition);
+        }
+        .rec-toggle[aria-pressed="true"] .rec-knob { transform: translateX(12px); }
+        .rec-hint {
+            font-size: 0.6875rem; color: var(--text-muted);
+            font-variation-settings: "MONO" 0.6, "CASL" 0;
+        }
+
+        .recruiter-card {
+            margin-top: 1rem; padding: 1.5rem;
+            border: 1px solid var(--accent); border-radius: var(--radius);
+            background: var(--bg-subtle);
+        }
+        .recruiter-card[hidden] { display: none; }
+        .rec-grid { display: grid; gap: 0.875rem; }
+        .rec-field { display: grid; grid-template-columns: 88px 1fr; gap: 1rem; align-items: start; }
+        .rec-key {
+            font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.06em;
+            color: var(--text-muted); padding-top: 0.15rem;
+            font-variation-settings: "MONO" 1, "CASL" 0; font-weight: 500;
+        }
+        .rec-val { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.65; }
+        .rec-val.rec-yes { color: var(--text-primary); font-weight: 600; }
+        .rec-actions {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border);
+        }
+        .rec-share {
+            font-size: 0.6875rem; color: var(--text-muted); margin-top: 0.875rem;
+            font-variation-settings: "MONO" 0.6, "CASL" 0;
+        }
+        .rec-share code { font-size: 0.6875rem; }
+
         /* Engagement cards */
         .engage-lede {
             font-size: 0.8125rem; color: var(--text-primary); font-weight: 600;
@@ -1405,8 +1462,6 @@
             .hero-photo { width: 64px; height: 64px; }
             .hero-icon-row { gap: 0.75rem; }
             .hero-icon { width: 48px; height: 48px; }
-            .hero-snippets { height: 2rem; margin-bottom: 0.125rem; }
-            .hero-chip { font-size: 0.6rem; padding: 0.25rem 0.5rem; }
             .bio-tags {
                 gap: 0.3rem; flex-wrap: nowrap; overflow-x: auto;
                 -webkit-overflow-scrolling: touch; scrollbar-width: none;
@@ -1415,7 +1470,13 @@
             }
             .bio-tags::-webkit-scrollbar { display: none; }
             .bio-tag { font-size: 0.625rem; padding: 0.2rem 0.5rem; flex-shrink: 0; }
-            .hero-ctas { flex-direction: column; }
+            .hero-ctas { flex-direction: column; align-items: stretch; }
+            .cta-secondary { justify-content: center; margin-top: 0.25rem; }
+            .hero-role { font-size: 0.75rem; }
+            .recruiter-card { padding: 1.25rem; }
+            .rec-field { grid-template-columns: 1fr; gap: 0.2rem; }
+            .rec-actions { flex-direction: column; }
+            .rec-actions .btn { width: 100%; justify-content: center; }
             .hero-ctas .btn { width: 100%; justify-content: center; }
             .hero-links { gap: 0.75rem; flex-wrap: wrap; }
             .hero-links a { font-size: 0.6875rem; }
@@ -1431,7 +1492,6 @@
             .nav-right .btn { display: none; }
             .nav-left { gap: 0.5rem; }
             .nav-name { font-size: 0.8125rem; }
-            .latest-pill { font-size: 0.6rem; padding: 0.3rem 0.625rem; }
             .pub-strip { flex-direction: column; gap: 0.375rem; align-items: flex-start; padding: 0.5rem 0.75rem; }
             .pub-strip .pub-dot { display: none; }
             .time-strip { flex-direction: column; gap: 0.5rem; align-items: flex-start; font-size: 0.625rem; }
@@ -1539,34 +1599,68 @@
 
             <hr class="hero-rule">
 
-            <p class="hero-tagline">Helping enterprise teams ship production agent systems, from multi-agent orchestration to context engineering.</p>
+            <p class="hero-tagline">I build the agent systems enterprises actually put into production.</p>
+            <p class="hero-role">Senior Applied AI Specialist &middot; multi-agent orchestration, context engineering &middot; 9+ yrs shipping &middot; Istanbul, GMT+3</p>
 
-            <div class="hero-snippets" id="hero-snippets">
-                <a href="updates.html#awesome-applied-ai" class="latest-pill hero-chip active"><span class="pulse"></span>awesome-applied-ai · 6-layer applied AI map →</a>
-                <a href="updates.html#cais-demo" class="latest-pill hero-chip"><span class="pulse"></span>Demo at ACM CAIS '26 · San Jose · May 29 →</a>
-                <a href="updates.html#cais-paper" class="latest-pill hero-chip"><span class="pulse"></span>Multi-Agent Job Classification · ACM Published</a>
-                <a href="updates.html#techcareer-training" class="latest-pill hero-chip"><span class="pulse"></span>18h Applied AI Course · Techcareer</a>
-                <a href="updates.html#tokalator-paper" class="latest-pill hero-chip"><span class="pulse"></span>tokalator.wiki · 500+ installs</a>
-                <a href="context-engineering.html" class="latest-pill hero-chip"><span class="pulse"></span><span id="token-counter">16,000,000</span> tokens · 38% saved → how</a>
-                <a href="updates.html" class="latest-pill hero-chip"><span class="pulse"></span>From arXiv to ACM · 3 papers in 6 months</a>
+            <div class="recruiter-switch">
+                <button type="button" class="rec-toggle" id="rec-toggle" aria-pressed="false" aria-controls="recruiter-card">
+                    <span class="rec-dot"></span>
+                    <span class="rec-toggle-label">Recruiter view</span>
+                    <span class="rec-track"><span class="rec-knob"></span></span>
+                </button>
+                <span class="rec-hint">the 30-second version</span>
             </div>
-            <p class="hero-bio">
-                Turning enterprise data into production AI. Multi-agent systems, context engineering, data preparation, automation. Designing AI systems. Publishing research. Training teams.
-            </p>
+
+            <div class="recruiter-card" id="recruiter-card" hidden>
+                <div class="rec-grid">
+                    <div class="rec-field">
+                        <span class="rec-key">Role fit</span>
+                        <span class="rec-val">Applied AI Engineer &middot; AI Solutions Architect &middot; AI Platform Lead &middot; Applied Research Engineer</span>
+                    </div>
+                    <div class="rec-field">
+                        <span class="rec-key">Seniority</span>
+                        <span class="rec-val">Senior / Staff &mdash; 9+ years shipping production systems</span>
+                    </div>
+                    <div class="rec-field">
+                        <span class="rec-key">Location</span>
+                        <span class="rec-val">Istanbul, Turkey (GMT+3) &middot; remote-friendly, works with distributed teams</span>
+                    </div>
+                    <div class="rec-field">
+                        <span class="rec-key">Core stack</span>
+                        <span class="rec-val">MCP &middot; LangGraph &middot; Agno &middot; Python / FastAPI &middot; Anthropic SDK &middot; Arize &middot; BigQuery &middot; Azure</span>
+                    </div>
+                    <div class="rec-field">
+                        <span class="rec-key">Proof</span>
+                        <span class="rec-val">Peer-reviewed at ACM CAIS '26 &middot; 2 arXiv papers &middot; 1 patent pending &middot; $40K Perplexity AI grant &middot; Tokalator, 500+ installs</span>
+                    </div>
+                    <div class="rec-field">
+                        <span class="rec-key">Numbers</span>
+                        <span class="rec-val">95% accuracy on 14K+ records &middot; 72.5% faster classification &middot; 60% manual workload removed &middot; 400+ people trained</span>
+                    </div>
+                    <div class="rec-field">
+                        <span class="rec-key">Languages</span>
+                        <span class="rec-val">Turkish (native) &middot; English (C1) &middot; Spanish (instructor) &middot; Portuguese (basic)</span>
+                    </div>
+                    <div class="rec-field">
+                        <span class="rec-key">Open to</span>
+                        <span class="rec-val rec-yes">Full-time roles, advisory engagements, and enterprise AI training</span>
+                    </div>
+                </div>
+                <div class="rec-actions">
+                    <a href="assets/cv/01-cv-vahid-faraji-202606.pdf" target="_blank" class="btn btn-primary">Download CV (PDF)</a>
+                    <a href="mailto:vfaraji89@gmail.com?subject=Role%20enquiry" class="btn btn-outline">vfaraji89@gmail.com</a>
+                    <a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+                </div>
+                <p class="rec-share">Share this view directly: <code>vfaraji89.github.io/?hire</code></p>
+            </div>
+
             <div class="bio-tags" id="bio-tags">
-                <span class="bio-tag accent" data-flip="Prototype to Prod">Applied AI</span>
-                <span class="bio-tag accent" data-flip="Anthropic">MCP Protocol</span>
-                <span class="bio-tag" data-flip="LangGraph · Agno">Multi-Agent Systems</span>
-                <span class="bio-tag" data-flip="Azure · GCP">Cloud Infrastructure</span>
-                <span class="bio-tag" data-flip="Metadata · Data Prep">Data Governance</span>
-                <span class="bio-tag accent" data-flip="Tokalator">Open Source</span>
-                <span class="bio-tag" data-flip="Flows · Pipelines">Enterprise Automation</span>
-                <span class="bio-tag" data-flip="Arize · Telemetry">Observability</span>
-                <span class="bio-tag" data-flip="BRD · PRD">Solution Architecture</span>
-                <span class="bio-tag accent" data-flip="Analytics · Dashboards">Data Products</span>
-                <span class="bio-tag" data-flip="GitHub · VS Code">Developer Tools</span>
+                <span class="bio-tag accent" data-flip="MCP · LangGraph · Agno">Multi-Agent Systems</span>
                 <span class="bio-tag accent" data-flip="Token Budgeting">Context Engineering</span>
-                <span class="bio-tag" data-flip="Claude Code · OpenCode · Codex">AI Native</span>
+                <span class="bio-tag accent" data-flip="Anthropic">MCP Protocol</span>
+                <span class="bio-tag" data-flip="Prototype → Production">Applied AI</span>
+                <span class="bio-tag" data-flip="Tokalator · 500+ installs">Open Source</span>
+                <span class="bio-tag" data-flip="ACM · arXiv">Published Research</span>
             </div>
 
             <div class="pub-strip">
@@ -1579,15 +1673,20 @@
             </div>
 
             <div class="hero-ctas">
-                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="btn btn-primary">Book a call →</a>
-                <a href="#" onclick="openBooking();return false;" class="btn btn-outline">Suggest a time</a>
-                <a href="assets/cv/01-cv-vahid-faraji-202606.pdf" target="_blank" class="btn btn-dark">
+                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="btn btn-primary">Book a call &rarr;</a>
+                <a href="assets/cv/01-cv-vahid-faraji-202606.pdf" target="_blank" class="btn btn-outline">
                     <svg viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
                     Download CV
                 </a>
-                <a href="#work" class="btn btn-outline">See Work</a>
-                <a href="#gallery" class="btn btn-outline">Portfolio</a>
-                <a href="#engage" class="btn btn-outline">Work With Me</a>
+                <span class="cta-secondary">
+                    <a href="#work">See work</a>
+                    <span class="cta-sep">/</span>
+                    <a href="#gallery">Portfolio</a>
+                    <span class="cta-sep">/</span>
+                    <a href="#engage">Work with me</a>
+                    <span class="cta-sep">/</span>
+                    <a href="#" onclick="openBooking();return false;">Suggest a time</a>
+                </span>
             </div>
 
             <div class="metrics-grid">
@@ -2439,24 +2538,29 @@
         }, 2500);
     })();
 
-    (function snippets() {
-        var items = document.querySelectorAll('#hero-snippets .hero-chip');
-        if (items.length < 2) return;
-        var idx = 0;
-        var transitioning = false;
-        setInterval(function() {
-            if (transitioning) return;
-            transitioning = true;
-            var current = items[idx];
-            current.classList.remove('active');
-            current.classList.add('tear-out');
-            setTimeout(function() {
-                current.classList.remove('tear-out');
-                idx = (idx + 1) % items.length;
-                items[idx].classList.add('active');
-                transitioning = false;
-            }, 400);
-        }, 3000);
+    (function recruiterView() {
+        var btn  = document.getElementById('rec-toggle');
+        var card = document.getElementById('recruiter-card');
+        if (!btn || !card) return;
+
+        function set(on, focus) {
+            btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+            card.hidden = !on;
+            try { localStorage.setItem('vf-recruiter', on ? '1' : '0'); } catch (e) {}
+            if (on && focus) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // ?hire (or #hire) opens straight into the recruiter card, so the link
+        // can be pasted into an application and land on the right view.
+        var deep = /(^|[?&])hire(=|&|$)/.test(location.search) || location.hash === '#hire';
+        var saved;
+        try { saved = localStorage.getItem('vf-recruiter'); } catch (e) { saved = null; }
+
+        set(deep || saved === '1', false);
+
+        btn.addEventListener('click', function () {
+            set(btn.getAttribute('aria-pressed') !== 'true', true);
+        });
     })();
 
     (function bioTagFlip() {
@@ -2558,8 +2662,9 @@
                 }, 1200);
             });
         }
-        setTimeout(autoHint, 1000);
-        setInterval(autoHint, 2500);
+        // Auto-hint runs once, briefly, then stops. Continuously scrambling the
+        // tags made the hero unreadable; hover and click still reveal each one.
+        setTimeout(autoHint, 1200);
         var resumeTimer;
         document.getElementById('bio-tags').addEventListener('mouseenter', function() {
             hinted = true;
@@ -2651,19 +2756,6 @@
             }, 2000);
             window.addEventListener('pagehide', function() { clearInterval(timer); });
         });
-    })();
-
-    (function tokenCounter() {
-        var el = document.getElementById('token-counter');
-        if (!el) return;
-        var base = 16000000;
-        var rate = 1.2;
-        function fmt(n) { return Math.floor(n).toLocaleString('en-US'); }
-        el.textContent = fmt(base);
-        setInterval(function() {
-            base += rate;
-            el.textContent = fmt(base);
-        }, 1000);
     })();
 
     (function lightbox() {

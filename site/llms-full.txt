@@ -147,6 +147,17 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - 400+ people trained
 - $40K Perplexity AI grant
 
+## Hiring Summary
+
+- Open to: senior applied AI roles (full-time), advisory engagements, enterprise AI training
+- Role fit: Applied AI Engineer, AI Solutions Architect, AI Platform Lead, Applied Research Engineer, Senior Machine Learning Engineer
+- Seniority: Senior / Staff, 9+ years shipping production systems
+- Location: Istanbul, Turkey (GMT+3), remote-friendly with distributed teams
+- Core stack: MCP, LangGraph, Agno, Python/FastAPI, Anthropic SDK, Arize, BigQuery, Azure
+- Proof: peer-reviewed at ACM CAIS '26, 2 arXiv papers, 1 patent pending, $40K Perplexity AI grant, Tokalator with 500+ installs
+- Condensed hiring view: https://vfaraji89.github.io/?hire
+- Contact: vfaraji89@gmail.com
+
 ## Social & Links
 
 - GitHub: https://github.com/vfaraji89
