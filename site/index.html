@@ -1548,6 +1548,63 @@
         }
         .rec-share code { font-size: 0.6875rem; }
 
+
+        /* Through-line story */
+        .story-track { display: grid; gap: 0; margin-bottom: 2rem; }
+        .story-step {
+            display: grid; grid-template-columns: 68px 1fr; gap: 1.25rem;
+            padding-bottom: 1.75rem; position: relative;
+        }
+        .story-step::before {
+            content: ""; position: absolute; left: 5px; top: 1.5rem; bottom: -0.25rem;
+            width: 1px; background: var(--border);
+        }
+        .story-step:last-child { padding-bottom: 0; }
+        .story-step:last-child::before { display: none; }
+        .story-step::after {
+            content: ""; position: absolute; left: 0; top: 0.5rem;
+            width: 11px; height: 11px; border-radius: 50%;
+            background: var(--bg); border: 2px solid var(--border-strong);
+            transition: border-color 0.4s ease, background 0.4s ease;
+        }
+        .story-step:last-child::after { border-color: var(--accent); background: var(--accent); }
+        .story-step:hover::after { border-color: var(--accent); }
+        .story-year {
+            font-size: 0.6875rem; color: var(--text-muted); padding-top: 0.3rem; padding-left: 1.375rem;
+            font-variation-settings: "MONO" 1, "CASL" 0; font-weight: 500;
+        }
+        .story-body h3 {
+            font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;
+            font-variation-settings: "MONO" 0.4, "CASL" 0;
+        }
+        .story-body p { font-size: 0.8125rem; line-height: 1.75; margin: 0; }
+
+        .story-quote {
+            margin: 0 0 2.25rem; padding: 1.25rem 1.5rem;
+            border-left: 2px solid var(--accent); background: var(--accent-bg);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            font-size: 1rem; line-height: 1.65; color: var(--text-primary);
+            font-variation-settings: "MONO" 0.2, "CASL" 0.4; font-weight: 500;
+        }
+
+        .story-facets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .facet {
+            display: flex; flex-direction: column; gap: 0.25rem;
+            padding-top: 0.875rem; border-top: 2px solid var(--border);
+            transition: border-color var(--transition);
+        }
+        .facet:hover { border-top-color: var(--accent); }
+        .facet-num {
+            font-size: 1.5rem; font-weight: 800; color: var(--accent); line-height: 1.1;
+            font-variation-settings: "MONO" 1, "CASL" 0;
+        }
+        .facet-label {
+            font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--text-primary); font-weight: 600;
+            font-variation-settings: "MONO" 0.8, "CASL" 0;
+        }
+        .facet-note { font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; margin-top: 0.125rem; }
+
         /* Engagement cards */
         .engage-lede {
             font-size: 0.8125rem; color: var(--text-primary); font-weight: 600;
@@ -1669,6 +1726,10 @@
             .case-card { padding: 1.5rem; }
             .gallery-card { grid-template-columns: 1fr; padding: 1.5rem; }
             .gallery-screenshot { max-width: 100%; }
+            .story-facets { grid-template-columns: repeat(2, 1fr); gap: 1.25rem 1rem; }
+            .story-step { grid-template-columns: 52px 1fr; gap: 0.875rem; }
+            .story-year { padding-left: 1.25rem; font-size: 0.625rem; }
+            .story-quote { font-size: 0.875rem; padding: 1rem 1.125rem; }
             .contact-box { padding: 1.5rem; }
             .faq-q { font-size: 0.8125rem; padding: 0.875rem 2.5rem 0.875rem 1rem; }
             .faq-a { padding: 0 1rem 1rem; }
@@ -2192,6 +2253,70 @@
         </section>
 
 
+
+        <section id="story" class="reveal">
+            <div class="section-label">Through-line</div>
+            <p class="section-tagline">One question, worked from four sides.</p>
+
+            <div class="story-track">
+                <div class="story-step">
+                    <span class="story-year">2019</span>
+                    <div class="story-body">
+                        <h3>Economics, Ibn Haldun</h3>
+                        <p>M.A. thesis on real-time labour market analysis. Teaching assistant in econometrics, research fellow in labour analytics. The question started here: how do people and work actually find each other?</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <span class="story-year">2019</span>
+                    <div class="story-body">
+                        <h3>Defaro.io, co-founder</h3>
+                        <p>Took the question commercial. A labour-market compensation and analytics startup, incubated at &Ouml;zye&#287;in University, tracking localised talent supply signals.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <span class="story-year">2022</span>
+                    <div class="story-body">
+                        <h3>Kariyer.net, data products</h3>
+                        <p>Discovered the answer needs infrastructure. Metadata architecture across 300M+ assets, real-time labour statistics pipelines, governance that later made retrieval trustworthy.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <span class="story-year">2025</span>
+                    <div class="story-body">
+                        <h3>Applied AI</h3>
+                        <p>The tools finally caught up. Multi-agent systems that map free-form job titles onto O*NET and ESCO taxonomies, at 95% accuracy across 14K+ positions. Peer-reviewed at ACM CAIS '26.</p>
+                    </div>
+                </div>
+            </div>
+
+            <blockquote class="story-quote">
+                Nine years on one question. The tools changed from regressions to agents. The question didn&rsquo;t.
+            </blockquote>
+
+            <div class="story-facets">
+                <div class="facet">
+                    <span class="facet-num">4</span>
+                    <span class="facet-label">Languages spoken</span>
+                    <span class="facet-note">Turkish native, English C1, Spanish at instructor level, Portuguese basic. Japanese in progress, badly.</span>
+                </div>
+                <div class="facet">
+                    <span class="facet-num">400+</span>
+                    <span class="facet-label">People taught</span>
+                    <span class="facet-note">50+ courses, an 18-hour applied AI programme, university guest lectures, and career mentoring at the TEV Foundation.</span>
+                </div>
+                <div class="facet">
+                    <span class="facet-num">3</span>
+                    <span class="facet-label">Papers, one peer-reviewed</span>
+                    <span class="facet-note">ACM member. Writing is how the work gets checked by people who owe me nothing.</span>
+                </div>
+                <div class="facet">
+                    <span class="facet-num">MIT</span>
+                    <span class="facet-label">Licensed and public</span>
+                    <span class="facet-note">Tokalator and awesome-applied-ai are open because a taxonomy nobody can inspect is just an opinion.</span>
+                </div>
+            </div>
+        </section>
+
         <section id="engage" class="reveal">
             <div class="section-label">Working Together</div>
             <p class="section-tagline">Three ways teams bring me in.</p>
@@ -2304,6 +2429,7 @@
                 <a href="#work">Work</a>
                 <a href="#publications">Publications</a>
                 <a href="#gallery">Portfolio</a>
+                <a href="#story">Through-line</a>
                 <a href="#engage">Work With Me</a>
                 <a href="#faq">FAQ</a>
                 <a href="context-engineering.html">Context Engineering</a>
