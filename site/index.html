@@ -843,6 +843,17 @@
             cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
             box-sizing: border-box; white-space: nowrap; overflow: hidden;
         }
+        /* The caret is what makes a retype legible as typing rather than as
+           text glitching. It only exists while a line is being written. */
+        .is-typing::after {
+            content: ""; display: inline-block;
+            width: 0.5em; height: 1em; margin-left: 1px;
+            background: currentColor; vertical-align: -0.15em;
+            animation: caret-blink 0.9s steps(1) infinite;
+        }
+        @keyframes caret-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) { .is-typing::after { display: none; } }
+
         .bio-tag.active { background: var(--accent); border-color: var(--accent); color: #fff; }
         .bio-tags.has-focus .bio-tag { border-color: var(--border); color: var(--text-muted); opacity: 0.5; background: var(--bg-subtle); }
         .bio-tags.has-focus .bio-tag.active { opacity: 1; background: var(--accent); border-color: var(--accent); color: #fff; }
@@ -1571,23 +1582,18 @@
         .cta-secondary {
             display: inline-flex; align-items: center; gap: 0.375rem; flex-wrap: wrap;
         }
-        .nav-chip {
-            font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.02em;
-            font-variation-settings: "MONO" 0.8, "CASL" 0;
-            padding: 0.3rem 0.75rem; border-radius: 999px;
-            border: 1px dashed var(--border-strong); background: transparent;
-            color: var(--text-secondary); text-decoration: none;
-            display: inline-flex; align-items: center; justify-content: center;
-            white-space: nowrap; overflow: hidden; box-sizing: border-box;
-            transition: border-color var(--transition), color var(--transition),
-                        background var(--transition), opacity var(--transition);
+        /* The secondary CTAs are the primary button's pattern at a smaller size,
+           so the row reads as one family rather than a button beside four pills. */
+        .btn-sm { padding: 0.5rem 0.875rem; font-size: 0.75rem; }
+        .nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
+        /* The whole hover is a two-pixel nudge in the direction the link goes. */
+        .nav-btn svg { opacity: 0.5; transition: transform 0.2s ease, opacity 0.2s ease; }
+        .nav-btn:hover svg { opacity: 1; transform: translateY(2px); }
+        .nav-btn.is-go:hover svg { transform: translateX(2px); }
+        @media (prefers-reduced-motion: reduce) {
+            .nav-btn svg { transition: opacity 0.2s ease; }
+            .nav-btn:hover svg, .nav-btn.is-go:hover svg { transform: none; }
         }
-        .nav-chip:hover, .nav-chip.active {
-            border-style: solid; border-color: var(--accent);
-            color: var(--accent); background: var(--accent-bg); text-decoration: none;
-        }
-        .cta-secondary.has-focus .nav-chip { opacity: 0.45; }
-        .cta-secondary.has-focus .nav-chip.active { opacity: 1; }
 
         /* Recruiter view */
         .recruiter-switch {
@@ -1821,7 +1827,7 @@
             .bio-tag { font-size: 0.625rem; padding: 0.2rem 0.5rem; flex-shrink: 0; }
             .hero-ctas { flex-direction: column; align-items: stretch; }
             .cta-secondary { justify-content: center; }
-            .nav-chip { font-size: 0.625rem; padding: 0.25rem 0.625rem; }
+            .btn-sm { font-size: 0.6875rem; padding: 0.4rem 0.7rem; }
             .cta-secondary { justify-content: center; margin-top: 0.25rem; }
             .hire-cta {
                 width: 100%; border-radius: var(--radius);
@@ -2080,10 +2086,10 @@
                     Download CV
                 </a>
                 <span class="cta-secondary" id="cta-nav">
-                    <a href="#work" class="nav-chip" data-flip="5 case studies">See work</a>
-                    <a href="#gallery" class="nav-chip" data-flip="4 live products">Portfolio</a>
-                    <a href="#engage" class="nav-chip" data-flip="Build, advise, train">Work with me</a>
-                    <a href="#" class="nav-chip" data-flip="In your timezone" onclick="openBooking();return false;">Suggest a time</a>
+                    <a href="#work" class="btn btn-outline btn-sm nav-btn">See work <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 2a.5.5 0 01.5.5v10.793l3.146-3.147a.5.5 0 01.708.708l-4 4a.5.5 0 01-.708 0l-4-4a.5.5 0 01.708-.708L7.5 13.293V2.5A.5.5 0 018 2z"/></svg></a>
+                    <a href="#gallery" class="btn btn-outline btn-sm nav-btn">Portfolio <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 2a.5.5 0 01.5.5v10.793l3.146-3.147a.5.5 0 01.708.708l-4 4a.5.5 0 01-.708 0l-4-4a.5.5 0 01.708-.708L7.5 13.293V2.5A.5.5 0 018 2z"/></svg></a>
+                    <a href="#engage" class="btn btn-outline btn-sm nav-btn">Work with me <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 2a.5.5 0 01.5.5v10.793l3.146-3.147a.5.5 0 01.708.708l-4 4a.5.5 0 01-.708 0l-4-4a.5.5 0 01.708-.708L7.5 13.293V2.5A.5.5 0 018 2z"/></svg></a>
+                    <a href="#" class="btn btn-outline btn-sm nav-btn is-go" onclick="openBooking();return false;">Suggest a time <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 8a.5.5 0 01.5-.5h11.793l-3.147-3.146a.5.5 0 01.708-.708l4 4a.5.5 0 010 .708l-4 4a.5.5 0 01-.708-.708L13.293 8.5H1.5A.5.5 0 011 8z"/></svg></a>
                 </span>
             </div>
 
@@ -3138,37 +3144,53 @@
         });
     })();
 
-    (function bioTagFlip() {
-        var tags = document.querySelectorAll('#bio-tags .bio-tag, #cta-nav .nav-chip');
-        if (!tags.length) return;
-        var glyphs = '/@#$%&*=+<>_~^|:.';
-        function rand() { return glyphs[Math.floor(Math.random() * glyphs.length)]; }
-        function scrambleTo(tag, text, cb) {
-            if (tag._iv) cancelAnimationFrame(tag._iv);
-            var resolved = 0;
-            var tick = 0;
-            function frame() {
-                var out = '';
-                for (var i = 0; i < text.length; i++) {
-                    if (i < resolved) out += text[i];
-                    else if (text[i] === ' ' || text[i] === '·') out += text[i];
-                    else out += rand();
-                }
-                tag.textContent = out;
-                tick++;
-                if (tick % 3 === 0) resolved++;
-                if (resolved > text.length) {
-                    tag.textContent = text;
-                    tag._iv = null;
-                    if (cb) cb();
-                    return;
-                }
-                tag._iv = requestAnimationFrame(frame);
-            }
-            tag._iv = requestAnimationFrame(frame);
+    // Retype rather than scramble. Back a line out to the longest prefix the two
+    // strings share, then write the rest a character at a time, the way you would
+    // edit a line in an editor. Random glyphs read as noise; this reads as someone
+    // typing, and the caret makes it legible as such. Timing is in milliseconds
+    // rather than frames so it holds at any refresh rate.
+    function typeTo(el, text, cb) {
+        var DEL_MS = 22, PUT_MS = 38;   // deliberately unhurried
+        if (el._typing) { cancelAnimationFrame(el._typing); el._typing = null; }
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            el.textContent = text;
+            if (cb) cb();
+            return;
         }
+        var from = el.textContent;
+        var keep = 0;
+        while (keep < from.length && keep < text.length && from[keep] === text[keep]) keep++;
+        var backOut = (from.length - keep) * DEL_MS;
+        var total = backOut + (text.length - keep) * PUT_MS;
+        var start = 0;
+
+        el.classList.add('is-typing');
+        function step(now) {
+            if (!start) start = now;
+            var t = now - start;
+            if (t >= total) {
+                el.textContent = text;
+                el.classList.remove('is-typing');
+                el._typing = null;
+                if (cb) cb();
+                return;
+            }
+            if (t < backOut) {
+                el.textContent = from.slice(0, from.length - Math.floor(t / DEL_MS));
+            } else {
+                var typed = Math.floor((t - backOut) / PUT_MS);
+                el.textContent = text.slice(0, Math.min(keep + typed, text.length));
+            }
+            el._typing = requestAnimationFrame(step);
+        }
+        el._typing = requestAnimationFrame(step);
+    }
+
+    (function bioTagFlip() {
+        var tags = document.querySelectorAll('#bio-tags .bio-tag');
+        if (!tags.length) return;
         function init(tag) {
-            var container = tag.closest('#bio-tags, #cta-nav');
+            var container = tag.closest('#bio-tags');
             var label = tag.getAttribute('data-label') || tag.textContent;
             tag.setAttribute('data-label', label);
             tag.textContent = label;
@@ -3178,28 +3200,31 @@
             tag.textContent = tech || label;
             var w2 = tag.offsetWidth;
             tag.textContent = label;
-            tag.style.width = Math.max(w1, w2) + 'px';
+            tag.style.width = (Math.max(w1, w2) + 9) + 'px';   // room for the caret
             tag.addEventListener('mouseenter', function() {
                 container.classList.add('has-focus');
-                tag.classList.add('active');
-                if (tech) scrambleTo(tag, tech);
+                if (tech) {
+                    typeTo(tag, tech, function() { tag.classList.add('active'); });
+                } else {
+                    tag.classList.add('active');
+                }
             });
             tag.addEventListener('mouseleave', function() {
                 container.classList.remove('has-focus');
                 tag.classList.remove('active');
-                scrambleTo(tag, label);
+                typeTo(tag, label);
             });
             if (tag.tagName === 'A') return;
             tag.addEventListener('click', function() {
                 var showing = tag.textContent === tech;
-                if (!showing) {
-                    container.classList.add('has-focus');
-                    tag.classList.add('active');
-                } else {
+                if (showing) {
                     container.classList.remove('has-focus');
                     tag.classList.remove('active');
+                    typeTo(tag, label);
+                } else {
+                    container.classList.add('has-focus');
+                    typeTo(tag, tech, function() { tag.classList.add('active'); });
                 }
-                scrambleTo(tag, showing ? label : tech);
             });
         }
         function initAll() { for (var i = 0; i < tags.length; i++) { init(tags[i]); } }
@@ -3210,75 +3235,11 @@
         } else {
             initAll();
         }
-        var hinted = false;
-        var hintQueue = [];
-        var hintIdx = 0;
-        function shuffleQueue() {
-            hintQueue = [];
-            for (var j = 0; j < tags.length; j++) hintQueue.push(j);
-            for (var j = hintQueue.length - 1; j > 0; j--) {
-                var k = Math.floor(Math.random() * (j + 1));
-                var tmp = hintQueue[j]; hintQueue[j] = hintQueue[k]; hintQueue[k] = tmp;
-            }
-            hintIdx = 0;
-        }
-        shuffleQueue();
-        function autoHint() {
-            if (hinted) return;
-            if (hintIdx >= hintQueue.length) shuffleQueue();
-            var tag = tags[hintQueue[hintIdx++]];
-            var tech = tag.getAttribute('data-flip');
-            var label = tag.getAttribute('data-label');
-            if (!tech || tag._iv) return;
-            tag.classList.add('active');
-            scrambleTo(tag, tech, function() {
-                setTimeout(function() {
-                    tag.classList.remove('active');
-                    scrambleTo(tag, label);
-                }, 1200);
-            });
-        }
-        // Auto-hint runs once, briefly, then stops. Continuously scrambling the
-        // tags made the hero unreadable; hover and click still reveal each one.
-        setTimeout(autoHint, 1200);
-        var resumeTimer;
-        document.getElementById('bio-tags').addEventListener('mouseenter', function() {
-            hinted = true;
-            clearTimeout(resumeTimer);
-        });
-        document.getElementById('bio-tags').addEventListener('mouseleave', function() {
-            resumeTimer = setTimeout(function() { hinted = false; }, 3000);
-        });
     })();
 
     (function metricFlip() {
         var cards = document.querySelectorAll('.metric-card[data-flip-num]');
         if (!cards.length) return;
-        var glyphs = '/@#$%&*=+<>_~^|:.';
-        function rand() { return glyphs[Math.floor(Math.random() * glyphs.length)]; }
-        function scrambleTo(el, text, cb) {
-            if (el._miv) cancelAnimationFrame(el._miv);
-            var resolved = 0;
-            var tick = 0;
-            function frame() {
-                var out = '';
-                for (var i = 0; i < text.length; i++) {
-                    if (i < resolved) out += text[i];
-                    else if (text[i] === ' ' || text[i] === '·' || text[i] === '→') out += text[i];
-                    else out += rand();
-                }
-                el.textContent = out;
-                tick++;
-                if (tick % 3 === 0) resolved++;
-                if (resolved > text.length) {
-                    el.textContent = text;
-                    if (cb) cb();
-                    return;
-                }
-                el._miv = requestAnimationFrame(frame);
-            }
-            el._miv = requestAnimationFrame(frame);
-        }
         cards.forEach(function(card) {
             var numEl = card.querySelector('.metric-num');
             var labelEl = card.querySelector('.metric-label');
@@ -3286,21 +3247,23 @@
             var origLabel = labelEl.textContent;
             var flipNum = card.getAttribute('data-flip-num');
             var flipLabel = card.getAttribute('data-flip-label');
+            // These are plain facts, so they swap outright. Typing a number out
+            // character by character reads as decoration, not as information.
             card.addEventListener('mouseenter', function() {
                 card.classList.add('flipped');
-                scrambleTo(numEl, flipNum);
-                scrambleTo(labelEl, flipLabel);
+                numEl.textContent = flipNum;
+                labelEl.textContent = flipLabel;
             });
             card.addEventListener('mouseleave', function() {
                 card.classList.remove('flipped');
-                scrambleTo(numEl, origNum);
-                scrambleTo(labelEl, origLabel);
+                numEl.textContent = origNum;
+                labelEl.textContent = origLabel;
             });
             card.addEventListener('click', function() {
                 var isFlipped = card.classList.contains('flipped');
                 card.classList.toggle('flipped', !isFlipped);
-                scrambleTo(numEl, isFlipped ? origNum : flipNum);
-                scrambleTo(labelEl, isFlipped ? origLabel : flipLabel);
+                numEl.textContent = isFlipped ? origNum : flipNum;
+                labelEl.textContent = isFlipped ? origLabel : flipLabel;
             });
         });
     })();
@@ -3362,19 +3325,21 @@
     })();
 
     (function touchAutoPlay() {
-        // Tag and metric reveals are driven by mouseenter/mouseleave, which never
-        // fire on a touch screen, so on phones those elements were simply inert.
-        // Where there is no hover, play each one once as it scrolls into view by
-        // dispatching the same events the existing handlers already listen for.
+        // The portrait and the footer mark are driven by mouseenter/mouseleave,
+        // which never fire on a touch screen, so without this they are inert on
+        // phones. Play each once as it scrolls into view by dispatching the same
+        // events their handlers already listen for.
+        //
+        // The tag and metric reveals are deliberately NOT in here. Those rewrite
+        // text, and text that rewrites itself unprompted is noise on a phone,
+        // where it is also the whole hero. Tapping still reveals them.
         if (!window.matchMedia('(hover: none)').matches) return;
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         if (!('IntersectionObserver' in window)) return;
 
-        function play(el, hold, delay) {
-            setTimeout(function () {
-                el.dispatchEvent(new Event('mouseenter'));
-                setTimeout(function () { el.dispatchEvent(new Event('mouseleave')); }, hold);
-            }, delay);
+        function play(el, hold) {
+            el.dispatchEvent(new Event('mouseenter'));
+            setTimeout(function () { el.dispatchEvent(new Event('mouseleave')); }, hold);
         }
 
         var seen = new WeakSet();
@@ -3383,28 +3348,14 @@
                 if (!entry.isIntersecting || seen.has(entry.target)) return;
                 seen.add(entry.target);
                 io.unobserve(entry.target);
-                var i = +(entry.target.getAttribute('data-autoplay-index') || 0);
-                play(entry.target, 1500, 260 * i);
+                play(entry.target, 1500);
             });
         }, { threshold: 0.6 });
 
-        function observeAll() {
-            ['#hero-photo', '#bio-tags .bio-tag', '#cta-nav .nav-chip', '.metric-card[data-flip-num]', '#footer-mark'].forEach(function (sel) {
-                var nodes = document.querySelectorAll(sel);
-                for (var i = 0; i < nodes.length; i++) {
-                    nodes[i].setAttribute('data-autoplay-index', i);
-                    io.observe(nodes[i]);
-                }
-            });
-        }
-        // The tag handlers are attached only after the webfont resolves, so wait
-        // for the same signal or the first cards would be observed before they
-        // could respond.
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(observeAll).catch(observeAll);
-        } else {
-            observeAll();
-        }
+        ['#hero-photo', '#footer-mark'].forEach(function (sel) {
+            var el = document.querySelector(sel);
+            if (el) io.observe(el);
+        });
     })();
 
     (function mobileAutoScroll() {
