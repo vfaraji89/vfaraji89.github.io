@@ -59,7 +59,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Stack: Next.js, TypeScript, VS Code Extension, MCP, Token Economics
 - Metrics: 500+ VS Code installs, 17 models supported, 58 wiki articles
 - What it does: Real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality models, caching break-even analysis across 17 LLMs
-- Grant: $40K Perplexity AI grant secured
+- Programme: leads the Perplexity AI Business Fellowship
 
 ### Multi-Agent Job Classification System
 - Type: Research + production
@@ -145,7 +145,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - 300M+ datapoints unified
 - 3 publications + 1 patent pending
 - 400+ people trained
-- $40K Perplexity AI grant
+- Perplexity AI Business Fellowship (programme lead)
 
 ## Hiring Summary
 
@@ -156,7 +156,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Seniority: Senior / Principal, 9+ years across data products, solution design and applied AI
 - Location: Istanbul, Turkey (GMT+3), remote-friendly with distributed teams
 - Core stack: MCP, LangGraph, Agno, Vercel AI SDK, Next.js, TypeScript, Python/FastAPI, Anthropic SDK, Arize, BigQuery, Azure, DataHub
-- Proof: peer-reviewed at ACM CAIS '26, 2 arXiv papers, 1 patent pending, $40K Perplexity AI grant, Tokalator with 500+ installs
+- Proof: peer-reviewed at ACM CAIS '26, 2 arXiv papers, 1 patent pending, Perplexity AI Business Fellowship programme lead, Tokalator with 500+ installs
 - Condensed hiring view: https://vfaraji89.github.io/?hire
 - Contact: vfaraji89@gmail.com
 
