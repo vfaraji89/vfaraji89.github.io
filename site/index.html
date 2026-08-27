@@ -3321,8 +3321,23 @@
         // Driven only by mouseenter/mouseleave. A tap synthesises those events
         // too, so touch gets the same reveal; adding a click toggle on top of
         // them would land on the synthesised mouseenter and cancel itself out.
-        stack.addEventListener('mouseenter', function () { stack.classList.add('is-pixel'); });
-        stack.addEventListener('mouseleave', function () { stack.classList.remove('is-pixel'); });
+        // But on a touch screen the matching mouseleave only arrives once
+        // something else is tapped, which would strand the portrait in its
+        // pixel state and read as the photograph having gone missing. Where
+        // there is no hover, the reveal reverts itself.
+        var hoverless = window.matchMedia('(hover: none)').matches;
+        var revert;
+
+        stack.addEventListener('mouseenter', function () {
+            stack.classList.add('is-pixel');
+            if (!hoverless) return;
+            clearTimeout(revert);
+            revert = setTimeout(function () { stack.classList.remove('is-pixel'); }, 1600);
+        });
+        stack.addEventListener('mouseleave', function () {
+            clearTimeout(revert);
+            stack.classList.remove('is-pixel');
+        });
     })();
 
     (function footerAbacus() {
