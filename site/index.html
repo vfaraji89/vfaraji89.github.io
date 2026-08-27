@@ -1549,19 +1549,28 @@
 
 
         /* Through-line story */
-        .story-track { display: grid; gap: 0; margin-bottom: 2rem; }
+        .story-span {
+            display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;
+            font-size: 0.625rem; color: var(--text-muted); letter-spacing: 0.08em;
+            font-variation-settings: "MONO" 1, "CASL" 0; font-weight: 500;
+        }
+        .story-rule {
+            flex: 1; height: 1px;
+            background: linear-gradient(90deg, var(--border-strong), var(--accent));
+        }
+        .story-track { display: grid; gap: 0; margin-bottom: 1.75rem; }
         .story-step {
-            display: grid; grid-template-columns: 68px 1fr; gap: 1.25rem;
-            padding-bottom: 1.75rem; position: relative;
+            display: grid; grid-template-columns: 60px 1fr; gap: 1rem;
+            padding-bottom: 1.125rem; position: relative;
         }
         .story-step::before {
-            content: ""; position: absolute; left: 5px; top: 1.5rem; bottom: -0.25rem;
+            content: ""; position: absolute; left: 5px; top: 1.25rem; bottom: -0.25rem;
             width: 1px; background: var(--border);
         }
         .story-step:last-child { padding-bottom: 0; }
         .story-step:last-child::before { display: none; }
         .story-step::after {
-            content: ""; position: absolute; left: 0; top: 0.5rem;
+            content: ""; position: absolute; left: 0; top: 0.3rem;
             width: 11px; height: 11px; border-radius: 50%;
             background: var(--bg); border: 2px solid var(--border-strong);
             transition: border-color 0.4s ease, background 0.4s ease;
@@ -1569,14 +1578,14 @@
         .story-step:last-child::after { border-color: var(--accent); background: var(--accent); }
         .story-step:hover::after { border-color: var(--accent); }
         .story-year {
-            font-size: 0.6875rem; color: var(--text-muted); padding-top: 0.3rem; padding-left: 1.375rem;
+            font-size: 0.625rem; color: var(--text-muted); padding-top: 0.15rem; padding-left: 1.375rem;
             font-variation-settings: "MONO" 1, "CASL" 0; font-weight: 500;
         }
         .story-body h3 {
-            font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.375rem;
+            font-size: 0.875rem; font-weight: 600; margin-bottom: 0.2rem;
             font-variation-settings: "MONO" 0.4, "CASL" 0;
         }
-        .story-body p { font-size: 0.8125rem; line-height: 1.75; margin: 0; }
+        .story-body p { font-size: 0.8125rem; line-height: 1.6; margin: 0; }
 
         .story-quote {
             margin: 0 0 2.25rem; padding: 1.25rem 1.5rem;
@@ -1726,7 +1735,7 @@
             .gallery-card { grid-template-columns: 1fr; padding: 1.5rem; }
             .gallery-screenshot { max-width: 100%; }
             .story-facets { grid-template-columns: repeat(2, 1fr); gap: 1.25rem 1rem; }
-            .story-step { grid-template-columns: 52px 1fr; gap: 0.875rem; }
+            .story-step { grid-template-columns: 48px 1fr; gap: 0.75rem; }
             .story-year { padding-left: 1.25rem; font-size: 0.625rem; }
             .story-quote { font-size: 0.875rem; padding: 1rem 1.125rem; }
             .contact-box { padding: 1.5rem; }
@@ -2238,41 +2247,59 @@
 
         <section id="story" class="reveal">
             <div class="section-label">Through-line</div>
-            <p class="section-tagline">One question, worked from four sides.</p>
+            <p class="section-tagline">Twelve years, one question, four different tools.</p>
+
+            <div class="story-span" aria-hidden="true">
+                <span>2013</span><span class="story-rule"></span><span>2026</span>
+            </div>
 
             <div class="story-track">
                 <div class="story-step">
-                    <span class="story-year">2019</span>
+                    <span class="story-year">2013&ndash;15</span>
                     <div class="story-body">
-                        <h3>Economics, Ibn Haldun</h3>
-                        <p>M.A. thesis on real-time labour market analysis. Teaching assistant in econometrics, research fellow in labour analytics. The question started here: how do people and work actually find each other?</p>
+                        <h3>MBA, Human Resources</h3>
+                        <p>The question, formally: how do organisations find the right people?</p>
                     </div>
                 </div>
                 <div class="story-step">
-                    <span class="story-year">2019</span>
+                    <span class="story-year">2015&ndash;18</span>
+                    <div class="story-body">
+                        <h3>Research</h3>
+                        <p>Labour markets from the evidence side, before the tooling existed to work at scale.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <span class="story-year">2019&ndash;21</span>
                     <div class="story-body">
                         <h3>Defaro.io, co-founder</h3>
-                        <p>Took the question commercial. A labour-market compensation and analytics startup, incubated at &Ouml;zye&#287;in University, tracking localised talent supply signals.</p>
+                        <p>Took it commercial. Compensation and talent-supply analytics, incubated at &Ouml;zye&#287;in University.</p>
                     </div>
                 </div>
                 <div class="story-step">
-                    <span class="story-year">2022</span>
+                    <span class="story-year">2019&ndash;23</span>
+                    <div class="story-body">
+                        <h3>M.A. Economics, Ibn Haldun</h3>
+                        <p>Thesis on real-time labour market analysis. Teaching assistant in econometrics.</p>
+                    </div>
+                </div>
+                <div class="story-step">
+                    <span class="story-year">2022&ndash;25</span>
                     <div class="story-body">
                         <h3>Kariyer.net, data products</h3>
-                        <p>Discovered the answer needs infrastructure. Metadata architecture across 300M+ assets, real-time labour statistics pipelines, governance that later made retrieval trustworthy.</p>
+                        <p>The answer needed infrastructure. Metadata architecture across 300M+ assets.</p>
                     </div>
                 </div>
                 <div class="story-step">
-                    <span class="story-year">2025</span>
+                    <span class="story-year">2025&ndash;</span>
                     <div class="story-body">
                         <h3>Applied AI</h3>
-                        <p>The tools finally caught up. Multi-agent systems that map free-form job titles onto O*NET and ESCO taxonomies, at 95% accuracy across 14K+ positions. Peer-reviewed at ACM CAIS '26.</p>
+                        <p>The tools caught up. Agents mapping free text onto O*NET and ESCO. Peer-reviewed at ACM CAIS&nbsp;'26.</p>
                     </div>
                 </div>
             </div>
 
             <blockquote class="story-quote">
-                Nine years on one question. The tools changed from regressions to agents. The question didn&rsquo;t.
+                Twelve years on one question. The tools went from spreadsheets to regressions to agents. The question didn&rsquo;t move.
             </blockquote>
 
             <div class="story-facets">
