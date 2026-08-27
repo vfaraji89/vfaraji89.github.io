@@ -3221,9 +3221,9 @@
     })();
 
     (function photoFlip() {
-        // The portrait reverses to its pixel-art self on hover, and toggles on
-        // tap. Everything is driven by the class so the touch auto-play below
-        // can demonstrate it with the same events the tags use.
+        // The portrait reverses to its pixel-art self on hover. Everything is
+        // driven by the class so the touch auto-play below can demonstrate it
+        // with the same events the tags already use.
         var stack = document.getElementById('hero-photo');
         if (!stack) return;
 
@@ -3233,9 +3233,11 @@
             if (real.complete && real.naturalWidth === 0) stack.classList.add('no-photo');
         }
 
+        // Driven only by mouseenter/mouseleave. A tap synthesises those events
+        // too, so touch gets the same reveal; adding a click toggle on top of
+        // them would land on the synthesised mouseenter and cancel itself out.
         stack.addEventListener('mouseenter', function () { stack.classList.add('is-pixel'); });
         stack.addEventListener('mouseleave', function () { stack.classList.remove('is-pixel'); });
-        stack.addEventListener('click', function () { stack.classList.toggle('is-pixel'); });
     })();
 
     (function touchAutoPlay() {
