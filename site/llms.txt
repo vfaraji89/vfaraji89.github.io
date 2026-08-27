@@ -24,6 +24,7 @@ Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Ista
 - awesome-applied-ai (vfaraji89.github.io/awesome-applied-ai): Public taxonomy of applied AI for the enterprise. Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, formulas, dictionary, and research.
 - Tokalator (tokalator.wiki): Open-source context engineering toolkit. VS Code extension with 500+ installs. Token budgeting, cost modeling across 17 LLMs. MIT license.
 - Multi-Agent Job Classification: MCP-based system achieving 95% accuracy on 14K+ positions, 72.5% faster classification. Published at ACM.
+- ProjectLens (internal, Kariyer.net, August 2026): Pricing tool that carries a project request end to end — effort calculation, pricing, proposal preparation, approval and follow-up — replacing a per-quote Excel workflow. Integrated with Microsoft Teams and Azure DevOps, with a read-only SQL console. Removed 91% of the manual effort: 64h of hand work down to 5.5h, freeing 59 hours (7.3 working days) and avoiding 31 spreadsheets. Savings are a team-estimated model, not a measurement.
 - Enterprise AI Platform: Multi-agent orchestration (LangGraph, MCP, Agno) for text-to-SQL, report automation. 60% workload reduction, 200+ users.
 - 300M+ Datapoint Metadata Platform: DataHub governance, Azure Synapse, BigQuery. Foundation for all AI/LLM deployments.
 
@@ -44,13 +45,21 @@ Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Ista
 - M.A. Economics — Ibn Haldun University
 - Thesis: Real-Time Labor Market Analysis
 
+## Availability
+
+Open to applied AI advisory, agent-system architecture reviews, and enterprise AI training engagements. Based in Istanbul (GMT+3), works with distributed teams. Book directly: https://calendar.app.google/KWQg6gBjXetC4ofp9
+
+## FAQ
+
+Structured question-and-answer content is published at https://vfaraji89.github.io/#faq and mirrored as schema.org FAQPage JSON-LD on the homepage.
+
 ## Contact
 
 - Email: vfaraji89@gmail.com
 - GitHub: github.com/vfaraji89
 - LinkedIn: linkedin.com/in/vahid-faraji-jobehdar
 - X: x.com/vfaraji89
-- Website: vfaraji89.github.io/vfaraji89
+- Website: https://vfaraji89.github.io/
 
 ## Links
 

@@ -1,16 +1,38 @@
 {
-  "name": "Vahid Faraji — Applied AI Specialist",
-  "short_name": "VF",
-  "start_url": ".",
+  "name": "Vahid Faraji \u2014 Applied AI Specialist",
+  "short_name": "Vahid Faraji",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#e3120b",
-  "description": "Senior Applied AI Specialist. Turning noisy text into structured taxonomies and scalable systems.",
+  "description": "Senior Applied AI Specialist. Production multi-agent systems, context engineering, and peer-reviewed applied AI research.",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": [
+    "productivity",
+    "education",
+    "business"
+  ],
   "icons": [
     {
-      "src": "assets/img/vfoto-vahid.jpg",
+      "src": "assets/icons/icon-192.png",
       "sizes": "192x192",
-      "type": "image/jpeg"
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

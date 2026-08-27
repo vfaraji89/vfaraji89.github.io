@@ -51,7 +51,6 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Type: Open source, curated reference
 - What it is: A working map of applied AI for the enterprise. Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, equations, dictionary, commands, design problems and research findings.
 - Scope: The tools, protocols, benchmarks and regulation that decide what a system knows, what it costs, and what you can prove about it.
-- Scope: What decides what a system knows, what it costs, and what you can prove about it.
 
 ### Tokalator — Context Engineering Toolkit
 - URL: https://tokalator.wiki
@@ -67,6 +66,16 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Stack: MCP, LangGraph, Subagent Architecture, AI Search, Caching
 - Metrics: 95% accuracy, 14K+ positions, 72.5% faster, 41.8% fewer API calls
 - Published: ACM CAIS '26
+
+### ProjectLens — Pricing Internal Tool (Kariyer.net)
+- Type: Enterprise, internal
+- Shipped: August 2026
+- Team: Applied AI x Pricing & Revenue
+- Stack: Applied AI, Microsoft Teams integration, Azure DevOps integration, SQL, workflow automation
+- What it does: Takes a project request and manages the whole process end to end — effort calculation, pricing, proposal preparation, approval stage and follow-ups. Replaces a workflow where every pricing run meant a new Excel file.
+- Notable: Read-only SQL console (only SELECT and WITH execute, each query runs in a rolled-back transaction on its own connection, nothing is writable) and a presentation mode that masks figures during screen shares.
+- Metrics: 91% of manual effort eliminated; 64h manual baseline reduced to 5.5h; 59 hours freed (7.3 working days); 57h saved on pricing across 31 runs; 1.7h saved on request intake across 4 requests; 31 Excel files avoided.
+- Measurement caveat: savings are modelled as 31 pricing runs x (2h - 10min) + 4 intake requests x (30min - 5min). The 2h manual baseline is a team estimate dated 2026-07-30, not an instrumented measurement.
 
 ### Enterprise AI Platform (Kariyer.net)
 - Type: Enterprise, internal
@@ -110,6 +119,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Context Engineering for AI-Native Dev — Only Builders Club, Istanbul (2026)
 - Deep Agent Frameworks for SaaS — Bridge Summit '25
 - Enterprise Prompt Engineering — Kayseri University & Van University (2025)
+- 91% manual effort removed and 59 hours freed (ProjectLens pricing tool)
 - 400+ people trained, 50+ courses delivered
 
 ## Education

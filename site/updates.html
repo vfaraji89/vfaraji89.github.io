@@ -13,8 +13,18 @@
     <meta property="og:description" content="Conference demos, published papers, talks, and training events from Vahid Faraji's Applied AI work.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vfaraji89.github.io/updates.html">
+    <meta property="og:image" content="https://vfaraji89.github.io/assets/event-photos/cais-2026.png">
+    <meta property="og:site_name" content="Vahid Faraji">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@vfaraji89">
+    <meta name="twitter:title" content="Latest Updates — Vahid Faraji">
+    <meta name="twitter:description" content="Conference demos, published papers, talks, and training events from Vahid Faraji's Applied AI work.">
+    <meta name="twitter:image" content="https://vfaraji89.github.io/assets/event-photos/cais-2026.png">
+    <meta name="theme-color" content="#e3120b">
+    <link rel="manifest" href="manifest.webmanifest">
 
-    <!-- Google Analytics — replace G-GTZW5NNEZ5 with your ID -->
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -24,6 +34,7 @@
     </script>
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='4' y='4' width='40' height='40' rx='8' fill='none' stroke='%23e3120b' stroke-width='2.5'/><line x1='10' y1='16' x2='38' y2='16' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='26' x2='38' y2='26' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='36' x2='38' y2='36' stroke='%23ccc' stroke-width='1.5'/><circle cx='14' cy='16' r='3.5' fill='%23e3120b'/><circle cx='23' cy='16' r='3.5' fill='%23e3120b' opacity='0.7'/><circle cx='16' cy='26' r='3.5' fill='%23e3120b' opacity='0.8'/><circle cx='26' cy='26' r='3.5' fill='%23e3120b'/><circle cx='34' cy='26' r='3.5' fill='%23e3120b' opacity='0.5'/><circle cx='30' cy='36' r='3.5' fill='%23e3120b' opacity='0.6'/></svg>">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Recursive:CASL,CRSV,MONO,slnt,wght@0,0,0..1,0,300..1000&family=Sora:wght@100..800&display=swap" rel="stylesheet">
@@ -41,6 +52,19 @@
             --accent: var(--red); --accent-bg: var(--red-light);
             --radius: 12px; --transition: 0.2s ease;
         }
+        [data-theme="dark"] {
+            --bg: #0d0d0d; --bg-subtle: #161616; --bg-muted: #1e1e1e;
+            --border: #2a2a2a; --border-strong: #3a3a3a;
+            --text-primary: #e8e8e8; --text-secondary: #a0a0a0; --text-muted: #666666;
+            --accent: #ff4136; --accent-bg: rgba(255,65,54,0.08);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+        }
+
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: var(--font); background: var(--bg); color: var(--text-primary);
@@ -264,6 +288,229 @@
             .news-links a { font-size: 0.5625rem; }
         }
     </style>
+    <script>
+    (function () {
+        try {
+            var saved = localStorage.getItem('vf-theme');
+            var dark = saved ? saved === 'dark'
+                             : window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        } catch (e) {}
+    })();
+    </script>
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "CollectionPage",
+            "@id": "https://vfaraji89.github.io/updates.html#webpage",
+            "url": "https://vfaraji89.github.io/updates.html",
+            "name": "Latest Updates — Vahid Faraji",
+            "description": "Conference demos, published papers, talks, and training events from Vahid Faraji's Applied AI work.",
+            "isPartOf": {
+                "@id": "https://vfaraji89.github.io/#website"
+            },
+            "about": {
+                "@id": "https://vfaraji89.github.io/#person"
+            },
+            "author": {
+                "@id": "https://vfaraji89.github.io/#person"
+            },
+            "inLanguage": "en",
+            "breadcrumb": {
+                "@id": "https://vfaraji89.github.io/updates.html#breadcrumb"
+            },
+            "mainEntity": {
+                "@id": "https://vfaraji89.github.io/updates.html#list"
+            }
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://vfaraji89.github.io/updates.html#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://vfaraji89.github.io/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Updates",
+                    "item": "https://vfaraji89.github.io/updates.html"
+                }
+            ]
+        },
+        {
+            "@type": "ItemList",
+            "@id": "https://vfaraji89.github.io/updates.html#list",
+            "name": "Updates from Vahid Faraji",
+            "numberOfItems": 12,
+            "itemListOrder": "https://schema.org/ItemListOrderDescending",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "ProjectLens — pricing, from Excel habit to auditable flow",
+                        "datePublished": "2026-08-27",
+                        "url": "https://vfaraji89.github.io/updates.html#projectlens",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "awesome-applied-ai: a working map of applied AI for the enterprise",
+                        "datePublished": "2026-07-01",
+                        "url": "https://vfaraji89.github.io/updates.html#awesome-applied-ai",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "Presenting demo at ACM CAIS '26 — San Jose",
+                        "datePublished": "2026-05-29",
+                        "url": "https://vfaraji89.github.io/updates.html#cais-demo",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "Multi-Agent Position Classification with Tool Orchestration",
+                        "datePublished": "2026-05-01",
+                        "url": "https://vfaraji89.github.io/updates.html#cais-paper",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "Applied AI Course — Agents, MCP, and AI-Native Development",
+                        "datePublished": "2026-03-01",
+                        "url": "https://vfaraji89.github.io/updates.html#techcareer-training",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 6,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "Tokalator: A Context Engineering Toolkit for AI Coding Assistants",
+                        "datePublished": "2026-04-01",
+                        "url": "https://vfaraji89.github.io/updates.html#tokalator-paper",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 7,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "Leveraging LLMs For Turkish Skill Extraction",
+                        "datePublished": "2026-01-01",
+                        "url": "https://vfaraji89.github.io/updates.html#skill-paper",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 8,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "Context Engineering for AI-Native Dev — Only Builders Club",
+                        "datePublished": "2026-02-01",
+                        "url": "https://vfaraji89.github.io/updates.html#builders-club-talk",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 9,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "AI Career Mentor — TEV (Turkish Education Foundation)",
+                        "datePublished": "2026-01-01",
+                        "url": "https://vfaraji89.github.io/updates.html#tev-mentor",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 10,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "$40K Perplexity AI Enterprise Grant Secured",
+                        "datePublished": "2026-01-01",
+                        "url": "https://vfaraji89.github.io/updates.html#perplexity-grant",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 11,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "Deep Agent Frameworks for SaaS — Bridge Summit '25",
+                        "datePublished": "2025-01-01",
+                        "url": "https://vfaraji89.github.io/updates.html#bridge-summit",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 12,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "Enterprise Prompt Engineering and Tool Design",
+                        "datePublished": "2025-01-01",
+                        "url": "https://vfaraji89.github.io/updates.html#uni-talks",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
+    </script>
 </head>
 <body>
     <div class="container">
@@ -295,6 +542,8 @@
                     <button class="year-pill" data-topic="mentor">Mentor</button>
                     <button class="year-pill" data-topic="award">Award</button>
                     <button class="year-pill" data-topic="certificate">Certificate</button>
+                    <button class="year-pill" data-topic="enterprise">Enterprise</button>
+                    <button class="year-pill" data-topic="oss">Open Source</button>
                 </div>
             </div>
         </div>
@@ -323,13 +572,28 @@
                             <span class="news-tag tag-oss">Open Source</span>
                             <span class="news-date">July 2026</span>
                         </div>
-                        <h2 class="news-title"><a href="https://vfaraji89.github.io/awesome-applied-ai/">awesome-applied-ai: a working map of applied AI for the enterprise</a></h2>
+                        <h2 class="news-title"><a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">awesome-applied-ai: a working map of applied AI for the enterprise</a></h2>
                         <p class="news-desc">A public taxonomy of applied AI. Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, formulas, dictionary, commands, and research for enterprise AI architects.</p>
                         <p class="news-venue">vfaraji89.github.io/awesome-applied-ai · github.com/vfaraji89/awesome-applied-ai</p>
                         <div class="news-links">
-                            <a href="https://vfaraji89.github.io/awesome-applied-ai/">Live site</a>
-                            <a href="https://github.com/vfaraji89/awesome-applied-ai">GitHub</a>
+                            <a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">Live site</a>
+                            <a href="https://github.com/vfaraji89/awesome-applied-ai" target="_blank" rel="noopener">GitHub</a>
                         </div>
+                    </div>
+                </article>
+
+                <article class="news-card" id="projectlens" data-year="2026" data-topics="oss enterprise">
+                    <div class="news-photo">
+                        <img src="assets/photos/projectlens/projectlens-home.png" alt="ProjectLens — Pricing Internal Tool" loading="lazy" onerror="this.remove();">
+                    </div>
+                    <div class="news-body">
+                        <div class="news-meta">
+                            <span class="news-tag tag-training">Enterprise</span>
+                            <span class="news-date">August 2026</span>
+                        </div>
+                        <h2 class="news-title">ProjectLens — pricing, from Excel habit to auditable flow</h2>
+                        <p class="news-desc">Shipped with the Pricing &amp; Revenue team at Kariyer.net. ProjectLens takes a project request and carries it end to end — effort calculation, pricing, proposal preparation, approval and follow-up — instead of spawning a fresh Excel file per quote. It plugs into Microsoft Teams and Azure DevOps so requests arrive where the team already works, and ships a read-only SQL console for the questions the dashboards do not answer. 91% of the manual effort removed: 64 hours of hand work down to 5.5, freeing 59 hours (7.3 working days) and avoiding 31 spreadsheets.</p>
+                        <p class="news-venue">Applied AI &times; Pricing &amp; Revenue &middot; Kariyer.net &middot; internal tool</p>
                     </div>
                 </article>
 
@@ -343,13 +607,13 @@
                             <span class="news-tag tag-paper">Demo Paper</span>
                             <span class="news-date">May 29, 2026</span>
                         </div>
-                        <h2 class="news-title"><a href="https://dl.acm.org/doi/10.1145/3786335.3813207">Presenting demo at ACM CAIS '26 — San Jose</a></h2>
+                        <h2 class="news-title"><a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">Presenting demo at ACM CAIS '26 — San Jose</a></h2>
                         <p class="news-desc">Live demo of our tool-augmented multi-agent system for job position normalisation. The system uses MCP-based multi-agent coordination to map free-form job titles to O*NET and ESCO taxonomies — 72.5% reduction in classification time, up to 95% segment-level accuracy.</p>
                         <p class="news-venue">ACM Conference on AI and Agentic Systems · DoubleTree by Hilton San Jose · May 26–29, 2026</p>
                         <div class="news-links">
-                            <a href="https://dl.acm.org/doi/10.1145/3786335.3813207">ACM Digital Library</a>
-                            <a href="https://www.alphaxiv.org/abs/multi-agent-position-classification">alphaXiv</a>
-                            <a href="https://www.caisconf.org/">CAIS '26 Website</a>
+                            <a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">ACM Digital Library</a>
+                            <a href="https://www.alphaxiv.org/abs/multi-agent-position-classification" target="_blank" rel="noopener">alphaXiv</a>
+                            <a href="https://www.caisconf.org/" target="_blank" rel="noopener">CAIS '26 Website</a>
                         </div>
                     </div>
                 </article>
@@ -363,11 +627,11 @@
                             <span class="news-tag tag-paper">Published</span>
                             <span class="news-date">May 2026</span>
                         </div>
-                        <h2 class="news-title"><a href="https://dl.acm.org/doi/10.1145/3786335.3813207">Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping</a></h2>
+                        <h2 class="news-title"><a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping</a></h2>
                         <p class="news-desc">Accepted and published in the ACM Digital Library. DOI: 10.1145/3786335.3813207. Peer-reviewed demo paper presenting a novel MCP-based architecture for cross-lingual occupation classification at enterprise scale.</p>
                         <div class="news-links">
-                            <a href="https://dl.acm.org/doi/10.1145/3786335.3813207">DOI: 10.1145/3786335.3813207</a>
-                            <a href="https://www.alphaxiv.org/abs/multi-agent-position-classification">alphaXiv</a>
+                            <a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">DOI: 10.1145/3786335.3813207</a>
+                            <a href="https://www.alphaxiv.org/abs/multi-agent-position-classification" target="_blank" rel="noopener">alphaXiv</a>
                         </div>
                     </div>
                 </article>
@@ -385,7 +649,7 @@
                         <p class="news-desc">18-hour technical training program covering custom tool design, contextual system architecture, multi-agent coordination, and production tool execution. Delivered through Techcareer platform.</p>
                         <p class="news-venue">Techcareer · 18 hours · Istanbul</p>
                         <div class="news-links">
-                            <a href="https://www.techcareer.net/bootcamp/uygulamali-ai-araclar-agent-lar-ve-otomasyon-egitimi-icin-bulusuyoruz">Techcareer Bootcamp</a>
+                            <a href="https://www.techcareer.net/bootcamp/uygulamali-ai-araclar-agent-lar-ve-otomasyon-egitimi-icin-bulusuyoruz" target="_blank" rel="noopener">Techcareer Bootcamp</a>
                         </div>
                     </div>
                 </article>
@@ -400,11 +664,11 @@
                             <span class="news-tag tag-oss">Open Source</span>
                             <span class="news-date">April 2026</span>
                         </div>
-                        <h2 class="news-title"><a href="https://arxiv.org/abs/2604.08290">Tokalator: A Context Engineering Toolkit for AI Coding Assistants</a></h2>
+                        <h2 class="news-title"><a href="https://arxiv.org/abs/2604.08290" target="_blank" rel="noopener">Tokalator: A Context Engineering Toolkit for AI Coding Assistants</a></h2>
                         <p class="news-desc">Technical paper on arXiv introducing an open-source toolkit for token-aware context management, cost modeling, and workflow optimization. VS Code extension with 500+ installs.</p>
                         <div class="news-links">
-                            <a href="https://arxiv.org/abs/2604.08290">arXiv:2604.08290</a>
-                            <a href="https://tokalator.wiki">tokalator.wiki</a>
+                            <a href="https://arxiv.org/abs/2604.08290" target="_blank" rel="noopener">arXiv:2604.08290</a>
+                            <a href="https://tokalator.wiki" target="_blank" rel="noopener">tokalator.wiki</a>
                         </div>
                     </div>
                 </article>
@@ -418,10 +682,10 @@
                             <span class="news-tag tag-paper">arXiv</span>
                             <span class="news-date">January 2026</span>
                         </div>
-                        <h2 class="news-title"><a href="https://arxiv.org/abs/2601.22885">Leveraging LLMs For Turkish Skill Extraction</a></h2>
+                        <h2 class="news-title"><a href="https://arxiv.org/abs/2601.22885" target="_blank" rel="noopener">Leveraging LLMs For Turkish Skill Extraction</a></h2>
                         <p class="news-desc">Large-scale empirical study on extracting structured skill signals for the Turkish labor market using modern LLM-based pipelines. First systematic benchmark for Turkish NLP in workforce analytics.</p>
                         <div class="news-links">
-                            <a href="https://arxiv.org/abs/2601.22885">arXiv:2601.22885</a>
+                            <a href="https://arxiv.org/abs/2601.22885" target="_blank" rel="noopener">arXiv:2601.22885</a>
                         </div>
                     </div>
                 </article>

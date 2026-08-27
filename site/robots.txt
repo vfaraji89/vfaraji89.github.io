@@ -1,9 +1,11 @@
-# Explicitly allow AI crawlers so ChatGPT, Gemini/Google, Perplexity and Claude can index this site.
+# vfaraji89.github.io — crawling policy
+# Search and AI answer engines are explicitly welcome: this site is a public
+# professional profile and exists to be cited.
 
 User-agent: *
 Allow: /
 
-# OpenAI (ChatGPT search, GPTBot, ChatGPT-User)
+# ---- OpenAI ----
 User-agent: GPTBot
 Allow: /
 User-agent: OAI-SearchBot
@@ -11,30 +13,70 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
-# Google (Gemini / AI Overviews / Search)
+# ---- Google ----
 User-agent: Googlebot
+Allow: /
+User-agent: Googlebot-Image
 Allow: /
 User-agent: Google-Extended
 Allow: /
+User-agent: GoogleOther
+Allow: /
+User-agent: Google-CloudVertexBot
+Allow: /
 
-# Anthropic (Claude)
+# ---- Anthropic ----
 User-agent: ClaudeBot
 Allow: /
-User-agent: Claude-Web
+User-agent: Claude-User
+Allow: /
+User-agent: Claude-SearchBot
 Allow: /
 User-agent: anthropic-ai
 Allow: /
 
-# Perplexity
+# ---- Perplexity ----
 User-agent: PerplexityBot
 Allow: /
+User-agent: Perplexity-User
+Allow: /
 
-# Common crawl / other
-User-agent: CCBot
+# ---- Microsoft / Bing / Copilot ----
+User-agent: bingbot
+Allow: /
+User-agent: msnbot
+Allow: /
+
+# ---- Apple ----
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+# ---- Meta ----
+User-agent: meta-externalagent
+Allow: /
+User-agent: FacebookBot
+Allow: /
+
+# ---- Other AI and search crawlers ----
+User-agent: Amazonbot
+Allow: /
+User-agent: cohere-ai
+Allow: /
+User-agent: MistralAI-User
+Allow: /
+User-agent: YouBot
 Allow: /
 User-agent: DuckDuckBot
 Allow: /
-User-agent: Applebot
+User-agent: DuckAssistBot
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Diffbot
+Allow: /
+User-agent: omgili
 Allow: /
 
 Sitemap: https://vfaraji89.github.io/sitemap.xml
