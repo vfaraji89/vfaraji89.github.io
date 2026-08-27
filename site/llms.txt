@@ -1,4 +1,4 @@
-# Vahid Faraji — Applied AI / Researcher-Builder
+# Vahid Faraji, Applied AI / Researcher-Builder
 
 > Applied AI Specialist shipping production agent systems and publishing at ACM. Multi-agent systems, context engineering, open source.
 
@@ -16,18 +16,22 @@ Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Ista
 
 ## Publications
 
-- Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping — ACM CAIS '26, peer-reviewed. DOI: 10.1145/3786335.3813207. Page: https://vfaraji89.github.io/papers/cais-2026.html
-- Tokalator: A Context Engineering Toolkit for AI Coding Assistants — arXiv 2604.08290, April 2026. Page: https://vfaraji89.github.io/papers/tokalator.html
-- Leveraging LLMs For Turkish Skill Extraction — arXiv 2601.22885, January 2026. Page: https://vfaraji89.github.io/papers/skill-extraction.html
+- Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping, ACM CAIS '26, peer-reviewed. DOI: 10.1145/3786335.3813207. Page: https://vfaraji89.github.io/papers/cais-2026.html
+- Tokalator: A Context Engineering Toolkit for AI Coding Assistants, arXiv 2604.08290, April 2026. Page: https://vfaraji89.github.io/papers/tokalator.html
+- Leveraging LLMs For Turkish Skill Extraction, arXiv 2601.22885, January 2026. Page: https://vfaraji89.github.io/papers/skill-extraction.html
 
 ## Key Projects
 
 - awesome-applied-ai (vfaraji89.github.io/awesome-applied-ai): Public taxonomy of applied AI for the enterprise. Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, formulas, dictionary, and research.
 - Tokalator (tokalator.wiki): Open-source context engineering toolkit. VS Code extension with 500+ installs. Token budgeting, cost modeling across 17 LLMs. MIT license.
 - Multi-Agent Job Classification: MCP-based system achieving 95% accuracy on 14K+ positions, 72.5% faster classification. Published at ACM.
-- ProjectLens (internal, Kariyer.net, August 2026): Pricing tool that carries a project request end to end — effort calculation, pricing, proposal preparation, approval and follow-up — replacing a per-quote Excel workflow. Integrated with Microsoft Teams and Azure DevOps, with a read-only SQL console. Removed 91% of the manual effort: 64h of hand work down to 5.5h, freeing 59 hours (7.3 working days) and avoiding 31 spreadsheets. Savings are a team-estimated model, not a measurement.
+- ProjectLens (internal, Kariyer.net, August 2026): Pricing tool that carries a project request end to end: effort calculation, pricing, proposal preparation, approval and follow-up, replacing a per-quote Excel workflow. Integrated with Microsoft Teams and Azure DevOps, with a read-only SQL console. Removed 91% of the manual effort: 64h of hand work down to 5.5h, freeing 59 hours (7.3 working days) and avoiding 31 spreadsheets. Savings are a team-estimated model, not a measurement.
 - Enterprise AI Platform: Multi-agent orchestration (LangGraph, MCP, Agno) for text-to-SQL, report automation. 60% workload reduction, 200+ users.
 - 300M+ Datapoint Metadata Platform: DataHub governance, Azure Synapse, BigQuery. Foundation for all AI/LLM deployments.
+
+## Memberships
+
+- ACM Professional Member (Association for Computing Machinery)
 
 ## Certifications
 
@@ -37,13 +41,13 @@ Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Ista
 
 ## Teaching
 
-- 18h Applied AI Course — Techcareer (2026)
-- AI Career Mentor — TEV Foundation
-- Enterprise prompt engineering — University guest lectures
+- 18h Applied AI Course, Techcareer (2026)
+- AI Career Mentor, TEV Foundation
+- Enterprise prompt engineering, University guest lectures
 
 ## Education
 
-- M.A. Economics — Ibn Haldun University
+- M.A. Economics, Ibn Haldun University
 - Thesis: Real-Time Labor Market Analysis
 
 ## Availability

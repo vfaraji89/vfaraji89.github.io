@@ -1,4 +1,4 @@
-# Vahid Faraji — Applied AI / Researcher-Builder (Full Context)
+# Vahid Faraji, Applied AI / Researcher-Builder (Full Context)
 
 > Applied AI Specialist shipping production agent systems and publishing at ACM. Multi-agent systems, context engineering, open source.
 
@@ -13,7 +13,7 @@
 
 ## Professional Summary
 
-Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipping production systems. He bridges research and production — publishing peer-reviewed papers at ACM while deploying enterprise-scale multi-agent systems. His work focuses on context engineering, MCP-based agent architectures, and open-source AI tooling.
+Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipping production systems. He bridges research and production, publishing peer-reviewed papers at ACM while deploying enterprise-scale multi-agent systems. His work focuses on context engineering, MCP-based agent architectures, and open-source AI tooling.
 
 ## Publications (3 papers + 1 patent pending)
 
@@ -25,9 +25,9 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - URL: https://dl.acm.org/doi/10.1145/3786335.3813207
 - Page: https://vfaraji89.github.io/papers/cais-2026.html
 - Key results: 95% accuracy on 14K+ positions, 72.5% faster classification, 41.8% fewer API calls
-- Architecture: MCP-based multi-agent — planner, search, extraction, evaluation agents with shared caching
+- Architecture: MCP-based multi-agent, planner, search, extraction, evaluation agents with shared caching
 
-### arXiv — Tokalator
+### arXiv: Tokalator
 - Title: Tokalator: A Context Engineering Toolkit for AI Coding Assistants
 - Author: Vahid Faraji
 - ID: arXiv 2604.08290, April 2026
@@ -35,7 +35,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Page: https://vfaraji89.github.io/papers/tokalator.html
 - Contribution: Open-source toolkit for token-aware context management, Cobb-Douglas output-quality models, caching break-even analysis
 
-### arXiv — Skill Extraction
+### arXiv: Skill Extraction
 - Title: Leveraging LLMs For Turkish Skill Extraction
 - Authors: Vahid Faraji et al.
 - ID: arXiv 2601.22885, January 2026
@@ -45,14 +45,14 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 
 ## Projects
 
-### awesome-applied-ai — Applied AI Taxonomy
+### awesome-applied-ai: Applied AI Taxonomy
 - URL: https://vfaraji89.github.io/awesome-applied-ai/
 - GitHub: github.com/vfaraji89/awesome-applied-ai
 - Type: Open source, curated reference
 - What it is: A working map of applied AI for the enterprise. Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, equations, dictionary, commands, design problems and research findings.
 - Scope: The tools, protocols, benchmarks and regulation that decide what a system knows, what it costs, and what you can prove about it.
 
-### Tokalator — Context Engineering Toolkit
+### Tokalator: Context Engineering Toolkit
 - URL: https://tokalator.wiki
 - GitHub: github.com/vfaraji89/tokalator
 - Type: Open source (MIT)
@@ -67,12 +67,12 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Metrics: 95% accuracy, 14K+ positions, 72.5% faster, 41.8% fewer API calls
 - Published: ACM CAIS '26
 
-### ProjectLens — Pricing Internal Tool (Kariyer.net)
+### ProjectLens: Pricing Internal Tool (Kariyer.net)
 - Type: Enterprise, internal
 - Shipped: August 2026
 - Team: Applied AI x Pricing & Revenue
 - Stack: Applied AI, Microsoft Teams integration, Azure DevOps integration, SQL, workflow automation
-- What it does: Takes a project request and manages the whole process end to end — effort calculation, pricing, proposal preparation, approval stage and follow-ups. Replaces a workflow where every pricing run meant a new Excel file.
+- What it does: Takes a project request and manages the whole process end to end: effort calculation, pricing, proposal preparation, approval stage and follow-ups. Replaces a workflow where every pricing run meant a new Excel file.
 - Notable: Read-only SQL console (only SELECT and WITH execute, each query runs in a rolled-back transaction on its own connection, nothing is writable) and a presentation mode that masks figures during screen shares.
 - Metrics: 91% of manual effort eliminated; 64h manual baseline reduced to 5.5h; 59 hours freed (7.3 working days); 57h saved on pricing across 31 runs; 1.7h saved on request intake across 4 requests; 31 Excel files avoided.
 - Measurement caveat: savings are modelled as 31 pricing runs x (2h - 10min) + 4 intake requests x (30min - 5min). The 2h manual baseline is a team estimate dated 2026-07-30, not an instrumented measurement.
@@ -89,7 +89,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Metrics: 300M+ datapoints unified
 - What it does: Metadata architecture, data governance, foundation for all AI/LLM deployments
 
-### Baachee.ai — Data Agent Platform
+### Baachee.ai: Data Agent Platform
 - URL: https://baachee.ai
 - Role: Technical Advisor (2026 - now), concurrent with the Kariyer.net role
 - Stack: Agno (Self-Learning), Text-2-SQL, Metadata, Memory, Orchestrator
@@ -97,11 +97,15 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 
 ## Experience
 
-- 2025–now: Senior Applied AI Specialist — Kariyer.net (ilab group)
-- 2026–now: Technical Advisor — Baachee.ai (advisory, concurrent)
-- 2022–2025: Product Manager, Data — Kariyer.net
-- 2021–2022: Business Analyst — WorqCompany
-- 2019–2021: Co-Founder — Defaro.io (labor-market analytics startup)
+- 2025–now: Senior Applied AI Specialist, Kariyer.net (ilab group)
+- 2026–now: Technical Advisor, Baachee.ai (advisory, concurrent)
+- 2022–2025: Product Manager, Data, Kariyer.net
+- 2021–2022: Business Analyst, WorqCompany
+- 2019–2021: Co-Founder, Defaro.io (labor-market analytics startup)
+
+## Memberships
+
+- ACM Professional Member (Association for Computing Machinery)
 
 ## Certifications
 
@@ -115,17 +119,17 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 
 ## Teaching & Talks
 
-- 18h Applied AI Course — Techcareer (2026): Custom tool design, contextual system architecture, multi-agent coordination
-- AI Career Mentor — TEV Foundation (2026)
-- Context Engineering for AI-Native Dev — Only Builders Club, Istanbul (2026)
-- Deep Agent Frameworks for SaaS — Bridge Summit '25
-- Enterprise Prompt Engineering — Kayseri University & Van University (2025)
+- 18h Applied AI Course, Techcareer (2026): Custom tool design, contextual system architecture, multi-agent coordination
+- AI Career Mentor, TEV Foundation (2026)
+- Context Engineering for AI-Native Dev, Only Builders Club, Istanbul (2026)
+- Deep Agent Frameworks for SaaS, Bridge Summit '25
+- Enterprise Prompt Engineering, Kayseri University & Van University (2025)
 - 91% manual effort removed and 59 hours freed (ProjectLens pricing tool)
 - 400+ people trained, 50+ courses delivered
 
 ## Education
 
-- M.A. Economics — Ibn Haldun University
+- M.A. Economics, Ibn Haldun University
 - Thesis: Real-Time Labor Market Analysis
 - Teaching Assistant: Econometrics I
 
@@ -157,7 +161,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Seniority: Senior / Principal, 9+ years across data products, solution design and applied AI
 - Location: Istanbul, Turkey (GMT+3), remote-friendly with distributed teams
 - Core stack: MCP, LangGraph, Agno, Vercel AI SDK, Next.js, TypeScript, Python/FastAPI, Anthropic SDK, Arize, BigQuery, Azure, DataHub
-- Proof: peer-reviewed at ACM CAIS '26, 2 arXiv papers, 1 patent pending, Perplexity AI Business Fellowship programme lead, Tokalator with 500+ installs
+- Proof: ACM Professional Member, peer-reviewed at ACM CAIS '26, 2 arXiv papers, 1 patent pending, Perplexity AI Business Fellowship programme lead, Tokalator with 500+ installs
 - Condensed hiring view: https://vfaraji89.github.io/?hire
 - Contact: vfaraji89@gmail.com
 
