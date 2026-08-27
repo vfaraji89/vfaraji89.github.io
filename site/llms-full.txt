@@ -150,7 +150,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 ## Hiring Summary
 
 - Open to: senior applied AI roles (full-time), advisory engagements, enterprise AI training
-- Role fit: Applied AI Engineer, AI Solutions Architect, AI Platform Lead, Applied Research Engineer, Senior Machine Learning Engineer
+- Role fit: AI Engineer, Agentic AI Engineer, Applied AI Engineer, AI Solutions Architect, AI Platform Architect
 - Seniority: Senior / Staff, 9+ years shipping production systems
 - Location: Istanbul, Turkey (GMT+3), remote-friendly with distributed teams
 - Core stack: MCP, LangGraph, Agno, Python/FastAPI, Anthropic SDK, Arize, BigQuery, Azure
