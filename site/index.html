@@ -155,7 +155,9 @@
                     "Agentic AI Architect",
                     "Senior Applied AI Specialist",
                     "AI Product Manager",
-                    "AI Platform Architect"
+                    "AI Platform Architect",
+                    "AI Researcher",
+                    "R&D Researcher"
                 ]
             },
             "knowsAbout": [
@@ -268,10 +270,10 @@
             },
             "seeks": {
                 "@type": "Demand",
-                "name": "AI solutions architecture, agent-system design, applied AI product roles, advisory and enterprise training",
+                "name": "AI solutions architecture, agent-system design, applied AI product roles, AI and R&D research posts, advisory and enterprise training",
                 "itemOffered": {
                     "@type": "JobPosting",
-                    "title": "AI Solutions Architect / Agentic AI Architect / Senior Applied AI Specialist",
+                    "title": "AI Solutions Architect / Agentic AI Architect / AI Researcher",
                     "employmentType": [
                         "FULL_TIME",
                         "CONTRACTOR"
@@ -594,7 +596,7 @@
                     "name": "Is Vahid Faraji available to hire or consult?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Yes — open to AI Solutions Architect, Agentic AI Architect, Senior Applied AI Specialist, AI Product Manager and AI Platform Architect roles, plus advisory engagements and enterprise AI training. His centre of gravity is solution and spec design for agent systems: framing the problem, architecting the orchestration, and owning the data and context layer underneath. Based in Istanbul (GMT+3) and remote-friendly with distributed teams. Email vfaraji89@gmail.com or book a call; a condensed hiring summary is at https://vfaraji89.github.io/?hire"
+                        "text": "Yes — open to AI Solutions Architect, Agentic AI Architect, Senior Applied AI Specialist, AI Product Manager, AI Platform Architect, AI Researcher and R&D Researcher roles, plus advisory engagements and enterprise AI training. His centre of gravity is solution and spec design for agent systems, backed by a peer-reviewed ACM publication and two arXiv papers. Based in Istanbul (GMT+3) and remote-friendly with distributed teams. Email vfaraji89@gmail.com or book a call; a condensed hiring summary is at https://vfaraji89.github.io/?hire"
                     }
                 },
                 {
@@ -901,16 +903,85 @@
         .hero-links a:hover { opacity: 0.75; transform: scale(1.12); text-decoration: none; }
         .hero-links svg { width: 18px; height: 18px; }
 
-        /* Abacus → Calculator → Code → Paper */
+        /* Abacus → Calculator → Code → Paper.
+           One 24s loop: each phase holds ~5s, and the motion inside a phase is
+           timed to its own window so the idea plays out while it is visible. */
         .hero-icon { flex-shrink: 0; margin-top: 0.125rem; }
-        .icon-abacus { animation: phase-1of4 12s ease-in-out infinite; }
-        .icon-calc   { animation: phase-2of4 12s ease-in-out infinite; }
-        .icon-code   { animation: phase-3of4 12s ease-in-out infinite; }
-        .icon-paper  { animation: phase-4of4 12s ease-in-out infinite; }
-        @keyframes phase-1of4 { 0%,20%{opacity:1} 25%,95%{opacity:0} 100%{opacity:1} }
-        @keyframes phase-2of4 { 0%,20%{opacity:0} 25%,45%{opacity:1} 50%,100%{opacity:0} }
-        @keyframes phase-3of4 { 0%,45%{opacity:0} 50%,70%{opacity:1} 75%,100%{opacity:0} }
-        @keyframes phase-4of4 { 0%,70%{opacity:0} 75%,95%{opacity:1} 100%{opacity:0} }
+        .hero-icon g { transform-box: view-box; transform-origin: 24px 24px; }
+
+        .icon-abacus { animation: ic-1 24s ease-in-out infinite; }
+        .icon-calc   { animation: ic-2 24s ease-in-out infinite; }
+        .icon-code   { animation: ic-3 24s ease-in-out infinite; }
+        .icon-paper  { animation: ic-4 24s ease-in-out infinite; }
+
+        /* phase visibility: settle in, hold, lift out */
+        @keyframes ic-1 { 0%,21%{opacity:1;transform:scale(1)}   24%,96%{opacity:0;transform:scale(0.9)}  100%{opacity:1;transform:scale(1)} }
+        @keyframes ic-2 { 0%,22%{opacity:0;transform:scale(0.9)} 26%,46%{opacity:1;transform:scale(1)}    49%,100%{opacity:0;transform:scale(0.9)} }
+        @keyframes ic-3 { 0%,47%{opacity:0;transform:scale(0.9)} 51%,71%{opacity:1;transform:scale(1)}    74%,100%{opacity:0;transform:scale(0.9)} }
+        @keyframes ic-4 { 0%,72%{opacity:0;transform:scale(0.9)} 76%,96%{opacity:1;transform:scale(1)}    100%{opacity:0;transform:scale(0.9)} }
+
+        /* 1 — beads slide along their rails, settling one after another */
+        .bead { transform-box: view-box; transform-origin: 24px 24px; }
+        .b1 { animation: bead-1 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
+        .b2 { animation: bead-2 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
+        .b3 { animation: bead-3 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
+        .b4 { animation: bead-4 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
+        .b5 { animation: bead-5 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
+        .b6 { animation: bead-6 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
+        @keyframes bead-1 { 0%,2%{transform:translateX(0)}    9%,22%{transform:translateX(9px)}  24%,100%{transform:translateX(0)} }
+        @keyframes bead-2 { 0%,4%{transform:translateX(0)}    11%,22%{transform:translateX(9px)} 24%,100%{transform:translateX(0)} }
+        @keyframes bead-3 { 0%,6%{transform:translateX(0)}    13%,22%{transform:translateX(6px)} 24%,100%{transform:translateX(0)} }
+        @keyframes bead-4 { 0%,8%{transform:translateX(0)}    15%,22%{transform:translateX(6px)} 24%,100%{transform:translateX(0)} }
+        @keyframes bead-5 { 0%,10%{transform:translateX(0)}   17%,22%{transform:translateX(-9px)} 24%,100%{transform:translateX(0)} }
+        @keyframes bead-6 { 0%,12%{transform:translateX(0)}   19%,22%{transform:translateX(-12px)} 24%,100%{transform:translateX(0)} }
+
+        /* 2 — the display resolves through three values as keys register */
+        .n1 { animation: calc-n1 24s steps(1,end) infinite; }
+        .n2 { animation: calc-n2 24s steps(1,end) infinite; }
+        .n3 { animation: calc-n3 24s steps(1,end) infinite; }
+        @keyframes calc-n1 { 0%,25%{opacity:1} 31%,100%{opacity:0} }
+        @keyframes calc-n2 { 0%,30%{opacity:0} 31%,36%{opacity:1} 37%,100%{opacity:0} }
+        @keyframes calc-n3 { 0%,36%{opacity:0} 37%,48%{opacity:1} 49%,100%{opacity:0} }
+        .key { opacity: 0.28; }
+        .k1 { animation: key-1 24s ease-out infinite; }
+        .k2 { animation: key-2 24s ease-out infinite; }
+        .k3 { animation: key-3 24s ease-out infinite; }
+        .k4 { animation: key-4 24s ease-out infinite; }
+        .k5 { animation: key-5 24s ease-out infinite; }
+        .k6 { animation: key-6 24s ease-out infinite; }
+        @keyframes key-1 { 0%,27%{opacity:0.28} 28.5%{opacity:1} 30%,100%{opacity:0.28} }
+        @keyframes key-2 { 0%,30%{opacity:0.28} 31.5%{opacity:1} 33%,100%{opacity:0.28} }
+        @keyframes key-3 { 0%,33%{opacity:0.28} 34.5%{opacity:1} 36%,100%{opacity:0.28} }
+        @keyframes key-4 { 0%,36%{opacity:0.28} 37.5%{opacity:1} 39%,100%{opacity:0.28} }
+        @keyframes key-5 { 0%,39%{opacity:0.28} 40.5%{opacity:1} 42%,100%{opacity:0.28} }
+        @keyframes key-6 { 0%,42%{opacity:0.28} 43.5%{opacity:1} 45%,100%{opacity:0.28} }
+
+        /* 3 — code types itself in; the caret blinks on its own beat */
+        .cline { stroke-dasharray: 20; }
+        .c1 { animation: type-1 24s steps(14,end) infinite; }
+        .c2 { animation: type-2 24s steps(10,end) infinite; }
+        @keyframes type-1 { 0%,52%{stroke-dashoffset:20} 60%,71%{stroke-dashoffset:0} 74%,100%{stroke-dashoffset:20} }
+        @keyframes type-2 { 0%,60%{stroke-dashoffset:20} 67%,71%{stroke-dashoffset:0} 74%,100%{stroke-dashoffset:20} }
+        .caret { animation: caret-blink 1.05s steps(1,end) infinite; }
+        @keyframes caret-blink { 0%,49%{opacity:0.9} 50%,100%{opacity:0.1} }
+
+        /* 4 — lines are written left to right, then the stamp lands */
+        .pline { stroke-dasharray: 14; }
+        .p1 { animation: write-1 24s ease-out infinite; }
+        .p2 { animation: write-2 24s ease-out infinite; }
+        .p3 { animation: write-3 24s ease-out infinite; }
+        .p4 { animation: write-4 24s ease-out infinite; }
+        @keyframes write-1 { 0%,77%{stroke-dashoffset:14} 81%,96%{stroke-dashoffset:0} 100%{stroke-dashoffset:14} }
+        @keyframes write-2 { 0%,79%{stroke-dashoffset:14} 83%,96%{stroke-dashoffset:0} 100%{stroke-dashoffset:14} }
+        @keyframes write-3 { 0%,81%{stroke-dashoffset:14} 85%,96%{stroke-dashoffset:0} 100%{stroke-dashoffset:14} }
+        @keyframes write-4 { 0%,83%{stroke-dashoffset:14} 87%,96%{stroke-dashoffset:0} 100%{stroke-dashoffset:14} }
+        .acm-stamp { transform-box: view-box; transform-origin: 22px 12px; }
+        .acm-stamp { animation: stamp 24s cubic-bezier(0.34,1.56,0.64,1) infinite; }
+        @keyframes stamp {
+            0%,88%   { opacity: 0; transform: scale(0.5) rotate(-12deg); }
+            91%,96%  { opacity: 1; transform: scale(1) rotate(0deg); }
+            100%     { opacity: 0; transform: scale(0.5) rotate(-12deg); }
+        }
 
         /* Hover: Edge Glow */
         .hover-card {
@@ -1501,6 +1572,12 @@
             .reveal, .case-card, .pub-card, .timeline-item, .gallery-card, .case-row {
                 opacity: 1 !important; transform: none !important;
             }
+            .hero-icon g { opacity: 0 !important; transform: none !important; }
+            .hero-icon .icon-abacus { opacity: 1 !important; }
+            .hero-icon .bead { transform: none !important; }
+            .hero-icon .cline, .hero-icon .pline { stroke-dashoffset: 0 !important; }
+            .hero-icon .key { opacity: 0.28 !important; }
+            .hero-icon .caret, .hero-icon .acm-stamp { opacity: 1 !important; }
         }
 
         /* Tablet: 641px – 1024px */
@@ -1616,46 +1693,54 @@
             <div class="hero-icon-row">
                 <svg class="hero-icon" viewBox="0 0 48 48" aria-hidden="true">
                     <rect x="4" y="4" width="40" height="40" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1.5"/>
+
+                    <!-- 1. Counting: beads slide along the rails -->
                     <g class="icon-abacus">
                         <line x1="10" y1="16" x2="38" y2="16" stroke="var(--border)" stroke-width="1.5"/>
                         <line x1="10" y1="26" x2="38" y2="26" stroke="var(--border)" stroke-width="1.5"/>
                         <line x1="10" y1="36" x2="38" y2="36" stroke="var(--border)" stroke-width="1.5"/>
-                        <circle cx="14" cy="16" r="3.5" fill="var(--accent)"/>
-                        <circle cx="23" cy="16" r="3.5" fill="var(--accent)" opacity="0.7"/>
-                        <circle cx="16" cy="26" r="3.5" fill="var(--accent)" opacity="0.8"/>
-                        <circle cx="26" cy="26" r="3.5" fill="var(--accent)"/>
-                        <circle cx="34" cy="26" r="3.5" fill="var(--accent)" opacity="0.5"/>
-                        <circle cx="30" cy="36" r="3.5" fill="var(--accent)" opacity="0.6"/>
+                        <circle class="bead b1" cx="14" cy="16" r="3.5" fill="var(--accent)"/>
+                        <circle class="bead b2" cx="23" cy="16" r="3.5" fill="var(--accent)" opacity="0.7"/>
+                        <circle class="bead b3" cx="16" cy="26" r="3.5" fill="var(--accent)" opacity="0.8"/>
+                        <circle class="bead b4" cx="26" cy="26" r="3.5" fill="var(--accent)"/>
+                        <circle class="bead b5" cx="34" cy="26" r="3.5" fill="var(--accent)" opacity="0.5"/>
+                        <circle class="bead b6" cx="30" cy="36" r="3.5" fill="var(--accent)" opacity="0.6"/>
                     </g>
+
+                    <!-- 2. Computing: the display resolves, keys register -->
                     <g class="icon-calc">
                         <rect x="10" y="10" width="28" height="10" rx="3" fill="var(--bg-muted)" stroke="var(--border)" stroke-width="1"/>
-                        <text x="35" y="18" font-size="7" fill="var(--accent)" text-anchor="end" font-family="monospace" font-weight="700">47,328</text>
-                        <rect x="10" y="24" width="7.5" height="6" rx="2" fill="var(--accent)"/>
-                        <rect x="20.25" y="24" width="7.5" height="6" rx="2" fill="var(--accent)" opacity="0.7"/>
-                        <rect x="30.5" y="24" width="7.5" height="6" rx="2" fill="var(--accent)" opacity="0.5"/>
-                        <rect x="10" y="34" width="7.5" height="6" rx="2" fill="var(--accent)" opacity="0.5"/>
-                        <rect x="20.25" y="34" width="7.5" height="6" rx="2" fill="var(--accent)" opacity="0.3"/>
-                        <rect x="30.5" y="34" width="7.5" height="6" rx="2" fill="var(--accent)" opacity="0.8"/>
+                        <text class="calc-n n1" x="35" y="18" font-size="7" fill="var(--accent)" text-anchor="end" font-family="monospace" font-weight="700">1,204</text>
+                        <text class="calc-n n2" x="35" y="18" font-size="7" fill="var(--accent)" text-anchor="end" font-family="monospace" font-weight="700">9,867</text>
+                        <text class="calc-n n3" x="35" y="18" font-size="7" fill="var(--accent)" text-anchor="end" font-family="monospace" font-weight="700">47,328</text>
+                        <rect class="key k1" x="10" y="24" width="7.5" height="6" rx="2" fill="var(--accent)"/>
+                        <rect class="key k2" x="20.25" y="24" width="7.5" height="6" rx="2" fill="var(--accent)"/>
+                        <rect class="key k3" x="30.5" y="24" width="7.5" height="6" rx="2" fill="var(--accent)"/>
+                        <rect class="key k4" x="10" y="34" width="7.5" height="6" rx="2" fill="var(--accent)"/>
+                        <rect class="key k5" x="20.25" y="34" width="7.5" height="6" rx="2" fill="var(--accent)"/>
+                        <rect class="key k6" x="30.5" y="34" width="7.5" height="6" rx="2" fill="var(--accent)"/>
                     </g>
+
+                    <!-- 3. Building: code types itself in, cursor blinks -->
                     <g class="icon-code">
                         <rect x="10" y="10" width="28" height="28" rx="4" fill="var(--bg-muted)" stroke="var(--border)" stroke-width="1"/>
                         <circle cx="15" cy="15" r="1.3" fill="var(--accent)" opacity="0.6"/>
                         <circle cx="19" cy="15" r="1.3" fill="var(--accent)" opacity="0.4"/>
                         <circle cx="23" cy="15" r="1.3" fill="var(--accent)" opacity="0.3"/>
                         <text x="14" y="27" font-size="9" fill="var(--accent)" font-family="monospace" font-weight="700">&gt;_</text>
-                        <line x1="14" y1="31" x2="32" y2="31" stroke="var(--accent)" stroke-width="0.8" opacity="0.3"/>
-                        <line x1="14" y1="35" x2="25" y2="35" stroke="var(--accent)" stroke-width="0.8" opacity="0.2"/>
-                        <rect x="26" y="23" width="1.5" height="7" rx="0.5" fill="var(--accent)" opacity="0.7"/>
+                        <line class="cline c1" x1="14" y1="31" x2="32" y2="31" stroke="var(--accent)" stroke-width="0.9" opacity="0.45"/>
+                        <line class="cline c2" x1="14" y1="35" x2="25" y2="35" stroke="var(--accent)" stroke-width="0.9" opacity="0.3"/>
+                        <rect class="caret" x="26" y="23" width="1.5" height="7" rx="0.5" fill="var(--accent)"/>
                     </g>
+
+                    <!-- 4. Publishing: lines are written, then the stamp lands -->
                     <g class="icon-paper">
-                        <rect x="12" y="8" width="20" height="28" rx="2" fill="var(--bg-muted)" stroke="var(--border)" stroke-width="1"/>
-                        <path d="M26 8L32 14V36a2 2 0 01-2 2H14" fill="none" stroke="var(--border)" stroke-width="1"/>
                         <rect x="12" y="8" width="20" height="28" rx="2" fill="var(--bg-muted)" stroke="var(--accent)" stroke-width="1" opacity="0.6"/>
-                        <line x1="16" y1="16" x2="28" y2="16" stroke="var(--accent)" stroke-width="0.8" opacity="0.5"/>
-                        <line x1="16" y1="20" x2="26" y2="20" stroke="var(--accent)" stroke-width="0.8" opacity="0.4"/>
-                        <line x1="16" y1="24" x2="27" y2="24" stroke="var(--accent)" stroke-width="0.8" opacity="0.3"/>
-                        <line x1="16" y1="28" x2="23" y2="28" stroke="var(--accent)" stroke-width="0.8" opacity="0.3"/>
-                        <text x="22" y="14" text-anchor="middle" font-size="5" font-weight="700" fill="var(--accent)" font-family="monospace">ACM</text>
+                        <line class="pline p1" x1="16" y1="18" x2="28" y2="18" stroke="var(--accent)" stroke-width="0.9" opacity="0.55"/>
+                        <line class="pline p2" x1="16" y1="22" x2="26" y2="22" stroke="var(--accent)" stroke-width="0.9" opacity="0.45"/>
+                        <line class="pline p3" x1="16" y1="26" x2="27" y2="26" stroke="var(--accent)" stroke-width="0.9" opacity="0.35"/>
+                        <line class="pline p4" x1="16" y1="30" x2="23" y2="30" stroke="var(--accent)" stroke-width="0.9" opacity="0.35"/>
+                        <text class="acm-stamp" x="22" y="14" text-anchor="middle" font-size="5" font-weight="700" fill="var(--accent)" font-family="monospace">ACM</text>
                     </g>
                 </svg>
                 <div>
@@ -1677,7 +1762,7 @@
                 <span class="hire-lead">Hiring for</span>
                 <span class="hire-role" id="hire-role" aria-hidden="true">AI Solutions Architect</span>
                 <span class="hire-q">?</span>
-                <span class="sr-only">Open to AI Solutions Architect, Agentic AI Architect, Senior Applied AI Specialist, AI Product Manager and AI Platform Architect roles.</span>
+                <span class="sr-only">Open to AI Solutions Architect, Agentic AI Architect, Senior Applied AI Specialist, AI Product Manager, AI Platform Architect, AI Researcher and R&amp;D Researcher roles.</span>
                 <a href="#" class="hire-btn" onclick="openBooking();return false;">Let&rsquo;s talk <span aria-hidden="true">&rarr;</span></a>
             </div>
 
@@ -1694,7 +1779,7 @@
                 <div class="rec-grid">
                     <div class="rec-field">
                         <span class="rec-key">Role fit</span>
-                        <span class="rec-val">AI Solutions Architect &middot; Agentic AI Architect &middot; Senior Applied AI Specialist &middot; AI Product Manager &middot; AI Platform Architect</span>
+                        <span class="rec-val">AI Solutions Architect &middot; Agentic AI Architect &middot; Senior Applied AI Specialist &middot; AI Product Manager &middot; AI Platform Architect &middot; AI Researcher &middot; R&amp;D Researcher</span>
                     </div>
                     <div class="rec-field">
                         <span class="rec-key">Delivered</span>
@@ -2632,7 +2717,9 @@
             'Agentic AI Architect',
             'Senior Applied AI Specialist',
             'AI Product Manager',
-            'AI Platform Architect'
+            'AI Platform Architect',
+            'AI Researcher',
+            'R&D Researcher'
         ];
         var GLYPHS = '/@#$%&*=+<>_~^|:.\u2500\u2502\u253c';
 

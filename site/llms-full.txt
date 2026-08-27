@@ -151,7 +151,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 ## Hiring Summary
 
 - Open to: senior applied AI roles (full-time), advisory engagements, enterprise AI training
-- Role fit: AI Solutions Architect, Agentic AI Architect, Senior Applied AI Specialist, AI Product Manager, AI Platform Architect
+- Role fit: AI Solutions Architect, Agentic AI Architect, Senior Applied AI Specialist, AI Product Manager, AI Platform Architect, AI Researcher, R&D Researcher
 - Centre of gravity: solution and spec design for agent systems - framing the problem, architecting orchestration, owning the data and context layer
 - Strengths: spec and solution design, agent architecture, context and token strategy, metadata and RAG readiness, ROI framing for business stakeholders
 - Seniority: Senior / Principal, 9+ years across data products, solution design and applied AI
