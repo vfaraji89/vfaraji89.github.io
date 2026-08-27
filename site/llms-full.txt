@@ -150,10 +150,12 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 ## Hiring Summary
 
 - Open to: senior applied AI roles (full-time), advisory engagements, enterprise AI training
-- Role fit: AI Engineer, Agentic AI Engineer, Applied AI Engineer, AI Solutions Architect, AI Platform Architect
-- Seniority: Senior / Staff, 9+ years shipping production systems
+- Role fit: AI Solutions Architect, Agentic AI Architect, Applied AI Engineer, AI Product Manager, AI Platform Architect
+- Centre of gravity: solution and spec design for agent systems - framing the problem, architecting orchestration, owning the data and context layer
+- Strengths: spec and solution design, agent architecture, context and token strategy, metadata and RAG readiness, ROI framing for business stakeholders
+- Seniority: Senior / Principal, 9+ years across data products, solution design and applied AI
 - Location: Istanbul, Turkey (GMT+3), remote-friendly with distributed teams
-- Core stack: MCP, LangGraph, Agno, Python/FastAPI, Anthropic SDK, Arize, BigQuery, Azure
+- Core stack: MCP, LangGraph, Agno, Vercel AI SDK, Next.js, TypeScript, Python/FastAPI, Anthropic SDK, Arize, BigQuery, Azure, DataHub
 - Proof: peer-reviewed at ACM CAIS '26, 2 arXiv papers, 1 patent pending, $40K Perplexity AI grant, Tokalator with 500+ installs
 - Condensed hiring view: https://vfaraji89.github.io/?hire
 - Contact: vfaraji89@gmail.com
