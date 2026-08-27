@@ -2,6 +2,9 @@
 
 > Applied AI Specialist shipping production agent systems and publishing at ACM. Multi-agent systems, context engineering, open source.
 
+Last updated: 2026-08
+Canonical: https://vfaraji89.github.io/
+
 ## Identity
 
 - Name: Vahid Faraji
