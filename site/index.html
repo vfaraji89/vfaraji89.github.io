@@ -1605,6 +1605,26 @@
             font-variation-settings: "MONO" 0.2, "CASL" 0.4; font-weight: 500;
         }
 
+
+        .story-domains {
+            display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+            margin-bottom: 2rem; padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .domains-label {
+            font-size: 0.5625rem; text-transform: uppercase; letter-spacing: 0.08em;
+            color: var(--text-muted); font-weight: 700; margin-right: 0.25rem;
+            font-variation-settings: "MONO" 1, "CASL" 0;
+        }
+        .domain {
+            font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.02em;
+            font-variation-settings: "MONO" 0.8, "CASL" 0;
+            padding: 0.25rem 0.625rem; border-radius: 999px;
+            border: 1px solid var(--border); background: var(--bg-subtle);
+            color: var(--text-secondary);
+            transition: border-color var(--transition), color var(--transition);
+        }
+        .domain:hover { border-color: var(--accent); color: var(--accent); }
         .story-facets { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
         .facet {
             display: flex; flex-direction: column; gap: 0.25rem;
@@ -2260,7 +2280,7 @@
 
         <section id="story" class="reveal">
             <div class="section-label">Through-line</div>
-            <p class="section-tagline">Twelve years, one question, four different tools.</p>
+            <p class="section-tagline">Twelve years turning messy data into decisions people act on.</p>
 
             <div class="story-span" aria-hidden="true">
                 <span>2013</span><span class="story-rule"></span><span>2026</span>
@@ -2271,49 +2291,60 @@
                     <span class="story-year">2013&ndash;15</span>
                     <div class="story-body">
                         <h3>Master&rsquo;s, Business Administration</h3>
-                        <p>First graduate degree. Organisations from the inside: how they are run, and how they staff themselves.</p>
+                        <p>How organisations actually run, and where their decisions get stuck.</p>
                     </div>
                 </div>
                 <div class="story-step">
                     <span class="story-year">2015&ndash;18</span>
                     <div class="story-body">
                         <h3>Research</h3>
-                        <p>Labour markets from the evidence side, before the tooling existed to work at scale.</p>
+                        <p>Measurement and evidence. What separates a defensible number from a convenient one.</p>
                     </div>
                 </div>
                 <div class="story-step">
                     <span class="story-year">2019&ndash;21</span>
                     <div class="story-body">
                         <h3>Defaro.io, co-founder</h3>
-                        <p>Took it commercial. Compensation and talent-supply analytics, incubated at &Ouml;zye&#287;in University.</p>
+                        <p>Built a data product end to end, from raw signal to something customers paid for. Incubated at &Ouml;zye&#287;in University.</p>
                     </div>
                 </div>
                 <div class="story-step">
                     <span class="story-year">2019&ndash;23</span>
                     <div class="story-body">
                         <h3>M.A. Economics, Ibn Haldun</h3>
-                        <p>Thesis on real-time labour market analysis. Teaching assistant in econometrics.</p>
+                        <p>Thesis on real-time market analysis. Teaching assistant in econometrics.</p>
                     </div>
                 </div>
                 <div class="story-step">
                     <span class="story-year">2022&ndash;25</span>
                     <div class="story-body">
                         <h3>Kariyer.net, data products</h3>
-                        <p>The answer needed infrastructure. Metadata architecture across 300M+ assets.</p>
+                        <p>300M+ assets under one metadata architecture. Governance, lineage, real-time pipelines.</p>
                     </div>
                 </div>
                 <div class="story-step">
                     <span class="story-year">2025&ndash;</span>
                     <div class="story-body">
                         <h3>Applied AI</h3>
-                        <p>The tools caught up. Agents mapping free text onto O*NET and ESCO. Peer-reviewed at ACM CAIS&nbsp;'26.</p>
+                        <p>Multi-agent systems that turn free text into structured decisions. Peer-reviewed at ACM CAIS&nbsp;'26.</p>
                     </div>
                 </div>
             </div>
 
             <blockquote class="story-quote">
-                Twelve years on one question. The tools went from spreadsheets to regressions to agents. The question didn&rsquo;t move.
+                Twelve years on one problem shape: messy text in, decisions out. The domain keeps changing. The problem doesn&rsquo;t.
             </blockquote>
+
+            <div class="story-domains">
+                <span class="domains-label">Shipped in</span>
+                <span class="domain">Talent</span>
+                <span class="domain">Pricing</span>
+                <span class="domain">Finance</span>
+                <span class="domain">Sales</span>
+                <span class="domain">R&amp;D</span>
+                <span class="domain">Developer tools</span>
+                <span class="domain">Data infrastructure</span>
+            </div>
 
             <div class="story-facets">
                 <div class="facet">
