@@ -671,11 +671,8 @@
            browsers without support simply navigate as before. */
         @view-transition { navigation: auto; }
         ::view-transition-old(root), ::view-transition-new(root) {
-            animation-duration: 260ms;
-            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        @media (prefers-reduced-motion: reduce) {
-            ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+            animation-duration: var(--dur-base);
+            animation-timing-function: var(--ease-move);
         }
 
         @property --border-angle {
@@ -716,8 +713,22 @@
             --accent-bg:    var(--red-light);
 
             --radius: 12px;
-            --transition: 0.2s ease;
+
+            /* Motion scale. Four durations and three curves cover the whole
+               site; anything that does not fit one of them is a mistake.
+               fast  - colour and opacity on small controls
+               base  - the default state change
+               slow  - card hover, larger moves
+               enter - something arriving on screen */
+            --dur-fast: 140ms;
+            --dur-base: 220ms;
+            --dur-slow: 420ms;
+            --dur-enter: 560ms;
+            --stagger: 90ms;
             --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+            --ease-move: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-spring: cubic-bezier(0.34, 1.4, 0.5, 1);
+            --transition: var(--dur-base) var(--ease-move);
         }
 
         [data-theme="dark"] {
@@ -805,7 +816,7 @@
             font-size: 0.875rem; font-weight: 600; color: var(--text-primary);
             font-variation-settings: "MONO" 0.6, "CASL" 0; letter-spacing: -0.02em;
         }
-        .nav-name a { color: inherit; transition: opacity 0.2s ease; }
+        .nav-name a { color: inherit; transition: opacity var(--transition); }
         .nav-name a:hover { text-decoration: none; color: var(--accent); }
         .nav-right { display: flex; align-items: center; gap: 0.5rem; }
         .nav-icon {
@@ -861,11 +872,23 @@
         .is-typing::after {
             content: ""; display: inline-block;
             width: 0.5em; height: 1em; margin-left: 1px;
+            /* Negative margin cancels the caret's own width, so a line being
+               typed occupies exactly the space its text will occupy. Without
+               this the caret widens its container mid-type, which was enough to
+               wrap the hire CTA onto a second line on a phone. */
+            margin-right: calc(-0.5em - 1px);
             background: currentColor; vertical-align: -0.15em;
-            animation: caret-blink 0.9s steps(1) infinite;
+            animation: type-caret 1.05s steps(1, end) infinite;
         }
-        @keyframes caret-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-        @media (prefers-reduced-motion: reduce) { .is-typing::after { display: none; } }
+        @keyframes type-caret { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.1; } }
+        /* The global reduced-motion rule below zeroes every duration, so
+           components do not repeat it. These two are outside its reach: a
+           pseudo-element that should not exist at all, and a view transition,
+           which is neither a transition nor an animation on an element. */
+        @media (prefers-reduced-motion: reduce) {
+            .is-typing::after { display: none; }
+            ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+        }
 
         .bio-tag.active { background: var(--accent); border-color: var(--accent); color: #fff; }
         .bio-tags.has-focus .bio-tag { border-color: var(--border); color: var(--text-muted); opacity: 0.5; background: var(--bg-subtle); }
@@ -888,16 +911,13 @@
         .hero-photo-pixel { image-rendering: pixelated; }
         .hero-photo-real {
             opacity: 1;
-            transition: opacity 0.36s steps(6), border-color var(--transition);
+            transition: opacity var(--dur-slow) steps(6), border-color var(--transition);
         }
         .hero-photo-stack.is-pixel .hero-photo-real { opacity: 0; }
         .hero-photo-stack:hover .hero-photo { border-color: var(--accent); }
         /* If the photograph ever fails to load, fall back to the pixel avatar. */
         .hero-photo-stack.no-photo .hero-photo-real { display: none; }
         .hero-photo-stack.no-photo { cursor: default; }
-        @media (prefers-reduced-motion: reduce) {
-            .hero-photo-real { transition: border-color var(--transition); }
-        }
 
         .metrics-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 2rem;
@@ -905,7 +925,7 @@
         .metric-card {
             padding: 1rem; background: var(--bg-subtle); text-align: center; cursor: pointer;
             border: 1px solid var(--border); border-radius: var(--radius);
-            transition: border-color var(--transition), box-shadow 0.3s;
+            transition: border-color var(--transition), box-shadow var(--dur-slow) var(--ease-out);
         }
         .metric-card.flipped { border-color: var(--accent); }
         .metric-card.flipped .metric-label { color: var(--accent); font-weight: 500; }
@@ -915,14 +935,14 @@
             color: var(--accent);
             min-height: 2.75rem;
             display: flex; align-items: center; justify-content: center;
-            transition: font-size 0.3s ease;
+            
         }
         .metric-card.flipped .metric-num { font-size: 0.9375rem; }
         .metric-label {
             font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.06em;
             color: var(--text-muted); margin-top: 0.375rem;
             font-variation-settings: "MONO" 0.8, "CASL" 0; font-weight: 400;
-            transition: color 0.2s ease;
+            transition: color var(--transition);
             min-height: 1.75rem; display: flex; align-items: center; justify-content: center;
             line-height: 1.4;
         }
@@ -999,12 +1019,12 @@
 
         /* 1: beads slide along their rails, settling one after another */
         .bead { transform-box: view-box; transform-origin: 24px 24px; }
-        .b1 { animation: bead-1 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
-        .b2 { animation: bead-2 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
-        .b3 { animation: bead-3 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
-        .b4 { animation: bead-4 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
-        .b5 { animation: bead-5 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
-        .b6 { animation: bead-6 24s cubic-bezier(0.34,1.4,0.5,1) infinite; }
+        .b1 { animation: bead-1 24s var(--ease-spring) infinite; }
+        .b2 { animation: bead-2 24s var(--ease-spring) infinite; }
+        .b3 { animation: bead-3 24s var(--ease-spring) infinite; }
+        .b4 { animation: bead-4 24s var(--ease-spring) infinite; }
+        .b5 { animation: bead-5 24s var(--ease-spring) infinite; }
+        .b6 { animation: bead-6 24s var(--ease-spring) infinite; }
         @keyframes bead-1 { 0%,2%{transform:translateX(0)}    9%,22%{transform:translateX(9px)}  24%,100%{transform:translateX(0)} }
         @keyframes bead-2 { 0%,4%{transform:translateX(0)}    11%,22%{transform:translateX(9px)} 24%,100%{transform:translateX(0)} }
         @keyframes bead-3 { 0%,6%{transform:translateX(0)}    13%,22%{transform:translateX(6px)} 24%,100%{transform:translateX(0)} }
@@ -1053,7 +1073,7 @@
         @keyframes write-3 { 0%,81%{stroke-dashoffset:14} 85%,96%{stroke-dashoffset:0} 100%{stroke-dashoffset:14} }
         @keyframes write-4 { 0%,83%{stroke-dashoffset:14} 87%,96%{stroke-dashoffset:0} 100%{stroke-dashoffset:14} }
         .acm-stamp { transform-box: view-box; transform-origin: 22px 12px; }
-        .acm-stamp { animation: stamp 24s cubic-bezier(0.34,1.56,0.64,1) infinite; }
+        .acm-stamp { animation: stamp 24s var(--ease-spring) infinite; }
         @keyframes stamp {
             0%,88%   { opacity: 0; transform: scale(0.5) rotate(-12deg); }
             91%,96%  { opacity: 1; transform: scale(1) rotate(0deg); }
@@ -1064,12 +1084,12 @@
         .hover-card {
             position: relative; overflow: hidden;
             border: 1px solid var(--border); border-radius: var(--radius);
-            transition: border-color 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: border-color var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
         }
         .hover-card::after {
             content: ""; position: absolute; inset: 0; pointer-events: none;
             background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(227,18,11,0.06), transparent 40%);
-            opacity: 0; transition: opacity 0.45s ease;
+            opacity: 0; transition: opacity var(--dur-slow) var(--ease-out);
         }
         .hover-card:hover::after { opacity: 1; }
         .hover-card:hover { border-color: var(--grey-400); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
@@ -1104,11 +1124,11 @@
         .case-card.featured .case-title { color: var(--accent); }
 
         .case-body { display: grid; gap: 0.625rem; }
-        .case-row { display: grid; grid-template-columns: 80px 1fr; gap: 0.75rem; font-size: 0.8125rem; opacity: 0; transform: translateX(-10px); transition: opacity 0.4s ease, transform 0.4s ease; }
+        .case-row { display: grid; grid-template-columns: 80px 1fr; gap: 0.75rem; font-size: 0.8125rem; opacity: 0; transform: translateX(-10px); transition: opacity var(--dur-enter) var(--ease-out), transform var(--dur-enter) var(--ease-out); }
         .case-card.in-view .case-row { opacity: 1; transform: translateX(0); }
-        .case-card.in-view .case-row:nth-child(1) { transition-delay: 0.1s; }
-        .case-card.in-view .case-row:nth-child(2) { transition-delay: 0.25s; }
-        .case-card.in-view .case-row:nth-child(3) { transition-delay: 0.4s; }
+        .case-card.in-view .case-row:nth-child(1) { transition-delay: calc(var(--stagger) * 0); }
+        .case-card.in-view .case-row:nth-child(2) { transition-delay: calc(var(--stagger) * 1); }
+        .case-card.in-view .case-row:nth-child(3) { transition-delay: calc(var(--stagger) * 2); }
         .case-row-label {
             font-size: 0.6875rem; color: var(--text-muted); text-transform: uppercase;
             letter-spacing: 0.04em; padding-top: 0.15rem;
@@ -1142,12 +1162,12 @@
         .pub-card {
             padding: 1.5rem; position: relative;
             opacity: 0; transform: translateY(16px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity var(--dur-enter) var(--ease-out), transform var(--dur-enter) var(--ease-out);
         }
         .pub-card.in-view { opacity: 1; transform: translateY(0); }
-        .pub-card.in-view:nth-child(1) { transition-delay: 0.1s; }
-        .pub-card.in-view:nth-child(2) { transition-delay: 0.25s; }
-        .pub-card.in-view:nth-child(3) { transition-delay: 0.4s; }
+        .pub-card.in-view:nth-child(1) { transition-delay: calc(var(--stagger) * 0); }
+        .pub-card.in-view:nth-child(2) { transition-delay: calc(var(--stagger) * 1); }
+        .pub-card.in-view:nth-child(3) { transition-delay: calc(var(--stagger) * 2); }
         .pub-card > * { position: relative; z-index: 1; }
         .pub-card.acm { background: var(--accent-bg); border-color: transparent; }
         .pub-card.acm::before {
@@ -1180,14 +1200,14 @@
         .timeline-item {
             display: grid; grid-template-columns: 120px 1fr; gap: 1.5rem;
             opacity: 0; transform: translateY(16px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            transition: opacity var(--dur-enter) var(--ease-out), transform var(--dur-enter) var(--ease-out);
         }
         .timeline-item.in-view { opacity: 1; transform: translateY(0); }
-        .timeline-item.in-view:nth-child(1) { transition-delay: 0.1s; }
-        .timeline-item.in-view:nth-child(2) { transition-delay: 0.2s; }
-        .timeline-item.in-view:nth-child(3) { transition-delay: 0.3s; }
-        .timeline-item.in-view:nth-child(4) { transition-delay: 0.4s; }
-        .timeline-item.in-view:nth-child(5) { transition-delay: 0.5s; }
+        .timeline-item.in-view:nth-child(1) { transition-delay: calc(var(--stagger) * 0); }
+        .timeline-item.in-view:nth-child(2) { transition-delay: calc(var(--stagger) * 1); }
+        .timeline-item.in-view:nth-child(3) { transition-delay: calc(var(--stagger) * 2); }
+        .timeline-item.in-view:nth-child(4) { transition-delay: calc(var(--stagger) * 3); }
+        .timeline-item.in-view:nth-child(5) { transition-delay: calc(var(--stagger) * 4); }
         .timeline-period {
             font-size: 0.6875rem; color: var(--text-muted); padding-top: 0.25rem;
             font-variation-settings: "MONO" 0.8, "CASL" 0; font-weight: 400;
@@ -1273,7 +1293,7 @@
         .footer-left.is-counting .footer-abacus .frame { stroke: var(--accent); }
         .footer-abacus .bead {
             transform-box: view-box;
-            transition: transform 0.55s cubic-bezier(0.34, 1.4, 0.5, 1);
+            transition: transform var(--dur-enter) var(--ease-spring);
         }
         .footer-abacus .bead-1 { transition-delay: 0ms; }
         .footer-abacus .bead-2 { transition-delay: 60ms; }
@@ -1294,8 +1314,9 @@
                slides out from behind the name as the beads settle. */
             max-width: 0; overflow: hidden;
             opacity: 0; transform: translateX(-6px);
-            transition: max-width 0.45s ease, opacity 0.3s ease 0.15s,
-                        transform 0.3s ease 0.15s;
+            transition: max-width var(--dur-slow) var(--ease-out),
+                        opacity var(--dur-base) var(--ease-out) var(--dur-fast),
+                        transform var(--dur-base) var(--ease-out) var(--dur-fast);
         }
         .footer-left:hover .footer-tally,
         .footer-left.is-counting .footer-tally {
@@ -1324,23 +1345,19 @@
         }
         .footer-meta-sep { color: var(--border-strong); }
 
-        @media (prefers-reduced-motion: reduce) {
-            .footer-abacus .bead { transition: none; }
-            .footer-tally { transition: none; }
-        }
 
         /* Gallery: case-study format */
         .gallery-grid { display: grid; gap: 1.75rem; }
         .gallery-card {
             padding: 2rem; display: grid; grid-template-columns: 340px 1fr; gap: 2rem; align-items: start;
             opacity: 0; transform: translateY(16px);
-            transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s, box-shadow 0.3s;
+            transition: opacity var(--dur-enter) var(--ease-out), transform var(--dur-enter) var(--ease-out), border-color var(--dur-slow), box-shadow var(--dur-slow);
         }
         .gallery-card.in-view { opacity: 1; transform: translateY(0); }
-        .gallery-card.in-view:nth-child(1) { transition-delay: 0.1s; }
-        .gallery-card.in-view:nth-child(2) { transition-delay: 0.2s; }
-        .gallery-card.in-view:nth-child(3) { transition-delay: 0.3s; }
-        .gallery-card.in-view:nth-child(4) { transition-delay: 0.4s; }
+        .gallery-card.in-view:nth-child(1) { transition-delay: calc(var(--stagger) * 0); }
+        .gallery-card.in-view:nth-child(2) { transition-delay: calc(var(--stagger) * 1); }
+        .gallery-card.in-view:nth-child(3) { transition-delay: calc(var(--stagger) * 2); }
+        .gallery-card.in-view:nth-child(4) { transition-delay: calc(var(--stagger) * 3); }
         .gallery-card.no-screenshot { display: block; }
         .gallery-screenshot { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); transition: border-color var(--transition); cursor: pointer; position: relative; }
         .gallery-screenshot img { width: 100%; height: auto; display: block; }
@@ -1402,7 +1419,7 @@
         .lightbox-img { width: 100%; height: auto; border-radius: 8px; display: block; }
         .lightbox-close {
             position: absolute; top: -2rem; right: 0; background: none; border: none;
-            color: #fff; font-size: 1.5rem; cursor: pointer; opacity: 0.7; transition: opacity 0.2s;
+            color: #fff; font-size: 1.5rem; cursor: pointer; opacity: 0.7; transition: opacity var(--transition);
         }
         .lightbox-close:hover { opacity: 1; }
         .lightbox-nav {
@@ -1410,7 +1427,7 @@
             background: rgba(255,255,255,0.15); border: none; color: #fff;
             width: 2.5rem; height: 2.5rem; border-radius: 50%; cursor: pointer;
             font-size: 1.25rem; display: flex; align-items: center; justify-content: center;
-            transition: background 0.2s;
+            transition: background var(--transition);
         }
         .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
         .lightbox-prev { left: -3.5rem; }
@@ -1446,7 +1463,7 @@
 
         .reveal {
             opacity: 0; transform: translateY(18px);
-            transition: opacity 0.62s var(--ease-out), transform 0.62s var(--ease-out);
+            transition: opacity var(--dur-enter) var(--ease-out), transform var(--dur-enter) var(--ease-out);
         }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
@@ -1488,13 +1505,13 @@
             position: fixed; inset: 0; z-index: 1000;
             background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
             display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.2s ease;
+            opacity: 0; pointer-events: none; transition: opacity var(--transition);
         }
         .booking-overlay.open { opacity: 1; pointer-events: auto; }
         .booking-box {
             background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius);
             padding: 2rem; width: 90%; max-width: 420px; position: relative;
-            transform: translateY(12px); transition: transform 0.2s ease;
+            transform: translateY(12px); transition: transform var(--transition);
         }
         .booking-overlay.open .booking-box { transform: translateY(0); }
         .booking-close {
@@ -1599,11 +1616,11 @@
         .btn-sm { padding: 0.5rem 0.875rem; font-size: 0.75rem; }
         .nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
         /* The whole hover is a two-pixel nudge in the direction the link goes. */
-        .nav-btn svg { opacity: 0.5; transition: transform 0.2s ease, opacity 0.2s ease; }
+        .nav-btn svg { opacity: 0.5; transition: transform var(--transition), opacity var(--dur-base) var(--ease-move); }
         .nav-btn:hover svg { opacity: 1; transform: translateY(2px); }
         .nav-btn.is-go:hover svg { transform: translateX(2px); }
         @media (prefers-reduced-motion: reduce) {
-            .nav-btn svg { transition: opacity 0.2s ease; }
+            .nav-btn svg { transition: opacity var(--transition); }
             .nav-btn:hover svg, .nav-btn.is-go:hover svg { transform: none; }
         }
 
@@ -1692,7 +1709,7 @@
             content: ""; position: absolute; left: 0; top: 0.3rem;
             width: 11px; height: 11px; border-radius: 50%;
             background: var(--bg); border: 2px solid var(--border-strong);
-            transition: border-color 0.4s ease, background 0.4s ease;
+            transition: border-color var(--dur-slow) var(--ease-out), background var(--dur-slow) var(--ease-out);
         }
         .story-step:last-child::after { border-color: var(--accent); background: var(--accent); }
         .story-step:hover::after { border-color: var(--accent); }
@@ -3055,50 +3072,16 @@
             'AI Researcher',
             'R&D Researcher'
         ];
-        var GLYPHS = '/@#$%&*=+<>_~^|:.\u2500\u2502\u253c';
 
         // Reduced motion: show the first role, no cycling.
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
         if (reduce.matches) { el.textContent = ROLES[0]; return; }
 
-        // Smooth scramble: every character gets its own start and settle frame,
-        // so the string dissolves and re-forms as a wave instead of resolving
-        // strictly left to right.
+        // The rotating role retypes, exactly as the tags do. It used to dissolve
+        // through random glyphs, which is the one effect this site no longer
+        // has anywhere.
         function scramble(from, to, done) {
-            var len = Math.max(from.length, to.length);
-            var plan = [];
-            for (var i = 0; i < len; i++) {
-                plan.push({
-                    from: from[i] || '',
-                    to: to[i] || '',
-                    start: Math.floor(Math.random() * 18),
-                    end: 18 + Math.floor(Math.random() * 22),
-                    glyph: ''
-                });
-            }
-            var frame = 0;
-            function tick() {
-                var out = '';
-                var settled = 0;
-                for (var i = 0; i < plan.length; i++) {
-                    var c = plan[i];
-                    if (frame >= c.end) { out += c.to; settled++; }
-                    else if (frame >= c.start) {
-                        if (!c.glyph || Math.random() < 0.28) {
-                            c.glyph = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-                        }
-                        out += c.glyph;
-                    } else {
-                        out += c.from;
-                    }
-                }
-                el.textContent = out;
-                if (settled === plan.length) { el._raf = 0; if (done) done(); return; }
-                frame++;
-                el._raf = requestAnimationFrame(tick);
-            }
-            if (el._raf) cancelAnimationFrame(el._raf);
-            el._raf = requestAnimationFrame(tick);
+            typeTo(el, to, done);
         }
 
         var idx = 0;
@@ -3123,7 +3106,7 @@
         timer = setInterval(next, 3500);
         window.addEventListener('pagehide', function () {
             clearInterval(timer);
-            cancelAnimationFrame(el._raf);
+            cancelAnimationFrame(el._typing);
         });
     })();
 
@@ -3208,7 +3191,7 @@
             tag.textContent = tech || label;
             var w2 = tag.offsetWidth;
             tag.textContent = label;
-            tag.style.width = (Math.max(w1, w2) + 9) + 'px';   // room for the caret
+            tag.style.width = Math.max(w1, w2) + 'px';
             tag.addEventListener('mouseenter', function() {
                 container.classList.add('has-focus');
                 if (tech) {

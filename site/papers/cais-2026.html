@@ -118,8 +118,8 @@
            browsers without support simply navigate as before. */
         @view-transition { navigation: auto; }
         ::view-transition-old(root), ::view-transition-new(root) {
-            animation-duration: 260ms;
-            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            animation-duration: var(--dur-base);
+            animation-timing-function: var(--ease-move);
         }
         @media (prefers-reduced-motion: reduce) {
             ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
@@ -134,7 +134,15 @@
             --border:var(--grey-200); --border-strong:var(--grey-300);
             --text-primary:var(--black); --text-secondary:var(--grey-600); --text-muted:var(--grey-400);
             --accent:var(--red); --accent-bg:var(--red-light);
-            --radius:12px; --transition:0.2s ease;
+            --radius:12px;            --dur-fast: 140ms;
+            --dur-base: 220ms;
+            --dur-slow: 420ms;
+            --dur-enter: 560ms;
+            --stagger: 90ms;
+            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+            --ease-move: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-spring: var(--ease-spring);
+ --transition: var(--dur-base) var(--ease-move);
         }
         [data-theme="dark"] {
             --bg:#0d0d0d; --bg-subtle:#161616; --bg-muted:#1e1e1e;
@@ -271,7 +279,7 @@
         .footer-left.is-counting .footer-abacus .frame { stroke: var(--accent); }
         .footer-abacus .bead {
             transform-box: view-box;
-            transition: transform 0.55s cubic-bezier(0.34, 1.4, 0.5, 1);
+            transition: transform var(--dur-enter) var(--ease-spring);
         }
         .footer-abacus .bead-1 { transition-delay: 0ms; }
         .footer-abacus .bead-2 { transition-delay: 60ms; }
