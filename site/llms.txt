@@ -12,8 +12,9 @@ Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Ista
 ## Current Role
 
 - Senior Applied AI Specialist at Kariyer.net (ilab group), 2025–present
-- Lead AI/LLM initiatives across Sales, Finance, R&D
-- Multi-agent orchestration adopted as group-wide standard
+- Writes the specs and the context engineering, then delivers the backlog
+- Applied AI transformation and rapid deployment across Sales, Finance and R&D
+- Delivery stack: Azure DevOps, Claude Code, Vercel AI SDK, LangChain, Agno, Langfuse
 - Concurrent: Technical Advisor at Baachee.ai (2026-now), advising on data-agent architecture
 - Leads the Perplexity AI Business Fellowship programme
 

@@ -1791,14 +1791,44 @@
         }
         .faq-q::-webkit-details-marker { display: none; }
         .faq-q:hover { color: var(--accent); }
-        .faq-q::after {
-            content: ""; position: absolute; right: 1.25rem; top: 1.35rem;
-            width: 8px; height: 8px; border-right: 1.5px solid var(--text-muted);
-            border-bottom: 1.5px solid var(--text-muted);
-            transform: rotate(45deg); transition: transform var(--transition), border-color var(--transition);
+        /* One disclosure idiom across the page: a + that becomes a minus. The
+           horizontal stroke is always there; the vertical one rotates flat. */
+        .faq-q::before, .faq-q::after {
+            content: ""; position: absolute; right: 1.25rem; top: 50%;
+            width: 10px; height: 1.5px; background: var(--text-muted);
+            transition: transform var(--dur-base) var(--ease-out),
+                        background var(--transition);
         }
-        .faq-item[open] .faq-q { color: var(--accent); }
-        .faq-item[open] .faq-q::after { transform: rotate(-135deg); border-color: var(--accent); }
+        .faq-q::before { transform: translateY(-50%); }
+        .faq-q::after { transform: translateY(-50%) rotate(90deg); }
+        .faq-item[open] .faq-q::before,
+        .faq-item[open] .faq-q::after { background: var(--accent); }
+        .faq-item[open] .faq-q::after { transform: translateY(-50%) rotate(0deg); }
+        .faq-q:hover::before, .faq-q:hover::after { background: var(--accent); }
+
+        /* The same control, used inline inside a card. */
+        .disclose > summary {
+            list-style: none; cursor: pointer; position: relative;
+            display: inline-block; padding-left: 1.125rem;
+            font-size: 0.625rem; letter-spacing: 0.06em; text-transform: uppercase;
+            color: var(--text-muted); font-variation-settings: "MONO" 0.8, "CASL" 0;
+            transition: color var(--transition);
+        }
+        .disclose > summary::-webkit-details-marker { display: none; }
+        .disclose > summary:hover { color: var(--accent); }
+        .disclose > summary::before, .disclose > summary::after {
+            content: ""; position: absolute; left: 0; top: 50%;
+            width: 9px; height: 1.5px; background: currentColor;
+            transition: transform var(--dur-base) var(--ease-out);
+        }
+        .disclose > summary::before { transform: translateY(-50%); }
+        .disclose > summary::after { transform: translateY(-50%) rotate(90deg); }
+        .disclose[open] > summary::after { transform: translateY(-50%) rotate(0deg); }
+        .disclose[open] > summary { color: var(--accent); }
+        .case-disclose { margin: 0.25rem 0 0.75rem; }
+        .case-disclose > summary { margin-bottom: 0.5rem; }
+        .engage-disclose { margin-top: 0.5rem; }
+        .engage-disclose > summary { margin-bottom: 0.375rem; }
         .faq-a { padding: 0 1.25rem 1.25rem; }
         .faq-a p { font-size: 0.8125rem; line-height: 1.75; color: var(--text-secondary); margin: 0; }
         .faq-item > * { position: relative; z-index: 1; }
@@ -2167,11 +2197,14 @@
                     <div class="card-content">
                         <div class="case-meta"><span class="case-tag">Open Source</span><span class="case-tag">Shipped</span></div>
                         <div class="case-title"><a href="https://tokalator.wiki" target="_blank" rel="noopener">Tokalator: Context Engineering Toolkit</a></div>
+                        <details class="disclose case-disclose" open>
+                            <summary>Problem, approach, result</summary>
                         <div class="case-body">
                             <div class="case-row"><span class="case-row-label">Problem</span><span class="case-row-val">AI coding assistants burn tokens blindly. No visibility into context cost, no budget guardrails, no cross-model comparison.</span></div>
                             <div class="case-row"><span class="case-row-label">Approach</span><span class="case-row-val">Real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality models, caching break-even analysis across <strong>17 LLMs</strong>.</span></div>
                             <div class="case-row"><span class="case-row-label">Result</span><span class="case-row-val"><strong>VS Code extension + web platform</strong> shipped. arXiv paper published.</span></div>
                         </div>
+                        </details>
                         <div class="case-stats">
                             <span><strong class="stat-live" id="tok-installs">500+</strong> <a href="https://marketplace.visualstudio.com/items?itemName=vfaraji89.tokalator" target="_blank" rel="noopener">installs</a></span>
                             <span><strong id="tok-stars">--</strong> GitHub stars</span>
@@ -2185,11 +2218,14 @@
                     <div class="card-content">
                         <div class="case-meta"><span class="case-tag">Research</span><span class="case-tag">ACM CAIS '26</span></div>
                         <div class="case-title">Multi-Agent Job Classification System</div>
+                        <details class="disclose case-disclose">
+                            <summary>Problem, approach, result</summary>
                         <div class="case-body">
                             <div class="case-row"><span class="case-row-label">Problem</span><span class="case-row-val">Free-form job titles in multiple languages can't be reliably mapped to O*NET/ESCO taxonomies at scale.</span></div>
                             <div class="case-row"><span class="case-row-label">Approach</span><span class="case-row-val">MCP-based multi-agent system: planner, search, extraction, and evaluation agents with shared caching layer.</span></div>
                             <div class="case-row"><span class="case-row-label">Result</span><span class="case-row-val"><strong>95% accuracy</strong> on 14K+ positions. 72.5% faster classification. 41.8% fewer API calls. Accepted at ACM.</span></div>
                         </div>
+                        </details>
                         <div class="case-stack"><span>MCP</span><span>·</span><span>LangGraph</span><span>·</span><span>Subagent Architecture</span><span>·</span><span>AI Search</span><span>·</span><span>Caching</span></div>
                     </div>
                 </div>
@@ -2197,11 +2233,14 @@
                     <div class="card-content">
                         <div class="case-meta"><span class="case-tag">Enterprise</span><span class="case-tag">Shipped</span><span class="case-tag">Aug 2026</span></div>
                         <div class="case-title">ProjectLens: Pricing Internal Tool</div>
+                        <details class="disclose case-disclose">
+                            <summary>Problem, approach, result</summary>
                         <div class="case-body">
                             <div class="case-row"><span class="case-row-label">Problem</span><span class="case-row-val">Every project quote started life as a fresh Excel file. Effort estimation, pricing, proposal drafting, approval and follow-up lived in spreadsheets and inboxes. No shared history, no auditable numbers, no way to ask the data a question.</span></div>
                             <div class="case-row"><span class="case-row-label">Approach</span><span class="case-row-val">Built with the Pricing &amp; Revenue team: one tool that runs request intake → effort calculation → pricing → proposal → approval → follow-up end to end. Wired into <strong>Microsoft Teams</strong> and <strong>Azure DevOps</strong> so requests arrive where the team already works. Ships a read-only SQL console (SELECT/WITH only, every query in a rolled-back transaction on its own connection) plus a presentation mode that masks figures during screen shares.</span></div>
                             <div class="case-row"><span class="case-row-label">Result</span><span class="case-row-val"><strong>91% of the manual effort eliminated</strong>. 64h of hand work reduced to 5.5h, freeing <strong>59 hours (7.3 working days)</strong>. 31 Excel files no longer created.</span></div>
                         </div>
+                        </details>
                         <div class="case-stats">
                             <span><strong>59h</strong> freed</span>
                             <span><strong>91%</strong> effort cut</span>
@@ -2215,11 +2254,14 @@
                     <div class="card-content">
                         <div class="case-meta"><span class="case-tag">Enterprise</span><span class="case-tag">Production</span></div>
                         <div class="case-title">Enterprise AI Transformation</div>
+                        <details class="disclose case-disclose">
+                            <summary>Problem, approach, result</summary>
                         <div class="case-body">
                             <div class="case-row"><span class="case-row-label">Problem</span><span class="case-row-val">Manual reporting workflows across Sales, Finance, R&D consuming analyst time with no self-service capability.</span></div>
                             <div class="case-row"><span class="case-row-label">Approach</span><span class="case-row-val">Multi-agent orchestration (LangGraph, MCP, Agno) for text-to-SQL, report automation, and AI feedback loops with human checkpoints.</span></div>
                             <div class="case-row"><span class="case-row-label">Result</span><span class="case-row-val"><strong>60% reduction</strong> in manual workload. 200+ users served. Adopted as group-wide AI standard.</span></div>
                         </div>
+                        </details>
                         <div class="case-stack"><span>FastAPI</span><span>·</span><span>LangGraph</span><span>·</span><span>Agno</span><span>·</span><span>Pydantic</span><span>·</span><span>Arize</span></div>
                     </div>
                 </div>
@@ -2227,11 +2269,14 @@
                     <div class="card-content">
                         <div class="case-meta"><span class="case-tag">Data Product</span><span class="case-tag">Infrastructure</span></div>
                         <div class="case-title">300M+ Datapoint Metadata Platform</div>
+                        <details class="disclose case-disclose">
+                            <summary>Problem, approach, result</summary>
                         <div class="case-body">
                             <div class="case-row"><span class="case-row-label">Problem</span><span class="case-row-val">No unified metadata layer across a live job platform. Fragmented schemas, no lineage, analytics bottlenecked by ad-hoc queries.</span></div>
                             <div class="case-row"><span class="case-row-label">Approach</span><span class="case-row-val">Designed metadata architecture with DataHub governance, real-time pipelines, and product-analytics instrumentation for strategic decisions.</span></div>
                             <div class="case-row"><span class="case-row-label">Result</span><span class="case-row-val"><strong>300M+ datapoints</strong> unified. Became the foundation for all later AI/LLM deployments: embedding generation, RAG retrieval, and context grounding at scale.</span></div>
                         </div>
+                        </details>
                         <div class="case-stack"><span>DataHub</span><span>·</span><span>Azure Synapse</span><span>·</span><span>BigQuery</span><span>·</span><span>Real-time Pipelines</span><span>·</span><span>Retool</span></div>
                     </div>
                 </div>
@@ -2258,18 +2303,6 @@
                     <div class="pub-title"><a href="papers/skill-extraction.html">Leveraging LLMs For Turkish Skill Extraction</a> · <a href="https://arxiv.org/abs/2601.22885" target="_blank" rel="noopener">arXiv</a></div>
                     <div class="pub-meta">Vahid Faraji et al. · arXiv 2601.22885 · January 2026</div>
                 </div>
-            </div>
-        </section>
-
-        <section class="reveal">
-            <div class="section-label">Experience</div>
-            <p class="section-tagline">Where I built it.</p>
-            <div class="timeline">
-                <div class="timeline-item"><div class="timeline-period">2025–now</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=kariyer.net&sz=64" alt="Kariyer.net" class="timeline-logo" loading="lazy"><div><h3>Senior Applied AI Specialist</h3><div class="org">Kariyer.net (ilab group)</div></div></div><div class="desc">Lead AI/LLM initiatives across Sales, Finance, R&D. Multi-agent orchestration adopted as group-wide standard. Led the Perplexity AI Business Fellowship programme.</div><div class="impact">Google GenAI Leader · Perplexity Fellowship</div></div></div>
-                <div class="timeline-item"><div class="timeline-period">2026–now</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=baachee.ai&amp;sz=64" alt="Baachee.ai" class="timeline-logo" loading="lazy"><div><h3>Technical Advisor</h3><div class="org">Baachee.ai</div></div></div><div class="desc">Advising on data-agent architecture: text-to-report pipelines, canvas flow tooling, memory and orchestration design for enterprise automation.</div><div class="impact">Agent Studio · Text-2-SQL · Concurrent</div></div></div>
-                <div class="timeline-item"><div class="timeline-period">2022–2025</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=kariyer.net&sz=64" alt="Kariyer.net" class="timeline-logo" loading="lazy"><div><h3>Product Manager, Data</h3><div class="org">Kariyer.net</div></div></div><div class="desc">Metadata architecture serving 300M+ datapoints. AI strategy alignment. Pipeline infrastructure enabling later LLM deployments at scale.</div></div></div>
-                <div class="timeline-item"><div class="timeline-period">2021–2022</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=worqcompany.com&sz=64" alt="WorqCompany" class="timeline-logo" loading="lazy"><div><h3>Business Analyst</h3><div class="org">WorqCompany</div></div></div><div class="desc">Forecasting models, dashboards, and process automation for finance and operations.</div></div></div>
-                <div class="timeline-item"><div class="timeline-period">2019–2021</div><div class="timeline-content"><div class="timeline-header"><img src="assets/img/defaro-icon.jpg" alt="Defaro.io" class="timeline-logo" loading="lazy"><div><h3>Co-Founder</h3><div class="org">Defaro.io</div></div></div><div class="desc">Labour-market analytics startup for compensation intelligence and career pathway analytics. Data pipelines, benchmarking models, product strategy from scratch.</div></div></div>
             </div>
         </section>
 
@@ -2348,59 +2381,78 @@
             </div>
         </section>
 
-        <section class="reveal">
-            <div class="section-label">About</div>
-            <p class="section-tagline">The person behind the systems.</p>
+        <section id="experience" class="reveal">
+            <div class="section-label">Experience</div>
+            <p class="section-tagline">Where I built it.</p>
+            <div class="timeline">
+                <div class="timeline-item"><div class="timeline-period">2025–now</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=kariyer.net&sz=64" alt="Kariyer.net" class="timeline-logo" loading="lazy"><div><h3>Senior Applied AI Specialist</h3><div class="org">Kariyer.net (ilab group)</div></div></div><div class="desc">Specs, context and backlog delivery for applied AI transformation across Sales, Finance and R&amp;D. Azure DevOps, Claude Code, Vercel AI SDK, LangChain, Agno, Langfuse.</div><div class="impact">Google GenAI Leader · Perplexity Fellowship</div></div></div>
+                <div class="timeline-item"><div class="timeline-period">2026–now</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=baachee.ai&amp;sz=64" alt="Baachee.ai" class="timeline-logo" loading="lazy"><div><h3>Technical Advisor</h3><div class="org">Baachee.ai</div></div></div><div class="desc">Advising on data-agent architecture: text-to-report pipelines, canvas flow tooling, memory and orchestration design for enterprise automation.</div><div class="impact">Agent Studio · Text-2-SQL · Concurrent</div></div></div>
+                <div class="timeline-item"><div class="timeline-period">2022–2025</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=kariyer.net&sz=64" alt="Kariyer.net" class="timeline-logo" loading="lazy"><div><h3>Product Manager, Data</h3><div class="org">Kariyer.net</div></div></div><div class="desc">Metadata architecture serving 300M+ datapoints. AI strategy alignment. Pipeline infrastructure enabling later LLM deployments at scale.</div></div></div>
+                <div class="timeline-item"><div class="timeline-period">2021–2022</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=worqcompany.com&sz=64" alt="WorqCompany" class="timeline-logo" loading="lazy"><div><h3>Business Analyst</h3><div class="org">WorqCompany</div></div></div><div class="desc">Forecasting models, dashboards, and process automation for finance and operations.</div></div></div>
+                <div class="timeline-item"><div class="timeline-period">2019–2021</div><div class="timeline-content"><div class="timeline-header"><img src="assets/img/defaro-icon.jpg" alt="Defaro.io" class="timeline-logo" loading="lazy"><div><h3>Co-Founder</h3><div class="org">Defaro.io</div></div></div><div class="desc">Labour-market analytics startup for compensation intelligence and career pathway analytics. Data pipelines, benchmarking models, product strategy from scratch.</div></div></div>
+            </div>
+        </section>
+
+        <section id="engage" class="reveal">
+            <div class="section-label">Working Together</div>
+            <p class="section-tagline">Three ways teams bring me in.</p>
             <div class="about-grid">
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 10v6"/></svg></span>
-                        <h4>Education</h4>
-                        <span class="about-count">03</span>
+                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
+                        <h4>Build</h4>
                     </div>
+                    <p class="engage-lede">Agent systems that survive production.</p>
+                    <details class="disclose engage-disclose">
+                        <summary>What that looks like</summary>
                     <ul class="about-list">
-                        <li>M.A. Economics, Ibn Haldun University</li>
-                        <li>Thesis: Real-Time Labor Market Analysis</li>
-                        <li>Teaching Asst., Econometrics I</li>
+                        <li>Multi-agent orchestration on MCP, LangGraph or Agno</li>
+                        <li>Text-to-SQL and report automation with human checkpoints</li>
+                        <li>Evaluation harnesses and observability before launch, not after</li>
                     </ul>
+                    </details>
                 </div>
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg></span>
-                        <h4>Credentials</h4>
-                        <span class="about-count">08</span>
+                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+                        <h4>Advise</h4>
                     </div>
+                    <p class="engage-lede">Architecture review before the spend.</p>
+                    <details class="disclose engage-disclose">
+                        <summary>What that looks like</summary>
                     <ul class="about-list">
-                        <li class="hl">ACM Professional Member</li>
-                        <li class="hl">Google Generative AI Leader</li>
-                        <li>Anthropic: MCP, Agent Skills, Claude API, Claude Code</li>
-                        <li>LangChain: LangGraph, LangSmith</li>
+                        <li>Context and token strategy: where the budget actually goes</li>
+                        <li>Build-versus-buy calls across the agent tooling landscape</li>
+                        <li>Data and metadata readiness for RAG and grounding</li>
                     </ul>
-                </div>
-                <div class="about-card hover-card" data-hover>
-                    <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-                        <h4>Languages</h4>
-                        <span class="about-count">05</span>
-                    </div>
-                    <ul class="about-list">
-                        <li>Turkish: Native</li>
-                        <li>English: C1</li>
-                        <li>Spanish: Instructor</li>
-                        <li>Portuguese: Basic</li>
-                        <li>Japanese: Learning</li>
-                    </ul>
+                    </details>
                 </div>
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
                         <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></span>
-                        <h4>Teaching</h4>
-                        <span class="about-count">03</span>
+                        <h4>Train</h4>
                     </div>
+                    <p class="engage-lede">400+ people trained, 50+ courses.</p>
+                    <details class="disclose engage-disclose">
+                        <summary>What that looks like</summary>
                     <ul class="about-list">
-                        <li class="hl">18h Applied AI Course, Techcareer</li>
-                        <li>AI Career Mentor, TEV Foundation</li>
-                        <li>Enterprise prompt engineering, Universities</li>
+                        <li>Applied AI for engineering and data teams, 8&ndash;18h formats</li>
+                        <li>Agents, MCP and tool design, hands-on</li>
+                        <li>AI-native development workflow adoption</li>
+                    </ul>
+                    </details>
+                </div>
+                <div class="about-card hover-card" data-hover>
+                    <div class="about-head">
+                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                        <h4>For Hiring Teams</h4>
+                    </div>
+                    <p class="engage-lede">The short version, in numbers.</p>
+                    <ul class="about-list">
+                        <li class="hl">9+ years shipping &middot; Istanbul, GMT+3 &middot; remote-friendly</li>
+                        <li>3 papers (1 peer-reviewed ACM) + 1 patent pending</li>
+                        <li>Perplexity AI Business Fellowship, programme lead</li>
+                        <li>Full CV as PDF &middot; <a href="assets/cv/01-cv-vahid-faraji-202606.pdf" target="_blank" rel="noopener">download</a></li>
                     </ul>
                 </div>
             </div>
@@ -2500,57 +2552,59 @@
             </div>
         </section>
 
-        <section id="engage" class="reveal">
-            <div class="section-label">Working Together</div>
-            <p class="section-tagline">Three ways teams bring me in.</p>
+        <section id="about" class="reveal">
+            <div class="section-label">About</div>
+            <p class="section-tagline">The person behind the systems.</p>
             <div class="about-grid">
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
-                        <h4>Build</h4>
+                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 10v6"/></svg></span>
+                        <h4>Education</h4>
+                        <span class="about-count">03</span>
                     </div>
-                    <p class="engage-lede">Agent systems that survive production.</p>
                     <ul class="about-list">
-                        <li>Multi-agent orchestration on MCP, LangGraph or Agno</li>
-                        <li>Text-to-SQL and report automation with human checkpoints</li>
-                        <li>Evaluation harnesses and observability before launch, not after</li>
+                        <li>M.A. Economics, Ibn Haldun University</li>
+                        <li>Thesis: Real-Time Labor Market Analysis</li>
+                        <li>Teaching Asst., Econometrics I</li>
                     </ul>
                 </div>
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
-                        <h4>Advise</h4>
+                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg></span>
+                        <h4>Credentials</h4>
+                        <span class="about-count">08</span>
                     </div>
-                    <p class="engage-lede">Architecture review before the spend.</p>
                     <ul class="about-list">
-                        <li>Context and token strategy: where the budget actually goes</li>
-                        <li>Build-versus-buy calls across the agent tooling landscape</li>
-                        <li>Data and metadata readiness for RAG and grounding</li>
+                        <li class="hl">ACM Professional Member</li>
+                        <li class="hl">Google Generative AI Leader</li>
+                        <li>Anthropic: MCP, Agent Skills, Claude API, Claude Code</li>
+                        <li>LangChain: LangGraph, LangSmith</li>
+                    </ul>
+                </div>
+                <div class="about-card hover-card" data-hover>
+                    <div class="about-head">
+                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+                        <h4>Languages</h4>
+                        <span class="about-count">05</span>
+                    </div>
+                    <ul class="about-list">
+                        <li>Turkish: Native</li>
+                        <li>English: C1</li>
+                        <li>Spanish: Instructor</li>
+                        <li>Portuguese: Basic</li>
+                        <li>Japanese: Learning</li>
                     </ul>
                 </div>
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
                         <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></span>
-                        <h4>Train</h4>
+                        <h4>Teaching</h4>
+                        <span class="about-count">03</span>
                     </div>
-                    <p class="engage-lede">400+ people trained, 50+ courses.</p>
                     <ul class="about-list">
-                        <li>Applied AI for engineering and data teams, 8&ndash;18h formats</li>
-                        <li>Agents, MCP and tool design, hands-on</li>
-                        <li>AI-native development workflow adoption</li>
-                    </ul>
-                </div>
-                <div class="about-card hover-card" data-hover>
-                    <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
-                        <h4>For Hiring Teams</h4>
-                    </div>
-                    <p class="engage-lede">The short version, in numbers.</p>
-                    <ul class="about-list">
-                        <li class="hl">9+ years shipping &middot; Istanbul, GMT+3 &middot; remote-friendly</li>
-                        <li>3 papers (1 peer-reviewed ACM) + 1 patent pending</li>
-                        <li>Perplexity AI Business Fellowship, programme lead</li>
-                        <li>Full CV as PDF &middot; <a href="assets/cv/01-cv-vahid-faraji-202606.pdf" target="_blank" rel="noopener">download</a></li>
+                        <li class="hl">18h Applied AI Course, Techcareer</li>
+                        <li>AI Career Mentor, TEV Foundation</li>
+                        <li>Enterprise prompt engineering, Universities</li>
                     </ul>
                 </div>
             </div>
