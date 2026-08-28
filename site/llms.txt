@@ -56,7 +56,7 @@ Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Ista
 
 ## Availability
 
-Open to senior applied AI roles, advisory engagements, and enterprise AI training. Role fit: AI Solutions Architect, Agentic AI Architect, Senior Applied AI Specialist, AI Product Manager, AI Platform Architect, AI Researcher, R&D Researcher. Centre of gravity is solution and spec design for agent systems, with the data and context layer underneath. Seniority: Senior / Staff, 9+ years shipping production systems. Based in Istanbul (GMT+3), remote-friendly with distributed teams.
+Open to senior applied AI roles, advisory engagements, and enterprise AI training. Role fit: AI Solutions Architect, Agentic AI Architect, Senior Applied AI Specialist, Data Product Engineer, AI Platform Architect, AI Researcher, R&D Researcher. Centre of gravity is solution and spec design for agent systems, with the data and context layer underneath. Seniority: Senior / Staff, 9+ years shipping production systems. Based in Istanbul (GMT+3), remote-friendly with distributed teams.
 Condensed hiring summary: https://vfaraji89.github.io/?hire
 Book directly: https://calendar.app.google/KWQg6gBjXetC4ofp9
 
