@@ -2935,36 +2935,32 @@
     })();
 
     (function nameCycle() {
+        // The wordmark types a short list of slash commands before settling on
+        // the name. typeTo backs a line out only to the prefix the two strings
+        // share, so /build -> /context keeps the slash and rewrites just the
+        // word, which is what makes it read as a command line being edited
+        // rather than as text being swapped.
         var el = document.getElementById('nav-name-cycle');
         if (!el) return;
-        var names = [
-            {t: 'Vahid Faraji', color: 'var(--text-primary)', mono: false},
-            {t: '/build', color: 'var(--accent)', mono: true},
-            {t: '/context', color: '#7c3aed', mono: true},
-            {t: '/ship', color: '#16a34a', mono: true},
-            {t: '/teach', color: '#b8860b', mono: true},
-            {t: '/research', color: '#0a66c2', mono: true},
-            {t: '/optimize tokens', color: 'var(--accent)', mono: true},
-            {t: '/mentor', color: '#16a34a', mono: true},
-            {t: '@vfaraji89', color: 'var(--text-secondary)', mono: true},
-            {t: 'ヴァヒド', color: 'var(--text-primary)', mono: false},
-            {t: '・ファラジ', color: 'var(--text-primary)', mono: false, append: true},
-            {t: 'Vahid Faraji', color: 'var(--text-primary)', mono: false}
+
+        var STEPS = [
+            { t: '/build',           color: 'var(--accent)',         mono: true },
+            { t: '/context',         color: '#7c3aed',               mono: true },
+            { t: '/ship',            color: '#16a34a',               mono: true },
+            { t: '/teach',           color: '#b8860b',               mono: true },
+            { t: '/research',        color: '#0a66c2',               mono: true },
+            { t: '/optimize tokens', color: 'var(--accent)',         mono: true },
+            { t: '/mentor',          color: '#16a34a',               mono: true },
+            { t: '@vfaraji89',       color: 'var(--text-secondary)', mono: true },
+            { t: 'Vahid Faraji',     color: 'var(--text-primary)',   mono: false }
         ];
-        var idx = 0;
-        var latin = '/@#$%&*=+<>_~^|:.';
-        var kana = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-        function randFor(ch) {
-            if (ch === '・' || ch === ' ') return ch;
-            var code = ch.charCodeAt(0);
-            if (code >= 0x30A0 && code <= 0x30FF) return kana[Math.floor(Math.random() * kana.length)];
-            return latin[Math.floor(Math.random() * latin.length)];
-        }
-        function scrambleIn(text, color, mono, append, cb) {
-            var base = append ? el.textContent : '';
-            if (!append) el.textContent = '';
-            el.style.color = color;
-            if (mono) {
+        var NAME = STEPS[STEPS.length - 1];
+        var JP = { t: '\u30f4\u30a1\u30d2\u30c9\u30fb\u30d5\u30a1\u30e9\u30b8',
+                   color: 'var(--text-primary)', mono: false };
+
+        function show(step, cb) {
+            el.style.color = step.color;
+            if (step.mono) {
                 el.style.fontFamily = "'Recursive', monospace";
                 el.style.fontVariationSettings = '"MONO" 1, "CASL" 0';
                 el.style.letterSpacing = '0.02em';
@@ -2973,90 +2969,42 @@
                 el.style.fontVariationSettings = '';
                 el.style.letterSpacing = '';
             }
-            var resolved = 0;
-            var cycles = 0;
-            var maxCycles = text.length * 3;
-            var iv = setInterval(function() {
-                var out = '';
-                for (var i = 0; i < text.length; i++) {
-                    if (i < resolved) out += text[i];
-                    else out += randFor(text[i]);
-                }
-                el.textContent = base + out;
-                cycles++;
-                if (cycles % 3 === 0 && resolved < text.length) resolved++;
-                if (resolved >= text.length) {
-                    el.textContent = base + text;
-                    clearInterval(iv);
-                    if (cb) cb();
-                }
-            }, 35);
+            typeTo(el, step.t, cb);
         }
-        function scrambleOut(cb) {
-            var text = el.textContent;
-            var len = text.length;
-            var remaining = len;
-            var cycles = 0;
-            var iv = setInterval(function() {
-                var out = '';
-                for (var i = 0; i < len; i++) {
-                    if (i < remaining) {
-                        out += randFor(text[i]);
-                    }
-                }
-                el.textContent = out;
-                cycles++;
-                if (cycles % 2 === 0 && remaining > 0) remaining--;
-                if (remaining <= 0) {
-                    el.textContent = '';
-                    clearInterval(iv);
-                    if (cb) cb();
-                }
-            }, 30);
-        }
+
+        // Nothing types itself out unasked when motion is not wanted.
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var idx = -1;
         var done = false;
-        var showingJP = false;
         function next() {
             idx++;
-            if (idx >= names.length) { done = true; return; }
-            var n = names[idx];
-            var isAppend = !!n.append;
-            scrambleIn(n.t, n.color, n.mono, isAppend, function() {
-                if (idx < names.length - 1 && !names[idx + 1].append) {
-                    setTimeout(function() { scrambleOut(function() { setTimeout(next, 150); }); }, 2000);
-                } else if (idx < names.length - 1) {
-                    setTimeout(next, 400);
-                } else {
-                    done = true;
-                }
+            if (idx >= STEPS.length) { done = true; return; }
+            show(STEPS[idx], function () {
+                if (idx === STEPS.length - 1) { done = true; return; }
+                setTimeout(next, 1600);
             });
         }
-        var flipping = false;
-        function flipToJP() {
-            if (!done || showingJP || flipping) return;
-            flipping = true;
+
+        // Once the run has settled on the name, the wordmark answers to a
+        // pointer the way the rest of the page does: enter reveals, leave
+        // restores. A tap synthesises both, so touch gets it too.
+        var showingJP = false;
+        function toJP() {
+            if (!done || showingJP) return;
             showingJP = true;
-            scrambleOut(function() {
-                scrambleIn('ヴァヒド・ファラジ', 'var(--text-primary)', false, false, function() { flipping = false; });
-            });
+            show(JP);
         }
-        function flipBack() {
-            if (!done || !showingJP || flipping) return;
-            flipping = true;
+        function toName() {
+            if (!done || !showingJP) return;
             showingJP = false;
-            scrambleOut(function() {
-                scrambleIn('Vahid Faraji', 'var(--text-primary)', false, false, function() { flipping = false; });
-            });
+            show(NAME);
         }
-        el.addEventListener('mouseenter', flipToJP);
-        el.addEventListener('mouseleave', flipBack);
-        el.addEventListener('click', function(e) { e.preventDefault(); });
-        el.addEventListener('click', function() {
-            if (showingJP) flipBack(); else flipToJP();
-        });
-        setTimeout(function() {
-            scrambleOut(function() { setTimeout(next, 150); });
-        }, 2500);
+        el.addEventListener('mouseenter', toJP);
+        el.addEventListener('mouseleave', toName);
+        el.addEventListener('click', function (e) { e.preventDefault(); });
+
+        setTimeout(next, 2500);
     })();
 
     (function hireCta() {
@@ -3153,11 +3101,15 @@
         while (keep < from.length && keep < text.length && from[keep] === text[keep]) keep++;
         var backOut = (from.length - keep) * DEL_MS;
         var total = backOut + (text.length - keep) * PUT_MS;
-        var start = 0;
+        var start = null;
 
         el.classList.add('is-typing');
         function step(now) {
-            if (!start) start = now;
+            // Not `if (!start)`: a rAF timestamp of 0 is falsy, which would
+            // re-base the clock every frame and leave elapsed time at zero, so
+            // the line would never type. Vanishingly unlikely in practice,
+            // since the timestamp is performance.now(), but free to rule out.
+            if (start === null) start = now;
             var t = now - start;
             if (t >= total) {
                 el.textContent = text;
