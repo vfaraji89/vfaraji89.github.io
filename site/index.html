@@ -3175,7 +3175,12 @@
             if (t < backOut) {
                 el.textContent = from.slice(0, from.length - Math.floor(t / DEL_MS));
             } else {
-                var typed = Math.floor((t - backOut) / PUT_MS);
+                // +1 so the first character of the new line lands on the same
+                // frame the old one finishes deleting. Without it the element
+                // renders an empty string for one character interval, and where
+                // the two strings share no prefix (@vfaraji89 to Vahid Faraji)
+                // the wordmark vanishes and leaves a bare caret behind.
+                var typed = Math.floor((t - backOut) / PUT_MS) + 1;
                 el.textContent = text.slice(0, Math.min(keep + typed, text.length));
             }
             el._typing = requestAnimationFrame(step);
