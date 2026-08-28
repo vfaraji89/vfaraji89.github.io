@@ -666,6 +666,18 @@
     </style></noscript>
 
     <style>
+        /* Cross-document view transitions: navigating between pages on this site
+           cross-fades instead of blanking to white. Both documents must opt in;
+           browsers without support simply navigate as before. */
+        @view-transition { navigation: auto; }
+        ::view-transition-old(root), ::view-transition-new(root) {
+            animation-duration: 260ms;
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+        }
+
         @property --border-angle {
             syntax: "<angle>";
             initial-value: 0deg;
@@ -705,6 +717,7 @@
 
             --radius: 12px;
             --transition: 0.2s ease;
+            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         [data-theme="dark"] {
@@ -942,7 +955,9 @@
             padding: 0.625rem 1.25rem; font-family: var(--font);
             font-variation-settings: "MONO" 1, "CASL" 0;
             font-size: 0.8125rem; font-weight: 500;
-            border-radius: var(--radius); text-decoration: none; transition: all var(--transition);
+            border-radius: var(--radius); text-decoration: none;
+            transition: background var(--transition), border-color var(--transition),
+                        color var(--transition), transform var(--transition);
             border: 1px solid transparent;
         }
         .btn:hover { text-decoration: none; }
@@ -1308,13 +1323,6 @@
             font-variation-settings: "MONO" 1, "CASL" 0; letter-spacing: 0.03em;
         }
         .footer-meta-sep { color: var(--border-strong); }
-        .footer-meta-grow { flex: 1 1 auto; }
-        .footer-meta a {
-            color: var(--text-muted); text-decoration: none;
-            border-bottom: 1px solid var(--border);
-            transition: color var(--transition), border-color var(--transition);
-        }
-        .footer-meta a:hover { color: var(--accent); border-color: var(--accent); }
 
         @media (prefers-reduced-motion: reduce) {
             .footer-abacus .bead { transition: none; }
@@ -1375,7 +1383,8 @@
         .gallery-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .gallery-actions a {
             font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.02em;
-            padding: 0.375rem 0.875rem; border-radius: 4px; text-decoration: none; transition: all var(--transition);
+            padding: 0.375rem 0.875rem; border-radius: 4px; text-decoration: none;
+            transition: background var(--transition), border-color var(--transition), color var(--transition);
             font-variation-settings: "MONO" 0.8;
         }
         .gallery-actions .ga-primary { background: var(--accent); color: #fff; }
@@ -1435,7 +1444,10 @@
         .time-dot.online { background: #22c55e; animation: pulse-dot 2s ease-in-out infinite; }
         .time-dot.away { background: var(--grey-400); }
 
-        .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .reveal {
+            opacity: 0; transform: translateY(18px);
+            transition: opacity 0.62s var(--ease-out), transform 0.62s var(--ease-out);
+        }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
         /* Publications strip */
@@ -1886,7 +1898,6 @@
             .footer-nav { flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
             .footer-right { justify-content: center; }
             .footer-meta { justify-content: center; }
-            .footer-meta-grow { display: none; }
         }
     </style>
 </head>
@@ -2613,9 +2624,6 @@
                 <span>Last updated <time datetime="2026-08">2026.08</time></span>
                 <span class="footer-meta-sep">&middot;</span>
                 <span>Istanbul, T&uuml;rkiye</span>
-                <span class="footer-meta-grow"></span>
-                <a href="llms.txt">llms.txt</a>
-                <a href="https://github.com/vfaraji89/vfaraji89.github.io" target="_blank" rel="noopener">Source</a>
             </div>
         </div>
     </footer>

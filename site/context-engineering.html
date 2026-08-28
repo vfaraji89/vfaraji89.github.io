@@ -31,6 +31,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Recursive:CASL,CRSV,MONO,slnt,wght@0,0,0..1,0,300..1000&family=Sora:wght@100..800&display=swap" rel="stylesheet">
     <style>
+        /* Cross-document view transitions: navigating between pages on this site
+           cross-fades instead of blanking to white. Both documents must opt in;
+           browsers without support simply navigate as before. */
+        @view-transition { navigation: auto; }
+        ::view-transition-old(root), ::view-transition-new(root) {
+            animation-duration: 260ms;
+            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+        }
+
         :root {
             --font: "Sora", "Recursive", ui-monospace, "SF Mono", monospace;
             --font-display: "Sora", "Recursive", ui-monospace, "SF Mono", monospace;
@@ -296,17 +308,9 @@
             font-variation-settings: "MONO" 1, "CASL" 0; letter-spacing: 0.03em;
         }
         .footer-meta-sep { color: var(--border-strong); }
-        .footer-meta-grow { flex: 1 1 auto; }
-        .footer-meta a {
-            color: var(--text-muted); text-decoration: none;
-            border-bottom: 1px solid var(--border);
-            transition: color var(--transition), border-color var(--transition);
-        }
-        .footer-meta a:hover { color: var(--accent); border-color: var(--accent); }
         @media (max-width: 640px) {
             .site-foot-top { flex-direction: column; gap: 0.75rem; }
             .footer-left, .footer-nav, .footer-meta { justify-content: center; }
-            .footer-meta-grow { display: none; }
         }
         @media (prefers-reduced-motion: reduce) {
             .footer-abacus .bead { transition: none; }
@@ -647,9 +651,6 @@
                 <span>Last updated <time datetime="2026-08">2026.08</time></span>
                 <span class="footer-meta-sep">&middot;</span>
                 <span>Istanbul, T&uuml;rkiye</span>
-                <span class="footer-meta-grow"></span>
-                <a href="llms.txt">llms.txt</a>
-                <a href="https://github.com/vfaraji89/vfaraji89.github.io" target="_blank" rel="noopener">Source</a>
             </div>
         </footer>
     </div>
