@@ -842,6 +842,7 @@
            colour outranks every rule, which is what killed the hover state. */
         .nav-name a {
             color: var(--mark-tint, inherit); cursor: pointer;
+            display: inline-block; white-space: nowrap;
             transition: color var(--dur-base) var(--ease-out);
         }
         .nav-name a:hover { text-decoration: none; }
@@ -3082,6 +3083,48 @@
 
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
+        // The width is pinned to the widest thing this element will ever hold.
+        // Without it the element resizes as the line types, slides out from under
+        // a stationary pointer, and the resulting mouseleave/mouseenter pair
+        // ping-pongs forever. Measured with each facet's own typography applied,
+        // since the facets are monospaced and the name is not.
+        function lockWidth() {
+            var text = el.textContent, ff = el.style.fontFamily,
+                fv = el.style.fontVariationSettings, ls = el.style.letterSpacing;
+            var widest = 0;
+            el.style.minWidth = '0px';
+            FACETS.concat([NAME]).forEach(function (step) {
+                if (step.mono) {
+                    el.style.fontFamily = "'Recursive', monospace";
+                    el.style.fontVariationSettings = '"MONO" 1, "CASL" 0';
+                    el.style.letterSpacing = '0.02em';
+                } else {
+                    el.style.fontFamily = '';
+                    el.style.fontVariationSettings = '';
+                    el.style.letterSpacing = '';
+                }
+                el.textContent = step.t;
+                if (el.offsetWidth > widest) widest = el.offsetWidth;
+            });
+            el.textContent = text;
+            el.style.fontFamily = ff;
+            el.style.fontVariationSettings = fv;
+            el.style.letterSpacing = ls;
+            el.style.minWidth = widest + 'px';
+        }
+        // Measured once the webfont has resolved, or the fallback metrics are
+        // measured instead and the lock is wrong.
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(lockWidth).catch(lockWidth);
+        } else {
+            lockWidth();
+        }
+        var reflow;
+        window.addEventListener('resize', function () {
+            clearTimeout(reflow);
+            reflow = setTimeout(lockWidth, 200);
+        });
+
         var auto = true;
         var i = -1;
         function next() {
@@ -3094,12 +3137,19 @@
         // Hover takes over from the opening run rather than waiting it out, and
         // each entry advances one facet so repeated hovers keep saying something.
         var h = 0;
+        var hovering = false;
         el.addEventListener('mouseenter', function () {
+            if (hovering) return;
+            hovering = true;
             auto = false;
             show(FACETS[h % FACETS.length]);
             h++;
         });
-        el.addEventListener('mouseleave', function () { show(NAME); });
+        el.addEventListener('mouseleave', function () {
+            if (!hovering) return;
+            hovering = false;
+            show(NAME);
+        });
         el.addEventListener('click', function (e) { e.preventDefault(); });
 
         setTimeout(next, 2500);
