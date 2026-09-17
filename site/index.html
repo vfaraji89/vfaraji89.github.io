@@ -3052,18 +3052,22 @@
     })();
 
     (function nameCycle() {
-        // The wordmark introduces four facets, then settles on the name. Hover
-        // steps through them on demand and is answered immediately, at any point,
-        // including while the opening run is still going: the element looks
-        // interactive, so it has to behave that way from the first second.
+        // The wordmark runs through what the person does, one command at a time,
+        // then settles on the name. Hover steps through them on demand and is
+        // answered immediately, at any point, including while the opening run is
+        // still going: the element looks interactive, so it behaves that way from
+        // the first second.
         var el = document.getElementById('nav-name-cycle');
         if (!el) return;
 
         var FACETS = [
-            { t: 'Applied AI',        tint: 'var(--accent)',       mono: true },
-            { t: 'MCP \u00b7 LangGraph',  tint: '#7c3aed',             mono: true },
-            { t: 'TR \u00b7 EN \u00b7 ES \u00b7 PT', tint: '#0a66c2',  mono: true },
-            { t: 'Programme lead',    tint: '#16a34a',             mono: true }
+            { t: '/architect',           tint: 'var(--accent)',         mono: true },
+            { t: '/orchestrate',         tint: '#7c3aed',               mono: true },
+            { t: '/measure',             tint: '#0a66c2',               mono: true },
+            { t: '/publish',             tint: '#b8860b',               mono: true },
+            { t: '/speak tr en es pt',   tint: '#16a34a',               mono: true },
+            { t: '/lead',                tint: 'var(--accent)',         mono: true },
+            { t: '/open source',         tint: 'var(--text-secondary)', mono: true }
         ];
         var NAME = { t: 'Vahid Faraji', tint: 'var(--text-primary)', mono: false };
 
