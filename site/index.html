@@ -3361,27 +3361,6 @@
         });
     })();
 
-    (function loadBar() {
-        // Removed as soon as the fonts resolve. Three independent exits so the bar
-        // can never outlive the load: fonts.ready, window load, and a hard backstop.
-        // With scripting off the noscript rule hides it outright, since nothing
-        // would be left to take it down.
-        var bar = document.getElementById('load-bar');
-        if (!bar) return;
-        var settled = false;
-        function finish() {
-            if (settled) return;
-            settled = true;
-            bar.classList.add('done');
-            setTimeout(function () { if (bar.parentNode) bar.parentNode.removeChild(bar); }, 400);
-        }
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(finish).catch(finish);
-        }
-        window.addEventListener('load', finish);
-        setTimeout(finish, 4000);
-    })();
-
     (function footerAbacus() {
         // Desktop gets this from :hover; the class exists so the touch auto-play
         // below can drive the same reveal with the events it already dispatches.
@@ -3516,6 +3495,40 @@
             if (e.key === 'ArrowLeft') show((idx - 1 + images.length) % images.length);
             if (e.key === 'ArrowRight') show((idx + 1) % images.length);
         });
+    })();
+    </script>
+    <script>
+    (function loadBar() {
+        var bar = document.getElementById('load-bar');
+        if (!bar) return;
+        function show() { bar.classList.remove('done'); }
+        function hide() { bar.classList.add('done'); }
+
+        var settled = false;
+        function firstPaintDone() { if (settled) return; settled = true; hide(); }
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(firstPaintDone).catch(firstPaintDone);
+        }
+        window.addEventListener('load', firstPaintDone);
+        setTimeout(firstPaintDone, 4000);
+
+        // Leaving for another page on this site: show it for the fetch. Anything
+        // that does not actually navigate this tab is skipped, so the bar never
+        // starts a wait that is not happening.
+        document.addEventListener('click', function (e) {
+            var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+            if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+            if (e.defaultPrevented || e.button !== 0) return;
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            var url;
+            try { url = new URL(a.getAttribute('href'), location.href); } catch (err) { return; }
+            if (url.origin !== location.origin) return;
+            if (url.href.split('#')[0] === location.href.split('#')[0]) return;
+            show();
+        });
+
+        // Restored from the back/forward cache with the bar mid-sweep.
+        window.addEventListener('pageshow', function (e) { if (e.persisted) hide(); });
     })();
     </script>
 </body>
