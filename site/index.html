@@ -838,8 +838,13 @@
             font-size: 0.875rem; font-weight: 600; color: var(--text-primary);
             font-variation-settings: "MONO" 0.6, "CASL" 0; letter-spacing: -0.02em;
         }
-        .nav-name a { color: inherit; transition: opacity var(--transition); }
-        .nav-name a:hover { text-decoration: none; color: var(--accent); }
+        /* The tint is a custom property rather than an inline colour: an inline
+           colour outranks every rule, which is what killed the hover state. */
+        .nav-name a {
+            color: var(--mark-tint, inherit); cursor: pointer;
+            transition: color var(--dur-base) var(--ease-out);
+        }
+        .nav-name a:hover { text-decoration: none; }
         .nav-right { display: flex; align-items: center; gap: 0.5rem; }
         .nav-icon {
             width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border);
@@ -3046,31 +3051,23 @@
     })();
 
     (function nameCycle() {
-        // The wordmark types a short list of slash commands before settling on
-        // the name. typeTo backs a line out only to the prefix the two strings
-        // share, so /build -> /context keeps the slash and rewrites just the
-        // word, which is what makes it read as a command line being edited
-        // rather than as text being swapped.
+        // The wordmark introduces four facets, then settles on the name. Hover
+        // steps through them on demand and is answered immediately, at any point,
+        // including while the opening run is still going: the element looks
+        // interactive, so it has to behave that way from the first second.
         var el = document.getElementById('nav-name-cycle');
         if (!el) return;
 
-        var STEPS = [
-            { t: '/build',           color: 'var(--accent)',         mono: true },
-            { t: '/context',         color: '#7c3aed',               mono: true },
-            { t: '/ship',            color: '#16a34a',               mono: true },
-            { t: '/teach',           color: '#b8860b',               mono: true },
-            { t: '/research',        color: '#0a66c2',               mono: true },
-            { t: '/optimize tokens', color: 'var(--accent)',         mono: true },
-            { t: '/mentor',          color: '#16a34a',               mono: true },
-            { t: '@vfaraji89',       color: 'var(--text-secondary)', mono: true },
-            { t: 'Vahid Faraji',     color: 'var(--text-primary)',   mono: false }
+        var FACETS = [
+            { t: 'Applied AI',        tint: 'var(--accent)',       mono: true },
+            { t: 'MCP \u00b7 LangGraph',  tint: '#7c3aed',             mono: true },
+            { t: 'TR \u00b7 EN \u00b7 ES \u00b7 PT', tint: '#0a66c2',  mono: true },
+            { t: 'Programme lead',    tint: '#16a34a',             mono: true }
         ];
-        var NAME = STEPS[STEPS.length - 1];
-        var JP = { t: '\u30f4\u30a1\u30d2\u30c9\u30fb\u30d5\u30a1\u30e9\u30b8',
-                   color: 'var(--text-primary)', mono: false };
+        var NAME = { t: 'Vahid Faraji', tint: 'var(--text-primary)', mono: false };
 
         function show(step, cb) {
-            el.style.color = step.color;
+            el.style.setProperty('--mark-tint', step.tint);
             if (step.mono) {
                 el.style.fontFamily = "'Recursive', monospace";
                 el.style.fontVariationSettings = '"MONO" 1, "CASL" 0';
@@ -3083,36 +3080,26 @@
             typeTo(el, step.t, cb);
         }
 
-        // Nothing types itself out unasked when motion is not wanted.
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-        var idx = -1;
-        var done = false;
+        var auto = true;
+        var i = -1;
         function next() {
-            idx++;
-            if (idx >= STEPS.length) { done = true; return; }
-            show(STEPS[idx], function () {
-                if (idx === STEPS.length - 1) { done = true; return; }
-                setTimeout(next, 1600);
-            });
+            if (!auto) return;
+            i++;
+            if (i >= FACETS.length) { show(NAME); return; }
+            show(FACETS[i], function () { if (auto) setTimeout(next, 1600); });
         }
 
-        // Once the run has settled on the name, the wordmark answers to a
-        // pointer the way the rest of the page does: enter reveals, leave
-        // restores. A tap synthesises both, so touch gets it too.
-        var showingJP = false;
-        function toJP() {
-            if (!done || showingJP) return;
-            showingJP = true;
-            show(JP);
-        }
-        function toName() {
-            if (!done || !showingJP) return;
-            showingJP = false;
-            show(NAME);
-        }
-        el.addEventListener('mouseenter', toJP);
-        el.addEventListener('mouseleave', toName);
+        // Hover takes over from the opening run rather than waiting it out, and
+        // each entry advances one facet so repeated hovers keep saying something.
+        var h = 0;
+        el.addEventListener('mouseenter', function () {
+            auto = false;
+            show(FACETS[h % FACETS.length]);
+            h++;
+        });
+        el.addEventListener('mouseleave', function () { show(NAME); });
         el.addEventListener('click', function (e) { e.preventDefault(); });
 
         setTimeout(next, 2500);
