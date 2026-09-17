@@ -760,31 +760,13 @@
         .nav-name a:hover { text-decoration: none; }
         .mark-slash {
             color: var(--accent); opacity: 0;
-            transition: opacity var(--dur-base) var(--ease-out);
+            transition: opacity var(--dur-slow) var(--ease-out);
         }
         .nav-name a.is-command .mark-slash { opacity: 1; }
         #mark-text {
             color: var(--text-primary);
-            transition: color var(--dur-base) var(--ease-out);
+            transition: color var(--dur-slow) var(--ease-out);
         }
-        /* Closing beats of the run: the mark itself, then a pause that reads as
-           reloading, then the commands start again. */
-        .mark-scorp, .mark-load { display: none; vertical-align: -0.4em; }
-        .mark-scorp svg { width: 32px; height: 21px; display: block; color: var(--accent); }
-        .nav-name a.is-mark .mark-scorp { display: inline-block; }
-        .nav-name a.is-loading .mark-load { display: inline-flex; gap: 4px; align-items: center; }
-        .nav-name a.is-mark #mark-text,
-        .nav-name a.is-loading #mark-text { display: none; }
-        .nav-name a.is-mark .mark-slash,
-        .nav-name a.is-loading .mark-slash { opacity: 0; }
-        .mark-load i {
-            width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
-            animation: mark-pulse 0.9s var(--ease-move) infinite;
-        }
-        .mark-load i:nth-child(2) { animation-delay: 0.15s; }
-        .mark-load i:nth-child(3) { animation-delay: 0.3s; }
-        @keyframes mark-pulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
-
         .nav-name a.is-command #mark-text {
             color: var(--text-secondary);
             font-family: "Recursive", "Hiragino Sans", "Noto Sans JP", monospace;
@@ -1960,7 +1942,7 @@
     <header class="site-header">
         <nav class="site-nav container">
             <div class="nav-left">
-                <span class="nav-name"><a href="#" id="nav-name-cycle"><span class="mark-slash" aria-hidden="true">/</span><span id="mark-text">Vahid Faraji</span><span class="mark-scorp" aria-hidden="true"><svg viewBox="0 0 34 22" fill="currentColor" aria-hidden="true"><circle cx="4.5" cy="6.5" r="2.3"/><circle cx="4.5" cy="15.5" r="2.3"/><circle cx="9.5" cy="11" r="2.3"/><circle cx="14.5" cy="11" r="2.3"/><circle cx="19" cy="11" r="2.3"/><circle cx="23.5" cy="9" r="2"/><circle cx="27" cy="6.5" r="1.7"/><circle cx="29.8" cy="8.6" r="1.3"/></svg></span><span class="mark-load" aria-hidden="true"><i></i><i></i><i></i></span></a></span>
+                <span class="nav-name"><a href="#" id="nav-name-cycle"><span class="mark-slash" aria-hidden="true">/</span><span id="mark-text">Vahid Faraji</span></a></span>
             </div>
             <div class="nav-right">
                 <a href="updates.html" aria-label="Updates" class="nav-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M14 1a1 1 0 011 1v8a1 1 0 01-1 1h-2.5a2 2 0 00-1.6.8L8 14.333 6.1 11.8a2 2 0 00-1.6-.8H2a1 1 0 01-1-1V2a1 1 0 011-1h12zM2 0a2 2 0 00-2 2v8a2 2 0 002 2h2.5a1 1 0 01.8.4l1.9 2.533a1 1 0 001.6 0l1.9-2.533a1 1 0 01.8-.4H14a2 2 0 002-2V2a2 2 0 00-2-2H2z"/><path d="M3 3.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zM3 6a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9A.5.5 0 013 6zm0 2.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5z"/></svg></a>
@@ -2955,18 +2937,17 @@
     })();
 
     (function nameCycle() {
-        // Runs continuously through what the person does, resting on the name for
-        // longer at the end of each pass so the header is not in perpetual
-        // motion, and standing down while the tab is in the background. Hover
-        // takes the wheel at any point and hands it back on leave.
+        // Rests on the name and answers a pointer. Nothing runs on its own, which
+        // is the rule the rest of the page follows. The slash is its own element
+        // so it can hold the accent while the word types beside it in grey: a
+        // line written as textContent cannot carry two colours.
         var el = document.getElementById('nav-name-cycle');
         var textEl = document.getElementById('mark-text');
         if (!el || !textEl) return;
 
         var FACETS = [
-            'architect', 'orchestrate', 'measure', 'publish', 'lead', 'open source',
-            // the same instruction, in the languages he works in
-            'kur', 'medir', '\u5b66\u3076', 'speak tr en es pt'
+            'architect', 'orchestrate', 'measure', 'publish',
+            'lead', 'open source', 'speak tr en es pt'
         ];
         var NAME = 'Vahid Faraji';
 
@@ -2977,10 +2958,10 @@
 
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-        // Pinned to the widest thing this element can hold, measured in each
+        // Pinned to the widest string this element can hold, measured in each
         // state's own typography. Without it the box follows the text, slides out
         // from under a resting pointer, and the mouseleave/mouseenter pair that
-        // produces will ping-pong forever.
+        // produces ping-pongs forever.
         function lockWidth() {
             var text = textEl.textContent, was = el.classList.contains('is-command');
             var widest = 0;
@@ -3008,57 +2989,21 @@
             reflow = setTimeout(lockWidth, 200);
         });
 
-        var i = -1, hovering = false, timer = null;
-        function schedule(ms) { clearTimeout(timer); timer = setTimeout(step, ms); }
-        function phase(mark, loading) {
-            el.classList.toggle('is-mark', !!mark);
-            el.classList.toggle('is-loading', !!loading);
-        }
-        function step() {
-            if (hovering) return;
-            if (document.hidden) { schedule(1500); return; }
-            i++;
-            if (i > FACETS.length + 2) i = 0;
-            if (i === FACETS.length) {
-                phase(false, false);
-                show(NAME, false, function () { schedule(3200); });
-            } else if (i === FACETS.length + 1) {
-                // The mark closes the run.
-                textEl.textContent = '';
-                el.classList.remove('is-command');
-                phase(true, false);
-                schedule(2600);
-            } else if (i === FACETS.length + 2) {
-                // Then a beat that reads as reloading, before it starts again.
-                phase(false, true);
-                schedule(1100);
-            } else {
-                phase(false, false);
-                show(FACETS[i], true, function () { schedule(1500); });
-            }
-        }
-        document.addEventListener('visibilitychange', function () {
-            if (!document.hidden && !hovering) schedule(800);
-        });
-
-        var h = 0;
+        // Each entry advances one command, so hovering repeatedly keeps saying
+        // something. The guard absorbs a second enter with no leave between.
+        var h = 0, hovering = false;
         el.addEventListener('mouseenter', function () {
             if (hovering) return;
             hovering = true;
-            clearTimeout(timer);
-            phase(false, false);
             show(FACETS[h % FACETS.length], true);
             h++;
         });
         el.addEventListener('mouseleave', function () {
             if (!hovering) return;
             hovering = false;
-            phase(false, false);
-            show(NAME, false, function () { schedule(2500); });
+            show(NAME, false);
         });
         el.addEventListener('click', function (e) { e.preventDefault(); });
-
-        schedule(2500);
     })();
 
     (function hireCta() {
