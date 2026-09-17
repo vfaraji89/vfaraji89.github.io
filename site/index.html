@@ -769,8 +769,8 @@
         }
         /* Closing beats of the run: the mark itself, then a pause that reads as
            reloading, then the commands start again. */
-        .mark-scorp, .mark-load { display: none; vertical-align: -0.35em; }
-        .mark-scorp svg { width: 14px; height: 19px; display: block; color: var(--accent); }
+        .mark-scorp, .mark-load { display: none; vertical-align: -0.4em; }
+        .mark-scorp svg { width: 32px; height: 21px; display: block; color: var(--accent); }
         .nav-name a.is-mark .mark-scorp { display: inline-block; }
         .nav-name a.is-loading .mark-load { display: inline-flex; gap: 4px; align-items: center; }
         .nav-name a.is-mark #mark-text,
@@ -1960,7 +1960,7 @@
     <header class="site-header">
         <nav class="site-nav container">
             <div class="nav-left">
-                <span class="nav-name"><a href="#" id="nav-name-cycle"><span class="mark-slash" aria-hidden="true">/</span><span id="mark-text">Vahid Faraji</span><span class="mark-scorp" aria-hidden="true"><svg viewBox="0 0 24 32" fill="currentColor" aria-hidden="true"><circle cx="6.5" cy="5" r="2.3"/><circle cx="17.5" cy="5" r="2.3"/><circle cx="12" cy="9.5" r="2.3"/><circle cx="12" cy="14.5" r="2.3"/><circle cx="12" cy="19" r="2.3"/><circle cx="15" cy="23" r="2"/><circle cx="16.8" cy="27" r="1.7"/><circle cx="14.2" cy="29.8" r="1.3"/></svg></span><span class="mark-load" aria-hidden="true"><i></i><i></i><i></i></span></a></span>
+                <span class="nav-name"><a href="#" id="nav-name-cycle"><span class="mark-slash" aria-hidden="true">/</span><span id="mark-text">Vahid Faraji</span><span class="mark-scorp" aria-hidden="true"><svg viewBox="0 0 34 22" fill="currentColor" aria-hidden="true"><circle cx="4.5" cy="6.5" r="2.3"/><circle cx="4.5" cy="15.5" r="2.3"/><circle cx="9.5" cy="11" r="2.3"/><circle cx="14.5" cy="11" r="2.3"/><circle cx="19" cy="11" r="2.3"/><circle cx="23.5" cy="9" r="2"/><circle cx="27" cy="6.5" r="1.7"/><circle cx="29.8" cy="8.6" r="1.3"/></svg></span><span class="mark-load" aria-hidden="true"><i></i><i></i><i></i></span></a></span>
             </div>
             <div class="nav-right">
                 <a href="updates.html" aria-label="Updates" class="nav-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M14 1a1 1 0 011 1v8a1 1 0 01-1 1h-2.5a2 2 0 00-1.6.8L8 14.333 6.1 11.8a2 2 0 00-1.6-.8H2a1 1 0 01-1-1V2a1 1 0 011-1h12zM2 0a2 2 0 00-2 2v8a2 2 0 002 2h2.5a1 1 0 01.8.4l1.9 2.533a1 1 0 001.6 0l1.9-2.533a1 1 0 01.8-.4H14a2 2 0 002-2V2a2 2 0 00-2-2H2z"/><path d="M3 3.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zM3 6a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9A.5.5 0 013 6zm0 2.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5z"/></svg></a>
@@ -3027,7 +3027,7 @@
                 textEl.textContent = '';
                 el.classList.remove('is-command');
                 phase(true, false);
-                schedule(1600);
+                schedule(2600);
             } else if (i === FACETS.length + 2) {
                 // Then a beat that reads as reloading, before it starts again.
                 phase(false, true);
