@@ -18,7 +18,7 @@
           "id": "(page)",
           "heading": null,
           "blocks": [
-            "Vahid Faraji",
+            "/Vahid Faraji",
             "CV",
             "🤗",
             "Researcher-Builder"
@@ -267,32 +267,7 @@
             "Teaching",
             "18h Applied AI Course, Techcareer",
             "AI Career Mentor, TEV Foundation",
-            "Enterprise prompt engineering, Universities"
-          ]
-        },
-        {
-          "id": "faq",
-          "heading": "FAQ",
-          "blocks": [
-            "Straight answers, for people and for machines.",
-            "Who is Vahid Faraji?",
-            "Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group) in Istanbul, Turkey. He has 9+ years shipping production systems and works at the boundary of research and production, publishing peer-reviewed work at ACM while deploying enterprise-scale multi-agent systems. His focus areas are multi-agent orchestration, the Model Context Protocol (MCP), and context engineering for large language models.",
-            "What does Vahid Faraji actually build?",
-            "Production LLM agent systems for enterprises. Recent work includes an MCP-based multi-agent classification system that reached 95% accuracy on 14,000+ job positions while cutting classification time 72.5% and API calls 41.8%; an enterprise AI platform on LangGraph, MCP and Agno that reduced manual reporting workload 60% for 200+ internal users; and a 300M+ datapoint metadata architecture that became the retrieval and grounding foundation for later LLM deployments.",
-            "What has Vahid Faraji published?",
-            "Three peer-reviewed and preprint papers. “Multi-Agent Position Classification with Tool Orchestration” is peer-reviewed and published in the ACM Digital Library (DOI 10.1145/3786335.3813207), presented at ACM CAIS '26 in San Jose. “Tokalator: A Context Engineering Toolkit for AI Coding Assistants” is on arXiv (2604.08290). “Leveraging LLMs For Turkish Skill Extraction” is on arXiv (2601.22885) and is the first systematic LLM benchmark for Turkish workforce analytics. One patent is pending.",
-            "What is Tokalator?",
-            "Tokalator is an open-source context engineering toolkit built by Vahid Faraji, shipped as a VS Code extension and a web platform with 500+ installs under an MIT licence. It provides real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality modelling and caching break-even analysis across 17 LLMs. It is documented at tokalator.wiki and described in arXiv paper 2604.08290.",
-            "Which technologies and frameworks does Vahid Faraji work with?",
-            "Agent and LLM stack: Model Context Protocol (MCP), LangGraph, Agno, the Anthropic SDK, Vercel AI SDK and Arize for observability. Backend and data: Python, FastAPI, Pydantic, Text-to-SQL, DataHub, Azure Synapse, BigQuery and real-time pipelines. Frontend and tooling: Next.js, TypeScript and VS Code extension development.",
-            "Is Vahid Faraji available to hire or consult?",
-            "Yes. For applied AI advisory, agent-system architecture reviews, and enterprise AI training. He is based in Istanbul (GMT+3) and works with distributed teams. The fastest route is to book a call directly on his calendar or email vfaraji89@gmail.com; the site also has a “suggest a time” form that proposes a slot in your own timezone.",
-            "Does Vahid Faraji do training and teaching?",
-            "Yes. He has trained 400+ people across 50+ courses, including an 18-hour Applied AI programme with Techcareer covering custom tool design, contextual system architecture, multi-agent coordination and production tool execution. He mentors on AI career paths for the TEV Foundation and gives guest lectures on enterprise prompt engineering at Kayseri University and Van University.",
-            "What makes an applied AI profile like this different from an ML engineer?",
-            "The work is measured in shipped systems and business deltas rather than model metrics alone: accuracy on real taxonomies, latency and API-cost reductions, adoption counts, and workload removed. It spans the full path: problem framing, solution architecture, agent orchestration, evaluation and observability, and the data and metadata layer that makes retrieval trustworthy in the first place.",
-            "Where is Vahid Faraji based and what languages does he speak?",
-            "Istanbul, Turkey (GMT+3). He speaks Turkish natively, English at C1 level, Spanish at instructor level, and basic Portuguese. He holds an M.A. in Economics from Ibn Haldun University with a thesis on real-time labour market analysis.",
+            "Enterprise prompt engineering, Universities",
             "Vahid Faraji/Applied AI12 years · 3 papers · 4 products",
             "WorkPublicationsPortfolioThrough-lineWork With MeContext EngineeringUpdates",
             "Last updated 2026.08·Istanbul, Türkiye",

@@ -156,7 +156,6 @@
                     "AI Platform Engineer",
                     "Agentic AI Engineer",
                     "R&D Researcher"
-                
                 ]
             },
             "knowsAbout": [
@@ -558,93 +557,6 @@
                     }
                 }
             ]
-        },
-        {
-            "@type": "FAQPage",
-            "@id": "https://vfaraji89.github.io/#faq",
-            "url": "https://vfaraji89.github.io/#faq",
-            "name": "Frequently asked questions about Vahid Faraji",
-            "inLanguage": "en",
-            "isPartOf": {
-                "@id": "https://vfaraji89.github.io/#website"
-            },
-            "about": {
-                "@id": "https://vfaraji89.github.io/#person"
-            },
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "Who is Vahid Faraji?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group) in Istanbul, Turkey. He has 9+ years shipping production systems and works at the boundary of research and production, publishing peer-reviewed work at ACM while deploying enterprise-scale multi-agent systems. His focus areas are multi-agent orchestration, the Model Context Protocol (MCP), and context engineering for large language models."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What does Vahid Faraji actually build?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Production LLM agent systems for enterprises. Recent work includes an MCP-based multi-agent classification system that reached 95% accuracy on 14,000+ job positions while cutting classification time 72.5% and API calls 41.8%; an enterprise AI platform on LangGraph, MCP and Agno that reduced manual reporting workload 60% for 200+ internal users; and a 300M+ datapoint metadata architecture that became the retrieval and grounding foundation for later LLM deployments."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What has Vahid Faraji published?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Three peer-reviewed and preprint papers. “Multi-Agent Position Classification with Tool Orchestration” is peer-reviewed and published in the ACM Digital Library (DOI 10.1145/3786335.3813207), presented at ACM CAIS '26 in San Jose. “Tokalator: A Context Engineering Toolkit for AI Coding Assistants” is on arXiv (2604.08290). “Leveraging LLMs For Turkish Skill Extraction” is on arXiv (2601.22885) and is the first systematic LLM benchmark for Turkish workforce analytics. One patent is pending."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What is Tokalator?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Tokalator is an open-source context engineering toolkit built by Vahid Faraji, shipped as a VS Code extension and a web platform with 500+ installs under an MIT licence. It provides real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality modelling and caching break-even analysis across 17 LLMs. It is documented at tokalator.wiki and described in arXiv paper 2604.08290."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Which technologies and frameworks does Vahid Faraji work with?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Agent and LLM stack: Model Context Protocol (MCP), LangGraph, Agno, the Anthropic SDK, Vercel AI SDK and Arize for observability. Backend and data: Python, FastAPI, Pydantic, Text-to-SQL, DataHub, Azure Synapse, BigQuery and real-time pipelines. Frontend and tooling: Next.js, TypeScript and VS Code extension development."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Is Vahid Faraji available to hire or consult?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes. Open to AI Solutions Architect, Data Product Engineer, AI Platform Engineer, Agentic AI Engineer and R&D Researcher roles, plus advisory engagements and enterprise AI training. His centre of gravity is solution and spec design for agent systems, backed by a peer-reviewed ACM publication and two arXiv papers. Based in Istanbul (GMT+3) and remote-friendly with distributed teams. Email vfaraji89@gmail.com or book a call; a condensed hiring summary is at https://vfaraji89.github.io/?hire"
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Does Vahid Faraji do training and teaching?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes. He has trained 400+ people across 50+ courses, including an 18-hour Applied AI programme with Techcareer covering custom tool design, contextual system architecture, multi-agent coordination and production tool execution. He mentors on AI career paths for the TEV Foundation and gives guest lectures on enterprise prompt engineering at Kayseri University and Van University."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What makes an applied AI profile like this different from an ML engineer?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "The work is measured in shipped systems and business deltas rather than model metrics alone: accuracy on real taxonomies, latency and API-cost reductions, adoption counts, and workload removed. It spans the full path: problem framing, solution architecture, agent orchestration, evaluation and observability, and the data and metadata layer that makes retrieval trustworthy in the first place."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Where is Vahid Faraji based and what languages does he speak?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Istanbul, Turkey (GMT+3). He speaks Turkish natively, English at C1 level, Spanish at instructor level, and basic Portuguese. He holds an M.A. in Economics from Ibn Haldun University with a thesis on real-time labour market analysis."
-                    }
-                }
-            ]
         }
     ]
 }
@@ -838,14 +750,47 @@
             font-size: 0.875rem; font-weight: 600; color: var(--text-primary);
             font-variation-settings: "MONO" 0.6, "CASL" 0; letter-spacing: -0.02em;
         }
-        /* The tint is a custom property rather than an inline colour: an inline
-           colour outranks every rule, which is what killed the hover state. */
+        /* The slash is its own element so it can hold the accent while the word
+           beside it types in grey. It keeps its box when hidden, so the target
+           never changes size. */
         .nav-name a {
-            color: var(--mark-tint, inherit); cursor: pointer;
-            display: inline-block; white-space: nowrap;
-            transition: color var(--dur-base) var(--ease-out);
+            display: inline-block; white-space: nowrap; cursor: pointer;
+            text-decoration: none;
         }
         .nav-name a:hover { text-decoration: none; }
+        .mark-slash {
+            color: var(--accent); opacity: 0;
+            transition: opacity var(--dur-base) var(--ease-out);
+        }
+        .nav-name a.is-command .mark-slash { opacity: 1; }
+        #mark-text {
+            color: var(--text-primary);
+            transition: color var(--dur-base) var(--ease-out);
+        }
+        /* Closing beats of the run: the mark itself, then a pause that reads as
+           reloading, then the commands start again. */
+        .mark-scorp, .mark-load { display: none; vertical-align: -0.35em; }
+        .mark-scorp svg { width: 14px; height: 19px; display: block; color: var(--accent); }
+        .nav-name a.is-mark .mark-scorp { display: inline-block; }
+        .nav-name a.is-loading .mark-load { display: inline-flex; gap: 4px; align-items: center; }
+        .nav-name a.is-mark #mark-text,
+        .nav-name a.is-loading #mark-text { display: none; }
+        .nav-name a.is-mark .mark-slash,
+        .nav-name a.is-loading .mark-slash { opacity: 0; }
+        .mark-load i {
+            width: 4px; height: 4px; border-radius: 50%; background: var(--accent);
+            animation: mark-pulse 0.9s var(--ease-move) infinite;
+        }
+        .mark-load i:nth-child(2) { animation-delay: 0.15s; }
+        .mark-load i:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes mark-pulse { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+
+        .nav-name a.is-command #mark-text {
+            color: var(--text-secondary);
+            font-family: "Recursive", "Hiragino Sans", "Noto Sans JP", monospace;
+            font-variation-settings: "MONO" 1, "CASL" 0;
+            letter-spacing: 0.02em;
+        }
         .nav-right { display: flex; align-items: center; gap: 0.5rem; }
         .nav-icon {
             width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border);
@@ -2015,7 +1960,7 @@
     <header class="site-header">
         <nav class="site-nav container">
             <div class="nav-left">
-                <span class="nav-name"><a href="#" id="nav-name-cycle">Vahid Faraji</a></span>
+                <span class="nav-name"><a href="#" id="nav-name-cycle"><span class="mark-slash" aria-hidden="true">/</span><span id="mark-text">Vahid Faraji</span><span class="mark-scorp" aria-hidden="true"><svg viewBox="0 0 24 32" fill="currentColor" aria-hidden="true"><circle cx="6.5" cy="5" r="2.3"/><circle cx="17.5" cy="5" r="2.3"/><circle cx="12" cy="9.5" r="2.3"/><circle cx="12" cy="14.5" r="2.3"/><circle cx="12" cy="19" r="2.3"/><circle cx="15" cy="23" r="2"/><circle cx="16.8" cy="27" r="1.7"/><circle cx="14.2" cy="29.8" r="1.3"/></svg></span><span class="mark-load" aria-hidden="true"><i></i><i></i><i></i></span></a></span>
             </div>
             <div class="nav-right">
                 <a href="updates.html" aria-label="Updates" class="nav-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M14 1a1 1 0 011 1v8a1 1 0 01-1 1h-2.5a2 2 0 00-1.6.8L8 14.333 6.1 11.8a2 2 0 00-1.6-.8H2a1 1 0 01-1-1V2a1 1 0 011-1h12zM2 0a2 2 0 00-2 2v8a2 2 0 002 2h2.5a1 1 0 01.8.4l1.9 2.533a1 1 0 001.6 0l1.9-2.533a1 1 0 01.8-.4H14a2 2 0 002-2V2a2 2 0 00-2-2H2z"/><path d="M3 3.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zM3 6a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9A.5.5 0 013 6zm0 2.5a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5z"/></svg></a>
@@ -2672,48 +2617,6 @@
             </div>
         </section>
 
-        <section id="faq" class="reveal">
-            <div class="section-label">FAQ</div>
-            <p class="section-tagline">Straight answers, for people and for machines.</p>
-            <div class="faq-list">
-                <details class="faq-item hover-card" data-hover>
-                    <summary class="faq-q">Who is Vahid Faraji?</summary>
-                    <div class="faq-a"><p>Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group) in Istanbul, Turkey. He has 9+ years shipping production systems and works at the boundary of research and production, publishing peer-reviewed work at ACM while deploying enterprise-scale multi-agent systems. His focus areas are multi-agent orchestration, the Model Context Protocol (MCP), and context engineering for large language models.</p></div>
-                </details>
-                <details class="faq-item hover-card" data-hover>
-                    <summary class="faq-q">What does Vahid Faraji actually build?</summary>
-                    <div class="faq-a"><p>Production LLM agent systems for enterprises. Recent work includes an MCP-based multi-agent classification system that reached 95% accuracy on 14,000+ job positions while cutting classification time 72.5% and API calls 41.8%; an enterprise AI platform on LangGraph, MCP and Agno that reduced manual reporting workload 60% for 200+ internal users; and a 300M+ datapoint metadata architecture that became the retrieval and grounding foundation for later LLM deployments.</p></div>
-                </details>
-                <details class="faq-item hover-card" data-hover>
-                    <summary class="faq-q">What has Vahid Faraji published?</summary>
-                    <div class="faq-a"><p>Three peer-reviewed and preprint papers. “Multi-Agent Position Classification with Tool Orchestration” is peer-reviewed and published in the ACM Digital Library (DOI 10.1145/3786335.3813207), presented at ACM CAIS '26 in San Jose. “Tokalator: A Context Engineering Toolkit for AI Coding Assistants” is on arXiv (2604.08290). “Leveraging LLMs For Turkish Skill Extraction” is on arXiv (2601.22885) and is the first systematic LLM benchmark for Turkish workforce analytics. One patent is pending.</p></div>
-                </details>
-                <details class="faq-item hover-card" data-hover>
-                    <summary class="faq-q">What is Tokalator?</summary>
-                    <div class="faq-a"><p>Tokalator is an open-source context engineering toolkit built by Vahid Faraji, shipped as a VS Code extension and a web platform with 500+ installs under an MIT licence. It provides real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality modelling and caching break-even analysis across 17 LLMs. It is documented at tokalator.wiki and described in arXiv paper 2604.08290.</p></div>
-                </details>
-                <details class="faq-item hover-card" data-hover>
-                    <summary class="faq-q">Which technologies and frameworks does Vahid Faraji work with?</summary>
-                    <div class="faq-a"><p>Agent and LLM stack: Model Context Protocol (MCP), LangGraph, Agno, the Anthropic SDK, Vercel AI SDK and Arize for observability. Backend and data: Python, FastAPI, Pydantic, Text-to-SQL, DataHub, Azure Synapse, BigQuery and real-time pipelines. Frontend and tooling: Next.js, TypeScript and VS Code extension development.</p></div>
-                </details>
-                <details class="faq-item hover-card" data-hover>
-                    <summary class="faq-q">Is Vahid Faraji available to hire or consult?</summary>
-                    <div class="faq-a"><p>Yes. For applied AI advisory, agent-system architecture reviews, and enterprise AI training. He is based in Istanbul (GMT+3) and works with distributed teams. The fastest route is to book a call directly on his calendar or email vfaraji89@gmail.com; the site also has a “suggest a time” form that proposes a slot in your own timezone.</p></div>
-                </details>
-                <details class="faq-item hover-card" data-hover>
-                    <summary class="faq-q">Does Vahid Faraji do training and teaching?</summary>
-                    <div class="faq-a"><p>Yes. He has trained 400+ people across 50+ courses, including an 18-hour Applied AI programme with Techcareer covering custom tool design, contextual system architecture, multi-agent coordination and production tool execution. He mentors on AI career paths for the TEV Foundation and gives guest lectures on enterprise prompt engineering at Kayseri University and Van University.</p></div>
-                </details>
-                <details class="faq-item hover-card" data-hover>
-                    <summary class="faq-q">What makes an applied AI profile like this different from an ML engineer?</summary>
-                    <div class="faq-a"><p>The work is measured in shipped systems and business deltas rather than model metrics alone: accuracy on real taxonomies, latency and API-cost reductions, adoption counts, and workload removed. It spans the full path: problem framing, solution architecture, agent orchestration, evaluation and observability, and the data and metadata layer that makes retrieval trustworthy in the first place.</p></div>
-                </details>
-                <details class="faq-item hover-card" data-hover>
-                    <summary class="faq-q">Where is Vahid Faraji based and what languages does he speak?</summary>
-                    <div class="faq-a"><p>Istanbul, Turkey (GMT+3). He speaks Turkish natively, English at C1 level, Spanish at instructor level, and basic Portuguese. He holds an M.A. in Economics from Ibn Haldun University with a thesis on real-time labour market analysis.</p></div>
-                </details>
-            </div>
-        </section>
 
     </main>
 
@@ -3052,72 +2955,48 @@
     })();
 
     (function nameCycle() {
-        // The wordmark runs through what the person does, one command at a time,
-        // then settles on the name. Hover steps through them on demand and is
-        // answered immediately, at any point, including while the opening run is
-        // still going: the element looks interactive, so it behaves that way from
-        // the first second.
+        // Runs continuously through what the person does, resting on the name for
+        // longer at the end of each pass so the header is not in perpetual
+        // motion, and standing down while the tab is in the background. Hover
+        // takes the wheel at any point and hands it back on leave.
         var el = document.getElementById('nav-name-cycle');
-        if (!el) return;
+        var textEl = document.getElementById('mark-text');
+        if (!el || !textEl) return;
 
         var FACETS = [
-            { t: '/architect',           tint: 'var(--accent)',         mono: true },
-            { t: '/orchestrate',         tint: '#7c3aed',               mono: true },
-            { t: '/measure',             tint: '#0a66c2',               mono: true },
-            { t: '/publish',             tint: '#b8860b',               mono: true },
-            { t: '/speak tr en es pt',   tint: '#16a34a',               mono: true },
-            { t: '/lead',                tint: 'var(--accent)',         mono: true },
-            { t: '/open source',         tint: 'var(--text-secondary)', mono: true }
+            'architect', 'orchestrate', 'measure', 'publish', 'lead', 'open source',
+            // the same instruction, in the languages he works in
+            'kur', 'medir', '\u5b66\u3076', 'speak tr en es pt'
         ];
-        var NAME = { t: 'Vahid Faraji', tint: 'var(--text-primary)', mono: false };
+        var NAME = 'Vahid Faraji';
 
-        function show(step, cb) {
-            el.style.setProperty('--mark-tint', step.tint);
-            if (step.mono) {
-                el.style.fontFamily = "'Recursive', monospace";
-                el.style.fontVariationSettings = '"MONO" 1, "CASL" 0';
-                el.style.letterSpacing = '0.02em';
-            } else {
-                el.style.fontFamily = '';
-                el.style.fontVariationSettings = '';
-                el.style.letterSpacing = '';
-            }
-            typeTo(el, step.t, cb);
+        function show(text, isCommand, cb) {
+            el.classList.toggle('is-command', isCommand);
+            typeTo(textEl, text, cb);
         }
 
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-        // The width is pinned to the widest thing this element will ever hold.
-        // Without it the element resizes as the line types, slides out from under
-        // a stationary pointer, and the resulting mouseleave/mouseenter pair
-        // ping-pongs forever. Measured with each facet's own typography applied,
-        // since the facets are monospaced and the name is not.
+        // Pinned to the widest thing this element can hold, measured in each
+        // state's own typography. Without it the box follows the text, slides out
+        // from under a resting pointer, and the mouseleave/mouseenter pair that
+        // produces will ping-pong forever.
         function lockWidth() {
-            var text = el.textContent, ff = el.style.fontFamily,
-                fv = el.style.fontVariationSettings, ls = el.style.letterSpacing;
+            var text = textEl.textContent, was = el.classList.contains('is-command');
             var widest = 0;
             el.style.minWidth = '0px';
-            FACETS.concat([NAME]).forEach(function (step) {
-                if (step.mono) {
-                    el.style.fontFamily = "'Recursive', monospace";
-                    el.style.fontVariationSettings = '"MONO" 1, "CASL" 0';
-                    el.style.letterSpacing = '0.02em';
-                } else {
-                    el.style.fontFamily = '';
-                    el.style.fontVariationSettings = '';
-                    el.style.letterSpacing = '';
-                }
-                el.textContent = step.t;
+            FACETS.forEach(function (t) {
+                el.classList.add('is-command');
+                textEl.textContent = t;
                 if (el.offsetWidth > widest) widest = el.offsetWidth;
             });
-            el.textContent = text;
-            el.style.fontFamily = ff;
-            el.style.fontVariationSettings = fv;
-            el.style.letterSpacing = ls;
+            el.classList.remove('is-command');
+            textEl.textContent = NAME;
+            if (el.offsetWidth > widest) widest = el.offsetWidth;
+            textEl.textContent = text;
+            el.classList.toggle('is-command', was);
             el.style.minWidth = widest + 'px';
         }
-        // Measured once the webfont has resolved, or the fallback metrics are
-        // measured instead and the lock is wrong.
         if (document.fonts && document.fonts.ready) {
             document.fonts.ready.then(lockWidth).catch(lockWidth);
         } else {
@@ -3129,34 +3008,57 @@
             reflow = setTimeout(lockWidth, 200);
         });
 
-        var auto = true;
-        var i = -1;
-        function next() {
-            if (!auto) return;
-            i++;
-            if (i >= FACETS.length) { show(NAME); return; }
-            show(FACETS[i], function () { if (auto) setTimeout(next, 1600); });
+        var i = -1, hovering = false, timer = null;
+        function schedule(ms) { clearTimeout(timer); timer = setTimeout(step, ms); }
+        function phase(mark, loading) {
+            el.classList.toggle('is-mark', !!mark);
+            el.classList.toggle('is-loading', !!loading);
         }
+        function step() {
+            if (hovering) return;
+            if (document.hidden) { schedule(1500); return; }
+            i++;
+            if (i > FACETS.length + 2) i = 0;
+            if (i === FACETS.length) {
+                phase(false, false);
+                show(NAME, false, function () { schedule(3200); });
+            } else if (i === FACETS.length + 1) {
+                // The mark closes the run.
+                textEl.textContent = '';
+                el.classList.remove('is-command');
+                phase(true, false);
+                schedule(1600);
+            } else if (i === FACETS.length + 2) {
+                // Then a beat that reads as reloading, before it starts again.
+                phase(false, true);
+                schedule(1100);
+            } else {
+                phase(false, false);
+                show(FACETS[i], true, function () { schedule(1500); });
+            }
+        }
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden && !hovering) schedule(800);
+        });
 
-        // Hover takes over from the opening run rather than waiting it out, and
-        // each entry advances one facet so repeated hovers keep saying something.
         var h = 0;
-        var hovering = false;
         el.addEventListener('mouseenter', function () {
             if (hovering) return;
             hovering = true;
-            auto = false;
-            show(FACETS[h % FACETS.length]);
+            clearTimeout(timer);
+            phase(false, false);
+            show(FACETS[h % FACETS.length], true);
             h++;
         });
         el.addEventListener('mouseleave', function () {
             if (!hovering) return;
             hovering = false;
-            show(NAME);
+            phase(false, false);
+            show(NAME, false, function () { schedule(2500); });
         });
         el.addEventListener('click', function (e) { e.preventDefault(); });
 
-        setTimeout(next, 2500);
+        schedule(2500);
     })();
 
     (function hireCta() {
