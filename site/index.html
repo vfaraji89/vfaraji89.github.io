@@ -744,6 +744,29 @@
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        /* First paint. The webfonts arrive after the markup, and the hero is set
+           in a variable face, so the swap is visible. A hairline reports the wait
+           instead of gating the page: the content is painted and readable the
+           whole time, which a full-screen loader would not be. */
+        .load-bar {
+            position: fixed; top: 0; left: 0; right: 0; height: 2px;
+            z-index: 200; pointer-events: none; overflow: hidden;
+            opacity: 1; transition: opacity 0.3s var(--ease-out);
+        }
+        .load-bar.done { opacity: 0; }
+        .load-bar span {
+            display: block; height: 100%; width: 32%; background: var(--accent);
+            animation: load-sweep 1.1s var(--ease-move) infinite;
+        }
+        @keyframes load-sweep {
+            0%   { transform: translateX(-110%); }
+            55%  { transform: translateX(140%); }
+            100% { transform: translateX(320%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .load-bar span { animation: none; width: 40%; transform: none; }
+        }
+
         html { font-size: 16px; scroll-behavior: smooth; scroll-padding-top: 68px; -webkit-font-smoothing: antialiased; }
 
         /* MONO 0.3 / 380: body: readable, less rigid */
@@ -1343,6 +1366,16 @@
             font-variation-settings: "MONO" 1, "CASL" 0; letter-spacing: 0.03em;
         }
         .footer-meta-sep { color: var(--border-strong); }
+        /* Scorpio. A personal mark, kept quiet: it sits at the muted weight and
+           only takes the accent on hover. */
+        .footer-sign {
+            margin-left: auto; display: inline-flex; align-items: center;
+            color: var(--text-muted); opacity: 0.7;
+            transition: color var(--transition), opacity var(--transition);
+        }
+        .footer-sign:hover { color: var(--accent); opacity: 1; }
+        .footer-sign svg { width: 21px; height: 28px; display: block; }
+        @media (max-width: 640px) { .footer-sign { margin-left: 0; } }
 
 
         /* Gallery: case-study format */
@@ -1948,6 +1981,8 @@
     </style>
 </head>
 <body>
+    <div class="load-bar" id="load-bar" aria-hidden="true"><span></span></div>
+    <noscript><style>.load-bar { display: none; }</style></noscript>
 
     <header class="site-header">
         <nav class="site-nav container">
@@ -2694,6 +2729,7 @@
                 <span>Last updated <time datetime="2026-08">2026.08</time></span>
                 <span class="footer-meta-sep">&middot;</span>
                 <span>Istanbul, T&uuml;rkiye</span>
+                <span class="footer-sign" title="Scorpion, in beads"><svg viewBox="0 0 24 32" fill="currentColor" role="img" aria-label="Scorpion"><circle cx="6.5" cy="5" r="2.3"/><circle cx="17.5" cy="5" r="2.3"/><circle cx="12" cy="9.5" r="2.3"/><circle cx="12" cy="14.5" r="2.3"/><circle cx="12" cy="19" r="2.3"/><circle cx="15" cy="23" r="2"/><circle cx="16.8" cy="27" r="1.7"/><circle cx="14.2" cy="29.8" r="1.3"/></svg></span>
             </div>
         </div>
     </footer>
@@ -3301,6 +3337,27 @@
             clearTimeout(revert);
             stack.classList.remove('is-pixel');
         });
+    })();
+
+    (function loadBar() {
+        // Removed as soon as the fonts resolve. Three independent exits so the bar
+        // can never outlive the load: fonts.ready, window load, and a hard backstop.
+        // With scripting off the noscript rule hides it outright, since nothing
+        // would be left to take it down.
+        var bar = document.getElementById('load-bar');
+        if (!bar) return;
+        var settled = false;
+        function finish() {
+            if (settled) return;
+            settled = true;
+            bar.classList.add('done');
+            setTimeout(function () { if (bar.parentNode) bar.parentNode.removeChild(bar); }, 400);
+        }
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(finish).catch(finish);
+        }
+        window.addEventListener('load', finish);
+        setTimeout(finish, 4000);
     })();
 
     (function footerAbacus() {
