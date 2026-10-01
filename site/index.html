@@ -945,9 +945,13 @@
         .hero-links a:hover { opacity: 0.75; transform: scale(1.12); text-decoration: none; }
         .hero-links svg { width: 18px; height: 18px; }
 
-        /* Abacus → Calculator → Code → Paper.
-           One 24s loop: each phase holds ~5s, and the motion inside a phase is
-           timed to its own window so the idea plays out while it is visible. */
+        /* Abacus → Calculator → Code → Paper: counting, computing, building,
+           publishing. One 24s loop. Each phase holds ~4.8s (the abacus, the site
+           mark, keeps a little more) and the motion inside a phase is timed to
+           its own window, so the idea finishes playing before the handoff and
+           then holds -- a phase never rewinds itself where it can be seen. Each
+           phase resets during the long stretch where its group sits at zero
+           opacity instead. */
         .hero-icon { flex-shrink: 0; margin-top: 0.125rem; }
         .hero-icon g { transform-box: view-box; transform-origin: 24px 24px; }
 
@@ -958,11 +962,21 @@
 
         /* phase visibility: settle in, hold, lift out */
         @keyframes ic-1 { 0%,21%{opacity:1;transform:scale(1)}   24%,96%{opacity:0;transform:scale(0.9)}  100%{opacity:1;transform:scale(1)} }
+        /* every handoff is a 3% lift-out against a 4% settle-in, overlapping by 2% */
         @keyframes ic-2 { 0%,22%{opacity:0;transform:scale(0.9)} 26%,46%{opacity:1;transform:scale(1)}    49%,100%{opacity:0;transform:scale(0.9)} }
         @keyframes ic-3 { 0%,47%{opacity:0;transform:scale(0.9)} 51%,71%{opacity:1;transform:scale(1)}    74%,100%{opacity:0;transform:scale(0.9)} }
-        @keyframes ic-4 { 0%,72%{opacity:0;transform:scale(0.9)} 76%,96%{opacity:1;transform:scale(1)}    100%{opacity:0;transform:scale(0.9)} }
+        @keyframes ic-4 { 0%,72%{opacity:0;transform:scale(0.9)} 76%,95%{opacity:1;transform:scale(1)}    98%,100%{opacity:0;transform:scale(0.9)} }
 
-        /* 1: beads slide along their rails, settling one after another */
+        /* 1: beads slide along their rails, each settling against the one before.
+           Beads on a rail can never cross or pass through one another, so the
+           lead bead of a pair moves first and every rest leaves a 1px gap at
+           the bead edges -- wide enough that the spring's 5% overshoot still
+           reads as two beads touching rather than one blob. Top rail counts
+           right, the other two count left, the way separate rods on an abacus
+           carry separate digits. The count then holds all the way through the
+           fade-out and glides home at 60-70%, deep inside the window where the
+           whole group sits at zero opacity, so the figure is never seen
+           un-counting itself. */
         .bead { transform-box: view-box; transform-origin: 24px 24px; }
         .b1 { animation: bead-1 24s var(--ease-spring) infinite; }
         .b2 { animation: bead-2 24s var(--ease-spring) infinite; }
@@ -970,12 +984,13 @@
         .b4 { animation: bead-4 24s var(--ease-spring) infinite; }
         .b5 { animation: bead-5 24s var(--ease-spring) infinite; }
         .b6 { animation: bead-6 24s var(--ease-spring) infinite; }
-        @keyframes bead-1 { 0%,2%{transform:translateX(0)}    9%,22%{transform:translateX(9px)}  24%,100%{transform:translateX(0)} }
-        @keyframes bead-2 { 0%,4%{transform:translateX(0)}    11%,22%{transform:translateX(9px)} 24%,100%{transform:translateX(0)} }
-        @keyframes bead-3 { 0%,6%{transform:translateX(0)}    13%,22%{transform:translateX(6px)} 24%,100%{transform:translateX(0)} }
-        @keyframes bead-4 { 0%,8%{transform:translateX(0)}    15%,22%{transform:translateX(6px)} 24%,100%{transform:translateX(0)} }
-        @keyframes bead-5 { 0%,10%{transform:translateX(0)}   17%,22%{transform:translateX(-9px)} 24%,100%{transform:translateX(0)} }
-        @keyframes bead-6 { 0%,12%{transform:translateX(0)}   19%,22%{transform:translateX(-12px)} 24%,100%{transform:translateX(0)} }
+        /* the hold keyframe carries --ease-move so the trip home cannot overshoot past the rail end */
+        @keyframes bead-1 { 0%,5.5%{transform:translateX(0)} 11.5%,60%{transform:translateX(11.8px);animation-timing-function:var(--ease-move)} 70%,100%{transform:translateX(0)} }
+        @keyframes bead-2 { 0%,2%{transform:translateX(0)}   8%,60%{transform:translateX(10.8px);animation-timing-function:var(--ease-move)}  70%,100%{transform:translateX(0)} }
+        @keyframes bead-3 { 0%,3%{transform:translateX(0)}   9%,60%{transform:translateX(-2.2px);animation-timing-function:var(--ease-move)}  70%,100%{transform:translateX(0)} }
+        @keyframes bead-4 { 0%,7%{transform:translateX(0)}   13%,60%{transform:translateX(-4.2px);animation-timing-function:var(--ease-move)} 70%,100%{transform:translateX(0)} }
+        @keyframes bead-5 { 0%,10%{transform:translateX(0)}  16%,60%{transform:translateX(-4.2px);animation-timing-function:var(--ease-move)} 70%,100%{transform:translateX(0)} }
+        @keyframes bead-6 { 0%,12%{transform:translateX(0)}  18%,60%{transform:translateX(-15px);animation-timing-function:var(--ease-move)}  70%,100%{transform:translateX(0)} }
 
         /* 2: the display resolves through three values as keys register */
         .n1 { animation: calc-n1 24s steps(1,end) infinite; }
@@ -983,7 +998,8 @@
         .n3 { animation: calc-n3 24s steps(1,end) infinite; }
         @keyframes calc-n1 { 0%,25%{opacity:1} 31%,100%{opacity:0} }
         @keyframes calc-n2 { 0%,30%{opacity:0} 31%,36%{opacity:1} 37%,100%{opacity:0} }
-        @keyframes calc-n3 { 0%,36%{opacity:0} 37%,48%{opacity:1} 49%,100%{opacity:0} }
+        /* the total holds past the panel's own fade so it is never racing it to zero */
+        @keyframes calc-n3 { 0%,36%{opacity:0} 37%,52%{opacity:1} 53%,100%{opacity:0} }
         .key { opacity: 0.28; }
         .k1 { animation: key-1 24s ease-out infinite; }
         .k2 { animation: key-2 24s ease-out infinite; }
@@ -991,20 +1007,23 @@
         .k4 { animation: key-4 24s ease-out infinite; }
         .k5 { animation: key-5 24s ease-out infinite; }
         .k6 { animation: key-6 24s ease-out infinite; }
-        @keyframes key-1 { 0%,27%{opacity:0.28} 28.5%{opacity:1} 30%,100%{opacity:0.28} }
-        @keyframes key-2 { 0%,30%{opacity:0.28} 31.5%{opacity:1} 33%,100%{opacity:0.28} }
-        @keyframes key-3 { 0%,33%{opacity:0.28} 34.5%{opacity:1} 36%,100%{opacity:0.28} }
-        @keyframes key-4 { 0%,36%{opacity:0.28} 37.5%{opacity:1} 39%,100%{opacity:0.28} }
-        @keyframes key-5 { 0%,39%{opacity:0.28} 40.5%{opacity:1} 42%,100%{opacity:0.28} }
-        @keyframes key-6 { 0%,42%{opacity:0.28} 43.5%{opacity:1} 45%,100%{opacity:0.28} }
+        /* Three presses resolve the first figure, three more resolve the total, and
+           k6 releases on the exact frame 47,328 lands. Nothing is pressed after
+           the display has stopped changing. */
+        @keyframes key-1 { 0%,26.9%{opacity:0.28} 27.5%{opacity:1} 28.5%,100%{opacity:0.28} }
+        @keyframes key-2 { 0%,28.6%{opacity:0.28} 29.2%{opacity:1} 30.2%,100%{opacity:0.28} }
+        @keyframes key-3 { 0%,30.3%{opacity:0.28} 30.9%{opacity:1} 31.9%,100%{opacity:0.28} }
+        @keyframes key-4 { 0%,32.0%{opacity:0.28} 32.6%{opacity:1} 33.6%,100%{opacity:0.28} }
+        @keyframes key-5 { 0%,33.7%{opacity:0.28} 34.3%{opacity:1} 35.3%,100%{opacity:0.28} }
+        @keyframes key-6 { 0%,35.4%{opacity:0.28} 36.0%{opacity:1} 37.0%,100%{opacity:0.28} }
 
         /* 3: code types itself in; the caret blinks on its own beat */
         .cline { stroke-dasharray: 20; }
         .c1 { animation: type-1 24s steps(14,end) infinite; }
         .c2 { animation: type-2 24s steps(10,end) infinite; }
-        @keyframes type-1 { 0%,52%{stroke-dashoffset:20} 60%,71%{stroke-dashoffset:0} 74%,100%{stroke-dashoffset:20} }
-        @keyframes type-2 { 0%,60%{stroke-dashoffset:20} 67%,71%{stroke-dashoffset:0} 74%,100%{stroke-dashoffset:20} }
-        .caret { animation: caret-blink 1.05s steps(1,end) infinite; }
+        @keyframes type-1 { 0%,52%{stroke-dashoffset:20} 60%,74%{stroke-dashoffset:0} 80%,100%{stroke-dashoffset:20} }
+        @keyframes type-2 { 0%,60%{stroke-dashoffset:20} 67%,74%{stroke-dashoffset:0} 80%,100%{stroke-dashoffset:20} }
+        .caret { animation: caret-blink 1.2s steps(1,end) infinite; }
         @keyframes caret-blink { 0%,49%{opacity:0.9} 50%,100%{opacity:0.1} }
 
         /* 4: lines are written left to right, then the stamp lands */
@@ -1013,16 +1032,21 @@
         .p2 { animation: write-2 24s ease-out infinite; }
         .p3 { animation: write-3 24s ease-out infinite; }
         .p4 { animation: write-4 24s ease-out infinite; }
-        @keyframes write-1 { 0%,77%{stroke-dashoffset:14} 81%,96%{stroke-dashoffset:0} 100%{stroke-dashoffset:14} }
-        @keyframes write-2 { 0%,79%{stroke-dashoffset:14} 83%,96%{stroke-dashoffset:0} 100%{stroke-dashoffset:14} }
-        @keyframes write-3 { 0%,81%{stroke-dashoffset:14} 85%,96%{stroke-dashoffset:0} 100%{stroke-dashoffset:14} }
-        @keyframes write-4 { 0%,83%{stroke-dashoffset:14} 87%,96%{stroke-dashoffset:0} 100%{stroke-dashoffset:14} }
+        /* The loop seam falls inside this phase, so the written page has to carry
+           across it: the lines hold at full length from 81% right through 100%
+           and 0%, and only rewind over 10-20%, by which point the group has
+           been at zero opacity for a while. Published work does not unpublish
+           itself on screen. */
+        @keyframes write-1 { 0%,10%{stroke-dashoffset:0;animation-timing-function:var(--ease-move)} 20%,77%{stroke-dashoffset:14} 81%,100%{stroke-dashoffset:0} }
+        @keyframes write-2 { 0%,10%{stroke-dashoffset:0;animation-timing-function:var(--ease-move)} 20%,79%{stroke-dashoffset:14} 83%,100%{stroke-dashoffset:0} }
+        @keyframes write-3 { 0%,10%{stroke-dashoffset:0;animation-timing-function:var(--ease-move)} 20%,81%{stroke-dashoffset:14} 85%,100%{stroke-dashoffset:0} }
+        @keyframes write-4 { 0%,10%{stroke-dashoffset:0;animation-timing-function:var(--ease-move)} 20%,83%{stroke-dashoffset:14} 87%,100%{stroke-dashoffset:0} }
         .acm-stamp { transform-box: view-box; transform-origin: 22px 12px; }
         .acm-stamp { animation: stamp 24s var(--ease-spring) infinite; }
         @keyframes stamp {
-            0%,88%   { opacity: 0; transform: scale(0.5) rotate(-12deg); }
-            91%,96%  { opacity: 1; transform: scale(1) rotate(0deg); }
-            100%     { opacity: 0; transform: scale(0.5) rotate(-12deg); }
+            0%,10%   { opacity: 1; transform: scale(1) rotate(0deg); animation-timing-function: var(--ease-move); }
+            18%,88%  { opacity: 0; transform: scale(0.5) rotate(-12deg); }
+            91%,100% { opacity: 1; transform: scale(1) rotate(0deg); }
         }
 
         /* Hover: Edge Glow */
