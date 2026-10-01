@@ -92,16 +92,9 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Metrics: 300M+ datapoints unified
 - What it does: Metadata architecture, data governance, foundation for all AI/LLM deployments
 
-### Baachee.ai: Data Agent Platform
-- URL: https://baachee.ai
-- Role: Technical Advisor (2026 - now), concurrent with the Kariyer.net role
-- Stack: Agno (Self-Learning), Text-2-SQL, Metadata, Memory, Orchestrator
-- What it does: Data agents, text-to-report pipelines, canvas flow tools, enterprise automation
-
 ## Experience
 
 - 2025–now: Senior Applied AI Specialist, Kariyer.net (ilab group)
-- 2026–now: Technical Advisor, Baachee.ai (advisory, concurrent)
 - 2022–2025: Product Manager, Data, Kariyer.net
 - 2021–2022: Business Analyst, WorqCompany
 - 2019–2021: Co-Founder, Defaro.io (labor-market analytics startup)
