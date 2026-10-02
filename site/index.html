@@ -943,27 +943,43 @@
         .cta-band h3 { font-size: 1.5rem; margin: 0.75rem 0 0.5rem; }
         .cta-band p { margin-bottom: 1.5rem; max-width: 34rem; }
         .cta-actions { display: flex; flex-wrap: wrap; gap: 0.625rem; }
+        /* Buttons are the nav beads at reading size: a pill with a hairline
+           edge, filled only on hover, when it also slides a few pixels along
+           its rod. */
         .btn {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.625rem 1.25rem; font-family: var(--font);
+            padding: 0.5rem 1rem; font-family: var(--font);
             font-variation-settings: "MONO" 1, "CASL" 0;
-            font-size: 0.8125rem; font-weight: 500;
-            border-radius: var(--radius); text-decoration: none;
+            font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em;
+            border-radius: 999px; text-decoration: none; cursor: pointer;
+            position: relative; z-index: 1;
             transition: background var(--transition), border-color var(--transition),
-                        color var(--transition), transform var(--transition);
+                        color var(--transition), transform var(--dur-base) var(--ease-spring);
             border: 1px solid transparent;
         }
-        .btn:hover { text-decoration: none; }
-        .btn-primary { background: var(--accent); color: var(--white); border-color: var(--accent); }
-        .btn-primary:hover { background: #c50f09; border-color: #c50f09; }
-        .btn-outline { background: var(--bg); color: var(--text-primary); border-color: var(--border-strong); }
-        .btn-outline:hover { border-color: var(--text-primary); }
+        .btn:hover { text-decoration: none; transform: translateX(-3px); }
+        .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .btn-primary { background: var(--bg); color: var(--accent); border-color: var(--accent); font-weight: 600; }
+        .btn-outline { background: var(--bg); color: var(--text-secondary); border-color: var(--border-strong); }
+        .btn-primary:hover, .btn-outline:hover {
+            background: var(--accent); border-color: var(--accent); color: var(--white);
+        }
         .btn-dark { background: var(--black); color: var(--white); border-color: var(--grey-700); }
         .btn-dark:hover { background: var(--grey-800); border-color: var(--grey-600); }
         .btn svg { width: 13px; height: 13px; }
-        [data-theme="dark"] .btn-primary { color: #0d0d0d; }
-        [data-theme="dark"] .btn-primary:hover { background: #ff6a5c; border-color: #ff6a5c; }
+        [data-theme="dark"] .btn-primary:hover, [data-theme="dark"] .btn-outline:hover { color: #0d0d0d; }
         [data-theme="dark"] .btn-dark { background: var(--grey-800); border-color: var(--border); }
+        @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
+
+        /* A row of buttons is one abacus rod: a hairline thread through the
+           middle of the row, fading at the ends, with the buttons strung on it.
+           Stacked rows on phones turn the rod vertical. */
+        .bead-row {
+            background: linear-gradient(90deg, transparent, var(--border-strong) 1.5rem,
+                        var(--border-strong) calc(100% - 1.5rem), transparent)
+                        center / 100% 1px no-repeat;
+            background-origin: content-box;
+        }
 
         .hero-links {
             display: flex; flex-wrap: wrap; gap: 0.5rem;
@@ -1643,7 +1659,6 @@
         /* The secondary CTAs are the primary button's pattern at a smaller size,
            so the row reads as one family rather than a button beside four pills. */
         .btn-sm { padding: 0.5rem 0.875rem; font-size: 0.75rem; }
-        .nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
         /* The whole hover is a two-pixel nudge in the direction the link goes. */
         .nav-btn svg { opacity: 0.5; transition: transform var(--transition), opacity var(--dur-base) var(--ease-move); }
         .nav-btn:hover svg { opacity: 1; transform: translateY(2px); }
@@ -1929,6 +1944,13 @@
             .rec-actions { flex-direction: column; }
             .rec-actions .btn { width: 100%; justify-content: center; }
             .hero-ctas .btn { width: 100%; justify-content: center; }
+            .hero-ctas.bead-row, .rec-actions.bead-row {
+                background: linear-gradient(180deg, transparent, var(--border-strong) 0.75rem,
+                            var(--border-strong) calc(100% - 0.75rem), transparent)
+                            center / 1px 100% no-repeat;
+                background-origin: content-box;
+            }
+            .hero-ctas .btn:hover, .rec-actions .btn:hover { transform: translateY(-2px); }
             .metrics-grid {
                 display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
                 scrollbar-width: none; gap: 0.5rem;
@@ -2142,7 +2164,7 @@
                         <span class="rec-val rec-yes">Full-time roles, advisory engagements, and enterprise AI training</span>
                     </div>
                 </div>
-                <div class="rec-actions">
+                <div class="rec-actions bead-row">
                     <a href="assets/cv/01-cv-vahid-faraji-202610.pdf" target="_blank" rel="noopener" class="btn btn-primary">Download CV (PDF)</a>
                     <a href="mailto:vfaraji89@gmail.com?subject=Role%20enquiry" class="btn btn-outline">vfaraji89@gmail.com</a>
                     <a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
@@ -2169,7 +2191,7 @@
                 <a href="https://arxiv.org/abs/2601.22885" target="_blank" rel="noopener"><svg class="pub-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="var(--bg-muted)" stroke="var(--border)" stroke-width="1"/><text x="10" y="13" text-anchor="middle" font-size="7" font-weight="700" fill="var(--text-secondary)" font-family="monospace">aX</text></svg> Skill Extraction</a>
             </div>
 
-            <div class="hero-ctas">
+            <div class="hero-ctas bead-row">
                 <a href="assets/cv/01-cv-vahid-faraji-202610.pdf" target="_blank" rel="noopener" class="btn btn-primary">
                     <svg viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
                     Download CV
@@ -2213,7 +2235,7 @@
                 <div class="cta-label">awesome-applied-ai · July 2026</div>
                 <h3>A working map of applied AI for the enterprise</h3>
                 <p>Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, equations, dictionary, and research for enterprise AI architects.</p>
-                <div class="cta-actions">
+                <div class="cta-actions bead-row">
                     <a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener" class="btn btn-primary">Explore the map →</a>
                     <a href="https://github.com/vfaraji89/awesome-applied-ai" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
                 </div>
