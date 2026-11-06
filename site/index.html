@@ -236,6 +236,15 @@
                 {
                     "@type": "EducationalOccupationalCredential",
                     "credentialCategory": "certificate",
+                    "name": "Claude Certified Architect, Foundations",
+                    "recognizedBy": {
+                        "@type": "Organization",
+                        "name": "Anthropic"
+                    }
+                },
+                {
+                    "@type": "EducationalOccupationalCredential",
+                    "credentialCategory": "certificate",
                     "name": "Google Generative AI Leader",
                     "recognizedBy": {
                         "@type": "Organization",
@@ -2971,6 +2980,17 @@
         .sa-row .sb-bead { width: 36px; height: 36px; }
         .sa-row .sb-bead svg { width: 18px; height: 18px; }
         .sa-row .sb::before { top: 18px; }
+        /* wide screens: one rod per row, post to post, so every row is strung on the frame */
+        @media (min-width: 761px) {
+            .sa-row { position: relative; }
+            .sa-row::before {
+                content: ""; position: absolute; left: calc(5px - 1.25rem); right: calc(5px - 1.25rem); top: calc(0.35rem + 18px);
+                height: 4px; margin-top: -2px; border-radius: 4px; z-index: 0;
+                background: linear-gradient(180deg, #e9d8bd 0%, #f4eadb 35%, #d2b48d 75%, #b8946a 100%);
+            }
+            .sa-row .sb::before { display: none; }
+            .sa-row-label { position: relative; z-index: 1; justify-self: start; background: var(--bg); padding-right: 0.6rem; }
+        }
         @media (max-width: 760px) {
             .sa-row { grid-template-columns: 1fr; gap: 0.25rem; }
             .sa-row-label { padding-top: 0.25rem; }
@@ -3821,9 +3841,10 @@
                     <div class="about-head">
                         <span class="about-icon"><svg class="ab" aria-hidden="true"><use href="#ab-badge"/></svg></span>
                         <h4>Credentials</h4>
-                        <span class="about-count">08</span>
+                        <span class="about-count">09</span>
                     </div>
                     <ul class="about-list">
+                        <li class="hl">Claude Certified Architect, Foundations</li>
                         <li class="hl">ACM Professional Member</li>
                         <li class="hl">Google Generative AI Leader</li>
                         <li>Anthropic: MCP, Agent Skills, Claude API, Claude Code</li>
