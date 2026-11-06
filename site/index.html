@@ -1092,6 +1092,42 @@
         .bio-tag.is-flipped { border-left-color: var(--rust); border-right-color: var(--rust); }
         @media (prefers-reduced-motion: reduce) { .bio-tag::before { transition: none; } }
 
+
+        /* ---- book a call: two ways, and which one fits right now ------------ */
+        .book-pick {
+            position: absolute; z-index: 30; left: 0.5rem; top: calc(100% + 8px); width: min(22rem, calc(100vw - 2.5rem));
+            padding: 0.625rem; border-radius: 12px; background: var(--bg); border: 1px solid var(--ctl-line);
+            box-shadow: 0 24px 48px -24px rgba(28,28,30,0.45), 0 2px 6px rgba(28,28,30,0.06);
+            transform-origin: top left; animation: bp-in 0.38s cubic-bezier(0.2, 1.1, 0.3, 1);
+        }
+        .book-pick[hidden] { display: none; }
+        @keyframes bp-in { from { opacity: 0; transform: translateY(-6px) scale(0.96); } to { opacity: 1; transform: none; } }
+        .bp-fit { margin: 0.125rem 0.375rem 0.5rem; font-size: 0.75rem; line-height: 1.45; color: var(--text-secondary); }
+        .bp-fit b { color: var(--ink); font-weight: 600; }
+        .bp-opt {
+            display: flex; align-items: center; gap: 0.625rem; width: 100%; padding: 0.625rem 0.625rem; margin: 0;
+            border: 1px solid transparent; border-radius: 9px; background: transparent; color: var(--ink);
+            font: inherit; text-align: left; cursor: pointer; text-decoration: none;
+            transition: background 0.25s, border-color 0.25s;
+        }
+        .bp-opt + .bp-opt { margin-top: 0.25rem; }
+        .bp-opt:hover, .bp-opt:focus-visible { background: var(--ctl-tint); text-decoration: none; }
+        .bp-opt.is-best { border-color: rgba(224,48,30,0.28); background: var(--paper); }
+        .bp-opt .ab { width: 20px; height: 20px; flex: none; }
+        .bp-txt { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; flex: 1; }
+        .bp-txt b { font-size: 0.8125rem; font-weight: 600; }
+        .bp-txt em { font-style: normal; font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); }
+        .bp-tag {
+            display: none; flex: none; padding: 0.15rem 0.45rem; border-radius: 999px;
+            font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.04em; text-transform: uppercase;
+            color: #fff; background: var(--rust);
+        }
+        .bp-opt.is-best .bp-tag { display: inline-block; }
+        .bp-clock { display: flex; align-items: center; gap: 0.35rem; margin: 0.5rem 0.375rem 0.125rem; font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); }
+        .bp-clock b { color: var(--ink); font-weight: 500; }
+        .bp-clock .tz-dot { width: 7px; height: 7px; border-radius: 50%; background-color: var(--rust); }
+        @media (max-width: 640px) { .book-pick { right: 0; left: 0; width: auto; } }
+        @media (prefers-reduced-motion: reduce) { .book-pick { animation: none; } }
         /* ---- the arc: languages, data products, applied AI ------------------ */
         .arc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin: 1.25rem 0 0.75rem; }
         .arc-step {
@@ -2789,7 +2825,21 @@
                 <span class="hire-role ticker" id="hire-role" aria-hidden="true"><span class="tk is-on">AI-Native Architect</span><span class="tk">Applied AI Engineer</span><span class="tk">Agentic AI Engineer</span><span class="tk">AI Platform Engineer</span><span class="tk">AI Solutions Architect</span><span class="tk">R&amp;D Researcher</span></span>
                 <span class="hire-q">roles</span>
                 <span class="sr-only">Open to AI-Native Architect, Applied AI Engineer, Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect and R&amp;D Researcher roles.</span>
-                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="hire-btn"><span class="live-bead"></span>Book a call <span aria-hidden="true">&rarr;</span></a>
+                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="hire-btn" id="hire-book" aria-haspopup="true" aria-expanded="false" aria-controls="book-pick"><span class="live-bead"></span>Book a call <span aria-hidden="true">&rarr;</span></a>
+                <div class="book-pick" id="book-pick" role="dialog" aria-label="Choose how to book" hidden>
+                    <p class="bp-fit" id="bp-fit">Checking our time zones&hellip;</p>
+                    <a class="bp-opt" id="bp-cal" href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener">
+                        <svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg>
+                        <span class="bp-txt"><b>Pick a slot on my calendar</b><em>30 min &middot; instant confirmation</em></span>
+                        <span class="bp-tag">Best fit</span>
+                    </a>
+                    <button type="button" class="bp-opt" id="bp-suggest">
+                        <svg class="ab" aria-hidden="true"><use href="#ab-globe"/></svg>
+                        <span class="bp-txt"><b>Suggest a time that suits you</b><em>Any time zone &middot; I confirm within 24h</em></span>
+                        <span class="bp-tag">Best fit</span>
+                    </button>
+                    <p class="bp-clock"><span class="tz-dot" aria-hidden="true"></span>Istanbul <b id="bp-ist">--:--</b> &middot; You <b id="bp-you">--:--</b></p>
+                </div>
             </div>
 
             <button type="button" class="reel" id="reel-open" aria-haspopup="dialog">
@@ -3729,6 +3779,47 @@
         }
         tick();
         setInterval(tick, 30000);
+    })();
+
+    (function bookPick() {
+        // "Book a call" opens two ways to meet and marks the one that fits now:
+        // the calendar when our working days overlap, a suggested time when they don't.
+        var btn = document.getElementById('hire-book'), pop = document.getElementById('book-pick');
+        if (!btn || !pop) return;
+        var cal = document.getElementById('bp-cal'), sug = document.getElementById('bp-suggest'), fit = document.getElementById('bp-fit');
+        var MY = 'Europe/Istanbul', START = 9, END = 19;            // my working hours, Istanbul time
+        function hourIn(tz, d) { return +new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', hour12: false }).format(d) % 24; }
+        function hm(tz, d) { return new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false }).format(d); }
+        function dayIn(tz, d) { return new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'short' }).format(d); }
+        function refresh() {
+            var now = new Date(), you = Intl.DateTimeFormat().resolvedOptions().timeZone || MY;
+            document.getElementById('bp-ist').textContent = hm(MY, now);
+            document.getElementById('bp-you').textContent = hm(you, now);
+            // hours of my 9-19 day that land inside your 9-18 day
+            var shift = hourIn(you, now) - hourIn(MY, now);
+            if (shift > 12) shift -= 24; if (shift < -12) shift += 24;
+            var overlap = 0;
+            for (var h = START; h < END; h++) { var yh = (h + shift + 24) % 24; if (yh >= 9 && yh < 18) overlap++; }
+            var ih = hourIn(MY, now), weekend = /Sat|Sun/.test(dayIn(MY, now));
+            var open = !weekend && ih >= START && ih < END;
+            var best = overlap >= 3 ? cal : sug;
+            cal.classList.toggle('is-best', best === cal); sug.classList.toggle('is-best', best === sug);
+            if (shift === 0) fit.innerHTML = 'We share a time zone. ' + (open ? '<b>I&rsquo;m in working hours now</b>, so the calendar is quickest.' : 'Pick any open slot on the calendar.');
+            else if (overlap >= 3) fit.innerHTML = 'Our working days overlap by <b>' + overlap + ' hours</b>, so the calendar is quickest' + (open ? ', and I&rsquo;m in working hours now.' : '.');
+            else fit.innerHTML = (overlap ? 'Our working days overlap by only <b>' + overlap + ' hour' + (overlap > 1 ? 's' : '') + '</b>.' : 'Our working days <b>don&rsquo;t overlap</b>.') + ' Suggest a time that suits you and I&rsquo;ll make it work.';
+        }
+        function show(on) {
+            pop.hidden = !on; btn.setAttribute('aria-expanded', on);
+            if (on) { refresh(); (pop.querySelector('.is-best') || cal).focus({ preventScroll: true }); }
+        }
+        btn.addEventListener('click', function (e) {
+            if (e.metaKey || e.ctrlKey || e.shiftKey) return;   // modifier-click still opens the calendar
+            e.preventDefault(); show(pop.hidden);
+        });
+        sug.addEventListener('click', function () { show(false); if (typeof openBooking === 'function') openBooking(); });
+        cal.addEventListener('click', function () { show(false); });
+        document.addEventListener('click', function (e) { if (!pop.hidden && !pop.contains(e.target) && !btn.contains(e.target)) show(false); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) { show(false); btn.focus(); } });
     })();
 
     (function abacusIcons() {
