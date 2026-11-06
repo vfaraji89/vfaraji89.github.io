@@ -1029,11 +1029,15 @@
             float: right; width: 208px; margin: 0.25rem 0 0.75rem 1.5rem;
             display: flex; flex-direction: column; align-items: center; text-align: center;
         }
-        .hero-identity .hero-is {
+        .identity-core .hero-is {
             margin: 0.875rem 0 0; font-size: 0.8125rem; line-height: 1.4; white-space: normal;
         }
-        .hero-identity .hero-is .ticker { display: grid; width: 100%; }
-        .hero-identity .hero-is .ticker > .tk { white-space: normal; justify-self: center; }
+        .identity-core .hero-is .ticker { display: grid; width: 100%; }
+        .identity-core .hero-is .ticker > .tk { white-space: normal; justify-self: center; }
+        .identity-core { display: contents; }
+        .about-identity { margin: 0 0 1.5rem; }
+        .art-credit { color: inherit; text-decoration: none; border-bottom: 1px solid var(--ctl-line); transition: color .2s, border-color .2s; }
+        .art-credit:hover { color: var(--rust); border-color: var(--rust); }
         /* The portrait is the halftone from Seven Portraits: one ink dot per
            cell of a 64x64 tone map, on paper. Under the pointer the dots swell,
            the same lens the piece uses. */
@@ -2335,14 +2339,16 @@
             .hero { padding: 2.5rem 0; }
             .hero-name { font-size: 1.5rem; }
             /* phones: the identity becomes a row above the headline */
-            .hero-identity {
-                float: none; width: auto; margin: 0 0 1.25rem;
-                display: grid; grid-template-columns: 72px 1fr; column-gap: 1rem; align-items: center; text-align: left;
+            /* phones: one animation at a time. The headline keeps its ticker;
+               the portrait and the "Vahid is" line move to the head of About. */
+            .hero-identity { float: none; width: auto; margin: 0 0 1rem; display: block; }
+            .hero-identity .hero-links { justify-content: flex-start; margin-top: 0; }
+            .about-identity .identity-core {
+                display: grid; grid-template-columns: 88px 1fr; column-gap: 1rem; align-items: center; text-align: left;
             }
-            .hero-identity .hero-portrait { grid-row: 1 / span 2; }
-            .hero-identity .hero-is { margin: 0; align-self: end; }
-            .hero-identity .hero-is .ticker > .tk { justify-self: start; }
-            .hero-identity .hero-links { justify-content: flex-start; align-self: start; }
+            .about-identity .hero-portrait { width: 88px; height: 88px; }
+            .about-identity .hero-is { margin: 0; align-self: end; }
+            .about-identity .hero-is .ticker > .tk { justify-self: start; }
             .hero-portrait { width: 72px; height: 72px; margin: 0 auto; }
             .hero-links { gap: 0.375rem; margin-top: 0.5rem; }
             .hero-links svg { width: 15px; height: 15px; }
@@ -2485,12 +2491,14 @@
     <main class="container">
 
         <section class="hero">
-            <div class="hero-identity">
+            <div class="hero-identity" id="hero-identity">
+                <div class="identity-core" id="identity-core">
                 <figure class="hero-portrait" id="hero-portrait">
                     <canvas width="208" height="208" role="img" aria-label="Portrait of Vahid Faraji, redrawn as halftone, pixels, lines, letters or a network as the pointer moves over it"></canvas>
                     <span class="hero-portrait-tag" aria-hidden="true">Vahid</span>
                 </figure>
                 <p class="hero-is"><span class="hero-is-name">Vahid</span><br><span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">is an <mark>AI-native architect</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">loves <mark>creative data products</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span><span class="sr-only">is an AI-native architect.</span></p>
+                </div>
                 <div class="hero-links">
                     <a href="https://wa.me/905419402411" target="_blank" rel="noopener" aria-label="WhatsApp" style="color:#25d366;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 008.036 0C3.596 0 .003 3.59.001 8.003a7.95 7.95 0 001.078 3.997L0 16l4.12-1.08a7.987 7.987 0 003.81.965h.004c4.438 0 8.032-3.592 8.034-8.005a7.952 7.952 0 00-2.367-5.654zM8.036 14.6a6.61 6.61 0 01-3.374-.924l-.242-.144-2.508.657.67-2.443-.158-.252a6.585 6.585 0 01-1.015-3.497c.002-3.662 2.985-6.64 6.65-6.64a6.608 6.608 0 014.7 1.947 6.595 6.595 0 011.947 4.698c-.002 3.662-2.985 6.64-6.65 6.64h-.02zm3.64-4.972c-.2-.1-1.182-.583-1.365-.65-.183-.066-.316-.1-.45.1-.132.198-.515.65-.632.783-.116.133-.233.15-.432.05-.2-.1-.843-.31-1.606-.99-.593-.529-.994-1.182-1.11-1.382-.117-.2-.013-.307.088-.406.09-.088.2-.232.3-.348.099-.117.132-.2.198-.333.067-.133.034-.25-.016-.348-.05-.1-.45-1.082-.616-1.482-.162-.389-.327-.336-.45-.342l-.382-.007a.733.733 0 00-.532.25c-.183.2-.698.682-.698 1.664s.715 1.93.815 2.064c.1.133 1.408 2.15 3.413 3.015.477.206.849.329 1.139.421.478.152.914.13 1.258.079.384-.058 1.182-.484 1.35-.95.165-.467.165-.868.115-.951-.05-.084-.183-.133-.383-.233z"/></svg></a>
                     <a href="https://github.com/vfaraji89" target="_blank" rel="noopener" aria-label="GitHub" style="color:#24292e;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
@@ -2927,7 +2935,7 @@
                     <div class="hero-art-frame">
                         <img src="assets/img/abacus-drawing.jpg" width="560" height="572" alt="Pencil drawing of a wooden abacus with beads counted along its rods" loading="lazy" decoding="async">
                     </div>
-                    <figcaption><em>Fig. 1</em> Counting before computing. Graphite on paper.</figcaption>
+                    <figcaption><em>Fig. 1</em> Counting before computing. Graphite on paper by <a class="art-credit" href="https://homamofidian.site" target="_blank" rel="noopener">Homa Mofidian</a>.</figcaption>
                 </figure>
                 <blockquote class="story-quote">
                 Twelve years, eight in industry and four in research, on one problem shape: messy text in, decisions out. The domain keeps changing. The problem doesn&rsquo;t.
@@ -2972,6 +2980,7 @@
         <section id="about" class="reveal">
             <div class="section-label">About</div>
             <p class="section-tagline">The person behind the systems.</p>
+            <div class="about-identity" id="about-identity" hidden></div>
             <div class="about-grid">
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
@@ -3898,6 +3907,17 @@
     })();
 
     (function heroPortrait() {
+        (function placeIdentity() {
+            var core = document.getElementById('identity-core'), home = document.getElementById('hero-identity'), slot = document.getElementById('about-identity');
+            if (!core || !home || !slot) return;
+            var mq = window.matchMedia('(max-width: 640px)');
+            function place() {
+                if (mq.matches) { slot.appendChild(core); slot.hidden = false; }
+                else { home.insertBefore(core, home.firstChild); slot.hidden = true; }
+            }
+            place();
+            if (mq.addEventListener) mq.addEventListener('change', place); else mq.addListener(place);
+        })();
         var fig = document.getElementById('hero-portrait');
         if (!fig) return;
         var cv = fig.querySelector('canvas'), g = cv.getContext('2d');
