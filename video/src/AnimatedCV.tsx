@@ -14,6 +14,7 @@ import { wipe } from '@remotion/transitions/wipe';
 import { clockWipe } from '@remotion/transitions/clock-wipe';
 import tone from './tone.json';
 import ms from './msicons.json';
+import land from './land.json';
 import icons from './icons.json';
 
 export const FPS = 30;
@@ -146,8 +147,8 @@ const Halftone: React.FC<{ progress: number; size: number; lensX?: number; lensY
   );
 };
 
-const Cursor: React.FC<{ x: number; y: number; label?: string }> = ({ x, y, label = 'Vahid' }) => (
-  <div style={{ position: 'absolute', left: x, top: y, pointerEvents: 'none' }}>
+const Cursor: React.FC<{ x: number; y: number; label?: string; press?: boolean }> = ({ x, y, label = 'Vahid', press = false }) => (
+  <div style={{ position: 'absolute', left: x, top: y, pointerEvents: 'none', transform: `scale(${press ? 0.86 : 1})`, transformOrigin: '0 0' }}>
     <svg width="34" height="34" viewBox="0 0 26 26"><path d="M2 2l20 7.5-9.5 3-3 9.5z" fill={C.red} stroke={C.red} strokeWidth="2.2" strokeLinejoin="round" /></svg>
     <div style={{ position: 'absolute', left: 30, top: 30, padding: '8px 18px', borderRadius: 999, background: C.red, color: '#fff', fontFamily: SANS, fontWeight: 600, fontSize: 24, boxShadow: '0 6px 14px rgba(28,28,30,0.25)' }}>{label}</div>
   </div>
@@ -401,7 +402,12 @@ const Origin: React.FC = () => {
   const MEDIA: Medium[] = ['halftone', 'pixels', 'lines', 'letters', 'network', 'halftone'];
   const mi = f < 124 ? 0 : Math.min(MEDIA.length - 1, 1 + Math.floor((f - 124) / 12));
   const medium = MEDIA[mi];
-  const flash = f >= 124 && mi < MEDIA.length - 1 ? interpolate((f - 124) % 12, [0, 5], [0.85, 1], { extrapolateRight: 'clamp' }) : 1;
+  const flash = 1;
+  // each click redraws him: the new medium opens as a circle from the cursor
+  const lastClick = 124 + (mi - 1) * 12;
+  const reveal = mi > 0 ? interpolate(f - lastClick, [0, 10], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) }) : 1;
+  const clickX = px + 290 + Math.sin(lastClick / 9) * 40, clickY = py + 250 + Math.cos(lastClick / 11) * 30;
+  const sel = interpolate(f, [104, 116], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   return (
     <AbsoluteFill>
       <div style={{ position: 'absolute', left: 120, top: 230, width: 800 }}>
@@ -416,17 +422,21 @@ const Origin: React.FC = () => {
         </div>
         <span style={{ display: 'none' }}>{art}</span>
       </div>
-      <div style={{ position: 'absolute', left: px, top: py, borderRadius: 18, boxShadow: '0 30px 60px -40px rgba(28,28,30,0.6)', opacity: interpolate(f, [0, 8], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
+      <div style={{ position: 'absolute', left: px, top: py, width: size, height: size, borderRadius: 18, overflow: 'hidden', boxShadow: '0 30px 60px -40px rgba(28,28,30,0.6)', opacity: interpolate(f, [0, 8], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
         <div style={{ transform: `scale(${flash})`, transformOrigin: '50% 50%' }}>
-          <Halftone progress={p} size={size} medium={medium} lensX={f > 100 ? cx - px : undefined} lensY={f > 100 ? cy - py : undefined} />
+          {mi > 0 && reveal < 1 && <div style={{ position: 'absolute', inset: 0 }}><Halftone progress={p} size={size} medium={MEDIA[mi - 1]} /></div>}
+          <div style={{ position: 'relative', clipPath: mi > 0 && reveal < 1 ? `circle(${reveal * 780}px at ${clickX - px}px ${clickY - py}px)` : undefined }}>
+            <Halftone progress={p} size={size} medium={medium} lensX={f > 100 ? cx - px : undefined} lensY={f > 100 ? cy - py : undefined} />
+          </div>
         </div>
       </div>
-      <div style={{ position: 'absolute', left: px, top: py + size + 22, width: size, display: 'flex', justifyContent: 'center', gap: 10, opacity: interpolate(f, [118, 128], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
-        {MEDIA.slice(0, 5).map((m, k) => (
-          <span key={m} style={{ fontFamily: MONO, fontSize: 19, padding: '6px 12px', borderRadius: 8, border: `1px solid ${m === medium ? C.red : C.line}`, color: m === medium ? C.red : C.muted, background: '#fff' }}>{m}</span>
-        ))}
+      {/* a Figma-style selection: frame, corner handles, size tag */}
+      <div style={{ position: 'absolute', left: px - 6, top: py - 6, width: size + 12, height: size + 12, border: `2px solid ${C.red}`, borderRadius: 4, opacity: sel, pointerEvents: 'none' }}>
+        {[[0, 0], [1, 0], [0, 1], [1, 1]].map(([hx2, hy2], k) => <div key={k} style={{ position: 'absolute', left: `calc(${hx2 * 100}% - 7px)`, top: `calc(${hy2 * 100}% - 7px)`, width: 12, height: 12, background: '#fff', border: `2px solid ${C.red}` }} />)}
+        <div style={{ position: 'absolute', left: '50%', bottom: -40, transform: 'translateX(-50%)', padding: '3px 10px', borderRadius: 6, background: C.red, color: '#fff', fontFamily: MONO, fontSize: 18, whiteSpace: 'nowrap' }}>Portrait · {medium}</div>
       </div>
-      {f > 66 && <Cursor x={cx} y={cy} />}
+      {mi > 0 && reveal < 1 && <div style={{ position: 'absolute', left: clickX - 30 * (1 + reveal * 2), top: clickY - 30 * (1 + reveal * 2), width: 60 * (1 + reveal * 2), height: 60 * (1 + reveal * 2), borderRadius: '50%', border: `3px solid ${C.red}`, opacity: 1 - reveal, pointerEvents: 'none' }} />}
+      {f > 66 && <Cursor x={cx} y={cy} press={mi > 0 && f - lastClick < 4} />}
     </AbsoluteFill>
   );
 };
@@ -661,60 +671,109 @@ const Invite: React.FC = () => {
 // who I am, the languages I live in, data and its context, models put to work,
 // Tokalator, what you can count on, and an abacus that spells the name.
 
-// languages, told the other way round: the world first, then the languages in it
-const LANGS: [string, string, string, string][] = [
-  ['Merhaba', 'Turkish', 'native', 'TR'], ['Hello', 'English', 'C1', 'EN'], ['Hola', 'Spanish', 'taught it', 'ES'],
-  ['Olá', 'Portuguese', 'basic', 'PT'], ['Konnichiwa', 'Japanese', 'learning', 'JA'],
+// languages, around the world: a dotted globe turns to each one, the greeting pops up in its own script,
+// and a counter adds up the people I can talk to
+const LANGS: [string, string, string, string, number, number, number][] = [
+  ['Merhaba', 'Turkish', 'native', 'TR', 39, 35, 90], ['Hello', 'English', 'C1', 'EN', 52, -1, 1460],
+  ['Hola', 'Spanish', 'taught it', 'ES', 40, -4, 560], ['Olá', 'Portuguese', 'basic', 'PT', -10, -50, 265],
+  ['こんにちは', 'Japanese', 'learning', 'JA', 36, 138, 125],
 ];
+const JP = `${SANS.split(',')[0]}, "WenQuanYi Zen Hei", "Noto Sans CJK JP", sans-serif`;
 const Languages: React.FC = () => {
   const f = useCurrentFrame();
-  const per = 26, at0 = 44;
+  const per = 22, at0 = 34;
   const i = Math.max(0, Math.min(LANGS.length - 1, Math.floor((f - at0) / per)));
   const lf = f - at0 - i * per;
-  const roll = f < at0 ? 0 : interpolate(lf, [0, 10], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
-  const stageIn = spring({ frame: f - at0 + 6, fps: FPS, config: { damping: 14, stiffness: 120 } });
-  const cx = 1420, rodL = 1090, rodR = 1750, by = 640, bs = 58, gap = 74;
+  // the globe turns: towards each country in turn, then eases back to frame them all
+  const lonAt = (fr: number) => {
+    const keys: [number, number][] = [[0, 70], [at0, 35], ...LANGS.slice(1).map((l, k): [number, number] => [at0 + (k + 1) * per, l[5]]), [at0 + 5 * per + 30, 150], [230, 165]];
+    let k = 0; while (k < keys.length - 2 && fr > keys[k + 1][0]) k++;
+    const [f0, v0] = keys[k], [f1, v1] = keys[k + 1];
+    return v0 + (v1 - v0) * interpolate(fr, [Math.max(f0, f1 - 14), f1], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
+  };
+  // after Japan, swing back west a little so Istanbul and Tokyo share the frame
+  const lon0 = f > at0 + 5 * per ? interpolate(f, [at0 + 5 * per, 230], [138, 92], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) }) : lonAt(f);
+  const lat0 = 18 * Math.PI / 180;
+  const gx = 1420, gy = 570, R = 300;
+  const globeIn = spring({ frame: f - 4, fps: FPS, config: { damping: 16, stiffness: 90 } });
+  const proj = (lat: number, lon: number) => {
+    const p = lat * Math.PI / 180, l = (lon - lon0) * Math.PI / 180;
+    const x = Math.cos(p) * Math.sin(l);
+    const y = -(Math.cos(lat0) * Math.sin(p) - Math.sin(lat0) * Math.cos(p) * Math.cos(l));
+    const z = Math.sin(lat0) * Math.sin(p) + Math.cos(lat0) * Math.cos(p) * Math.cos(l);
+    return [gx + x * R * globeIn, gy + y * R * globeIn, z] as const;
+  };
+  // the count: people who speak the languages I work in (Japanese is still in progress)
+  const target = LANGS.slice(0, Math.min(4, f < at0 ? 0 : i + 1)).reduce((a2, l) => a2 + l[6], 0);
+  const prevT = LANGS.slice(0, Math.min(4, f < at0 ? 0 : i)).reduce((a2, l) => a2 + l[6], 0);
+  const shown = prevT + (target - prevT) * interpolate(lf, [0, 14], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const big = shown >= 1000 ? `${(Math.floor(shown / 100) / 10).toFixed(1)}B` : `${Math.round(shown)}M`;
+  const done = f >= at0 + 4 * per + 14;
+  const [px, py, pz] = proj(LANGS[i][4], LANGS[i][5]);
+  const card = f < at0 ? 0 : spring({ frame: lf, fps: FPS, config: { damping: 11, stiffness: 190 } }) * interpolate(lf, [per - 3, per + 2], [1, i === LANGS.length - 1 ? 1 : 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const ist = proj(41, 29);
   return (
     <AbsoluteFill>
-      <div style={{ position: 'absolute', left: 120, top: 230, width: 840 }}>
+      <div style={{ position: 'absolute', left: 120, top: 190, width: 860 }}>
         <Kicker f={f} text="LANGUAGES" />
-        <Big f={f} size={100}>My world isn&rsquo;t<br />one language<Dot /></Big>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 34, ...fadeUp(f, 176) }}>
-          <Bead size={20} color={C.red} style={{ boxShadow: 'none' }} />
-          <span style={{ fontFamily: SANS, fontSize: 40, color: C.ink, fontWeight: 600, letterSpacing: '-0.01em' }}>I work across all of them<Dot /></span>
+        <Big f={f} size={92}>My world isn&rsquo;t<br />one language<Dot /></Big>
+        <div style={{ marginTop: 34, ...fadeUp(f, at0 - 4) }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 18 }}>
+            <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 120, letterSpacing: '-0.05em', color: C.red, lineHeight: 1 }}>{done ? '2.3B+' : big}</span>
+            <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 36, color: C.ink, lineHeight: 1.2 }}>people<br />I can talk to</span>
+          </div>
+          <div style={{ display: 'flex', gap: 14, marginTop: 26, alignItems: 'center' }}>
+            {LANGS.map(([, name, , code], k) => {
+              const on = f >= at0 + k * per;
+              const pop = spring({ frame: f - at0 - k * per, fps: FPS, config: { damping: 10, stiffness: 200 } });
+              return (
+                <div key={code} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 14px 8px 10px', borderRadius: 999, border: `1.5px ${k === 4 ? 'dashed' : 'solid'} ${on ? (k === 0 ? C.red : C.ink) : C.line}`, background: '#fff', transform: `scale(${on ? 0.9 + 0.1 * pop : 0.9})`, opacity: on ? 1 : 0.35 }}>
+                  <Bead size={16} color={on ? (k === 0 ? C.red : k === 4 ? '#fff' : C.ink) : '#e6e1da'} style={{ boxShadow: k === 4 && on ? `0 0 0 2px ${C.ink}` : 'none' }} />
+                  <span style={{ fontFamily: MONO, fontSize: 21, color: C.ink }}>{code}</span>
+                </div>
+              );
+            })}
+          </div>
+          <div style={{ fontFamily: MONO, fontSize: 21, color: C.sec, marginTop: 16, opacity: done ? 1 : 0 }}>speakers of TR, EN, ES, PT · Japanese in progress</div>
         </div>
       </div>
-      {/* the stage: one greeting at a time, rolling like a counter */}
-      <div style={{ position: 'absolute', left: cx - 440, top: 250, width: 880, height: 190, overflow: 'hidden', opacity: stageIn }}>
-        {[i - 1, i].filter((k) => k >= 0 && f >= at0).map((k) => {
-          const cur = k === i;
-          const y = cur ? (1 - roll) * 120 : -roll * 120;
-          const op = cur ? roll : 1 - roll;
+      {/* the globe */}
+      <svg style={{ position: 'absolute', left: 0, top: 0 }} width={1920} height={1080}>
+        <circle cx={gx} cy={gy} r={R * globeIn} fill="#fff" stroke={C.line} strokeWidth={2} />
+        <ellipse cx={gx} cy={gy} rx={R * globeIn} ry={R * globeIn * 0.3} fill="none" stroke="rgba(28,28,30,0.06)" strokeWidth={1.5} />
+        {(land as number[][]).map(([la, lo], k) => {
+          const [x, y, z] = proj(la, lo);
+          if (z <= 0.02) return null;
+          return <circle key={k} cx={x} cy={y} r={2.2 + 1.6 * z} fill={C.ink} opacity={0.12 + 0.5 * z} />;
+        })}
+        {/* arcs home: from Istanbul to every language once it has been said */}
+        {LANGS.slice(1).map((l, k) => {
+          const on = interpolate(f, [at0 + (k + 1) * per, at0 + (k + 1) * per + 12], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+          const [x2, y2, z2] = proj(l[4], l[5]);
+          if (on <= 0 || z2 < 0 || ist[2] < 0) return null;
+          const mx = (ist[0] + x2) / 2, my = (ist[1] + y2) / 2 - 0.35 * Math.hypot(x2 - ist[0], y2 - ist[1]);
+          return <path key={l[3]} d={`M${ist[0]},${ist[1]} Q${mx},${my} ${x2},${y2}`} fill="none" stroke={C.red} strokeWidth={2.5} strokeDasharray="6 8" strokeOpacity={0.7} pathLength={100} strokeDashoffset={(1 - on) * 100} />;
+        })}
+        {LANGS.map((l, k) => {
+          const [x, y, z] = proj(l[4], l[5]);
+          const on = f >= at0 + k * per;
+          if (z < 0 || !on) return null;
+          const pulse = (f - at0 - k * per) % 40 / 40;
           return (
-            <div key={k} style={{ position: 'absolute', left: 0, right: 0, top: 10, textAlign: 'center', transform: `translateY(${y}px)`, opacity: op, filter: `blur(${(1 - op) * 6}px)`, fontFamily: SANS, fontWeight: 800, fontSize: LANGS[k][0].length > 7 ? 116 : 150, letterSpacing: '-0.05em', color: k === 0 ? C.red : C.ink, lineHeight: 1, paddingTop: LANGS[k][0].length > 7 ? 18 : 0 }}>
-              {LANGS[k][0]}{cur && k === LANGS.length - 1 ? '' : ''}<span style={{ color: C.red }}>.</span>
-            </div>
+            <g key={l[3]}>
+              <circle cx={x} cy={y} r={10 + pulse * 26} fill="none" stroke={C.red} strokeOpacity={0.5 * (1 - pulse)} strokeWidth={2} />
+              <circle cx={x} cy={y} r={10} fill={k === 4 ? '#fff' : C.red} stroke={k === 4 ? C.red : '#fff'} strokeWidth={3} />
+            </g>
           );
         })}
-      </div>
-      <div style={{ position: 'absolute', left: cx - 300, width: 600, top: 470, textAlign: 'center', fontFamily: MONO, fontSize: 26, letterSpacing: '0.06em', color: C.sec, opacity: f >= at0 ? roll : 0 }}>
-        {LANGS[i][1].toUpperCase()} · {LANGS[i][2]}
-      </div>
-      {/* an abacus rod: one bead slides home for every language */}
-      <div style={{ position: 'absolute', left: rodL - 26, top: by - 70, width: 22, height: 140, borderRadius: 999, background: 'linear-gradient(90deg, #b48a5c, #f1e3cc 50%, #ad8455)', opacity: stageIn }} />
-      <div style={{ position: 'absolute', left: rodR + 4, top: by - 70, width: 22, height: 140, borderRadius: 999, background: 'linear-gradient(90deg, #b48a5c, #f1e3cc 50%, #ad8455)', opacity: stageIn }} />
-      <div style={{ position: 'absolute', left: rodL, width: (rodR - rodL) * stageIn, top: by - 5, height: 10, borderRadius: 999, background: 'linear-gradient(180deg, #e9d8bd, #d2b48d 70%, #b8946a)' }} />
-      {LANGS.map(([, , , code], k) => {
-        const go = interpolate(f, [at0 + k * per, at0 + k * per + 14], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.34, 1.3, 0.5, 1) });
-        const home = rodR - 20 - (LANGS.length - k) * gap + gap - bs, there = rodL + 20 + k * gap;
-        const x = home + (there - home) * go;
-        return (
-          <div key={code} style={{ position: 'absolute', left: x, top: by - bs / 2, opacity: stageIn }}>
-            <Bead size={bs} color={go > 0.5 ? (k === 0 ? C.red : C.ink) : '#e6e1da'} style={{ boxShadow: 'none' }} />
-            <div style={{ position: 'absolute', left: 0, width: bs, top: bs + 14, textAlign: 'center', fontFamily: MONO, fontSize: 20, color: go > 0.5 ? C.ink : C.muted }}>{code}</div>
-          </div>
-        );
-      })}
+      </svg>
+      {/* the greeting, in its own script, pinned to its place */}
+      {f >= at0 && pz > 0 && (
+        <div style={{ position: 'absolute', left: px > 1460 ? px - 22 : px + 22, top: py - 150, transform: `${px > 1460 ? 'translateX(-100%) ' : ''}scale(${card})`, transformOrigin: px > 1460 ? '100% 100%' : '0% 100%', opacity: Math.min(1, card * 1.4), padding: '18px 28px 16px', borderRadius: 20, background: '#fff', border: `2px solid ${C.ink}`, boxShadow: '0 26px 40px -26px rgba(28,28,30,0.6)', whiteSpace: 'nowrap' }}>
+          <div style={{ fontFamily: i === 4 ? JP : SANS, fontWeight: 800, fontSize: 64, letterSpacing: i === 4 ? '0' : '-0.04em', color: i === 0 ? C.red : C.ink, lineHeight: 1.05 }}>{LANGS[i][0]}</div>
+          <div style={{ fontFamily: MONO, fontSize: 19, color: C.sec, marginTop: 6 }}>{LANGS[i][1].toUpperCase()} · {LANGS[i][2]}</div>
+        </div>
+      )}
     </AbsoluteFill>
   );
 };
@@ -902,9 +961,9 @@ const AbacusName: React.FC = () => {
 };
 
 // the close: the real photo in a wooden frame, who he is again, the skills around him
-const ORBIT: [string, string, number][] = [
-  ['agents', 'Applied AI', -158], ['bars', 'Data products', -112], ['calc', 'Analysis', -68],
-  ['window', 'Context design', -22], ['layers', 'Architecture', 22], ['globe', 'Five languages', 158],
+const ORBIT: [string, string, string, number][] = [
+  ['agents', 'Applied AI', '2 yrs in production', -158], ['bars', 'Data products', '264M+ records', -112], ['calc', 'Analysis', '95% on 14K+ titles', -68],
+  ['window', 'Context design', '500+ installs', -22], ['layers', 'Tools', '30 in daily use', 22], ['globe', 'Languages', '2.3B+ people', 158],
 ];
 const Closing: React.FC = () => {
   const f = useCurrentFrame();
@@ -913,7 +972,7 @@ const Closing: React.FC = () => {
   const dowel = 'linear-gradient(90deg, #b48a5c 0%, #d8bb94 24%, #f1e3cc 48%, #dcc29e 70%, #ad8455 100%)';
   return (
     <AbsoluteFill>
-      {ORBIT.map(([ic, label, deg], k) => {
+      {ORBIT.map(([ic, label, val, deg], k) => {
         const pop = spring({ frame: f - 22 - k * 6, fps: FPS, config: { damping: 12, stiffness: 140 } });
         const a = ((deg + Math.sin((f + k * 20) / 40) * 4) * Math.PI) / 180;
         const r = 0.6 + 0.4 * pop;
@@ -923,7 +982,10 @@ const Closing: React.FC = () => {
             <svg style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }} width="1" height="1"><line x1={cx} y1={cy} x2={x} y2={y} stroke={C.ink} strokeOpacity={0.12 * pop} strokeWidth={2} strokeDasharray="4 8" /></svg>
             <div style={{ position: 'absolute', left: x, top: y, transform: `translate(-50%, -50%) scale(${pop})`, display: 'flex', alignItems: 'center', gap: 12, padding: '12px 22px 12px 14px', borderRadius: 999, background: '#fff', border: `1.5px solid ${k === 0 ? C.red : C.line}`, boxShadow: '0 18px 30px -22px rgba(28,28,30,0.55)', whiteSpace: 'nowrap' }}>
               <AbIcon name={ic} size={34} color={k === 0 ? C.red : C.ink} />
-              <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 30, color: C.ink }}>{label}</span>
+              <span style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
+                <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 27, color: C.ink }}>{label}</span>
+                <span style={{ fontFamily: MONO, fontSize: 19, color: k === 0 ? C.red : C.sec }}>{val}</span>
+              </span>
             </div>
           </React.Fragment>
         );
@@ -938,7 +1000,7 @@ const Closing: React.FC = () => {
       </div>
       <div style={{ position: 'absolute', left: 0, right: 0, top: 742, textAlign: 'center' }}>
         <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 84, letterSpacing: '-0.045em', color: C.ink, ...fadeUp(f, 30) }}>Vahid Faraji<Dot /></div>
-        <div style={{ fontFamily: SANS, fontSize: 36, color: C.sec, marginTop: 6, ...fadeUp(f, 42) }}>AI-native architect · I make <b style={{ color: C.ink }}>data-driven decisions</b> easier</div>
+        <div style={{ fontFamily: SANS, fontSize: 36, color: C.sec, marginTop: 6, ...fadeUp(f, 42) }}>AI-native architect · I make <b style={{ color: C.ink }}>data-driven decisions</b> easier · <b style={{ color: C.red }}>12 years</b></div>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 34, marginTop: 22, fontFamily: MONO, fontSize: 24, color: C.deep, ...fadeUp(f, 60) }}>
           <span>vfaraji89.github.io</span><span style={{ color: C.muted }}>·</span><span>linkedin.com/in/vahid-faraji-jobehdar</span>
         </div>
