@@ -2877,6 +2877,27 @@
             .cat-card .upd-go { position: absolute; right: 0.875rem; bottom: 1rem; }
             .cat-card .upd-text { padding-right: 1.25rem; }
         }
+    
+        /* hero: smaller bio, a bigger film beside it */
+        .hero-bio .hero-tagline { font-size: 1rem; line-height: 1.7; }
+        .reel-mini { width: 300px; }
+        .reel-mini .reel-play { width: 52px; height: 52px; margin: -26px 0 0 -26px; }
+        .reel-mini .reel-play svg { width: 18px; height: 18px; }
+        @media (min-width: 1200px) { .reel-mini { width: 360px; } }
+        /* the promise heads the stack */
+        .sa-msg { margin: 0.25rem 0 0.25rem; font-size: clamp(1.125rem, 1.8vw, 1.5rem); }
+        /* portrait picker: seven media, one bead each */
+        .hero-portrait canvas { cursor: pointer; }
+        .pm-beads { display: flex; justify-content: center; gap: 5px; margin-top: 0.625rem; }
+        .pm-beads button {
+            width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; cursor: pointer; background-color: #d9d4ce;
+            background-image: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.8) 0 14%, rgba(255,255,255,0) 22%);
+            box-shadow: inset -1px -1px 0 rgba(0,0,0,0.15); transition: transform 0.4s var(--ease-spring), background-color 0.25s;
+        }
+        .pm-beads button:hover { transform: scale(1.35); }
+        .pm-beads button[aria-pressed="true"] { background-color: var(--rust); transform: scale(1.3); }
+        .pm-name { display: block; margin-top: 0.3rem; text-align: center; font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); min-height: 1em; }
+        @media (max-width: 640px) { .pm-beads { justify-content: flex-start; } .pm-name { text-align: left; } }
     </style>
     <link rel="stylesheet" href="assets/brand/abacus-frame.css">
 </head>
@@ -2959,6 +2980,7 @@
                     <canvas width="208" height="208" role="img" aria-label="Portrait of Vahid Faraji, redrawn as halftone, pixels, lines, letters or a network as the pointer moves over it"></canvas>
                     <span class="hero-portrait-tag" aria-hidden="true">Vahid</span>
                 </figure>
+                <div class="pm-pick"><div class="pm-beads" id="pm-beads" role="group" aria-label="Redraw the portrait"></div><span class="pm-name" id="pm-name" aria-live="polite"></span></div>
                 </div>
                 <div class="hero-links">
                     <a href="https://wa.me/905419402411" target="_blank" rel="noopener" aria-label="WhatsApp" style="color:#25d366;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 008.036 0C3.596 0 .003 3.59.001 8.003a7.95 7.95 0 001.078 3.997L0 16l4.12-1.08a7.987 7.987 0 003.81.965h.004c4.438 0 8.032-3.592 8.034-8.005a7.952 7.952 0 00-2.367-5.654zM8.036 14.6a6.61 6.61 0 01-3.374-.924l-.242-.144-2.508.657.67-2.443-.158-.252a6.585 6.585 0 01-1.015-3.497c.002-3.662 2.985-6.64 6.65-6.64a6.608 6.608 0 014.7 1.947 6.595 6.595 0 011.947 4.698c-.002 3.662-2.985 6.64-6.65 6.64h-.02zm3.64-4.972c-.2-.1-1.182-.583-1.365-.65-.183-.066-.316-.1-.45.1-.132.198-.515.65-.632.783-.116.133-.233.15-.432.05-.2-.1-.843-.31-1.606-.99-.593-.529-.994-1.182-1.11-1.382-.117-.2-.013-.307.088-.406.09-.088.2-.232.3-.348.099-.117.132-.2.198-.333.067-.133.034-.25-.016-.348-.05-.1-.45-1.082-.616-1.482-.162-.389-.327-.336-.45-.342l-.382-.007a.733.733 0 00-.532.25c-.183.2-.698.682-.698 1.664s.715 1.93.815 2.064c.1.133 1.408 2.15 3.413 3.015.477.206.849.329 1.139.421.478.152.914.13 1.258.079.384-.058 1.182-.484 1.35-.95.165-.467.165-.868.115-.951-.05-.084-.183-.133-.383-.233z"/></svg></a>
@@ -2979,8 +3001,6 @@
             </div>
 
             <hr class="hero-rule">
-
-            <p class="hero-count"><span class="sr-only">Enterprise solutions you can count on.</span><span aria-hidden="true">You can count on <span class="ticker hero-what" id="hero-what"><span class="tk is-on">enterprise solutions<span class="bead-stop">.</span></span><span class="tk">data products<span class="bead-stop">.</span></span><span class="tk">agents<span class="bead-stop">.</span></span><span class="tk">analysis<span class="bead-stop">.</span></span><span class="tk">design<span class="bead-stop">.</span></span><span class="tk">architecture<span class="bead-stop">.</span></span><span class="tk">problem solving<span class="bead-stop">.</span></span><span class="tk">token-cost optimisation<span class="bead-stop">.</span></span><span class="tk">tracing<span class="bead-stop">.</span></span><span class="tk">failure detection<span class="bead-stop">.</span></span><span class="tk">tests<span class="bead-stop">.</span></span></span></span></p>
             <div class="hero-bio">
                 <p class="hero-tagline">I design agentic systems end to end: the harness around the model (execution loop, tools, context and memory) and the evals that prove it works. Spec to production, in TypeScript and Python.</p>
                 <button type="button" class="reel reel-mini" id="reel-open" aria-haspopup="dialog" aria-label="Watch my animated CV, 1 minute">
@@ -3116,7 +3136,8 @@
             </div>
 
             <div class="stack-abacus pop-group" aria-label="Tools I build with">
-                <span class="sa-label">Building with</span>
+                <p class="hero-count sa-msg"><span class="sr-only">Enterprise solutions you can count on.</span><span aria-hidden="true">You can count on <span class="ticker hero-what" id="hero-what"><span class="tk is-on">enterprise solutions<span class="bead-stop">.</span></span><span class="tk">data products<span class="bead-stop">.</span></span><span class="tk">agents<span class="bead-stop">.</span></span><span class="tk">analysis<span class="bead-stop">.</span></span><span class="tk">design<span class="bead-stop">.</span></span><span class="tk">architecture<span class="bead-stop">.</span></span><span class="tk">problem solving<span class="bead-stop">.</span></span><span class="tk">token-cost optimisation<span class="bead-stop">.</span></span><span class="tk">tracing<span class="bead-stop">.</span></span><span class="tk">failure detection<span class="bead-stop">.</span></span><span class="tk">tests<span class="bead-stop">.</span></span></span></span></p>
+                <span class="sa-label">Built with, every day</span>
                 <ul class="sa-rod" role="list">
                 <li class="sb" style="--k:0"><span class="sb-bead" title="Claude Code"><svg viewBox="0 0 24 24" aria-hidden="true"><path clip-rule="evenodd" d="M20.998 10.949H24v3.102h-3v3.028h-1.487V20H18v-2.921h-1.487V20H15v-2.921H9V20H7.488v-2.921H6V20H4.487v-2.921H3V14.05H0V10.95h3V5h17.998v5.949zM6 10.949h1.488V8.102H6v2.847zm10.51 0H18V8.102h-1.49v2.847z" fill="#D97757" fill-rule="evenodd"></path></svg></span><span class="sb-name">Claude Code</span></li>
                 <li class="sb" style="--k:1"><span class="sb-bead" title="Claude Agent SDK"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.073-2.339-.097-2.266-.122-.571-.121L0 11.784l.055-.352.48-.321.686.06 1.52.103 2.278.158 1.652.097 2.449.255h.389l.055-.157-.134-.098-.103-.097-2.358-1.596-2.552-1.688-1.336-.972-.724-.491-.364-.462-.158-1.008.656-.722.881.06.225.061.893.686 1.908 1.476 2.491 1.833.365.304.145-.103.019-.073-.164-.274-1.355-2.446-1.446-2.49-.644-1.032-.17-.619a2.97 2.97 0 01-.104-.729L6.283.134 6.696 0l.996.134.42.364.62 1.414 1.002 2.229 1.555 3.03.456.898.243.832.091.255h.158V9.01l.128-1.706.237-2.095.23-2.695.08-.76.376-.91.747-.492.584.28.48.685-.067.444-.286 1.851-.559 2.903-.364 1.942h.212l.243-.242.985-1.306 1.652-2.064.73-.82.85-.904.547-.431h1.033l.76 1.129-.34 1.166-1.064 1.347-.881 1.142-1.264 1.7-.79 1.36.073.11.188-.02 2.856-.606 1.543-.28 1.841-.315.833.388.091.395-.328.807-1.969.486-2.309.462-3.439.813-.042.03.049.061 1.549.146.662.036h1.622l3.02.225.79.522.474.638-.079.485-1.215.62-1.64-.389-3.829-.91-1.312-.329h-.182v.11l1.093 1.068 2.006 1.81 2.509 2.33.127.578-.322.455-.34-.049-2.205-1.657-.851-.747-1.926-1.62h-.128v.17l.444.649 2.345 3.521.122 1.08-.17.353-.608.213-.668-.122-1.374-1.925-1.415-2.167-1.143-1.943-.14.08-.674 7.254-.316.37-.729.28-.607-.461-.322-.747.322-1.476.389-1.924.315-1.53.286-1.9.17-.632-.012-.042-.14.018-1.434 1.967-2.18 2.945-1.726 1.845-.414.164-.717-.37.067-.662.401-.589 2.388-3.036 1.44-1.882.93-1.086-.006-.158h-.055L4.132 18.56l-1.13.146-.487-.456.061-.746.231-.243 1.908-1.312-.006.006z" fill="#D97757" fill-rule="nonzero"></path></svg></span><span class="sb-name">Claude Agent SDK</span></li>
@@ -4677,9 +4698,14 @@
         // Halftone at rest; moving across the portrait steps through pixels,
         // lines, letters and a network, and a tap does the same on touch.
         var red = getComputedStyle(document.documentElement).getPropertyValue('--rust').trim() || '#e0301e';
-        var MODES = ['halftone', 'pixels', 'lines', 'letters', 'network'];
+        // Seven portraits: halftone, abacus beads, pixels, letters, numbers, a
+        // network and the photograph. Click (or tap) for the next; moving across
+        // the face keeps redrawing him; the beads below pick one directly.
+        var MODES = ['halftone', 'abacus', 'pixels', 'letters', 'numbers', 'network', 'photo'];
+        var NAMES = { halftone: 'Halftone', abacus: 'Abacus', pixels: 'Pixels', letters: 'Letters', numbers: 'Numbers', network: 'Network', photo: 'Photograph' };
         var mode = 0, moved = 0;
-        var GLYPHS = ' .:;ilcoaeshmHMW';
+        var GLYPHS = ' .:;ilcoaeshmHMW', DIGITS = ' .17423569080';
+        var photo = new Image(); photo.src = 'assets/foto-vahid.jpg'; photo.onload = function () { if (MODES[mode] === 'photo') queue(); };
         function tone(d) { var v = Math.round(244 - d * 228); return 'rgb(' + v + ',' + (v - 3) + ',' + (v - 9) + ')'; }
         function lensAt(x, y) {
             if (!pointer) return 1;
@@ -4689,8 +4715,29 @@
         function draw() {
             g.clearRect(0, 0, size, size);
             var m = MODES[mode];
+            if (m === 'photo') {
+                if (photo.complete && photo.naturalWidth) {
+                    g.save(); g.filter = 'grayscale(0.15) contrast(1.05)'; g.drawImage(photo, 0, 0, size, size); g.restore();
+                    if (pointer) { var gr = g.createRadialGradient(pointer[0], pointer[1], 0, pointer[0], pointer[1], 40); gr.addColorStop(0, 'rgba(224,48,30,0.18)'); gr.addColorStop(1, 'rgba(224,48,30,0)'); g.fillStyle = gr; g.fillRect(0, 0, size, size); }
+                }
+                fig.setAttribute('data-mode', m); sync(); return;
+            }
             g.fillStyle = ink; g.strokeStyle = ink; g.lineCap = 'round';
-            if (m === 'letters') { g.textAlign = 'center'; g.textBaseline = 'middle'; }
+            if (m === 'letters' || m === 'numbers') { g.textAlign = 'center'; g.textBaseline = 'middle'; }
+            if (m === 'abacus') {
+                // rods every second row, beads on them sized by the tone
+                g.strokeStyle = 'rgba(28,28,30,0.16)'; g.lineWidth = 0.6;
+                for (var rr = 1; rr < N; rr += 2) { g.beginPath(); g.moveTo(0, (rr + 0.5) * cell); g.lineTo(size, (rr + 0.5) * cell); g.stroke(); }
+                for (var r2 = 1; r2 < N; r2 += 2) for (var c2 = 1; c2 < N; c2 += 2) {
+                    var dd = (dark[r2][c2] + dark[r2 - 1][c2] + dark[r2][c2 - 1] + dark[r2 - 1][c2 - 1]) / 4;
+                    if (dd < 0.06) continue;
+                    var bx = (c2 + 0.5) * cell - cell / 2, by = (r2 + 0.5) * cell, br = cell * 1.05 * Math.sqrt(dd) * lensAt(bx, by);
+                    g.fillStyle = (r2 * 5 + c2 * 3) % 47 === 0 && dd > 0.4 ? red : ink;
+                    g.beginPath(); g.arc(bx, by, br, 0, 7); g.fill();
+                    if (br > 1.6) { g.fillStyle = 'rgba(255,255,255,0.55)'; g.beginPath(); g.arc(bx - br * 0.32, by - br * 0.34, br * 0.28, 0, 7); g.fill(); }
+                }
+                fig.setAttribute('data-mode', m); sync(); return;
+            }
             for (var r = 0; r < N; r++) for (var c = 0; c < N; c++) {
                 var d = dark[r][c];
                 var x = (c + 0.5) * cell, y = (r + 0.5) * cell, lens = lensAt(x, y);
@@ -4700,15 +4747,12 @@
                 if (d < 0.05) continue;
                 if (m === 'halftone') {
                     g.beginPath(); g.arc(x, y, cell * 0.6 * Math.sqrt(d) * lens, 0, 7); g.fill();
-                } else if (m === 'lines') {
-                    var amp = cell * 0.6 * Math.pow(d, 1.2) * lens;
-                    g.lineWidth = 0.4 + 2.4 * Math.pow(d, 1.4);
-                    g.beginPath(); g.moveTo(x - cell / 2, y + Math.sin(c * 1.1 + r * 0.7) * amp); g.lineTo(x + cell / 2, y + Math.sin((c + 1) * 1.1 + r * 0.7) * amp); g.stroke();
-                } else if (m === 'letters') {
-                    var ch = GLYPHS[Math.min(GLYPHS.length - 1, Math.floor(Math.pow(d, 0.75) * GLYPHS.length))];
+                } else if (m === 'letters' || m === 'numbers') {
+                    var set = m === 'letters' ? GLYPHS : DIGITS;
+                    var ch = set[Math.min(set.length - 1, Math.floor(Math.pow(d, 0.75) * set.length))];
                     if (ch === ' ') continue;
                     g.font = '700 ' + Math.round(cell * 1.35 * lens) + 'px "Geist Mono", monospace';
-                    g.fillStyle = tone(Math.min(1, 0.25 + d)); g.fillText(ch, x, y);
+                    g.fillStyle = m === 'numbers' && (r * 7 + c * 11) % 61 === 0 ? red : tone(Math.min(1, 0.25 + d)); g.fillText(ch, x, y);
                 } else if (m === 'network') {
                     if (d < 0.3) continue;
                     if (c + 1 < N && dark[r][c + 1] > 0.3) { g.lineWidth = 0.3 + 0.9 * d; g.beginPath(); g.moveTo(x, y); g.lineTo(x + cell, y); g.stroke(); }
@@ -4717,26 +4761,38 @@
                     g.beginPath(); g.arc(x, y, cell * 0.32 * Math.sqrt(d) * lens, 0, 7); g.fill();
                 }
             }
-            fig.setAttribute('data-mode', m);
+            fig.setAttribute('data-mode', m); sync();
+        }
+        // the bead picker
+        var pick = document.getElementById('pm-beads'), nameEl = document.getElementById('pm-name');
+        var beads = MODES.map(function (m, i) {
+            var b = document.createElement('button');
+            b.type = 'button'; b.title = NAMES[m]; b.setAttribute('aria-label', 'Draw the portrait as ' + NAMES[m].toLowerCase());
+            b.addEventListener('click', function () { set(i); });
+            if (pick) pick.appendChild(b);
+            return b;
+        });
+        function sync() {
+            beads.forEach(function (b, i) { b.setAttribute('aria-pressed', i === mode ? 'true' : 'false'); });
+            if (nameEl) nameEl.textContent = NAMES[MODES[mode]];
+            cv.setAttribute('aria-label', 'Portrait of Vahid Faraji, drawn as ' + NAMES[MODES[mode]].toLowerCase() + '. Click for the next of seven.');
         }
         var raf = 0;
         function queue() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; draw(); }); }
-        function next() { mode = (mode + 1) % MODES.length; queue(); }
+        function set(i) { mode = (i + MODES.length) % MODES.length; moved = 0; queue(); if (typeof vfSound === 'function') vfSound(0.08); }
+        function next() { set(mode + 1); }
+        cv.addEventListener('click', next);
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            var entered = 0;
-            cv.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { entered = Date.now(); next(); } });
             cv.addEventListener('pointermove', function (e) {
                 var b = cv.getBoundingClientRect();
                 var np = [(e.clientX - b.left) / b.width * size, (e.clientY - b.top) / b.height * size];
                 if (pointer) moved += Math.hypot(np[0] - pointer[0], np[1] - pointer[1]);
                 pointer = np;
-                // every so much travel across the face, a new medium
-                if (moved > size * 1.4) { moved = 0; mode = (mode + 1) % MODES.length; }
+                // the mouse leads: every so much travel across the face, the next medium
+                if (moved > size * 2.2) { moved = 0; mode = (mode + 1) % MODES.length; }
                 queue();
             });
-            cv.addEventListener('pointerleave', function () { pointer = null; moved = 0; mode = 0; queue(); });
-            // a click right after the pointer arrives would skip a medium; let the arrival count
-            cv.addEventListener('click', function () { if (Date.now() - entered > 350) next(); });
+            cv.addEventListener('pointerleave', function () { pointer = null; moved = 0; queue(); });
         }
         draw();
     })();
