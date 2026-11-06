@@ -5,6 +5,8 @@
 Last updated: 2026-11
 Canonical: https://vfaraji89.github.io/
 
+Tagline: Enterprise solutions you can count on: data products, agents, analysis, design, architecture, problem solving, token-cost optimisation, tracing, failure detection and tests.
+
 ## About
 
 Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Istanbul. He builds production multi-agent systems, publishes peer-reviewed research, and trains teams on AI-native development. His work spans enterprise AI transformation, open-source tooling, and labor market analytics.

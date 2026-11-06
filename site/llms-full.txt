@@ -5,6 +5,8 @@
 Last updated: 2026-11
 Canonical: https://vfaraji89.github.io/
 
+Tagline: Enterprise solutions you can count on: data products, agents, analysis, design, architecture, problem solving, token-cost optimisation, tracing, failure detection and tests.
+
 ## Identity
 
 - Name: Vahid Faraji
