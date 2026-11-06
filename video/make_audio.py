@@ -1,13 +1,13 @@
 """Soundtrack for the animated CV, scored to the story.
 
 A light, modern electronic cue at 120 BPM that follows the seven chapters:
-  0-7   the beginning   warm pad, wooden bead plucks
-  7-15  data            hats and a soft kick come in, the bass starts counting
-  15-25 agents          full groove, a looping arpeggio (the agent loop)
-  25-37 Tokalator       sixteenth-note plucks, brighter filter
-  37-46 production      biggest section: wider pad, bass octaves, claps
-  46-53 through-line    breakdown: kick out, bells over the pad
-  53-60 invitation      lift into a final hit, then a clean tail
+  0-7   who I am        warm pad, wooden bead plucks
+  7-15  languages       a soft kick and hats come in, plucks answer each greeting
+  15-24 data, context   a looping arpeggio
+  24-35 put to work     sixteenth-note plucks, brighter filter
+  35-45 Tokalator       off-beat stabs, claps
+  45-53 count on        the biggest section, bass octaves, a lift
+  53-60 the abacus      kick out, bells, bead clicks, a final chord on the red dot
 Every chapter change gets a soft tonal swell into it and a low bloom on it,
 so the picture changes land on the music without a hard edge. Bead clicks mark the counting moments.
 
@@ -28,7 +28,7 @@ t = np.arange(N) / SR
 L = np.zeros(N)
 R = np.zeros(N)
 
-CUTS = [0, 7, 15, 25, 37, 46, 53, 60]
+CUTS = [0, 7, 15, 24, 35, 45, 53, 60]
 # chord per chapter (root, then chord tones in Hz): Am, F, C, G, Dm, F, Am(add9)
 def hz(n):  # midi -> Hz
     return 440.0 * 2 ** ((n - 69) / 12)
@@ -81,7 +81,7 @@ def lowpass(x, cutoff):
 
 
 # ---- pad: detuned saw-ish stacks per chapter, crossfaded, filter opens with intensity
-INTENSITY = [0.35, 0.55, 0.75, 0.85, 1.0, 0.5, 0.9]
+INTENSITY = [0.35, 0.5, 0.7, 0.85, 0.9, 1.0, 0.45]
 pad = np.zeros(N)
 for ci, (root, tones) in enumerate(CHORDS):
     s, e = CUTS[ci], CUTS[ci + 1]
@@ -132,28 +132,28 @@ def clap(at, g=1.0):
 beats = np.arange(0, DUR, BEAT)
 for b in beats:
     ci = chapter(b)
-    if ci in (1, 2, 3, 4, 6) and b < 58.5:
+    if ci in (1, 2, 3, 4, 5):
         if ci == 1 and b < 9:       # kick enters on the second bar of 'data'
             pass
         else:
             kick(b, 0.8 if ci == 1 else 1.0)
-    if ci >= 1 and ci != 5 and b < 58.5:
+    if 1 <= ci <= 5:
         hat(b + BEAT / 2, 1.0, 0.25)
-        if ci in (3, 4, 6):
+        if ci in (3, 4, 5):
             hat(b + BEAT / 4, 0.5, -0.3)
             hat(b + 3 * BEAT / 4, 0.5, -0.3)
-    if ci in (4, 6) and int(round(b / BEAT)) % 2 == 1 and b < 58.5:
+    if ci in (4, 5) and int(round(b / BEAT)) % 2 == 1:
         clap(b)
 pad *= duck
 
 # ---- bass: chapter root in eighths, octave jumps in production
-for b in np.arange(7, 58.5, BEAT / 2):
+for b in np.arange(7, 53, BEAT / 2):
     ci = chapter(b)
-    if ci == 5:
+    if ci == 6:
         continue
     root = CHORDS[ci][0] - 12
     step = int(round(b / (BEAT / 2)))
-    m = root + (12 if ci == 4 and step % 4 == 3 else 0)
+    m = root + (12 if ci == 5 and step % 4 == 3 else 0)
     n = int(BEAT / 2 * SR * 0.9)
     k = np.arange(n) / SR
     f = hz(m)
@@ -176,32 +176,38 @@ def pluck(midi, at, g=1.0, pan=0.0, decay=0.996):
 for i, at in enumerate([0.6, 1.6, 2.4, 3.6, 4.4, 5.2, 6.0]):
     tones = CHORDS[0][1]
     pluck(tones[i % 4] + 12, at, 0.9, -0.4 + 0.15 * i)
-# agents: the loop arpeggio in eighths
-for j, at in enumerate(np.arange(15, 25, BEAT / 2)):
+# languages: plucks answering each greeting
+for i, at in enumerate(np.arange(7.7, 13.2, 0.533)):
+    pluck(CHORDS[1][1][[0, 2, 1, 3, 2][i % 5]] + 12, at, 0.75, -0.5 + 0.12 * i)
+# data and context: the loop arpeggio in eighths
+for j, at in enumerate(np.arange(15, 24, BEAT / 2)):
     tones = CHORDS[2][1]
     pluck(tones[[0, 1, 2, 3, 2, 1][j % 6]] + 12, at, 0.8, 0.35 * np.sin(j))
-# Tokalator: sixteenths, brighter
-for j, at in enumerate(np.arange(25, 37, BEAT / 4)):
+# models put to work: sixteenths, brighter
+for j, at in enumerate(np.arange(24, 35, BEAT / 4)):
     tones = CHORDS[3][1]
-    pluck(tones[[0, 2, 1, 3][j % 4]] + 24, at, 0.55 + 0.25 * (j % 4 == 0), 0.5 * np.sin(j * 0.7))
-# production: off-beat stabs
-for j, at in enumerate(np.arange(37, 46, BEAT)):
+    pluck(tones[[0, 2, 1, 3][j % 4]] + 24, at, 0.5 + 0.2 * (j % 4 == 0), 0.5 * np.sin(j * 0.7))
+# Tokalator: off-beat stabs
+for j, at in enumerate(np.arange(35, 45, BEAT)):
     for m in CHORDS[4][1]:
+        pluck(m + 12, at + BEAT / 2, 0.4, -0.2 + 0.1 * (m % 4))
+# you can count on: the biggest section, stabs every beat and a lift into the close
+for j, at in enumerate(np.arange(45, 51, BEAT)):
+    for m in CHORDS[5][1]:
         pluck(m + 12, at + BEAT / 2, 0.45, -0.2 + 0.1 * (m % 4))
-# through-line: bells
+for j, at in enumerate(np.arange(51, 53, BEAT / 4)):
+    pluck(CHORDS[5][1][j % 4] + 12 + 12 * (j // 8), at, 0.55, 0.4 * np.sin(j))
 def bell(midi, at, g=1.0, pan=0.0):
     f = hz(midi)
     n = int(2.5 * SR)
     k = np.arange(n) / SR
     sig = np.sin(2 * np.pi * f * k) + 0.4 * np.sin(2 * np.pi * f * 2.76 * k) * np.exp(-k * 3) + 0.2 * np.sin(2 * np.pi * f * 5.4 * k) * np.exp(-k * 6)
     add(sig * env_ad(n, 0.002, 0.9), at, 0.11 * g, pan)
-for i, at in enumerate(np.arange(46, 53, BEAT * 2)):
-    bell(CHORDS[5][1][[3, 2, 1, 2][i % 4]] + 12, at, 1.0, -0.3 + 0.2 * (i % 4))
-# invitation: rising arp then the final chord
-for j, at in enumerate(np.arange(53, 56, BEAT / 4)):
-    pluck(CHORDS[6][1][j % 4] + 12 + 12 * (j // 8), at, 0.6, 0.4 * np.sin(j))
+# the close: the abacus is built, the name appears, a final chord on the red dot
+for i, at in enumerate([53.3, 54.3, 55.0]):
+    bell(CHORDS[6][1][[0, 2, 3][i]] + 12, at, 0.8, -0.3 + 0.3 * i)
 for m in CHORDS[6][1]:
-    bell(m + 12, 56.0, 1.2, 0.0)
+    bell(m + 12, 55.7, 1.2, 0.0)
 
 # ---- transitions: riser into each chapter, impact on it
 def swell(end, length=1.8, g=1.0):
@@ -227,8 +233,8 @@ def bloom(at, g=1.0):
     add(body + shimmer, at, 0.2 * g)
 
 for c in CUTS[1:-1]:
-    swell(c, 1.8 if c != 53 else 2.6, 1.2 if c == 53 else 1.0)
-    bloom(c, 1.15 if c in (37, 53) else 0.9)
+    swell(c, 1.8 if c != 45 else 2.4, 1.15 if c == 45 else 1.0)
+    bloom(c, 1.15 if c in (45,) else (0.7 if c == 53 else 0.9))
 
 # ---- bead clicks on the counting moments
 def bead_click(at, g=1.0, pitch=1600.0, pan=0.0):
@@ -238,8 +244,10 @@ def bead_click(at, g=1.0, pitch=1600.0, pan=0.0):
     add(body + rng.uniform(-1, 1, n) * np.exp(-k * 320) * 0.15, at, 0.11 * g, pan)
 for i, at in enumerate([4.13, 4.67, 5.2, 5.73, 6.27]):        # the portrait changes medium
     bead_click(at, 1.0, 1500 + 120 * i, -0.5 + 0.25 * i)
-for i, at in enumerate(np.arange(57.0, 58.6, 0.2)):           # beads drop onto the rod
-    bead_click(at, 0.8, 1300 + 90 * (i % 5), -0.6 + 0.15 * i)
+for i in range(5):                                             # beads drop onto the rods
+    bead_click(52.47 + (32 + i * 6) / 30, 0.9, 1300 + 90 * i, -0.5 + 0.25 * i)
+for i in range(5):                                             # and slide across to count
+    bead_click(52.47 + (130 + i * 5) / 30, 0.7, 1500 + 70 * i, 0.5 - 0.2 * i)
 
 # ---- mix: pad + a short stereo reverb, master fades
 padL = pad * 0.08
