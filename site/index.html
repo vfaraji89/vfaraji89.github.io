@@ -1314,12 +1314,12 @@
             display: flex; gap: 0.625rem; line-height: 1.5;
         }
         .about-list li::before {
-            content: ""; width: 5px; height: 5px; border-radius: 50%;
-            background: var(--accent); opacity: 0.55;
-            margin-top: 0.45em; flex-shrink: 0;
+            content: ""; width: 7px; height: 7px; border-radius: 50%;
+            background-color: var(--mark); box-shadow: inset 0 0 0 1px rgba(224,48,30,0.45);
+            margin-top: 0.42em; flex-shrink: 0;
         }
         .about-list li.hl { color: var(--accent); font-weight: 500; }
-        .about-list li.hl::before { opacity: 1; box-shadow: 0 0 8px var(--accent); }
+        .about-list li.hl::before { background-color: var(--rust); box-shadow: none; }
 
         /* Contact */
         .contact-box { border: 1px solid var(--border); border-radius: var(--radius); padding: 2.5rem; text-align: center; background: var(--bg-subtle); }
@@ -1488,10 +1488,20 @@
         .to-top:hover { color: var(--ink); text-decoration: none; }
         .to-top:hover span { transform: translateY(-3px); }
 
+        /* ---- one bead for every dot ----------------------------------------
+           Bullets, status dots, the switch, link markers and the name all use
+           the same minimal bead: a round body, a pinpoint highlight top-left
+           and a soft shade bottom-right. Each sets only its colour. */
+        .about-list li::before, .hire-ph, .rec-knob, .rc-status i, .live-bead, .tz-dot,
+        .name-bead, .footer-nav a::before, .nav-sheet a::before, .story-count i, .wm-dot {
+            background-image: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.8) 0 14%, rgba(255,255,255,0) 22%);
+        }
+        .hire-ph, .rec-knob, .tz-dot, .live-bead { box-shadow: inset -1px -1px 0 rgba(0,0,0,0.16); }
+
         /* ---- the bead after the name --------------------------------------- */
         .name-bead {
             display: inline-block; width: 0.36em; height: 0.36em; margin-left: 0.12em;
-            border-radius: 50%; background: var(--rust); vertical-align: baseline;
+            border-radius: 50%; background-color: var(--rust); vertical-align: baseline;
             box-shadow: inset -0.05em -0.06em 0 rgba(0,0,0,0.2);
         }
         .brand:hover .name-bead { animation: bead-hop 0.75s var(--ease-move); }
@@ -1507,7 +1517,7 @@
         .footer-nav a, .nav-sheet a { position: relative; transition: padding var(--dur-slow) var(--ease-out), color var(--ctl-ease); }
         .footer-nav a::before, .nav-sheet a::before {
             content: ""; position: absolute; left: 0; top: 50%; width: 6px; height: 6px; margin-top: -3px;
-            border-radius: 50%; background: var(--rust); transform: scale(0) translateX(-6px);
+            border-radius: 50%; background-color: var(--rust); transform: scale(0) translateX(-6px);
             transition: transform 0.55s var(--ease-spring);
         }
         .footer-nav a:hover, .nav-sheet a:hover { padding-left: 13px; color: var(--ink); text-decoration: none; }
@@ -1526,7 +1536,7 @@
         /* ---- Book a call: a live bead switches on ------------------------------ */
         .live-bead {
             display: inline-block; width: 0; height: 7px; margin-right: 0; border-radius: 50%;
-            background: var(--rust); opacity: 0;
+            background-color: var(--rust); opacity: 0;
             transition: width var(--dur-slow) var(--ease-spring), margin var(--dur-slow) var(--ease-spring), opacity var(--ctl-ease);
         }
         .nav-btn-solid:hover .live-bead, .hire-btn:hover .live-bead {
@@ -1835,7 +1845,7 @@
             font-size: 0.75rem; color: var(--text-secondary);
             font-variation-settings: "MONO" 1;
         }
-        .booking-tz .tz-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+        .booking-tz .tz-dot { width: 8px; height: 8px; border-radius: 50%; background-color: var(--rust); flex-shrink: 0; }
         .booking-form { display: flex; flex-direction: column; gap: 0.75rem; }
         .booking-form label {
             font-size: 0.6875rem; font-weight: 600; color: var(--text-secondary);
@@ -1895,16 +1905,17 @@
         .hire-btn:active { transform: scale(0.98); }
 
         /* four-phase indicator, mirroring the hero icon's cycle */
-        .hire-phase { display: inline-flex; gap: 3px; align-items: center; }
-        .hire-ph { width: 4px; height: 4px; border-radius: 50%; background: var(--border-strong); }
+        .hire-phase { display: inline-flex; gap: 3px; align-items: center; position: relative; padding: 0 2px; }
+        .hire-phase::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(28,28,30,0.2); }
+        .hire-ph { position: relative; width: 6px; height: 6px; border-radius: 50%; background-color: var(--border-strong); }
         .hire-ph-1 { animation: ph-1 14s ease-in-out infinite; }
         .hire-ph-2 { animation: ph-2 14s ease-in-out infinite; }
         .hire-ph-3 { animation: ph-3 14s ease-in-out infinite; }
         .hire-ph-4 { animation: ph-4 14s ease-in-out infinite; }
-        @keyframes ph-1 { 0%,18%{background:var(--accent);transform:scale(1.35)} 25%,100%{background:var(--border-strong);transform:scale(1)} }
-        @keyframes ph-2 { 0%,25%{background:var(--border-strong);transform:scale(1)} 30%,43%{background:var(--accent);transform:scale(1.35)} 50%,100%{background:var(--border-strong);transform:scale(1)} }
-        @keyframes ph-3 { 0%,50%{background:var(--border-strong);transform:scale(1)} 55%,68%{background:var(--accent);transform:scale(1.35)} 75%,100%{background:var(--border-strong);transform:scale(1)} }
-        @keyframes ph-4 { 0%,75%{background:var(--border-strong);transform:scale(1)} 80%,93%{background:var(--accent);transform:scale(1.35)} 100%{background:var(--border-strong);transform:scale(1)} }
+        @keyframes ph-1 { 0%,18%{background-color:var(--accent);transform:scale(1.35)} 25%,100%{background-color:var(--border-strong);transform:scale(1)} }
+        @keyframes ph-2 { 0%,25%{background-color:var(--border-strong);transform:scale(1)} 30%,43%{background-color:var(--accent);transform:scale(1.35)} 50%,100%{background-color:var(--border-strong);transform:scale(1)} }
+        @keyframes ph-3 { 0%,50%{background-color:var(--border-strong);transform:scale(1)} 55%,68%{background-color:var(--accent);transform:scale(1.35)} 75%,100%{background-color:var(--border-strong);transform:scale(1)} }
+        @keyframes ph-4 { 0%,75%{background-color:var(--border-strong);transform:scale(1)} 80%,93%{background-color:var(--accent);transform:scale(1.35)} 100%{background-color:var(--border-strong);transform:scale(1)} }
 
         /* Demoted CTAs */
         .cta-secondary {
@@ -1935,21 +1946,21 @@
             font-variation-settings: "MONO" 0.8, "CASL" 0;
             transition: border-color var(--transition), color var(--transition);
         }
-        .rec-toggle:hover { border-color: var(--accent); color: var(--accent); }
-        .rec-toggle[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
-        .rec-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); transition: background var(--transition); }
-        .rec-toggle[aria-pressed="true"] .rec-dot { background: var(--accent); }
-        .rec-track {
-            width: 26px; height: 14px; border-radius: 999px; position: relative;
-            background: var(--border-strong); transition: background var(--transition);
+        .rec-toggle:hover { border-color: var(--ctl-line-hover); color: var(--ink); }
+        .rec-toggle[aria-pressed="true"] { border-color: rgba(224,48,30,0.35); color: var(--rust-deep); background: var(--paper); }
+        .rec-dot { display: none; }
+        /* The switch is an abacus rail: a bead slides from one end to the other. */
+        .rec-track { order: -1; width: 30px; height: 12px; position: relative; flex: none; }
+        .rec-track::before {
+            content: ""; position: absolute; left: 1px; right: 1px; top: 50%; height: 2px; margin-top: -1px;
+            border-radius: 2px; background: rgba(28,28,30,0.22); transition: background var(--dur-base) var(--ease-move);
         }
-        .rec-toggle[aria-pressed="true"] .rec-track { background: var(--accent); }
+        .rec-toggle[aria-pressed="true"] .rec-track::before { background: rgba(224,48,30,0.35); }
         .rec-knob {
-            position: absolute; top: 2px; left: 2px; width: 10px; height: 10px;
-            border-radius: 50%; background: var(--bg);
-            transition: transform var(--transition);
+            position: absolute; top: 0; left: 0; width: 12px; height: 12px; border-radius: 50%;
+            background-color: #b9b6b0; transition: transform 0.55s var(--ease-spring), background-color var(--dur-base) var(--ease-move);
         }
-        .rec-toggle[aria-pressed="true"] .rec-knob { transform: translateX(12px); }
+        .rec-toggle[aria-pressed="true"] .rec-knob { transform: translateX(18px); background-color: var(--rust); }
         .rec-hint {
             font-size: 0.6875rem; color: var(--text-muted);
             font-variation-settings: "MONO" 0.6, "CASL" 0;
@@ -1984,7 +1995,7 @@
             font-family: var(--font-mono); font-size: 0.6875rem; color: var(--rust-deep);
             background: var(--paper); border: 1px solid rgba(224,48,30,0.25);
         }
-        .rc-status i { width: 7px; height: 7px; border-radius: 50%; background: var(--rust); animation: live-ring 1.8s var(--ease-move) infinite; }
+        .rc-status i { width: 8px; height: 8px; border-radius: 50%; background-color: var(--rust); animation: live-ring 1.8s var(--ease-move) infinite; }
         .rc-proof { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.625rem; }
         .rc-proof li { padding: 0.875rem 1rem; border-radius: 12px; background: var(--paper); border: 1px solid rgba(224,48,30,0.12); }
         .rc-proof b { display: block; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; color: var(--rust); line-height: 1.1; }
@@ -2076,14 +2087,14 @@
         }
         .story-count i {
             width: 7px; height: 7px; border-radius: 50%; box-sizing: border-box;
-            border: 1px solid rgba(28,28,30,0.45); background: transparent;
-            transition: background var(--dur-base) var(--ease-move), border-color var(--dur-base) var(--ease-move), transform 0.5s var(--ease-spring);
+            border: 1px solid rgba(28,28,30,0.45); background-color: transparent;
+            transition: background-color var(--dur-base) var(--ease-move), border-color var(--dur-base) var(--ease-move), transform 0.5s var(--ease-spring);
         }
         .story-count i:nth-child(2) { transition-delay: 70ms; }
         .story-count i:nth-child(3) { transition-delay: 140ms; }
         .story-count i:nth-child(4) { transition-delay: 210ms; }
-        .story-step:hover .story-count i { background: var(--rust); border-color: var(--rust); transform: translateX(2px); }
-        .story-step:last-child .story-count i { background: var(--rust); border-color: var(--rust); }
+        .story-step:hover .story-count i { background-color: var(--rust); border-color: var(--rust); transform: translateX(2px); }
+        .story-step:last-child .story-count i { background-color: var(--rust); border-color: var(--rust); }
         .story-body h3 { transition: color var(--ctl-ease); }
         .story-step:hover .story-body h3 { color: var(--rust-deep); }
         @media (prefers-reduced-motion: reduce) {
@@ -2402,7 +2413,7 @@
 
             <div class="hero-icon-row">
                 <div>
-                    <p class="hero-is"><span class="hero-is-name">Vahid</span> <span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">is an <mark>AI-native architect</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span><span class="sr-only">is an AI-native architect.</span></p>
+                    <p class="hero-is"><span class="hero-is-name">Vahid</span> <span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">is an <mark>AI-native architect</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">loves <mark>creative data products</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span><span class="sr-only">is an AI-native architect.</span></p>
                     <h1 class="hero-name">Agents you can<br class="hero-br"> count&nbsp;on<span class="bead-stop">.</span></h1>
                 </div>
             </div>
