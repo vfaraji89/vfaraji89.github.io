@@ -2642,6 +2642,41 @@
             .footer-right { justify-content: center; }
             .footer-meta { justify-content: center; }
         }
+            /* ---- wooden abacus frames ------------------------------------------
+           Frames are drawn, not dotted: two light beech dowels at the sides
+           (shaded like a turned cylinder) and thin rods running between them.
+           On hover the lower rod fills with red from left to right. */
+        :root {
+            --dowel: linear-gradient(90deg, #b88f62 0%, #dcc09c 30%, #f0e2cb 52%, #d2b38c 78%, #ac8457 100%);
+        }
+        .bio-tag, .arc-step, .hire-cta, .reel, .problem {
+            border-left: 0; border-right: 0; border-radius: 6px;
+            background-image: var(--dowel), var(--dowel) !important;
+            background-size: 5px 100%, 5px 100% !important;
+            background-position: left center, right center !important;
+            background-repeat: no-repeat !important;
+        }
+        .problem { background-size: 6px 100%, 6px 100% !important; }
+        .bio-tag.accent::before { background: rgba(28,28,30,0.14); }
+        .bio-tag::before {
+            content: ""; position: absolute; left: 5px; right: 5px; top: 5px; bottom: auto; width: auto; height: 1px; z-index: 0;
+            border-radius: 0; background: rgba(28,28,30,0.14); box-shadow: none; pointer-events: none; transition: none;
+        }
+        .bio-tag:hover::before, .bio-tag.is-flipped::before { left: 5px; background: rgba(28,28,30,0.14); }
+        .bio-tag::after, .arc-step::after, .hire-cta::after, .reel::after {
+            left: 5px; right: 5px; bottom: 5px; height: 1px;
+            background: linear-gradient(var(--rust), var(--rust)) left center / 0% 100% no-repeat, rgba(28,28,30,0.16);
+            transition: background-size 0.7s cubic-bezier(0.65, 0, 0.25, 1);
+        }
+        .bio-tag:hover::after, .bio-tag.is-flipped::after, .arc-step:hover::after, .hire-cta:hover::after, .reel:hover::after {
+            background-size: 100% 100%, auto;
+        }
+        .bio-tag:hover, .bio-tag.is-flipped, .arc-step:hover, .hire-cta:hover, .reel:hover { border-left-color: transparent; border-right-color: transparent; }
+        .bio-tag.is-flipped, .arc-step:hover { background-color: var(--paper); background-image: var(--dowel), var(--dowel); }
+        .bio-tag:hover, .hire-cta:hover, .reel:hover { background-image: var(--dowel), var(--dowel); }
+        .problem::before { left: 6px; right: 6px; }
+        @media (prefers-reduced-motion: reduce) { .bio-tag::after, .arc-step::after, .hire-cta::after, .reel::after { transition: none; } }
+
     </style>
 </head>
 <body>
@@ -3138,19 +3173,16 @@
                     <span class="arc-kicker">01 &middot; Languages</span>
                     <h3>Reading people</h3>
                     <p>Turkish native, English C1, Spanish to teaching level, Portuguese and Japanese on the way. Living in several languages taught me that <b>meaning sits in context, not in the words</b>.</p>
-                    <span class="arc-rod" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i class="soft" style="--k:3"></i><i class="soft" style="--k:4"></i></span>
                 </article>
                 <article class="arc-step">
                     <span class="arc-kicker">02 &middot; Data products</span>
                     <h3>Structuring it</h3>
                     <p>Defaro.io, then Kariyer.net: 300M+ assets under one metadata layer, with governance and lineage. <b>A number is only as good as the trail behind it</b>, so I built the trail.</p>
-                    <span class="arc-rod" aria-hidden="true"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i></span>
                 </article>
                 <article class="arc-step">
                     <span class="arc-kicker">03 &middot; Applied AI</span>
                     <h3>Letting models read</h3>
                     <p>Agents that map job titles in any language to O*NET and ESCO, a Turkish skill-extraction benchmark, Tokalator for the context budget. <b>The model reads the language; the system keeps the lineage.</b></p>
-                    <span class="arc-rod" aria-hidden="true"><i class="hot" style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i></span>
                 </article>
             </div>
             <p class="arc-bridge"><b>Same problem, a new reader.</b> Languages taught me to read people, data products taught me to keep the evidence, and applied AI lets both run at scale.</p>
