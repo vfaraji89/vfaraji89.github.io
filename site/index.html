@@ -1003,6 +1003,59 @@
         .bio-tag:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
         .bio-tags.has-focus .bio-tag:not(.is-flipped) { opacity: 0.45; }
 
+
+        /* ---- through-line: the problem, how I got here, the record ---------- */
+        .problem {
+            display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: center;
+            margin: 1.5rem 0 2.5rem; padding: 1.5rem 1.75rem 1.75rem; position: relative;
+            border-top: 1px solid var(--ctl-line); border-bottom: 1px solid var(--ctl-line);
+            border-left: 2.5px solid rgba(28,28,30,0.72); border-right: 2.5px solid rgba(28,28,30,0.72); border-radius: 5px;
+            background: radial-gradient(circle, rgba(224,48,30,0.14) 1px, transparent 1.6px) 0 0 / 14px 14px;
+            -webkit-mask-image: none;
+        }
+        .problem::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 35%, rgba(255,255,255,0.86)); border-radius: inherit; z-index: 0; }
+        .problem > * { position: relative; z-index: 1; }
+        .problem .story-art { width: 100%; }
+        .problem-big { margin: 0.5rem 0 0.75rem; font-size: clamp(1.75rem, 3.2vw, 2.5rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; color: var(--ink); }
+        .problem-note { margin: 0 0 1.125rem; font-size: 0.9375rem; line-height: 1.65; color: var(--text-secondary); max-width: 34rem; }
+        .problem .story-domains { margin: 0; padding: 0; border: 0; }
+        .arc-head { display: block; margin-bottom: -0.5rem; }
+        .story-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 1rem; }
+        @media (min-width: 1100px) {
+            .story-grid { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 3.5rem; align-items: start; }
+            .story-grid .story-facets { grid-template-columns: 1fr 1fr; gap: 1.5rem 1.25rem; position: sticky; top: 6rem; }
+        }
+        @media (max-width: 640px) {
+            .problem { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.25rem; }
+            .problem .story-art { width: 150px; }
+        }
+
+        /* ---- the boxes below the hero share the abacus holder frame -------- */
+        .hire-cta, .reel {
+            border-left: 2.5px solid rgba(28,28,30,0.72); border-right: 2.5px solid rgba(28,28,30,0.72); border-radius: 6px;
+            position: relative;
+        }
+        .hire-cta::after, .reel::after {
+            content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: rgba(28,28,30,0.12); pointer-events: none;
+        }
+        .hire-cta:hover, .reel:hover { border-left-color: var(--rust); border-right-color: var(--rust); }
+
+        /* ---- wide screens: use the room ------------------------------------- */
+        @media (min-width: 1200px) {
+            .container { max-width: 1120px; }
+            .hero-name { font-size: 3.25rem; }
+            .hero-identity { width: 240px; }
+            .hero-portrait { width: 136px; height: 136px; }
+            .hero-tagline { max-width: 44rem; }
+            .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 52rem; }
+            .hero-cards .hire-cta, .hero-cards .reel { max-width: none; margin-top: 1.125rem; }
+            .section-tagline { max-width: 48rem; }
+        }
+        @media (min-width: 1600px) {
+            .container { max-width: 1240px; }
+            .hero-name { font-size: 3.75rem; }
+        }
+
         /* ---- abacus holder frames ------------------------------------------
            Chips and story cards share one minimal frame: two ink posts at the
            sides, a hairline rail along the bottom and a bead that travels the
@@ -2678,6 +2731,7 @@
             <hr class="hero-rule">
 
             <p class="hero-tagline">AI-native architect. I design agentic systems end to end: the harness around the model (execution loop, tools, context and memory) and the evals that prove it works. Spec to production, in TypeScript and Python.</p>
+            <div class="hero-cards">
             <div class="hire-cta" id="hire-cta">
                 <span class="hire-phase" aria-hidden="true">
                     <span class="hire-ph hire-ph-1"></span>
@@ -2706,6 +2760,7 @@
                     <span class="reel-built"><span class="reel-built-k">Built</span> <span class="ticker" id="built-ticker" aria-hidden="true"><span class="tk is-on">Tokalator</span><span class="tk">ProjectLens</span><span class="tk">a multi-agent classifier</span><span class="tk">awesome-applied-ai</span><span class="tk">Text-to-Report agents</span></span></span>
                 </span>
             </button>
+            </div>
 
             <div class="recruiter-switch">
                 <button type="button" class="rec-toggle" id="rec-toggle" aria-pressed="false" aria-controls="recruiter-card">
@@ -3041,6 +3096,32 @@
             <div class="section-label">Through-line</div>
             <p class="section-tagline">8 years in industry and 4 in research, turning messy data into decisions people act on.</p>
 
+            <div class="problem">
+                <figure class="hero-art story-art">
+                    <div class="hero-art-frame">
+                        <img src="assets/img/abacus-drawing.jpg" width="560" height="572" alt="Pencil drawing of a wooden abacus with beads counted along its rods" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption><em>Fig. 1</em> Counting before computing. Graphite on paper by <a class="art-credit" href="https://homamofidian.site" target="_blank" rel="noopener">Homa Mofidian</a>.</figcaption>
+                </figure>
+                <div class="problem-text">
+                    <span class="arc-kicker">The problem I solve</span>
+                    <p class="problem-big">Messy text in,<br>decisions out<span class="bead-stop">.</span></p>
+                    <p class="problem-note">Twelve years, eight in industry and four in research, on one problem shape. The domain keeps changing. The problem doesn&rsquo;t.</p>
+                    <div class="story-domains">
+                <span class="domains-label">Shipped in</span>
+                <span class="domain">Talent</span>
+                <span class="domain">Pricing</span>
+                <span class="domain">Finance</span>
+                <span class="domain">Sales</span>
+                <span class="domain">R&amp;D</span>
+                <span class="domain">Developer tools</span>
+                <span class="domain">Data infrastructure</span>
+            </div>
+                </div>
+            </div>
+
+            <span class="arc-kicker arc-head">How I got here</span>
+
             <div class="arc pop-group" aria-label="From languages to data products to applied AI">
                 <article class="arc-step">
                     <span class="arc-kicker">01 &middot; Languages</span>
@@ -3063,11 +3144,12 @@
             </div>
             <p class="arc-bridge"><b>Same problem, a new reader.</b> Languages taught me to read people, data products taught me to keep the evidence, and applied AI lets both run at scale.</p>
 
-            <div class="story-span" aria-hidden="true">
+            <div class="story-grid">
+                <div class="story-time">
+                    <div class="story-span" aria-hidden="true">
                 <span>2013</span><span class="story-rule"></span><span>2026</span>
             </div>
-
-            <div class="story-track pop-group">
+                    <div class="story-track pop-group">
                 <div class="story-step">
                     <span class="story-year">2013&ndash;15<span class="story-count" aria-hidden="true"><i></i><i></i></span></span>
                     <div class="story-body">
@@ -3111,31 +3193,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="story-art-row">
-                <figure class="hero-art story-art">
-                    <div class="hero-art-frame">
-                        <img src="assets/img/abacus-drawing.jpg" width="560" height="572" alt="Pencil drawing of a wooden abacus with beads counted along its rods" loading="lazy" decoding="async">
-                    </div>
-                    <figcaption><em>Fig. 1</em> Counting before computing. Graphite on paper by <a class="art-credit" href="https://homamofidian.site" target="_blank" rel="noopener">Homa Mofidian</a>.</figcaption>
-                </figure>
-                <blockquote class="story-quote">
-                Twelve years, eight in industry and four in research, on one problem shape: messy text in, decisions out. The domain keeps changing. The problem doesn&rsquo;t.
-                </blockquote>
-            </div>
-
-            <div class="story-domains">
-                <span class="domains-label">Shipped in</span>
-                <span class="domain">Talent</span>
-                <span class="domain">Pricing</span>
-                <span class="domain">Finance</span>
-                <span class="domain">Sales</span>
-                <span class="domain">R&amp;D</span>
-                <span class="domain">Developer tools</span>
-                <span class="domain">Data infrastructure</span>
-            </div>
-
-            <div class="story-facets">
+                </div>
+                <div class="story-facets">
                 <div class="facet">
                     <span class="facet-num">4</span>
                     <span class="facet-label">Languages spoken</span>
@@ -3156,6 +3215,7 @@
                     <span class="facet-label">Built unasked</span>
                     <span class="facet-note">Tokalator, awesome-applied-ai and this site all started as problems nobody assigned. The care shows in the small print: where a number is a team estimate rather than a measurement, it says so.</span>
                 </div>
+            </div>
             </div>
         </section>
 
