@@ -8,7 +8,8 @@
     <title>Vahid Faraji | AI-Native Architect: Agent Harnesses, Evals, Production LLM Agents</title>
     <meta name="description" content="Applied AI engineer shipping LLM agents to production: agent harnesses, tool calling, context and memory, evals, tracing and failure analysis. Full stack in TypeScript and Python. ACM-published.">
     <meta name="theme-color" content="#e0301e">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='4' y='4' width='40' height='40' rx='8' fill='none' stroke='%23e0301e' stroke-width='2.5'/><line x1='10' y1='16' x2='38' y2='16' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='26' x2='38' y2='26' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='36' x2='38' y2='36' stroke='%23ccc' stroke-width='1.5'/><circle cx='14' cy='16' r='3.5' fill='%23e0301e'/><circle cx='23' cy='16' r='3.5' fill='%23e0301e' opacity='0.7'/><circle cx='16' cy='26' r='3.5' fill='%23e0301e' opacity='0.8'/><circle cx='26' cy='26' r='3.5' fill='%23e0301e'/><circle cx='34' cy='26' r='3.5' fill='%23e0301e' opacity='0.5'/><circle cx='30' cy='36' r='3.5' fill='%23e0301e' opacity='0.6'/></svg>">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <script src="assets/brand/favicon-anim.js" defer></script>
     <link rel="manifest" href="manifest.webmanifest">
 
     <meta property="og:title" content="Vahid Faraji, AI-Native Architect: Agent Harnesses, Evals, Production LLM Agents">
@@ -1002,6 +1003,158 @@
         .bio-tag.is-flipped { background: var(--paper); border-color: var(--rust); color: var(--rust); }
         .bio-tag:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
         .bio-tags.has-focus .bio-tag:not(.is-flipped) { opacity: 0.45; }
+
+
+        /* ---- through-line: the problem, how I got here, the record ---------- */
+        .problem {
+            display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: center;
+            margin: 1.5rem 0 2.5rem; padding: 1.5rem 1.75rem 1.75rem; position: relative;
+            border-top: 1px solid var(--ctl-line); border-bottom: 1px solid var(--ctl-line);
+            border-left: 3.5px solid rgba(28,28,30,0.8); border-right: 3.5px solid rgba(28,28,30,0.8); border-radius: 5px;
+            background: radial-gradient(circle, rgba(224,48,30,0.14) 1px, transparent 1.6px) 0 0 / 14px 14px;
+            -webkit-mask-image: none;
+        }
+        .problem::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 35%, rgba(255,255,255,0.86)); border-radius: inherit; z-index: 0; }
+        .problem > * { position: relative; z-index: 1; }
+        .problem .story-art { width: 100%; }
+        .problem-big { margin: 0.5rem 0 0.75rem; font-size: clamp(1.75rem, 3.2vw, 2.5rem); font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; color: var(--ink); }
+        .problem-note { margin: 0 0 1.125rem; font-size: 0.9375rem; line-height: 1.65; color: var(--text-secondary); max-width: 34rem; }
+        .problem .story-domains { margin: 0; padding: 0; border: 0; }
+        .arc-head { display: block; margin-bottom: -0.5rem; }
+        .story-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-top: 1rem; }
+        @media (min-width: 1100px) {
+            .story-grid { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 3.5rem; align-items: start; }
+            .story-grid .story-facets { grid-template-columns: 1fr 1fr; gap: 1.5rem 1.25rem; position: sticky; top: 6rem; }
+        }
+        @media (max-width: 640px) {
+            .problem { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.25rem; }
+            .problem .story-art { width: 150px; }
+        }
+
+        /* ---- the boxes below the hero share the abacus holder frame -------- */
+        .hire-cta, .reel {
+            border-left: 3.5px solid rgba(28,28,30,0.8); border-right: 3.5px solid rgba(28,28,30,0.8); border-radius: 6px;
+            position: relative;
+        }
+        .hire-cta::after, .reel::after {
+            content: ""; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px; background: rgba(28,28,30,0.12); pointer-events: none;
+        }
+        .hire-cta:hover, .reel:hover { border-left-color: var(--rust); border-right-color: var(--rust); }
+
+        /* ---- wide screens: use the room ------------------------------------- */
+        @media (min-width: 1200px) {
+            .container { max-width: 1120px; }
+            .hero-name { font-size: 3.25rem; }
+            .hero-identity { width: 240px; }
+            .hero-portrait { width: 136px; height: 136px; }
+            .hero-tagline { max-width: 44rem; }
+            .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; max-width: 52rem; }
+            .hero-cards .hire-cta, .hero-cards .reel { max-width: none; margin-top: 1.125rem; }
+            .section-tagline { max-width: 48rem; }
+        }
+        @media (min-width: 1600px) {
+            .container { max-width: 1240px; }
+            .hero-name { font-size: 3.75rem; }
+        }
+        /* external displays (Studio Display, Pro Display XDR, 4K and up):
+           scale everything together, so type, controls and beads keep their
+           proportions and the page fills about two thirds of the width */
+        @media (min-width: 1880px) { .site-header, main.container, .site-footer { zoom: 1.14; } }
+        @media (min-width: 2300px) { .site-header, main.container, .site-footer { zoom: 1.36; } }
+        @media (min-width: 2900px) { .site-header, main.container, .site-footer { zoom: 1.66; } }
+        @media (min-width: 3600px) { .site-header, main.container, .site-footer { zoom: 2.05; } }
+        @media (min-width: 4800px) { .site-header, main.container, .site-footer { zoom: 2.75; } }
+
+        /* ---- abacus holder frames ------------------------------------------
+           Chips and story cards share one minimal frame: two ink posts at the
+           sides, a hairline rail along the bottom and a bead that travels the
+           rail when the frame is touched. */
+        .bio-tag, .arc-step {
+            border-left: 3.5px solid rgba(28,28,30,0.8); border-right: 3.5px solid rgba(28,28,30,0.8);
+            border-radius: 5px;
+        }
+        .bio-tag::after, .arc-step::after {
+            content: ""; position: absolute; left: 0; right: 0; bottom: 5px; height: 1px;
+            background: rgba(28,28,30,0.16); pointer-events: none;
+        }
+        .bio-tag::before {
+            content: ""; position: absolute; bottom: 3px; left: 8px; width: 5px; height: 5px; z-index: 1;
+            border-radius: 50%; background-color: var(--mark); pointer-events: none;
+            --b2: var(--mark);
+            background-image: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.8) 0 14%, rgba(255,255,255,0) 22%);
+            box-shadow: inset -0.5px -0.5px 0 rgba(0,0,0,0.2), 5.5px 0 0 0 var(--b2), 11px 0 0 0 var(--b2);
+            transition: left 700ms var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1)), background-color 300ms, box-shadow 300ms;
+        }
+        .bio-tag.accent::before { background-color: var(--rust); }
+        .bio-tag.accent::before { --b2: rgba(28,28,30,0.78); }
+        .bio-tag:hover::before, .bio-tag.is-flipped::before { left: calc(100% - 24px); background-color: var(--rust); }
+        .bio-tag:hover, .bio-tag.is-flipped { border-left-color: var(--ink); border-right-color: var(--ink); }
+        .bio-tag.is-flipped { border-left-color: var(--rust); border-right-color: var(--rust); }
+        @media (prefers-reduced-motion: reduce) { .bio-tag::before { transition: none; } }
+
+
+        /* ---- book a call: two ways, and which one fits right now ------------ */
+        .book-pick {
+            position: absolute; z-index: 30; left: 0.5rem; top: calc(100% + 8px); width: min(22rem, calc(100vw - 2.5rem));
+            padding: 0.625rem; border-radius: 12px; background: var(--bg); border: 1px solid var(--ctl-line);
+            box-shadow: 0 24px 48px -24px rgba(28,28,30,0.45), 0 2px 6px rgba(28,28,30,0.06);
+            transform-origin: top left; animation: bp-in 0.38s cubic-bezier(0.2, 1.1, 0.3, 1);
+        }
+        .book-pick[hidden] { display: none; }
+        @keyframes bp-in { from { opacity: 0; transform: translateY(-6px) scale(0.96); } to { opacity: 1; transform: none; } }
+        .bp-fit { margin: 0.125rem 0.375rem 0.5rem; font-size: 0.75rem; line-height: 1.45; color: var(--text-secondary); }
+        .bp-fit b { color: var(--ink); font-weight: 600; }
+        .bp-opt {
+            display: flex; align-items: center; gap: 0.625rem; width: 100%; padding: 0.625rem 0.625rem; margin: 0;
+            border: 1px solid transparent; border-radius: 9px; background: transparent; color: var(--ink);
+            font: inherit; text-align: left; cursor: pointer; text-decoration: none;
+            transition: background 0.25s, border-color 0.25s;
+        }
+        .bp-opt + .bp-opt { margin-top: 0.25rem; }
+        .bp-opt:hover, .bp-opt:focus-visible { background: var(--ctl-tint); text-decoration: none; }
+        .bp-opt.is-best { border-color: rgba(224,48,30,0.28); background: var(--paper); }
+        .bp-opt .ab { width: 20px; height: 20px; flex: none; }
+        .bp-txt { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; flex: 1; }
+        .bp-txt b { font-size: 0.8125rem; font-weight: 600; }
+        .bp-txt em { font-style: normal; font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); }
+        .bp-tag {
+            display: none; flex: none; padding: 0.15rem 0.45rem; border-radius: 999px;
+            font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.04em; text-transform: uppercase;
+            color: #fff; background: var(--rust);
+        }
+        .bp-opt.is-best .bp-tag { display: inline-block; }
+        .bp-clock { display: flex; align-items: center; gap: 0.35rem; margin: 0.5rem 0.375rem 0.125rem; font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); }
+        .bp-clock b { color: var(--ink); font-weight: 500; }
+        .bp-clock .tz-dot { width: 7px; height: 7px; border-radius: 50%; background-color: var(--rust); }
+        @media (max-width: 640px) { .book-pick { right: 0; left: 0; width: auto; } }
+        @media (prefers-reduced-motion: reduce) { .book-pick { animation: none; } }
+        /* ---- the arc: languages, data products, applied AI ------------------ */
+        .arc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin: 1.25rem 0 0.75rem; }
+        .arc-step {
+            position: relative; padding: 1rem 1rem 1.5rem; background: var(--bg);
+            border-top: 1px solid var(--ctl-line); border-bottom: 1px solid var(--ctl-line);
+            transition: border-color var(--dur-slow) var(--ease-out), background var(--dur-slow) var(--ease-out);
+        }
+        .arc-step:hover { border-left-color: var(--rust); border-right-color: var(--rust); background: var(--paper); }
+        .arc-kicker { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust-deep); }
+        .arc-step h3 { margin: 0.375rem 0 0.375rem; font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
+        .arc-step p { margin: 0; font-size: 0.8125rem; line-height: 1.6; color: var(--text-secondary); }
+        .arc-step p b { font-weight: 600; color: var(--ink); }
+        .arc-rod { position: absolute; left: 10px; right: 10px; bottom: 2px; height: 7px; display: flex; gap: 3px; z-index: 1; }
+        .arc-rod i {
+            width: 7px; height: 7px; border-radius: 50%; background-color: var(--ink);
+            background-image: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.8) 0 14%, rgba(255,255,255,0) 22%);
+            box-shadow: inset -0.5px -0.5px 0 rgba(0,0,0,0.25);
+            transition: transform 700ms var(--ease-spring, cubic-bezier(0.34, 1.56, 0.64, 1));
+            transition-delay: calc(var(--k, 0) * 40ms);
+        }
+        .arc-rod i.soft { background-color: var(--mark); }
+        .arc-rod i.hot { background-color: var(--rust); }
+        .arc-step:hover .arc-rod i { transform: translateX(14px); }
+        .arc-bridge { margin: 0.25rem 0 2rem; font-size: 0.875rem; color: var(--text-secondary); }
+        .arc-bridge b { color: var(--ink); font-weight: 600; }
+        @media (max-width: 760px) { .arc { grid-template-columns: 1fr; } }
+        @media (prefers-reduced-motion: reduce) { .arc-rod i { transition: none; } }
         /* The caret is what makes a retype legible as typing rather than as
            text glitching. It only exists while a line is being written. */
         .is-typing::after {
@@ -1676,9 +1829,114 @@
         .reel-built .ticker > .tk { white-space: normal; }
         .reel-built-k { font-family: var(--font-mono); font-size: 0.625rem; color: var(--rust-deep); text-transform: uppercase; letter-spacing: 0.06em; }
         .reel-built .ticker { font-weight: 600; color: var(--ink); }
-        .reel-viewer { width: min(1180px, calc(100vw - 32px)); height: fit-content; max-height: calc(100vh - 32px); }
-        .reel-stage { background: #0f0f10; display: flex; align-items: center; justify-content: center; }
-        .reel-stage video { width: 100%; height: auto; max-height: calc(100vh - 140px); display: block; background: #0f0f10; }
+        /* the storyboard: moving across the card scrubs the film, portrait first */
+        .reel-story {
+            position: absolute; inset: 0; opacity: 0; pointer-events: none;
+            background: url(assets/video/vahid-cv-story.jpg) 0 0 / 900% 100% no-repeat;
+            transition: opacity 0.25s var(--ease-out);
+        }
+        .reel.is-scrub .reel-story { opacity: 1; }
+        .reel.is-scrub .reel-play { opacity: 0; transform: scale(0.6); }
+        .reel-play { transition: opacity 0.25s, transform 0.4s var(--ease-spring); }
+        .reel-ticks { position: absolute; left: 6px; right: 6px; bottom: 3px; display: flex; gap: 2px; opacity: 0; transition: opacity 0.25s; }
+        .reel-ticks i { flex: 1; height: 2px; border-radius: 2px; background: rgba(255,255,255,0.55); }
+        .reel-ticks i.on { background: var(--rust); }
+        .reel.is-scrub .reel-ticks { opacity: 1; }
+        .reel.is-scrub .reel-time { opacity: 0; }
+
+        /* ---- the player: pops out of the card, an abacus for a timeline ---- */
+        .reel-viewer {
+            width: min(1080px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px);
+            margin: auto; inset: 0; padding: 0; border: 0; border-radius: 18px; overflow: hidden;
+            background: var(--bg); color: var(--ink); box-shadow: 0 50px 100px -40px rgba(28,28,30,0.6);
+        }
+        .reel-viewer[open] { display: flex; flex-direction: column; animation: rp-pop 0.62s cubic-bezier(0.2, 1.1, 0.3, 1) both; }
+        .reel-viewer.is-closing { animation: rp-pop 0.34s cubic-bezier(0.5, 0, 0.75, 0) reverse both; }
+        .reel-viewer::backdrop { background: rgba(28,28,30,0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        @keyframes rp-pop {
+            from { opacity: 0; transform: translate(var(--rp-dx, 0), var(--rp-dy, 24px)) scale(var(--rp-s, 0.9)); border-radius: 40px; }
+            40% { opacity: 1; }
+            to { opacity: 1; transform: none; border-radius: 18px; }
+        }
+        .rp-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 0.875rem 0.75rem 1.25rem; }
+        .rp-chapter { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-secondary); display: inline-flex; gap: 0.4rem; }
+        .rp-chapter b { color: var(--rust); font-weight: 600; }
+        .rp-chapter.flip { animation: rp-chap 0.5s var(--ease-out); }
+        @keyframes rp-chap { from { opacity: 0; transform: translateY(6px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+        .reel-stage { position: relative; background: #0f0f10; margin: 0 0.75rem; border-radius: 12px; overflow: hidden; }
+        .reel-stage video { width: 100%; height: auto; max-height: calc(100dvh - 210px); display: block; background: #0f0f10; cursor: pointer; }
+        .rp-big {
+            position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; border: 0; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; color: #fff; background-color: var(--rust);
+            background-image: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.55) 0 14%, rgba(255,255,255,0) 24%);
+            box-shadow: inset -2px -3px 0 rgba(0,0,0,0.18), 0 0 0 0 rgba(224,48,30,0.5); animation: live-ring 1.8s var(--ease-move) infinite;
+            transition: opacity 0.3s, transform 0.45s var(--ease-spring);
+        }
+        .rp-big svg { width: 26px; height: 26px; margin-left: 4px; }
+        .reel-viewer.is-playing .rp-big { opacity: 0; transform: scale(0.5); pointer-events: none; }
+        .rp-deck { padding: 0.875rem 1.25rem 1rem; }
+        .rp-rail { position: relative; height: 26px; cursor: pointer; touch-action: none; outline: none; }
+        .rp-rod, .rp-fill { position: absolute; left: 0; top: 12px; height: 2px; border-radius: 2px; }
+        .rp-rod { right: 0; background: rgba(28,28,30,0.16); }
+        .rp-fill { width: 0; background: var(--ink); }
+        .rp-marks { position: absolute; inset: 0; }
+        .rp-mark {
+            position: absolute; top: 7px; width: 12px; height: 12px; margin-left: -6px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+            background-color: var(--mark); box-shadow: inset -1px -1px 0 rgba(0,0,0,0.18);
+            background-image: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.8) 0 14%, rgba(255,255,255,0) 22%);
+            transition: transform 0.4s var(--ease-spring), background-color 0.3s;
+        }
+        .rp-mark.done { background-color: var(--ink); }
+        .rp-mark.now { background-color: var(--rust); transform: scale(1.25); }
+        .rp-mark:hover { transform: scale(1.4); }
+        .rp-mark span {
+            position: absolute; bottom: 18px; left: 50%; transform: translate(-50%, 4px); white-space: nowrap; pointer-events: none;
+            font-family: var(--font-mono); font-size: 0.625rem; color: #fff; background: var(--ink); padding: 0.2rem 0.45rem; border-radius: 5px;
+            opacity: 0; transition: opacity 0.2s, transform 0.3s var(--ease-out);
+        }
+        .rp-mark:hover span, .rp-mark:focus-visible span { opacity: 1; transform: translate(-50%, 0); }
+        .rp-head-bead {
+            position: absolute; top: 5px; left: 0; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; pointer-events: none;
+            background-color: var(--rust); box-shadow: 0 0 0 3px var(--bg), inset -1px -2px 0 rgba(0,0,0,0.2);
+            background-image: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.75) 0 14%, rgba(255,255,255,0) 22%);
+        }
+        .rp-rail:focus-visible .rp-head-bead { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--blue); }
+        .rp-controls { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; flex-wrap: wrap; }
+        .rp-play, .rp-mute {
+            width: var(--ctl-h); height: var(--ctl-h); border-radius: 50%; border: 1px solid var(--ctl-line); cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center; background: var(--bg); color: var(--ink);
+            transition: border-color var(--ctl-ease), background var(--ctl-ease), transform 0.3s var(--ease-spring);
+        }
+        .rp-play { background: var(--ink); color: #fff; border-color: var(--ink); }
+        .rp-play:active, .rp-mute:active { transform: scale(0.92); }
+        .rp-play svg { width: 15px; height: 15px; }
+        .rp-play .i-play { margin-left: 2px; }
+        .rp-play .i-pause, .reel-viewer.is-playing .rp-play .i-play { display: none; }
+        .reel-viewer.is-playing .rp-play .i-pause { display: block; }
+        .rp-mute svg { width: 17px; height: 17px; }
+        .rp-mute .x, .rp-mute[aria-pressed="true"] .w1, .rp-mute[aria-pressed="true"] .w2 { display: none; }
+        .rp-mute[aria-pressed="true"] .x { display: inline; }
+        .rp-mute:hover { border-color: var(--ctl-line-hover); }
+        .rp-time { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); min-width: 6.5em; }
+        .rp-time i { font-style: normal; color: var(--text-muted); }
+        .rp-speed { display: inline-flex; margin-left: auto; padding: 3px; gap: 2px; border: 1px solid var(--ctl-line); border-radius: 999px; }
+        .rp-speed button {
+            height: 28px; padding: 0 0.6rem; border: 0; border-radius: 999px; cursor: pointer; background: transparent;
+            font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-secondary);
+            transition: background 0.25s, color 0.25s;
+        }
+        .rp-speed button:hover { color: var(--ink); background: var(--ctl-tint); }
+        .rp-speed button[aria-pressed="true"] { background: var(--rust); color: #fff; }
+        @media (max-width: 640px) {
+            .reel-viewer { width: 100vw; max-height: 100dvh; border-radius: 0; }
+            .rp-head { padding: 0.625rem 0.75rem; }
+            .reel-stage { margin: 0; border-radius: 0; }
+            .rp-deck { padding: 0.75rem; }
+            .rp-speed { margin-left: 0; order: 3; width: 100%; justify-content: space-between; }
+            .rp-mute { margin-left: auto; }
+            .rp-mark span { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) { .reel-viewer[open], .reel-viewer.is-closing { animation: none; } .rp-big { animation: none; } }
 
         /* ---- sound switch (off by default) ----------------------------------- */
         .sound-toggle {
@@ -2420,6 +2678,41 @@
             .footer-right { justify-content: center; }
             .footer-meta { justify-content: center; }
         }
+            /* ---- wooden abacus frames ------------------------------------------
+           Frames are drawn, not dotted: two light beech dowels at the sides
+           (shaded like a turned cylinder) and thin rods running between them.
+           On hover the lower rod fills with red from left to right. */
+        :root {
+            --dowel: linear-gradient(90deg, #b88f62 0%, #dcc09c 30%, #f0e2cb 52%, #d2b38c 78%, #ac8457 100%);
+        }
+        .bio-tag, .arc-step, .hire-cta, .reel, .problem {
+            border-left: 0; border-right: 0; border-radius: 6px;
+            background-image: var(--dowel), var(--dowel) !important;
+            background-size: 5px 100%, 5px 100% !important;
+            background-position: left center, right center !important;
+            background-repeat: no-repeat !important;
+        }
+        .problem { background-size: 6px 100%, 6px 100% !important; }
+        .bio-tag.accent::before { background: rgba(28,28,30,0.14); }
+        .bio-tag::before {
+            content: ""; position: absolute; left: 5px; right: 5px; top: 5px; bottom: auto; width: auto; height: 1px; z-index: 0;
+            border-radius: 0; background: rgba(28,28,30,0.14); box-shadow: none; pointer-events: none; transition: none;
+        }
+        .bio-tag:hover::before, .bio-tag.is-flipped::before { left: 5px; background: rgba(28,28,30,0.14); }
+        .bio-tag::after, .arc-step::after, .hire-cta::after, .reel::after {
+            left: 5px; right: 5px; bottom: 5px; height: 1px;
+            background: linear-gradient(var(--rust), var(--rust)) left center / 0% 100% no-repeat, rgba(28,28,30,0.16);
+            transition: background-size 0.7s cubic-bezier(0.65, 0, 0.25, 1);
+        }
+        .bio-tag:hover::after, .bio-tag.is-flipped::after, .arc-step:hover::after, .hire-cta:hover::after, .reel:hover::after {
+            background-size: 100% 100%, auto;
+        }
+        .bio-tag:hover, .bio-tag.is-flipped, .arc-step:hover, .hire-cta:hover, .reel:hover { border-left-color: transparent; border-right-color: transparent; }
+        .bio-tag.is-flipped, .arc-step:hover { background-color: var(--paper); background-image: var(--dowel), var(--dowel); }
+        .bio-tag:hover, .hire-cta:hover, .reel:hover { background-image: var(--dowel), var(--dowel); }
+        .problem::before { left: 6px; right: 6px; }
+        @media (prefers-reduced-motion: reduce) { .bio-tag::after, .arc-step::after, .hire-cta::after, .reel::after { transition: none; } }
+
     </style>
 </head>
 <body>
@@ -2520,6 +2813,7 @@
             <hr class="hero-rule">
 
             <p class="hero-tagline">AI-native architect. I design agentic systems end to end: the harness around the model (execution loop, tools, context and memory) and the evals that prove it works. Spec to production, in TypeScript and Python.</p>
+            <div class="hero-cards">
             <div class="hire-cta" id="hire-cta">
                 <span class="hire-phase" aria-hidden="true">
                     <span class="hire-ph hire-ph-1"></span>
@@ -2531,12 +2825,28 @@
                 <span class="hire-role ticker" id="hire-role" aria-hidden="true"><span class="tk is-on">AI-Native Architect</span><span class="tk">Applied AI Engineer</span><span class="tk">Agentic AI Engineer</span><span class="tk">AI Platform Engineer</span><span class="tk">AI Solutions Architect</span><span class="tk">R&amp;D Researcher</span></span>
                 <span class="hire-q">roles</span>
                 <span class="sr-only">Open to AI-Native Architect, Applied AI Engineer, Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect and R&amp;D Researcher roles.</span>
-                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="hire-btn"><span class="live-bead"></span>Book a call <span aria-hidden="true">&rarr;</span></a>
+                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="hire-btn" id="hire-book" aria-haspopup="true" aria-expanded="false" aria-controls="book-pick"><span class="live-bead"></span>Book a call <span aria-hidden="true">&rarr;</span></a>
+                <div class="book-pick" id="book-pick" role="dialog" aria-label="Choose how to book" hidden>
+                    <p class="bp-fit" id="bp-fit">Checking our time zones&hellip;</p>
+                    <a class="bp-opt" id="bp-cal" href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener">
+                        <svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg>
+                        <span class="bp-txt"><b>Pick a slot on my calendar</b><em>30 min &middot; instant confirmation</em></span>
+                        <span class="bp-tag">Best fit</span>
+                    </a>
+                    <button type="button" class="bp-opt" id="bp-suggest">
+                        <svg class="ab" aria-hidden="true"><use href="#ab-globe"/></svg>
+                        <span class="bp-txt"><b>Suggest a time that suits you</b><em>Any time zone &middot; I confirm within 24h</em></span>
+                        <span class="bp-tag">Best fit</span>
+                    </button>
+                    <p class="bp-clock"><span class="tz-dot" aria-hidden="true"></span>Istanbul <b id="bp-ist">--:--</b> &middot; You <b id="bp-you">--:--</b></p>
+                </div>
             </div>
 
             <button type="button" class="reel" id="reel-open" aria-haspopup="dialog">
                 <span class="reel-thumb">
                     <img src="assets/video/vahid-cv-poster.jpg" alt="" width="1280" height="720" loading="lazy">
+                    <span class="reel-story" aria-hidden="true"></span>
+                    <span class="reel-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
                     <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></span>
                     <span class="reel-time">1:00</span>
                 </span>
@@ -2546,6 +2856,7 @@
                     <span class="reel-built"><span class="reel-built-k">Built</span> <span class="ticker" id="built-ticker" aria-hidden="true"><span class="tk is-on">Tokalator</span><span class="tk">ProjectLens</span><span class="tk">a multi-agent classifier</span><span class="tk">awesome-applied-ai</span><span class="tk">Text-to-Report agents</span></span></span>
                 </span>
             </button>
+            </div>
 
             <div class="recruiter-switch">
                 <button type="button" class="rec-toggle" id="rec-toggle" aria-pressed="false" aria-controls="recruiter-card">
@@ -2881,11 +3192,57 @@
             <div class="section-label">Through-line</div>
             <p class="section-tagline">8 years in industry and 4 in research, turning messy data into decisions people act on.</p>
 
-            <div class="story-span" aria-hidden="true">
-                <span>2013</span><span class="story-rule"></span><span>2026</span>
+            <div class="problem">
+                <figure class="hero-art story-art">
+                    <div class="hero-art-frame">
+                        <img src="assets/img/abacus-drawing.jpg" width="560" height="572" alt="Pencil drawing of a wooden abacus with beads counted along its rods" loading="lazy" decoding="async">
+                    </div>
+                    <figcaption><em>Fig. 1</em> Counting before computing. Graphite on paper by <a class="art-credit" href="https://homamofidian.site" target="_blank" rel="noopener">Homa Mofidian</a>.</figcaption>
+                </figure>
+                <div class="problem-text">
+                    <span class="arc-kicker">The problem I solve</span>
+                    <p class="problem-big">Messy text in,<br>decisions out<span class="bead-stop">.</span></p>
+                    <p class="problem-note">Twelve years, eight in industry and four in research, on one problem shape. The domain keeps changing. The problem doesn&rsquo;t.</p>
+                    <div class="story-domains">
+                <span class="domains-label">Shipped in</span>
+                <span class="domain">Talent</span>
+                <span class="domain">Pricing</span>
+                <span class="domain">Finance</span>
+                <span class="domain">Sales</span>
+                <span class="domain">R&amp;D</span>
+                <span class="domain">Developer tools</span>
+                <span class="domain">Data infrastructure</span>
+            </div>
+                </div>
             </div>
 
-            <div class="story-track pop-group">
+            <span class="arc-kicker arc-head">How I got here</span>
+
+            <div class="arc pop-group" aria-label="From languages to data products to applied AI">
+                <article class="arc-step">
+                    <span class="arc-kicker">01 &middot; Languages</span>
+                    <h3>Reading people</h3>
+                    <p>Turkish native, English C1, Spanish to teaching level, Portuguese and Japanese on the way. Living in several languages taught me that <b>meaning sits in context, not in the words</b>.</p>
+                </article>
+                <article class="arc-step">
+                    <span class="arc-kicker">02 &middot; Data products</span>
+                    <h3>Structuring it</h3>
+                    <p>Defaro.io, then Kariyer.net: 300M+ assets under one metadata layer, with governance and lineage. <b>A number is only as good as the trail behind it</b>, so I built the trail.</p>
+                </article>
+                <article class="arc-step">
+                    <span class="arc-kicker">03 &middot; Applied AI</span>
+                    <h3>Letting models read</h3>
+                    <p>Agents that map job titles in any language to O*NET and ESCO, a Turkish skill-extraction benchmark, Tokalator for the context budget. <b>The model reads the language; the system keeps the lineage.</b></p>
+                </article>
+            </div>
+            <p class="arc-bridge"><b>Same problem, a new reader.</b> Languages taught me to read people, data products taught me to keep the evidence, and applied AI lets both run at scale.</p>
+
+            <div class="story-grid">
+                <div class="story-time">
+                    <div class="story-span" aria-hidden="true">
+                <span>2013</span><span class="story-rule"></span><span>2026</span>
+            </div>
+                    <div class="story-track pop-group">
                 <div class="story-step">
                     <span class="story-year">2013&ndash;15<span class="story-count" aria-hidden="true"><i></i><i></i></span></span>
                     <div class="story-body">
@@ -2929,31 +3286,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="story-art-row">
-                <figure class="hero-art story-art">
-                    <div class="hero-art-frame">
-                        <img src="assets/img/abacus-drawing.jpg" width="560" height="572" alt="Pencil drawing of a wooden abacus with beads counted along its rods" loading="lazy" decoding="async">
-                    </div>
-                    <figcaption><em>Fig. 1</em> Counting before computing. Graphite on paper by <a class="art-credit" href="https://homamofidian.site" target="_blank" rel="noopener">Homa Mofidian</a>.</figcaption>
-                </figure>
-                <blockquote class="story-quote">
-                Twelve years, eight in industry and four in research, on one problem shape: messy text in, decisions out. The domain keeps changing. The problem doesn&rsquo;t.
-                </blockquote>
-            </div>
-
-            <div class="story-domains">
-                <span class="domains-label">Shipped in</span>
-                <span class="domain">Talent</span>
-                <span class="domain">Pricing</span>
-                <span class="domain">Finance</span>
-                <span class="domain">Sales</span>
-                <span class="domain">R&amp;D</span>
-                <span class="domain">Developer tools</span>
-                <span class="domain">Data infrastructure</span>
-            </div>
-
-            <div class="story-facets">
+                </div>
+                <div class="story-facets">
                 <div class="facet">
                     <span class="facet-num">4</span>
                     <span class="facet-label">Languages spoken</span>
@@ -2974,6 +3308,7 @@
                     <span class="facet-label">Built unasked</span>
                     <span class="facet-note">Tokalator, awesome-applied-ai and this site all started as problems nobody assigned. The care shows in the small print: where a number is a team estimate rather than a measurement, it says so.</span>
                 </div>
+            </div>
             </div>
         </section>
 
@@ -3057,22 +3392,37 @@
         </div>
     </dialog>
 
-    <dialog class="cv-viewer reel-viewer" id="reel-viewer" aria-label="Animated CV, 60 seconds">
-        <div class="cvv-bar">
+    <dialog class="reel-viewer" id="reel-viewer" aria-label="Animated CV, 60 seconds">
+        <div class="rp-head">
             <div class="cvv-id">
                 <span class="cvv-title">Vahid Faraji<span class="name-bead" aria-hidden="true"></span> Animated CV</span>
-                <span class="cvv-meta">1:00 &middot; 1080p &middot; sound on</span>
+                <span class="rp-chapter" id="rp-chapter" aria-live="polite"><b>01</b> The beginning</span>
             </div>
             <div class="cvv-actions">
-                <a href="assets/video/vahid-cv-60s.mp4" download="Vahid-Faraji-Animated-CV.mp4" class="btn btn-outline btn-sm">Download</a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
                 <button type="button" class="cvv-close" aria-label="Close video">&times;</button>
             </div>
         </div>
-        <div class="reel-stage">
+        <div class="reel-stage" id="rp-stage">
             <video id="reel-video" controls playsinline preload="none" poster="assets/video/vahid-cv-poster.jpg">
                 <source src="assets/video/vahid-cv-60s.mp4" type="video/mp4">
             </video>
+            <button type="button" class="rp-big" id="rp-big" aria-label="Play"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></button>
+        </div>
+        <div class="rp-deck" hidden>
+            <div class="rp-rail" id="rp-rail" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="60" aria-valuenow="0">
+                <span class="rp-rod"></span><span class="rp-fill" id="rp-fill"></span>
+                <span class="rp-marks" id="rp-marks"></span>
+                <span class="rp-head-bead" id="rp-knob"></span>
+            </div>
+            <div class="rp-controls">
+                <button type="button" class="rp-play" id="rp-play" aria-label="Play"><svg class="i-play" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg><svg class="i-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="3" height="10" rx="1"/><rect x="9" y="3" width="3" height="10" rx="1"/></svg></button>
+                <span class="rp-time" id="rp-time">0:00 <i>/ 1:00</i></span>
+                <div class="rp-speed" role="group" aria-label="Playback speed">
+                    <button type="button" data-rate="0.75">0.75&times;</button><button type="button" data-rate="1" aria-pressed="true">1&times;</button><button type="button" data-rate="1.25">1.25&times;</button><button type="button" data-rate="1.5">1.5&times;</button><button type="button" data-rate="2">2&times;</button>
+                </div>
+                <button type="button" class="rp-mute" id="rp-mute" aria-pressed="false" aria-label="Mute"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 6h2.2L8 3.3v9.4L4.7 10H2.5z"/><path class="w1" d="M10.6 6a2.8 2.8 0 010 4"/><path class="w2" d="M12.4 4.3a5.3 5.3 0 010 7.4"/><path class="x" d="M10.5 6l3.5 4M14 6l-3.5 4"/></svg></button>
+            </div>
         </div>
     </dialog>
 
@@ -3431,6 +3781,47 @@
         setInterval(tick, 30000);
     })();
 
+    (function bookPick() {
+        // "Book a call" opens two ways to meet and marks the one that fits now:
+        // the calendar when our working days overlap, a suggested time when they don't.
+        var btn = document.getElementById('hire-book'), pop = document.getElementById('book-pick');
+        if (!btn || !pop) return;
+        var cal = document.getElementById('bp-cal'), sug = document.getElementById('bp-suggest'), fit = document.getElementById('bp-fit');
+        var MY = 'Europe/Istanbul', START = 9, END = 19;            // my working hours, Istanbul time
+        function hourIn(tz, d) { return +new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', hour12: false }).format(d) % 24; }
+        function hm(tz, d) { return new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false }).format(d); }
+        function dayIn(tz, d) { return new Intl.DateTimeFormat('en-US', { timeZone: tz, weekday: 'short' }).format(d); }
+        function refresh() {
+            var now = new Date(), you = Intl.DateTimeFormat().resolvedOptions().timeZone || MY;
+            document.getElementById('bp-ist').textContent = hm(MY, now);
+            document.getElementById('bp-you').textContent = hm(you, now);
+            // hours of my 9-19 day that land inside your 9-18 day
+            var shift = hourIn(you, now) - hourIn(MY, now);
+            if (shift > 12) shift -= 24; if (shift < -12) shift += 24;
+            var overlap = 0;
+            for (var h = START; h < END; h++) { var yh = (h + shift + 24) % 24; if (yh >= 9 && yh < 18) overlap++; }
+            var ih = hourIn(MY, now), weekend = /Sat|Sun/.test(dayIn(MY, now));
+            var open = !weekend && ih >= START && ih < END;
+            var best = overlap >= 3 ? cal : sug;
+            cal.classList.toggle('is-best', best === cal); sug.classList.toggle('is-best', best === sug);
+            if (shift === 0) fit.innerHTML = 'We share a time zone. ' + (open ? '<b>I&rsquo;m in working hours now</b>, so the calendar is quickest.' : 'Pick any open slot on the calendar.');
+            else if (overlap >= 3) fit.innerHTML = 'Our working days overlap by <b>' + overlap + ' hours</b>, so the calendar is quickest' + (open ? ', and I&rsquo;m in working hours now.' : '.');
+            else fit.innerHTML = (overlap ? 'Our working days overlap by only <b>' + overlap + ' hour' + (overlap > 1 ? 's' : '') + '</b>.' : 'Our working days <b>don&rsquo;t overlap</b>.') + ' Suggest a time that suits you and I&rsquo;ll make it work.';
+        }
+        function show(on) {
+            pop.hidden = !on; btn.setAttribute('aria-expanded', on);
+            if (on) { refresh(); (pop.querySelector('.is-best') || cal).focus({ preventScroll: true }); }
+        }
+        btn.addEventListener('click', function (e) {
+            if (e.metaKey || e.ctrlKey || e.shiftKey) return;   // modifier-click still opens the calendar
+            e.preventDefault(); show(pop.hidden);
+        });
+        sug.addEventListener('click', function () { show(false); if (typeof openBooking === 'function') openBooking(); });
+        cal.addEventListener('click', function () { show(false); });
+        document.addEventListener('click', function (e) { if (!pop.hidden && !pop.contains(e.target) && !btn.contains(e.target)) show(false); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) { show(false); btn.focus(); } });
+    })();
+
     (function abacusIcons() {
         // Expand each <use> into its symbol's own shapes so the beads inside an
         // icon can be animated one by one. The rust bead is the point of the
@@ -3476,7 +3867,8 @@
             stops.forEach(function (s, k) { s.classList.toggle('is-on', k === i); });
             var icon = stops[i].querySelector('.jr-icon');
             var a = icon.getBoundingClientRect(), t = track.getBoundingClientRect();
-            track.style.setProperty('--jr-x', (a.left - t.left + a.width / 2) + 'px');
+            var k = t.width / (track.offsetWidth || t.width) || 1;   // visual px per layout px (page zoom on big displays)
+            track.style.setProperty('--jr-x', ((a.left - t.left + a.width / 2) / k) + 'px');
         }
         stops.forEach(function (s, i) {
             s.addEventListener('mouseenter', function () { go(i); });
@@ -3580,8 +3972,8 @@
         }
 
         function local(e) {
-            var box = rod.getBoundingClientRect();
-            return { x: e.clientX - box.left, y: e.clientY - (box.top + box.height / 2) };
+            var box = rod.getBoundingClientRect(), k = box.width / (rod.offsetWidth || box.width) || 1;
+            return { x: (e.clientX - box.left) / k, y: (e.clientY - (box.top + box.height / 2)) / k };
         }
         wm.addEventListener('pointermove', function (e) {
             if (!live) return;
@@ -3733,15 +4125,119 @@
         var btn = document.getElementById('reel-open'), dlg = document.getElementById('reel-viewer');
         if (!btn || !dlg) return;
         var v = document.getElementById('reel-video');
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // 1. the card: the cursor scrubs a storyboard, portrait media first
+        var thumb = btn.querySelector('.reel-thumb'), story = btn.querySelector('.reel-story');
+        var ticks = btn.querySelectorAll('.reel-ticks i'), FR = ticks.length;
+        function showFrame(k) {
+            story.style.backgroundPosition = (k / (FR - 1) * 100) + '% 0';
+            ticks.forEach(function (t, j) { t.classList.toggle('on', j <= k); });
+        }
+        if (window.matchMedia('(hover: hover)').matches) {
+            btn.addEventListener('pointermove', function (e) {
+                var b = btn.getBoundingClientRect();
+                var k = Math.max(0, Math.min(FR - 1, Math.floor((e.clientX - b.left) / b.width * FR)));
+                btn.classList.add('is-scrub'); showFrame(k);
+            });
+            btn.addEventListener('pointerleave', function () { btn.classList.remove('is-scrub'); });
+        } else if (!reduce && 'IntersectionObserver' in window) {
+            // touch: the storyboard plays itself while the card is on screen
+            var k = 0, timer = 0;
+            new IntersectionObserver(function (es) {
+                es.forEach(function (en) {
+                    clearInterval(timer);
+                    if (en.isIntersecting) { btn.classList.add('is-scrub'); showFrame(k); timer = setInterval(function () { k = (k + 1) % FR; showFrame(k); }, 900); }
+                    else btn.classList.remove('is-scrub');
+                });
+            }, { threshold: 0.6 }).observe(btn);
+        }
+
         if (typeof dlg.showModal !== 'function') { btn.addEventListener('click', function () { location.href = 'assets/video/vahid-cv-60s.mp4'; }); return; }
+
+        // 2. the player
+        var deck = dlg.querySelector('.rp-deck'), big = document.getElementById('rp-big');
+        var playB = document.getElementById('rp-play'), muteB = document.getElementById('rp-mute');
+        var rail = document.getElementById('rp-rail'), fill = document.getElementById('rp-fill'), knob = document.getElementById('rp-knob');
+        var marks = document.getElementById('rp-marks'), timeEl = document.getElementById('rp-time'), chapEl = document.getElementById('rp-chapter');
+        var CH = [[0, 'The beginning'], [7, 'Data'], [15, 'Agents'], [25, 'Tokalator'], [37, 'In production'], [46, 'The through-line'], [53, 'The invitation']];
+        var DUR = 60;
+        v.removeAttribute('controls'); deck.hidden = false;
+        CH.forEach(function (c, i) {
+            var m = document.createElement('button');
+            m.type = 'button'; m.className = 'rp-mark'; m.style.left = (c[0] / DUR * 100) + '%';
+            m.setAttribute('aria-label', 'Chapter ' + (i + 1) + ': ' + c[1]);
+            m.innerHTML = '<span>' + String(i + 1).padStart(2, '0') + ' ' + c[1] + '</span>';
+            m.addEventListener('click', function (e) { e.stopPropagation(); seek(c[0] + 0.01); play(); });
+            marks.appendChild(m);
+        });
+        var markEls = marks.querySelectorAll('.rp-mark'), lastCh = -1;
+        function fmt(t) { t = Math.max(0, Math.round(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); }
+        function render() {
+            var d = v.duration || DUR, t = v.currentTime || 0, p = Math.min(1, t / d);
+            fill.style.width = (p * 100) + '%'; knob.style.left = (p * 100) + '%';
+            timeEl.innerHTML = fmt(t) + ' <i>/ ' + fmt(d) + '</i>';
+            rail.setAttribute('aria-valuenow', Math.round(t)); rail.setAttribute('aria-valuetext', fmt(t));
+            var ch = 0; CH.forEach(function (c, i) { if (t >= c[0]) ch = i; });
+            markEls.forEach(function (m, i) { m.classList.toggle('done', i < ch); m.classList.toggle('now', i === ch); });
+            if (ch !== lastCh) {
+                lastCh = ch;
+                chapEl.innerHTML = '<b>' + String(ch + 1).padStart(2, '0') + '</b> ' + CH[ch][1];
+                chapEl.classList.remove('flip'); void chapEl.offsetWidth; chapEl.classList.add('flip');
+            }
+        }
+        function play() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        function toggle() { if (v.paused) play(); else v.pause(); }
+        function seek(t) { v.currentTime = Math.max(0, Math.min((v.duration || DUR) - 0.05, t)); render(); }
+        v.addEventListener('play', function () { dlg.classList.add('is-playing'); playB.setAttribute('aria-label', 'Pause'); });
+        v.addEventListener('pause', function () { dlg.classList.remove('is-playing'); playB.setAttribute('aria-label', 'Play'); });
+        v.addEventListener('ended', function () { dlg.classList.remove('is-playing'); });
+        v.addEventListener('timeupdate', render);
+        v.addEventListener('loadedmetadata', render);
+        v.addEventListener('click', toggle);
+        big.addEventListener('click', play);
+        playB.addEventListener('click', toggle);
+        muteB.addEventListener('click', function () { v.muted = !v.muted; muteB.setAttribute('aria-pressed', v.muted); muteB.setAttribute('aria-label', v.muted ? 'Unmute' : 'Mute'); });
+        dlg.querySelectorAll('.rp-speed button').forEach(function (b) {
+            b.addEventListener('click', function () {
+                v.playbackRate = parseFloat(b.dataset.rate);
+                dlg.querySelectorAll('.rp-speed button').forEach(function (o) { o.setAttribute('aria-pressed', o === b); });
+            });
+        });
+        // the rail: drag the bead to scrub
+        var dragging = false;
+        function railSeek(e) { var b = rail.getBoundingClientRect(); seek((e.clientX - b.left) / b.width * (v.duration || DUR)); }
+        rail.addEventListener('pointerdown', function (e) { if (e.target.closest('.rp-mark')) return; dragging = true; rail.setPointerCapture(e.pointerId); railSeek(e); });
+        rail.addEventListener('pointermove', function (e) { if (dragging) railSeek(e); });
+        rail.addEventListener('pointerup', function () { dragging = false; });
+        rail.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') { seek(v.currentTime + 5); e.preventDefault(); }
+            if (e.key === 'ArrowLeft') { seek(v.currentTime - 5); e.preventDefault(); }
+        });
+        dlg.addEventListener('keydown', function (e) {
+            if (e.key === ' ' && !e.target.closest('button, a')) { toggle(); e.preventDefault(); }
+            if (e.key === 'm') muteB.click();
+        });
+
+        // 3. open: the player pops out of the card it was launched from
         btn.addEventListener('click', function () {
+            var b = (thumb || btn).getBoundingClientRect();
+            var cx = b.left + b.width / 2 - innerWidth / 2, cy = b.top + b.height / 2 - innerHeight / 2;
+            dlg.style.setProperty('--rp-dx', cx + 'px'); dlg.style.setProperty('--rp-dy', cy + 'px');
+            dlg.style.setProperty('--rp-s', Math.max(0.12, b.width / Math.min(1080, innerWidth)).toFixed(3));
             document.documentElement.classList.add('cvv-lock');
+            dlg.classList.remove('is-closing');
             dlg.showModal();
-            if (v) { v.currentTime = 0; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+            v.currentTime = 0; render(); play();
             if (window.gtag) gtag('event', 'reel_play');
         });
-        function close() { dlg.close(); }
-        dlg.addEventListener('close', function () { if (v) v.pause(); document.documentElement.classList.remove('cvv-lock'); });
+        function close() {
+            if (reduce || !dlg.open) { dlg.close(); return; }
+            dlg.classList.add('is-closing');
+            setTimeout(function () { dlg.classList.remove('is-closing'); dlg.close(); }, 320);
+        }
+        dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+        dlg.addEventListener('close', function () { v.pause(); document.documentElement.classList.remove('cvv-lock'); });
         dlg.querySelector('.cvv-close').addEventListener('click', close);
         dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
     })();

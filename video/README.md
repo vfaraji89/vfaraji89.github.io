@@ -11,5 +11,6 @@ npm run render:web  # 720p web copy into site/assets/video/
 ```
 
 - `src/AnimatedCV.tsx` holds the scenes, captions and the abacus timer.
-- `make_audio.py` writes the soundtrack (ambient pad plus bead clicks) with the standard library only.
+- `make_audio.py` writes the score with numpy (`pip install numpy`): a 120 BPM cue that follows the seven chapters, with a riser into and an impact on every cut, and bead clicks on the counting moments.
+- Chapters enter with different transitions (dissolve, zoom, a wipe edged by an ink rod, an iris, a slide, and a red rod for the finale).
 - `public/` holds the fonts and screenshots the video uses.

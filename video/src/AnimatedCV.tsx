@@ -693,17 +693,79 @@ const Push: React.FC<{ dur: number; children: React.ReactNode }> = ({ dur, child
   return <AbsoluteFill style={{ transform: `scale(${z})`, transformOrigin: '45% 45%' }}>{children}</AbsoluteFill>;
 };
 const s = (sec: number) => Math.round(sec * FPS);
+
+// ---- scene paper: a light ground with a slow drifting bead field -------------
+const Paper: React.FC<{ tint?: string; corner?: string }> = ({ tint = '#ffffff', corner = '100% 0%' }) => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{ background: tint }}>
+      <AbsoluteFill style={{
+        backgroundImage: 'radial-gradient(circle, rgba(224,48,30,0.16) 1.6px, transparent 2.2px)', backgroundSize: '26px 26px',
+        backgroundPosition: `${f * 0.25}px ${f * 0.12}px`,
+        WebkitMaskImage: `radial-gradient(60% 55% at ${corner}, #000, transparent 70%)`, maskImage: `radial-gradient(60% 55% at ${corner}, #000, transparent 70%)`,
+      }} />
+    </AbsoluteFill>
+  );
+};
+
+// ---- transitions: each chapter enters its own way, landing on the cut --------
+type Kind = 'rise' | 'zoom' | 'wipe' | 'iris' | 'slide' | 'rod';
+const OV = 16; // frames of overlap before the cut
+const Enter: React.FC<{ kind: Kind; dur?: number; children: React.ReactNode }> = ({ kind, dur, children }) => {
+  const f = useCurrentFrame();
+  const k = interpolate(f, [0, OV], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.65, 0, 0.25, 1) });
+  // fades dip through the paper: the old chapter leaves before the new one lands
+  const late = interpolate(k, [0.4, 1], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  let style: React.CSSProperties = {};
+  let extra: React.ReactNode = null;
+  if (kind === 'rise') style = { opacity: late, transform: `translateY(${(1 - k) * 90}px)`, filter: `blur(${(1 - k) * 10}px)` };
+  if (kind === 'zoom') style = { opacity: late, transform: `scale(${1.18 - 0.18 * k})`, filter: `blur(${(1 - k) * 8}px)` };
+  if (kind === 'wipe') style = { clipPath: `inset(0 0 0 ${(1 - k) * 100}%)` };
+  if (kind === 'iris') style = { clipPath: `circle(${k * 120}% at 70% 45%)` };
+  if (kind === 'slide') style = { transform: `translateX(${(1 - k) * 100}%)` };
+  if (kind === 'rod') {
+    // a red rod sweeps down, and the chapter rolls in behind it
+    style = { clipPath: `inset(0 0 ${(1 - k) * 100}% 0)` };
+    extra = k < 1 ? <div style={{ position: 'absolute', left: 0, right: 0, top: `${k * 100}%`, height: 6, marginTop: -3, background: C.red, boxShadow: '0 0 0 1px rgba(224,48,30,0.2)' }} /> : null;
+  }
+  // the edge of a wipe carries a thin ink rod, like the abacus frame
+  if (kind === 'wipe' && k < 1) extra = <div style={{ position: 'absolute', top: 0, bottom: 0, left: `${(1 - k) * 100}%`, width: 5, marginLeft: -2, background: C.ink }} />;
+  const out = dur ? interpolate(f, [dur - 2 * OV, dur - OV - 2], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) : 1;
+  return (
+    <AbsoluteFill style={{ opacity: out }}>
+      <AbsoluteFill style={style}>{children}</AbsoluteFill>
+      {extra}
+    </AbsoluteFill>
+  );
+};
+
+const SCENES: [number, number, Kind, React.FC, string, string][] = [
+  [0, 7, 'rise', () => <Origin />, '#ffffff', '100% 0%'],
+  [7, 15, 'zoom', () => <Scale />, '#ffffff', '0% 100%'],
+  [15, 25, 'wipe', () => <Harness />, '#ffffff', '100% 100%'],
+  [25, 37, 'iris', () => <TokalatorStory />, '#fffaf8', '0% 0%'],
+  [37, 46, 'slide', () => <Production />, '#ffffff', '100% 0%'],
+  [46, 53, 'rise', () => <Twelve />, '#ffffff', '0% 100%'],
+];
+
 export const AnimatedCV: React.FC = () => (
   <AbsoluteFill style={{ background: '#ffffff' }}>
     <Audio src={staticFile('soundtrack.wav')} />
-    <AbsoluteFill style={{ backgroundImage: 'radial-gradient(circle, rgba(224,48,30,0.18) 1.6px, transparent 2.2px)', backgroundSize: '26px 26px', WebkitMaskImage: 'radial-gradient(60% 55% at 100% 0%, #000, transparent 70%)', maskImage: 'radial-gradient(60% 55% at 100% 0%, #000, transparent 70%)' }} />
-    <Sequence from={0} durationInFrames={s(7)}><Push dur={s(7)}><Origin /></Push></Sequence>
-    <Sequence from={s(7)} durationInFrames={s(8)}><Push dur={s(8)}><Scale /></Push></Sequence>
-    <Sequence from={s(15)} durationInFrames={s(10)}><Push dur={s(10)}><Harness /></Push></Sequence>
-    <Sequence from={s(25)} durationInFrames={s(12)}><Push dur={s(12)}><TokalatorStory /></Push></Sequence>
-    <Sequence from={s(37)} durationInFrames={s(9)}><Push dur={s(9)}><Production /></Push></Sequence>
-    <Sequence from={s(46)} durationInFrames={s(7)}><Push dur={s(7)}><Twelve /></Push></Sequence>
-    <Sequence from={s(53)} durationInFrames={s(7)}><Invite /></Sequence>
+    {SCENES.map(([a, b, kind, Scene, tint, corner], i) => {
+      const from = i === 0 ? 0 : s(a) - OV;
+      const dur = s(b) - from + (i === SCENES.length - 1 ? OV : OV);
+      return (
+        <Sequence key={a} from={from} durationInFrames={dur}>
+          <Enter kind={i === 0 ? 'rise' : kind} dur={['rise', 'zoom'].includes(SCENES[i + 1]?.[2] ?? '') ? dur : undefined}>
+            <Paper tint={tint} corner={corner} />
+            <Push dur={dur}><Scene /></Push>
+          </Enter>
+        </Sequence>
+      );
+    })}
+    <Sequence from={s(53) - OV} durationInFrames={s(7) + OV}>
+      <Enter kind="rod"><Paper tint={C.paper} corner="100% 0%" /><Invite /></Enter>
+    </Sequence>
     <Brand />
     <Caption text="Hi, I'm Vahid." start={s(1)} end={s(6.6)} />
     <Caption text="300M+ assets, one metadata layer." start={s(8)} end={s(14.6)} />
