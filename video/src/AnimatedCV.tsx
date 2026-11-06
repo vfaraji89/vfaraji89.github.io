@@ -391,6 +391,13 @@ const Big: React.FC<{ f: number; at?: number; size?: number; children: React.Rea
 );
 const Dot = () => <span style={{ color: C.red }}>.</span>;
 
+// the intro also carries the two certifications and the projects, each with its goal
+const CERTS: [string, string, string][] = [['Claude', 'Claude Certified Architect', 'Foundations · Anthropic'], ['Google Cloud', 'Generative AI Leader', 'Google Cloud certified']];
+const PROJECTS: [string, string, string][] = [
+  ['window', 'Tokalator', 'context budget, 500+ installs'], ['check', 'Job-title agents', '95% on 14K+ titles'],
+  ['calc', 'ProjectLens', 'pricing: 2 h → 10 min'], ['agents', 'Enterprise AI', '200+ users, 60% less work'],
+  ['bars', 'Metadata platform', '300M+ datapoints'], ['page', 'Yapay Zekâ İzi', '1.6M job ads, concept'],
+];
 // 1 -- it started with counting
 const Origin: React.FC = () => {
   const f = useCurrentFrame();
@@ -415,11 +422,20 @@ const Origin: React.FC = () => {
       <div style={{ position: 'absolute', left: 120, top: 230, width: 800 }}>
         <Kicker f={f} text="HELLO" />
         <Big f={f} size={124}>I&rsquo;m Vahid<Dot /></Big>
-        <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 52, letterSpacing: '-0.02em', color: C.ink, marginTop: 26, ...fadeUp(f, 26) }}>
-          AI-native <span style={{ backgroundImage: `linear-gradient(${C.mark}, ${C.mark})`, backgroundSize: `${interpolate(f, [40, 66], [0, 100], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}% 70%`, backgroundRepeat: 'no-repeat', backgroundPosition: 'left 60%' }}>architect</span><Dot />
+        {/* the path in one line: applied AI, data products, then the role it adds up to */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 26, fontFamily: SANS, fontWeight: 600, fontSize: 34, color: C.sec, letterSpacing: '-0.01em' }}>
+          {['Applied AI', 'Data products'].map((t, k) => (
+            <React.Fragment key={t}>
+              <span style={{ ...fadeUp(f, 96 + k * 12, 14, 16) }}>{t}</span>
+              <span style={{ color: C.red, ...fadeUp(f, 102 + k * 12, 12, 0) }}>→</span>
+            </React.Fragment>
+          ))}
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginTop: 30, ...fadeUp(f, 100) }}>
-          <IconTile name="bars" size={60} pop={spring({ frame: f - 100, fps: FPS, config: { damping: 10, stiffness: 150 } })} />
+        <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 56, letterSpacing: '-0.025em', color: C.ink, marginTop: 8, ...fadeUp(f, 120, 16, 20) }}>
+          AI-native <span style={{ backgroundImage: `linear-gradient(${C.mark}, ${C.mark})`, backgroundSize: `${interpolate(f, [128, 150], [0, 100], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}% 70%`, backgroundRepeat: 'no-repeat', backgroundPosition: 'left 60%' }}>architect</span><Dot />
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginTop: 26, ...fadeUp(f, 140) }}>
+          <IconTile name="bars" size={60} pop={spring({ frame: f - 140, fps: FPS, config: { damping: 10, stiffness: 150 } })} />
           <span style={{ fontFamily: SANS, fontSize: 40, color: C.sec, letterSpacing: '-0.01em', lineHeight: 1.25 }}>I make <b style={{ color: C.ink }}>data-driven decisions</b> easier<Dot /></span>
         </div>
         <span style={{ display: 'none' }}>{art}</span>
@@ -438,6 +454,37 @@ const Origin: React.FC = () => {
         <div style={{ position: 'absolute', left: '50%', bottom: -40, transform: 'translateX(-50%)', padding: '3px 10px', borderRadius: 6, background: C.red, color: '#fff', fontFamily: MONO, fontSize: 18, whiteSpace: 'nowrap' }}>Portrait · {medium}</div>
       </div>
       {mi > 0 && reveal < 1 && <div style={{ position: 'absolute', left: clickX - 30 * (1 + reveal * 2), top: clickY - 30 * (1 + reveal * 2), width: 60 * (1 + reveal * 2), height: 60 * (1 + reveal * 2), borderRadius: '50%', border: `3px solid ${C.red}`, opacity: 1 - reveal, pointerEvents: 'none' }} />}
+      {/* the two certifications, pinned to the portrait */}
+      {CERTS.map(([logo, t, sub], k) => {
+        const pp = spring({ frame: f - 104 - k * 8, fps: FPS, config: { damping: 11, stiffness: 170 } });
+        return (
+          <div key={t} style={{ position: 'absolute', left: px - 150, top: py + 300 + k * 104, display: 'flex', alignItems: 'center', gap: 14, padding: '12px 20px 12px 12px', borderRadius: 18, background: '#fff', border: `1.5px solid ${k === 0 ? C.red : C.line}`, boxShadow: '0 20px 30px -20px rgba(28,28,30,0.6)', transform: `scale(${pp}) rotate(${(1 - pp) * -8}deg)`, transformOrigin: 'left center', opacity: Math.min(1, pp * 1.5), whiteSpace: 'nowrap', zIndex: 3 }}>
+            <div style={{ width: 58, height: 58, borderRadius: '50%', background: k === 0 ? C.paper : '#f3f6fd', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'inset 0 0 0 2px rgba(28,28,30,0.08)' }}><ToolLogo name={logo} size={34} /></div>
+            <div>
+              <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 25, color: C.ink, lineHeight: 1.15 }}>{t}</div>
+              <div style={{ fontFamily: MONO, fontSize: 17, color: C.sec, marginTop: 3 }}>{sub}</div>
+            </div>
+          </div>
+        );
+      })}
+      {/* what I have built, and what each one is for */}
+      <div style={{ position: 'absolute', left: 120, right: 120, top: 838 }}>
+        <div className="k" style={{ fontFamily: MONO, fontSize: 19, letterSpacing: '0.12em', color: C.deep, ...fadeUp(f, 110, 12, 8) }}>WHAT I HAVE BUILT</div>
+        <div style={{ display: 'flex', gap: 14, marginTop: 14 }}>
+          {PROJECTS.map(([ic, name, goal], k) => {
+            const pp = spring({ frame: f - 116 - k * 5, fps: FPS, config: { damping: 12, stiffness: 170 } });
+            return (
+              <div key={name} style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', minHeight: 92, borderRadius: 16, background: '#fff', border: `1.5px solid ${C.line}`, transform: `translateY(${(1 - pp) * 24}px)`, opacity: pp, minWidth: 0 }}>
+                <IconTile name={ic} size={46} />
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 22, color: C.ink, whiteSpace: 'nowrap' }}>{name}</div>
+                  <div style={{ fontFamily: MONO, fontSize: 15, lineHeight: 1.3, color: k === 0 ? C.red : C.sec, marginTop: 3 }}>{goal}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
       {f > 66 && <Cursor x={cx} y={cy} press={mi > 0 && f - lastClick < 4} />}
     </AbsoluteFill>
   );
@@ -1777,16 +1824,16 @@ const scene = (Scene: React.FC, keys: Key[], tint = '#ffffff', corner = '100% 0%
 // [duration, scene, transition into the next]
 const CUT: [number, React.FC, (() => TransitionPresentation<any>) | null][] = [
   [190, scene(Opening, [[0, 1.06, 960, 540], [140, 1, 960, 540], [190, 1.25, 960, 540]], C.paper, '50% 0%'), zoomThrough],
-  [170, scene(Origin, [[0, 1.6, 1500, 470], [50, 1.6, 1500, 470], [96, 1, 960, 540], [170, 1.04, 920, 540]]), () => slide({ direction: 'from-right' })],
-  [200, scene(Languages, [[0, 1, 960, 540], [200, 1.03, 960, 540]], '#ffffff', '0% 100%'), () => wipe({ direction: 'from-left' })],
-  [180, scene(Agents, [[0, 1, 960, 540], [180, 1.04, 1000, 540]], '#fffaf8', '100% 0%'), zoomThrough],
+  [210, scene(Origin, [[0, 1.6, 1500, 470], [50, 1.6, 1500, 470], [96, 1, 960, 540], [210, 1.02, 940, 540]]), () => slide({ direction: 'from-right' })],
+  [190, scene(Languages, [[0, 1, 960, 540], [190, 1.03, 960, 540]], '#ffffff', '0% 100%'), () => wipe({ direction: 'from-left' })],
+  [170, scene(Agents, [[0, 1, 960, 540], [170, 1.04, 1000, 540]], '#fffaf8', '100% 0%'), zoomThrough],
   [240, scene(ProblemData, [[0, 1, 960, 540], [240, 1.04, 960, 540]], '#ffffff', '0% 0%'), () => slide({ direction: 'from-bottom' })],
-  [190, scene(Roots, [[0, 1.04, 960, 520], [190, 1, 960, 540]], C.paper, '0% 0%'), () => wipe({ direction: 'from-left' })],
+  [180, scene(Roots, [[0, 1.04, 960, 520], [180, 1, 960, 540]], C.paper, '0% 0%'), () => wipe({ direction: 'from-left' })],
   [180, scene(AiAtWork, [[0, 1, 960, 540], [180, 1.04, 1000, 540]], '#ffffff', '0% 100%'), () => slide({ direction: 'from-right' })],
   [210, scene(TokalatorStory, [[0, 1, 960, 540], [210, 1.06, 1000, 540]], '#fffaf8', '100% 0%'), zoomThrough],
   // tokens in 2026, in the stats-screen format
   [170, scene(Tokens, [[0, 1.04, 960, 560], [170, 1, 960, 540]], C.paper, '0% 0%'), () => clockWipe({ width: 1920, height: 1080 })],
-  [250, scene(Analytical, [[0, 1, 960, 540], [90, 1.05, 960, 540], [140, 1, 960, 540], [250, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
+  [240, scene(Analytical, [[0, 1, 960, 540], [90, 1.05, 960, 540], [140, 1, 960, 540], [240, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
   [220, scene(Yzi, [[0, 1, 960, 540], [220, 1.03, 960, 540]], '#fffaf8', '100% 100%'), () => slide({ direction: 'from-right' })],
   [190, scene(Shipping, [[0, 1.03, 960, 540], [190, 1, 960, 540]], '#ffffff', '0% 0%'), rod],
   [130, scene(Shift, [[0, 1.04, 960, 540], [130, 1, 960, 540]], C.paper, '0% 0%'), () => wipe({ direction: 'from-bottom' })],
