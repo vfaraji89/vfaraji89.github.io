@@ -2,3 +2,9 @@
 *.log
 node_modules/
 package-lock.json
+
+# LaTeX build files
+cv/*.aux
+cv/*.log
+cv/*.out
+cv/*.pdf

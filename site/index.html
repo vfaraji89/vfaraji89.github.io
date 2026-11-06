@@ -883,14 +883,22 @@
            wide as the longest word and nothing beside it ever moves. The words
            slide past each other the same way the chips do. */
         .ticker { display: inline-grid; vertical-align: bottom; overflow: hidden; }
+        /* Soft motion for text: a short travel, a long ease-out, and a little
+           blur while moving, so one word dissolves into the next instead of
+           being swapped. The outgoing word leaves slightly faster than the new
+           one arrives, so the two never fight for the eye. */
         .ticker > .tk {
             grid-area: 1 / 1; white-space: nowrap;
-            opacity: 0; transform: translateY(70%);
-            transition: transform 420ms var(--ease-out), opacity 420ms var(--ease-out);
+            opacity: 0; transform: translateY(0.45em); filter: blur(5px);
+            transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 600ms cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .ticker > .tk.is-on { opacity: 1; transform: none; }
-        .ticker > .tk.is-off { opacity: 0; transform: translateY(-70%); }
-        @media (prefers-reduced-motion: reduce) { .ticker > .tk { transition: none; } }
+        .ticker > .tk.is-on { opacity: 1; transform: none; filter: blur(0); transition-delay: 90ms; }
+        .ticker > .tk.is-off {
+            opacity: 0; transform: translateY(-0.35em); filter: blur(4px);
+            transition-duration: 420ms; transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+        }
+        @media (prefers-reduced-motion: reduce) { .ticker > .tk, .chip-face { transition: none; filter: none; } }
         .hero-is {
             font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink);
             margin-bottom: 0.625rem; white-space: nowrap;
@@ -900,9 +908,9 @@
             color: inherit; padding: 0 0.2em; margin: 0 -0.05em; border-radius: 3px;
             background: linear-gradient(var(--mark), var(--mark)) left center / 100% 72% no-repeat;
         }
-        .hero-is .tk.is-on mark { animation: mark-sweep 0.5s var(--ease-out) 0.12s both; }
+        .hero-is .tk.is-on mark { animation: mark-sweep 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
         @keyframes mark-sweep {
-            from { background-size: 0% 72%; opacity: 0.4; }
+            from { background-size: 0% 72%; }
             to   { background-size: 100% 72%; opacity: 1; }
         }
         .hero-label {
@@ -967,13 +975,14 @@
         .chip-face {
             position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
             padding: 0 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-            transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-slow) var(--ease-out);
+            transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 500ms cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 500ms cubic-bezier(0.16, 1, 0.3, 1);
         }
         .chip-face { gap: 0.4rem; }
         .chip-face .ab { width: 15px; height: 15px; flex: none; color: currentColor; }
-        .chip-b { transform: translateY(100%); opacity: 0; font-weight: 500; }
-        .bio-tag.is-flipped .chip-a { transform: translateY(-100%); opacity: 0; }
-        .bio-tag.is-flipped .chip-b { transform: translateY(0); opacity: 1; }
+        .chip-b { transform: translateY(60%); opacity: 0; filter: blur(4px); font-weight: 500; }
+        .bio-tag.is-flipped .chip-a { transform: translateY(-60%); opacity: 0; filter: blur(4px); }
+        .bio-tag.is-flipped .chip-b { transform: translateY(0); opacity: 1; filter: blur(0); transition-delay: 60ms; }
         .bio-tag.is-flipped { background: var(--paper); border-color: var(--rust); color: var(--rust); }
         .bio-tag:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
         .bio-tags.has-focus .bio-tag:not(.is-flipped) { opacity: 0.45; }
@@ -1270,9 +1279,12 @@
         .about-icon {
             width: 2rem; height: 2rem; border-radius: 8px; flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
-            background: var(--accent-bg); color: var(--accent);
-            border: 1px solid var(--border);
+            background: var(--paper); color: var(--ink);
+            border: 1px solid var(--ctl-line);
         }
+        .about-icon .ab { width: 20px; height: 20px; }
+        .about-card:hover .ab .bead-acc { transform: scale(1.45); }
+        .about-card:hover .ab .bead-ink { transform: translateX(1.6px); }
         .about-head h4 {
             font-size: 0.6875rem; font-weight: 500; color: var(--text-muted);
             text-transform: uppercase; letter-spacing: 0.08em;
@@ -2140,6 +2152,12 @@
       <symbol id="ab-plug" viewBox="0 0 24 24"><title>MCP and skills</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 12h8" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><path d="M13.25 8.75h4a1 1 0 0 1 1 1v4.5a1 1 0 0 1-1 1h-4z" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8.5" cy="12" r="1.9" fill="currentColor"/><circle cx="15.75" cy="12" r="1.5" fill="var(--rust, #e0301e)"/></symbol>
       <symbol id="ab-branch" viewBox="0 0 24 24"><title>Open source</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 7v10M8.5 13c0-3.2 7-2.2 7-5.5" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8.5" cy="7" r="1.9" fill="currentColor"/><circle cx="8.5" cy="17" r="1.9" fill="currentColor"/><circle cx="15.5" cy="7.5" r="1.9" fill="var(--rust, #e0301e)"/></symbol>
       <symbol id="ab-page" viewBox="0 0 24 24"><title>Research</title><path d="M6.75 3.25h7.25l3.25 3.25v14.25H6.75z" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 3.25v3.25h3.25" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10.5h6M9 13.5h6M9 16.5h3.5" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="15.25" cy="16.5" r="1.6" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-advise" viewBox="0 0 24 24"><title>Advise</title><path d="M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v8a1.5 1.5 0 0 1-1.5 1.5h-8.5l-4.5 3.25V16.5H5A1.5 1.5 0 0 1 3.5 15V7A1.5 1.5 0 0 1 5 5.5z" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 11h10" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="9" cy="11" r="1.6" fill="currentColor"/><circle cx="13" cy="11" r="1.6" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-board" viewBox="0 0 24 24"><title>Teaching</title><path d="M4.75 4h14.5a1.25 1.25 0 0 1 1.25 1.25v9.5A1.25 1.25 0 0 1 19.25 16H4.75a1.25 1.25 0 0 1-1.25-1.25v-9.5A1.25 1.25 0 0 1 4.75 4z" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 16l-2 4.25M16 16l2 4.25" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 8h11M6.5 12h11" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="8.6" cy="8" r="1.5" fill="var(--rust, #e0301e)"/><circle cx="11.4" cy="8" r="1.5" fill="currentColor"/><circle cx="14.5" cy="12" r="1.5" fill="currentColor"/></symbol>
+      <symbol id="ab-check" viewBox="0 0 24 24"><title>Hiring</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 12.5l3 3 6-7" fill="none" stroke="currentColor" stroke-opacity="0.4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7.5" cy="12.5" r="1.7" fill="currentColor"/><circle cx="10.5" cy="15.5" r="1.7" fill="currentColor"/><circle cx="16.5" cy="8.5" r="1.9" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-cap" viewBox="0 0 24 24"><title>Education</title><path d="M2.75 9.5L12 5l9.25 4.5L12 14z" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.75 11.5v3.75c0 1.35 2.35 2.75 5.25 2.75s5.25-1.4 5.25-2.75V11.5" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 10v5" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="20" cy="16.5" r="1.6" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-badge" viewBox="0 0 24 24"><title>Credentials</title><circle cx="12" cy="10" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.75 15.25L7.5 21l4.5-2.25L16.5 21l-1.25-5.75" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 10h7" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/><circle cx="14" cy="10" r="1.5" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-globe" viewBox="0 0 24 24"><title>Languages</title><circle cx="12" cy="12" r="8.75" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.75 9h16.5M3.75 15h16.5" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><ellipse cx="12" cy="12" rx="3.75" ry="8.75" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/><circle cx="7.5" cy="9" r="1.6" fill="var(--rust, #e0301e)"/><circle cx="16.5" cy="15" r="1.6" fill="currentColor"/></symbol>
     </svg>
     <div class="load-bar" id="load-bar" aria-hidden="true"><span></span></div>
     <noscript><style>.load-bar { display: none; }</style></noscript>
@@ -2165,7 +2183,7 @@
                 <li class="nav-indicator" aria-hidden="true"></li>
             </ul>
             <div class="nav-actions">
-                <a href="assets/cv/01-cv-vahid-faraji-202610.pdf" target="_blank" rel="noopener" class="nav-btn-ghost" aria-label="Download CV (PDF)">CV <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg></a>
+                <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="nav-btn-ghost" aria-label="Download CV (PDF)">CV <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="nav-btn-solid">Book a call</a>
                 <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-sheet"><span></span><span></span></button>
             </div>
@@ -2284,7 +2302,7 @@
                     </div>
                 </div>
                 <div class="rec-actions bead-row">
-                    <a href="assets/cv/01-cv-vahid-faraji-202610.pdf" target="_blank" rel="noopener" class="btn btn-primary">Download CV (PDF)</a>
+                    <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="btn btn-primary">Download CV (PDF)</a>
                     <a href="mailto:vfaraji89@gmail.com?subject=Role%20enquiry" class="btn btn-outline">vfaraji89@gmail.com</a>
                     <a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
                 </div>
@@ -2304,7 +2322,7 @@
             </div>
 
             <div class="hero-ctas bead-row">
-                <a href="assets/cv/01-cv-vahid-faraji-202610.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+                <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="btn btn-primary">
                     <svg viewBox="0 0 16 16" fill="currentColor"><path d="M.5 9.9a.5.5 0 01.5.5v2.5a1 1 0 001 1h12a1 1 0 001-1v-2.5a.5.5 0 011 0v2.5a2 2 0 01-2 2H2a2 2 0 01-2-2v-2.5a.5.5 0 01.5-.5z"/><path d="M7.646 11.854a.5.5 0 00.708 0l3-3a.5.5 0 00-.708-.708L8.5 10.293V1.5a.5.5 0 00-1 0v8.793L5.354 8.146a.5.5 0 10-.708.708l3 3z"/></svg>
                     Download CV
                 </a>
@@ -2497,7 +2515,7 @@
             <div class="about-grid">
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></svg></span>
+                        <span class="about-icon"><svg class="ab" aria-hidden="true"><use href="#ab-agents"/></svg></span>
                         <h4>Build</h4>
                     </div>
                     <p class="engage-lede">Agent systems that survive production.</p>
@@ -2512,7 +2530,7 @@
                 </div>
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+                        <span class="about-icon"><svg class="ab" aria-hidden="true"><use href="#ab-advise"/></svg></span>
                         <h4>Advise</h4>
                     </div>
                     <p class="engage-lede">Architecture review before the spend.</p>
@@ -2527,7 +2545,7 @@
                 </div>
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></span>
+                        <span class="about-icon"><svg class="ab" aria-hidden="true"><use href="#ab-board"/></svg></span>
                         <h4>Train</h4>
                     </div>
                     <p class="engage-lede">400+ people trained, 50+ courses.</p>
@@ -2542,7 +2560,7 @@
                 </div>
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+                        <span class="about-icon"><svg class="ab" aria-hidden="true"><use href="#ab-check"/></svg></span>
                         <h4>For Hiring Teams</h4>
                     </div>
                     <p class="engage-lede">The short version, in numbers.</p>
@@ -2550,7 +2568,7 @@
                         <li class="hl">8 years in industry + 4 in research &middot; Istanbul, GMT+3 &middot; remote-friendly</li>
                         <li>3 papers (1 peer-reviewed ACM) + 1 patent pending</li>
                         <li>Perplexity AI Business Fellowship, programme lead</li>
-                        <li>Full CV as PDF &middot; <a href="assets/cv/01-cv-vahid-faraji-202610.pdf" target="_blank" rel="noopener">download</a></li>
+                        <li>Full CV as PDF &middot; <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener">download</a></li>
                     </ul>
                 </div>
             </div>
@@ -2664,7 +2682,7 @@
             <div class="about-grid">
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/><path d="M22 10v6"/></svg></span>
+                        <span class="about-icon"><svg class="ab" aria-hidden="true"><use href="#ab-cap"/></svg></span>
                         <h4>Education</h4>
                         <span class="about-count">03</span>
                     </div>
@@ -2676,7 +2694,7 @@
                 </div>
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg></span>
+                        <span class="about-icon"><svg class="ab" aria-hidden="true"><use href="#ab-badge"/></svg></span>
                         <h4>Credentials</h4>
                         <span class="about-count">08</span>
                     </div>
@@ -2689,7 +2707,7 @@
                 </div>
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+                        <span class="about-icon"><svg class="ab" aria-hidden="true"><use href="#ab-globe"/></svg></span>
                         <h4>Languages</h4>
                         <span class="about-count">05</span>
                     </div>
@@ -2703,7 +2721,7 @@
                 </div>
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
-                        <span class="about-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></span>
+                        <span class="about-icon"><svg class="ab" aria-hidden="true"><use href="#ab-board"/></svg></span>
                         <h4>Teaching</h4>
                         <span class="about-count">03</span>
                     </div>
@@ -3245,7 +3263,7 @@
                     i = (i + 1) % items.length;
                     cur.classList.remove('is-on'); cur.classList.add('is-off');
                     items[i].classList.remove('is-off'); items[i].classList.add('is-on');
-                    setTimeout(function () { cur.classList.remove('is-off'); }, 450);
+                    setTimeout(function () { cur.classList.remove('is-off'); }, 700);
                 }, cfg[1]);
             }, n * 900);
         });

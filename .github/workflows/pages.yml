@@ -3,7 +3,7 @@ name: Deploy site
 on:
   push:
     branches: [main]
-    paths: ["site/**", ".github/workflows/pages.yml"]
+    paths: ["site/**", "cv/**", ".github/workflows/pages.yml"]
   workflow_dispatch:
 
 permissions:
@@ -23,6 +23,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # The CV is written in LaTeX (cv/vahid-faraji-cv.tex). Every deploy
+      # rebuilds it, so the PDF the site links to always matches the source.
+      - name: Build CV from LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: vahid-faraji-cv.tex
+          working_directory: cv
+      - name: Publish CV PDF into the site
+        run: |
+          cp cv/vahid-faraji-cv.pdf site/assets/cv/vahid-faraji-cv.pdf
+          # the older address, kept so links already shared keep working
+          cp cv/vahid-faraji-cv.pdf site/assets/cv/01-cv-vahid-faraji-202610.pdf
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

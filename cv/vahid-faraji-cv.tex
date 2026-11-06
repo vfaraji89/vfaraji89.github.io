@@ -1,0 +1,204 @@
+% Vahid Faraji -- CV
+% Edit this file and push: the Deploy site workflow rebuilds the PDF and
+% publishes it at https://vfaraji89.github.io/assets/cv/vahid-faraji-cv.pdf
+% Build locally: cd cv && pdflatex vahid-faraji-cv.tex
+
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.95]{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[a4paper,margin=1.6cm,top=1.4cm,bottom=1.4cm]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\usepackage{needspace}
+
+% ---- brand -----------------------------------------------------------------
+\definecolor{ink}{HTML}{1C1C1E}
+\definecolor{brand}{HTML}{E0301E}
+\definecolor{brandDeep}{HTML}{B4200F}
+\definecolor{muted}{HTML}{6B6B70}
+\definecolor{rule}{HTML}{E4E4E7}
+\color{ink}
+
+\hypersetup{pdftitle={Vahid Faraji -- CV},pdfauthor={Vahid Faraji},
+  pdfsubject={AI-Native Architect, Applied AI Engineer},
+  pdfkeywords={AI-native architect, applied AI, agent harness, LLM agents, evals, MCP, TypeScript, Python}}
+
+% The abacus mark from the site: a frame, three rails, one red bead.
+\newcommand{\abacusmark}{%
+  \begin{tikzpicture}[x=0.034em,y=0.034em]
+    \draw[ink,line width=0.9pt,rounded corners=2.2pt] (1,1) rectangle (23,23);
+    \draw[ink!30,line width=0.35pt] (5,16)--(19,16) (5,12)--(19,12) (5,8)--(19,8);
+    \fill[brand] (7.5,16) circle (1.9);
+    \fill[ink] (15.5,12) circle (1.9);
+    \fill[ink] (9,8) circle (1.9);
+  \end{tikzpicture}}
+
+% ---- layout ----------------------------------------------------------------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\pagestyle{empty}
+\linespread{1.06}
+
+\titleformat{\section}{\color{brandDeep}\bfseries\scshape\large}{}{0pt}{}[\vspace{1pt}{\color{rule}\titlerule[0.6pt]}]
+\titlespacing*{\section}{0pt}{9pt}{5pt}
+
+\setlist[itemize]{leftmargin=1.05em,itemsep=1.5pt,topsep=2pt,parsep=0pt,label={\color{brand}\textbullet}}
+
+\newcommand{\role}[3]{% title, org, dates
+  \par\needspace{3\baselineskip}\vspace{3pt}\textbf{#1}\hfill{\color{muted}#2 \textbar\ #3}\par}
+\newcommand{\project}[2]{% name, right note
+  \par\needspace{4\baselineskip}\vspace{4pt}\textbf{#1}\hfill{\color{muted}#2}\par}
+\newcommand{\keywords}[1]{\par{\small\color{muted}\textit{Keywords:} #1}\par}
+\newcommand{\sep}{\enspace{\color{rule}|}\enspace}
+
+\begin{document}
+
+% ---- header ----------------------------------------------------------------
+\begin{tabularx}{\textwidth}{@{}X r@{}}
+  {\fontsize{22}{24}\selectfont\bfseries \abacusmark\ Vahid Faraji{\color{brand}.}} &
+  \href{mailto:vfaraji89@gmail.com}{vfaraji89@gmail.com} \\[3pt]
+  {\color{muted}AI-Native Architect \textperiodcentered\ Applied AI Engineer \textperiodcentered\ LLM Agents} &
+  +90 541 940 2411 \\
+  {\color{muted}Istanbul, T\"urkiye \textperiodcentered\ open to relocating to Amsterdam} &
+  \href{https://linkedin.com/in/vahid-faraji-jobehdar}{LinkedIn}\,\textbar\,\href{https://github.com/vfaraji89}{GitHub}\,\textbar\,\href{https://vfaraji89.github.io}{vfaraji89.github.io} \\
+\end{tabularx}
+
+% ---- summary ---------------------------------------------------------------
+\section{Summary}
+AI-native architect with 8 years in industry (2 in applied AI, 6 in data products and business analysis) plus 4 years
+in research, now designing and shipping production LLM agents end to end. I start from the operational problem: I
+work with operators and domain experts, find the highest-leverage workflow, design the agent and its harness
+(execution loop, tools, context and memory), and ship it with the evals that prove it works. Fluent in agent patterns,
+RAG, prompt engineering, tool use (MCP) and evaluation. I build full-stack in TypeScript, Next.js and the Vercel AI SDK,
+and in Python, on the Anthropic Platform (Claude Agent SDK), OpenAI and Google AI, with a production focus on
+observability, reliability and token cost. Published at ACM CAIS~'26; ACM Professional Member.
+
+\vspace{4pt}
+{\small\textbf{Core skills:} AI-Native Architecture\sep Agent Harness Engineering\sep LLM Evals\sep RAG\sep Tool Use / MCP\sep
+Agent Skills\sep TypeScript 7\sep Next.js\sep Vercel AI SDK\sep Claude Agent SDK\sep Microsoft Copilot Studio\sep Python\sep
+PostgreSQL\sep Spec-Driven Design\sep Database Schema Design}
+
+% ---- experience ------------------------------------------------------------
+\section{Experience}
+\role{Senior Applied AI Specialist}{Kariyer.net (ilab group)}{Mar 2025 -- Present}
+\begin{itemize}
+  \item Own agentic systems from problem to production: scope with operators and stakeholders, then design, build and
+        hand off LangGraph / MCP / Agno workflows with custom routing, safety fallbacks and real-time observability (Arize).
+  \item Build agent applications and harnesses in TypeScript (Next.js, Vercel AI SDK) and Python: tool loops, context
+        management, sub-agents, hooks and guardrails. My token-efficient context-engineering framework became the
+        organisational standard, lowering token spend while improving factual accuracy.
+  \item Finance exception detection: LLM pipeline that reads POS commission statements from 4 major Turkish banks,
+        compares contracted vs.\ applied rates and surfaces discrepancies to the finance team.
+  \item ProjectLens: operator-facing internal pricing tool that replaced a quote-per-Excel-file workflow, cutting 91\% of
+        the manual effort and retiring 31 spreadsheets.
+  \item Text-to-Report: natural-language-to-SQL agents with RAG over a DataHub metadata layer, cutting the analytics
+        backlog by 40\%.
+  \item Feedback automation for 100+ internal users ($-$60\% manual workload). Secured a USD 40K Perplexity enterprise
+        grant. Set evaluation baselines for agentic infrastructure.
+  \item Teach Applied AI courses on agents, MCP and AI-native development (18-hour programme); AI Career Mentor at TEV.
+\end{itemize}
+
+\role{Product Manager -- Data}{Kariyer.net}{Oct 2022 -- Mar 2025}
+\begin{itemize}
+  \item Designed metadata schemas for 300M+ text and numerical data assets, aligning product roadmaps with engineering.
+  \item Built real-time analytics pipelines for labour statistics, with data-quality matrices, governance and executive dashboards.
+  \item Led AI adoption training for C-level executives.
+\end{itemize}
+
+\role{Business Analyst -- Data Analytics}{WorqCompany}{Sep 2021 -- Oct 2022}
+\begin{itemize}
+  \item Built financial forecasts and revenue simulations that leadership used for mid-range planning.
+\end{itemize}
+
+\role{People Data (Co-Founder)}{Defaro.io}{2019 -- 2021}
+\begin{itemize}
+  \item Labour-market compensation analytics startup; incubated and backed by \"Ozye\u{g}in University.
+\end{itemize}
+
+% ---- projects --------------------------------------------------------------
+\section{Selected Projects}
+\project{Multi-Agent Position Classification}{ACM CAIS '26}
+Confidence-gated multi-agent system on MCP that normalises free-form job titles in five languages to O*NET / ESCO.
+72.5\% less classification time (4.0 to 1.1 min per position), up to 95\% segment-level accuracy.
+\keywords{Next.js, MCP, Vercel AI SDK, Anthropic SDK, Multi-Agent, Hooks}
+
+\project{Tokalator: Context Engineering Toolkit (Open Source)}{500+ installs}
+VS Code extension and web platform for real-time token budgeting and context optimisation for AI coding assistants;
+supports 17 models with a PostgreSQL-backed usage tracker.
+\href{https://marketplace.visualstudio.com/items?itemName=vfaraji89.tokalator}{Marketplace}\,\textbar\,\href{https://tokalator.ai}{tokalator.ai}
+\keywords{TypeScript, Next.js, VS Code Extension, Token Economics}
+
+\project{Enterprise AI Transformation (Sales, Finance \& R\&D)}{}
+Delivered AI initiatives across several business units, using agentic workflows for sales reporting, financial
+analytics and R\&D automation. Covered PoC design, MLOps-ready APIs, security reviews and production hand-off.
+\keywords{FastAPI, Agno, Pydantic, Azure, GCP}
+
+\project{Job Matching \& Workforce Canvas Graphs}{}
+AI-assisted matching pipelines for workforce programmes, plus node-graph canvas components for tracking position
+clusters across geographic and departmental variables.
+\keywords{Claude Code, Python, Node-Graph Analytics}
+
+\project{Weekend Advisor -- Baachee.ai (Agent AI Studio)}{}
+Advise on rapid-deployment agent frameworks: tool integration, text-to-SQL parsers and node-graph canvas flows.
+\keywords{Agent Architecture, Framework Design, Protocol Integration}
+
+% ---- skills ----------------------------------------------------------------
+\section{Technical Skills}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}l X@{}}
+  Agents \& Harness & agent harness engineering, agent skills, MCP server/client design, Claude Agent SDK, LangGraph, Agno,
+                      Microsoft Copilot Studio, multi-agent orchestration, tool use, guardrails \\[1pt]
+  LLM Engineering   & RAG, context engineering, token budgeting, prompt composition, evals and benchmarking,
+                      tracing and failure analysis, Arize and Langfuse observability \\[1pt]
+  Full-Stack        & TypeScript 7, Next.js, Vercel AI SDK \& Vercel, Python (async, FastAPI, Pydantic), SQL,
+                      database schema design, REST APIs \\[1pt]
+  Product \& Delivery & spec-driven design, problem discovery with operators, stakeholder alignment,
+                      PoC-to-production, internal \& operator-facing tools \\[1pt]
+  Models \& Data    & Anthropic Platform, OpenAI / Azure Foundry, Vertex AI; PostgreSQL / pgvector, BigQuery,
+                      Azure Synapse, DataHub, Docker \\
+\end{tabularx}
+
+% ---- publications ----------------------------------------------------------
+\section{Publications}
+\textbf{Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping}\\
+V.~Farajijobehdar, \.I.~K\"ose\u{g}lu Sar\i, N.~K.~\"Ure, E.~Zeydan. Proc.\ ACM Conference on AI and Agentic Systems
+(CAIS~'26), Demo Track, San Jose, 2026.
+\href{https://doi.org/10.1145/3786335.3813207}{[DOI 10.1145/3786335.3813207]}
+
+\vspace{3pt}
+\textbf{Tokalator: A Context Engineering Toolkit for Artificial Intelligence Coding Assistants}\\
+V.~Farajijobehdar, \.I.~K\"ose\u{g}lu Sar\i, N.~K.~\"Ure, E.~Zeydan. \href{https://arxiv.org/abs/2604.08290}{arXiv:2604.08290}, April 2026.
+
+\vspace{3pt}
+\textbf{Leveraging LLMs For Turkish Skill Extraction}\\
+E.~Arslan \.Ilt\"uzer, \"O.~A.~\"Ozl\"u, V.~Farajijobehdar, G.~Ery\i\u{g}it. \href{https://arxiv.org/abs/2601.22885}{arXiv:2601.22885}, January 2026.
+
+% ---- talks -----------------------------------------------------------------
+\section{Talks \& Community}
+\begin{tabularx}{\textwidth}{@{}X r@{}}
+  Context Engineering for AI-Native Dev, Only Builders Club & {\color{muted}2026} \\
+  Deep Agent Frameworks for SaaS, Bridge Summit '25 & {\color{muted}2025} \\
+  Enterprise Prompt Engineering and Tool Design, Kayseri University \& Van University & {\color{muted}2025} \\
+  Trainer, Applied AI Course: Agents, MCP and AI-Native Development (18 hours) & {\color{muted}2026} \\
+  AI Career Mentor, TEV (Turkish Education Foundation) & {\color{muted}2026} \\
+\end{tabularx}
+
+% ---- education -------------------------------------------------------------
+\section{Education \& Additional}
+\role{M.A. in Economics}{Ibn Haldun University}{2019 -- 2023}
+Thesis: Real-Time Labor Market Analysis: A Data-Driven Approach\\
+Teaching Assistant, Econometrics I; Research Fellowship in labour-market analytics
+
+\vspace{4pt}
+\textbf{Memberships:} ACM Professional Member \sep \textbf{Patents:} 1 pending\\
+\textbf{Certifications:} Anthropic Claude Certified Architect, Google GenAI Leader\\
+\textbf{Languages:} English (C1), Turkish (Native), Spanish (Instructor Level), Portuguese (Basic), Japanese (Learning)
+
+\end{document}
