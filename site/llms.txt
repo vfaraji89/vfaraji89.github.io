@@ -30,6 +30,9 @@ Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Ista
 - Database schema design and backend systems in TypeScript and Python, with API and workflow integrations; owns features across the stack
 - Reusable tooling for teams: Tokalator (context and token budgeting) and agent skills for AI coding assistants
 
+## Tools in daily use
+Claude Code, Claude Agent SDK, Microsoft Copilot Studio, Microsoft Agents SDK, Azure DevOps, Google Cloud (Console), Google Vertex AI, Vercel AI SDK, Vapi (voice agents), ElevenLabs (voice), Python.
+
 ## Publications
 
 - Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping, ACM CAIS '26, peer-reviewed. DOI: 10.1145/3786335.3813207. Page: https://vfaraji89.github.io/papers/cais-2026.html
