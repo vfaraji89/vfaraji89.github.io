@@ -4902,6 +4902,15 @@
             return row.split('').map(function (ch) { return A.indexOf(ch) / 35; });
         });
         var size = cv.width, cell = size / N, pointer = null;
+        // draw at the screen's real pixel density so dots and letters stay crisp
+        var dpr = Math.min(3, Math.max(1, (window.devicePixelRatio || 1) * (cv.getBoundingClientRect().width || size) / size));
+        cv.width = cv.height = Math.round(size * dpr);
+        // a coarser 32 x 32 reading of the tone map, for media that need room (letters, numbers, network)
+        var M = 32, cell2 = size / M;
+        var dark2 = [];
+        for (var rr2 = 0; rr2 < M; rr2++) { dark2.push([]); for (var cc2 = 0; cc2 < M; cc2++) {
+            dark2[rr2].push((dark[rr2 * 2][cc2 * 2] + dark[rr2 * 2 + 1][cc2 * 2] + dark[rr2 * 2][cc2 * 2 + 1] + dark[rr2 * 2 + 1][cc2 * 2 + 1]) / 4);
+        } }
         var ink = getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#1c1c1e';
         // Seven Portraits, in miniature: the pointer redraws him in a new medium.
         // Halftone at rest; moving across the portrait steps through pixels,
@@ -4922,8 +4931,36 @@
             return 1 + 0.9 * k * k;
         }
         function draw() {
+            g.setTransform(dpr, 0, 0, dpr, 0, 0);
             g.clearRect(0, 0, size, size);
             var m = MODES[mode];
+            if (m === 'letters' || m === 'numbers' || m === 'network') {
+                // coarser grid: each glyph or node gets room to read
+                g.textAlign = 'center'; g.textBaseline = 'middle';
+                for (var r3 = 0; r3 < M; r3++) for (var c3 = 0; c3 < M; c3++) {
+                    var d3 = dark2[r3][c3];
+                    var x3 = (c3 + 0.5) * cell2, y3 = (r3 + 0.5) * cell2, l3 = lensAt(x3, y3);
+                    if (m === 'network') {
+                        if (d3 < 0.08) continue;
+                        // links to the right and below, drawn faint and weighted by tone
+                        g.strokeStyle = 'rgba(28,28,30,' + (0.18 + 0.6 * d3).toFixed(2) + ')';
+                        g.lineWidth = 0.5 + 1.4 * d3;
+                        if (c3 + 1 < M && dark2[r3][c3 + 1] >= 0.08) { g.beginPath(); g.moveTo(x3, y3); g.lineTo(x3 + cell2, y3); g.stroke(); }
+                        if (r3 + 1 < M && dark2[r3 + 1][c3] >= 0.08) { g.beginPath(); g.moveTo(x3, y3); g.lineTo(x3, y3 + cell2); g.stroke(); }
+                        if (c3 + 1 < M && r3 + 1 < M && (r3 + c3) % 3 === 0 && dark2[r3 + 1][c3 + 1] >= 0.2) { g.beginPath(); g.moveTo(x3, y3); g.lineTo(x3 + cell2, y3 + cell2); g.stroke(); }
+                        g.fillStyle = (r3 * 7 + c3 * 13) % 41 === 0 && d3 > 0.4 ? red : tone(Math.min(1, 0.35 + d3));
+                        if ((r3 + c3) % 2 === 0 || d3 > 0.75) { g.beginPath(); g.arc(x3, y3, (0.7 + cell2 * 0.26 * Math.sqrt(d3)) * l3, 0, 7); g.fill(); }
+                    } else {
+                        var set3 = m === 'letters' ? 'VAHIDFRJ' : '0123456789';
+                        if (d3 < 0.06) continue;
+                        var ch3 = set3[(r3 * 5 + c3 * 3) % set3.length];
+                        g.font = (d3 > 0.55 ? '800 ' : '600 ') + (cell2 * (0.55 + 0.75 * Math.sqrt(d3)) * l3).toFixed(1) + 'px "Geist Mono", monospace';
+                        g.fillStyle = (r3 * 7 + c3 * 11) % 53 === 0 && d3 > 0.4 ? red : tone(Math.min(1, 0.2 + d3 * 1.05));
+                        g.fillText(ch3, x3, y3);
+                    }
+                }
+                fig.setAttribute('data-mode', m); sync(); return;
+            }
             if (m === 'photo') {
                 if (photo.complete && photo.naturalWidth) {
                     g.save(); g.filter = 'grayscale(0.15) contrast(1.05)'; g.drawImage(photo, 0, 0, size, size); g.restore();
