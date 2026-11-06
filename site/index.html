@@ -874,13 +874,14 @@
         .nav-sheet a span { color: var(--text-muted); font-weight: 500; font-size: 0.8125rem; }
         .nav-sheet .container { padding-top: 0.25rem; padding-bottom: 1rem; }
 
-        @media (max-width: 760px) {
-            .nav-links, .nav-btn-solid { display: none; }
+        @media (max-width: 920px) {
+            .nav-links { display: none; }
             .nav-toggle { display: inline-block; }
             .site-header.menu-open { background: rgba(255,255,255,0.97); border-bottom-color: rgba(28,28,30,0.08); }
             .site-header.menu-open .nav-sheet { display: block; animation: sheet-in var(--dur-base) var(--ease-out); }
             @keyframes sheet-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
         }
+        @media (max-width: 640px) { .nav-btn-solid { display: none; } }
         @media (prefers-reduced-motion: reduce) {
             .brand:hover .brand-mark .bead { transform: none; }
         }
@@ -1025,8 +1026,14 @@
         }
 
         .hero-identity {
-            float: right; width: 112px; margin: 0.25rem 0 0.75rem 1.5rem;
+            float: right; width: 208px; margin: 0.25rem 0 0.75rem 1.5rem;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
         }
+        .hero-identity .hero-is {
+            margin: 0.875rem 0 0; font-size: 0.8125rem; line-height: 1.4; white-space: normal;
+        }
+        .hero-identity .hero-is .ticker { display: grid; width: 100%; }
+        .hero-identity .hero-is .ticker > .tk { white-space: normal; justify-self: center; }
         /* The portrait is the halftone from Seven Portraits: one ink dot per
            cell of a 64x64 tone map, on paper. Under the pointer the dots swell,
            the same lens the piece uses. */
@@ -1636,14 +1643,14 @@
 
         /* ---- the reel: watch the animated CV -------------------------------- */
         .reel {
-            display: flex; align-items: center; gap: 0.875rem; width: 100%; max-width: 34rem; margin-top: 0.75rem;
-            padding: 0.5rem 1rem 0.5rem 0.5rem; border-radius: 14px; cursor: pointer; text-align: left;
+            display: flex; align-items: center; gap: 0.875rem; width: 100%; max-width: 36rem; min-height: 80px; box-sizing: border-box; margin-top: 0.625rem;
+            padding: 0.5rem 0.75rem 0.5rem 0.5rem; border-radius: 14px; cursor: pointer; text-align: left;
             border: 1px solid var(--ctl-line); background: var(--bg); color: var(--ink); font: inherit;
             transition: border-color var(--ctl-ease), box-shadow var(--dur-slow) var(--ease-out);
         }
         .reel:hover { border-color: var(--ctl-line-hover); box-shadow: 0 16px 30px -24px rgba(28,28,30,0.55); }
         .reel:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
-        .reel-thumb { position: relative; flex: none; width: 128px; aspect-ratio: 16 / 9; border-radius: 9px; overflow: hidden; border: 1px solid var(--ctl-line); }
+        .reel-thumb { position: relative; flex: none; width: 112px; aspect-ratio: 16 / 9; border-radius: 9px; overflow: hidden; border: 1px solid var(--ctl-line); }
         .reel-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s var(--ease-out); }
         .reel:hover .reel-thumb img { transform: scale(1.06); }
         .reel-play {
@@ -1660,7 +1667,9 @@
         .reel-text { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
         .reel-text b { font-size: 0.875rem; font-weight: 700; letter-spacing: -0.01em; }
         .reel-text em { font-style: normal; font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); }
-        .reel-built { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem; white-space: nowrap; }
+        .reel-built { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.2rem; display: flex; gap: 0.35rem; align-items: baseline; min-width: 0; }
+        .reel-built .ticker { min-width: 0; }
+        .reel-built .ticker > .tk { white-space: normal; }
         .reel-built-k { font-family: var(--font-mono); font-size: 0.625rem; color: var(--rust-deep); text-transform: uppercase; letter-spacing: 0.06em; }
         .reel-built .ticker { font-weight: 600; color: var(--ink); }
         .reel-viewer { width: min(1180px, calc(100vw - 32px)); height: fit-content; max-height: calc(100vh - 32px); }
@@ -1951,9 +1960,10 @@
             overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
         }
         .hire-cta {
-            display: inline-flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
-            margin-top: 1.125rem; padding: 0.5rem 0.5rem 0.5rem 0.875rem;
-            border: 1px solid var(--ctl-line); border-radius: calc(var(--ctl-radius) + 4px);
+            display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+            width: 100%; max-width: 36rem; min-height: 80px; box-sizing: border-box;
+            margin-top: 1.125rem; padding: 0.5rem 0.75rem 0.5rem 1rem;
+            border: 1px solid var(--ctl-line); border-radius: 14px;
             background: var(--bg);
             font-size: 0.8125rem;
             font-variation-settings: "MONO" 0.6, "CASL" 0;
@@ -2324,14 +2334,21 @@
             .container { padding: 0 1.25rem; }
             .hero { padding: 2.5rem 0; }
             .hero-name { font-size: 1.5rem; }
-            .hero-identity { width: 84px; margin: 0.25rem 0 0.5rem 1rem; }
+            /* phones: the identity becomes a row above the headline */
+            .hero-identity {
+                float: none; width: auto; margin: 0 0 1.25rem;
+                display: grid; grid-template-columns: 72px 1fr; column-gap: 1rem; align-items: center; text-align: left;
+            }
+            .hero-identity .hero-portrait { grid-row: 1 / span 2; }
+            .hero-identity .hero-is { margin: 0; align-self: end; }
+            .hero-identity .hero-is .ticker > .tk { justify-self: start; }
+            .hero-identity .hero-links { justify-content: flex-start; align-self: start; }
             .hero-portrait { width: 72px; height: 72px; margin: 0 auto; }
             .hero-links { gap: 0.375rem; margin-top: 0.5rem; }
             .hero-links svg { width: 15px; height: 15px; }
             .hero-icon-row { gap: 1rem; }
             .story-art-row { flex-direction: column; align-items: flex-start; }
             .story-art { width: 140px; }
-            .hero-is { white-space: normal; font-size: 0.875rem; }
             .hero-br { display: none; }
             .bio-tags {
                 display: flex; gap: 0.375rem; flex-wrap: nowrap; overflow-x: auto;
@@ -2344,12 +2361,13 @@
             .hero-ctas { display: grid; grid-template-columns: 1fr 1fr; }
             .hero-ctas .cta-cv { grid-column: 1 / -1; }
             .hire-cta {
-                width: 100%; border-radius: var(--radius);
+                width: 100%; border-radius: 14px;
                 padding: 0.75rem 0.875rem; font-size: 0.75rem;
                 justify-content: flex-start;
             }
             .hire-role { min-width: 0; flex: 1 1 auto; }
             .hire-btn { margin-left: auto; }
+            .hire-cta, .reel { max-width: none; }
             .recruiter-card { padding: 1.25rem; }
             .rec-field { grid-template-columns: 1fr; gap: 0.2rem; }
             .hero-ctas .btn { width: 100%; justify-content: center; padding: 0 0.5rem; }
@@ -2469,9 +2487,10 @@
         <section class="hero">
             <div class="hero-identity">
                 <figure class="hero-portrait" id="hero-portrait">
-                    <canvas width="208" height="208" role="img" aria-label="Halftone portrait of Vahid Faraji"></canvas>
+                    <canvas width="208" height="208" role="img" aria-label="Portrait of Vahid Faraji, redrawn as halftone, pixels, lines, letters or a network as the pointer moves over it"></canvas>
                     <span class="hero-portrait-tag" aria-hidden="true">Vahid</span>
                 </figure>
+                <p class="hero-is"><span class="hero-is-name">Vahid</span><br><span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">is an <mark>AI-native architect</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">loves <mark>creative data products</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span><span class="sr-only">is an AI-native architect.</span></p>
                 <div class="hero-links">
                     <a href="https://wa.me/905419402411" target="_blank" rel="noopener" aria-label="WhatsApp" style="color:#25d366;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 008.036 0C3.596 0 .003 3.59.001 8.003a7.95 7.95 0 001.078 3.997L0 16l4.12-1.08a7.987 7.987 0 003.81.965h.004c4.438 0 8.032-3.592 8.034-8.005a7.952 7.952 0 00-2.367-5.654zM8.036 14.6a6.61 6.61 0 01-3.374-.924l-.242-.144-2.508.657.67-2.443-.158-.252a6.585 6.585 0 01-1.015-3.497c.002-3.662 2.985-6.64 6.65-6.64a6.608 6.608 0 014.7 1.947 6.595 6.595 0 011.947 4.698c-.002 3.662-2.985 6.64-6.65 6.64h-.02zm3.64-4.972c-.2-.1-1.182-.583-1.365-.65-.183-.066-.316-.1-.45.1-.132.198-.515.65-.632.783-.116.133-.233.15-.432.05-.2-.1-.843-.31-1.606-.99-.593-.529-.994-1.182-1.11-1.382-.117-.2-.013-.307.088-.406.09-.088.2-.232.3-.348.099-.117.132-.2.198-.333.067-.133.034-.25-.016-.348-.05-.1-.45-1.082-.616-1.482-.162-.389-.327-.336-.45-.342l-.382-.007a.733.733 0 00-.532.25c-.183.2-.698.682-.698 1.664s.715 1.93.815 2.064c.1.133 1.408 2.15 3.413 3.015.477.206.849.329 1.139.421.478.152.914.13 1.258.079.384-.058 1.182-.484 1.35-.95.165-.467.165-.868.115-.951-.05-.084-.183-.133-.383-.233z"/></svg></a>
                     <a href="https://github.com/vfaraji89" target="_blank" rel="noopener" aria-label="GitHub" style="color:#24292e;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
@@ -2486,7 +2505,6 @@
 
             <div class="hero-icon-row">
                 <div>
-                    <p class="hero-is"><span class="hero-is-name">Vahid</span> <span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">is an <mark>AI-native architect</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">loves <mark>creative data products</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span><span class="sr-only">is an AI-native architect.</span></p>
                     <h1 class="hero-name"><span class="sr-only">Enterprise solutions you can count on.</span><span aria-hidden="true"><span class="ticker hero-what" id="hero-what"><span class="tk is-on">Enterprise solutions</span><span class="tk">Data products</span><span class="tk">Agents</span><span class="tk">Analysis</span><span class="tk">Design</span><span class="tk">Architecture</span><span class="tk">Problem solving</span><span class="tk">Token-cost optimisation</span><span class="tk">Tracing</span><span class="tk">Failure detection</span><span class="tk">Tests</span></span><br> you can count&nbsp;on<span class="bead-stop">.</span></span></h1>
                 </div>
             </div>
@@ -3890,29 +3908,70 @@
         });
         var size = cv.width, cell = size / N, pointer = null;
         var ink = getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#1c1c1e';
+        // Seven Portraits, in miniature: the pointer redraws him in a new medium.
+        // Halftone at rest; moving across the portrait steps through pixels,
+        // lines, letters and a network, and a tap does the same on touch.
+        var red = getComputedStyle(document.documentElement).getPropertyValue('--rust').trim() || '#e0301e';
+        var MODES = ['halftone', 'pixels', 'lines', 'letters', 'network'];
+        var mode = 0, moved = 0;
+        var GLYPHS = ' .:;ilcoaeshmHMW';
+        function tone(d) { var v = Math.round(244 - d * 228); return 'rgb(' + v + ',' + (v - 3) + ',' + (v - 9) + ')'; }
+        function lensAt(x, y) {
+            if (!pointer) return 1;
+            var k = Math.max(0, 1 - Math.hypot(x - pointer[0], y - pointer[1]) / 34);
+            return 1 + 0.9 * k * k;
+        }
         function draw() {
             g.clearRect(0, 0, size, size);
-            g.fillStyle = ink;
+            var m = MODES[mode];
+            g.fillStyle = ink; g.strokeStyle = ink; g.lineCap = 'round';
+            if (m === 'letters') { g.textAlign = 'center'; g.textBaseline = 'middle'; }
             for (var r = 0; r < N; r++) for (var c = 0; c < N; c++) {
                 var d = dark[r][c];
-                if (d < 0.04) continue;
-                var x = (c + 0.5) * cell, y = (r + 0.5) * cell, lens = 1;
-                if (pointer) {
-                    var k = Math.max(0, 1 - Math.hypot(x - pointer[0], y - pointer[1]) / 34);
-                    lens = 1 + 0.9 * k * k;
+                var x = (c + 0.5) * cell, y = (r + 0.5) * cell, lens = lensAt(x, y);
+                if (m === 'pixels') {
+                    var w = cell * lens; g.fillStyle = tone(d); g.fillRect(x - w / 2, y - w / 2, w + 0.5, w + 0.5); continue;
                 }
-                g.beginPath(); g.arc(x, y, cell * 0.6 * Math.sqrt(d) * lens, 0, 7); g.fill();
+                if (d < 0.05) continue;
+                if (m === 'halftone') {
+                    g.beginPath(); g.arc(x, y, cell * 0.6 * Math.sqrt(d) * lens, 0, 7); g.fill();
+                } else if (m === 'lines') {
+                    var amp = cell * 0.6 * Math.pow(d, 1.2) * lens;
+                    g.lineWidth = 0.4 + 2.4 * Math.pow(d, 1.4);
+                    g.beginPath(); g.moveTo(x - cell / 2, y + Math.sin(c * 1.1 + r * 0.7) * amp); g.lineTo(x + cell / 2, y + Math.sin((c + 1) * 1.1 + r * 0.7) * amp); g.stroke();
+                } else if (m === 'letters') {
+                    var ch = GLYPHS[Math.min(GLYPHS.length - 1, Math.floor(Math.pow(d, 0.75) * GLYPHS.length))];
+                    if (ch === ' ') continue;
+                    g.font = '700 ' + Math.round(cell * 1.35 * lens) + 'px "Geist Mono", monospace';
+                    g.fillStyle = tone(Math.min(1, 0.25 + d)); g.fillText(ch, x, y);
+                } else if (m === 'network') {
+                    if (d < 0.3) continue;
+                    if (c + 1 < N && dark[r][c + 1] > 0.3) { g.lineWidth = 0.3 + 0.9 * d; g.beginPath(); g.moveTo(x, y); g.lineTo(x + cell, y); g.stroke(); }
+                    if (r + 1 < N && dark[r + 1][c] > 0.3) { g.lineWidth = 0.3 + 0.9 * d; g.beginPath(); g.moveTo(x, y); g.lineTo(x, y + cell); g.stroke(); }
+                    g.fillStyle = (r * 7 + c * 13) % 53 === 0 && d > 0.45 ? red : ink;
+                    g.beginPath(); g.arc(x, y, cell * 0.32 * Math.sqrt(d) * lens, 0, 7); g.fill();
+                }
             }
+            fig.setAttribute('data-mode', m);
         }
         var raf = 0;
         function queue() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; draw(); }); }
+        function next() { mode = (mode + 1) % MODES.length; queue(); }
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            var entered = 0;
+            cv.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { entered = Date.now(); next(); } });
             cv.addEventListener('pointermove', function (e) {
                 var b = cv.getBoundingClientRect();
-                pointer = [(e.clientX - b.left) / b.width * size, (e.clientY - b.top) / b.height * size];
+                var np = [(e.clientX - b.left) / b.width * size, (e.clientY - b.top) / b.height * size];
+                if (pointer) moved += Math.hypot(np[0] - pointer[0], np[1] - pointer[1]);
+                pointer = np;
+                // every so much travel across the face, a new medium
+                if (moved > size * 1.4) { moved = 0; mode = (mode + 1) % MODES.length; }
                 queue();
             });
-            cv.addEventListener('pointerleave', function () { pointer = null; queue(); });
+            cv.addEventListener('pointerleave', function () { pointer = null; moved = 0; mode = 0; queue(); });
+            // a click right after the pointer arrives would skip a medium; let the arrival count
+            cv.addEventListener('click', function () { if (Date.now() - entered > 350) next(); });
         }
         draw();
     })();
