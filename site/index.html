@@ -1729,9 +1729,114 @@
         .reel-built .ticker > .tk { white-space: normal; }
         .reel-built-k { font-family: var(--font-mono); font-size: 0.625rem; color: var(--rust-deep); text-transform: uppercase; letter-spacing: 0.06em; }
         .reel-built .ticker { font-weight: 600; color: var(--ink); }
-        .reel-viewer { width: min(1180px, calc(100vw - 32px)); height: fit-content; max-height: calc(100vh - 32px); }
-        .reel-stage { background: #0f0f10; display: flex; align-items: center; justify-content: center; }
-        .reel-stage video { width: 100%; height: auto; max-height: calc(100vh - 140px); display: block; background: #0f0f10; }
+        /* the storyboard: moving across the card scrubs the film, portrait first */
+        .reel-story {
+            position: absolute; inset: 0; opacity: 0; pointer-events: none;
+            background: url(assets/video/vahid-cv-story.jpg) 0 0 / 900% 100% no-repeat;
+            transition: opacity 0.25s var(--ease-out);
+        }
+        .reel.is-scrub .reel-story { opacity: 1; }
+        .reel.is-scrub .reel-play { opacity: 0; transform: scale(0.6); }
+        .reel-play { transition: opacity 0.25s, transform 0.4s var(--ease-spring); }
+        .reel-ticks { position: absolute; left: 6px; right: 6px; bottom: 3px; display: flex; gap: 2px; opacity: 0; transition: opacity 0.25s; }
+        .reel-ticks i { flex: 1; height: 2px; border-radius: 2px; background: rgba(255,255,255,0.55); }
+        .reel-ticks i.on { background: var(--rust); }
+        .reel.is-scrub .reel-ticks { opacity: 1; }
+        .reel.is-scrub .reel-time { opacity: 0; }
+
+        /* ---- the player: pops out of the card, an abacus for a timeline ---- */
+        .reel-viewer {
+            width: min(1080px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 32px);
+            margin: auto; inset: 0; padding: 0; border: 0; border-radius: 18px; overflow: hidden;
+            background: var(--bg); color: var(--ink); box-shadow: 0 50px 100px -40px rgba(28,28,30,0.6);
+        }
+        .reel-viewer[open] { display: flex; flex-direction: column; animation: rp-pop 0.62s cubic-bezier(0.2, 1.1, 0.3, 1) both; }
+        .reel-viewer.is-closing { animation: rp-pop 0.34s cubic-bezier(0.5, 0, 0.75, 0) reverse both; }
+        .reel-viewer::backdrop { background: rgba(28,28,30,0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        @keyframes rp-pop {
+            from { opacity: 0; transform: translate(var(--rp-dx, 0), var(--rp-dy, 24px)) scale(var(--rp-s, 0.9)); border-radius: 40px; }
+            40% { opacity: 1; }
+            to { opacity: 1; transform: none; border-radius: 18px; }
+        }
+        .rp-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 0.875rem 0.75rem 1.25rem; }
+        .rp-chapter { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-secondary); display: inline-flex; gap: 0.4rem; }
+        .rp-chapter b { color: var(--rust); font-weight: 600; }
+        .rp-chapter.flip { animation: rp-chap 0.5s var(--ease-out); }
+        @keyframes rp-chap { from { opacity: 0; transform: translateY(6px); filter: blur(3px); } to { opacity: 1; transform: none; filter: none; } }
+        .reel-stage { position: relative; background: #0f0f10; margin: 0 0.75rem; border-radius: 12px; overflow: hidden; }
+        .reel-stage video { width: 100%; height: auto; max-height: calc(100dvh - 210px); display: block; background: #0f0f10; cursor: pointer; }
+        .rp-big {
+            position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; border: 0; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; color: #fff; background-color: var(--rust);
+            background-image: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.55) 0 14%, rgba(255,255,255,0) 24%);
+            box-shadow: inset -2px -3px 0 rgba(0,0,0,0.18), 0 0 0 0 rgba(224,48,30,0.5); animation: live-ring 1.8s var(--ease-move) infinite;
+            transition: opacity 0.3s, transform 0.45s var(--ease-spring);
+        }
+        .rp-big svg { width: 26px; height: 26px; margin-left: 4px; }
+        .reel-viewer.is-playing .rp-big { opacity: 0; transform: scale(0.5); pointer-events: none; }
+        .rp-deck { padding: 0.875rem 1.25rem 1rem; }
+        .rp-rail { position: relative; height: 26px; cursor: pointer; touch-action: none; outline: none; }
+        .rp-rod, .rp-fill { position: absolute; left: 0; top: 12px; height: 2px; border-radius: 2px; }
+        .rp-rod { right: 0; background: rgba(28,28,30,0.16); }
+        .rp-fill { width: 0; background: var(--ink); }
+        .rp-marks { position: absolute; inset: 0; }
+        .rp-mark {
+            position: absolute; top: 7px; width: 12px; height: 12px; margin-left: -6px; padding: 0; border: 0; border-radius: 50%; cursor: pointer;
+            background-color: var(--mark); box-shadow: inset -1px -1px 0 rgba(0,0,0,0.18);
+            background-image: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.8) 0 14%, rgba(255,255,255,0) 22%);
+            transition: transform 0.4s var(--ease-spring), background-color 0.3s;
+        }
+        .rp-mark.done { background-color: var(--ink); }
+        .rp-mark.now { background-color: var(--rust); transform: scale(1.25); }
+        .rp-mark:hover { transform: scale(1.4); }
+        .rp-mark span {
+            position: absolute; bottom: 18px; left: 50%; transform: translate(-50%, 4px); white-space: nowrap; pointer-events: none;
+            font-family: var(--font-mono); font-size: 0.625rem; color: #fff; background: var(--ink); padding: 0.2rem 0.45rem; border-radius: 5px;
+            opacity: 0; transition: opacity 0.2s, transform 0.3s var(--ease-out);
+        }
+        .rp-mark:hover span, .rp-mark:focus-visible span { opacity: 1; transform: translate(-50%, 0); }
+        .rp-head-bead {
+            position: absolute; top: 5px; left: 0; width: 16px; height: 16px; margin-left: -8px; border-radius: 50%; pointer-events: none;
+            background-color: var(--rust); box-shadow: 0 0 0 3px var(--bg), inset -1px -2px 0 rgba(0,0,0,0.2);
+            background-image: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.75) 0 14%, rgba(255,255,255,0) 22%);
+        }
+        .rp-rail:focus-visible .rp-head-bead { box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--blue); }
+        .rp-controls { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.5rem; flex-wrap: wrap; }
+        .rp-play, .rp-mute {
+            width: var(--ctl-h); height: var(--ctl-h); border-radius: 50%; border: 1px solid var(--ctl-line); cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center; background: var(--bg); color: var(--ink);
+            transition: border-color var(--ctl-ease), background var(--ctl-ease), transform 0.3s var(--ease-spring);
+        }
+        .rp-play { background: var(--ink); color: #fff; border-color: var(--ink); }
+        .rp-play:active, .rp-mute:active { transform: scale(0.92); }
+        .rp-play svg { width: 15px; height: 15px; }
+        .rp-play .i-play { margin-left: 2px; }
+        .rp-play .i-pause, .reel-viewer.is-playing .rp-play .i-play { display: none; }
+        .reel-viewer.is-playing .rp-play .i-pause { display: block; }
+        .rp-mute svg { width: 17px; height: 17px; }
+        .rp-mute .x, .rp-mute[aria-pressed="true"] .w1, .rp-mute[aria-pressed="true"] .w2 { display: none; }
+        .rp-mute[aria-pressed="true"] .x { display: inline; }
+        .rp-mute:hover { border-color: var(--ctl-line-hover); }
+        .rp-time { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink); min-width: 6.5em; }
+        .rp-time i { font-style: normal; color: var(--text-muted); }
+        .rp-speed { display: inline-flex; margin-left: auto; padding: 3px; gap: 2px; border: 1px solid var(--ctl-line); border-radius: 999px; }
+        .rp-speed button {
+            height: 28px; padding: 0 0.6rem; border: 0; border-radius: 999px; cursor: pointer; background: transparent;
+            font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-secondary);
+            transition: background 0.25s, color 0.25s;
+        }
+        .rp-speed button:hover { color: var(--ink); background: var(--ctl-tint); }
+        .rp-speed button[aria-pressed="true"] { background: var(--rust); color: #fff; }
+        @media (max-width: 640px) {
+            .reel-viewer { width: 100vw; max-height: 100dvh; border-radius: 0; }
+            .rp-head { padding: 0.625rem 0.75rem; }
+            .reel-stage { margin: 0; border-radius: 0; }
+            .rp-deck { padding: 0.75rem; }
+            .rp-speed { margin-left: 0; order: 3; width: 100%; justify-content: space-between; }
+            .rp-mute { margin-left: auto; }
+            .rp-mark span { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) { .reel-viewer[open], .reel-viewer.is-closing { animation: none; } .rp-big { animation: none; } }
 
         /* ---- sound switch (off by default) ----------------------------------- */
         .sound-toggle {
@@ -2590,6 +2695,8 @@
             <button type="button" class="reel" id="reel-open" aria-haspopup="dialog">
                 <span class="reel-thumb">
                     <img src="assets/video/vahid-cv-poster.jpg" alt="" width="1280" height="720" loading="lazy">
+                    <span class="reel-story" aria-hidden="true"></span>
+                    <span class="reel-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
                     <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></span>
                     <span class="reel-time">1:00</span>
                 </span>
@@ -3132,22 +3239,37 @@
         </div>
     </dialog>
 
-    <dialog class="cv-viewer reel-viewer" id="reel-viewer" aria-label="Animated CV, 60 seconds">
-        <div class="cvv-bar">
+    <dialog class="reel-viewer" id="reel-viewer" aria-label="Animated CV, 60 seconds">
+        <div class="rp-head">
             <div class="cvv-id">
                 <span class="cvv-title">Vahid Faraji<span class="name-bead" aria-hidden="true"></span> Animated CV</span>
-                <span class="cvv-meta">1:00 &middot; 1080p &middot; sound on</span>
+                <span class="rp-chapter" id="rp-chapter" aria-live="polite"><b>01</b> The beginning</span>
             </div>
             <div class="cvv-actions">
-                <a href="assets/video/vahid-cv-60s.mp4" download="Vahid-Faraji-Animated-CV.mp4" class="btn btn-outline btn-sm">Download</a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
                 <button type="button" class="cvv-close" aria-label="Close video">&times;</button>
             </div>
         </div>
-        <div class="reel-stage">
+        <div class="reel-stage" id="rp-stage">
             <video id="reel-video" controls playsinline preload="none" poster="assets/video/vahid-cv-poster.jpg">
                 <source src="assets/video/vahid-cv-60s.mp4" type="video/mp4">
             </video>
+            <button type="button" class="rp-big" id="rp-big" aria-label="Play"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></button>
+        </div>
+        <div class="rp-deck" hidden>
+            <div class="rp-rail" id="rp-rail" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="60" aria-valuenow="0">
+                <span class="rp-rod"></span><span class="rp-fill" id="rp-fill"></span>
+                <span class="rp-marks" id="rp-marks"></span>
+                <span class="rp-head-bead" id="rp-knob"></span>
+            </div>
+            <div class="rp-controls">
+                <button type="button" class="rp-play" id="rp-play" aria-label="Play"><svg class="i-play" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg><svg class="i-pause" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="3" height="10" rx="1"/><rect x="9" y="3" width="3" height="10" rx="1"/></svg></button>
+                <span class="rp-time" id="rp-time">0:00 <i>/ 1:00</i></span>
+                <div class="rp-speed" role="group" aria-label="Playback speed">
+                    <button type="button" data-rate="0.75">0.75&times;</button><button type="button" data-rate="1" aria-pressed="true">1&times;</button><button type="button" data-rate="1.25">1.25&times;</button><button type="button" data-rate="1.5">1.5&times;</button><button type="button" data-rate="2">2&times;</button>
+                </div>
+                <button type="button" class="rp-mute" id="rp-mute" aria-pressed="false" aria-label="Mute"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 6h2.2L8 3.3v9.4L4.7 10H2.5z"/><path class="w1" d="M10.6 6a2.8 2.8 0 010 4"/><path class="w2" d="M12.4 4.3a5.3 5.3 0 010 7.4"/><path class="x" d="M10.5 6l3.5 4M14 6l-3.5 4"/></svg></button>
+            </div>
         </div>
     </dialog>
 
@@ -3808,15 +3930,119 @@
         var btn = document.getElementById('reel-open'), dlg = document.getElementById('reel-viewer');
         if (!btn || !dlg) return;
         var v = document.getElementById('reel-video');
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // 1. the card: the cursor scrubs a storyboard, portrait media first
+        var thumb = btn.querySelector('.reel-thumb'), story = btn.querySelector('.reel-story');
+        var ticks = btn.querySelectorAll('.reel-ticks i'), FR = ticks.length;
+        function showFrame(k) {
+            story.style.backgroundPosition = (k / (FR - 1) * 100) + '% 0';
+            ticks.forEach(function (t, j) { t.classList.toggle('on', j <= k); });
+        }
+        if (window.matchMedia('(hover: hover)').matches) {
+            btn.addEventListener('pointermove', function (e) {
+                var b = btn.getBoundingClientRect();
+                var k = Math.max(0, Math.min(FR - 1, Math.floor((e.clientX - b.left) / b.width * FR)));
+                btn.classList.add('is-scrub'); showFrame(k);
+            });
+            btn.addEventListener('pointerleave', function () { btn.classList.remove('is-scrub'); });
+        } else if (!reduce && 'IntersectionObserver' in window) {
+            // touch: the storyboard plays itself while the card is on screen
+            var k = 0, timer = 0;
+            new IntersectionObserver(function (es) {
+                es.forEach(function (en) {
+                    clearInterval(timer);
+                    if (en.isIntersecting) { btn.classList.add('is-scrub'); showFrame(k); timer = setInterval(function () { k = (k + 1) % FR; showFrame(k); }, 900); }
+                    else btn.classList.remove('is-scrub');
+                });
+            }, { threshold: 0.6 }).observe(btn);
+        }
+
         if (typeof dlg.showModal !== 'function') { btn.addEventListener('click', function () { location.href = 'assets/video/vahid-cv-60s.mp4'; }); return; }
+
+        // 2. the player
+        var deck = dlg.querySelector('.rp-deck'), big = document.getElementById('rp-big');
+        var playB = document.getElementById('rp-play'), muteB = document.getElementById('rp-mute');
+        var rail = document.getElementById('rp-rail'), fill = document.getElementById('rp-fill'), knob = document.getElementById('rp-knob');
+        var marks = document.getElementById('rp-marks'), timeEl = document.getElementById('rp-time'), chapEl = document.getElementById('rp-chapter');
+        var CH = [[0, 'The beginning'], [7, 'Data'], [15, 'Agents'], [25, 'Tokalator'], [37, 'In production'], [46, 'The through-line'], [53, 'The invitation']];
+        var DUR = 60;
+        v.removeAttribute('controls'); deck.hidden = false;
+        CH.forEach(function (c, i) {
+            var m = document.createElement('button');
+            m.type = 'button'; m.className = 'rp-mark'; m.style.left = (c[0] / DUR * 100) + '%';
+            m.setAttribute('aria-label', 'Chapter ' + (i + 1) + ': ' + c[1]);
+            m.innerHTML = '<span>' + String(i + 1).padStart(2, '0') + ' ' + c[1] + '</span>';
+            m.addEventListener('click', function (e) { e.stopPropagation(); seek(c[0] + 0.01); play(); });
+            marks.appendChild(m);
+        });
+        var markEls = marks.querySelectorAll('.rp-mark'), lastCh = -1;
+        function fmt(t) { t = Math.max(0, Math.round(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); }
+        function render() {
+            var d = v.duration || DUR, t = v.currentTime || 0, p = Math.min(1, t / d);
+            fill.style.width = (p * 100) + '%'; knob.style.left = (p * 100) + '%';
+            timeEl.innerHTML = fmt(t) + ' <i>/ ' + fmt(d) + '</i>';
+            rail.setAttribute('aria-valuenow', Math.round(t)); rail.setAttribute('aria-valuetext', fmt(t));
+            var ch = 0; CH.forEach(function (c, i) { if (t >= c[0]) ch = i; });
+            markEls.forEach(function (m, i) { m.classList.toggle('done', i < ch); m.classList.toggle('now', i === ch); });
+            if (ch !== lastCh) {
+                lastCh = ch;
+                chapEl.innerHTML = '<b>' + String(ch + 1).padStart(2, '0') + '</b> ' + CH[ch][1];
+                chapEl.classList.remove('flip'); void chapEl.offsetWidth; chapEl.classList.add('flip');
+            }
+        }
+        function play() { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+        function toggle() { if (v.paused) play(); else v.pause(); }
+        function seek(t) { v.currentTime = Math.max(0, Math.min((v.duration || DUR) - 0.05, t)); render(); }
+        v.addEventListener('play', function () { dlg.classList.add('is-playing'); playB.setAttribute('aria-label', 'Pause'); });
+        v.addEventListener('pause', function () { dlg.classList.remove('is-playing'); playB.setAttribute('aria-label', 'Play'); });
+        v.addEventListener('ended', function () { dlg.classList.remove('is-playing'); });
+        v.addEventListener('timeupdate', render);
+        v.addEventListener('loadedmetadata', render);
+        v.addEventListener('click', toggle);
+        big.addEventListener('click', play);
+        playB.addEventListener('click', toggle);
+        muteB.addEventListener('click', function () { v.muted = !v.muted; muteB.setAttribute('aria-pressed', v.muted); muteB.setAttribute('aria-label', v.muted ? 'Unmute' : 'Mute'); });
+        dlg.querySelectorAll('.rp-speed button').forEach(function (b) {
+            b.addEventListener('click', function () {
+                v.playbackRate = parseFloat(b.dataset.rate);
+                dlg.querySelectorAll('.rp-speed button').forEach(function (o) { o.setAttribute('aria-pressed', o === b); });
+            });
+        });
+        // the rail: drag the bead to scrub
+        var dragging = false;
+        function railSeek(e) { var b = rail.getBoundingClientRect(); seek((e.clientX - b.left) / b.width * (v.duration || DUR)); }
+        rail.addEventListener('pointerdown', function (e) { if (e.target.closest('.rp-mark')) return; dragging = true; rail.setPointerCapture(e.pointerId); railSeek(e); });
+        rail.addEventListener('pointermove', function (e) { if (dragging) railSeek(e); });
+        rail.addEventListener('pointerup', function () { dragging = false; });
+        rail.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') { seek(v.currentTime + 5); e.preventDefault(); }
+            if (e.key === 'ArrowLeft') { seek(v.currentTime - 5); e.preventDefault(); }
+        });
+        dlg.addEventListener('keydown', function (e) {
+            if (e.key === ' ' && !e.target.closest('button, a')) { toggle(); e.preventDefault(); }
+            if (e.key === 'm') muteB.click();
+        });
+
+        // 3. open: the player pops out of the card it was launched from
         btn.addEventListener('click', function () {
+            var b = (thumb || btn).getBoundingClientRect();
+            var cx = b.left + b.width / 2 - innerWidth / 2, cy = b.top + b.height / 2 - innerHeight / 2;
+            dlg.style.setProperty('--rp-dx', cx + 'px'); dlg.style.setProperty('--rp-dy', cy + 'px');
+            dlg.style.setProperty('--rp-s', Math.max(0.12, b.width / Math.min(1080, innerWidth)).toFixed(3));
             document.documentElement.classList.add('cvv-lock');
+            dlg.classList.remove('is-closing');
             dlg.showModal();
-            if (v) { v.currentTime = 0; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+            v.currentTime = 0; render(); play();
             if (window.gtag) gtag('event', 'reel_play');
         });
-        function close() { dlg.close(); }
-        dlg.addEventListener('close', function () { if (v) v.pause(); document.documentElement.classList.remove('cvv-lock'); });
+        function close() {
+            if (reduce || !dlg.open) { dlg.close(); return; }
+            dlg.classList.add('is-closing');
+            setTimeout(function () { dlg.classList.remove('is-closing'); dlg.close(); }, 320);
+        }
+        dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+        dlg.addEventListener('close', function () { v.pause(); document.documentElement.classList.remove('cvv-lock'); });
         dlg.querySelector('.cvv-close').addEventListener('click', close);
         dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
     })();
