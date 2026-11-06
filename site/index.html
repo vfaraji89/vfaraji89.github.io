@@ -3013,6 +3013,17 @@
         .reel-share a { width: 32px; height: 32px; padding: 0; justify-content: center; border-radius: 50%; }
         .reel-share svg { width: 14px; height: 14px; }
         .reel-share .rs-x svg { color: var(--ink); }
+    
+        /* before and after, as a ledger */
+        .gains { margin: 1rem 0 0.25rem; border-top: 1px solid var(--border); }
+        .gains-head, .gains-row { display: grid; grid-template-columns: 1.4fr 0.8fr 1fr; align-items: center; gap: 0.75rem; }
+        .gains-head { padding: 0.5rem 0 0.35rem; font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+        .gains-head span:last-child { color: var(--rust-deep); }
+        .gains-row { padding: 0.45rem 0; border-top: 1px solid var(--border); font-size: 0.8125rem; }
+        .gains-row span { color: var(--ink); }
+        .gains-row s { color: var(--text-muted); text-decoration-thickness: 1.5px; }
+        .gains-row b { justify-self: start; padding: 0.15rem 0.55rem; border-radius: 6px; background: var(--paper); border: 1px solid rgba(224,48,30,0.25); color: var(--rust); font-weight: 800; }
+        @media (max-width: 640px) { .gains-head, .gains-row { grid-template-columns: 1.2fr 0.8fr 1fr; gap: 0.4rem; font-size: 0.75rem; } }
     </style>
     <link rel="stylesheet" href="assets/brand/abacus-frame.css">
 </head>
@@ -3457,6 +3468,14 @@
                             <div class="case-row"><span class="case-row-label">Result</span><span class="case-row-val"><strong>91% of the manual effort eliminated</strong>. 64h of hand work reduced to 5.5h, freeing <strong>59 hours (7.3 working days)</strong>. 31 Excel files no longer created.</span></div>
                         </div>
                         </details>
+                        <div class="gains" aria-label="Before and after ProjectLens">
+                            <div class="gains-head"><span>Work</span><span>Before</span><span>After</span></div>
+                            <div class="gains-row"><span>Pricing a project</span><s>2 hours</s><b>10 minutes</b></div>
+                            <div class="gains-row"><span>Collecting a request</span><s>30 minutes</s><b>5 minutes</b></div>
+                            <div class="gains-row"><span>Arithmetic and copy errors</span><s>Yes</s><b>Designed out</b></div>
+                            <div class="gains-row"><span>Waiting in an approval queue</span><s>Yes</s><b>No</b></div>
+                            <div class="gains-row"><span>Cycle time, conversion, margin</span><s>Not measured</s><b>Measured</b></div>
+                        </div>
                         <div class="case-stats">
                             <span><strong>59h</strong> freed</span>
                             <span><strong>91%</strong> effort cut</span>
