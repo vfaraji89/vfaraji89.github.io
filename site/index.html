@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="color-scheme" content="light">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vahid Faraji | Applied AI Engineer: Agent Harnesses, Evals, Production LLM Agents</title>
     <meta name="description" content="Applied AI engineer shipping LLM agents to production: agent harnesses, tool calling, context and memory, evals, tracing and failure analysis. Full stack in TypeScript and Python. ACM-published.">
@@ -658,18 +659,6 @@
             --transition: var(--dur-base) var(--ease-move);
         }
 
-        [data-theme="dark"] {
-            --bg:           #0d0d0d;
-            --bg-subtle:    #161616;
-            --bg-muted:     #1e1e1e;
-            --border:       #2a2a2a;
-            --border-strong: #3a3a3a;
-            --text-primary: #e8e8e8;
-            --text-secondary: #a0a0a0;
-            --text-muted:   #666666;
-            --accent:       #ff4136;
-            --accent-bg:    rgba(255, 65, 54, 0.08);
-        }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         /* First paint. The webfonts arrive after the markup, and the hero is set
@@ -759,7 +748,6 @@
             background: rgba(255,255,255,0.85);
             transition: background var(--transition), border-color var(--transition);
         }
-        [data-theme="dark"] .site-header { background: rgba(13,13,13,0.85); }
         .site-nav { display: flex; align-items: center; justify-content: space-between; height: 52px; }
         .nav-left { display: flex; align-items: center; gap: 0.75rem; }
         .nav-name {
@@ -801,7 +789,7 @@
             height: 1px; pointer-events: none;
             background: linear-gradient(90deg, transparent, var(--border-strong) 1.25rem, var(--border-strong));
         }
-        .nav-icon, .theme-toggle, .nav-cv {
+        .nav-icon, .nav-cv {
             position: relative; z-index: 1;
             height: 28px; border-radius: 999px; border: 1px solid var(--border-strong);
             background: var(--bg); color: var(--text-secondary); cursor: pointer;
@@ -810,25 +798,23 @@
             transition: border-color var(--transition), color var(--transition),
                         background var(--transition), transform var(--dur-base) var(--ease-spring);
         }
-        .nav-icon, .theme-toggle { width: 28px; padding: 0; }
-        .nav-icon svg, .theme-toggle svg { width: 13px; height: 13px; }
+        .nav-icon { width: 28px; padding: 0; }
+        .nav-icon svg { width: 13px; height: 13px; }
         .nav-cv {
             padding: 0 0.75rem; font-family: var(--font);
             font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.04em;
             font-variation-settings: "MONO" 1, "CASL" 0;
             color: var(--accent); border-color: var(--accent);
         }
-        .nav-icon:hover, .theme-toggle:hover, .nav-cv:hover {
+        .nav-icon:hover, .nav-cv:hover {
             background: var(--accent); border-color: var(--accent); color: var(--white);
             transform: translateX(-3px); text-decoration: none;
         }
-        [data-theme="dark"] .nav-icon:hover, [data-theme="dark"] .theme-toggle:hover,
-        [data-theme="dark"] .nav-cv:hover { color: #0d0d0d; }
-        .nav-icon:focus-visible, .theme-toggle:focus-visible, .nav-cv:focus-visible {
+        .nav-icon:focus-visible, .nav-cv:focus-visible {
             outline: 2px solid var(--accent); outline-offset: 2px;
         }
         @media (prefers-reduced-motion: reduce) {
-            .nav-icon:hover, .theme-toggle:hover, .nav-cv:hover { transform: none; }
+            .nav-icon:hover, .nav-cv:hover { transform: none; }
         }
 
         /* Hero */
@@ -843,8 +829,7 @@
         }
         .hero-icon-row { display: flex; align-items: center; gap: 1.75rem; margin-bottom: 1.25rem; }
         /* The hero mark is a pencil drawing of an abacus, hung the way a print
-           is: a hairline frame, a paper mat, and a museum-style caption. The
-           mat keeps the paper tone in dark mode too, since it is the artwork. */
+           is: a hairline frame, a paper mat, and a museum-style caption. */
         .hero-art { flex: none; width: 136px; margin: 0; }
         .hero-art-frame {
             padding: 7px; background: #f7f3ea;
@@ -860,7 +845,6 @@
             transform: translateY(-2px) rotate(-0.6deg);
             box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 14px 26px -12px rgba(0,0,0,0.3);
         }
-        [data-theme="dark"] .hero-art-frame { border-color: #4a4a4a; box-shadow: 0 10px 24px -12px rgba(0,0,0,0.8); }
         .hero-art figcaption {
             margin-top: 0.5rem; font-size: 0.5625rem; line-height: 1.4; letter-spacing: 0.06em;
             text-transform: uppercase; color: var(--text-muted);
@@ -1018,8 +1002,6 @@
         .btn-dark { background: var(--black); color: var(--white); border-color: var(--grey-700); }
         .btn-dark:hover { background: var(--grey-800); border-color: var(--grey-600); }
         .btn svg { width: 13px; height: 13px; }
-        [data-theme="dark"] .btn-primary:hover, [data-theme="dark"] .btn-outline:hover { color: #0d0d0d; }
-        [data-theme="dark"] .btn-dark { background: var(--grey-800); border-color: var(--border); }
         @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
 
         /* A row of buttons is one abacus rod: a hairline thread through the
@@ -1053,7 +1035,6 @@
         }
         .hover-card:hover::after { opacity: 1; }
         .hover-card:hover { border-color: var(--grey-400); box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
-        [data-theme="dark"] .hover-card::after { background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255,65,54,0.06), transparent 40%); }
 
         /* Case Cards */
         .case-grid { display: grid; gap: 1.75rem; }
@@ -1314,7 +1295,6 @@
                         opacity var(--dur-enter) var(--ease-out);
         }
         /* A grey mark loses weight against the dark ground, so it is given back. */
-        [data-theme="dark"] .footer-sign { opacity: 0.8; }
         .footer-sign:hover { color: var(--accent); opacity: 1; }
         .footer-sign svg { width: 21px; height: 28px; display: block; overflow: visible; }
 
@@ -1584,8 +1564,6 @@
             transition: background var(--transition), transform var(--transition);
         }
         .hire-btn:hover { background: #c50f09; text-decoration: none; transform: translateX(2px); }
-        [data-theme="dark"] .hire-btn { color: #0d0d0d; }
-        [data-theme="dark"] .hire-btn:hover { background: #ff6a5c; }
 
         /* four-phase indicator, mirroring the hero icon's cycle */
         .hire-phase { display: inline-flex; gap: 3px; align-items: center; }
@@ -1958,10 +1936,6 @@
                 <a href="https://wa.me/905419402411" target="_blank" rel="noopener" aria-label="WhatsApp" class="nav-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 008.036 0C3.596 0 .003 3.59.001 8.003a7.95 7.95 0 001.078 3.997L0 16l4.12-1.08a7.987 7.987 0 003.81.965h.004c4.438 0 8.032-3.592 8.034-8.005a7.952 7.952 0 00-2.367-5.654zM8.036 14.6a6.61 6.61 0 01-3.374-.924l-.242-.144-2.508.657.67-2.443-.158-.252a6.585 6.585 0 01-1.015-3.497c.002-3.662 2.985-6.64 6.65-6.64a6.608 6.608 0 014.7 1.947 6.595 6.595 0 011.947 4.698c-.002 3.662-2.985 6.64-6.65 6.64h-.02zm3.64-4.972c-.2-.1-1.182-.583-1.365-.65-.183-.066-.316-.1-.45.1-.132.198-.515.65-.632.783-.116.133-.233.15-.432.05-.2-.1-.843-.31-1.606-.99-.593-.529-.994-1.182-1.11-1.382-.117-.2-.013-.307.088-.406.09-.088.2-.232.3-.348.099-.117.132-.2.198-.333.067-.133.034-.25-.016-.348-.05-.1-.45-1.082-.616-1.482-.162-.389-.327-.336-.45-.342l-.382-.007a.733.733 0 00-.532.25c-.183.2-.698.682-.698 1.664s.715 1.93.815 2.064c.1.133 1.408 2.15 3.413 3.015.477.206.849.329 1.139.421.478.152.914.13 1.258.079.384-.058 1.182-.484 1.35-.95.165-.467.165-.868.115-.951-.05-.084-.183-.133-.383-.233z"/></svg></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" aria-label="Book a call" class="nav-icon"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M10.5 5.5l3-2.5v10l-3-2.5V13a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h6.5a1 1 0 011 1v2.5z"/></svg></a>
                 <a href="assets/cv/01-cv-vahid-faraji-202610.pdf" target="_blank" rel="noopener" class="nav-cv" aria-label="Download CV (PDF)">CV</a>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-                    <svg id="icon-sun" viewBox="0 0 16 16" fill="currentColor" style="display:none;"><path d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2A.5.5 0 018 0zm0 13a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-2A.5.5 0 018 13zm8-5a.5.5 0 01-.5.5h-2a.5.5 0 010-1h2a.5.5 0 01.5.5zM3 8a.5.5 0 01-.5.5h-2a.5.5 0 010-1h2A.5.5 0 013 8zm10.657-5.657a.5.5 0 010 .707l-1.414 1.415a.5.5 0 11-.707-.708l1.414-1.414a.5.5 0 01.707 0zm-9.193 9.193a.5.5 0 010 .707L3.05 13.657a.5.5 0 01-.707-.707l1.414-1.414a.5.5 0 01.707 0zm9.193 2.121a.5.5 0 01-.707 0l-1.414-1.414a.5.5 0 01.707-.707l1.414 1.414a.5.5 0 010 .707zM4.464 4.465a.5.5 0 01-.707 0L2.343 3.05a.5.5 0 11.707-.707l1.414 1.414a.5.5 0 010 .708z"/></svg>
-                    <svg id="icon-moon" viewBox="0 0 16 16" fill="currentColor"><path d="M6 .278a.768.768 0 01.08.858 7.208 7.208 0 00-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 01.81.316.733.733 0 01-.031.893A8.349 8.349 0 018.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 016 .278z"/></svg>
-                </button>
             </div>
         </nav>
     </header>
@@ -2158,7 +2132,7 @@
                 <div class="case-card hover-card featured" data-hover>
                     <div class="card-content">
                         <div class="case-meta"><span class="case-tag">Open Source</span><span class="case-tag">Shipped</span></div>
-                        <div class="case-title"><a href="https://tokalator.wiki" target="_blank" rel="noopener">Tokalator: Context Engineering Toolkit</a></div>
+                        <div class="case-title"><a href="https://tokalator.ai/" target="_blank" rel="noopener">Tokalator: Context Engineering Toolkit</a></div>
                         <details class="disclose case-disclose" open>
                             <summary>Problem, approach, result</summary>
                         <div class="case-body">
@@ -2275,17 +2249,17 @@
             <div class="gallery-grid">
 
                 <div class="gallery-card hover-card featured" data-hover>
-                    <div class="gallery-screenshot" data-lightbox="tokalator" data-images='["assets/photos/tokalator-dashboard.png","assets/photos/tokalator-wiki.png","assets/photos/tokalator-calculator.png"]'>
-                        <img src="assets/photos/tokalator-dashboard.png" alt="Tokalator team dashboard" loading="lazy">
-                        <span class="gallery-screenshot-count">1 / 3</span>
+                    <div class="gallery-screenshot" data-lightbox="tokalator" data-images='["assets/photos/tokalator-vscode.png","assets/photos/tokalator-dashboard.png","assets/photos/tokalator-wiki.png","assets/photos/tokalator-calculator.png"]'>
+                        <img src="assets/photos/tokalator-vscode.png" alt="Tokalator token budget panel in VS Code: context usage, turn analytics, Claude Code session tokens and workspace tools" loading="lazy">
+                        <span class="gallery-screenshot-count">1 / 4</span>
                     </div>
                     <div class="gallery-info">
                         <div class="gallery-meta"><span class="gallery-tag">Open Source</span><span class="gallery-tag">Shipped</span></div>
-                        <div class="gallery-name"><a href="https://tokalator.wiki" target="_blank" rel="noopener">Tokalator: Context Engineering Toolkit</a></div>
+                        <div class="gallery-name"><a href="https://tokalator.ai/" target="_blank" rel="noopener">Tokalator: Context Engineering Toolkit</a></div>
                         <div class="gallery-desc">VS Code extension, wiki with 58 articles, and token calculator. Real-time token budgeting, tab relevance scoring, and cost modeling across 17 LLMs.</div>
                         <div class="gallery-stack"><span>Next.js</span><span>·</span><span>Scala</span><span>·</span><span>Python</span><span>·</span><span>Cobb-Douglas</span><span>·</span><span>VS Code Extension</span></div>
                         <div class="gallery-actions">
-                            <a href="https://tokalator.wiki" target="_blank" rel="noopener" class="ga-primary">Live Site</a>
+                            <a href="https://tokalator.ai/" target="_blank" rel="noopener" class="ga-primary">Install &amp; download</a>
                             <a href="https://marketplace.visualstudio.com/items?itemName=vfaraji89.tokalator" target="_blank" rel="noopener" class="ga-outline">VS Code Marketplace</a>
                             <a href="https://arxiv.org/abs/2604.08290" target="_blank" rel="noopener" class="ga-outline">arXiv Paper</a>
                         </div>
@@ -2782,41 +2756,6 @@
         });
     })();
 
-    (function(){
-        const btn = document.getElementById('theme-toggle');
-        const sun = document.getElementById('icon-sun');
-        const moon = document.getElementById('icon-moon');
-        const root = document.documentElement;
-        const media = window.matchMedia('(prefers-color-scheme: dark)');
-
-        function stored() {
-            try { return localStorage.getItem('vf-theme'); } catch (e) { return null; }
-        }
-        function persist(v) {
-            try { localStorage.setItem('vf-theme', v); } catch (e) {}
-        }
-        function apply(d) {
-            root.setAttribute('data-theme', d ? 'dark' : 'light');
-            if (sun)  sun.style.display  = d ? 'block' : 'none';
-            if (moon) moon.style.display = d ? 'none'  : 'block';
-        }
-
-        let dark = stored() ? stored() === 'dark' : media.matches;
-        apply(dark);
-
-        if (btn) btn.addEventListener('click', () => {
-            dark = !dark;
-            apply(dark);
-            persist(dark ? 'dark' : 'light');
-        });
-
-        // Follow the OS until the visitor makes an explicit choice.
-        media.addEventListener('change', (e) => {
-            if (stored()) return;
-            dark = e.matches;
-            apply(dark);
-        });
-    })();
 
     document.querySelectorAll('[data-hover]').forEach(card => {
         card.addEventListener('mousemove', e => {
