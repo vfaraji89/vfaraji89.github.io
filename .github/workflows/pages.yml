@@ -11,15 +11,17 @@ permissions:
   pages: write
   id-token: write
 
+# Never cancel a deploy that is already publishing: a cancelled run can leave a
+# Pages deployment half-open, and the next one then queues behind it until it times out.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ steps.pages.outputs.base_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,9 +47,23 @@ jobs:
             pdftoppm -jpeg -jpegopt quality=82,progressive=y -r 115 -f $n -l $n -singlefile \
               cv/vahid-faraji-cv.pdf site/assets/cv/vahid-faraji-cv-$n
           done
-      - uses: actions/configure-pages@v5
+      - id: pages
+        uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+      # Publishing sometimes fails on GitHub's side ("try again later", or stuck
+      # while updating). Give it longer, and retry once after a pause.
       - id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true
+        with:
+          timeout: 1200000
+      - name: Wait before retrying the deploy
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 60
+      - id: deployment_retry
+        if: steps.deployment.outcome == 'failure'
+        uses: actions/deploy-pages@v4
+        with:
+          timeout: 1200000
