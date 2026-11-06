@@ -98,60 +98,6 @@ const Brand: React.FC = () => {
   );
 };
 
-// the narration, as a caption on a blush strip with a red bead
-const Caption: React.FC<{ text: string; start: number; end: number }> = ({ text, start, end }) => {
-  const f = useCurrentFrame();
-  if (f < start || f > end) return null;
-  const words = text.split(' ');
-  const shown = Math.floor(interpolate(f, [start, start + Math.min(60, (end - start) * 0.55)], [0, words.length], { extrapolateRight: 'clamp' }));
-  const op = Math.min(interpolate(f, [start, start + 8], [0, 1], { extrapolateRight: 'clamp' }), fadeOut(f, end, 10));
-  return (
-    <div style={{ position: 'absolute', left: 0, right: 0, bottom: 120, display: 'flex', justifyContent: 'center', opacity: op }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 18, maxWidth: 1400, padding: '18px 30px', borderRadius: 18, background: 'rgba(255,255,255,0.92)', border: `1px solid ${C.line}`, boxShadow: '0 20px 40px -28px rgba(28,28,30,0.5)' }}>
-        <Bead size={16} color={C.red} style={{ boxShadow: 'none', flex: 'none' }} />
-        <span style={{ fontFamily: SANS, fontSize: 34, color: C.ink, lineHeight: 1.35 }}>
-          {words.map((w, i) => (
-            <span key={i} style={{ opacity: i < shown ? 1 : 0.18, transition: 'none' }}>{w} </span>
-          ))}
-        </span>
-      </div>
-    </div>
-  );
-};
-
-// the timer: a small abacus that counts the seconds, tens on top, ones below.
-// Counted beads sit on the left of each rail, the next one slides over as the second ticks.
-const Timer: React.FC = () => {
-  const f = useCurrentFrame();
-  const sec = f / FPS;
-  const whole = Math.floor(sec), frac = sec - whole;
-  const tens = Math.floor(whole / 10), ones = whole % 10;
-  const slide = Easing.bezier(0.34, 1.4, 0.5, 1)(Math.min(1, frac * 4));   // the bead lands in the first quarter second
-  const W = 300, gap = 22, size = 15;
-  const rail = (count: number, total: number, y: number, moving: boolean, color: (k: number) => string) => (
-    <div style={{ position: 'absolute', left: 0, top: y, width: W, height: size }}>
-      <div style={{ position: 'absolute', left: 0, right: 0, top: size / 2 - 1, height: 2, background: C.ink, opacity: 0.35, borderRadius: 2 }} />
-      {Array.from({ length: total }).map((_, k) => {
-        const counted = k < count;
-        const isNext = k === count && moving;
-        const leftX = k * gap, rightX = W - (total - k) * gap + (gap - size);
-        const x = counted ? leftX : isNext ? rightX + (leftX - rightX) * slide : rightX;
-        return <div key={k} style={{ position: 'absolute', left: x, top: 0 }}><Bead size={size} color={counted || isNext ? color(k) : '#d8d5cf'} style={{ boxShadow: 'none' }} /></div>;
-      })}
-    </div>
-  );
-  const mm = Math.floor(whole / 60), ss = String(whole % 60).padStart(2, '0');
-  return (
-    <div style={{ position: 'absolute', left: 80, bottom: 40, display: 'flex', alignItems: 'center', gap: 26, padding: '14px 22px 14px 18px', borderRadius: 16, background: 'rgba(255,255,255,0.9)', border: `1px solid ${C.line}` }}>
-      <div style={{ position: 'relative', width: W, height: size * 2 + 10 }}>
-        {rail(tens, 6, 0, ones === 9 && frac > 0.75, () => C.red)}
-        {rail(ones, 10, size + 10, true, (k) => (k === 4 ? C.deep : C.ink))}
-      </div>
-      <div style={{ fontFamily: MONO, fontSize: 24, color: C.ink, letterSpacing: '0.04em' }}>{mm}:{ss}<span style={{ color: C.muted }}> / 1:00</span></div>
-    </div>
-  );
-};
-
 // ---- the halftone portrait ----------------------------------------------------
 const N = 64;
 export type Medium = 'halftone' | 'pixels' | 'lines' | 'letters' | 'network';
@@ -550,9 +496,9 @@ const Harness: React.FC = () => {
 
 // 4 -- agents were burning tokens blind: Tokalator, in its own UI
 const TOK_REGIONS: [number, number, number, number, string, string][] = [
-  [52, 80, 520, 50, 'Live context budget', 'in the editor'],
-  [52, 258, 520, 182, 'Turn analytics', '97% from cache'],
-  [52, 626, 520, 266, 'Workspace tools', 'skills · maps · checks'],
+  [52, 80, 520, 50, 'A live budget', 'right where people code'],
+  [52, 258, 520, 182, 'Where the spend goes', '97% reused, not re-bought'],
+  [52, 626, 520, 266, 'Guardrails', 'rules and checks for every agent'],
 ];
 const TokalatorStory: React.FC = () => {
   const f = useCurrentFrame();
@@ -569,8 +515,8 @@ const TokalatorStory: React.FC = () => {
     <AbsoluteFill>
       <div style={{ position: 'absolute', left: 120, top: 140, width: 840 }}>
         <Kicker f={f} text="CONTEXT DESIGN · TOKALATOR" />
-        <div style={{ fontFamily: SANS, fontSize: 46, color: C.sec, marginTop: 22, lineHeight: 1.3, ...fadeUp(f, 4) }}>Agents burned tokens blind<Dot /></div>
-        <Big f={f} at={34} size={92}>So I designed<br />the context<Dot /></Big>
+        <div style={{ fontFamily: SANS, fontSize: 46, color: C.sec, marginTop: 22, lineHeight: 1.3, ...fadeUp(f, 4) }}>AI assistants were spending blind<Dot /></div>
+        <Big f={f} at={34} size={92}>So I built them<br />a live meter<Dot /></Big>
         {TOK_REGIONS.map(([, , , , t, d], k) => (
           <div key={t} style={{ display: 'flex', gap: 18, alignItems: 'flex-start', marginTop: k === 0 ? 34 : 16, opacity: f >= 70 + k * step ? 1 : 0.22, transform: `translateX(${f >= 70 + k * step ? 0 : -8}px)` }}>
             <Bead size={20} color={k === i ? C.red : C.mark} style={{ marginTop: 10 }} />
@@ -761,7 +707,7 @@ const DataContext: React.FC = () => {
         <Big f={f} size={100}>Then I gave data<br />its context<Dot /></Big>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 18, marginTop: 40, ...fadeUp(f, 18) }}>
           <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 116, color: C.red, letterSpacing: '-0.04em' }}>{Math.round(n)}M+</span>
-          <span style={{ fontFamily: MONO, fontSize: 26, color: C.sec, lineHeight: 1.4 }}>assets, each with<br />a clear trail</span>
+          <span style={{ fontFamily: MONO, fontSize: 26, color: C.sec, lineHeight: 1.4 }}>records, each one<br />findable and trusted</span>
         </div>
       </div>
       <div style={{ position: 'absolute', left: 1060, top: 230, width: cols * gap, height: rows * gap }}>
@@ -915,7 +861,7 @@ const Camera: React.FC<{ keys: Key[]; children: React.ReactNode }> = ({ keys, ch
 
 // know the problem: the same job, written a dozen ways, converges to one answer
 const MESSY: [string, number, number, number][] = [
-  ['Sr. Data Analyst', 1080, 210, -6], ['Kıdemli Veri Analisti', 1380, 300, 4], ['data analist (jr)', 1120, 400, 3],
+  ['Sr. Data Analyst', 1080, 240, -6], ['Kıdemli Veri Analisti', 1380, 300, 4], ['data analist (jr)', 1120, 400, 3],
   ['Veri Analizi Uzmanı', 1460, 470, -5], ['Analyst, Data – BI', 1060, 560, -2], ['DATA ANALYST!!!', 1400, 640, 6],
   ['Analista de datos', 1150, 720, -4], ['Raporlama & Veri Uzm.', 1480, 780, 2],
 ];
@@ -933,8 +879,12 @@ const ProblemSolution: React.FC = () => {
         <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 64, letterSpacing: '-0.03em', color: C.red, marginTop: 24, ...fadeUp(f, 172) }}>Then the solution.</div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginTop: 30, ...fadeUp(f, 196) }}>
           <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 84, color: C.ink, letterSpacing: '-0.03em' }}>{Math.round(n95)}%</span>
-          <span style={{ fontFamily: MONO, fontSize: 24, color: C.sec, lineHeight: 1.4 }}>accuracy on 14K+ titles<br />peer-reviewed, ACM CAIS ’26</span>
+          <span style={{ fontFamily: MONO, fontSize: 24, color: C.sec, lineHeight: 1.4 }}>right on 14K+ real job titles<br />peer-reviewed, ACM CAIS ’26</span>
         </div>
+      </div>
+      <div style={{ position: 'absolute', left: 1290, top: 104, transform: 'translateX(-50%)', display: 'flex', alignItems: 'center', gap: 14, whiteSpace: 'nowrap', opacity: interpolate(f, [6, 20, 124, 140], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
+        <Bead size={18} color={C.red} style={{ boxShadow: 'none' }} />
+        <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 40, color: C.ink, letterSpacing: '-0.02em' }}>One job. Eight ways to write it.</span>
       </div>
       {MESSY.map(([t, x, y, rot], i) => {
         const pop = spring({ frame: f - 12 - i * 7, fps: FPS, config: { damping: 12, stiffness: 140 } });
@@ -982,9 +932,9 @@ const Analytical: React.FC = () => {
   return (
     <AbsoluteFill>
       <div style={{ position: 'absolute', left: 120, top: 200, width: 760 }}>
-        <div style={{ opacity: 1 - table }}>
+        <div style={{ opacity: interpolate(f, [112, 134], [1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
           <Kicker f={f} text="ANALYTICAL THINKING · PROJECTLENS" />
-          <Big f={f} size={92}>Before: Excel<br />and e-mail sprawl<Dot /></Big>
+          <Big f={f} size={92}>Quotes lived in<br />Excel and e-mail<Dot /></Big>
         </div>
       </div>
       {/* the sprawl: real file and mail cards drifting, then pulled into one tool */}
@@ -1148,11 +1098,11 @@ const CUT: [number, React.FC, (() => TransitionPresentation<any>) | null][] = [
   // data: dive into one asset, then pull back
   [260, scene(DataContext, [[0, 1, 960, 540], [110, 1, 960, 540], [160, 2.1, 1420, 400], [225, 2.1, 1420, 400], [260, 1.4, 1250, 450]], '#ffffff', '100% 100%'), zoomThrough],
   // problem and solution: lean into the mess, then out to the answer
-  [290, scene(ProblemSolution, [[0, 1.6, 1300, 500], [120, 1.6, 1300, 500], [175, 1, 960, 540], [290, 1.05, 960, 540]], '#ffffff', '0% 0%'), () => wipe({ direction: 'from-left' })],
-  // context design: up to the panel, then back
-  [300, scene(TokalatorStory, [[0, 1, 960, 540], [70, 1, 960, 540], [120, 1.6, 1380, 520], [230, 1.6, 1380, 520], [280, 1, 960, 540]], '#fffaf8', '100% 0%'), () => clockWipe({ width: 1920, height: 1080 })],
-  // analytical: start on the bars, pull out to the number
-  [250, scene(Analytical, [[0, 1.25, 1360, 520], [80, 1.25, 1360, 520], [120, 1.1, 1300, 520], [150, 1, 960, 540], [250, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
+  [290, scene(ProblemSolution, [[0, 1.03, 960, 520], [120, 1.07, 960, 520], [175, 1, 960, 540], [290, 1.05, 960, 540]], '#ffffff', '0% 0%'), () => wipe({ direction: 'from-left' })],
+  // context design: a slow push; the panel zooms inside itself
+  [300, scene(TokalatorStory, [[0, 1, 960, 540], [300, 1.06, 1000, 540]], '#fffaf8', '100% 0%'), () => clockWipe({ width: 1920, height: 1080 })],
+  // analytical: the whole sprawl in view, a slight push, then the table
+  [250, scene(Analytical, [[0, 1, 960, 540], [90, 1.05, 960, 540], [140, 1, 960, 540], [250, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
   // you can count on: a slow push
   [240, scene(CountOn, [[0, 1, 960, 540], [240, 1.06, 960, 540]]), rod],
   // the abacus
@@ -1173,6 +1123,5 @@ export const AnimatedCV: React.FC = () => (
     </TransitionSeries>
     <Brand />
     <Intro />
-    <Timer />
   </AbsoluteFill>
 );
