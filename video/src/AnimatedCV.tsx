@@ -422,9 +422,21 @@ const Outro: React.FC = () => {
 // One arc, abacus to agents: counting, scale, the harness, Tokalator, production,
 // the through-line, the invitation.
 
-const Kicker: React.FC<{ f: number; text: string; at?: number }> = ({ f, text, at = 0 }) => (
-  <div style={{ fontFamily: MONO, fontSize: 24, letterSpacing: '0.12em', color: C.deep, ...fadeUp(f, at) }}>{text}</div>
-);
+const KICK_ICON: Record<string, string> = {
+  HELLO: 'abacus', LANGUAGES: 'globe', 'DATA &amp; CONTEXT': 'bars', 'PROBLEM &amp; SOLUTION': 'check',
+  'CONTEXT DESIGN · TOKALATOR': 'window', 'ANALYTICAL THINKING · PROJECTLENS': 'calc', 'WHAT IT CHANGED': 'bars',
+};
+const Kicker: React.FC<{ f: number; text: string; at?: number }> = ({ f, text, at = 0 }) => {
+  const icon = KICK_ICON[text] || KICK_ICON[text.replace(/&/g, '&amp;')];
+  const pop = spring({ frame: f - at, fps: FPS, config: { damping: 10, stiffness: 150 } });
+  const bob = Math.sin((f - at) / 14) * 3;
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 18, ...fadeUp(f, at) }}>
+      {icon && <div style={{ transform: `translateY(${bob}px) rotate(${(1 - pop) * -25}deg)` }}><IconTile name={icon} size={64} pop={pop} /></div>}
+      <span style={{ fontFamily: MONO, fontSize: 24, letterSpacing: '0.12em', color: C.deep }}>{text}</span>
+    </div>
+  );
+};
 const Big: React.FC<{ f: number; at?: number; size?: number; children: React.ReactNode }> = ({ f, at = 6, size = 104, children }) => (
   <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: size, lineHeight: 1.02, letterSpacing: '-0.045em', color: C.ink, marginTop: 16, ...fadeUp(f, at, 20, 30) }}>{children}</div>
 );
@@ -451,9 +463,6 @@ const Origin: React.FC = () => {
         <Big f={f} size={124}>I&rsquo;m Vahid<Dot /></Big>
         <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 52, letterSpacing: '-0.02em', color: C.ink, marginTop: 26, ...fadeUp(f, 26) }}>
           AI-native <span style={{ backgroundImage: `linear-gradient(${C.mark}, ${C.mark})`, backgroundSize: `${interpolate(f, [40, 66], [0, 100], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}% 70%`, backgroundRepeat: 'no-repeat', backgroundPosition: 'left 60%' }}>architect</span><Dot />
-        </div>
-        <div style={{ fontFamily: SANS, fontSize: 36, color: C.sec, marginTop: 20, lineHeight: 1.4, maxWidth: 820, ...fadeUp(f, 46) }}>
-          I build AI that people trust and teams actually use.
         </div>
         <span style={{ display: 'none' }}>{art}</span>
       </div>
@@ -715,7 +724,7 @@ const Languages: React.FC = () => {
         <Kicker f={f} text="LANGUAGES" />
         <Big f={f} size={104}>I read people<br />first<Dot /></Big>
         <div style={{ fontFamily: SANS, fontSize: 38, color: C.sec, marginTop: 30, lineHeight: 1.4, ...fadeUp(f, 175) }}>
-          Five languages taught me that <span style={{ color: C.ink, fontWeight: 600 }}>meaning lives in context</span>, not in words.
+          <span style={{ color: C.ink, fontWeight: 600 }}>Meaning lives in context.</span>
         </div>
       </div>
       {LANGS.map(([hi, name, lvl], i) => {
@@ -976,7 +985,6 @@ const Analytical: React.FC = () => {
         <div style={{ opacity: 1 - table }}>
           <Kicker f={f} text="ANALYTICAL THINKING · PROJECTLENS" />
           <Big f={f} size={92}>Before: Excel<br />and e-mail sprawl<Dot /></Big>
-          <div style={{ fontFamily: SANS, fontSize: 32, color: C.sec, marginTop: 24, lineHeight: 1.4, ...fadeUp(f, 30) }}>Every quote, a new spreadsheet. Every approval, a thread.</div>
         </div>
       </div>
       {/* the sprawl: real file and mail cards drifting, then pulled into one tool */}
@@ -1046,6 +1054,30 @@ const RodView: React.FC<TransitionPresentationComponentProps<ZoomProps>> = ({ ch
   );
 };
 const rod = (): TransitionPresentation<ZoomProps> => ({ component: RodView, props: {} });
+
+// ---- cold open: an abacus counts three, the name lands, we dive through ------
+const Intro: React.FC = () => {
+  const f = useCurrentFrame();
+  if (f > 64) return null;
+  const out = interpolate(f, [44, 62], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.in(Easing.cubic) });
+  const posts = spring({ frame: f, fps: FPS, config: { damping: 14, stiffness: 120 } });
+  const word = interpolate(f, [20, 34], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const dowel = 'linear-gradient(90deg, #b48a5c 0%, #d8bb94 24%, #f1e3cc 48%, #dcc29e 70%, #ad8455 100%)';
+  return (
+    <AbsoluteFill style={{ background: C.paper, opacity: 1 - out, transform: `scale(${1 + out * 1.8})`, filter: `blur(${out * 8}px)` }}>
+      <div style={{ position: 'absolute', left: 660, top: 330, width: 600, height: 300 }}>
+        {[0, 1].map((k) => <div key={k} style={{ position: 'absolute', left: k ? 560 : 0, top: (1 - posts) * -120, width: 40, height: 300, borderRadius: 999, background: dowel, opacity: posts }} />)}
+        <div style={{ position: 'absolute', left: 20, right: 20, top: 222, height: 10, borderRadius: 999, background: 'linear-gradient(180deg, #e9d8bd, #b8946a)' }} />
+        {[0, 1, 2].map((i) => {
+          const slide = interpolate(f, [6 + i * 5, 16 + i * 5], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.back(1.6)) });
+          const x = 60 + i * 70 + slide * 240;
+          return <div key={i} style={{ position: 'absolute', left: x, top: 196, width: 62, height: 62, borderRadius: '50%', background: `radial-gradient(circle at 34% 28%, ${i === 2 ? '#ff8f80' : '#ffffff'} 0%, ${i === 2 ? '#e0301e' : '#f1ede9'} 40%, ${i === 2 ? '#9e1a0c' : '#d6cfc8'} 100%)`, boxShadow: '0 12px 16px -10px rgba(40,20,10,0.45)' }} />;
+        })}
+        <div style={{ position: 'absolute', left: 70, top: 30, fontFamily: PIXEL, fontSize: 170, lineHeight: 0.8, color: C.ink, opacity: word, transform: `translateY(${(1 - word) * 20}px)` }}>vahid<span style={{ color: C.red }}>.</span></div>
+      </div>
+    </AbsoluteFill>
+  );
+};
 
 const Push: React.FC<{ dur: number; children: React.ReactNode }> = ({ dur, children }) => {
   const f = useCurrentFrame();
@@ -1140,12 +1172,7 @@ export const AnimatedCV: React.FC = () => (
       ))}
     </TransitionSeries>
     <Brand />
-    <Caption text="Hi, I'm Vahid. I build AI people trust." start={30} end={START[1] - 6} />
-    <Caption text="I read people first, in five languages." start={START[1] + 20} end={START[2] - 6} />
-    <Caption text="Every number needs its story." start={START[2] + 20} end={START[3] - 6} />
-    <Caption text="Know the problem. Then build the solution." start={START[3] + 20} end={START[4] - 6} />
-    <Caption text="Context, designed: a live budget in VS Code." start={START[4] + 20} end={START[5] - 6} />
-    <Caption text="ProjectLens: from Excel sprawl to one measured flow." start={START[5] + 20} end={START[5] + 125} />
+    <Intro />
     <Timer />
   </AbsoluteFill>
 );
