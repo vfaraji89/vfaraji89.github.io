@@ -1362,6 +1362,53 @@
             .pop-group > * { opacity: 1 !important; transform: none !important; }
             .ab circle, .jr-stops.is-popped .jr-icon { animation: none !important; transition: none !important; transform: none !important; }
         }
+
+        /* The last thing on the page: the name at full width, set on an abacus
+           rod. The full stop is a bead. Beads in the brand's red tones sit on
+           the rod along the baseline and slide out of the pointer's way. */
+        .site-footer { padding-bottom: 0; }
+        .footer-wordmark {
+            position: relative; margin-top: 2.5rem; overflow: hidden;
+            background: var(--paper); border-top: 1px solid rgba(224,48,30,0.12);
+            padding: 3vw 3vw 0; user-select: none;
+        }
+        .wm-word {
+            font-size: clamp(5rem, 31vw, 30rem); font-weight: 800; line-height: 0.74;
+            letter-spacing: -0.065em; color: var(--ink); white-space: nowrap;
+        }
+        .wm-dot {
+            display: inline-block; width: 0.17em; height: 0.17em; margin-left: 0.04em;
+            border-radius: 50%; background: var(--rust); vertical-align: baseline;
+            border: 0.012em solid var(--ink);
+            box-shadow: inset -0.02em -0.025em 0 rgba(0,0,0,0.18);
+            transition: transform 0.6s var(--ease-spring);
+        }
+        .footer-wordmark:hover .wm-dot { transform: translateY(-0.12em); }
+        .wm-rod { position: relative; height: 8vw; min-height: 28px; margin: -3.4vw -3vw 1.5vw; pointer-events: none; }
+        .wm-line {
+            position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px;
+            background: var(--ink); opacity: 0.85;
+        }
+        .wm-bead {
+            position: absolute; top: 50%; left: var(--x);
+            width: calc(7.2vw * var(--s)); height: calc(7.2vw * var(--s));
+            min-width: 18px; min-height: 18px;
+            transform: translate(calc(-50% + var(--dx, 0px)), -50%);
+            transition: transform 0.9s var(--ease-spring);
+        }
+        .wm-bead svg { width: 100%; height: 100%; display: block; overflow: visible; }
+        .wm-bead circle { stroke: var(--ink); stroke-width: 3.5; }
+        .wm-bead .t-red { fill: var(--rust); }
+        .wm-bead .t-deep { fill: var(--rust-deep); }
+        .wm-bead .t-light { fill: var(--mark); }
+        .wm-bead .hl { fill: none; stroke: rgba(255,255,255,0.75); stroke-width: 4; stroke-linecap: round; }
+        .js .footer-wordmark .wm-bead { opacity: 0; }
+        .footer-wordmark.is-popped .wm-bead { opacity: 1; animation: wm-drop 0.9s var(--ease-spring) both; animation-delay: calc(var(--i, 0) * 70ms); }
+        @keyframes wm-drop { from { opacity: 0; transform: translate(-50%, -160%); } to { opacity: 1; transform: translate(calc(-50% + var(--dx, 0px)), -50%); } }
+        @media (prefers-reduced-motion: reduce) {
+            .wm-bead, .wm-dot { transition: none; }
+            .js .footer-wordmark .wm-bead { opacity: 1; animation: none; }
+        }
         @media (prefers-reduced-motion: reduce) { .jr-bead { transition: none; } .jr-stop.is-on .jr-icon { transform: none; } }
         .footer-inner { display: flex; flex-direction: column; gap: 1.25rem; }
         .footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
@@ -2748,6 +2795,22 @@
                 <span class="footer-sign" title="Scorpion, in beads"><svg viewBox="0 0 24 32" fill="currentColor" role="img" aria-label="Scorpion"><circle cx="6.5" cy="5" r="2.3"/><circle cx="17.5" cy="5" r="2.3"/><circle cx="12" cy="9.5" r="2.3"/><circle cx="12" cy="14.5" r="2.3"/><circle cx="12" cy="19" r="2.3"/><circle class="t1" cx="15" cy="23" r="2"/><circle class="t2" cx="16.8" cy="27" r="1.7"/><circle class="t3" cx="14.2" cy="29.8" r="1.3"/></svg></span>
             </div>
         </div>
+        <div class="footer-wordmark" id="footer-wordmark" aria-hidden="true">
+            <div class="wm-word">vahid<span class="wm-dot"></span></div>
+            <div class="wm-rod">
+                <span class="wm-line"></span>
+                <span class="wm-bead" style="--x:3%;--s:0.812"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-deep"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+                <span class="wm-bead" style="--x:9%;--s:0.562"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-light"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+                <span class="wm-bead" style="--x:21%;--s:0.938"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-red"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+                <span class="wm-bead" style="--x:27%;--s:0.625"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-light"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+                <span class="wm-bead" style="--x:41%;--s:0.750"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-deep"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+                <span class="wm-bead" style="--x:55%;--s:1.000"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-red"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+                <span class="wm-bead" style="--x:60.5%;--s:0.562"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-light"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+                <span class="wm-bead" style="--x:73%;--s:0.688"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-deep"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+                <span class="wm-bead" style="--x:86%;--s:0.875"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-red"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+                <span class="wm-bead" style="--x:91.5%;--s:0.594"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-light"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+            </div>
+        </div>
     </footer>
 
 
@@ -3060,6 +3123,45 @@
         window.addEventListener('resize', function () { go(home); });
         if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { go(home); });
         go(home);
+    })();
+
+    (function footerWordmark() {
+        var wm = document.getElementById('footer-wordmark');
+        if (!wm) return;
+        var beads = Array.prototype.slice.call(wm.querySelectorAll('.wm-bead'));
+        beads.forEach(function (b, i) { b.style.setProperty('--i', i); });
+        var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!('IntersectionObserver' in window) || still) { wm.classList.add('is-popped'); }
+        else {
+            var io = new IntersectionObserver(function (es) {
+                es.forEach(function (e) { if (e.isIntersecting) { wm.classList.add('is-popped'); io.disconnect(); } });
+            }, { threshold: 0.3 });
+            io.observe(wm);
+            // once dropped, let the spring transition take over from the keyframes
+            beads[beads.length - 1].addEventListener('animationend', function () {
+                beads.forEach(function (b) { b.style.animation = 'none'; b.style.opacity = '1'; });
+            });
+        }
+        if (still) return;
+        var raf = 0, px = null;
+        function push() {
+            raf = 0;
+            var box = wm.getBoundingClientRect(), reach = box.width * 0.09;
+            beads.forEach(function (b) {
+                var x = parseFloat(b.style.getPropertyValue('--x')) / 100 * box.width;
+                var dx = 0;
+                if (px !== null) {
+                    var d = x - px, a = Math.abs(d);
+                    if (a < reach) dx = (d >= 0 ? 1 : -1) * (reach - a) * 0.9;
+                }
+                b.style.setProperty('--dx', dx.toFixed(1) + 'px');
+            });
+        }
+        wm.addEventListener('pointermove', function (e) {
+            px = e.clientX - wm.getBoundingClientRect().left;
+            if (!raf) raf = requestAnimationFrame(push);
+        });
+        wm.addEventListener('pointerleave', function () { px = null; if (!raf) raf = requestAnimationFrame(push); });
     })();
 
     (function siteHeader() {
