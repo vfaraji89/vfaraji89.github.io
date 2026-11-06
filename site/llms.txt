@@ -31,9 +31,9 @@ Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Ista
 - Reusable tooling for teams: Tokalator (context and token budgeting) and agent skills for AI coding assistants
 
 ## Tools in daily use
-Applied AI: Claude Code, Claude Agent SDK, Microsoft Copilot Studio, Azure AI Foundry, Google Vertex AI, LangChain, LangGraph, ElevenLabs, Vapi.
-Data and retrieval: RAG, vector databases, BigQuery, Google Cloud, SQL.
-Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agents SDK, Azure DevOps, Langfuse (tracing).
+Applied AI: Claude Code, Claude Agent SDK, Microsoft Copilot Studio, Azure AI Foundry, Google Vertex AI, LangChain, LangGraph, Deep Agents, Agno, ElevenLabs, Vapi.
+Data and retrieval: RAG, vector databases, BigQuery, Google Cloud, SQL, Hugging Face, Perplexity.
+Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agents SDK, Azure DevOps, MCP, Langfuse (tracing).
 
 ## Publications
 
