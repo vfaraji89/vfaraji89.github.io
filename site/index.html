@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vahid Faraji | Applied AI Engineer: Agent Harnesses, Evals, Production LLM Agents</title>
     <meta name="description" content="Applied AI engineer shipping LLM agents to production: agent harnesses, tool calling, context and memory, evals, tracing and failure analysis. Full stack in TypeScript and Python. ACM-published.">
-    <meta name="theme-color" content="#e3120b">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='4' y='4' width='40' height='40' rx='8' fill='none' stroke='%23e3120b' stroke-width='2.5'/><line x1='10' y1='16' x2='38' y2='16' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='26' x2='38' y2='26' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='36' x2='38' y2='36' stroke='%23ccc' stroke-width='1.5'/><circle cx='14' cy='16' r='3.5' fill='%23e3120b'/><circle cx='23' cy='16' r='3.5' fill='%23e3120b' opacity='0.7'/><circle cx='16' cy='26' r='3.5' fill='%23e3120b' opacity='0.8'/><circle cx='26' cy='26' r='3.5' fill='%23e3120b'/><circle cx='34' cy='26' r='3.5' fill='%23e3120b' opacity='0.5'/><circle cx='30' cy='36' r='3.5' fill='%23e3120b' opacity='0.6'/></svg>">
+    <meta name="theme-color" content="#b24a1f">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='4' y='4' width='40' height='40' rx='8' fill='none' stroke='%23b24a1f' stroke-width='2.5'/><line x1='10' y1='16' x2='38' y2='16' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='26' x2='38' y2='26' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='36' x2='38' y2='36' stroke='%23ccc' stroke-width='1.5'/><circle cx='14' cy='16' r='3.5' fill='%23b24a1f'/><circle cx='23' cy='16' r='3.5' fill='%23b24a1f' opacity='0.7'/><circle cx='16' cy='26' r='3.5' fill='%23b24a1f' opacity='0.8'/><circle cx='26' cy='26' r='3.5' fill='%23b24a1f'/><circle cx='34' cy='26' r='3.5' fill='%23b24a1f' opacity='0.5'/><circle cx='30' cy='36' r='3.5' fill='%23b24a1f' opacity='0.6'/></svg>">
     <link rel="manifest" href="manifest.webmanifest">
 
     <meta property="og:title" content="Vahid Faraji, Applied AI Engineer: Agent Harnesses, Evals, Production LLM Agents">
@@ -626,15 +626,25 @@
             --grey-50:  #f8f8f8;
             --white:    #ffffff;
 
-            --red:       #e3120b;
-            --red-light: rgba(227, 18, 11, 0.08);
+            /* Palette, taken from the Seven Portraits piece: white page,
+               near-black ink, one rust accent, a highlighter for the word that
+               matters, a blue for labels, and a warm paper for cards. */
+            --ink:       #1c1c1e;
+            --rust:      #b24a1f;
+            --rust-deep: #7a2e12;
+            --mark:      #fdefb3;
+            --blue:      #2d70d7;
+            --blue-tile: #eff6fe;
+            --paper:     #f7f6f2;
+            --red:       var(--rust);
+            --red-light: var(--paper);
 
             --bg:           var(--white);
             --bg-subtle:    var(--grey-50);
             --bg-muted:     var(--grey-100);
             --border:       var(--grey-200);
             --border-strong: var(--grey-300);
-            --text-primary: var(--black);
+            --text-primary: var(--ink);
             --text-secondary: var(--grey-600);
             --text-muted:   var(--grey-400);
             --accent:       var(--red);
@@ -718,7 +728,7 @@
             font-weight: 500; font-size: 0.8125rem;
             background: var(--accent-bg); color: var(--accent);
             padding: 0.15em 0.5em; border-radius: 4px;
-            border: 1px solid rgba(227,18,11,0.12);
+            border: 1px solid rgba(178,74,31,0.12);
         }
 
         /* MONO 0.8: UI chrome: labels, metadata, timestamps */
@@ -732,8 +742,8 @@
         section:last-of-type { border-bottom: none; }
         .section-label {
             font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.1em;
-            color: var(--text-muted); margin-bottom: 0.375rem;
-            font-variation-settings: "MONO" 0.8, "CASL" 0; font-weight: 400;
+            color: var(--blue); margin-bottom: 0.375rem;
+            font-variation-settings: "MONO" 0.8, "CASL" 0; font-weight: 500;
         }
         .section-tagline {
             font-size: 0.9375rem; color: var(--accent); margin-bottom: 2rem;
@@ -822,6 +832,20 @@
 
         @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
+        .hero-is {
+            font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink);
+            margin-bottom: 0.625rem; white-space: nowrap;
+        }
+        .hero-is-name { color: var(--rust); }
+        .hero-is mark {
+            color: inherit; padding: 0 0.2em; margin: 0 -0.05em; border-radius: 3px;
+            background: linear-gradient(var(--mark), var(--mark)) left center / 100% 72% no-repeat;
+        }
+        .hero-is mark.is-in { animation: mark-sweep 0.45s var(--ease-out) both; }
+        @keyframes mark-sweep {
+            from { background-size: 0% 72%; opacity: 0.4; }
+            to   { background-size: 100% 72%; opacity: 1; }
+        }
         .hero-label {
             font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em;
             font-variation-settings: "MONO" 0.8, "CASL" 0; font-weight: 500;
@@ -902,30 +926,28 @@
         .bio-tags.has-focus .bio-tag { border-color: var(--border); color: var(--text-muted); opacity: 0.5; background: var(--bg-subtle); }
         .bio-tags.has-focus .bio-tag.active { opacity: 1; background: var(--accent); border-color: var(--accent); color: #fff; }
         .hero-identity {
-            float: right; width: 96px; margin: 0.25rem 0 0.75rem 1.5rem;
+            float: right; width: 112px; margin: 0.25rem 0 0.75rem 1.5rem;
         }
-        .hero-photo-stack {
-            position: relative; width: 96px; height: 96px;
-            cursor: pointer; -webkit-tap-highlight-color: transparent;
+        /* The portrait is the halftone from Seven Portraits: one ink dot per
+           cell of a 64x64 tone map, on paper. Under the pointer the dots swell,
+           the same lens the piece uses. */
+        .hero-portrait {
+            position: relative; width: 112px; height: 112px; margin: 0;
+            background: var(--paper); border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(28,28,30,0.06), 0 10px 24px -14px rgba(28,28,30,0.35);
         }
-        .hero-photo {
-            position: absolute; inset: 0; width: 100%; height: 100%;
-            border-radius: 50%; object-fit: cover;
-            border: 2px solid var(--border); transition: border-color var(--transition);
-            display: block;
+        .hero-portrait canvas { display: block; width: 100%; height: 100%; cursor: crosshair; }
+        .hero-portrait-tag {
+            position: absolute; right: -10px; bottom: -8px; pointer-events: none;
+            font-size: 0.5625rem; font-weight: 600; line-height: 1; color: #fff;
+            background: var(--rust); border-radius: 999px; padding: 0.3rem 0.5rem 0.3rem 0.55rem;
+            box-shadow: 0 2px 6px rgba(28,28,30,0.18);
         }
-        /* The pixel avatar sits underneath. Dissolving the photograph in six
-           discrete steps reads as pixelation rather than as a photo cross-fade. */
-        .hero-photo-pixel { image-rendering: pixelated; }
-        .hero-photo-real {
-            opacity: 1;
-            transition: opacity var(--dur-slow) steps(6), border-color var(--transition);
+        .hero-portrait-tag::before {
+            content: ""; position: absolute; left: -7px; top: -8px; width: 10px; height: 10px;
+            background: var(--rust);
+            clip-path: polygon(0 0, 100% 38%, 52% 52%, 38% 100%);
         }
-        .hero-photo-stack.is-pixel .hero-photo-real { opacity: 0; }
-        .hero-photo-stack:hover .hero-photo { border-color: var(--accent); }
-        /* If the photograph ever fails to load, fall back to the pixel avatar. */
-        .hero-photo-stack.no-photo .hero-photo-real { display: none; }
-        .hero-photo-stack.no-photo { cursor: default; }
 
         .metrics-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 2rem;
@@ -1030,7 +1052,7 @@
         }
         .hover-card::after {
             content: ""; position: absolute; inset: 0; pointer-events: none;
-            background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(227,18,11,0.06), transparent 40%);
+            background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(178,74,31,0.06), transparent 40%);
             opacity: 0; transition: opacity var(--dur-slow) var(--ease-out);
         }
         .hover-card:hover::after { opacity: 1; }
@@ -1042,7 +1064,7 @@
         .case-card.featured { background: var(--accent-bg); border-color: transparent; }
         .case-card.featured::before {
             content: ""; position: absolute; inset: 0; border-radius: var(--radius); padding: 1px;
-            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(227,18,11,0.3) 100%);
+            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(178,74,31,0.3) 100%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
             pointer-events: none; animation: border-rotate 8s linear infinite;
@@ -1056,7 +1078,7 @@
             font-variation-settings: "MONO" 1, "CASL" 0; font-weight: 500;
             background: var(--bg-muted); padding: 0.2rem 0.5rem; border-radius: 4px; color: var(--text-secondary);
         }
-        .case-card.featured .case-tag { background: rgba(227,18,11,0.12); color: var(--accent); }
+        .case-card.featured .case-tag { background: rgba(178,74,31,0.12); color: var(--accent); }
         .case-title {
             font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em;
             font-variation-settings: "MONO" 0.6, "CASL" 0;
@@ -1094,7 +1116,7 @@
             border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text-muted);
             font-variation-settings: "MONO" 1, "CASL" 0;
         }
-        .case-card.featured .case-stats { border-color: rgba(227,18,11,0.12); }
+        .case-card.featured .case-stats { border-color: rgba(178,74,31,0.12); }
         .case-stats strong { color: var(--text-primary); font-weight: 600; }
         .case-stats .stat-live { color: var(--accent); }
 
@@ -1113,7 +1135,7 @@
         .pub-card.acm { background: var(--accent-bg); border-color: transparent; }
         .pub-card.acm::before {
             content: ""; position: absolute; inset: 0; border-radius: var(--radius); padding: 1px;
-            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(227,18,11,0.3) 100%);
+            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(178,74,31,0.3) 100%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
             pointer-events: none; animation: border-rotate 8s linear infinite;
@@ -1123,7 +1145,7 @@
             font-variation-settings: "MONO" 1, "CASL" 0;
             padding: 0.15rem 0.5rem; border-radius: 3px; margin-right: 0.5rem;
         }
-        .pub-badge.acm { background: rgba(227,18,11,0.12); color: var(--accent); }
+        .pub-badge.acm { background: rgba(178,74,31,0.12); color: var(--accent); }
         .pub-badge.arxiv { background: var(--bg-muted); color: var(--text-muted); }
         .pub-title {
             font-size: 0.9375rem; font-weight: 600; margin: 0.625rem 0 0.25rem;
@@ -1350,12 +1372,12 @@
         .gallery-card.featured { background: var(--accent-bg); border-color: transparent; }
         .gallery-card.featured::before {
             content: ""; position: absolute; inset: 0; border-radius: var(--radius); padding: 1px;
-            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(227,18,11,0.3) 100%);
+            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(178,74,31,0.3) 100%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
             pointer-events: none; animation: border-rotate 8s linear infinite;
         }
-        .gallery-card.featured .gallery-tag { background: rgba(227,18,11,0.12); color: var(--accent); }
+        .gallery-card.featured .gallery-tag { background: rgba(178,74,31,0.12); color: var(--accent); }
         .gallery-name {
             font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em;
             font-variation-settings: "MONO" 0.6, "CASL" 0;
@@ -1563,7 +1585,7 @@
             font-variation-settings: "MONO" 0.8, "CASL" 0;
             transition: background var(--transition), transform var(--transition);
         }
-        .hire-btn:hover { background: #c50f09; text-decoration: none; transform: translateX(2px); }
+        .hire-btn:hover { background: #7a2e12; text-decoration: none; transform: translateX(2px); }
 
         /* four-phase indicator, mirroring the hero icon's cycle */
         .hire-phase { display: inline-flex; gap: 3px; align-items: center; }
@@ -1833,15 +1855,13 @@
             .container { padding: 0 1.25rem; }
             .hero { padding: 2.5rem 0; }
             .hero-name { font-size: 1.5rem; }
-            .hero-identity { width: 78px; margin: 0.25rem 0 0.5rem 1rem; }
-            .hero-photo-stack { width: 64px; height: 64px; margin: 0 auto; }
+            .hero-identity { width: 84px; margin: 0.25rem 0 0.5rem 1rem; }
+            .hero-portrait { width: 72px; height: 72px; margin: 0 auto; }
             .hero-links { gap: 0.375rem; margin-top: 0.5rem; }
             .hero-links svg { width: 15px; height: 15px; }
             .hero-icon-row { gap: 1rem; }
-            .hero-art { width: 84px; }
-            .hero-art-frame { padding: 4px; }
-            .hero-art figcaption { display: none; }
-            .hero-label-extra { display: none; }
+            .hero-art { display: none; }
+            .hero-is { white-space: normal; font-size: 0.875rem; }
             .hero-br { display: none; }
             .bio-tags {
                 gap: 0.3rem; flex-wrap: nowrap; overflow-x: auto;
@@ -1944,10 +1964,10 @@
 
         <section class="hero">
             <div class="hero-identity">
-                <div class="hero-photo-stack" id="hero-photo" title="Say hello in 8-bit">
-                    <img src="assets/img/vfoto-vahid.jpg" alt="" aria-hidden="true" class="hero-photo hero-photo-pixel" width="96" height="96">
-                    <img src="assets/foto-vahid.jpg" alt="Vahid Faraji" class="hero-photo hero-photo-real" width="96" height="96" loading="eager">
-                </div>
+                <figure class="hero-portrait" id="hero-portrait">
+                    <canvas width="208" height="208" role="img" aria-label="Halftone portrait of Vahid Faraji"></canvas>
+                    <span class="hero-portrait-tag" aria-hidden="true">Vahid</span>
+                </figure>
                 <div class="hero-links">
                     <a href="https://github.com/vfaraji89" target="_blank" rel="noopener" aria-label="GitHub" style="color:#24292e;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
                     <a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noopener" aria-label="LinkedIn" style="color:#0a66c2;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg></a>
@@ -1967,7 +1987,7 @@
                     <figcaption><em>Fig. 1</em> Abacus, graphite on paper</figcaption>
                 </figure>
                 <div>
-                    <div class="hero-label">Applied AI Engineer<span class="hero-label-extra"> &middot; Researcher-Builder</span></div>
+                    <p class="hero-is"><span class="hero-is-name">Vahid</span> is <mark id="hero-is-word" class="is-in">an agent maker</mark>.</p>
                     <h1 class="hero-name">Agents you can<br class="hero-br"> count&nbsp;on</h1>
                 </div>
             </div>
@@ -3107,39 +3127,58 @@
         });
     })();
 
-    (function photoFlip() {
-        // The portrait reverses to its pixel-art self on hover. Everything is
-        // driven by the class so the touch auto-play below can demonstrate it
-        // with the same events the tags already use.
-        var stack = document.getElementById('hero-photo');
-        if (!stack) return;
-
-        var real = stack.querySelector('.hero-photo-real');
-        if (real) {
-            real.addEventListener('error', function () { stack.classList.add('no-photo'); });
-            if (real.complete && real.naturalWidth === 0) stack.classList.add('no-photo');
+    (function heroPortrait() {
+        var fig = document.getElementById('hero-portrait');
+        if (!fig) return;
+        var cv = fig.querySelector('canvas'), g = cv.getContext('2d');
+        var ROWS = '0000000000000000000000000000000000000000000000000000000000000000|0000000000000000000000000136dgffea410000000000000000000000000000|000000000000000000000003clqtsqqqqsqme510000000000000000000000000|0000000000000000000016entvvututtutssusj7200000000000000000000000|00000000000000000005issstuuuvwwvvwwwwvvuoc4100000000000000000000|000000000000000001csxvvwuuttvxxyyyyzzzyywxti50000000000000000000|00000000000000004iwyyyyyzyyxxwvwxyyyyzzzzyxxse200000000000000000|0000000000000003nxyzzzzzzzzyxwxyyxyyzzyzzzzyywl30000000000000000|000000000000003iwyzzzzyyyxxxxwwxyyyyxyzzyzzzzzxm3000000000000000|00000000000001duyyzzywtrpooqrrrrrstwywyzzzzzzzzxi100000000000000|00000000000004pxyywtqmihgeeefghhhhikntwyzzzzzzzzv700000000000000|0000000000001hwxxvrnieddcbbbbccccddefiotyzzzzzzzyi00000000000000|0000000000005txxwqkfdbbaaa9aaaaabbccdfintxzzzzzyyo10000000000000|000000000000dwvvqifcba9988889999abbcdegjntxyzzzzyu60000000000000|000000000001mvvtjdcba98877878999aabcdfgikquwzzzzzyh0000000000000|000000000004rvwofdcba97777777889aabdeegikopsxzzzzyq2000000000000|000000000008twvjedbb987777788999aabddegikmnquyzzzyw8000000000000|00000000000duwshedbba8877788899aaabcefhikmnpsxzzzyxg000000000000|00000000000hvxqgedcba98888889aaaaabceghikmnprvyzzyym100000000000|00000000000iwxngfdcba99999999abbaacceghijmpprvxyzyyp100000000000|00000000001jwvlgfddbb9a9999999abbbcdefhijmpqswyyyyzq100000000000|00000000001jvulgfedca998889999aaabcdefghjmprsxyyzzzs200000000000|00000000000huumgfedba9987888889abbdfffhijmpqswzzzzzs200000000000|00000000000futphfedbaaa999989abdfjnpnnnoomorsuyzzzzt200000000000|00000000000dturhfddddfhgddcaacehmrvwvtqrsrpqsswzyzzs200000000000|00000000000cuurhfgjjmrqnliebaehlquwwtrpnprrqrsuzzzzs500000000000|000000000008tuogenoqstuurlfcbeimsvsqtxwsnnprrrtxzzyuma0000000000|000000000003qungipnotvwtrngcbekotoofrvwsvnknrssvzzvqsq3000000000|000000000001hulglkltutusmiiebfnpqljdmrokqollprstyyurvu9000000000|000000000001gvlhkkqskvvoighfcfopnjhgehjllhhknprsxyuutsb000000000|000000000005fslggiljhkjhgehfcemplkiijjihedfhkorrvxvvsrb000000000|000000000006gllgffefghiiffgecempnjihfdcccdehjnrruxwvrr8000000000|000000000004ilkfecbcdeddefgecfmqokgeeeeddfgikmrstwwvqo4000000000|000000000003gjkfdcbcccdddffebflpokfdccccdfgjmorstuutpk2000000000|000000000002dhlfdccbbcbbdfgdadipomgcbbbcdegjoqrstttsqe0000000000|0000000000008gmgecbaaaaacffc9chomklecbbcdfhlorsstuuup80000000000|0000000000004dkgecb9999aeeeb9bflnkojfdddegjmqstttuwsn20000000000|0000000000001bghecba9abcdeeb9bfnsqsngfffgilortuttvurc00000000000|00000000000008gifdccbccbcikfdeltxxtmhghjjknqttuutvup400000000000|00000000000003cjgeeeeedbbgnmlmtxwsokihhilknrtsuttvtk100000000000|000000000000019hhggfggdccdeglquurolkkkllkimssruttuq9000000000000|000000000000006gihhhlfdeecddfjlkklkllnppjhlsrrutpf71000000000000|000000000000004ejihiiigfeeeeefhloprsvwsiedlsqrute000000000000000|000000000000001biihffhkonlllmorrrpqrsnifddosqsus8000000000000000|0000000000000002eigfbcdglkihghhhiknmljhgfhrrqtuq4000000000000000|00000000000000009hggcbddeghheefgjkklkihhhmrrruuo2000000000000000|00000000000000004ggffddddeeghiiiiiijihijkpqrsuuj1000000000000000|00000000000000001dhffeddcddefghggfghhhkknqrstvuh0000000000000000|000000000000000006hhggedccccbbcdddfggilmorstuvuf0000000000000000|000000000000000001cighgedcbbbbbcdeeghknprtsuvuuc0000000000000000|0000000000000000003ghihgeddcbbbbcefhknprtuuvuvt90000000000000000|00000000000000000009jijhgfecbbcbcfgilprtvvvvvvs60000000000000000|00000000000000000002hkkjigfdceeddfgkortvwvvvvur50000000000000000|00000000000000000001dmmlkihffffegikosvwwwvvvvur50000000000000000|00000000000000000000bjmnnmlkkkklmoruwwwwvvvvvur50000000000000000|000000000000000000008hjnoqrsrssttuwwwwwvvvvuutr60000000000000000|000000000000000000006hhkoqqrsttuuuuvvwwvvwvutts90000000000000000|000000000000000000004gggloqrtsttuuvwwwvvvvussssc0000000000000000|000000000000000000003ffegmnopqrtuuuuuuvvvutsrrrf0000000000000000|000000000000000000003eedejlllmlmnqrrsstutsrqpprg0000000000000000|000000000000000000002eeddgjiijjjlmpopqrtsrpoopqk1000000000000000|000000000000000000002deddfihhhijkklmnoqsrononoqp7000000000000000|000000000000000000002dddddghghijiiklmoqrqnmmlnprl610000000000000|000000000000000000002dddddeggggiiijklnppnllklnprrphc720000000000'.split('|');
+        var N = ROWS.length, A = '0123456789abcdefghijklmnopqrstuvwxyz';
+        var dark = ROWS.map(function (row) {
+            return row.split('').map(function (ch) { return A.indexOf(ch) / 35; });
+        });
+        var size = cv.width, cell = size / N, pointer = null;
+        var ink = getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#1c1c1e';
+        function draw() {
+            g.clearRect(0, 0, size, size);
+            g.fillStyle = ink;
+            for (var r = 0; r < N; r++) for (var c = 0; c < N; c++) {
+                var d = dark[r][c];
+                if (d < 0.04) continue;
+                var x = (c + 0.5) * cell, y = (r + 0.5) * cell, lens = 1;
+                if (pointer) {
+                    var k = Math.max(0, 1 - Math.hypot(x - pointer[0], y - pointer[1]) / 34);
+                    lens = 1 + 0.9 * k * k;
+                }
+                g.beginPath(); g.arc(x, y, cell * 0.6 * Math.sqrt(d) * lens, 0, 7); g.fill();
+            }
         }
+        var raf = 0;
+        function queue() { if (!raf) raf = requestAnimationFrame(function () { raf = 0; draw(); }); }
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            cv.addEventListener('pointermove', function (e) {
+                var b = cv.getBoundingClientRect();
+                pointer = [(e.clientX - b.left) / b.width * size, (e.clientY - b.top) / b.height * size];
+                queue();
+            });
+            cv.addEventListener('pointerleave', function () { pointer = null; queue(); });
+        }
+        draw();
+    })();
 
-        // Driven only by mouseenter/mouseleave. A tap synthesises those events
-        // too, so touch gets the same reveal; adding a click toggle on top of
-        // them would land on the synthesised mouseenter and cancel itself out.
-        // But on a touch screen the matching mouseleave only arrives once
-        // something else is tapped, which would strand the portrait in its
-        // pixel state and read as the photograph having gone missing. Where
-        // there is no hover, the reveal reverts itself.
-        var hoverless = window.matchMedia('(hover: none)').matches;
-        var revert;
-
-        stack.addEventListener('mouseenter', function () {
-            stack.classList.add('is-pixel');
-            if (!hoverless) return;
-            clearTimeout(revert);
-            revert = setTimeout(function () { stack.classList.remove('is-pixel'); }, 1600);
-        });
-        stack.addEventListener('mouseleave', function () {
-            clearTimeout(revert);
-            stack.classList.remove('is-pixel');
-        });
+    (function heroIs() {
+        // "Vahid is ..." cycles the way the Seven Portraits captions do: the
+        // highlighter sweeps in behind each new word.
+        var el = document.getElementById('hero-is-word');
+        if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var WORDS = ['an agent maker', 'a builder', 'into applied AI', 'a teacher', 'multilingual', 'automating everything', 'certified in GenAI'];
+        var i = 0;
+        setInterval(function () {
+            i = (i + 1) % WORDS.length;
+            el.classList.remove('is-in');
+            void el.offsetWidth;
+            el.textContent = WORDS[i];
+            el.classList.add('is-in');
+        }, 2600);
     })();
 
     (function footerAbacus() {
@@ -3158,7 +3197,7 @@
             'Machine-readable version of this site: /llms.txt\n' +
             'Source: github.com/vfaraji89/vfaraji89.github.io\n' +
             'Open to Applied AI roles: vfaraji89@gmail.com',
-            'font: 600 15px/1.6 sans-serif; color: #e3120b',
+            'font: 600 15px/1.6 sans-serif; color: #b24a1f',
             'font: 400 12px/1.6 ui-monospace, monospace; color: #777'
         );
     })();
@@ -3191,7 +3230,7 @@
             });
         }, { threshold: 0.6 });
 
-        ['#hero-photo', '#footer-mark'].forEach(function (sel) {
+        ['#footer-mark'].forEach(function (sel) {
             var el = document.querySelector(sel);
             if (el) io.observe(el);
         });
