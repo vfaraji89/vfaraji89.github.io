@@ -2725,6 +2725,68 @@
         .problem::before { left: 6px; right: 6px; }
         @media (prefers-reduced-motion: reduce) { .bio-tag::after, .arc-step::after, .hire-cta::after, .reel::after { transition: none; } }
 
+    
+        /* ---- hero, easier to read: who first, the promise under the rule ---- */
+        h1.hero-is { white-space: normal; margin-bottom: 0; font-weight: 700; }
+        h1.hero-is .ticker { display: grid; }
+        h1.hero-is .ticker > .tk { white-space: normal; }
+        .hero-count { margin: 0 0 0.5rem; font-size: clamp(1.25rem, 2.2vw, 1.75rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; color: var(--ink); }
+        .hero-count .ticker { vertical-align: bottom; }
+        @media (max-width: 640px) {
+            /* phones: one moving line in the hero; the promise holds still */
+            .hero-count .tk { opacity: 0 !important; transform: none !important; filter: none !important; }
+            .hero-count .tk:first-child { opacity: 1 !important; }
+        }
+
+        /* hire card: a label, the role, the button */
+        .hire-cta { flex-wrap: nowrap; gap: 0.75rem; }
+        .hire-main { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; flex: 1; }
+        .hire-lead { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+        .hire-main .hire-role { font-size: 0.9375rem; }
+        .hire-main .hire-role > .tk { white-space: normal; }
+        .hire-cta .hire-btn { margin-left: auto; flex: none; }
+        @media (min-width: 1200px) { .hero-cards .hire-phase { display: none; } }
+
+        /* updates card */
+        .upd-card {
+            position: relative; display: flex; align-items: center; gap: 0.875rem; width: 100%; max-width: 36rem; min-height: 80px; box-sizing: border-box;
+            margin-top: 0.625rem; padding: 0.5rem 0.875rem 0.5rem 0.75rem; border-top: 1px solid var(--ctl-line); border-bottom: 1px solid var(--ctl-line);
+            border-radius: 6px; color: var(--ink); text-decoration: none; background-color: var(--bg);
+            background-image: var(--dowel), var(--dowel); background-size: 5px 100%, 5px 100%; background-position: left center, right center; background-repeat: no-repeat;
+        }
+        .upd-card::after {
+            content: ""; position: absolute; left: 5px; right: 5px; bottom: 5px; height: 1px;
+            background: linear-gradient(var(--rust), var(--rust)) left center / 0% 100% no-repeat, rgba(28,28,30,0.16);
+            transition: background-size 0.7s cubic-bezier(0.65, 0, 0.25, 1);
+        }
+        .upd-card:hover { text-decoration: none; }
+        .upd-card:hover::after { background-size: 100% 100%, auto; }
+        .upd-stack { position: relative; flex: none; width: 104px; height: 60px; margin-left: 4px; }
+        .upd-stack img {
+            position: absolute; top: 6px; left: 0; width: 72px; height: 48px; object-fit: cover; border-radius: 7px;
+            border: 2px solid #fff; box-shadow: 0 6px 14px -8px rgba(28,28,30,0.55);
+            transition: transform 0.5s var(--ease-spring);
+        }
+        .upd-stack img:nth-child(1) { transform: rotate(-6deg); z-index: 1; }
+        .upd-stack img:nth-child(2) { left: 16px; transform: rotate(2deg); z-index: 2; }
+        .upd-stack img:nth-child(3) { left: 32px; transform: rotate(8deg); z-index: 3; }
+        .upd-card:hover .upd-stack img:nth-child(1) { transform: rotate(-12deg) translate(-4px, -2px); }
+        .upd-card:hover .upd-stack img:nth-child(3) { transform: rotate(14deg) translate(6px, -2px); }
+        .upd-text { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; flex: 1; }
+        .upd-k { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rust-deep); }
+        .upd-k .ab { width: 14px; height: 14px; }
+        .upd-n { padding: 0 0.35rem; border-radius: 999px; background: var(--rust); color: #fff; font-size: 0.5625rem; letter-spacing: 0.02em; }
+        .upd-text b { font-size: 0.875rem; font-weight: 700; letter-spacing: -0.01em; }
+        .upd-text em { font-style: normal; font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); }
+        .upd-go { flex: none; color: var(--text-muted); transition: transform 0.4s var(--ease-spring), color 0.3s; }
+        .upd-card:hover .upd-go { transform: translateX(4px); color: var(--rust); }
+        @media (min-width: 1200px) {
+            .hero-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: none; }
+            .hero-cards .upd-card { max-width: none; margin-top: 1.125rem; }
+        }
+        @media (max-width: 640px) { .upd-card { max-width: none; } .upd-stack { width: 88px; } .upd-stack img { width: 60px; height: 40px; } }
+            .case-tag-concept { color: #fff; background: var(--ink); border-color: var(--ink); }
+        .case-concept { font-weight: 500; color: var(--text-muted); font-size: 0.8em; }
     </style>
 </head>
 <body>
@@ -2802,7 +2864,6 @@
                     <canvas width="208" height="208" role="img" aria-label="Portrait of Vahid Faraji, redrawn as halftone, pixels, lines, letters or a network as the pointer moves over it"></canvas>
                     <span class="hero-portrait-tag" aria-hidden="true">Vahid</span>
                 </figure>
-                <p class="hero-is"><span class="hero-is-name">Vahid</span><br><span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">is an <mark>AI-native architect</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">loves <mark>creative data products</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span><span class="sr-only">is an AI-native architect.</span></p>
                 </div>
                 <div class="hero-links">
                     <a href="https://wa.me/905419402411" target="_blank" rel="noopener" aria-label="WhatsApp" style="color:#25d366;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 008.036 0C3.596 0 .003 3.59.001 8.003a7.95 7.95 0 001.078 3.997L0 16l4.12-1.08a7.987 7.987 0 003.81.965h.004c4.438 0 8.032-3.592 8.034-8.005a7.952 7.952 0 00-2.367-5.654zM8.036 14.6a6.61 6.61 0 01-3.374-.924l-.242-.144-2.508.657.67-2.443-.158-.252a6.585 6.585 0 01-1.015-3.497c.002-3.662 2.985-6.64 6.65-6.64a6.608 6.608 0 014.7 1.947 6.595 6.595 0 011.947 4.698c-.002 3.662-2.985 6.64-6.65 6.64h-.02zm3.64-4.972c-.2-.1-1.182-.583-1.365-.65-.183-.066-.316-.1-.45.1-.132.198-.515.65-.632.783-.116.133-.233.15-.432.05-.2-.1-.843-.31-1.606-.99-.593-.529-.994-1.182-1.11-1.382-.117-.2-.013-.307.088-.406.09-.088.2-.232.3-.348.099-.117.132-.2.198-.333.067-.133.034-.25-.016-.348-.05-.1-.45-1.082-.616-1.482-.162-.389-.327-.336-.45-.342l-.382-.007a.733.733 0 00-.532.25c-.183.2-.698.682-.698 1.664s.715 1.93.815 2.064c.1.133 1.408 2.15 3.413 3.015.477.206.849.329 1.139.421.478.152.914.13 1.258.079.384-.058 1.182-.484 1.35-.95.165-.467.165-.868.115-.951-.05-.084-.183-.133-.383-.233z"/></svg></a>
@@ -2818,13 +2879,15 @@
 
             <div class="hero-icon-row">
                 <div>
-                    <h1 class="hero-name"><span class="sr-only">Enterprise solutions you can count on.</span><span aria-hidden="true"><span class="ticker hero-what" id="hero-what"><span class="tk is-on">Enterprise solutions</span><span class="tk">Data products</span><span class="tk">Agents</span><span class="tk">Analysis</span><span class="tk">Design</span><span class="tk">Architecture</span><span class="tk">Problem solving</span><span class="tk">Token-cost optimisation</span><span class="tk">Tracing</span><span class="tk">Failure detection</span><span class="tk">Tests</span></span><br> you can count&nbsp;on<span class="bead-stop">.</span></span></h1>
+                    <h1 class="hero-name hero-is"><span class="sr-only">Vahid Faraji is an AI-native architect.</span><span aria-hidden="true"><span class="hero-is-name">Vahid</span><br><span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">is an <mark>AI-native architect</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">loves <mark>creative data products</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span></span></h1>
                 </div>
             </div>
 
             <hr class="hero-rule">
 
-            <p class="hero-tagline">AI-native architect. I design agentic systems end to end: the harness around the model (execution loop, tools, context and memory) and the evals that prove it works. Spec to production, in TypeScript and Python.</p>
+            <p class="hero-count"><span class="sr-only">Enterprise solutions you can count on.</span><span aria-hidden="true">You can count on <span class="ticker hero-what" id="hero-what"><span class="tk is-on">enterprise solutions<span class="bead-stop">.</span></span><span class="tk">data products<span class="bead-stop">.</span></span><span class="tk">agents<span class="bead-stop">.</span></span><span class="tk">analysis<span class="bead-stop">.</span></span><span class="tk">design<span class="bead-stop">.</span></span><span class="tk">architecture<span class="bead-stop">.</span></span><span class="tk">problem solving<span class="bead-stop">.</span></span><span class="tk">token-cost optimisation<span class="bead-stop">.</span></span><span class="tk">tracing<span class="bead-stop">.</span></span><span class="tk">failure detection<span class="bead-stop">.</span></span><span class="tk">tests<span class="bead-stop">.</span></span></span></span></p>
+
+            <p class="hero-tagline">I design agentic systems end to end: the harness around the model (execution loop, tools, context and memory) and the evals that prove it works. Spec to production, in TypeScript and Python.</p>
             <div class="hero-cards">
             <div class="hire-cta" id="hire-cta">
                 <span class="hire-phase" aria-hidden="true">
@@ -2833,9 +2896,10 @@
                     <span class="hire-ph hire-ph-3"></span>
                     <span class="hire-ph hire-ph-4"></span>
                 </span>
-                <span class="hire-lead">Open to</span>
+                <span class="hire-main">
+                <span class="hire-lead">Open to roles</span>
                 <span class="hire-role ticker" id="hire-role" aria-hidden="true"><span class="tk is-on">AI-Native Architect</span><span class="tk">Applied AI Engineer</span><span class="tk">Agentic AI Engineer</span><span class="tk">AI Platform Engineer</span><span class="tk">AI Solutions Architect</span><span class="tk">R&amp;D Researcher</span></span>
-                <span class="hire-q">roles</span>
+                </span>
                 <span class="sr-only">Open to AI-Native Architect, Applied AI Engineer, Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect and R&amp;D Researcher roles.</span>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="hire-btn" id="hire-book" aria-haspopup="true" aria-expanded="false" aria-controls="book-pick"><span class="live-bead"></span>Book a call <span aria-hidden="true">&rarr;</span></a>
                 <div class="book-pick" id="book-pick" role="dialog" aria-label="Choose how to book" hidden>
@@ -2868,6 +2932,19 @@
                     <span class="reel-built"><span class="reel-built-k">Built</span> <span class="ticker" id="built-ticker" aria-hidden="true"><span class="tk is-on">Tokalator</span><span class="tk">ProjectLens</span><span class="tk">a multi-agent classifier</span><span class="tk">awesome-applied-ai</span><span class="tk">Text-to-Report agents</span></span></span>
                 </span>
             </button>
+            <a class="upd-card" href="updates.html">
+                <span class="upd-stack" aria-hidden="true">
+                    <img src="assets/event-photos/cais-2026.jpg" alt="" loading="lazy">
+                    <img src="assets/photos/projectlens/projectlens-home.png" alt="" loading="lazy">
+                    <img src="assets/event-photos/perplexity-fellowship.jpg" alt="" loading="lazy">
+                </span>
+                <span class="upd-text">
+                    <span class="upd-k"><svg class="ab" aria-hidden="true"><use href="#ab-board"/></svg>Updates <span class="upd-n">20+</span></span>
+                    <b>ProjectLens shipped, ACM CAIS &rsquo;26 demo</b>
+                    <em>Talks, papers, launches &middot; 2026</em>
+                </span>
+                <span class="upd-go" aria-hidden="true">&rarr;</span>
+            </a>
             </div>
 
             <div class="recruiter-switch">
@@ -2958,7 +3035,7 @@
                 </a>
                 <a class="pbadge" href="#yzi">
                     <span class="pb-mark pb-yzi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5L21 19.5H3z" fill="#efe7fb" stroke="#5b21b6" stroke-width="1.6" stroke-linejoin="round"/><path d="M1.5 12.5L9.6 11.4" stroke="#5b21b6" stroke-width="1.4" stroke-linecap="round"/><path d="M14.3 11.2l8 -2.2" stroke="#e0301e" stroke-width="1.3" stroke-linecap="round"/><path d="M14.6 12.4l8 0.4" stroke="#f2b134" stroke-width="1.3" stroke-linecap="round"/><path d="M14.8 13.6l7.6 2.8" stroke="#2f9e6e" stroke-width="1.3" stroke-linecap="round"/></svg></span>
-                    <span class="pb-text"><b>Yapay Zek&acirc; &#304;zi</b><em>1.6M ads &middot; LLM pipeline</em></span>
+                    <span class="pb-text"><b>Yapay Zek&acirc; &#304;zi</b><em>Concept &middot; confidential</em></span>
                     <span class="pb-go" aria-hidden="true">&darr;</span>
                 </a>
             </div>
@@ -3050,21 +3127,22 @@
                             <img src="assets/photos/yapay-zeka-izi/yzi-hero.jpg" alt="Yapay Zekâ İzi: the analysis site, with GenAI job ads up 23.3 times from 2022 to the first half of 2026, and counts of ads, live ads, companies and ads analysed" loading="lazy" onerror="this.closest('.gallery-screenshot').remove();">
                             <span class="gallery-screenshot-count">1 / 2</span>
                         </div>
-                        <div class="case-meta"><span class="case-tag">Data Product</span><span class="case-tag">LLM Pipeline</span><span class="case-tag">Oct 2026</span></div>
-                        <div class="case-title">Yapay Zek&acirc; &#304;zi: AI in 1.6M Job Ads</div>
+                        <div class="case-meta"><span class="case-tag case-tag-concept">Concept</span><span class="case-tag">Confidential</span><span class="case-tag">LLM Pipeline</span><span class="case-tag">Oct 2026</span></div>
+                        <div class="case-title">Yapay Zek&acirc; &#304;zi: AI in 1.6M Job Ads <span class="case-concept">(concept)</span></div>
                         <details class="disclose case-disclose">
                             <summary>Problem, approach, result</summary>
                         <div class="case-body">
                             <div class="case-row"><span class="case-row-label">Problem</span><span class="case-row-val">How fast is AI really entering Turkish job ads since the GPT moment of 2022, and which tools do employers name? Keyword counts cannot tell a requirement from boilerplate across 1.6M ads written in free Turkish text.</span></div>
                             <div class="case-row"><span class="case-row-label">Approach</span><span class="case-row-val">An <strong>LLM pipeline</strong> over 1.6M kariyer.net ads, from 2022 to the first half of 2026: sentence-level reading of every ad, generative AI kept apart from classic AI and machine learning, tool names normalised so mentions can be counted, and a public analysis site, <strong>Yapay Zek&acirc; &#304;zi</strong> (&ldquo;the trace of AI&rdquo;), with periods, tools, sectors, a validation page and the method. Every quote on a card is taken from the ad verbatim.</span></div>
-                            <div class="case-row"><span class="case-row-label">Result</span><span class="case-row-val">The share of ads asking for <strong>generative AI grew 23.3&times;</strong> from the first half of 2022 to the first half of 2026, reaching 21.8 in every 10,000 ads. In 2026 alone, 233,127 ads were read sentence by sentence; 3,373 mention AI, from <strong>1,681 companies</strong>.</span></div>
+                            <div class="case-row"><span class="case-row-label">Result</span><span class="case-row-val">A clear, period-by-period picture of how fast generative AI moved from novelty to requirement in Turkish job ads, and which tools employers actually name, with every finding traceable to the sentence it came from.</span></div>
                         </div>
                         </details>
                         <div class="case-stats">
-                            <span><strong>1.6M</strong> ads analysed</span>
-                            <span><strong>23.3&times;</strong> GenAI growth</span>
-                            <span><strong>1,681</strong> companies</span>
+                            <span><strong>1.6M</strong> ads in scope</span>
+                            <span><strong>2022&rarr;2026</strong> H1</span>
+                            <span><strong>Sentence</strong>-level</span>
                         </div>
+                        <p class="case-note">Confidential Kariyer.net work, shown here as a concept only. Screens and figures illustrate the approach; no data, link or product is public.</p>
                         <div class="case-stack"><span>LLM Pipeline</span><span>&middot;</span><span>Turkish NLP</span><span>&middot;</span><span>Classification</span><span>&middot;</span><span>Validation</span><span>&middot;</span><span>Data Product</span></div>
                     </div>
                 </div>

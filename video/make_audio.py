@@ -8,8 +8,8 @@ A light, modern electronic cue at 120 BPM that follows the seven chapters:
   37-46 production      biggest section: wider pad, bass octaves, claps
   46-53 through-line    breakdown: kick out, bells over the pad
   53-60 invitation      lift into a final hit, then a clean tail
-Every chapter change gets a riser into it and a soft impact on it, so the
-picture changes land on the music. Bead clicks mark the counting moments.
+Every chapter change gets a soft tonal swell into it and a low bloom on it,
+so the picture changes land on the music without a hard edge. Bead clicks mark the counting moments.
 
 Needs numpy:  pip install numpy  then  python3 make_audio.py
 Writes public/soundtrack.wav (60 s, 44.1 kHz, 16-bit stereo).
@@ -85,7 +85,7 @@ INTENSITY = [0.35, 0.55, 0.75, 0.85, 1.0, 0.5, 0.9]
 pad = np.zeros(N)
 for ci, (root, tones) in enumerate(CHORDS):
     s, e = CUTS[ci], CUTS[ci + 1]
-    i0, i1 = int(max(0, s - 0.4) * SR), int(min(DUR, e + 0.4) * SR)
+    i0, i1 = int(max(0, s - 1.2) * SR), int(min(DUR, e + 1.2) * SR)
     tt = t[i0:i1]
     v = np.zeros(i1 - i0)
     for k, m in enumerate(tones):
@@ -95,7 +95,7 @@ for ci, (root, tones) in enumerate(CHORDS):
             ph = rng.uniform(0, 2 * np.pi)
             # three harmonics for a soft saw
             v += (np.sin(2 * np.pi * ff * tt + ph) + 0.35 * np.sin(4 * np.pi * ff * tt + ph) + 0.15 * np.sin(6 * np.pi * ff * tt + ph)) / 3
-    fade = np.minimum(1, (tt - (s - 0.4)) / 0.8) * np.minimum(1, ((e + 0.4) - tt) / 0.8)
+    fade = np.sin(np.clip((tt - (s - 1.2)) / 2.4, 0, 1) * np.pi / 2) * np.sin(np.clip(((e + 1.2) - tt) / 2.4, 0, 1) * np.pi / 2)
     pad[i0:i1] += v * np.clip(fade, 0, 1) * (0.5 + 0.5 * INTENSITY[ci])
 cut = np.array([600 + 2600 * INTENSITY[chapter(x)] for x in t[::64]])
 cut = np.repeat(cut, 64)[:N]
@@ -109,17 +109,17 @@ def kick(at, g=1.0):
     k = np.arange(n) / SR
     f = 46 + 110 * np.exp(-k * 28)
     ph = 2 * np.pi * np.cumsum(f) / SR
-    add(np.sin(ph) * np.exp(-k * 9) + 0.15 * rng.uniform(-1, 1, n) * np.exp(-k * 120), at, 0.55 * g)
+    add(np.sin(ph) * np.exp(-k * 10), at, 0.38 * g)
     i0 = int(at * SR)
     m = min(int(0.3 * SR), N - i0)
-    duck[i0:i0 + m] = np.minimum(duck[i0:i0 + m], 0.45 + 0.55 * (np.arange(m) / m) ** 0.6)
+    duck[i0:i0 + m] = np.minimum(duck[i0:i0 + m], 0.72 + 0.28 * (np.arange(m) / m) ** 0.6)
 
 def hat(at, g=1.0, pan=0.2, open_=False):
     n = int((0.22 if open_ else 0.05) * SR)
     k = np.arange(n) / SR
     noise = rng.uniform(-1, 1, n)
-    hp = noise - lowpass(noise, 6500)
-    add(hp * np.exp(-k * (14 if open_ else 70)), at, 0.12 * g, pan)
+    hp = lowpass(noise - lowpass(noise, 5000), 9000)
+    add(hp * np.exp(-k * (14 if open_ else 80)), at, 0.055 * g, pan)
 
 def clap(at, g=1.0):
     n = int(0.25 * SR)
@@ -127,7 +127,7 @@ def clap(at, g=1.0):
     noise = rng.uniform(-1, 1, n)
     bp = lowpass(noise - lowpass(noise, 900), 3200)
     e = sum(np.exp(-np.maximum(0, k - d) * 40) * (k >= d) for d in (0, 0.012, 0.024))
-    add(bp * e * 0.6, at, 0.35 * g, -0.1)
+    add(lowpass(bp * e * 0.6, 2200), at, 0.16 * g, -0.1)
 
 beats = np.arange(0, DUR, BEAT)
 for b in beats:
@@ -170,7 +170,7 @@ def pluck(midi, at, g=1.0, pan=0.0, decay=0.996):
     for i in range(n):
         out[i] = buf[i % p]
         buf[i % p] = decay * 0.5 * (buf[i % p] + buf[(i + 1) % p])
-    add(out * np.exp(-np.arange(n) / SR * 3.5), at, 0.16 * g, pan)
+    add(lowpass(out, 4200) * np.exp(-np.arange(n) / SR * 3.5), at, 0.13 * g, pan)
 
 # beginning: sparse bead plucks
 for i, at in enumerate([0.6, 1.6, 2.4, 3.6, 4.4, 5.2, 6.0]):
@@ -204,31 +204,38 @@ for m in CHORDS[6][1]:
     bell(m + 12, 56.0, 1.2, 0.0)
 
 # ---- transitions: riser into each chapter, impact on it
-def riser(end, length=1.6, g=1.0):
+def swell(end, length=1.8, g=1.0):
+    """A soft rising tone into the cut: the next chord's root and fifth, filtered, fading up."""
     n = int(length * SR)
     k = np.arange(n) / SR
-    noise = rng.uniform(-1, 1, n)
-    sweep = lowpass(noise, 400 + 7000 * (k / length) ** 2)
-    add(sweep * (k / length) ** 2.2, end - length, 0.18 * g, -0.3)
-    add(sweep[::-1][::-1] * (k / length) ** 2.2, end - length, 0.18 * g, 0.3)
+    ci = chapter(min(DUR - 0.01, end + 0.05))
+    root = hz(CHORDS[ci][0] + 12)
+    tone = np.sin(2 * np.pi * root * k) + 0.5 * np.sin(2 * np.pi * root * 1.5 * k) + 0.25 * np.sin(2 * np.pi * root * 2 * k)
+    air = lowpass(rng.uniform(-1, 1, n), 900 + 1600 * (k / length) ** 2) * 0.25
+    curve = np.sin((k / length) * np.pi / 2) ** 3          # eases in, no sudden edge
+    add((tone + air) * curve, end - length, 0.05 * g, -0.25)
+    add((tone + air) * curve, end - length, 0.05 * g, 0.25)
 
-def impact(at, g=1.0):
-    n = int(1.2 * SR)
+def bloom(at, g=1.0):
+    """A gentle low bloom on the cut: a warm sine with a slow attack, no noise."""
+    n = int(1.6 * SR)
     k = np.arange(n) / SR
-    boom = np.sin(2 * np.pi * (38 + 40 * np.exp(-k * 12)) * k) * np.exp(-k * 3.2)
-    noise = lowpass(rng.uniform(-1, 1, n), 1800) * np.exp(-k * 9)
-    add(boom * 0.7 + noise * 0.5, at, 0.45 * g)
+    ci = chapter(at + 0.05)
+    f = hz(CHORDS[ci][0] - 12)
+    body = np.sin(2 * np.pi * f * k) * np.minimum(1, k / 0.03) * np.exp(-k * 2.2)
+    shimmer = np.sin(2 * np.pi * f * 4 * k) * np.minimum(1, k / 0.08) * np.exp(-k * 3) * 0.12
+    add(body + shimmer, at, 0.2 * g)
 
 for c in CUTS[1:-1]:
-    riser(c, 1.4 if c != 53 else 2.6, 1.3 if c == 53 else 1.0)
-    impact(c, 1.25 if c in (37, 53) else 0.9)
+    swell(c, 1.8 if c != 53 else 2.6, 1.2 if c == 53 else 1.0)
+    bloom(c, 1.15 if c in (37, 53) else 0.9)
 
 # ---- bead clicks on the counting moments
 def bead_click(at, g=1.0, pitch=1600.0, pan=0.0):
     n = int(0.08 * SR)
     k = np.arange(n) / SR
     body = np.sin(2 * np.pi * pitch * k) * np.exp(-k * 55) + 0.5 * np.sin(2 * np.pi * pitch * 1.52 * k) * np.exp(-k * 70)
-    add(body + rng.uniform(-1, 1, n) * np.exp(-k * 320) * 0.3, at, 0.16 * g, pan)
+    add(body + rng.uniform(-1, 1, n) * np.exp(-k * 320) * 0.15, at, 0.11 * g, pan)
 for i, at in enumerate([4.13, 4.67, 5.2, 5.73, 6.27]):        # the portrait changes medium
     bead_click(at, 1.0, 1500 + 120 * i, -0.5 + 0.25 * i)
 for i, at in enumerate(np.arange(57.0, 58.6, 0.2)):           # beads drop onto the rod
@@ -258,7 +265,7 @@ L *= fade
 R *= fade
 # gentle limiter
 peak = max(np.abs(L).max(), np.abs(R).max(), 1e-9)
-L, R = np.tanh(L / peak * 1.4) / np.tanh(1.4) * 0.9, np.tanh(R / peak * 1.4) / np.tanh(1.4) * 0.9
+L, R = np.tanh(L / peak * 1.1) / np.tanh(1.1) * 0.85, np.tanh(R / peak * 1.1) / np.tanh(1.1) * 0.85
 
 data = (np.stack([L, R], axis=1) * 32767).astype('<i2').tobytes()
 with wave.open('public/soundtrack.wav', 'wb') as w:
