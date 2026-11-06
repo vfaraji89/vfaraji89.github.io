@@ -659,6 +659,17 @@
 
             --radius: 12px;
 
+            /* Control system. Every button, chip and nav action is built from
+               these: one radius, two heights, a hairline that darkens on hover,
+               ink for the primary action. Red marks state, never decoration. */
+            --ctl-radius: 8px;
+            --ctl-h: 40px;
+            --ctl-h-sm: 32px;
+            --ctl-line: rgba(28,28,30,0.14);
+            --ctl-line-hover: rgba(28,28,30,0.32);
+            --ctl-tint: rgba(28,28,30,0.035);
+            --ctl-ease: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+
             /* Motion scale. Four durations and three curves cover the whole
                site; anything that does not fit one of them is a mistake.
                fast  - colour and opacity on small controls
@@ -812,14 +823,14 @@
 
         .nav-actions { display: flex; align-items: center; gap: 0.5rem; flex: none; }
         .nav-btn-ghost, .nav-btn-solid {
-            display: inline-flex; align-items: center; gap: 0.375rem; height: 32px; padding: 0 0.875rem;
-            border-radius: 8px; font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.005em;
+            display: inline-flex; align-items: center; gap: 0.375rem; height: var(--ctl-h-sm); padding: 0 0.875rem;
+            border-radius: var(--ctl-radius); font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.005em;
             text-decoration: none; white-space: nowrap;
             transition: background var(--dur-fast) var(--ease-move), border-color var(--dur-fast) var(--ease-move),
                         color var(--dur-fast) var(--ease-move), box-shadow var(--dur-fast) var(--ease-move);
         }
-        .nav-btn-ghost { color: var(--ink); border: 1px solid rgba(28,28,30,0.14); background: var(--bg); }
-        .nav-btn-ghost:hover { border-color: rgba(28,28,30,0.32); text-decoration: none; }
+        .nav-btn-ghost { color: var(--ink); border: 1px solid var(--ctl-line); background: var(--bg); }
+        .nav-btn-ghost:hover { border-color: var(--ctl-line-hover); background: var(--ctl-tint); text-decoration: none; }
         .nav-btn-ghost svg { width: 12px; height: 12px; opacity: 0.6; }
         .nav-btn-solid { color: #fff; background: var(--ink); border: 1px solid var(--ink); box-shadow: 0 1px 2px rgba(28,28,30,0.2); }
         .nav-btn-solid:hover { background: #000; text-decoration: none; box-shadow: 0 4px 12px -4px rgba(28,28,30,0.45); }
@@ -829,7 +840,7 @@
         }
 
         .nav-toggle {
-            display: none; width: 36px; height: 36px; border-radius: 8px; border: 1px solid rgba(28,28,30,0.14);
+            display: none; width: 36px; height: 36px; border-radius: var(--ctl-radius); border: 1px solid var(--ctl-line);
             background: var(--bg); cursor: pointer; position: relative; flex: none;
         }
         .nav-toggle span {
@@ -868,6 +879,18 @@
 
         @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.4} }
 
+        /* Ticker: every word sits in the same grid cell, so the box is always as
+           wide as the longest word and nothing beside it ever moves. The words
+           slide past each other the same way the chips do. */
+        .ticker { display: inline-grid; vertical-align: bottom; overflow: hidden; }
+        .ticker > .tk {
+            grid-area: 1 / 1; white-space: nowrap;
+            opacity: 0; transform: translateY(70%);
+            transition: transform 420ms var(--ease-out), opacity 420ms var(--ease-out);
+        }
+        .ticker > .tk.is-on { opacity: 1; transform: none; }
+        .ticker > .tk.is-off { opacity: 0; transform: translateY(-70%); }
+        @media (prefers-reduced-motion: reduce) { .ticker > .tk { transition: none; } }
         .hero-is {
             font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink);
             margin-bottom: 0.625rem; white-space: nowrap;
@@ -877,7 +900,7 @@
             color: inherit; padding: 0 0.2em; margin: 0 -0.05em; border-radius: 3px;
             background: linear-gradient(var(--mark), var(--mark)) left center / 100% 72% no-repeat;
         }
-        .hero-is mark.is-in { animation: mark-sweep 0.45s var(--ease-out) both; }
+        .hero-is .tk.is-on mark { animation: mark-sweep 0.5s var(--ease-out) 0.12s both; }
         @keyframes mark-sweep {
             from { background-size: 0% 72%; opacity: 0.4; }
             to   { background-size: 100% 72%; opacity: 1; }
@@ -931,15 +954,16 @@
             margin-top: 0.5rem; margin-bottom: 0.25rem;
         }
         .bio-tag {
-            position: relative; height: 2.375rem; overflow: hidden; padding: 0 0.75rem;
+            position: relative; height: var(--ctl-h); overflow: hidden; padding: 0 0.75rem;
             font-family: var(--font); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.01em;
             font-variation-settings: "MONO" 0.8, "CASL" 0;
-            border-radius: 999px; border: 1px solid var(--border); background: var(--bg);
+            border-radius: var(--ctl-radius); border: 1px solid var(--ctl-line); background: var(--bg);
             color: var(--text-secondary); cursor: pointer; text-align: center;
             transition: border-color var(--dur-slow) var(--ease-out), color var(--dur-slow) var(--ease-out),
                         background var(--dur-slow) var(--ease-out), opacity var(--dur-slow) var(--ease-out);
         }
-        .bio-tag.accent { color: var(--ink); border-color: var(--border-strong); }
+        .bio-tag.accent { color: var(--ink); }
+        .bio-tag:hover { border-color: var(--ctl-line-hover); }
         .chip-face {
             position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
             padding: 0 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -1055,37 +1079,29 @@
            edge, filled only on hover, when it also slides a few pixels along
            its rod. */
         .btn {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.5rem 1rem; font-family: var(--font);
-            font-variation-settings: "MONO" 1, "CASL" 0;
-            font-size: 0.75rem; font-weight: 500; letter-spacing: 0.02em;
-            border-radius: 999px; text-decoration: none; cursor: pointer;
-            position: relative; z-index: 1;
-            transition: background var(--transition), border-color var(--transition),
-                        color var(--transition), transform var(--dur-base) var(--ease-spring);
-            border: 1px solid transparent;
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+            height: var(--ctl-h); padding: 0 1rem; border-radius: var(--ctl-radius);
+            font-family: var(--font); font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.005em;
+            text-decoration: none; cursor: pointer; white-space: nowrap;
+            border: 1px solid var(--ctl-line); background: var(--bg); color: var(--ink);
+            transition: background var(--ctl-ease), border-color var(--ctl-ease), color var(--ctl-ease),
+                        box-shadow var(--ctl-ease), transform 120ms var(--ease-move);
         }
-        .btn:hover { text-decoration: none; transform: translateX(-3px); }
-        .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-        .btn-primary { background: var(--bg); color: var(--accent); border-color: var(--accent); font-weight: 600; }
-        .btn-outline { background: var(--bg); color: var(--text-secondary); border-color: var(--border-strong); }
-        .btn-primary:hover, .btn-outline:hover {
-            background: var(--accent); border-color: var(--accent); color: var(--white);
-        }
-        .btn-dark { background: var(--black); color: var(--white); border-color: var(--grey-700); }
-        .btn-dark:hover { background: var(--grey-800); border-color: var(--grey-600); }
-        .btn svg { width: 13px; height: 13px; }
-        @media (prefers-reduced-motion: reduce) { .btn:hover { transform: none; } }
+        .btn:hover { text-decoration: none; border-color: var(--ctl-line-hover); background: var(--ctl-tint); }
+        .btn:active { transform: scale(0.98); }
+        .btn:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+        .btn svg { width: 13px; height: 13px; opacity: 0.7; }
+        /* solid: the one primary action in a group */
+        .btn-primary, .btn-dark { background: var(--ink); border-color: var(--ink); color: #fff; box-shadow: 0 1px 2px rgba(28,28,30,0.2); }
+        .btn-primary:hover, .btn-dark:hover { background: #000; border-color: #000; box-shadow: 0 4px 12px -4px rgba(28,28,30,0.45); }
+        .btn-primary svg { opacity: 1; }
+        /* ghost: everything else */
+        .btn-outline { color: var(--ink); }
+        .btn-sm { height: var(--ctl-h-sm); padding: 0 0.75rem; font-size: 0.75rem; }
 
-        /* A row of buttons is one abacus rod: a hairline thread through the
-           middle of the row, fading at the ends, with the buttons strung on it.
-           Stacked rows on phones turn the rod vertical. */
-        .bead-row {
-            background: linear-gradient(90deg, transparent, var(--border-strong) 1.5rem,
-                        var(--border-strong) calc(100% - 1.5rem), transparent)
-                        center / 100% 1px no-repeat;
-            background-origin: content-box;
-        }
+        /* Rows of buttons used to carry an abacus thread; the system keeps
+           decoration out of controls, so the rows are plain. */
+        .bead-row { background: none; }
 
         .hero-links {
             display: flex; flex-wrap: wrap; gap: 0.5rem;
@@ -1568,15 +1584,15 @@
         }
         .gallery-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
         .gallery-actions a {
-            font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.02em;
-            padding: 0.375rem 0.875rem; border-radius: 4px; text-decoration: none;
-            transition: background var(--transition), border-color var(--transition), color var(--transition);
-            font-variation-settings: "MONO" 0.8;
+            display: inline-flex; align-items: center; height: var(--ctl-h-sm); padding: 0 0.75rem;
+            border-radius: var(--ctl-radius); font-size: 0.75rem; font-weight: 600; letter-spacing: -0.005em;
+            text-decoration: none; border: 1px solid var(--ctl-line); background: var(--bg); color: var(--ink);
+            transition: background var(--ctl-ease), border-color var(--ctl-ease), box-shadow var(--ctl-ease), transform 120ms var(--ease-move);
         }
-        .gallery-actions .ga-primary { background: var(--accent); color: #fff; }
-        .gallery-actions .ga-primary:hover { opacity: 0.85; }
-        .gallery-actions .ga-outline { border: 1px solid var(--border); color: var(--text-secondary); }
-        .gallery-actions .ga-outline:hover { border-color: var(--accent); color: var(--accent); }
+        .gallery-actions a:hover { text-decoration: none; border-color: var(--ctl-line-hover); background: var(--ctl-tint); }
+        .gallery-actions a:active { transform: scale(0.98); }
+        .gallery-actions .ga-primary { background: var(--ink); border-color: var(--ink); color: #fff; }
+        .gallery-actions .ga-primary:hover { background: #000; border-color: #000; box-shadow: 0 4px 12px -4px rgba(28,28,30,0.45); }
 
         /* Lightbox */
         .lightbox-overlay {
@@ -1737,30 +1753,29 @@
         .hire-cta {
             display: inline-flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
             margin-top: 1.125rem; padding: 0.5rem 0.5rem 0.5rem 0.875rem;
-            border: 1px solid var(--border); border-radius: 999px;
-            background: var(--bg-subtle);
+            border: 1px solid var(--ctl-line); border-radius: calc(var(--ctl-radius) + 4px);
+            background: var(--bg);
             font-size: 0.8125rem;
             font-variation-settings: "MONO" 0.6, "CASL" 0;
             transition: border-color var(--transition), background var(--transition);
         }
-        .hire-cta:hover { border-color: var(--accent); }
+        .hire-cta:hover { border-color: var(--ctl-line-hover); }
         .hire-lead { color: var(--text-muted); }
         .hire-role {
             color: var(--accent); font-weight: 600;
             font-variation-settings: "MONO" 1, "CASL" 0;
-            min-width: 15rem; display: inline-block;
-            letter-spacing: 0.01em;
+            letter-spacing: -0.005em;
         }
         .hire-q { color: var(--text-muted); }
         .hire-btn {
             display: inline-flex; align-items: center; gap: 0.35rem;
-            margin-left: 0.25rem; padding: 0.35rem 0.875rem;
-            border-radius: 999px; background: var(--accent); color: var(--white);
-            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
-            font-variation-settings: "MONO" 0.8, "CASL" 0;
-            transition: background var(--transition), transform var(--transition);
+            margin-left: 0.25rem; height: var(--ctl-h-sm); padding: 0 0.875rem;
+            border-radius: var(--ctl-radius); background: var(--ink); color: #fff;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: -0.005em;
+            transition: background var(--ctl-ease), box-shadow var(--ctl-ease), transform 120ms var(--ease-move);
         }
-        .hire-btn:hover { background: #b4200f; text-decoration: none; transform: translateX(2px); }
+        .hire-btn:hover { background: #000; text-decoration: none; box-shadow: 0 4px 12px -4px rgba(28,28,30,0.45); }
+        .hire-btn:active { transform: scale(0.98); }
 
         /* four-phase indicator, mirroring the hero icon's cycle */
         .hire-phase { display: inline-flex; gap: 3px; align-items: center; }
@@ -1780,9 +1795,8 @@
         }
         /* The secondary CTAs are the primary button's pattern at a smaller size,
            so the row reads as one family rather than a button beside four pills. */
-        .btn-sm { padding: 0.5rem 0.875rem; font-size: 0.75rem; }
         /* The whole hover is a two-pixel nudge in the direction the link goes. */
-        .nav-btn svg { opacity: 0.5; transition: transform var(--transition), opacity var(--dur-base) var(--ease-move); }
+        .nav-btn svg { opacity: 0.5; transition: transform var(--ctl-ease), opacity var(--ctl-ease); }
         .nav-btn:hover svg { opacity: 1; transform: translateY(2px); }
         .nav-btn.is-go:hover svg { transform: translateX(2px); }
         @media (prefers-reduced-motion: reduce) {
@@ -1797,8 +1811,8 @@
         }
         .rec-toggle {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.4rem 0.75rem; border-radius: 999px; cursor: pointer;
-            border: 1px solid var(--border); background: var(--bg-subtle);
+            height: var(--ctl-h-sm); padding: 0 0.75rem; border-radius: var(--ctl-radius); cursor: pointer;
+            border: 1px solid var(--ctl-line); background: var(--bg);
             color: var(--text-secondary); font-family: var(--font);
             font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.03em;
             font-variation-settings: "MONO" 0.8, "CASL" 0;
@@ -2052,7 +2066,6 @@
             .bio-tag { flex: 0 0 11.5rem; height: 2.125rem; font-size: 0.6875rem; }
             .hero-ctas { flex-direction: column; align-items: stretch; }
             .cta-secondary { justify-content: center; }
-            .btn-sm { font-size: 0.6875rem; padding: 0.4rem 0.7rem; }
             .cta-secondary { justify-content: center; margin-top: 0.25rem; }
             .hire-cta {
                 width: 100%; border-radius: var(--radius);
@@ -2066,13 +2079,6 @@
             .rec-actions { flex-direction: column; }
             .rec-actions .btn { width: 100%; justify-content: center; }
             .hero-ctas .btn { width: 100%; justify-content: center; }
-            .hero-ctas.bead-row, .rec-actions.bead-row {
-                background: linear-gradient(180deg, transparent, var(--border-strong) 0.75rem,
-                            var(--border-strong) calc(100% - 0.75rem), transparent)
-                            center / 1px 100% no-repeat;
-                background-origin: content-box;
-            }
-            .hero-ctas .btn:hover, .rec-actions .btn:hover { transform: translateY(-2px); }
             .metrics-grid {
                 display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
                 scrollbar-width: none; gap: 0.5rem;
@@ -2199,7 +2205,7 @@
 
             <div class="hero-icon-row">
                 <div>
-                    <p class="hero-is"><span class="hero-is-name">Vahid</span> is <mark id="hero-is-word" class="is-in">an AI-native architect</mark>.</p>
+                    <p class="hero-is"><span class="hero-is-name">Vahid</span> is <span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on"><mark>an AI-native architect</mark>.</span><span class="tk"><mark>a harness builder</mark>.</span><span class="tk"><mark>a context engineer</mark>.</span><span class="tk"><mark>evals-first</mark>.</span><span class="tk"><mark>agentic by default</mark>.</span><span class="tk"><mark>fluent in MCP</mark>.</span><span class="tk"><mark>a teacher</mark>.</span></span><span class="sr-only">an AI-native architect.</span></p>
                     <h1 class="hero-name">Agents you can<br class="hero-br"> count&nbsp;on</h1>
                 </div>
             </div>
@@ -2215,7 +2221,7 @@
                     <span class="hire-ph hire-ph-4"></span>
                 </span>
                 <span class="hire-lead">Open to</span>
-                <span class="hire-role" id="hire-role" aria-hidden="true">AI-Native Architect</span>
+                <span class="hire-role ticker" id="hire-role" aria-hidden="true"><span class="tk is-on">AI-Native Architect</span><span class="tk">Applied AI Engineer</span><span class="tk">Agentic AI Engineer</span><span class="tk">AI Platform Engineer</span><span class="tk">AI Solutions Architect</span><span class="tk">R&amp;D Researcher</span></span>
                 <span class="hire-q">roles</span>
                 <span class="sr-only">Open to AI-Native Architect, Applied AI Engineer, Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect and R&amp;D Researcher roles.</span>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="hire-btn">Book a call <span aria-hidden="true">&rarr;</span></a>
@@ -3221,53 +3227,27 @@
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
     })();
 
-    (function hireCta() {
-        var el = document.getElementById('hire-role');
-        if (!el) return;
-
-        var ROLES = [
-            'AI-Native Architect',
-            'Applied AI Engineer',
-            'Agentic AI Engineer',
-            'AI Platform Engineer',
-            'AI Solutions Architect',
-            'R&D Researcher'
-        ];
-
-        // Reduced motion: show the first role, no cycling.
-        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-        if (reduce.matches) { el.textContent = ROLES[0]; return; }
-
-        // The rotating role retypes, exactly as the tags do. It used to dissolve
-        // through random glyphs, which is the one effect this site no longer
-        // has anywhere.
-        function scramble(from, to, done) {
-            typeTo(el, to, done);
-        }
-
-        var idx = 0;
-        var paused = false;
-        var timer;
-
-        function next() {
-            if (paused || document.hidden) return;
-            var from = ROLES[idx];
-            idx = (idx + 1) % ROLES.length;
-            scramble(from, ROLES[idx]);
-        }
-
-        // Hold on hover so the role can actually be read before it changes.
-        var cta = document.getElementById('hire-cta');
-        if (cta) {
-            cta.addEventListener('mouseenter', function () { paused = true; });
-            cta.addEventListener('mouseleave', function () { paused = false; });
-        }
-
-        el.textContent = ROLES[0];
-        timer = setInterval(next, 3500);
-        window.addEventListener('pagehide', function () {
-            clearInterval(timer);
-            cancelAnimationFrame(el._typing);
+    (function tickers() {
+        // One driver for every rotating word on the page. Holds while hovered,
+        // pauses when the tab is hidden, and stays put under reduced motion.
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        [['hero-is-ticker', 2800], ['hire-role', 3500]].forEach(function (cfg, n) {
+            var box = document.getElementById(cfg[0]);
+            if (!box) return;
+            var items = box.querySelectorAll('.tk'), i = 0, held = false;
+            var host = box.closest('.hire-cta, .hero-is') || box;
+            host.addEventListener('mouseenter', function () { held = true; });
+            host.addEventListener('mouseleave', function () { held = false; });
+            setTimeout(function () {
+                setInterval(function () {
+                    if (held || document.hidden) return;
+                    var cur = items[i];
+                    i = (i + 1) % items.length;
+                    cur.classList.remove('is-on'); cur.classList.add('is-off');
+                    items[i].classList.remove('is-off'); items[i].classList.add('is-on');
+                    setTimeout(function () { cur.classList.remove('is-off'); }, 450);
+                }, cfg[1]);
+            }, n * 900);
         });
     })();
 
@@ -3441,21 +3421,6 @@
         draw();
     })();
 
-    (function heroIs() {
-        // "Vahid is ..." cycles the way the Seven Portraits captions do: the
-        // highlighter sweeps in behind each new word.
-        var el = document.getElementById('hero-is-word');
-        if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        var WORDS = ['an AI-native architect', 'building agent harnesses', 'a context engineer', 'evals-first', 'shipping agentic workflows', 'fluent in MCP', 'a teacher'];
-        var i = 0;
-        setInterval(function () {
-            i = (i + 1) % WORDS.length;
-            el.classList.remove('is-in');
-            void el.offsetWidth;
-            el.textContent = WORDS[i];
-            el.classList.add('is-in');
-        }, 2600);
-    })();
 
     (function footerAbacus() {
         // Desktop gets this from :hover; the class exists so the touch auto-play
