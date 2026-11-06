@@ -2905,6 +2905,45 @@
             .reel-mini .reel-play { width: 76px; height: 76px; margin: -38px 0 0 -38px; }
             .reel-mini .reel-play svg { width: 26px; height: 26px; margin-left: 4px; }
         }
+    
+        /* share the film */
+        .reel-col { flex: none; display: flex; flex-direction: column; gap: 0.5rem; }
+        .reel-share { display: flex; justify-content: center; gap: 0.5rem; }
+        .reel-share a, .rp-share {
+            display: inline-flex; align-items: center; gap: 0.4rem; height: 30px; padding: 0 0.7rem; border-radius: 999px;
+            border: 1px solid var(--ctl-line); background: var(--bg); color: var(--ink); font-size: 0.75rem; font-weight: 600; text-decoration: none;
+            transition: border-color 0.25s, color 0.25s, background 0.25s;
+        }
+        .reel-share svg, .rp-share svg { width: 13px; height: 13px; }
+        .reel-share .rs-li svg { color: #0a66c2; }
+        .reel-share a:hover, .rp-share:hover { border-color: var(--ctl-line-hover); background: var(--ctl-tint); text-decoration: none; }
+        .rp-share { width: 32px; padding: 0; justify-content: center; border-radius: var(--ctl-radius); }
+        @media (max-width: 640px) { .reel-col { width: 100%; } }
+
+        /* experience, for the person deciding on an interview */
+        .xp-sell { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem; margin: 1.25rem 0 2.25rem; }
+        .xp-sell > div { position: relative; display: flex; flex-direction: column; gap: 0.3rem; padding: 0.875rem 1rem 1rem 1.1rem; border-radius: 6px;
+            border-top: 1px solid var(--ctl-line); border-bottom: 1px solid var(--ctl-line);
+            background-image: var(--dowel), var(--dowel); background-size: 5px 100%, 5px 100%; background-position: left center, right center; background-repeat: no-repeat; }
+        .xp-sell b { font-size: 0.875rem; font-weight: 700; color: var(--ink); }
+        .xp-sell b::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 0.45rem; border-radius: 50%; background: var(--rust); vertical-align: 0.05em; }
+        .xp-sell span { font-size: 0.75rem; line-height: 1.55; color: var(--text-secondary); }
+        .xp-lead { margin: 0.6rem 0 0.4rem; font-size: 0.9375rem; line-height: 1.55; color: var(--ink); font-weight: 500; }
+        .xp-points { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.35rem; }
+        .xp-points li { position: relative; padding-left: 1.1rem; font-size: 0.8125rem; line-height: 1.6; color: var(--text-secondary); }
+        .xp-points li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 50%; background: var(--mark); box-shadow: inset 0 0 0 1px rgba(224,48,30,0.35); }
+        .xp-points strong { color: var(--ink); font-weight: 600; }
+        .xp-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin-top: 0.6rem; }
+        .xp-links a, .xp-foot a { font-size: 0.8125rem; font-weight: 600; color: var(--rust-deep); text-decoration: none; border-bottom: 1px solid rgba(224,48,30,0.25); }
+        .xp-links a:hover, .xp-foot a:hover { border-color: var(--rust); color: var(--rust); text-decoration: none; }
+        .xp-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.6rem; }
+        .xp-tags span { padding: 0.15rem 0.5rem; border-radius: 999px; border: 1px solid var(--ctl-line); font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); }
+        .xp-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+        .xp-foot .xp-book { margin-left: auto; padding: 0.5rem 0.9rem; border-radius: var(--ctl-radius); background: var(--ink); color: #fff; border: 0; }
+        .xp-foot .xp-book:hover { background: #000; color: #fff; }
+        @media (max-width: 900px) { .xp-sell { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 640px) { .xp-sell { grid-template-columns: 1fr; } .xp-foot .xp-book { margin-left: 0; } }
+            .tl-init { display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.875rem; color: var(--rust); background: var(--paper); }
     </style>
     <link rel="stylesheet" href="assets/brand/abacus-frame.css">
 </head>
@@ -3010,6 +3049,7 @@
             <hr class="hero-rule">
             <div class="hero-bio">
                 <p class="hero-tagline">I design agentic systems end to end: the harness around the model (execution loop, tools, context and memory) and the evals that prove it works. Spec to production, in TypeScript and Python.</p>
+                <div class="reel-col">
                 <button type="button" class="reel reel-mini" id="reel-open" aria-haspopup="dialog" aria-label="Watch my animated CV, 1 minute">
                     <span class="reel-thumb">
                     <img src="assets/video/vahid-cv-poster.jpg" alt="" width="1280" height="720" loading="lazy">
@@ -3020,6 +3060,11 @@
                 </span>
                     <span class="reel-cap">Animated CV <b>1:00</b></span>
                 </button>
+                <div class="reel-share" aria-label="Share the animated CV">
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fvfaraji89.github.io%2F%3Freel" target="_blank" rel="noopener" class="rs-li"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg>Share on LinkedIn</a>
+                    <a href="https://x.com/intent/post?text=Vahid%20Faraji%27s%2060-second%20animated%20CV%3A%20languages%2C%20data%2C%20AI%20put%20to%20work%2C%20and%20an%20abacus.&amp;url=https%3A%2F%2Fvfaraji89.github.io%2F%3Freel" target="_blank" rel="noopener" class="rs-x"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg>Post on X</a>
+                </div>
+                </div>
             </div>
             <div class="hero-cards">
             <div class="hire-cta" id="hire-cta">
@@ -3385,12 +3430,50 @@
 
         <section id="experience" class="reveal">
             <div class="section-label">Experience</div>
-            <p class="section-tagline">Where I built it.</p>
+            <p class="section-tagline">Eight years of turning business problems into systems people use.</p>
+
+            <div class="xp-sell">
+                <div><b>Ships to production</b><span>Tools in daily use, not demos: ProjectLens, Text-to-Report, finance checks.</span></div>
+                <div><b>Proves the impact</b><span>91% less manual work, a 40% smaller backlog, 95% accuracy, all measured.</span></div>
+                <div><b>Brings people along</b><span>400+ people taught, C-level AI training, a TEV career mentor.</span></div>
+                <div><b>Owns it end to end</b><span>Problem, spec, build, evals, hand-off. Research to roadmap.</span></div>
+            </div>
+
             <div class="timeline">
-                <div class="timeline-item"><div class="timeline-period">2025–now</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=kariyer.net&sz=64" alt="Kariyer.net" class="timeline-logo" loading="lazy"><div><h3>Senior Applied AI Specialist</h3><div class="org">Kariyer.net (ilab group)</div></div></div><div class="desc">Specs, context and backlog delivery for applied AI transformation across Sales, Finance and R&amp;D. Azure DevOps, Claude Code, Vercel AI SDK, LangChain, Agno, Langfuse.</div><div class="impact">Google GenAI Leader · Perplexity Fellowship</div></div></div>
-                <div class="timeline-item"><div class="timeline-period">2022–2025</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=kariyer.net&sz=64" alt="Kariyer.net" class="timeline-logo" loading="lazy"><div><h3>Product Manager, Data</h3><div class="org">Kariyer.net</div></div></div><div class="desc">Metadata architecture serving 300M+ datapoints. AI strategy alignment. Pipeline infrastructure enabling later LLM deployments at scale.</div></div></div>
-                <div class="timeline-item"><div class="timeline-period">2021–2022</div><div class="timeline-content"><div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=worqcompany.com&sz=64" alt="WorqCompany" class="timeline-logo" loading="lazy"><div><h3>Business Analyst</h3><div class="org">WorqCompany</div></div></div><div class="desc">Forecasting models, dashboards, and process automation for finance and operations.</div></div></div>
-                <div class="timeline-item"><div class="timeline-period">2019–2021</div><div class="timeline-content"><div class="timeline-header"><img src="assets/img/defaro-icon.jpg" alt="Defaro.io" class="timeline-logo" loading="lazy"><div><h3>Co-Founder</h3><div class="org">Defaro.io</div></div></div><div class="desc">Labour-market analytics startup for compensation intelligence and career pathway analytics. Data pipelines, benchmarking models, product strategy from scratch.</div></div></div>
+                <div class="timeline-item"><div class="timeline-period">2025&ndash;now</div><div class="timeline-content">
+                    <div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=kariyer.net&sz=64" alt="Kariyer.net" class="timeline-logo" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'timeline-logo tl-init',textContent:this.alt.charAt(0)}))"><div><h3>Senior Applied AI Specialist</h3><div class="org">Kariyer.net (ilab group) &middot; Istanbul</div></div></div>
+                    <p class="xp-lead">I lead applied AI across Sales, Finance and R&amp;D: from the business problem to agents running in production.</p>
+                    <ul class="xp-points"><li><strong>ProjectLens</strong>: pricing moved from Excel to one tool, <strong>91% less manual work</strong>, 31 spreadsheets retired</li><li><strong>Text-to-Report</strong> agents answer data questions in plain language: analytics backlog <strong>down 40%</strong></li><li>My context-engineering framework became the <strong>company standard</strong>, cutting token spend while improving accuracy</li><li>Finance exception detection across statements from <strong>4 major Turkish banks</strong></li><li>Secured a <strong>USD 40K Perplexity</strong> enterprise grant; Google GenAI Leader</li></ul>
+                    <div class="xp-links"><a href="#work">See the case studies &rarr;</a><a href="papers/cais-2026.html">Read the ACM CAIS &rsquo;26 paper &rarr;</a></div>
+                    <div class="xp-tags"><span>Claude Code</span><span>Agent SDK</span><span>LangGraph</span><span>MCP</span><span>Langfuse</span><span>Azure DevOps</span></div>
+                </div></div>
+                <div class="timeline-item"><div class="timeline-period">2022&ndash;2025</div><div class="timeline-content">
+                    <div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=kariyer.net&sz=64" alt="Kariyer.net" class="timeline-logo" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'timeline-logo tl-init',textContent:this.alt.charAt(0)}))"><div><h3>Product Manager, Data</h3><div class="org">Kariyer.net &middot; Istanbul</div></div></div>
+                    <p class="xp-lead">I built the data foundation the AI work now stands on.</p>
+                    <ul class="xp-points"><li>Metadata design for <strong>300M+ data assets</strong>, so every number has an owner and a trail</li><li>Real-time labour-statistics pipelines with data quality, governance and executive dashboards</li><li>Led <strong>AI adoption training for C-level</strong> executives</li></ul>
+                    
+                    <div class="xp-tags"><span>DataHub</span><span>BigQuery</span><span>Synapse</span><span>Governance</span></div>
+                </div></div>
+                <div class="timeline-item"><div class="timeline-period">2021&ndash;2022</div><div class="timeline-content">
+                    <div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=worqcompany.com&sz=64" alt="WorqCompany" class="timeline-logo" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'timeline-logo tl-init',textContent:this.alt.charAt(0)}))"><div><h3>Business Analyst, Data Analytics</h3><div class="org">WorqCompany</div></div></div>
+                    <p class="xp-lead">I gave leadership numbers they could plan with.</p>
+                    <ul class="xp-points"><li>Financial forecasts and revenue simulations used for mid-range planning</li><li>Dashboards and process automation for finance and operations</li></ul>
+                    
+                    <div class="xp-tags"><span>Forecasting</span><span>SQL</span></div>
+                </div></div>
+                <div class="timeline-item"><div class="timeline-period">2019&ndash;2021</div><div class="timeline-content">
+                    <div class="timeline-header"><img src="assets/img/defaro-icon.jpg" alt="Defaro.io" class="timeline-logo" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'timeline-logo tl-init',textContent:this.alt.charAt(0)}))"><div><h3>Co-Founder</h3><div class="org">Defaro.io &middot; backed by &Ouml;zye&#287;in University</div></div></div>
+                    <p class="xp-lead">I built a data product from zero: labour-market and compensation analytics.</p>
+                    <ul class="xp-points"><li>Data pipelines, benchmarking models and product strategy from scratch</li></ul>
+                    
+                    
+                </div></div>
+            </div>
+
+            <div class="xp-foot">
+                <a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noopener">Full history and recommendations on LinkedIn &nearr;</a>
+                <a href="assets/cv/vahid-faraji-cv.pdf">Preview the CV</a>
+                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="xp-book">Book an interview &rarr;</a>
             </div>
         </section>
 
@@ -3672,6 +3755,8 @@
                 <span class="rp-chapter" id="rp-chapter" aria-live="polite"><b>01</b> Who I am</span>
             </div>
             <div class="cvv-actions">
+                <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fvfaraji89.github.io%2F%3Freel" target="_blank" rel="noopener" class="rp-share" aria-label="Share on LinkedIn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a>
+                <a href="https://x.com/intent/post?text=Vahid%20Faraji%27s%2060-second%20animated%20CV%3A%20languages%2C%20data%2C%20AI%20put%20to%20work%2C%20and%20an%20abacus.&amp;url=https%3A%2F%2Fvfaraji89.github.io%2F%3Freel" target="_blank" rel="noopener" class="rp-share" aria-label="Post on X"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/></svg></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="btn btn-primary btn-sm"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
                 <button type="button" class="cvv-close" aria-label="Close video">&times;</button>
             </div>
@@ -4498,6 +4583,8 @@
             setTimeout(function () { dlg.classList.remove('is-closing'); dlg.close(); }, 320);
         }
         dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+        // a shared link (?reel or #reel) opens straight into the film
+        if (/(^|[?&])reel(=|&|$)/.test(location.search) || location.hash === '#reel') setTimeout(function () { btn.click(); }, 400);
         dlg.addEventListener('close', function () { v.pause(); document.documentElement.classList.remove('cvv-lock'); });
         dlg.querySelector('.cvv-close').addEventListener('click', close);
         dlg.addEventListener('click', function (e) { if (e.target === dlg) close(); });
