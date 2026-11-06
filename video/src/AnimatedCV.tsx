@@ -8,6 +8,7 @@ import {
   spring, staticFile, useCurrentFrame, useVideoConfig, Easing,
 } from 'remotion';
 import tone from './tone.json';
+import icons from './icons.json';
 
 export const FPS = 30;
 export const TOTAL = 60 * FPS;
@@ -53,6 +54,17 @@ const Bead: React.FC<{ size: number; color: string; style?: React.CSSProperties 
     boxShadow: `inset -${size * 0.08}px -${size * 0.08}px 0 rgba(0,0,0,0.18), 0 0 0 ${Math.max(2, size * 0.07)}px ${C.ink}`,
     ...style,
   }} />
+);
+
+// ---- the abacus icon kit (same symbols as the site) -----------------------------
+const AbIcon: React.FC<{ name: string; size: number; pop?: number; color?: string }> = ({ name, size, pop = 1, color = C.ink }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" style={{ display: 'block', color, transform: `scale(${pop})`, overflow: 'visible' }}
+    dangerouslySetInnerHTML={{ __html: (icons as Record<string, string>)[name] }} />
+);
+const IconTile: React.FC<{ name: string; size?: number; pop?: number; on?: boolean }> = ({ name, size = 84, pop = 1, on = true }) => (
+  <div style={{ width: size, height: size, borderRadius: size * 0.26, background: '#fff', border: `2px solid ${on ? C.ink : C.line}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: on ? '0 18px 30px -20px rgba(28,28,30,0.6)' : 'none', transform: `scale(${pop})`, opacity: Math.min(1, pop) }}>
+    <AbIcon name={name} size={size * 0.62} color={on ? C.ink : C.muted} />
+  </div>
 );
 
 const Mark: React.FC<{ size?: number }> = ({ size = 44 }) => (
@@ -136,12 +148,16 @@ const Timer: React.FC = () => {
 
 // ---- the halftone portrait ----------------------------------------------------
 const N = 64;
-const Halftone: React.FC<{ progress: number; size: number; lensX?: number; lensY?: number }> = ({ progress, size, lensX, lensY }) => {
+export type Medium = 'halftone' | 'pixels' | 'lines' | 'letters' | 'network';
+const GLYPHS = ' .:;ilcoaeshmHMW';
+const toneRGB = (d: number) => { const v = Math.round(244 - d * 228); return `rgb(${v},${v - 3},${v - 9})`; };
+const Halftone: React.FC<{ progress: number; size: number; lensX?: number; lensY?: number; medium?: Medium }> = ({ progress, size, lensX, lensY, medium = 'halftone' }) => {
   const cell = size / N;
   const dots: React.ReactNode[] = [];
+  const T = tone as number[][];
   for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
-    const d = (tone as number[][])[r][c];
-    if (d < 0.04) continue;
+    const d = T[r][c];
+    if (medium !== 'pixels' && d < 0.04) continue;
     const k = Math.max(0, Math.min(1, (progress * 1.7 - (r + c) / (2 * N - 2)) * 3));
     if (k <= 0) continue;
     const x = (c + 0.5) * cell, y = (r + 0.5) * cell;
@@ -150,7 +166,25 @@ const Halftone: React.FC<{ progress: number; size: number; lensX?: number; lensY
       const q = Math.max(0, 1 - Math.hypot(x - lensX, y - lensY) / (size * 0.16));
       lens = 1 + 0.9 * q * q;
     }
-    dots.push(<circle key={r * N + c} cx={x} cy={y} r={cell * 0.6 * Math.sqrt(d) * k * lens} fill={C.ink} />);
+    const key = r * N + c;
+    if (medium === 'pixels') {
+      const w = cell * lens * k;
+      dots.push(<rect key={key} x={x - w / 2} y={y - w / 2} width={w + 0.5} height={w + 0.5} fill={toneRGB(d)} />);
+    } else if (medium === 'lines') {
+      const amp = cell * 0.6 * Math.pow(d, 1.2) * lens * k;
+      dots.push(<line key={key} x1={x - cell / 2} y1={y + Math.sin(c * 1.1 + r * 0.7) * amp} x2={x + cell / 2} y2={y + Math.sin((c + 1) * 1.1 + r * 0.7) * amp} stroke={C.ink} strokeWidth={(0.4 + 2.4 * Math.pow(d, 1.4)) * size / 208} strokeLinecap="round" />);
+    } else if (medium === 'letters') {
+      const ch = GLYPHS[Math.min(GLYPHS.length - 1, Math.floor(Math.pow(d, 0.75) * GLYPHS.length))];
+      if (ch !== ' ') dots.push(<text key={key} x={x} y={y} fontFamily={MONO} fontWeight={700} fontSize={cell * 1.35 * lens} textAnchor="middle" dominantBaseline="central" fill={toneRGB(Math.min(1, 0.25 + d))} opacity={k}>{ch}</text>);
+    } else if (medium === 'network') {
+      if (d < 0.3) continue;
+      const sw = (0.3 + 0.9 * d) * size / 208;
+      if (c + 1 < N && T[r][c + 1] > 0.3) dots.push(<line key={key + 'h'} x1={x} y1={y} x2={x + cell} y2={y} stroke={C.ink} strokeWidth={sw} opacity={k} />);
+      if (r + 1 < N && T[r + 1][c] > 0.3) dots.push(<line key={key + 'v'} x1={x} y1={y} x2={x} y2={y + cell} stroke={C.ink} strokeWidth={sw} opacity={k} />);
+      dots.push(<circle key={key} cx={x} cy={y} r={cell * 0.32 * Math.sqrt(d) * lens * k} fill={(r * 7 + c * 13) % 53 === 0 && d > 0.45 ? C.red : C.ink} />);
+    } else {
+      dots.push(<circle key={key} cx={x} cy={y} r={cell * 0.6 * Math.sqrt(d) * k * lens} fill={C.ink} />);
+    }
   }
   return (
     <svg width={size} height={size} style={{ display: 'block' }}>
@@ -328,6 +362,7 @@ const WorkCard: React.FC<{ w: Work; index: number }> = ({ w, index }) => {
 
 // ---- scene 5: through-line ------------------------------------------------------------
 const STAGES = [['2013–15', 'Business administration'], ['2015–18', 'Research'], ['2019–21', 'Defaro.io, co-founder'], ['2019–23', 'M.A. Economics'], ['2022–25', 'Kariyer.net, data products'], ['2025–', 'Applied AI']];
+const STAGE_ICONS = ['abacus', 'page', 'branch', 'cap', 'bars', 'agents'];
 const Through: React.FC = () => {
   const f = useCurrentFrame();
   const rod = interpolate(f, [0, 40], [0, 1], { extrapolateRight: 'clamp', easing: ease });
@@ -398,6 +433,11 @@ const Origin: React.FC = () => {
   const hx = px + 290 + Math.sin(f / 9) * 40, hy = py + 250 + Math.cos(f / 11) * 30;
   const cx = interpolate(t, [0, 1], [1880, hx]), cy = interpolate(t, [0, 1], [1040, hy]) - Math.sin(t * Math.PI) * 120;
   const art = spring({ frame: f, fps: FPS, config: { damping: 14, stiffness: 90 } });
+  // the cursor redraws him, as on the site: halftone, pixels, lines, letters, network
+  const MEDIA: Medium[] = ['halftone', 'pixels', 'lines', 'letters', 'network', 'halftone'];
+  const mi = f < 124 ? 0 : Math.min(MEDIA.length - 1, 1 + Math.floor((f - 124) / 16));
+  const medium = MEDIA[mi];
+  const flash = f >= 124 && mi < MEDIA.length - 1 ? interpolate((f - 124) % 16, [0, 5], [0.85, 1], { extrapolateRight: 'clamp' }) : 1;
   return (
     <AbsoluteFill>
       <div style={{ position: 'absolute', left: 120, top: 230, width: 800 }}>
@@ -408,7 +448,14 @@ const Origin: React.FC = () => {
         <Img src={staticFile('img/abacus-drawing.jpg')} style={{ width: '100%', display: 'block' }} />
       </div>
       <div style={{ position: 'absolute', left: px, top: py, borderRadius: 18, boxShadow: '0 30px 60px -40px rgba(28,28,30,0.6)', opacity: interpolate(f, [24, 40], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
-        <Halftone progress={p} size={size} lensX={f > 100 ? cx - px : undefined} lensY={f > 100 ? cy - py : undefined} />
+        <div style={{ transform: `scale(${flash})`, transformOrigin: '50% 50%' }}>
+          <Halftone progress={p} size={size} medium={medium} lensX={f > 100 ? cx - px : undefined} lensY={f > 100 ? cy - py : undefined} />
+        </div>
+      </div>
+      <div style={{ position: 'absolute', left: px, top: py + size + 22, width: size, display: 'flex', justifyContent: 'center', gap: 10, opacity: interpolate(f, [118, 128], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
+        {MEDIA.slice(0, 5).map((m, k) => (
+          <span key={m} style={{ fontFamily: MONO, fontSize: 19, padding: '6px 12px', borderRadius: 8, border: `1px solid ${m === medium ? C.red : C.line}`, color: m === medium ? C.red : C.muted, background: '#fff' }}>{m}</span>
+        ))}
       </div>
       {f > 66 && <Cursor x={cx} y={cy} />}
     </AbsoluteFill>
@@ -447,6 +494,7 @@ const Harness: React.FC = () => {
   const f = useCurrentFrame();
   const cx = 1340, cy = 520, R = 230;
   const parts = ['Loop', 'Tools', 'Context', 'Memory'];
+  const partIcons = ['loop', 'plug', 'window', 'layers'];
   const ring = interpolate(f, [10, 50], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
   const evals = interpolate(f, [150, 200], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
   const orbit = f / 36;
@@ -469,14 +517,14 @@ const Harness: React.FC = () => {
         const lx = cx + Math.cos(a) * (R + (Math.abs(Math.cos(a)) > 0.5 ? 125 : 52)), ly = cy + Math.sin(a) * (R + 52);
         return (
           <React.Fragment key={name}>
-            <div style={{ position: 'absolute', left: x - 22, top: y - 22, transform: `scale(${show})` }}><Bead size={44} color={i % 2 ? C.deep : C.mark} /></div>
+            <div style={{ position: 'absolute', left: x - 36, top: y - 36 }}><IconTile name={partIcons[i]} size={72} pop={show} /></div>
             <div style={{ position: 'absolute', left: lx - 100, top: ly - 22, width: 200, textAlign: 'center', fontFamily: SANS, fontWeight: 700, fontSize: 32, color: C.ink, opacity: show }}>{name}</div>
           </React.Fragment>
         );
       })}
       {/* a red bead runs the loop: one turn of the agent */}
       <div style={{ position: 'absolute', left: cx + Math.cos(orbit) * R - 16, top: cy + Math.sin(orbit) * R - 16, opacity: ring }}><Bead size={32} color={C.red} /></div>
-      <div style={{ position: 'absolute', left: cx + R + 40, top: cy - R - 110, fontFamily: MONO, fontSize: 26, color: C.red, opacity: evals }}>EVALS ✓</div>
+      <div style={{ position: 'absolute', left: cx + R + 20, top: cy - R - 120, display: 'flex', alignItems: 'center', gap: 12, fontFamily: MONO, fontSize: 26, color: C.red, opacity: evals }}><AbIcon name="check" size={40} color={C.ink} pop={evals} />EVALS</div>
     </AbsoluteFill>
   );
 };
@@ -555,7 +603,7 @@ const Production: React.FC = () => {
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 20, marginTop: 24 }}>
           <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 76, color: C.red, letterSpacing: '-0.04em' }}>{big}</span>
           <div>
-            <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 32, color: C.ink }}>{title}</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontFamily: SANS, fontWeight: 700, fontSize: 32, color: C.ink }}><AbIcon name={k ? 'agents' : 'calc'} size={36} pop={pop} />{title}</div>
             <div style={{ fontFamily: MONO, fontSize: 21, color: C.sec, marginTop: 4 }}>{line}</div>
           </div>
         </div>
@@ -590,8 +638,9 @@ const Twelve: React.FC = () => {
         const now = i === STAGES.length - 1;
         return (
           <div key={y} style={{ position: 'absolute', left: 1162, top: 165 + i * 108, display: 'flex', alignItems: 'center', gap: 30, ...fadeUp(f, 10 + i * 7, 14, 12) }}>
-            <Bead size={40} color={now ? C.red : i % 2 ? C.deep : C.mark} />
+            <div style={{ position: 'relative' }}><Bead size={40} color={now ? C.red : i % 2 ? C.deep : C.mark} /></div>
             <span style={{ fontFamily: MONO, fontSize: 24, color: C.sec, width: 130 }}>{y}</span>
+            <AbIcon name={STAGE_ICONS[i]} size={38} color={now ? C.red : C.ink} />
             <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 32, color: now ? C.red : C.ink }}>{t}</span>
           </div>
         );
