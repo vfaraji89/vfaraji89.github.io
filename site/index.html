@@ -2961,6 +2961,31 @@
             .sa-row .sa-rod { gap: 0.4rem 0; }
         }
         @media (max-width: 400px) { .sa-row .sb { width: 33.33%; } }
+    
+        /* desktop: the film is a play pill; it pops up on its own when reached */
+        @media (hover: hover) and (min-width: 641px) {
+            .reel-col { align-self: center; }
+            .reel-mini { width: auto !important; flex-direction: row; align-items: center; gap: 0.6rem; padding: 0.4rem 0.9rem 0.4rem 0.4rem !important;
+                border: 1px solid var(--ctl-line) !important; border-radius: 999px; background: var(--bg) !important; }
+            .reel-mini .reel-thumb { display: none; }
+            .reel-mini::before {
+                content: ""; flex: none; width: 34px; height: 34px; border-radius: 50%; background-color: var(--rust);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 4.2v7.6c0 .4.44.64.78.42l5.9-3.8a.5.5 0 000-.84L6.78 3.78A.5.5 0 006 4.2z' fill='white'/%3E%3C/svg%3E"), radial-gradient(circle at 34% 30%, rgba(255,255,255,0.55) 0 14%, rgba(255,255,255,0) 24%);
+                background-size: 16px 16px, 100% 100%; background-position: 55% 50%, center; background-repeat: no-repeat;
+                box-shadow: 0 0 0 0 rgba(224,48,30,0.5); animation: live-ring 1.8s var(--ease-move) infinite;
+            }
+            .reel-mini .reel-cap { font-size: 0.75rem; text-transform: none; letter-spacing: 0; color: var(--ink); font-family: var(--font); font-weight: 600; }
+            .reel-mini:hover { border-color: var(--ctl-line-hover) !important; }
+        }
+        .rp-sound {
+            position: absolute; z-index: 3; right: 16px; top: 16px; display: inline-flex; align-items: center; gap: 0.45rem;
+            height: 38px; padding: 0 1rem; border: 0; border-radius: 999px; cursor: pointer;
+            background: rgba(255,255,255,0.95); color: var(--ink); font: 600 0.8125rem var(--font);
+            box-shadow: 0 10px 24px -12px rgba(0,0,0,0.5); animation: rp-nudge 2.2s var(--ease-move) 0.8s 3;
+        }
+        .rp-sound[hidden] { display: none; }
+        .rp-sound svg { width: 16px; height: 16px; color: var(--rust); }
+        @keyframes rp-nudge { 0%, 100% { transform: none; } 50% { transform: translateY(-3px) scale(1.04); } }
     </style>
     <link rel="stylesheet" href="assets/brand/abacus-frame.css">
 </head>
@@ -3803,6 +3828,7 @@
             <video id="reel-video" controls playsinline preload="none" poster="assets/video/vahid-cv-poster.jpg">
                 <source src="assets/video/vahid-cv-60s.mp4" type="video/mp4">
             </video>
+            <button type="button" class="rp-sound" id="rp-sound" hidden><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 6h2.2L8 3.3v9.4L4.7 10H2.5z"/><path d="M10.6 6a2.8 2.8 0 010 4"/><path d="M12.4 4.3a5.3 5.3 0 010 7.4"/></svg>Sound on</button>
             <button type="button" class="rp-big" id="rp-big" aria-label="Play"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></button>
         </div>
         <div class="rp-deck" hidden>
@@ -4621,6 +4647,33 @@
             setTimeout(function () { dlg.classList.remove('is-closing'); dlg.close(); }, 320);
         }
         dlg.addEventListener('cancel', function (e) { e.preventDefault(); close(); });
+
+        // desktop: no preview needed; when the visitor reaches the film it pops up
+        // and plays, muted (browsers allow that), with a clear "Sound on" button.
+        var sound = document.getElementById('rp-sound');
+        function soundOn() { v.muted = false; muteB.setAttribute('aria-pressed', 'false'); muteB.setAttribute('aria-label', 'Mute'); sound.hidden = true; }
+        sound.addEventListener('click', soundOn);
+        muteB.addEventListener('click', function () { sound.hidden = true; });
+        var desk = window.matchMedia('(hover: hover) and (min-width: 641px)').matches;
+        var seen = false; try { seen = sessionStorage.getItem('vf-reel-auto') === '1'; } catch (e) {}
+        if (desk && !reduce && !seen && !/(^|[?&])(reel|hire)(=|&|$)/.test(location.search) && 'IntersectionObserver' in window) {
+            var timer = 0;
+            var auto = new IntersectionObserver(function (es) {
+                es.forEach(function (en) {
+                    clearTimeout(timer);
+                    if (!en.isIntersecting) return;
+                    timer = setTimeout(function () {
+                        if (dlg.open || document.hidden || document.querySelector('dialog[open]')) return;
+                        auto.disconnect();
+                        try { sessionStorage.setItem('vf-reel-auto', '1'); } catch (e) {}
+                        v.muted = true; muteB.setAttribute('aria-pressed', 'true'); muteB.setAttribute('aria-label', 'Unmute');
+                        sound.hidden = false;
+                        btn.click();
+                    }, 1400);
+                });
+            }, { threshold: 0.9 });
+            auto.observe(btn);
+        }
         // a shared link (?reel or #reel) opens straight into the film
         if (/(^|[?&])reel(=|&|$)/.test(location.search) || location.hash === '#reel') setTimeout(function () { btn.click(); }, 400);
         dlg.addEventListener('close', function () { v.pause(); document.documentElement.classList.remove('cvv-lock'); });
