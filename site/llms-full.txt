@@ -31,6 +31,9 @@ Vahid Faraji is a Senior Applied AI Specialist with 8 years in industry (2 in ap
 - Database schema design and backend systems in TypeScript and Python, with API and workflow integrations; owns features across the stack
 - Reusable tooling for teams: Tokalator (context and token budgeting) and agent skills for AI coding assistants
 
+## Tools in daily use
+Claude Code, Claude Agent SDK, Microsoft Copilot Studio, Microsoft Agents SDK, Azure DevOps, Google Cloud (Console), Google Vertex AI, Vercel AI SDK, Vapi (voice agents), ElevenLabs (voice), Python.
+
 ## Publications (3 papers + 1 patent pending)
 
 ### ACM CAIS '26 (Peer-Reviewed)
