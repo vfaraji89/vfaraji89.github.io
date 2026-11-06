@@ -24,11 +24,11 @@ jobs:
       url: ${{ steps.pages.outputs.base_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # The CV is written in LaTeX (cv/vahid-faraji-cv.tex). Every deploy
       # rebuilds it, so the PDF the site links to always matches the source.
       - name: Build CV from LaTeX
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: vahid-faraji-cv.tex
           working_directory: cv
@@ -48,14 +48,14 @@ jobs:
               cv/vahid-faraji-cv.pdf site/assets/cv/vahid-faraji-cv-$n
           done
       - id: pages
-        uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+        uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site
       # Publishing sometimes fails on GitHub's side ("try again later", or stuck
       # while updating). Give it the longest allowed wait (10 min), and retry once after a pause.
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         continue-on-error: true
         with:
           timeout: 600000
@@ -64,6 +64,6 @@ jobs:
         run: sleep 60
       - id: deployment_retry
         if: steps.deployment.outcome == 'failure'
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
         with:
           timeout: 600000
