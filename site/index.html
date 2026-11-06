@@ -33,7 +33,7 @@
     <link rel="sitemap" type="application/xml" href="sitemap.xml">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="Vahid Faraji">
-    <meta name="keywords" content="Vahid Faraji, AI-Native Architect, AI-Native, Agentic AI, Agentic Workflows, AI Architect, Applied AI Engineer, AI Engineer, Agentic AI Engineer, Agent Harness, LLM Agents, Tool Calling, Agent Execution Loop, Agent Memory, Context Engineering, Agent Skills, Multi-Step Execution, LLM Evals, Evaluations, Tracing, Failure Analysis, Observability, Production AI, Reliability, Latency, Cost Optimization, Resumable Long-Running Tasks, Human-in-the-Loop, Spec-Driven Development, Database Schema Design, Full Stack, TypeScript, Python, Backend, API Integrations, RAG, Retrieval, Orchestration, Multi-Agent Systems, MCP, Model Context Protocol, LangGraph, Claude, Claude Agent SDK, Anthropic Platform, Vercel AI SDK, Microsoft Copilot Studio, TypeScript 7, Tokalator, ACM CAIS, Istanbul, Remote">
+    <meta name="keywords" content="Vahid Faraji, AI-Native Architect, AI-Native, Agentic AI, Agentic Workflows, AI Architect, Applied AI Engineer, AI Engineer, Agentic AI Engineer, Agent Harness, LLM Agents, Tool Calling, Agent Execution Loop, Agent Memory, Context Engineering, Agent Skills, Multi-Step Execution, LLM Evals, Evaluations, Tracing, Langfuse, LLM Observability, Vercel, Failure Analysis, Observability, Production AI, Reliability, Latency, Cost Optimization, Resumable Long-Running Tasks, Human-in-the-Loop, Spec-Driven Development, Database Schema Design, Full Stack, TypeScript, Python, Backend, API Integrations, RAG, Retrieval, Orchestration, Multi-Agent Systems, MCP, Model Context Protocol, LangGraph, Claude, Claude Agent SDK, Anthropic Platform, Vercel AI SDK, Microsoft Copilot Studio, TypeScript 7, Tokalator, ACM CAIS, Istanbul, Remote">
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5"></script>
@@ -150,6 +150,8 @@
                     "Vercel AI SDK",
                     "Anthropic Platform (Claude Agent SDK)",
                     "Microsoft Copilot Studio",
+                    "Langfuse (LLM tracing and observability)",
+                    "Vercel (deployment)",
                     "FastAPI",
                     "Python",
                     "Text-to-SQL",
@@ -2470,7 +2472,7 @@
                 <dl class="rc-facts">
                     <div><dt>Role fit</dt><dd>AI-Native Architect &middot; Applied AI Engineer &middot; Agentic AI Engineer &middot; AI Platform Engineer</dd></div>
                     <div><dt>Builds</dt><dd>Agent harnesses (loop, tools, context, memory) &middot; evals from real tasks &middot; spec to production, full stack</dd></div>
-                    <div><dt>Stack</dt><dd>TypeScript&nbsp;7 &middot; Python &middot; Next.js &middot; Claude Agent SDK &middot; Vercel AI SDK &middot; Copilot Studio &middot; MCP &middot; LangGraph</dd></div>
+                    <div><dt>Stack</dt><dd>TypeScript&nbsp;7 &middot; Python &middot; Next.js &middot; Claude Agent SDK &middot; Vercel AI SDK &middot; Copilot Studio &middot; MCP &middot; LangGraph &middot; Langfuse tracing &middot; deploys on Vercel</dd></div>
                     <div><dt>Logistics</dt><dd>Istanbul, GMT+3 &middot; remote-friendly &middot; open to relocating to Amsterdam &middot; English C1</dd></div>
                 </dl>
 
@@ -2487,7 +2489,7 @@
                 <button type="button" class="bio-tag accent" aria-label="AI-Native Architecture: Spec → Agents → Evals"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg>AI-Native Architecture</span><span class="chip-face chip-b" aria-hidden="true">Spec → Agents → Evals</span></button>
                 <button type="button" class="bio-tag accent" aria-label="Agent Harnesses: Loops · Tools · Memory"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-loop"/></svg>Agent Harnesses</span><span class="chip-face chip-b" aria-hidden="true">Loops · Tools · Memory</span></button>
                 <button type="button" class="bio-tag accent" aria-label="Context Engineering: Token budgets · Caching"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-window"/></svg>Context Engineering</span><span class="chip-face chip-b" aria-hidden="true">Token budgets · Caching</span></button>
-                <button type="button" class="bio-tag accent" aria-label="Evals &amp; Observability: Traces · Failure analysis"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-bars"/></svg>Evals &amp; Observability</span><span class="chip-face chip-b" aria-hidden="true">Traces · Failure analysis</span></button>
+                <button type="button" class="bio-tag accent" aria-label="Evals &amp; Observability: Langfuse traces · Failure analysis"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-bars"/></svg>Evals &amp; Observability</span><span class="chip-face chip-b" aria-hidden="true">Langfuse traces · Failure analysis</span></button>
                 <button type="button" class="bio-tag" aria-label="Agentic Workflows: Long-running · Resumable"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-flow"/></svg>Agentic Workflows</span><span class="chip-face chip-b" aria-hidden="true">Long-running · Resumable</span></button>
                 <button type="button" class="bio-tag" aria-label="MCP &amp; Agent Skills: Tools · SKILL.md"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-plug"/></svg>MCP &amp; Agent Skills</span><span class="chip-face chip-b" aria-hidden="true">Tools · SKILL.md</span></button>
                 <button type="button" class="bio-tag" aria-label="Multi-Agent Systems: LangGraph · Agno · SDKs"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-agents"/></svg>Multi-Agent Systems</span><span class="chip-face chip-b" aria-hidden="true">LangGraph · Agno · SDKs</span></button>
@@ -2959,13 +2961,13 @@
                         <svg class="ab jr-icon" aria-hidden="true"><use href="#ab-cloud"/></svg>
                         <span class="jr-verb">Scale</span>
                         <span class="jr-sub">Platforms and governance</span>
-                        <span class="jr-skills">Azure · Google Cloud · DataHub · Azure DevOps</span>
+                        <span class="jr-skills">Vercel · Azure · Google Cloud · DataHub · Azure DevOps</span>
                     </li>
                     <li class="jr-stop is-now" data-i="4" tabindex="0">
                         <svg class="ab jr-icon" aria-hidden="true"><use href="#ab-agents"/></svg>
                         <span class="jr-verb">Orchestrate</span>
                         <span class="jr-sub">Agents in production</span>
-                        <span class="jr-skills">Anthropic Platform (Claude Agent SDK) · Vercel AI SDK · Microsoft Copilot Studio · MCP · LangGraph</span>
+                        <span class="jr-skills">Anthropic Platform (Claude Agent SDK) · Vercel AI SDK · Microsoft Copilot Studio · MCP · LangGraph · Langfuse</span>
                     </li>
                 </ol>
             </div>

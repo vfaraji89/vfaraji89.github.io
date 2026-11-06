@@ -167,7 +167,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 8 years in industry (2 in ap
 - Strengths: agent harness engineering, evals from real tasks, tracing and failure analysis, spec-driven design and implementation, database schema design, full-stack ownership, context and token strategy, production reliability, latency and cost
 - Seniority: Senior, 8 years in industry plus 4 in research, with hands-on full-stack engineering of LLM agents in production
 - Location: Istanbul, Turkey (GMT+3), remote-friendly with distributed teams
-- Core stack: TypeScript 7, Python/FastAPI, Next.js, Anthropic Platform (Claude Agent SDK), Vercel AI SDK, Microsoft Copilot Studio, MCP, LangGraph, Agno, Langfuse, Arize, SQL, BigQuery, Azure, DataHub
+- Core stack: TypeScript 7, Python/FastAPI, Next.js, Anthropic Platform (Claude Agent SDK), Vercel AI SDK, Microsoft Copilot Studio, MCP, Langfuse (tracing), Vercel (deployment), LangGraph, Agno, Langfuse, Arize, SQL, BigQuery, Azure, DataHub
 - Proof: ACM Professional Member, peer-reviewed at ACM CAIS '26, 2 arXiv papers, 1 patent pending, Perplexity AI Business Fellowship programme lead, Tokalator with 500+ installs
 - Condensed hiring view: https://vfaraji89.github.io/?hire
 - Contact: vfaraji89@gmail.com
@@ -209,7 +209,7 @@ Tokalator is an open-source context engineering toolkit built by Vahid Faraji, s
 
 ### Which technologies and frameworks does Vahid Faraji work with?
 
-Agent and LLM stack: Anthropic Platform (Claude Agent SDK), Vercel AI SDK, Microsoft Copilot Studio, Model Context Protocol (MCP), LangGraph, Agno, and Langfuse and Arize for observability. Backend and data: Python, FastAPI, Pydantic, Text-to-SQL, DataHub, Azure Synapse, BigQuery and real-time pipelines. Frontend and tooling: Next.js, TypeScript 7 and VS Code extension development.
+Agent and LLM stack: Anthropic Platform (Claude Agent SDK), Vercel AI SDK, Microsoft Copilot Studio, Model Context Protocol (MCP), LangGraph, Agno, and Langfuse and Arize for observability. Backend and data: Python, FastAPI, Pydantic, Text-to-SQL, DataHub, Azure Synapse, BigQuery and real-time pipelines. Frontend, deployment and tooling: Next.js deployed on Vercel, TypeScript 7 and VS Code extension development. Tracing and observability: Langfuse and Arize.
 
 ### Is Vahid Faraji available to hire or consult?
 
