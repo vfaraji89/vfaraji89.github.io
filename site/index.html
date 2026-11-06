@@ -2898,6 +2898,13 @@
         .pm-beads button[aria-pressed="true"] { background-color: var(--rust); transform: scale(1.3); }
         .pm-name { display: block; margin-top: 0.3rem; text-align: center; font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); min-height: 1em; }
         @media (max-width: 640px) { .pm-beads { justify-content: flex-start; } .pm-name { text-align: left; } }
+    
+        /* phones and tablets: the film is a cover with one big play button */
+        @media (hover: none), (max-width: 640px) {
+            .reel-mini .reel-story, .reel-mini .reel-ticks { display: none !important; }
+            .reel-mini .reel-play { width: 76px; height: 76px; margin: -38px 0 0 -38px; }
+            .reel-mini .reel-play svg { width: 26px; height: 26px; margin-left: 4px; }
+        }
     </style>
     <link rel="stylesheet" href="assets/brand/abacus-frame.css">
 </head>
@@ -4404,17 +4411,8 @@
                 btn.classList.add('is-scrub'); showFrame(k);
             });
             btn.addEventListener('pointerleave', function () { btn.classList.remove('is-scrub'); });
-        } else if (!reduce && 'IntersectionObserver' in window) {
-            // touch: the storyboard plays itself while the card is on screen
-            var k = 0, timer = 0;
-            new IntersectionObserver(function (es) {
-                es.forEach(function (en) {
-                    clearInterval(timer);
-                    if (en.isIntersecting) { btn.classList.add('is-scrub'); showFrame(k); timer = setInterval(function () { k = (k + 1) % FR; showFrame(k); }, 900); }
-                    else btn.classList.remove('is-scrub');
-                });
-            }, { threshold: 0.6 }).observe(btn);
         }
+        // touch screens: no storyboard, just the cover and a big play button
 
         if (typeof dlg.showModal !== 'function') { btn.addEventListener('click', function () { location.href = 'assets/video/vahid-cv-60s.mp4'; }); return; }
 
