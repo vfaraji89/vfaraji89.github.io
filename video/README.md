@@ -1,8 +1,10 @@
 # Animated CV (Remotion)
 
 Vahid Faraji's 60-second animated CV, for technical and non-technical viewers alike: who I am,
-the languages I live in, data and its context, AI put to work, Tokalator, what you can count on,
-and a wooden abacus that spells the name. Same palette, type and beads as the site. Source for `site/assets/video/vahid-cv-60s.mp4`.
+the languages I read, data and its story, knowing the problem and building the solution, context
+design, analytical thinking, what you can count on, and a wooden abacus that spells the name.
+Each scene has its own camera (zooms in and out with motion blur on fast moves) and the scenes are
+joined with @remotion/transitions (slide, wipe, clock wipe) plus a custom zoom-through and red-rod reveal. Source for `site/assets/video/vahid-cv-60s.mp4`.
 
 ```bash
 npm install
