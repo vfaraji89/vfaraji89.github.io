@@ -1038,17 +1038,18 @@
         }
 
         .metrics-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 2rem;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 0 0 2.5rem;
         }
         .metric-card {
-            padding: 1rem; background: var(--bg-subtle); text-align: center; cursor: pointer;
-            border: 1px solid var(--border); border-radius: var(--radius);
-            transition: border-color var(--transition), box-shadow var(--dur-slow) var(--ease-out);
+            padding: 1.125rem 1rem; background: var(--bg); text-align: center; cursor: pointer;
+            border: 1px solid var(--ctl-line); border-radius: var(--radius);
+            transition: border-color var(--ctl-ease), box-shadow var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
         }
-        .metric-card.flipped { border-color: var(--accent); }
+        .metric-card:hover { border-color: var(--ctl-line-hover); box-shadow: 0 10px 24px -18px rgba(28,28,30,0.45); }
+        .metric-card.flipped { border-color: var(--accent); background: var(--paper); }
         .metric-card.flipped .metric-label { color: var(--accent); font-weight: 500; }
         .metric-num {
-            font-size: 1.5rem; font-weight: 800; line-height: 1.15;
+            font-size: 1.625rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.03em;
             font-variation-settings: "MONO" 1, "CASL" 0;
             color: var(--accent);
             min-height: 2.75rem;
@@ -1159,7 +1160,7 @@
             background: var(--bg-muted); padding: 0.2rem 0.5rem; border-radius: 4px; color: var(--text-secondary);
         }
         .case-card.featured .case-tag { background: rgba(224,48,30,0.12); color: var(--accent); }
-        .case-card .gallery-screenshot { margin-bottom: 1rem; background: var(--paper); }
+        .case-card .gallery-screenshot { margin-bottom: 1.25rem; background: var(--paper); }
         .case-actions { margin-top: 0.875rem; }
         .case-title {
             font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em;
@@ -1611,10 +1612,10 @@
         .gallery-screenshot img { width: 100%; height: auto; display: block; }
         .gallery-card:hover .gallery-screenshot { border-color: var(--accent); }
         .gallery-screenshot-count {
-            position: absolute; bottom: 0.5rem; right: 0.5rem;
-            background: rgba(0,0,0,0.7); color: #fff; font-size: 0.625rem;
-            padding: 0.2rem 0.5rem; border-radius: 3px;
-            font-variation-settings: "MONO" 1; pointer-events: none;
+            position: absolute; top: 0.625rem; right: 0.625rem;
+            background: rgba(255,255,255,0.92); color: var(--ink); font-size: 0.625rem; font-weight: 500;
+            padding: 0.2rem 0.45rem; border-radius: 6px; border: 1px solid var(--ctl-line);
+            backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); pointer-events: none;
         }
         .gallery-info { display: flex; flex-direction: column; gap: 0.75rem; }
         .gallery-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
@@ -2145,7 +2146,7 @@
             .metrics-grid {
                 display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
                 scrollbar-width: none; gap: 0.5rem;
-                margin: 2rem -1.25rem 0; padding: 0 1.25rem;
+                margin: 0 -1.25rem 2rem; padding: 0 1.25rem;
             }
             .metrics-grid::-webkit-scrollbar { display: none; }
             .metric-card { min-width: 120px; flex-shrink: 0; padding: 0.75rem; }
