@@ -1059,11 +1059,11 @@
         /* external displays (Studio Display, Pro Display XDR, 4K and up):
            scale everything together, so type, controls and beads keep their
            proportions and the page fills about two thirds of the width */
-        @media (min-width: 1880px) { .site-header, main.container, .site-footer { zoom: 1.14; } }
-        @media (min-width: 2300px) { .site-header, main.container, .site-footer { zoom: 1.36; } }
-        @media (min-width: 2900px) { .site-header, main.container, .site-footer { zoom: 1.66; } }
-        @media (min-width: 3600px) { .site-header, main.container, .site-footer { zoom: 2.05; } }
-        @media (min-width: 4800px) { .site-header, main.container, .site-footer { zoom: 2.75; } }
+        @media (min-width: 1880px) { .site-header, main.container, .site-footer > :not(.footer-wordmark) { zoom: 1.14; } }
+        @media (min-width: 2300px) { .site-header, main.container, .site-footer > :not(.footer-wordmark) { zoom: 1.36; } }
+        @media (min-width: 2900px) { .site-header, main.container, .site-footer > :not(.footer-wordmark) { zoom: 1.66; } }
+        @media (min-width: 3600px) { .site-header, main.container, .site-footer > :not(.footer-wordmark) { zoom: 2.05; } }
+        @media (min-width: 4800px) { .site-header, main.container, .site-footer > :not(.footer-wordmark) { zoom: 2.75; } }
 
         /* ---- abacus holder frames ------------------------------------------
            Chips and story cards share one minimal frame: two ink posts at the
@@ -1581,48 +1581,58 @@
            the rod along the baseline and slide out of the pointer's way. */
         .site-footer { padding-bottom: 0; }
         .footer-wordmark {
-            position: relative; margin-top: 2.5rem; overflow: hidden;
-            background: var(--paper); border-top: 1px solid rgba(224,48,30,0.12);
-            padding: 3vw 3vw 0; user-select: none;
+            position: relative; margin-top: 2.5rem; overflow: hidden; user-select: none;
+            background: linear-gradient(180deg, #fff 0%, var(--paper) 100%); border-top: 1px solid rgba(224,48,30,0.1);
+            padding: 3.5vw 3vw 3vw;
         }
+        /* a minimal wooden abacus: two beech dowels standing on the paper, two
+           rods between them, matte beads you can grab and slide, the name above */
+        .wm-frame { position: relative; padding: 1.5vw 7vw 2.5vw; }
+        .wm-post {
+            position: absolute; z-index: 2; top: 0; bottom: 0; width: 4.6vw; min-width: 16px; border-radius: 999px;
+            background: linear-gradient(90deg, #b48a5c 0%, #d8bb94 24%, #f1e3cc 48%, #dcc29e 70%, #ad8455 100%);
+            box-shadow: 0 1.4vw 2vw -1.2vw rgba(60,40,20,0.45), inset 0 -0.6vw 0.8vw -0.4vw rgba(80,50,20,0.25);
+        }
+        .wm-post::after {   /* end grain catching the light */
+            content: ""; position: absolute; left: 12%; right: 12%; top: 0.5vw; height: 1.2vw; border-radius: 50%;
+            background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.55), rgba(255,255,255,0) 70%);
+        }
+        .wm-post-l { left: 0; } .wm-post-r { right: 0; }
         .wm-word {
-            font-family: "Geist Pixel Circle", var(--font-mono); font-weight: 400;
-            font-size: clamp(5rem, 30vw, 29rem); line-height: 0.8;
-            letter-spacing: -0.02em; color: var(--ink); white-space: nowrap;
+            position: relative; font-family: "Geist Pixel Circle", var(--font-mono); font-weight: 400;
+            font-size: clamp(4.5rem, 22vw, 24rem); line-height: 0.8;
+            letter-spacing: -0.02em; color: var(--ink); white-space: nowrap; margin-bottom: 1.5vw;
         }
-        .wm-dot {
-            display: inline-block; width: 0.17em; height: 0.17em; margin-left: 0.04em;
-            border-radius: 50%; background: var(--rust); vertical-align: baseline;
-            border: 0.012em solid var(--ink);
-            box-shadow: inset -0.02em -0.025em 0 rgba(0,0,0,0.18);
+        .footer-wordmark .wm-dot {
+            display: inline-block; width: 0.17em; height: 0.17em; margin-left: 0.04em; border-radius: 50%; vertical-align: baseline;
+            background: radial-gradient(circle at 34% 30%, #ff9d8f 0%, #e0301e 42%, #a81a0b 100%);
+            box-shadow: 0 0.03em 0.05em rgba(120,20,10,0.35);
             transition: transform 0.6s var(--ease-spring);
         }
         .footer-wordmark:hover .wm-dot { transform: translateY(-0.12em); }
-        .wm-rod { position: relative; height: 8vw; min-height: 28px; margin: -3.4vw -3vw 1.5vw; pointer-events: none; }
+        .wm-rod { position: relative; z-index: 3; height: 7.4vw; min-height: 26px; margin: 0 -2.4vw; pointer-events: none; }
+        .wm-rod + .wm-rod { margin-top: 0.6vw; }
         .wm-line {
-            position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px;
-            background: var(--ink); opacity: 0.85;
+            position: absolute; left: -2.5vw; right: -2.5vw; top: 50%; height: 0.9vw; min-height: 5px; transform: translateY(-50%); border-radius: 999px;
+            z-index: -1; background: linear-gradient(180deg, #e9d8bd 0%, #f4eadb 35%, #d2b48d 75%, #b8946a 100%);
+            box-shadow: 0 0.3vw 0.5vw -0.2vw rgba(80,50,20,0.3);
         }
         .wm-bead {
-            position: absolute; top: 50%; left: var(--x);
-            width: calc(7.2vw * var(--s)); height: calc(7.2vw * var(--s));
-            min-width: 18px; min-height: 18px;
-            transform: translate(calc(-50% + var(--dx, 0px)), -50%);
+            position: absolute; top: 50%; left: var(--x); width: 7.2vw; height: 7.2vw; min-width: 24px; min-height: 24px;
+            border-radius: 50%; transform: translate(-50%, -50%);
+            background: radial-gradient(circle at 34% 28%, var(--b1) 0%, var(--b2) 38%, var(--b3) 100%);
+            box-shadow: inset -0.5vw -0.7vw 1.2vw -0.4vw rgba(0,0,0,0.16), 0 1vw 1.4vw -0.9vw rgba(40,20,10,0.4);
             transition: transform 0.9s var(--ease-spring);
+            pointer-events: auto; cursor: grab; touch-action: none;
         }
-        .wm-bead svg { width: 100%; height: 100%; display: block; overflow: visible; }
-        .wm-bead { pointer-events: auto; cursor: grab; touch-action: none; }
-        .wm-bead.is-grabbed { cursor: grabbing; }
-        .wm-bead.is-grabbed svg { filter: drop-shadow(0 6px 8px rgba(28,28,30,0.25)); }
+        .wm-bead.t-white { --b1: #ffffff; --b2: #f4f1ee; --b3: #d9d3cd; }
+        .wm-bead.t-red { --b1: #ff8f80; --b2: #e0301e; --b3: #9e1a0c; }
+        .wm-bead.t-blush { --b1: #fff3f0; --b2: #ffd2ca; --b3: #e9a497; }
+        .wm-bead.is-grabbed { cursor: grabbing; box-shadow: inset -0.5vw -0.7vw 1.2vw -0.4vw rgba(0,0,0,0.16), 0 1.8vw 2vw -1vw rgba(40,20,10,0.45); }
         .footer-wordmark.wm-live .wm-bead { left: 0; transition: none; animation: none !important; opacity: 1; will-change: transform; }
-        .wm-bead circle { stroke: var(--ink); stroke-width: 3.5; }
-        .wm-bead .t-red { fill: var(--rust); }
-        .wm-bead .t-deep { fill: var(--rust-deep); }
-        .wm-bead .t-light { fill: var(--mark); }
-        .wm-bead .hl { fill: none; stroke: rgba(255,255,255,0.75); stroke-width: 4; stroke-linecap: round; }
         .js .footer-wordmark .wm-bead { opacity: 0; }
-        .footer-wordmark.is-popped .wm-bead { opacity: 1; animation: wm-drop 0.9s var(--ease-spring) both; animation-delay: calc(var(--i, 0) * 70ms); }
-        @keyframes wm-drop { from { opacity: 0; transform: translate(-50%, -160%); } to { opacity: 1; transform: translate(calc(-50% + var(--dx, 0px)), -50%); } }
+        .footer-wordmark.is-popped .wm-bead { opacity: 1; animation: wm-drop 0.9s var(--ease-spring) both; animation-delay: calc(var(--i, 0) * 90ms); }
+        @keyframes wm-drop { from { opacity: 0; transform: translate(-50%, -170%); } to { opacity: 1; transform: translate(-50%, -50%); } }
         @media (prefers-reduced-motion: reduce) {
             .wm-bead, .wm-dot { transition: none; }
             .js .footer-wordmark .wm-bead { opacity: 1; animation: none; }
@@ -1776,7 +1786,9 @@
         @media (prefers-reduced-motion: reduce) { .cv-viewer[open] { animation: none; } }
 
         /* ---- product badges ------------------------------------------------ */
-        .product-badges { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin-top: 0.75rem; }
+        .product-badges { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; margin-top: 0.75rem; }
+        @media (min-width: 1200px) { .product-badges { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+        .pb-yzi { background: #f4effc; }
         .pbadge {
             display: flex; align-items: center; gap: 0.75rem; min-width: 0;
             padding: 0.625rem 0.75rem; border-radius: 12px; text-decoration: none;
@@ -2944,6 +2956,11 @@
                     <span class="pb-text"><b>ProjectLens</b><em>91% effort cut</em></span>
                     <span class="pb-go" aria-hidden="true">&darr;</span>
                 </a>
+                <a class="pbadge" href="#yzi">
+                    <span class="pb-mark pb-yzi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5L21 19.5H3z" fill="#efe7fb" stroke="#5b21b6" stroke-width="1.6" stroke-linejoin="round"/><path d="M1.5 12.5L9.6 11.4" stroke="#5b21b6" stroke-width="1.4" stroke-linecap="round"/><path d="M14.3 11.2l8 -2.2" stroke="#e0301e" stroke-width="1.3" stroke-linecap="round"/><path d="M14.6 12.4l8 0.4" stroke="#f2b134" stroke-width="1.3" stroke-linecap="round"/><path d="M14.8 13.6l7.6 2.8" stroke="#2f9e6e" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+                    <span class="pb-text"><b>Yapay Zek&acirc; &#304;zi</b><em>1.6M ads &middot; LLM pipeline</em></span>
+                    <span class="pb-go" aria-hidden="true">&darr;</span>
+                </a>
             </div>
 
 
@@ -3025,6 +3042,30 @@
                             <a href="https://vimeo.com/1173321359" target="_blank" rel="noopener" class="ga-primary">Live Demo</a>
                             <a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener" class="ga-outline">ACM Paper</a>
                         </div>
+                    </div>
+                </div>
+                <div class="case-card hover-card" data-hover id="yzi">
+                    <div class="card-content">
+                        <div class="gallery-screenshot" data-lightbox="yzi" data-images='["assets/photos/yapay-zeka-izi/yzi-hero.jpg","assets/photos/yapay-zeka-izi/yzi-periods.jpg"]'>
+                            <img src="assets/photos/yapay-zeka-izi/yzi-hero.jpg" alt="Yapay Zekâ İzi: the analysis site, with GenAI job ads up 23.3 times from 2022 to the first half of 2026, and counts of ads, live ads, companies and ads analysed" loading="lazy" onerror="this.closest('.gallery-screenshot').remove();">
+                            <span class="gallery-screenshot-count">1 / 2</span>
+                        </div>
+                        <div class="case-meta"><span class="case-tag">Data Product</span><span class="case-tag">LLM Pipeline</span><span class="case-tag">Oct 2026</span></div>
+                        <div class="case-title">Yapay Zek&acirc; &#304;zi: AI in 1.6M Job Ads</div>
+                        <details class="disclose case-disclose">
+                            <summary>Problem, approach, result</summary>
+                        <div class="case-body">
+                            <div class="case-row"><span class="case-row-label">Problem</span><span class="case-row-val">How fast is AI really entering Turkish job ads since the GPT moment of 2022, and which tools do employers name? Keyword counts cannot tell a requirement from boilerplate across 1.6M ads written in free Turkish text.</span></div>
+                            <div class="case-row"><span class="case-row-label">Approach</span><span class="case-row-val">An <strong>LLM pipeline</strong> over 1.6M kariyer.net ads, from 2022 to the first half of 2026: sentence-level reading of every ad, generative AI kept apart from classic AI and machine learning, tool names normalised so mentions can be counted, and a public analysis site, <strong>Yapay Zek&acirc; &#304;zi</strong> (&ldquo;the trace of AI&rdquo;), with periods, tools, sectors, a validation page and the method. Every quote on a card is taken from the ad verbatim.</span></div>
+                            <div class="case-row"><span class="case-row-label">Result</span><span class="case-row-val">The share of ads asking for <strong>generative AI grew 23.3&times;</strong> from the first half of 2022 to the first half of 2026, reaching 21.8 in every 10,000 ads. In 2026 alone, 233,127 ads were read sentence by sentence; 3,373 mention AI, from <strong>1,681 companies</strong>.</span></div>
+                        </div>
+                        </details>
+                        <div class="case-stats">
+                            <span><strong>1.6M</strong> ads analysed</span>
+                            <span><strong>23.3&times;</strong> GenAI growth</span>
+                            <span><strong>1,681</strong> companies</span>
+                        </div>
+                        <div class="case-stack"><span>LLM Pipeline</span><span>&middot;</span><span>Turkish NLP</span><span>&middot;</span><span>Classification</span><span>&middot;</span><span>Validation</span><span>&middot;</span><span>Data Product</span></div>
                     </div>
                 </div>
                 <div class="case-card hover-card" data-hover>
@@ -3509,19 +3550,20 @@
             </div>
         </div>
         <div class="footer-wordmark" id="footer-wordmark" aria-hidden="true">
-            <div class="wm-word">vahid<span class="wm-dot"></span></div>
-            <div class="wm-rod">
-                <span class="wm-line"></span>
-                <span class="wm-bead" style="--x:3%;--s:0.812"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-deep"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
-                <span class="wm-bead" style="--x:9%;--s:0.562"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-light"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
-                <span class="wm-bead" style="--x:21%;--s:0.938"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-red"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
-                <span class="wm-bead" style="--x:27%;--s:0.625"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-light"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
-                <span class="wm-bead" style="--x:41%;--s:0.750"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-deep"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
-                <span class="wm-bead" style="--x:55%;--s:1.000"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-red"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
-                <span class="wm-bead" style="--x:60.5%;--s:0.562"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-light"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
-                <span class="wm-bead" style="--x:73%;--s:0.688"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-deep"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
-                <span class="wm-bead" style="--x:86%;--s:0.875"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-red"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
-                <span class="wm-bead" style="--x:91.5%;--s:0.594"><svg viewBox="-34 -34 68 68"><circle r="30" class="t-light"/><path d="M-17 -6a19 19 0 0 1 14 -13" class="hl"/></svg></span>
+            <div class="wm-frame">
+                <span class="wm-post wm-post-l"></span><span class="wm-post wm-post-r"></span>
+                <div class="wm-word">vahid<span class="wm-dot"></span></div>
+                <div class="wm-rod">
+                    <span class="wm-line"></span>
+                    <span class="wm-bead t-white" style="--x:4.5%"></span>
+                    <span class="wm-bead t-white" style="--x:13%"></span>
+                </div>
+                <div class="wm-rod">
+                    <span class="wm-line"></span>
+                    <span class="wm-bead t-red" style="--x:4.5%"></span>
+                    <span class="wm-bead t-red" style="--x:13%"></span>
+                    <span class="wm-bead t-red" style="--x:21.5%"></span>
+                </div>
             </div>
         </div>
     </footer>
@@ -3887,9 +3929,8 @@
         // and bounce softly off the ends of the rod.
         var wm = document.getElementById('footer-wordmark');
         if (!wm) return;
-        var rod = wm.querySelector('.wm-rod');
-        var els = Array.prototype.slice.call(wm.querySelectorAll('.wm-bead'));
-        els.forEach(function (b, i) { b.style.setProperty('--i', i); });
+        var all = Array.prototype.slice.call(wm.querySelectorAll('.wm-bead'));
+        all.forEach(function (b, i) { b.style.setProperty('--i', i); });
         var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (!('IntersectionObserver' in window) || still) { wm.classList.add('is-popped'); }
         else {
@@ -3900,111 +3941,108 @@
         }
         if (still) return;
 
-        var beads = [], W = 0, live = false, raf = 0, last = 0;
-        var grab = null, ptr = { x: null, y: null, vx: 0, t: 0 };
-        function measure() {
-            W = rod.clientWidth;
-            beads = els.map(function (el, i) {
-                var old = beads[i];
-                var x0 = parseFloat(el.style.getPropertyValue('--x')) / 100 * W;
-                return { el: el, x: old ? Math.min(old.x, W) : x0, v: 0, r: el.offsetWidth / 2, sq: 0 };
-            });
-        }
+        var rods = Array.prototype.slice.call(wm.querySelectorAll('.wm-rod')).map(makeRod);
+        var live = false;
         function goLive() {
             if (live) return;
-            live = true; measure();
-            wm.classList.add('wm-live');
-            draw(); kick();
+            live = true; wm.classList.add('wm-live');
+            rods.forEach(function (R) { R.measure(); R.draw(); R.kick(); });
         }
-        // after the drop-in finishes, physics takes over the positions
-        els[els.length - 1].addEventListener('animationend', goLive);
+        all[all.length - 1].addEventListener('animationend', goLive);
         setTimeout(goLive, 2600);
-        window.addEventListener('resize', function () { if (live) { measure(); draw(); } });
+        window.addEventListener('resize', function () { if (live) rods.forEach(function (R) { R.measure(); R.draw(); }); });
 
-        function draw() {
-            beads.forEach(function (b) {
-                var s = 1 + 0.12 * b.sq;
-                b.el.style.transform = 'translate(' + (b.x - b.r) + 'px, -50%) scale(' + s + ', ' + (2 - s) + ')';
-            });
-        }
-        function kick() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(step); } }
-        function step(now) {
-            raf = 0;
-            var dt = Math.min(0.032, (now - last) / 1000); last = now;
-            var moving = false, friction = Math.pow(0.08, dt); // keeps ~8% of speed per second
-            beads.forEach(function (b, i) {
-                if (b === grab) return;
-                // a flick: the pointer sweeping across a bead on the rod pushes it
-                if (ptr.x !== null && Math.abs(ptr.x - b.x) < b.r && Math.abs(ptr.y) < b.r * 1.3 && Math.abs(ptr.vx) > 40) {
-                    b.v += ptr.vx * 0.5 * dt * 10;
-                }
-                b.x += b.v * dt; b.v *= friction;
-                if (b.x < b.r) { b.x = b.r; b.v = Math.abs(b.v) * 0.35; b.sq = Math.min(1, b.sq + Math.abs(b.v) / 600); }
-                if (b.x > W - b.r) { b.x = W - b.r; b.v = -Math.abs(b.v) * 0.35; b.sq = Math.min(1, b.sq + Math.abs(b.v) / 600); }
-            });
-            // collisions, a few passes so a push travels down a row of beads
-            for (var pass = 0; pass < 4; pass++) {
-                for (var k = 0; k < beads.length - 1; k++) {
-                    var a = beads[k], c = beads[k + 1], gap = (c.x - c.r) - (a.x + a.r);
-                    if (gap >= 0) continue;
-                    var aFixed = a === grab, cFixed = c === grab;
-                    if (aFixed) c.x -= gap; else if (cFixed) a.x += gap; else { a.x += gap / 2; c.x -= gap / 2; }
-                    var rel = a.v - c.v;
-                    if (rel > 0) {
-                        var e = 0.55, m = (a.v + c.v) / 2;
-                        if (!aFixed) a.v = m - e * rel / 2;
-                        if (!cFixed) c.v = m + e * rel / 2;
-                        if (aFixed) c.v = Math.max(c.v, a.v);
-                        if (cFixed) a.v = Math.min(a.v, c.v);
-                        var hit = Math.min(1, rel / 500); a.sq = Math.max(a.sq, hit); c.sq = Math.max(c.sq, hit);
-                        if (rel > 60 && typeof vfSound === 'function') vfSound(0.04 + hit * 0.14);
+        function makeRod(rod) {
+            var els = Array.prototype.slice.call(rod.querySelectorAll('.wm-bead'));
+            var beads = [], W = 0, raf = 0, last = 0, grab = null, ptr = { x: null, y: null, vx: 0, t: 0 };
+            function measure() {
+                W = rod.clientWidth;
+                beads = els.map(function (el, i) {
+                    var old = beads[i];
+                    var x0 = parseFloat(el.style.getPropertyValue('--x')) / 100 * W;
+                    return { el: el, x: old ? Math.min(old.x, W) : x0, v: 0, r: el.offsetWidth / 2, sq: 0 };
+                });
+            }
+            function draw() {
+                beads.forEach(function (b) {
+                    var s = 1 + 0.1 * b.sq, spin = b.x / b.r * 30;   // a little roll as it travels
+                    b.el.style.transform = 'translate(' + (b.x - b.r) + 'px, -50%) scale(' + s + ', ' + (2 - s) + ') rotate(' + spin + 'deg)';
+                });
+            }
+            function kick() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(step); } }
+            function step(now) {
+                raf = 0;
+                var dt = Math.min(0.032, (now - last) / 1000); last = now;
+                var moving = false, friction = Math.pow(0.08, dt);
+                beads.forEach(function (b) {
+                    if (b === grab) return;
+                    if (ptr.x !== null && Math.abs(ptr.x - b.x) < b.r && Math.abs(ptr.y) < b.r * 1.3 && Math.abs(ptr.vx) > 40) b.v += ptr.vx * 0.5 * dt * 10;
+                    b.x += b.v * dt; b.v *= friction;
+                    if (b.x < b.r) { b.x = b.r; b.v = Math.abs(b.v) * 0.35; b.sq = Math.min(1, b.sq + Math.abs(b.v) / 600); if (Math.abs(b.v) > 60 && typeof vfSound === 'function') vfSound(0.06); }
+                    if (b.x > W - b.r) { b.x = W - b.r; b.v = -Math.abs(b.v) * 0.35; b.sq = Math.min(1, b.sq + Math.abs(b.v) / 600); if (Math.abs(b.v) > 60 && typeof vfSound === 'function') vfSound(0.06); }
+                });
+                for (var pass = 0; pass < 4; pass++) {
+                    for (var k = 0; k < beads.length - 1; k++) {
+                        var a = beads[k], c = beads[k + 1], gap = (c.x - c.r) - (a.x + a.r);
+                        if (gap >= 0) continue;
+                        var aFixed = a === grab, cFixed = c === grab;
+                        if (aFixed) c.x -= gap; else if (cFixed) a.x += gap; else { a.x += gap / 2; c.x -= gap / 2; }
+                        var rel = a.v - c.v;
+                        if (rel > 0) {
+                            var e = 0.55, m = (a.v + c.v) / 2;
+                            if (!aFixed) a.v = m - e * rel / 2;
+                            if (!cFixed) c.v = m + e * rel / 2;
+                            if (aFixed) c.v = Math.max(c.v, a.v);
+                            if (cFixed) a.v = Math.min(a.v, c.v);
+                            var hit = Math.min(1, rel / 500); a.sq = Math.max(a.sq, hit); c.sq = Math.max(c.sq, hit);
+                            if (rel > 60 && typeof vfSound === 'function') vfSound(0.04 + hit * 0.14);
+                        }
                     }
                 }
+                beads.forEach(function (b) {
+                    b.x = Math.max(b.r, Math.min(W - b.r, b.x));
+                    b.sq *= Math.pow(0.002, dt);
+                    if (Math.abs(b.v) > 2 || b.sq > 0.01) moving = true;
+                });
+                ptr.vx *= Math.pow(0.02, dt);
+                draw();
+                if (moving || grab) kick();
             }
-            beads.forEach(function (b) {
-                b.x = Math.max(b.r, Math.min(W - b.r, b.x));
-                b.sq *= Math.pow(0.002, dt);
-                if (Math.abs(b.v) > 2 || b.sq > 0.01) moving = true;
+            function local(e) {
+                var box = rod.getBoundingClientRect(), k = box.width / (rod.offsetWidth || box.width) || 1;
+                return { x: (e.clientX - box.left) / k, y: (e.clientY - (box.top + box.height / 2)) / k };
+            }
+            wm.addEventListener('pointermove', function (e) {
+                if (!live) return;
+                var p = local(e), now = performance.now();
+                if (ptr.x !== null && now > ptr.t) ptr.vx = (p.x - ptr.x) / ((now - ptr.t) / 1000);
+                ptr.x = p.x; ptr.y = p.y; ptr.t = now;
+                if (grab) {
+                    var target = p.x - grab.off;
+                    grab.v = (target - grab.x) / Math.max(0.008, (now - (grab.t || now)) / 1000 || 0.016);
+                    grab.x = Math.max(grab.r, Math.min(W - grab.r, target)); grab.t = now;
+                }
+                kick();
             });
-            ptr.vx *= Math.pow(0.02, dt);
-            draw();
-            if (moving || grab) kick();
-        }
-
-        function local(e) {
-            var box = rod.getBoundingClientRect(), k = box.width / (rod.offsetWidth || box.width) || 1;
-            return { x: (e.clientX - box.left) / k, y: (e.clientY - (box.top + box.height / 2)) / k };
-        }
-        wm.addEventListener('pointermove', function (e) {
-            if (!live) return;
-            var p = local(e), now = performance.now();
-            if (ptr.x !== null && now > ptr.t) ptr.vx = (p.x - ptr.x) / ((now - ptr.t) / 1000);
-            ptr.x = p.x; ptr.y = p.y; ptr.t = now;
-            if (grab) {
-                var target = p.x - grab.off;
-                grab.v = (target - grab.x) / Math.max(0.008, (now - (grab.t || now)) / 1000 || 0.016);
-                grab.x = Math.max(grab.r, Math.min(W - grab.r, target)); grab.t = now;
-            }
-            kick();
-        });
-        wm.addEventListener('pointerleave', function () { ptr.x = null; });
-        els.forEach(function (el, i) {
-            el.addEventListener('pointerdown', function (e) {
-                if (!live) goLive();
-                var b = beads[i];
-                grab = b; b.off = local(e).x - b.x; b.v = 0; b.t = performance.now();
-                el.classList.add('is-grabbed'); el.setPointerCapture(e.pointerId);
-                e.preventDefault(); kick();
+            wm.addEventListener('pointerleave', function () { ptr.x = null; });
+            els.forEach(function (el, i) {
+                el.addEventListener('pointerdown', function (e) {
+                    if (!live) goLive();
+                    var b = beads[i];
+                    grab = b; b.off = local(e).x - b.x; b.v = 0; b.t = performance.now();
+                    el.classList.add('is-grabbed'); el.setPointerCapture(e.pointerId);
+                    e.preventDefault(); kick();
+                });
+                function release() {
+                    if (grab !== beads[i]) return;
+                    grab.v = Math.max(-2400, Math.min(2400, grab.v || 0));
+                    grab = null; el.classList.remove('is-grabbed'); kick();
+                }
+                el.addEventListener('pointerup', release);
+                el.addEventListener('pointercancel', release);
             });
-            function release() {
-                if (grab !== beads[i]) return;
-                // keep the throw speed, within reason
-                grab.v = Math.max(-2400, Math.min(2400, grab.v || 0));
-                grab = null; el.classList.remove('is-grabbed'); kick();
-            }
-            el.addEventListener('pointerup', release);
-            el.addEventListener('pointercancel', release);
-        });
+            return { measure: measure, draw: draw, kick: kick };
+        }
     })();
 
     (function siteHeader() {
