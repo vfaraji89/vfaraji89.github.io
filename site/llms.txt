@@ -1,4 +1,4 @@
-# Vahid Faraji, Applied AI Engineer: Agent Harnesses, Evals, Production LLM Agents
+# Vahid Faraji, AI-Native Architect: Agent Harnesses, Evals, Production LLM Agents
 
 > Applied AI engineer who builds LLM agent harnesses end to end (execution loops, tool calling, context and memory, agent skills), makes quality measurable with evals from real tasks, and owns production reliability, latency and cost. Full stack in TypeScript and Python. Published at ACM.
 
@@ -66,7 +66,7 @@ Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Ista
 
 ## Availability
 
-Open to senior applied AI roles, advisory engagements, and enterprise AI training. Role fit: Applied AI Engineer, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher. Centre of gravity is building agent harnesses and evals and shipping them to production, spec-first and across the stack. Seniority: Senior, 9+ years shipping production systems, with hands-on engineering of LLM agents in production. Based in Istanbul (GMT+3), remote-friendly with distributed teams.
+Open to senior applied AI roles, advisory engagements, and enterprise AI training. Role fit: AI-Native Architect, Applied AI Engineer, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher. Centre of gravity is building agent harnesses and evals and shipping them to production, spec-first and across the stack. Seniority: Senior, 9+ years shipping production systems, with hands-on engineering of LLM agents in production. Based in Istanbul (GMT+3), remote-friendly with distributed teams.
 Condensed hiring summary: https://vfaraji89.github.io/?hire
 Book directly: https://calendar.app.google/KWQg6gBjXetC4ofp9
 
