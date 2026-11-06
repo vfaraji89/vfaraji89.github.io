@@ -1101,8 +1101,8 @@ const CUT: [number, React.FC, (() => TransitionPresentation<any>) | null][] = [
   [290, scene(ProblemSolution, [[0, 1.03, 960, 520], [120, 1.07, 960, 520], [175, 1, 960, 540], [290, 1.05, 960, 540]], '#ffffff', '0% 0%'), () => wipe({ direction: 'from-left' })],
   // context design: a slow push; the panel zooms inside itself
   [300, scene(TokalatorStory, [[0, 1, 960, 540], [300, 1.06, 1000, 540]], '#fffaf8', '100% 0%'), () => clockWipe({ width: 1920, height: 1080 })],
-  // analytical: start on the bars, pull out to the number
-  [250, scene(Analytical, [[0, 1.25, 1360, 520], [80, 1.25, 1360, 520], [120, 1.1, 1300, 520], [150, 1, 960, 540], [250, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
+  // analytical: the whole sprawl in view, a slight push, then the table
+  [250, scene(Analytical, [[0, 1, 960, 540], [90, 1.05, 960, 540], [140, 1, 960, 540], [250, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
   // you can count on: a slow push
   [240, scene(CountOn, [[0, 1, 960, 540], [240, 1.06, 960, 540]]), rod],
   // the abacus
