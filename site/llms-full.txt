@@ -33,8 +33,8 @@ Vahid Faraji is a Senior Applied AI Specialist with 8 years in industry (2 in ap
 
 ## Tools in daily use
 Applied AI: Claude Code, Claude Agent SDK, Microsoft Copilot Studio, Azure AI Foundry, Google Vertex AI, LangChain, LangGraph, Deep Agents, Agno, ElevenLabs, Vapi.
-Data and retrieval: RAG, vector databases, BigQuery, Google Cloud, SQL, Hugging Face, Perplexity.
-Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agents SDK, Azure DevOps, MCP, Langfuse (tracing).
+Data and retrieval: RAG, vector databases, BigQuery, Google Cloud, SQL, text-to-SQL, DataHub, Hugging Face, Perplexity.
+Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agents SDK, Azure DevOps, MCP, Langfuse (tracing), Power Automate, Zapier.
 
 ## Publications (3 papers + 1 patent pending)
 
