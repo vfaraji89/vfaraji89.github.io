@@ -1,6 +1,6 @@
 // Vahid Faraji -- a 60-second animated CV.
-// A story in seven beats on one abacus rod: counting, scale, the harness, Tokalator,
-// production, the through-line, the invitation.
+// A story in seven beats: who I am, languages, data and its context, models put to work,
+// Tokalator, what you can count on, and a wooden abacus that spells the name.
 // Same palette, type and beads as vfaraji89.github.io. Render: npm run render
 import React from 'react';
 import {
@@ -441,11 +441,15 @@ const Origin: React.FC = () => {
   return (
     <AbsoluteFill>
       <div style={{ position: 'absolute', left: 120, top: 230, width: 800 }}>
-        <Kicker f={f} text="01 · THE BEGINNING" />
-        <Big f={f}>It started with<br />counting<Dot /></Big>
-      </div>
-      <div style={{ position: 'absolute', left: 820, top: 300, width: 330, padding: 12, background: '#f7f3ea', border: `1px solid ${C.line}`, borderRadius: 4, boxShadow: '0 30px 50px -36px rgba(28,28,30,0.6)', transform: `rotate(-3deg) translateY(${(1 - art) * 60}px)`, opacity: art }}>
-        <Img src={staticFile('img/abacus-drawing.jpg')} style={{ width: '100%', display: 'block' }} />
+        <Kicker f={f} text="HELLO" />
+        <Big f={f} size={124}>I&rsquo;m Vahid<Dot /></Big>
+        <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 52, letterSpacing: '-0.02em', color: C.ink, marginTop: 26, ...fadeUp(f, 26) }}>
+          AI-native <span style={{ backgroundImage: `linear-gradient(${C.mark}, ${C.mark})`, backgroundSize: `${interpolate(f, [40, 66], [0, 100], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}% 70%`, backgroundRepeat: 'no-repeat', backgroundPosition: 'left 60%' }}>architect</span><Dot />
+        </div>
+        <div style={{ fontFamily: SANS, fontSize: 36, color: C.sec, marginTop: 20, lineHeight: 1.4, maxWidth: 820, ...fadeUp(f, 46) }}>
+          I build AI that people trust and teams actually use.
+        </div>
+        <span style={{ display: 'none' }}>{art}</span>
       </div>
       <div style={{ position: 'absolute', left: px, top: py, borderRadius: 18, boxShadow: '0 30px 60px -40px rgba(28,28,30,0.6)', opacity: interpolate(f, [24, 40], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
         <div style={{ transform: `scale(${flash})`, transformOrigin: '50% 50%' }}>
@@ -538,7 +542,7 @@ const TOK_REGIONS: [number, number, number, number, string, string][] = [
 const TokalatorStory: React.FC = () => {
   const f = useCurrentFrame();
   const scale = 760 / 900, px = 1100, py = 130;
-  const step = 95;
+  const step = 78;
   const i = Math.min(TOK_REGIONS.length - 1, Math.max(0, Math.floor((f - 70) / step)));
   const lf = f - 70 - i * step;
   const prev = TOK_REGIONS[Math.max(0, i - 1)], cur = TOK_REGIONS[i];
@@ -549,7 +553,7 @@ const TokalatorStory: React.FC = () => {
   return (
     <AbsoluteFill>
       <div style={{ position: 'absolute', left: 120, top: 140, width: 840 }}>
-        <Kicker f={f} text="04 · TOKALATOR · OPEN SOURCE" />
+        <Kicker f={f} text="OPEN SOURCE · TOKALATOR" />
         <div style={{ fontFamily: SANS, fontSize: 46, color: C.sec, marginTop: 22, lineHeight: 1.3, ...fadeUp(f, 4) }}>Agents burned tokens blind<Dot /></div>
         <Big f={f} at={34} size={96}>So I built Tokalator<Dot /></Big>
         {TOK_REGIONS.map(([, , , , t, d], k) => (
@@ -580,7 +584,7 @@ const TokalatorStory: React.FC = () => {
           );
         })()}
       </div>
-      <div style={{ position: 'absolute', left: px + 579 * scale + 26, top: py + 30, padding: '16px 22px', borderRadius: 16, background: C.paper, border: '1px solid rgba(224,48,30,0.2)', ...fadeUp(f, 300, 18) }}>
+      <div style={{ position: 'absolute', left: px + 579 * scale + 26, top: py + 30, padding: '16px 22px', borderRadius: 16, background: C.paper, border: '1px solid rgba(224,48,30,0.2)', ...fadeUp(f, 240, 18) }}>
         <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 52, color: C.red }}>500+</div>
         <div style={{ fontFamily: MONO, fontSize: 20, color: C.sec }}>installs</div>
       </div>
@@ -687,6 +691,184 @@ const Invite: React.FC = () => {
   );
 };
 
+
+// ================= the story, for every audience =================
+// who I am, the languages I live in, data and its context, models put to work,
+// Tokalator, what you can count on, and an abacus that spells the name.
+
+// languages: read people first
+const LANGS: [string, string, string][] = [
+  ['Merhaba', 'Turkish', 'native'], ['Hello', 'English', 'C1'], ['Hola', 'Spanish', 'taught it'],
+  ['Olá', 'Portuguese', 'basic'], ['Konnichiwa', 'Japanese', 'learning'],
+];
+const Languages: React.FC = () => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill>
+      <div style={{ position: 'absolute', left: 120, top: 210, width: 820 }}>
+        <Kicker f={f} text="LANGUAGES" />
+        <Big f={f} size={104}>I read people<br />first<Dot /></Big>
+        <div style={{ fontFamily: SANS, fontSize: 38, color: C.sec, marginTop: 30, lineHeight: 1.4, ...fadeUp(f, 150) }}>
+          Five languages taught me that <span style={{ color: C.ink, fontWeight: 600 }}>meaning lives in context</span>, not in words.
+        </div>
+      </div>
+      {LANGS.map(([hi, name, lvl], i) => {
+        const pop = spring({ frame: f - 20 - i * 16, fps: FPS, config: { damping: 13, stiffness: 120 } });
+        const col = i % 2, row = Math.floor(i / 2);
+        const x = 1060 + col * 380 + (i === 4 ? 190 : 0), y = 200 + row * 200;
+        return (
+          <div key={hi} style={{ position: 'absolute', left: x, top: y, width: 340, padding: '26px 30px', borderRadius: 22, background: '#fff', border: `1px solid ${C.line}`, boxShadow: '0 30px 50px -40px rgba(28,28,30,0.6)', opacity: pop, transform: `translateY(${(1 - pop) * 40}px) scale(${0.92 + 0.08 * pop})` }}>
+            <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 50, letterSpacing: '-0.03em', color: i === 0 ? C.red : C.ink }}>{hi}</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 10 }}>
+              <Bead size={14} color={i < 3 ? C.red : C.mark} style={{ boxShadow: 'none' }} />
+              <span style={{ fontFamily: MONO, fontSize: 22, color: C.sec }}>{name} · {lvl}</span>
+            </div>
+          </div>
+        );
+      })}
+    </AbsoluteFill>
+  );
+};
+
+// data and its context
+const DataContext: React.FC = () => {
+  const f = useCurrentFrame();
+  const n = interpolate(f, [24, 150], [0, 300], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.bezier(0.3, 0, 0.2, 1) });
+  const cols = 30, rows = 14, gap = 24;
+  const lit = interpolate(f, [20, 170], [0, cols * rows], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const link = interpolate(f, [150, 220], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const tags = ['owner', 'source', 'lineage', 'meaning'];
+  return (
+    <AbsoluteFill>
+      <div style={{ position: 'absolute', left: 120, top: 210, width: 820 }}>
+        <Kicker f={f} text="DATA &amp; CONTEXT" />
+        <Big f={f} size={100}>Then I gave data<br />its context<Dot /></Big>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 18, marginTop: 40, ...fadeUp(f, 18) }}>
+          <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 116, color: C.red, letterSpacing: '-0.04em' }}>{Math.round(n)}M+</span>
+          <span style={{ fontFamily: MONO, fontSize: 26, color: C.sec, lineHeight: 1.4 }}>assets, each with<br />a clear trail</span>
+        </div>
+      </div>
+      <div style={{ position: 'absolute', left: 1060, top: 230, width: cols * gap, height: rows * gap }}>
+        {Array.from({ length: cols * rows }).map((_, k) => {
+          const on = k < lit, r = Math.floor(k / cols), c = k % cols;
+          return <div key={k} style={{ position: 'absolute', left: c * gap, top: r * gap, width: 10, height: 10, borderRadius: '50%', background: on ? (k === 187 ? C.red : C.ink) : 'rgba(28,28,30,0.1)', transform: `scale(${k === 187 ? 1 + link * 1.4 : on ? 1 : 0.6})` }} />;
+        })}
+        {/* one asset, opened: who owns it, where it came from, what it means */}
+        {tags.map((t, i) => {
+          const a = (i / tags.length) * Math.PI * 2 - Math.PI / 3, cx = 7 * gap + 5, cy = 6 * gap + 5;
+          const x = cx + Math.cos(a) * 190 * link, y = cy + Math.sin(a) * 120 * link;
+          return (
+            <React.Fragment key={t}>
+              <svg style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }} width="1" height="1"><line x1={cx} y1={cy} x2={x} y2={y} stroke={C.red} strokeWidth={2} strokeOpacity={0.6 * link} /></svg>
+              <div style={{ position: 'absolute', left: x, top: y, transform: 'translate(-50%, -50%)', padding: '8px 16px', borderRadius: 999, background: '#fff', border: `1.5px solid ${C.red}`, fontFamily: MONO, fontSize: 21, color: C.deep, opacity: link }}>{t}</div>
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// models put to work, said plainly
+const STEPS: [string, string, string][] = [
+  ['page', 'It reads', 'messy text: CVs, job ads, documents'],
+  ['check', 'It checks', 'every answer is tested before anyone sees it'],
+  ['agents', 'It ships', 'into tools teams use every day'],
+];
+const ModelShip: React.FC = () => {
+  const f = useCurrentFrame();
+  const x0 = 140, w = 1640, step = w / 3;
+  const run = interpolate(f, [70, 190], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
+  const n91 = interpolate(f, [210, 260], [0, 91], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const n95 = interpolate(f, [225, 275], [0, 95], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  return (
+    <AbsoluteFill>
+      <div style={{ position: 'absolute', left: 120, top: 170 }}>
+        <Kicker f={f} text="APPLIED AI" />
+        <Big f={f} size={96}>Then I put AI to work<Dot /></Big>
+      </div>
+      <div style={{ position: 'absolute', left: x0 + step / 2, width: step * 2, top: 438, height: 4, borderRadius: 4, background: 'rgba(28,28,30,0.12)' }} />
+      <div style={{ position: 'absolute', left: x0 + step / 2, width: step * 2 * run, top: 438, height: 4, borderRadius: 4, background: C.ink }} />
+      <div style={{ position: 'absolute', left: x0 + step / 2 + step * 2 * run - 16, top: 424, opacity: run > 0 && run < 1 ? 1 : 0 }}><Bead size={32} color={C.red} /></div>
+      {STEPS.map(([ic, t, d], i) => {
+        const pop = spring({ frame: f - 24 - i * 22, fps: FPS, config: { damping: 13, stiffness: 120 } });
+        const on = run >= i / 2 - 0.001;
+        return (
+          <div key={t} style={{ position: 'absolute', left: x0 + i * step, top: 390, width: step, textAlign: 'center', opacity: pop, transform: `translateY(${(1 - pop) * 30}px)` }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}><IconTile name={ic} size={100} on={on} /></div>
+            <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 48, letterSpacing: '-0.02em', color: on ? C.ink : C.muted, marginTop: 22 }}>{t}</div>
+            <div style={{ fontFamily: SANS, fontSize: 28, color: C.sec, marginTop: 8, lineHeight: 1.35, padding: '0 40px' }}>{d}</div>
+          </div>
+        );
+      })}
+      <div style={{ position: 'absolute', left: 0, right: 0, top: 700, display: 'flex', justifyContent: 'center', gap: 40, ...fadeUp(f, 205) }}>
+        {[[`${Math.round(n91)}%`, 'less manual work', 'ProjectLens'], [`${Math.round(n95)}%`, 'accuracy on 14K+ job titles', 'peer-reviewed, ACM CAIS ’26']].map(([big, l, src]) => (
+          <div key={l} style={{ display: 'flex', alignItems: 'baseline', gap: 18, padding: '18px 30px', borderRadius: 18, background: C.paper, border: '1px solid rgba(224,48,30,0.15)' }}>
+            <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 64, color: C.red, letterSpacing: '-0.03em' }}>{big}</span>
+            <span><span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 30, color: C.ink }}>{l}</span><br /><span style={{ fontFamily: MONO, fontSize: 20, color: C.sec }}>{src}</span></span>
+          </div>
+        ))}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// what you can count on: the solution, big
+const CountOn: React.FC = () => {
+  const f = useCurrentFrame();
+  const W = ['Data products', 'Agents', 'Analysis', 'Architecture', 'Problem solving', 'Token-cost optimisation', 'Tracing', 'Failure detection', 'Tests'];
+  const per = 13, k = Math.floor(f / per), landed = k >= W.length;
+  const word = landed ? 'Enterprise solutions' : W[k];
+  const lf = landed ? f - W.length * per : f - k * per;
+  const inn = interpolate(lf, [0, landed ? 14 : 6], [0, 1], { extrapolateRight: 'clamp', easing: ease });
+  const sweep = landed ? interpolate(lf, [8, 30], [0, 100], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease }) : 0;
+  return (
+    <AbsoluteFill style={{ justifyContent: 'center', paddingLeft: 140 }}>
+      <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 56, color: C.sec, letterSpacing: '-0.02em', ...fadeUp(f, 0) }}>You can count on</div>
+      <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: landed ? 176 : 150, lineHeight: 1.02, letterSpacing: '-0.05em', marginTop: 10, color: landed ? C.ink : C.red, opacity: inn, transform: `translateY(${(1 - inn) * 30}px)`, filter: `blur(${(1 - inn) * 6}px)` }}>
+        <span style={{ backgroundImage: `linear-gradient(${C.mark}, ${C.mark})`, backgroundSize: `${sweep}% 32%`, backgroundRepeat: 'no-repeat', backgroundPosition: 'left 88%' }}>{word}</span>{landed && <Dot />}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// the close: a wooden abacus, two rods, and the name inside it
+const AbacusName: React.FC = () => {
+  const f = useCurrentFrame();
+  const L = 260, R = 1660, top = 210, bottom = 900;
+  const posts = spring({ frame: f, fps: FPS, config: { damping: 15, stiffness: 90 } });
+  const rods = interpolate(f, [10, 34], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const word = interpolate(f, [66, 96], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const dowel = 'linear-gradient(90deg, #b48a5c 0%, #d8bb94 24%, #f1e3cc 48%, #dcc29e 70%, #ad8455 100%)';
+  const rodBg = 'linear-gradient(180deg, #e9d8bd 0%, #f4eadb 35%, #d2b48d 75%, #b8946a 100%)';
+  const rows: { y: number; beads: string[] }[] = [{ y: 640, beads: ['white', 'white'] }, { y: 790, beads: ['red', 'red', 'red'] }];
+  const tone: Record<string, [string, string, string]> = { white: ['#ffffff', '#f4f1ee', '#d9d3cd'], red: ['#ff8f80', '#e0301e', '#9e1a0c'] };
+  let k = 0;
+  return (
+    <AbsoluteFill>
+      {[L, R].map((x, i) => (
+        <div key={i} style={{ position: 'absolute', left: x - 34, top: top + (1 - posts) * -200, width: 68, height: bottom - top, borderRadius: 999, background: dowel, boxShadow: '0 30px 40px -24px rgba(60,40,20,0.45)', opacity: posts, zIndex: 2 }} />
+      ))}
+      {rows.map((row, ri) => (
+        <div key={ri} style={{ position: 'absolute', left: L, width: (R - L) * rods, top: row.y - 8, height: 16, borderRadius: 999, background: rodBg, boxShadow: '0 6px 10px -6px rgba(80,50,20,0.35)', zIndex: 1 }} />
+      ))}
+      {rows.map((row) => row.beads.map((t, bi) => {
+        const i = k++;
+        const drop = spring({ frame: f - 24 - i * 6, fps: FPS, config: { damping: 11, stiffness: 140 } });
+        // the beads slide across to count, then settle back home on the left
+        const slide = interpolate(f, [104 + i * 5, 130 + i * 5], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
+        const home = L + 34 + 62 + bi * 116, away = R - 34 - 62 - (row.beads.length - 1 - bi) * 116;
+        const x = home + (away - home) * slide * (row.beads.length === 3 && bi < 1 ? 0 : 1);
+        const [b1, b2, b3] = tone[t];
+        return <div key={i} style={{ position: 'absolute', left: x - 58, top: row.y - 58 - (1 - drop) * 300, width: 116, height: 116, borderRadius: '50%', opacity: Math.min(1, drop * 1.5), background: `radial-gradient(circle at 34% 28%, ${b1} 0%, ${b2} 38%, ${b3} 100%)`, boxShadow: 'inset -8px -10px 18px -6px rgba(0,0,0,0.16), 0 18px 22px -14px rgba(40,20,10,0.4)', zIndex: 3 }} />;
+      }))}
+      <div style={{ position: 'absolute', left: L + 110, top: 250, fontFamily: PIXEL, fontSize: 300, lineHeight: 0.8, color: C.ink, opacity: word, transform: `translateY(${(1 - word) * 30}px)`, letterSpacing: '-0.02em', zIndex: 2 }}>
+        vahid<span style={{ display: 'inline-block', width: 52, height: 52, marginLeft: 10, borderRadius: '50%', background: 'radial-gradient(circle at 34% 30%, #ff9d8f 0%, #e0301e 42%, #a81a0b 100%)', transform: `scale(${spring({ frame: f - 96, fps: FPS, config: { damping: 8, stiffness: 160 } })})` }} />
+      </div>
+    </AbsoluteFill>
+  );
+};
+
 const Push: React.FC<{ dur: number; children: React.ReactNode }> = ({ dur, children }) => {
   const f = useCurrentFrame();
   const z = interpolate(f, [0, dur], [1, 1.035], { extrapolateRight: 'clamp' });
@@ -741,11 +923,11 @@ const Enter: React.FC<{ kind: Kind; dur?: number; children: React.ReactNode }> =
 
 const SCENES: [number, number, Kind, React.FC, string, string][] = [
   [0, 7, 'rise', () => <Origin />, '#ffffff', '100% 0%'],
-  [7, 15, 'zoom', () => <Scale />, '#ffffff', '0% 100%'],
-  [15, 25, 'wipe', () => <Harness />, '#ffffff', '100% 100%'],
-  [25, 37, 'iris', () => <TokalatorStory />, '#fffaf8', '0% 0%'],
-  [37, 46, 'slide', () => <Production />, '#ffffff', '100% 0%'],
-  [46, 53, 'rise', () => <Twelve />, '#ffffff', '0% 100%'],
+  [7, 15, 'zoom', () => <Languages />, '#ffffff', '0% 100%'],
+  [15, 24, 'wipe', () => <DataContext />, '#ffffff', '100% 100%'],
+  [24, 35, 'iris', () => <ModelShip />, '#ffffff', '0% 0%'],
+  [35, 45, 'slide', () => <TokalatorStory />, '#fffaf8', '100% 0%'],
+  [45, 53, 'rise', () => <CountOn />, '#ffffff', '0% 100%'],
 ];
 
 export const AnimatedCV: React.FC = () => (
@@ -764,15 +946,14 @@ export const AnimatedCV: React.FC = () => (
       );
     })}
     <Sequence from={s(53) - OV} durationInFrames={s(7) + OV}>
-      <Enter kind="rod"><Paper tint={C.paper} corner="100% 0%" /><Invite /></Enter>
+      <Enter kind="rod"><Paper tint={C.paper} corner="100% 0%" /><AbacusName /></Enter>
     </Sequence>
     <Brand />
-    <Caption text="Hi, I'm Vahid." start={s(1)} end={s(6.6)} />
-    <Caption text="300M+ assets, one metadata layer." start={s(8)} end={s(14.6)} />
-    <Caption text="Loop, tools, context, memory. Proven by evals." start={s(16)} end={s(24.6)} />
-    <Caption text="A live context budget, inside VS Code." start={s(26)} end={s(36.6)} />
-    <Caption text="Less manual work. Measured accuracy." start={s(38)} end={s(45.6)} />
-    <Caption text="Messy text in, decisions out." start={s(47)} end={s(52.6)} />
+    <Caption text="Hi, I'm Vahid. I build AI people trust." start={s(1.2)} end={s(6.6)} />
+    <Caption text="Five languages taught me context." start={s(8)} end={s(14.6)} />
+    <Caption text="Data is only useful when you know its story." start={s(16)} end={s(23.6)} />
+    <Caption text="Models that read, checks that prove it, tools that ship." start={s(25)} end={s(34.6)} />
+    <Caption text="A live context budget, inside VS Code." start={s(36)} end={s(44.6)} />
     <Timer />
   </AbsoluteFill>
 );

@@ -1,7 +1,8 @@
 # Animated CV (Remotion)
 
-Vahid Faraji's 60-second animated CV: a story in seven beats on one abacus rod,
-in the site's palette, type and beads. Source for `site/assets/video/vahid-cv-60s.mp4`.
+Vahid Faraji's 60-second animated CV, for technical and non-technical viewers alike: who I am,
+the languages I live in, data and its context, AI put to work, Tokalator, what you can count on,
+and a wooden abacus that spells the name. Same palette, type and beads as the site. Source for `site/assets/video/vahid-cv-60s.mp4`.
 
 ```bash
 npm install
