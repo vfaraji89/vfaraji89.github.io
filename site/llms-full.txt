@@ -83,12 +83,11 @@ Vahid Faraji is a Senior Applied AI Specialist with 8 years in industry (2 in ap
 - Metrics: 95% accuracy, 14K+ positions, 72.5% faster, 41.8% fewer API calls
 - Published: ACM CAIS '26
 
-### Yapay Zekâ İzi: AI in 1.6M Job Ads (Kariyer.net)
-- Type: Data product, LLM pipeline, public analysis site
+### Yapay Zekâ İzi: AI in 1.6M Job Ads (concept)
+- Status: confidential Kariyer.net work, shown as a concept only; no data, link or product is public
 - Completed: October 2026
-- Scope: 1.6M kariyer.net job ads, 2022 (the GPT moment) to the first half of 2026
-- What it does: Reads every ad sentence by sentence with an LLM pipeline, separates generative AI from classic AI and machine learning, normalises tool names to count which tools employers ask for, and publishes the results by period, tool and sector with a validation page and the method. Quotes on cards are verbatim from the ads.
-- Metrics: generative-AI share of ads up 23.3x from H1 2022 to H1 2026 (21.8 per 10,000 ads, 340 ads in H1 2026). In 2026: 233,127 ads analysed, 3,373 mention AI, 474 live at the time, from 1,681 companies.
+- Scope: 1.6M job ads, 2022 (the GPT moment) to the first half of 2026
+- Approach: an LLM pipeline reads every ad sentence by sentence, separates generative AI from classic AI and machine learning, normalises tool names to count which tools employers ask for, and reports by period, tool and sector with a validation page and the method. Quotes are kept verbatim from the ads.
 
 ### ProjectLens: Pricing Internal Tool (Kariyer.net)
 - Type: Enterprise, internal
