@@ -2986,6 +2986,22 @@
         .rp-sound[hidden] { display: none; }
         .rp-sound svg { width: 16px; height: 16px; color: var(--rust); }
         @keyframes rp-nudge { 0%, 100% { transform: none; } 50% { transform: translateY(-3px) scale(1.04); } }
+    
+        /* the bio: three words, then one plain sentence */
+        .bio { display: flex; flex-direction: column; gap: 0.6rem; }
+        .bio-three { margin: 0; display: flex; flex-wrap: wrap; gap: 0.15rem 0.85rem; font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.05; letter-spacing: -0.035em; }
+        .bio-three span { position: relative; display: inline-flex; }
+        .bio-three b { font-weight: 800; color: var(--ink); padding: 0 0.08em;
+            background: linear-gradient(var(--mark), var(--mark)) left 82% / 0% 38% no-repeat;
+            animation: bio-mark 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .bio-three span:nth-child(2) b { animation-delay: 0.25s; }
+        .bio-three span:nth-child(3) b { animation-delay: 0.5s; color: var(--rust); }
+        .bio-three i { font-style: normal; font-weight: 800; color: var(--rust); }
+        @keyframes bio-mark { to { background-size: 100% 38%; } }
+        .bio-text { margin: 0; max-width: 36rem; font-size: 1.0625rem; line-height: 1.6; color: var(--text-secondary); }
+        .bio-text strong { color: var(--ink); font-weight: 700; }
+        .bio-text mark { color: var(--ink); background: linear-gradient(var(--mark), var(--mark)) left 75% / 100% 40% no-repeat; padding: 0 0.1em; }
+        @media (prefers-reduced-motion: reduce) { .bio-three b { animation: none; background-size: 100% 38%; } }
     </style>
     <link rel="stylesheet" href="assets/brand/abacus-frame.css">
 </head>
@@ -3090,7 +3106,10 @@
 
             <hr class="hero-rule">
             <div class="hero-bio">
-                <p class="hero-tagline">I design agentic systems end to end: the harness around the model (execution loop, tools, context and memory) and the evals that prove it works. Spec to production, in TypeScript and Python.</p>
+                <div class="hero-tagline bio">
+                    <p class="bio-three" aria-label="Clear. Measured. Shipped."><span><b>Clear</b><i class="bead-stop">.</i></span> <span><b>Measured</b><i class="bead-stop">.</i></span> <span><b>Shipped</b><i class="bead-stop">.</i></span></p>
+                    <p class="bio-text">I turn <mark>messy information</mark> into AI tools <strong>teams actually use</strong>, from the first conversation to the day it ships, with <strong>the numbers to prove it worked</strong>.</p>
+                </div>
                 <div class="reel-col">
                 <button type="button" class="reel reel-mini" id="reel-open" aria-haspopup="dialog" aria-label="Watch my animated CV, 1 minute">
                     <span class="reel-thumb">
