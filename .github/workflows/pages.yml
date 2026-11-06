@@ -37,6 +37,14 @@ jobs:
           cp cv/vahid-faraji-cv.pdf site/assets/cv/vahid-faraji-cv.pdf
           # the older address, kept so links already shared keep working
           cp cv/vahid-faraji-cv.pdf site/assets/cv/01-cv-vahid-faraji-202610.pdf
+      # Page images for the in-page CV preview, rendered from the same PDF
+      - name: Render CV preview pages
+        run: |
+          sudo apt-get install -y --no-install-recommends poppler-utils
+          for n in 1 2; do
+            pdftoppm -jpeg -jpegopt quality=82,progressive=y -r 115 -f $n -l $n -singlefile \
+              cv/vahid-faraji-cv.pdf site/assets/cv/vahid-faraji-cv-$n
+          done
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
