@@ -1,0 +1,33 @@
+/* Abacus frames for cards, shared by every page.
+   A card is held like a minimal wooden abacus: a beech dowel at each side
+   (three inset shades read as a turned cylinder) and a thin rod near the
+   foot that fills red on hover. Buttons and calls to action keep their own
+   look; this is for things you read. */
+:root {
+  --dowel-l: inset 1.5px 0 0 #ad8456, inset 3.5px 0 0 #eedfc6, inset 5px 0 0 #c9a67b;
+  --dowel-r: inset -1.5px 0 0 #ad8456, inset -3.5px 0 0 #eedfc6, inset -5px 0 0 #c9a67b;
+  --rod: rgba(28, 28, 30, 0.14);
+  --rod-on: #e0301e;
+}
+.case-card, .pub-card, .about-card, .metric-card, .recruiter-card, .gallery-card,
+.news-card, .principle-card, .abacus-box, .result, .cite, .frame, .abacus-frame {
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-radius: 6px !important;
+  box-shadow: var(--dowel-l), var(--dowel-r) !important;
+  background-image:
+    linear-gradient(var(--rod-on), var(--rod-on)),
+    linear-gradient(var(--rod), var(--rod));
+  background-size: 0% 1px, calc(100% - 10px) 1px;
+  background-position: 5px calc(100% - 6px), 5px calc(100% - 6px);
+  background-repeat: no-repeat;
+  transition: background-size 0.7s cubic-bezier(0.65, 0, 0.25, 1), border-color 0.3s, transform 0.4s;
+}
+.case-card:hover, .pub-card:hover, .about-card:hover, .metric-card:hover, .gallery-card:hover,
+.news-card:hover, .principle-card:hover, .abacus-box:hover, .result:hover, .cite:hover, .abacus-frame:hover {
+  box-shadow: var(--dowel-l), var(--dowel-r), 0 14px 30px -24px rgba(28, 28, 30, 0.45) !important;
+  background-size: calc(100% - 10px) 1px, calc(100% - 10px) 1px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-card, .pub-card, .about-card, .metric-card, .gallery-card, .news-card, .principle-card, .abacus-box, .result, .cite, .frame, .abacus-frame { transition: none; }
+}

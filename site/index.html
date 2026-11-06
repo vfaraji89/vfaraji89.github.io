@@ -2787,7 +2787,13 @@
         @media (max-width: 640px) { .upd-card { max-width: none; } .upd-stack { width: 88px; } .upd-stack img { width: 60px; height: 40px; } }
             .case-tag-concept { color: #fff; background: var(--ink); border-color: var(--ink); }
         .case-concept { font-weight: 500; color: var(--text-muted); font-size: 0.8em; }
+            /* recruiter view lives in the navbar, beside the CV */
+        .nav-rec { height: var(--ctl-h-sm); font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.005em; color: var(--ink); white-space: nowrap; }
+        @media (max-width: 1100px) { .nav-rec .rec-toggle-label { display: none; } .nav-rec { padding: 0 0.6rem; } }
+        @media (max-width: 400px) { .nav-actions { gap: 0.3rem; } .nav-rec { padding: 0 0.4rem; } .nav-rec .rec-track { width: 24px; } .nav-rec[aria-pressed="true"] .rec-knob { transform: translateX(12px); } .nav-btn-ghost { padding: 0 0.6rem; } }
+        .recruiter-card { margin-top: 1.25rem; }
     </style>
+    <link rel="stylesheet" href="assets/brand/abacus-frame.css">
 </head>
 <body>
     <!-- Abacus icon kit: one ink frame, grey rails, beads; the rust bead marks the point. Also in assets/brand/abacus-icons.svg -->
@@ -2837,6 +2843,10 @@
                 <li class="nav-indicator" aria-hidden="true"></li>
             </ul>
             <div class="nav-actions">
+                <button type="button" class="rec-toggle nav-rec" id="rec-toggle" aria-pressed="false" aria-controls="recruiter-card" aria-label="Recruiter view">
+                    <span class="rec-toggle-label">Recruiter view</span>
+                    <span class="rec-track"><span class="rec-knob"></span></span>
+                </button>
                 <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="nav-btn-ghost" aria-label="Download CV (PDF)">CV <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="nav-btn-solid"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
                 <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-sheet"><span></span><span></span></button>
@@ -2947,15 +2957,6 @@
             </a>
             </div>
 
-            <div class="recruiter-switch">
-                <button type="button" class="rec-toggle" id="rec-toggle" aria-pressed="false" aria-controls="recruiter-card">
-                    <span class="rec-dot"></span>
-                    <span class="rec-toggle-label">Recruiter view</span>
-                    <span class="rec-track"><span class="rec-knob"></span></span>
-                </button>
-                <span class="rec-hint">the 30-second version</span>
-            </div>
-
             <div class="recruiter-card" id="recruiter-card" hidden>
                 <div class="rc-head">
                     <svg class="rc-abacus" viewBox="0 0 64 64" aria-hidden="true" fill="none">
@@ -2966,7 +2967,7 @@
                         <circle class="rc-b rc-b3" cx="16" cy="44" r="4.5" fill="var(--ink)"/>
                     </svg>
                     <div class="rc-intro">
-                        <p class="rc-eyebrow">The 30-second version</p>
+                        <p class="rc-eyebrow">Recruiter view</p>
                         <h3 class="rc-title">AI-native architect who ships agent systems, and the evals that prove them<span class="bead-stop">.</span></h3>
                         <p class="rc-sub">Senior Applied AI Specialist, Kariyer.net (ilab group) &middot; 8 years in industry + 4 in research</p>
                     </div>
@@ -4395,7 +4396,7 @@
             btn.setAttribute('aria-pressed', on ? 'true' : 'false');
             card.hidden = !on;
             try { localStorage.setItem('vf-recruiter', on ? '1' : '0'); } catch (e) {}
-            if (on && focus) card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            if (on && focus) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
         // ?hire (or #hire) opens straight into the recruiter card, so the link
