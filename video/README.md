@@ -1,6 +1,6 @@
 # Animated CV (Remotion)
 
-Vahid Faraji's 60-second animated CV, for technical and non-technical viewers alike: who I am,
+Vahid Faraji's 90-second animated CV, for technical and non-technical viewers alike: who I am,
 the languages I read, data and its story, knowing the problem and building the solution, context
 design, analytical thinking, what you can count on, and a wooden abacus that spells the name.
 Each scene has its own camera (zooms in and out with motion blur on fast moves) and the scenes are
