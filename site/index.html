@@ -1861,7 +1861,7 @@
         /* the storyboard: moving across the card scrubs the film, portrait first */
         .reel-story {
             position: absolute; inset: 0; opacity: 0; pointer-events: none;
-            background: url(assets/video/vahid-cv-story.jpg?v=31) 0 0 / 900% 100% no-repeat;
+            background: url(assets/video/vahid-cv-story.jpg?v=32) 0 0 / 900% 100% no-repeat;
             transition: opacity 0.25s var(--ease-out);
         }
         .reel.is-scrub .reel-story { opacity: 1; }
@@ -3151,7 +3151,7 @@
                 <div class="reel-col">
                 <button type="button" class="reel reel-mini" id="reel-open" aria-haspopup="dialog" aria-label="Watch my animated CV, 90 seconds">
                     <span class="reel-thumb">
-                    <img src="assets/video/vahid-cv-poster.jpg?v=31" alt="" width="1280" height="720" loading="lazy">
+                    <img src="assets/video/vahid-cv-poster.jpg?v=32" alt="" width="1280" height="720" loading="lazy">
                     <span class="reel-story" aria-hidden="true"></span>
                     <span class="reel-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
                     <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></span>
@@ -3894,8 +3894,8 @@
             </div>
         </div>
         <div class="reel-stage" id="rp-stage">
-            <video id="reel-video" controls playsinline preload="none" poster="assets/video/vahid-cv-poster.jpg?v=31">
-                <source src="assets/video/vahid-cv-60s.mp4?v=31" type="video/mp4">
+            <video id="reel-video" controls playsinline preload="none" poster="assets/video/vahid-cv-poster.jpg?v=32">
+                <source src="assets/video/vahid-cv-60s.mp4?v=32" type="video/mp4">
             </video>
             <button type="button" class="rp-sound" id="rp-sound" hidden><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 6h2.2L8 3.3v9.4L4.7 10H2.5z"/><path d="M10.6 6a2.8 2.8 0 010 4"/><path d="M12.4 4.3a5.3 5.3 0 010 7.4"/></svg>Sound on</button>
             <button type="button" class="rp-big" id="rp-big" aria-label="Play"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></button>
@@ -4632,14 +4632,14 @@
         }
         // touch screens: no storyboard, just the cover and a big play button
 
-        if (typeof dlg.showModal !== 'function') { btn.addEventListener('click', function () { location.href = 'assets/video/vahid-cv-60s.mp4?v=31'; }); return; }
+        if (typeof dlg.showModal !== 'function') { btn.addEventListener('click', function () { location.href = 'assets/video/vahid-cv-60s.mp4?v=32'; }); return; }
 
         // 2. the player
         var deck = dlg.querySelector('.rp-deck'), big = document.getElementById('rp-big');
         var playB = document.getElementById('rp-play'), muteB = document.getElementById('rp-mute');
         var rail = document.getElementById('rp-rail'), fill = document.getElementById('rp-fill'), knob = document.getElementById('rp-knob');
         var marks = document.getElementById('rp-marks'), timeEl = document.getElementById('rp-time'), chapEl = document.getElementById('rp-chapter');
-        var CH = [[0, 'Who I am'], [6, 'Languages'], [13, 'Roots'], [21, 'Data'], [27, 'AI at work'], [33, 'Problem and solution'], [41, 'Context design'], [48, 'Analytical thinking'], [57, 'Yapay Zek\u00e2 \u0130zi'], [64.5, 'Shipping'], [70.5, 'The real problem'], [75, 'You can count on'], [80, 'The abacus'], [84, 'Vahid']];
+        var CH = [[0, 'The tools'], [6.5, 'Who I am'], [11.5, 'Languages'], [18, 'Talking to agents'], [23.5, 'Problem to solution'], [31, 'Roots'], [37.5, 'AI at work'], [43, 'Context design'], [50, 'Analytical thinking'], [58, 'Yapay Zek\u00e2 \u0130zi'], [65, 'Shipping'], [71, 'The real problem'], [75, 'You can count on'], [81, 'The abacus'], [84.5, 'Vahid']];
         var DUR = 90;
         v.removeAttribute('controls'); deck.hidden = false;
         CH.forEach(function (c, i) {
