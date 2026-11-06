@@ -2825,6 +2825,57 @@
         }
         @media (max-width: 400px) { .sb { width: 33.33%; } }
         @media (prefers-reduced-motion: reduce) { .sb-bead, .stack-abacus.is-popped .sb-bead { transition: none; animation: none; } }
+    
+        /* bio and the film side by side; the film is only a thumbnail */
+        .hero-bio { display: flex; align-items: center; gap: 1.5rem; }
+        .hero-bio .hero-tagline { flex: 1; min-width: 0; margin: 0; }
+        .reel-mini {
+            flex: none; flex-direction: column; align-items: stretch; gap: 0.35rem; width: 200px; min-height: 0; max-width: none; margin: 0;
+            padding: 0; border: 0 !important; background: none !important; box-shadow: none !important;
+        }
+        .reel-mini::after { display: none; }
+        .reel-mini .reel-thumb { width: 100%; border-radius: 10px; box-shadow: 0 14px 28px -18px rgba(28,28,30,0.55); }
+        .reel-mini .reel-play { width: 40px; height: 40px; margin: -20px 0 0 -20px; }
+        .reel-mini .reel-play svg { width: 15px; height: 15px; }
+        .reel-cap { font-family: var(--font-mono); font-size: 0.625rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); text-align: center; }
+        .reel-cap b { color: var(--rust-deep); font-weight: 500; }
+        .reel-mini:hover .reel-cap { color: var(--ink); }
+        @media (max-width: 640px) {
+            .hero-bio { flex-direction: column; align-items: stretch; gap: 1rem; }
+            .reel-mini { width: 100%; }
+        }
+        /* open to roles: a quiet link to the recruiter view */
+        .hire-main { cursor: pointer; border-radius: 6px; outline-offset: 4px; }
+        .hire-more { margin-left: 0.5rem; color: var(--rust-deep); letter-spacing: 0.04em; opacity: 0.75; transition: opacity 0.25s; }
+        .hire-main:hover .hire-more, .hire-main:focus-visible .hire-more { opacity: 1; }
+        /* four cards in one row on wide screens, two by two on tablets */
+        .hero-cards .cat-card { margin-top: 0.625rem; }
+        @media (min-width: 641px) and (max-width: 1199px) {
+            .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.75rem; }
+            .hero-cards .hire-cta, .hero-cards .cat-card { max-width: none; }
+        }
+        @media (min-width: 1200px) {
+            .hero-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .hero-cards .cat-card { margin-top: 1.125rem; }
+            .hero-cards .hire-cta { flex-wrap: wrap; }
+            .hero-cards .hire-cta .hire-btn { margin-left: 0; }
+            .hero-cards .hire-cta { flex-direction: column; align-items: flex-start; justify-content: space-between; padding: 1rem 1rem 1.1rem 1.25rem; }
+            .hire-more { display: block; margin: 0.35rem 0 0; }
+        }
+    
+        /* category cards: a fan of images on top, the words below */
+        @media (min-width: 641px) {
+            .cat-card { flex-direction: column; align-items: stretch; gap: 0.625rem; padding: 0.75rem 0.875rem 1rem; }
+            .cat-card .upd-stack { width: 100%; height: 104px; margin: 0; border-radius: 8px; background: var(--paper); overflow: hidden; }
+            .cat-card .upd-stack img { top: 14px; width: 52%; height: 80px; border-radius: 6px; }
+            .cat-card .upd-stack img:nth-child(1) { left: 4%; transform: rotate(-7deg); }
+            .cat-card .upd-stack img:nth-child(2) { left: 24%; transform: rotate(1deg); top: 10px; }
+            .cat-card .upd-stack img:nth-child(3) { left: 44%; transform: rotate(7deg); }
+            .cat-card:hover .upd-stack img:nth-child(1) { transform: rotate(-11deg) translate(-6px, 2px); }
+            .cat-card:hover .upd-stack img:nth-child(3) { transform: rotate(11deg) translate(6px, 2px); }
+            .cat-card .upd-go { position: absolute; right: 0.875rem; bottom: 1rem; }
+            .cat-card .upd-text { padding-right: 1.25rem; }
+        }
     </style>
     <link rel="stylesheet" href="assets/brand/abacus-frame.css">
 </head>
@@ -2929,8 +2980,19 @@
             <hr class="hero-rule">
 
             <p class="hero-count"><span class="sr-only">Enterprise solutions you can count on.</span><span aria-hidden="true">You can count on <span class="ticker hero-what" id="hero-what"><span class="tk is-on">enterprise solutions<span class="bead-stop">.</span></span><span class="tk">data products<span class="bead-stop">.</span></span><span class="tk">agents<span class="bead-stop">.</span></span><span class="tk">analysis<span class="bead-stop">.</span></span><span class="tk">design<span class="bead-stop">.</span></span><span class="tk">architecture<span class="bead-stop">.</span></span><span class="tk">problem solving<span class="bead-stop">.</span></span><span class="tk">token-cost optimisation<span class="bead-stop">.</span></span><span class="tk">tracing<span class="bead-stop">.</span></span><span class="tk">failure detection<span class="bead-stop">.</span></span><span class="tk">tests<span class="bead-stop">.</span></span></span></span></p>
-
-            <p class="hero-tagline">I design agentic systems end to end: the harness around the model (execution loop, tools, context and memory) and the evals that prove it works. Spec to production, in TypeScript and Python.</p>
+            <div class="hero-bio">
+                <p class="hero-tagline">I design agentic systems end to end: the harness around the model (execution loop, tools, context and memory) and the evals that prove it works. Spec to production, in TypeScript and Python.</p>
+                <button type="button" class="reel reel-mini" id="reel-open" aria-haspopup="dialog" aria-label="Watch my animated CV, 1 minute">
+                    <span class="reel-thumb">
+                    <img src="assets/video/vahid-cv-poster.jpg" alt="" width="1280" height="720" loading="lazy">
+                    <span class="reel-story" aria-hidden="true"></span>
+                    <span class="reel-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+                    <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></span>
+                    <span class="reel-time">1:00</span>
+                </span>
+                    <span class="reel-cap">Animated CV <b>1:00</b></span>
+                </button>
+            </div>
             <div class="hero-cards">
             <div class="hire-cta" id="hire-cta">
                 <span class="hire-phase" aria-hidden="true">
@@ -2939,8 +3001,8 @@
                     <span class="hire-ph hire-ph-3"></span>
                     <span class="hire-ph hire-ph-4"></span>
                 </span>
-                <span class="hire-main">
-                <span class="hire-lead">Open to roles</span>
+                <span class="hire-main" role="button" tabindex="0" id="hire-open" aria-controls="recruiter-card" title="Open the recruiter view">
+                <span class="hire-lead">Open to roles <span class="hire-more">Recruiter view &rarr;</span></span>
                 <span class="hire-role ticker" id="hire-role" aria-hidden="true"><span class="tk is-on">AI-Native Architect</span><span class="tk">Applied AI Engineer</span><span class="tk">Agentic AI Engineer</span><span class="tk">AI Platform Engineer</span><span class="tk">AI Solutions Architect</span><span class="tk">R&amp;D Researcher</span></span>
                 </span>
                 <span class="sr-only">Open to AI-Native Architect, Applied AI Engineer, Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect and R&amp;D Researcher roles.</span>
@@ -2960,31 +3022,42 @@
                     <p class="bp-clock"><span class="tz-dot" aria-hidden="true"></span>Istanbul <b id="bp-ist">--:--</b> &middot; You <b id="bp-you">--:--</b></p>
                 </div>
             </div>
-
-            <button type="button" class="reel" id="reel-open" aria-haspopup="dialog">
-                <span class="reel-thumb">
-                    <img src="assets/video/vahid-cv-poster.jpg" alt="" width="1280" height="720" loading="lazy">
-                    <span class="reel-story" aria-hidden="true"></span>
-                    <span class="reel-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-                    <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></span>
-                    <span class="reel-time">1:00</span>
-                </span>
-                <span class="reel-text">
-                    <b>Watch my animated CV</b>
-                    <em>60 seconds &middot; with sound &middot; made in Remotion</em>
-                    <span class="reel-built"><span class="reel-built-k">Built</span> <span class="ticker" id="built-ticker" aria-hidden="true"><span class="tk is-on">Tokalator</span><span class="tk">ProjectLens</span><span class="tk">a multi-agent classifier</span><span class="tk">awesome-applied-ai</span><span class="tk">Text-to-Report agents</span></span></span>
-                </span>
-            </button>
-            <a class="upd-card" href="updates.html">
+            <a class="upd-card cat-card" href="updates.html">
                 <span class="upd-stack" aria-hidden="true">
-                    <img src="assets/event-photos/cais-2026.jpg" alt="" loading="lazy">
+                    <img src="assets/photos/techcaeer-training.png" alt="" loading="lazy">
+                    <img src="assets/event-photos/tokalator-paper.png" alt="" loading="lazy">
                     <img src="assets/photos/projectlens/projectlens-home.png" alt="" loading="lazy">
-                    <img src="assets/event-photos/perplexity-fellowship.jpg" alt="" loading="lazy">
                 </span>
                 <span class="upd-text">
-                    <span class="upd-k"><svg class="ab" aria-hidden="true"><use href="#ab-board"/></svg>Updates <span class="upd-n">20+</span></span>
-                    <b>ProjectLens shipped, ACM CAIS &rsquo;26 demo</b>
-                    <em>Talks, papers, launches &middot; 2026</em>
+                    <span class="upd-k"><svg class="ab" aria-hidden="true"><use href="#ab-board"/></svg>Updates</span>
+                    <b>Launches, papers, roles</b>
+                    <em>Latest: ProjectLens shipped</em>
+                </span>
+                <span class="upd-go" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="upd-card cat-card" href="#work">
+                <span class="upd-stack" aria-hidden="true">
+                    <img src="assets/photos/pms-dashboard.png" alt="" loading="lazy">
+                    <img src="assets/photos/projectlens/projectlens-login.jpg" alt="" loading="lazy">
+                    <img src="assets/photos/tokalator-vscode.png" alt="" loading="lazy">
+                </span>
+                <span class="upd-text">
+                    <span class="upd-k"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg>Cases</span>
+                    <b>Systems in production</b>
+                    <em>Tokalator, ProjectLens, agents</em>
+                </span>
+                <span class="upd-go" aria-hidden="true">&rarr;</span>
+            </a>
+            <a class="upd-card cat-card" href="updates.html?topic=events">
+                <span class="upd-stack" aria-hidden="true">
+                    <img src="assets/event-photos/saas-bridge.jpg" alt="" loading="lazy">
+                    <img src="assets/event-photos/perplexity-fellowship.jpg" alt="" loading="lazy">
+                    <img src="assets/event-photos/cais-2026.jpg" alt="" loading="lazy">
+                </span>
+                <span class="upd-text">
+                    <span class="upd-k"><svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg>Events</span>
+                    <b>Talks and conferences</b>
+                    <em>ACM CAIS &rsquo;26, San Jose</em>
                 </span>
                 <span class="upd-go" aria-hidden="true">&rarr;</span>
             </a>
@@ -4460,6 +4533,13 @@
         btn.addEventListener('click', function () {
             set(btn.getAttribute('aria-pressed') !== 'true', true);
         });
+        // the hero's "Open to roles" card opens the same view
+        var open = document.getElementById('hire-open');
+        if (open) {
+            var go = function () { set(true, true); };
+            open.addEventListener('click', go);
+            open.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+        }
     })();
 
     // Retype rather than scramble. Back a line out to the longest prefix the two

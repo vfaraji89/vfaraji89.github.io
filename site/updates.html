@@ -927,7 +927,8 @@
                 var y = card.getAttribute('data-year');
                 var t = card.getAttribute('data-topics').split(' ');
                 var matchYear = activeYear === 'all' || y === activeYear;
-                var matchTopic = activeTopic === 'all' || t.indexOf(activeTopic) !== -1;
+                var matchTopic = activeTopic === 'all' || t.indexOf(activeTopic) !== -1 ||
+                    (activeTopic === 'events' && (t.indexOf('conference') !== -1 || t.indexOf('talk') !== -1));
                 if (matchYear && matchTopic) {
                     card.classList.remove('filter-hidden');
                     visible++;
@@ -967,6 +968,15 @@
                 apply();
             });
         });
+
+        // ?topic=events (or any topic) opens the page already filtered
+        var want = (new URLSearchParams(location.search).get('topic') || '').toLowerCase();
+        if (want) {
+            var match = Array.prototype.filter.call(topicBtns, function (b) { return b.getAttribute('data-topic') === want; })[0];
+            if (match) setActive(topicBtns, match);
+            else topicBtns.forEach(function (b) { b.classList.remove('active'); });
+            activeTopic = want; apply();
+        }
     })();
     </script>
 
