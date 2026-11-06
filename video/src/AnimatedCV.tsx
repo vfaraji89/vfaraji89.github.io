@@ -1029,7 +1029,7 @@ const Closing: React.FC = () => {
 // roots: economics and management before AI, as a rod you can count along
 const STATIONS2: [string, string][] = [
   ['2013', 'Business administration'], ['2015', 'Research, 4 years'], ['2019', 'Co-founder, Defaro.io'], ['2019', 'M.A. Economics'],
-  ['2021', 'Business analyst'], ['2022', 'Product manager, Data'], ['2025', 'Senior applied AI'],
+  ['2021', 'Business analyst'], ['2022', 'Data product manager'], ['2025', 'Applied AI specialist'],
 ];
 const ROOT_STATS: [string, string][] = [['12 yrs', '8 industry · 4 research'], ['1', 'startup co-founded'], ['400+', 'people trained']];
 const Roots: React.FC = () => {
@@ -1330,7 +1330,7 @@ const Agents: React.FC = () => {
     <AbsoluteFill>
       <div style={{ position: 'absolute', left: 120, top: 220, width: 820 }}>
         <Kicker f={f} text="TALKING TO AGENTS" />
-        <Big f={f} size={100}>I speak<br />agent, too<Dot /></Big>
+        <Big f={f} size={100}>I speak<br />fluent agent<Dot /></Big>
         <div style={{ display: 'flex', gap: 14, marginTop: 34 }}>
           {[['window', 'Context'], ['plug', 'Tools · MCP'], ['check', 'Evals']].map(([ic, t], k) => {
             const pp = spring({ frame: f - 40 - k * 10, fps: FPS, config: { damping: 12, stiffness: 160 } });
