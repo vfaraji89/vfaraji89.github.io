@@ -1,0 +1,93 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Vahid Sora";src:url("../../fonts/VahidSora-Regular.woff2");font-weight:400}
+@font-face{font-family:"Vahid Sora";src:url("../../fonts/VahidSora-SemiBold.woff2");font-weight:600}
+@font-face{font-family:"Vahid Sora";src:url("../../fonts/VahidSora-Bold.woff2");font-weight:700}
+@font-face{font-family:"Vahid Sora";src:url("../../fonts/VahidSora-ExtraBold.woff2");font-weight:800}
+@font-face{font-family:"Geist Mono";src:url("../../fonts/GeistMono-Variable.woff2");font-weight:100 900}
+:root{--ink:#1c1c1e;--red:#e0301e;--deep:#b4200f;--mark:#ffdcd6;--paper:#fff6f4;--sec:#55555a;--muted:#8a8a90}
+*{box-sizing:border-box;margin:0}
+html,body{background:var(--paper)}
+.c{position:relative;overflow:hidden;background:var(--paper);font-family:"Vahid Sora",sans-serif;color:var(--ink)}
+.c::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(28,28,30,.07) 1.2px,transparent 1.4px);background-size:22px 22px;mask-image:linear-gradient(90deg,transparent 0%,#000 55%);-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 55%)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700}
+.brand b{color:var(--red)}
+.k{font-family:"Geist Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--deep)}
+.h{font-weight:800;letter-spacing:-.045em;line-height:1.02}
+.h mark{background:linear-gradient(transparent 58%,var(--mark) 58%,var(--mark) 92%,transparent 92%);color:inherit}
+.dot{color:var(--red)}
+.sub{color:var(--sec)}
+.stats{display:flex;gap:28px;font-family:"Geist Mono",monospace;color:var(--sec)}
+.stats b{font-family:"Vahid Sora";font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-right:6px}
+.stats b.r{color:var(--red)}
+.url{font-family:"Geist Mono",monospace;color:var(--deep)}
+/* the abacus */
+.ab{position:absolute}
+.ab .post{position:absolute;top:0;bottom:0;width:22px;border-radius:999px;background:linear-gradient(90deg,#b48a5c 0%,#d8bb94 24%,#f1e3cc 48%,#dcc29e 70%,#ad8455 100%);box-shadow:0 18px 26px -18px rgba(60,40,20,.5)}
+.ab .rod{position:absolute;height:8px;border-radius:9px;background:linear-gradient(180deg,#e9d8bd,#f4eadb 35%,#d2b48d 75%,#b8946a)}
+.ab .bead{position:absolute;border-radius:50%;box-shadow:inset -4px -5px 9px -4px rgba(0,0,0,.18),0 10px 14px -10px rgba(40,20,10,.5)}
+.ab .w{background:radial-gradient(circle at 34% 28%,#fff,#f4f1ee 40%,#d9d3cd)}
+.ab .r{background:radial-gradient(circle at 34% 28%,#ff8f80,#e0301e 42%,#9e1a0c)}
+.ab .i{background:radial-gradient(circle at 34% 28%,#6a6a70,#1c1c1e 45%,#000)}
+</style></head><body>
+<div id="root"></div>
+<script>
+const MARK=(s)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none"><rect x="1" y="1" width="22" height="22" rx="5" stroke="#1c1c1e" stroke-width="1.5"/><path d="M5 8h14M5 12h14M5 16h14" stroke="rgba(28,28,30,0.22)" stroke-width="1"/><circle cx="7.5" cy="8" r="1.9" fill="#e0301e"/><circle cx="15.5" cy="12" r="1.9" fill="#1c1c1e"/><circle cx="9" cy="16" r="1.9" fill="#1c1c1e"/></svg>`;
+// rows: arrays of [colour, side] where side 'L' = counted (left), 'R' = resting (right)
+function abacus(x,y,w,h,rows,bead){
+  const n=rows.length, post=22, inner=w-2*post, gap=h/(n+1);
+  let html=`<div class="ab" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px"><div class="post" style="left:0"></div><div class="post" style="right:0"></div>`;
+  rows.forEach((row,ri)=>{
+    const cy=gap*(ri+1);
+    html+=`<div class="rod" style="left:${post}px;right:${post}px;top:${cy-4}px"></div>`;
+    const L=row.filter(b=>b[1]==='L'), R=row.filter(b=>b[1]==='R');
+    L.forEach((b,k)=>{html+=`<div class="bead ${b[0]}" style="width:${bead}px;height:${bead}px;left:${post+4+k*(bead+2)}px;top:${cy-bead/2}px"></div>`});
+    R.forEach((b,k)=>{html+=`<div class="bead ${b[0]}" style="width:${bead}px;height:${bead}px;left:${w-post-4-(R.length-k)*(bead+2)+2}px;top:${cy-bead/2}px"></div>`});
+  });
+  return html+`</div>`;
+}
+const K={
+linkedin:{w:1584,h:396,html:`
+  <div style="position:absolute;left:440px;top:52px;width:760px">
+    <div class="brand" style="font-size:26px">${MARK(34)}<span>Vahid Faraji<b>.</b></span><span class="k" style="font-size:15px;margin-left:10px">AI-native architect</span></div>
+    <div class="h" style="font-size:60px;margin-top:26px">I make <mark>data-driven decisions</mark> easier<span class="dot">.</span></div>
+    <div class="sub" style="font-size:22px;margin-top:16px">Applied AI · agents in production · data products</div>
+    <div class="stats" style="font-size:16px;margin-top:26px"><span><b class="r">95%</b>on 14K+ job titles</span><span><b>300M+</b>datapoints</span><span><b>58B</b>tokens in 2026</span><span><b>12</b>years</span></div>
+  </div>
+  ${abacus(1250,54,270,256,[[['r','L'],['r','L'],['r','L'],['w','R'],['w','R']],[['w','L'],['w','L'],['r','R'],['w','R']],[['i','L'],['w','R'],['w','R'],['w','R']]],44)}
+  <div class="url" style="position:absolute;right:64px;bottom:30px;font-size:16px">vfaraji89.github.io</div>`},
+x:{w:1500,h:500,html:`
+  <div style="position:absolute;left:420px;top:118px;width:720px">
+    <div class="k" style="font-size:17px">Vahid Faraji · AI-native architect</div>
+    <div class="h" style="font-size:78px;margin-top:18px">Agents you can<br><mark>count on</mark><span class="dot">.</span></div>
+    <div class="sub" style="font-size:23px;margin-top:20px">Applied AI, data products and context engineering, shipped and measured.</div>
+  </div>
+  ${abacus(1160,110,280,280,[[['r','L'],['r','L'],['w','R'],['w','R']],[['w','L'],['r','R'],['w','R'],['w','R']],[['i','L'],['i','L'],['w','R']]],48)}
+  <div class="url" style="position:absolute;right:60px;bottom:34px;font-size:17px">vfaraji89.github.io</div>`},
+huggingface:{w:1280,h:320,html:`
+  <div style="position:absolute;left:64px;top:46px;width:820px">
+    <div class="brand" style="font-size:24px">${MARK(32)}<span>Vahid Faraji<b>.</b></span><span style="font-size:24px;margin-left:6px">🤗</span></div>
+    <div class="h" style="font-size:54px;margin-top:22px">Agents, evals and<br><mark>context engineering</mark><span class="dot">.</span></div>
+    <div class="stats" style="font-size:15px;margin-top:22px"><span><b class="r">ACM</b>CAIS ’26</span><span><b>arXiv</b>2604.08290 · 2601.22885</span><span><b>Tokalator</b>open source</span></div>
+  </div>
+  ${abacus(960,40,260,240,[[['r','L'],['r','L'],['w','R'],['w','R']],[['w','L'],['r','R'],['w','R']],[['i','L'],['w','R'],['w','R']]],42)}`},
+substack_header:{w:1100,h:220,html:`
+  <div style="position:absolute;left:56px;top:40px;width:800px">
+    <div class="brand" style="font-size:34px">${MARK(40)}<span>Vahid Faraji<b>.</b></span></div>
+    <div class="h" style="font-size:34px;margin-top:18px;letter-spacing:-.03em">Notes on applied AI, <mark>from the abacus to agents</mark><span class="dot">.</span></div>
+  </div>
+  ${abacus(880,28,180,164,[[['r','L'],['w','R'],['w','R']],[['w','L'],['r','R']],[['i','L'],['w','R']]],32)}`},
+substack_cover:{w:1200,h:630,html:`
+  <div style="position:absolute;left:80px;top:96px;width:700px">
+    <div class="brand" style="font-size:28px">${MARK(36)}<span>Vahid Faraji<b>.</b></span></div>
+    <div class="k" style="font-size:17px;margin-top:40px">Applied AI notes</div>
+    <div class="h" style="font-size:86px;margin-top:14px">From the abacus<br>to <mark>agents</mark><span class="dot">.</span></div>
+    <div class="sub" style="font-size:24px;margin-top:24px;line-height:1.4">What it takes to turn messy information<br>into AI tools teams actually use.</div>
+  </div>
+  ${abacus(840,140,290,350,[[['r','L'],['r','L'],['w','R'],['w','R']],[['w','L'],['r','R'],['w','R']],[['i','L'],['i','L'],['w','R']],[['w','L'],['w','R'],['r','R']]],50)}
+  <div class="url" style="position:absolute;left:80px;bottom:56px;font-size:18px">substack.com/@vfaraji899 · vfaraji89.github.io</div>`},
+mark:{w:512,h:512,html:`<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">${MARK(360)}</div>`},
+};
+const k=new URLSearchParams(location.search).get('k'); const d=K[k];
+document.getElementById('root').innerHTML=`<div class="c" style="width:${d.w}px;height:${d.h}px">${d.html}</div>`;
+</script></body></html>

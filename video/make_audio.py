@@ -26,7 +26,7 @@ L = np.zeros(N)
 R = np.zeros(N)
 
 # the cut, in frames (must match CUT in src/AnimatedCV.tsx); each chapter's start in seconds
-D = [190, 170, 200, 180, 240, 190, 180, 210, 170, 250, 220, 190, 130, 180, 130, 170]
+D = [190, 210, 190, 170, 240, 180, 180, 210, 170, 240, 220, 190, 130, 180, 130, 170]
 ST = [0]
 for d in D[:-1]:
     ST.append(ST[-1] + d - 20)
