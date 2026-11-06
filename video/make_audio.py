@@ -256,11 +256,11 @@ for j, at in enumerate(np.arange(s0, e0 - 0.3, BEAT)):
 s0, e0 = span(7)
 for j, at in enumerate(np.arange(s0, e0 - 0.3, BEAT)):
     pluck(CHORDS[7][1][j % 4] + 12, at + BEAT / 2, 0.42, -0.2 + 0.1 * (j % 4))
-# tokens: the grid sweeps in, soft keys in rhythm, a bell on each number
-for j, at in enumerate(np.arange(SEC[8] + 14 / 30, SEC[8] + 86 / 30, EIGHTH)):
+# tokens: soft keys as the grid sweeps in, a bell on each number
+for j, at in enumerate(np.arange(SEC[8] + 12 / 30, SEC[8] + 80 / 30, EIGHTH)):
     keyclick(at, 0.45, -0.4 + 0.1 * (j % 8))
-bell(CHORDS[8][1][0] + 24, SEC[8] + 120 / 30, 0.6, -0.2)
-bell(CHORDS[8][1][2] + 24, SEC[8] + 130 / 30, 0.6, 0.2)
+bell(CHORDS[8][1][0] + 24, SEC[8] + 110 / 30, 0.6, -0.2)
+bell(CHORDS[8][1][2] + 24, SEC[8] + 120 / 30, 0.6, 0.2)
 # analytical: steady quarters, a calculator beep as each row of the table lands
 s0, e0 = span(9)
 for j, at in enumerate(np.arange(s0, e0 - 0.3, BEAT)):

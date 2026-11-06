@@ -1454,28 +1454,27 @@ const ProblemData: React.FC = () => {
   );
 };
 
-// tokens in 2026, in the format of the Claude Code stats screen: an activity grid, then the numbers.
-// The grid is sampled from the real chart; the numbers are the real totals.
+// tokens in 2026, in the format of the Claude Code stats screen, work and home accounts merged:
+// the grid takes the busier account each week (sampled from the two real charts); the totals are summed.
 const TOK_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov'];
 const HEAT = ['rgba(255,255,255,0.14)', '#5a2a24', '#8f2f22', '#c83a26', '#ff5a3c'];
 const Tokens: React.FC = () => {
   const f = useCurrentFrame();
   const grid = heat as number[][];
   const cols = grid[0].length, cell = 25, gap = 7;
-  const sweep = interpolate(f, [14, 86], [0, cols], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
-  const n = interpolate(f, [60, 120], [0, 51.2], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) });
-  const cache = interpolate(f, [80, 130], [0, 98], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const sweep = interpolate(f, [12, 80], [0, cols], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
+  const n = interpolate(f, [50, 110], [0, 58.0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) });
+  const cache = interpolate(f, [70, 120], [0, 98], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
   const panel = spring({ frame: f - 2, fps: FPS, config: { damping: 16, stiffness: 110 } });
-  const TM = MONO;
-  const orange = '#ff6a45';
+  const TM = MONO, orange = '#ff6a45';
   const stat = (k: string, v: string, at: number) => (
     <div style={{ fontFamily: TM, fontSize: 25, color: '#e9e6e1', ...fadeUp(f, at, 14, 10) }}>{k}: <span style={{ color: orange }}>{v}</span></div>
   );
   return (
     <AbsoluteFill>
-      <div style={{ position: 'absolute', left: 120, top: 150 }}><Kicker f={f} text="TOKENS · 2026" /></div>
-      <div style={{ position: 'absolute', left: 120, right: 120, top: 250, borderRadius: 26, background: '#1c1c1e', boxShadow: '0 50px 90px -50px rgba(28,28,30,0.9)', padding: '34px 56px', opacity: panel, transform: `translateY(${(1 - panel) * 40}px) scale(${0.96 + 0.04 * panel})` }}>
-        {/* months */}
+      <div style={{ position: 'absolute', left: 120, top: 140 }}><Kicker f={f} text="TOKENS · 2026" /></div>
+      <div style={{ position: 'absolute', left: 120, right: 120, top: 230, borderRadius: 26, background: '#1c1c1e', boxShadow: '0 50px 90px -50px rgba(28,28,30,0.9)', padding: '30px 56px 36px', opacity: panel, transform: `translateY(${(1 - panel) * 40}px) scale(${0.96 + 0.04 * panel})` }}>
+        <div style={{ fontFamily: TM, fontSize: 21, color: '#8a8a90', marginBottom: 14 }}>Claude Code · work + home accounts · all of 2026</div>
         <div style={{ position: 'relative', height: 30, marginLeft: 80 }}>
           {TOK_MONTHS.map((m, k) => <span key={m} style={{ position: 'absolute', left: (k * cols / TOK_MONTHS.length) * (cell + gap), fontFamily: TM, fontSize: 21, color: '#e9e6e1', opacity: sweep > k * cols / 11 ? 1 : 0.25 }}>{m}</span>)}
         </div>
@@ -1485,19 +1484,17 @@ const Tokens: React.FC = () => {
           </div>
           <div style={{ position: 'relative', width: cols * (cell + gap), height: 7 * (cell + gap) }}>
             {grid.map((row, r) => row.map((v, c) => {
-              const on = c < sweep;
-              const pop = on ? Math.min(1, (sweep - c) * 1.5) : 0;
+              const pop = c < sweep ? Math.min(1, (sweep - c) * 1.5) : 0;
               return v === 0
                 ? <div key={`${r}-${c}`} style={{ position: 'absolute', left: c * (cell + gap) + cell / 2 - 2, top: r * (cell + gap) + cell / 2 - 2, width: 4, height: 4, borderRadius: 2, background: 'rgba(233,230,225,0.35)' }} />
                 : <div key={`${r}-${c}`} style={{ position: 'absolute', left: c * (cell + gap), top: r * (cell + gap), width: cell, height: cell, borderRadius: 4, background: HEAT[v], opacity: pop, transform: `scale(${0.4 + 0.6 * pop})` }} />;
             }))}
           </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 16, marginLeft: 80, fontFamily: TM, fontSize: 20, color: '#e9e6e1' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 14, marginLeft: 80, fontFamily: TM, fontSize: 20, color: '#e9e6e1' }}>
           Less {HEAT.slice(1).map((c) => <span key={c} style={{ width: 20, height: 20, borderRadius: 4, background: c, display: 'inline-block' }} />)} More
         </div>
-        {/* the numbers */}
-        <div style={{ display: 'flex', gap: 80, marginTop: 30, alignItems: 'flex-end' }}>
+        <div style={{ display: 'flex', gap: 80, marginTop: 26, alignItems: 'flex-end' }}>
           <div>
             <div style={{ fontFamily: TM, fontSize: 24, color: '#e9e6e1' }}>Total tokens</div>
             <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 120, lineHeight: 1, letterSpacing: '-0.04em', color: orange }}>{n.toFixed(1)}B</div>
@@ -1507,13 +1504,13 @@ const Tokens: React.FC = () => {
             <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 120, lineHeight: 1, letterSpacing: '-0.04em', color: '#fff' }}>{Math.round(cache)}%</div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 8 }}>
-            {stat('Sessions', '185', 100)}
-            {stat('Active days', '105 / 314', 106)}
-            {stat('Longest streak', '12 days', 112)}
-            {stat('Longest session', '21d 4h', 118)}
+            {stat('Sessions', '480', 96)}
+            {stat('Cache read', '56.7B', 102)}
+            {stat('Output', '217.3M', 108)}
+            {stat('Longest session', '21d 4h', 114)}
           </div>
         </div>
-        <div style={{ fontFamily: TM, fontSize: 22, color: '#b9b4f0', marginTop: 22, ...fadeUp(f, 134, 14, 8) }}>Input and output ≈ 2,523× the tokens in Fahrenheit 451</div>
+        <div style={{ fontFamily: TM, fontSize: 22, color: '#b9b4f0', marginTop: 20, ...fadeUp(f, 128, 14, 8) }}>Input and output ≈ 313× the tokens in War and Peace</div>
       </div>
     </AbsoluteFill>
   );
