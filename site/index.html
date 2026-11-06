@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.classList.add('js');</script>
     <meta name="color-scheme" content="light">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vahid Faraji | AI-Native Architect: Agent Harnesses, Evals, Production LLM Agents</title>
     <meta name="description" content="Applied AI engineer shipping LLM agents to production: agent harnesses, tool calling, context and memory, evals, tracing and failure analysis. Full stack in TypeScript and Python. ACM-published.">
-    <meta name="theme-color" content="#b24a1f">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='4' y='4' width='40' height='40' rx='8' fill='none' stroke='%23b24a1f' stroke-width='2.5'/><line x1='10' y1='16' x2='38' y2='16' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='26' x2='38' y2='26' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='36' x2='38' y2='36' stroke='%23ccc' stroke-width='1.5'/><circle cx='14' cy='16' r='3.5' fill='%23b24a1f'/><circle cx='23' cy='16' r='3.5' fill='%23b24a1f' opacity='0.7'/><circle cx='16' cy='26' r='3.5' fill='%23b24a1f' opacity='0.8'/><circle cx='26' cy='26' r='3.5' fill='%23b24a1f'/><circle cx='34' cy='26' r='3.5' fill='%23b24a1f' opacity='0.5'/><circle cx='30' cy='36' r='3.5' fill='%23b24a1f' opacity='0.6'/></svg>">
+    <meta name="theme-color" content="#e0301e">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='4' y='4' width='40' height='40' rx='8' fill='none' stroke='%23e0301e' stroke-width='2.5'/><line x1='10' y1='16' x2='38' y2='16' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='26' x2='38' y2='26' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='36' x2='38' y2='36' stroke='%23ccc' stroke-width='1.5'/><circle cx='14' cy='16' r='3.5' fill='%23e0301e'/><circle cx='23' cy='16' r='3.5' fill='%23e0301e' opacity='0.7'/><circle cx='16' cy='26' r='3.5' fill='%23e0301e' opacity='0.8'/><circle cx='26' cy='26' r='3.5' fill='%23e0301e'/><circle cx='34' cy='26' r='3.5' fill='%23e0301e' opacity='0.5'/><circle cx='30' cy='36' r='3.5' fill='%23e0301e' opacity='0.6'/></svg>">
     <link rel="manifest" href="manifest.webmanifest">
 
     <meta property="og:title" content="Vahid Faraji, AI-Native Architect: Agent Harnesses, Evals, Production LLM Agents">
@@ -32,7 +33,7 @@
     <link rel="sitemap" type="application/xml" href="sitemap.xml">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="Vahid Faraji">
-    <meta name="keywords" content="Vahid Faraji, AI-Native Architect, AI-Native, Agentic AI, Agentic Workflows, AI Architect, Applied AI Engineer, AI Engineer, Agentic AI Engineer, Agent Harness, LLM Agents, Tool Calling, Agent Execution Loop, Agent Memory, Context Engineering, Agent Skills, Multi-Step Execution, LLM Evals, Evaluations, Tracing, Failure Analysis, Observability, Production AI, Reliability, Latency, Cost Optimization, Resumable Long-Running Tasks, Human-in-the-Loop, Spec-Driven Development, Database Schema Design, Full Stack, TypeScript, Python, Backend, API Integrations, RAG, Retrieval, Orchestration, Multi-Agent Systems, MCP, Model Context Protocol, LangGraph, Claude, Tokalator, ACM CAIS, Istanbul, Remote">
+    <meta name="keywords" content="Vahid Faraji, AI-Native Architect, AI-Native, Agentic AI, Agentic Workflows, AI Architect, Applied AI Engineer, AI Engineer, Agentic AI Engineer, Agent Harness, LLM Agents, Tool Calling, Agent Execution Loop, Agent Memory, Context Engineering, Agent Skills, Multi-Step Execution, LLM Evals, Evaluations, Tracing, Failure Analysis, Observability, Production AI, Reliability, Latency, Cost Optimization, Resumable Long-Running Tasks, Human-in-the-Loop, Spec-Driven Development, Database Schema Design, Full Stack, TypeScript, Python, Backend, API Integrations, RAG, Retrieval, Orchestration, Multi-Agent Systems, MCP, Model Context Protocol, LangGraph, Claude, Claude Agent SDK, Anthropic Platform, Vercel AI SDK, Microsoft Copilot Studio, TypeScript 7, Tokalator, ACM CAIS, Istanbul, Remote">
 
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5"></script>
@@ -144,9 +145,11 @@
                     "Retrieval-Augmented Generation",
                     "LangGraph",
                     "Agno",
-                    "TypeScript",
+                    "TypeScript 7",
                     "Next.js",
                     "Vercel AI SDK",
+                    "Anthropic Platform (Claude Agent SDK)",
+                    "Microsoft Copilot Studio",
                     "FastAPI",
                     "Python",
                     "Text-to-SQL",
@@ -629,16 +632,17 @@
             --grey-50:  #f8f8f8;
             --white:    #ffffff;
 
-            /* Palette, taken from the Seven Portraits piece: white page,
-               near-black ink, one rust accent, a highlighter for the word that
-               matters, a blue for labels, and a warm paper for cards. */
+            /* Brand palette: red tones on white. One strong red for the point
+               of a thing, a deep red for pressed and hover, a light red as the
+               highlighter, and a blush tint for cards. Ink stays near-black.
+               (Token names --rust and --blue are kept so components need no edit.) */
             --ink:       #1c1c1e;
-            --rust:      #b24a1f;
-            --rust-deep: #7a2e12;
-            --mark:      #fdefb3;
-            --blue:      #2d70d7;
-            --blue-tile: #eff6fe;
-            --paper:     #f7f6f2;
+            --rust:      #e0301e;
+            --rust-deep: #b4200f;
+            --mark:      #ffdcd6;
+            --blue:      #c8261a;
+            --blue-tile: #fff1ef;
+            --paper:     #fff6f4;
             --red:       var(--rust);
             --red-light: var(--paper);
 
@@ -731,7 +735,7 @@
             font-weight: 500; font-size: 0.8125rem;
             background: var(--accent-bg); color: var(--accent);
             padding: 0.15em 0.5em; border-radius: 4px;
-            border: 1px solid rgba(178,74,31,0.12);
+            border: 1px solid rgba(224,48,30,0.12);
         }
 
         /* MONO 0.8: UI chrome: labels, metadata, timestamps */
@@ -941,6 +945,8 @@
             padding: 0 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
             transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-slow) var(--ease-out);
         }
+        .chip-face { gap: 0.4rem; }
+        .chip-face .ab { width: 15px; height: 15px; flex: none; color: currentColor; }
         .chip-b { transform: translateY(100%); opacity: 0; font-weight: 500; }
         .bio-tag.is-flipped .chip-a { transform: translateY(-100%); opacity: 0; }
         .bio-tag.is-flipped .chip-b { transform: translateY(0); opacity: 1; }
@@ -1097,7 +1103,7 @@
         }
         .hover-card::after {
             content: ""; position: absolute; inset: 0; pointer-events: none;
-            background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(178,74,31,0.06), transparent 40%);
+            background: radial-gradient(600px circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(224,48,30,0.06), transparent 40%);
             opacity: 0; transition: opacity var(--dur-slow) var(--ease-out);
         }
         .hover-card:hover::after { opacity: 1; }
@@ -1109,7 +1115,7 @@
         .case-card.featured { background: var(--accent-bg); border-color: transparent; }
         .case-card.featured::before {
             content: ""; position: absolute; inset: 0; border-radius: var(--radius); padding: 1px;
-            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(178,74,31,0.3) 100%);
+            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(224,48,30,0.3) 100%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
             pointer-events: none; animation: border-rotate 8s linear infinite;
@@ -1123,7 +1129,7 @@
             font-variation-settings: "MONO" 1, "CASL" 0; font-weight: 500;
             background: var(--bg-muted); padding: 0.2rem 0.5rem; border-radius: 4px; color: var(--text-secondary);
         }
-        .case-card.featured .case-tag { background: rgba(178,74,31,0.12); color: var(--accent); }
+        .case-card.featured .case-tag { background: rgba(224,48,30,0.12); color: var(--accent); }
         .case-card .gallery-screenshot { margin-bottom: 1rem; background: var(--paper); }
         .case-actions { margin-top: 0.875rem; }
         .case-title {
@@ -1163,7 +1169,7 @@
             border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text-muted);
             font-variation-settings: "MONO" 1, "CASL" 0;
         }
-        .case-card.featured .case-stats { border-color: rgba(178,74,31,0.12); }
+        .case-card.featured .case-stats { border-color: rgba(224,48,30,0.12); }
         .case-stats strong { color: var(--text-primary); font-weight: 600; }
         .case-stats .stat-live { color: var(--accent); }
 
@@ -1182,7 +1188,7 @@
         .pub-card.acm { background: var(--accent-bg); border-color: transparent; }
         .pub-card.acm::before {
             content: ""; position: absolute; inset: 0; border-radius: var(--radius); padding: 1px;
-            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(178,74,31,0.3) 100%);
+            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(224,48,30,0.3) 100%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
             pointer-events: none; animation: border-rotate 8s linear infinite;
@@ -1192,7 +1198,7 @@
             font-variation-settings: "MONO" 1, "CASL" 0;
             padding: 0.15rem 0.5rem; border-radius: 3px; margin-right: 0.5rem;
         }
-        .pub-badge.acm { background: rgba(178,74,31,0.12); color: var(--accent); }
+        .pub-badge.acm { background: rgba(224,48,30,0.12); color: var(--accent); }
         .pub-badge.arxiv { background: var(--bg-muted); color: var(--text-muted); }
         .pub-title {
             font-size: 0.9375rem; font-weight: 600; margin: 0.625rem 0 0.25rem;
@@ -1281,7 +1287,82 @@
         .contact-box p { font-size: 0.875rem; max-width: 480px; margin: 0 auto 1.5rem; }
         .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.75rem; }
 
-        .site-footer { padding: 2.25rem 0 1.75rem; border-top: 1px solid var(--border); }
+        .site-footer { padding: 0 0 1.75rem; border-top: 1px solid var(--border); background: linear-gradient(var(--paper), var(--bg) 70%); }
+        /* The big footer: five stations on one abacus rod, from counting to
+           orchestrating agents. A single rust bead rests on the present and
+           slides to whichever station is hovered or focused. */
+        .footer-journey { padding-top: 4rem; padding-bottom: 3rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+        .jr-title { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--ink); margin: 0.25rem 0 2.5rem; }
+        .jr-track { position: relative; --jr-x: 90%; }
+        .jr-rail {
+            position: absolute; left: 0; right: 0; top: 74px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-strong) 6%, var(--border-strong) 94%, transparent);
+        }
+        .jr-bead {
+            position: absolute; top: 68px; left: 0; width: 13px; height: 13px; border-radius: 50%; z-index: 1;
+            background: var(--rust); box-shadow: 0 0 0 4px var(--paper), 0 2px 6px rgba(224,48,30,0.35);
+            transform: translateX(calc(var(--jr-x) - 6.5px)); transition: transform 0.7s var(--ease-spring);
+        }
+        .jr-stops { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; position: relative; }
+        .jr-stop { display: flex; flex-direction: column; align-items: flex-start; gap: 0.25rem; cursor: default; outline: none; }
+        .jr-icon {
+            width: 54px; height: 54px; padding: 8px; margin-bottom: 2.25rem; color: var(--text-muted);
+            background: var(--bg); border: 1px solid var(--border); border-radius: 14px;
+            transition: color var(--dur-slow) var(--ease-out), border-color var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out);
+        }
+        .jr-verb { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
+        .jr-sub { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; }
+        .jr-skills { font-size: 0.6875rem; color: var(--text-muted); line-height: 1.55; margin-top: 0.375rem; font-variation-settings: "MONO" 0.8, "CASL" 0; }
+        .jr-stop.is-on .jr-icon { color: var(--ink); border-color: var(--border-strong); transform: translateY(-3px); box-shadow: 0 10px 22px -14px rgba(28,28,30,0.45); }
+        .jr-stop.is-on .jr-skills { color: var(--text-secondary); }
+        .jr-stop:focus-visible .jr-icon { outline: 2px solid var(--blue); outline-offset: 3px; }
+        @media (max-width: 760px) {
+            .jr-title { font-size: 1.5rem; margin-bottom: 1.75rem; }
+            .jr-stops { grid-template-columns: 1fr; gap: 1.25rem; }
+            .jr-stop { display: grid; grid-template-columns: 54px 1fr; column-gap: 1rem; row-gap: 0.15rem; }
+            .jr-icon { grid-row: 1 / span 3; margin: 0; }
+            .jr-rail { left: 27px; right: auto; top: 0; bottom: 0; width: 1px; height: auto;
+                background: linear-gradient(180deg, transparent, var(--border-strong) 6%, var(--border-strong) 94%, transparent); }
+            .jr-bead { display: none; }
+        }
+
+        /* Motion for the abacus icons. Groups pop in with a spring and a short
+           stagger; on hover the rust bead pops and the ink beads slide a step
+           along their rails, the way a bead is counted. */
+        .ab circle { transform-box: fill-box; transform-origin: center; transition: transform 0.55s var(--ease-spring), fill var(--dur-base) var(--ease-move); }
+        .ab circle.bead-ink { transition-delay: calc(var(--k, 0) * 35ms); }
+        .bio-tag:hover .ab .bead-acc, .bio-tag.is-flipped .ab .bead-acc,
+        .jr-stop.is-on .ab .bead-acc { transform: scale(1.45); }
+        .bio-tag:hover .ab .bead-ink, .jr-stop.is-on .ab .bead-ink { transform: translateX(1.6px); }
+        .jr-stop.is-on .ab .bead-acc { animation: bead-pulse 1.8s var(--ease-move) 0.6s infinite; }
+        @keyframes bead-pulse { 0%, 100% { transform: scale(1.45); } 50% { transform: scale(1.15); } }
+
+        .js .pop-group > * { opacity: 0; transform: translateY(10px) scale(0.94); }
+        .pop-group.is-popped > * {
+            opacity: 1; transform: none;
+            transition: opacity 0.5s var(--ease-out), transform 0.7s var(--ease-spring);
+        }
+        .pop-group.is-popped > *:nth-child(1) { transition-delay: 0ms; }
+        .pop-group.is-popped > *:nth-child(2) { transition-delay: 60ms; }
+        .pop-group.is-popped > *:nth-child(3) { transition-delay: 120ms; }
+        .pop-group.is-popped > *:nth-child(4) { transition-delay: 180ms; }
+        .pop-group.is-popped > *:nth-child(5) { transition-delay: 240ms; }
+        .pop-group.is-popped > *:nth-child(6) { transition-delay: 300ms; }
+        .pop-group.is-popped > *:nth-child(7) { transition-delay: 360ms; }
+        .pop-group.is-popped > *:nth-child(8) { transition-delay: 420ms; }
+        .pop-group.is-popped > *:nth-child(9) { transition-delay: 480ms; }
+        .jr-stops.is-popped .jr-icon { animation: icon-pop 0.7s var(--ease-spring) both; }
+        .jr-stops.is-popped .jr-stop:nth-child(2) .jr-icon { animation-delay: 80ms; }
+        .jr-stops.is-popped .jr-stop:nth-child(3) .jr-icon { animation-delay: 160ms; }
+        .jr-stops.is-popped .jr-stop:nth-child(4) .jr-icon { animation-delay: 240ms; }
+        .jr-stops.is-popped .jr-stop:nth-child(5) .jr-icon { animation-delay: 320ms; }
+        @keyframes icon-pop { 0% { transform: scale(0.6); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .jr-stop .jr-icon:hover { transform: translateY(-4px) scale(1.06); }
+        @media (prefers-reduced-motion: reduce) {
+            .pop-group > * { opacity: 1 !important; transform: none !important; }
+            .ab circle, .jr-stops.is-popped .jr-icon { animation: none !important; transition: none !important; transform: none !important; }
+        }
+        @media (prefers-reduced-motion: reduce) { .jr-bead { transition: none; } .jr-stop.is-on .jr-icon { transform: none; } }
         .footer-inner { display: flex; flex-direction: column; gap: 1.25rem; }
         .footer-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; }
         .footer-left { display: flex; align-items: center; gap: 0.625rem; }
@@ -1419,12 +1500,12 @@
         .gallery-card.featured { background: var(--accent-bg); border-color: transparent; }
         .gallery-card.featured::before {
             content: ""; position: absolute; inset: 0; border-radius: var(--radius); padding: 1px;
-            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(178,74,31,0.3) 100%);
+            background: linear-gradient(var(--border-angle), var(--accent) 0%, transparent 30%, transparent 70%, rgba(224,48,30,0.3) 100%);
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor; mask-composite: exclude;
             pointer-events: none; animation: border-rotate 8s linear infinite;
         }
-        .gallery-card.featured .gallery-tag { background: rgba(178,74,31,0.12); color: var(--accent); }
+        .gallery-card.featured .gallery-tag { background: rgba(224,48,30,0.12); color: var(--accent); }
         .gallery-name {
             font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em;
             font-variation-settings: "MONO" 0.6, "CASL" 0;
@@ -1632,7 +1713,7 @@
             font-variation-settings: "MONO" 0.8, "CASL" 0;
             transition: background var(--transition), transform var(--transition);
         }
-        .hire-btn:hover { background: #7a2e12; text-decoration: none; transform: translateX(2px); }
+        .hire-btn:hover { background: #b4200f; text-decoration: none; transform: translateX(2px); }
 
         /* four-phase indicator, mirroring the hero icon's cycle */
         .hire-phase { display: inline-flex; gap: 3px; align-items: center; }
@@ -1991,6 +2072,22 @@
     </style>
 </head>
 <body>
+    <!-- Abacus icon kit: one ink frame, grey rails, beads; the rust bead marks the point. Also in assets/brand/abacus-icons.svg -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+      <symbol id="ab-abacus" viewBox="0 0 24 24"><title>Abacus</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 8.5h12M6 12h12M6 15.5h12" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="8" cy="8.5" r="1.9" fill="var(--rust, #e0301e)"/><circle cx="11.6" cy="8.5" r="1.9" fill="currentColor"/><circle cx="14.2" cy="12" r="1.9" fill="currentColor"/><circle cx="8.6" cy="15.5" r="1.9" fill="currentColor"/><circle cx="16" cy="15.5" r="1.9" fill="currentColor"/></symbol>
+      <symbol id="ab-calc" viewBox="0 0 24 24"><title>Calculator</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 6.5h10v3.5H7z" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="15.2" cy="8.25" r="1.1" fill="var(--rust, #e0301e)"/><circle cx="8" cy="13" r="1.35" fill="currentColor"/><circle cx="12" cy="13" r="1.35" fill="currentColor"/><circle cx="16" cy="13" r="1.35" fill="currentColor"/><circle cx="8" cy="17" r="1.35" fill="currentColor"/><circle cx="12" cy="17" r="1.35" fill="currentColor"/><circle cx="16" cy="17" r="1.35" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-pc" viewBox="0 0 24 24"><title>Computer</title><path d="M4.5 4h15a1.75 1.75 0 0 1 1.75 1.75v8.5A1.75 1.75 0 0 1 19.5 16h-15a1.75 1.75 0 0 1-1.75-1.75v-8.5A1.75 1.75 0 0 1 4.5 4z" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20h6M12 16v4" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 8h6M6.5 11.5h9" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="15.5" cy="8" r="1.6" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-cloud" viewBox="0 0 24 24"><title>Cloud</title><path d="M7.25 18.5h10a3.75 3.75 0 0 0 .55-7.46 5.25 5.25 0 0 0-10.1-1.3A4.4 4.4 0 0 0 7.25 18.5z" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 15h8.5" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="10" cy="15" r="1.6" fill="var(--rust, #e0301e)"/><circle cx="13.6" cy="15" r="1.6" fill="currentColor"/></symbol>
+      <symbol id="ab-agents" viewBox="0 0 24 24"><title>Agents</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 9l8 0M8 9l4 7M16 9l-4 7" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.1" fill="var(--rust, #e0301e)"/><circle cx="16" cy="9" r="2.1" fill="currentColor"/><circle cx="12" cy="16" r="2.1" fill="currentColor"/></symbol>
+      <symbol id="ab-layers" viewBox="0 0 24 24"><title>Architecture</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 8h12M6 12h12M6 16h12" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="8" cy="16" r="1.9" fill="currentColor"/><circle cx="8" cy="12" r="1.9" fill="currentColor"/><circle cx="12" cy="12" r="1.9" fill="currentColor"/><circle cx="16" cy="8" r="1.9" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-loop" viewBox="0 0 24 24"><title>Harness loop</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/><circle cx="12" cy="7" r="1.6" fill="var(--rust, #e0301e)"/><circle cx="16.33" cy="9.5" r="1.45" fill="currentColor"/><circle cx="16.33" cy="14.5" r="1.45" fill="currentColor"/><circle cx="12" cy="17" r="1.45" fill="currentColor"/><circle cx="7.67" cy="14.5" r="1.45" fill="currentColor"/><circle cx="7.67" cy="9.5" r="1.45" fill="currentColor"/></symbol>
+      <symbol id="ab-window" viewBox="0 0 24 24"><title>Context window</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 12h13" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><path d="M9.25 8.25H7.75v7.5h1.5M14.75 8.25h1.5v7.5h-1.5" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10.6" cy="12" r="1.5" fill="currentColor"/><circle cx="13.4" cy="12" r="1.5" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-bars" viewBox="0 0 24 24"><title>Evals</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 6.5v11M12 6.5v11M16 6.5v11" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="8" cy="16" r="1.6" fill="currentColor"/><circle cx="8" cy="12.7" r="1.6" fill="currentColor"/><circle cx="12" cy="16" r="1.6" fill="currentColor"/><circle cx="16" cy="16" r="1.6" fill="currentColor"/><circle cx="16" cy="12.7" r="1.6" fill="currentColor"/><circle cx="16" cy="9.4" r="1.6" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-flow" viewBox="0 0 24 24"><title>Workflow</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M7 16.5C7 11.5 17 12.5 17 7.5" fill="none" stroke="currentColor" stroke-opacity="0.45" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="16.5" r="1.9" fill="currentColor"/><circle cx="12" cy="12.1" r="1.9" fill="currentColor"/><circle cx="17" cy="7.5" r="1.9" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-plug" viewBox="0 0 24 24"><title>MCP and skills</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 12h8" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><path d="M13.25 8.75h4a1 1 0 0 1 1 1v4.5a1 1 0 0 1-1 1h-4z" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8.5" cy="12" r="1.9" fill="currentColor"/><circle cx="15.75" cy="12" r="1.5" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-branch" viewBox="0 0 24 24"><title>Open source</title><rect x="2.75" y="2.75" width="18.5" height="18.5" rx="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8.5 7v10M8.5 13c0-3.2 7-2.2 7-5.5" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8.5" cy="7" r="1.9" fill="currentColor"/><circle cx="8.5" cy="17" r="1.9" fill="currentColor"/><circle cx="15.5" cy="7.5" r="1.9" fill="var(--rust, #e0301e)"/></symbol>
+      <symbol id="ab-page" viewBox="0 0 24 24"><title>Research</title><path d="M6.75 3.25h7.25l3.25 3.25v14.25H6.75z" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 3.25v3.25h3.25" fill="none" stroke="currentColor" stroke-opacity="1" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 10.5h6M9 13.5h6M9 16.5h3.5" fill="none" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="15.25" cy="16.5" r="1.6" fill="var(--rust, #e0301e)"/></symbol>
+    </svg>
     <div class="load-bar" id="load-bar" aria-hidden="true"><span></span></div>
     <noscript><style>.load-bar { display: none; }</style></noscript>
 
@@ -2114,7 +2211,7 @@
                     </div>
                     <div class="rec-field">
                         <span class="rec-key">Core stack</span>
-                        <span class="rec-val">TypeScript &middot; Python / FastAPI &middot; Next.js &middot; MCP &middot; Anthropic SDK &middot; Vercel AI SDK &middot; LangGraph &middot; Agno &middot; Langfuse &middot; Arize &middot; SQL &middot; BigQuery &middot; Azure &middot; DataHub</span>
+                        <span class="rec-val">TypeScript 7 &middot; Python / FastAPI &middot; Next.js &middot; Anthropic Platform (Claude Agent SDK) &middot; Vercel AI SDK &middot; Microsoft Copilot Studio &middot; MCP &middot; LangGraph &middot; Agno &middot; Langfuse &middot; Arize &middot; SQL &middot; BigQuery &middot; Azure &middot; DataHub</span>
                     </div>
                     <div class="rec-field">
                         <span class="rec-key">Seniority</span>
@@ -2141,16 +2238,16 @@
                 <p class="rec-share">Share this view directly: <code>vfaraji89.github.io/?hire</code></p>
             </div>
 
-            <div class="bio-tags" id="bio-tags">
-                <button type="button" class="bio-tag accent" aria-label="AI-Native Architecture: Spec → Agents → Evals"><span class="chip-face chip-a">AI-Native Architecture</span><span class="chip-face chip-b" aria-hidden="true">Spec → Agents → Evals</span></button>
-                <button type="button" class="bio-tag accent" aria-label="Agent Harnesses: Loops · Tools · Memory"><span class="chip-face chip-a">Agent Harnesses</span><span class="chip-face chip-b" aria-hidden="true">Loops · Tools · Memory</span></button>
-                <button type="button" class="bio-tag accent" aria-label="Context Engineering: Token budgets · Caching"><span class="chip-face chip-a">Context Engineering</span><span class="chip-face chip-b" aria-hidden="true">Token budgets · Caching</span></button>
-                <button type="button" class="bio-tag accent" aria-label="Evals &amp; Observability: Traces · Failure analysis"><span class="chip-face chip-a">Evals &amp; Observability</span><span class="chip-face chip-b" aria-hidden="true">Traces · Failure analysis</span></button>
-                <button type="button" class="bio-tag" aria-label="Agentic Workflows: Long-running · Resumable"><span class="chip-face chip-a">Agentic Workflows</span><span class="chip-face chip-b" aria-hidden="true">Long-running · Resumable</span></button>
-                <button type="button" class="bio-tag" aria-label="MCP &amp; Agent Skills: Tools · SKILL.md"><span class="chip-face chip-a">MCP &amp; Agent Skills</span><span class="chip-face chip-b" aria-hidden="true">Tools · SKILL.md</span></button>
-                <button type="button" class="bio-tag" aria-label="Multi-Agent Systems: LangGraph · Agno · SDKs"><span class="chip-face chip-a">Multi-Agent Systems</span><span class="chip-face chip-b" aria-hidden="true">LangGraph · Agno · SDKs</span></button>
-                <button type="button" class="bio-tag" aria-label="Open Source: Tokalator · 500+ installs"><span class="chip-face chip-a">Open Source</span><span class="chip-face chip-b" aria-hidden="true">Tokalator · 500+ installs</span></button>
-                <button type="button" class="bio-tag" aria-label="Published Research: ACM · arXiv"><span class="chip-face chip-a">Published Research</span><span class="chip-face chip-b" aria-hidden="true">ACM · arXiv</span></button>
+            <div class="bio-tags pop-group" id="bio-tags">
+                <button type="button" class="bio-tag accent" aria-label="AI-Native Architecture: Spec → Agents → Evals"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg>AI-Native Architecture</span><span class="chip-face chip-b" aria-hidden="true">Spec → Agents → Evals</span></button>
+                <button type="button" class="bio-tag accent" aria-label="Agent Harnesses: Loops · Tools · Memory"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-loop"/></svg>Agent Harnesses</span><span class="chip-face chip-b" aria-hidden="true">Loops · Tools · Memory</span></button>
+                <button type="button" class="bio-tag accent" aria-label="Context Engineering: Token budgets · Caching"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-window"/></svg>Context Engineering</span><span class="chip-face chip-b" aria-hidden="true">Token budgets · Caching</span></button>
+                <button type="button" class="bio-tag accent" aria-label="Evals &amp; Observability: Traces · Failure analysis"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-bars"/></svg>Evals &amp; Observability</span><span class="chip-face chip-b" aria-hidden="true">Traces · Failure analysis</span></button>
+                <button type="button" class="bio-tag" aria-label="Agentic Workflows: Long-running · Resumable"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-flow"/></svg>Agentic Workflows</span><span class="chip-face chip-b" aria-hidden="true">Long-running · Resumable</span></button>
+                <button type="button" class="bio-tag" aria-label="MCP &amp; Agent Skills: Tools · SKILL.md"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-plug"/></svg>MCP &amp; Agent Skills</span><span class="chip-face chip-b" aria-hidden="true">Tools · SKILL.md</span></button>
+                <button type="button" class="bio-tag" aria-label="Multi-Agent Systems: LangGraph · Agno · SDKs"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-agents"/></svg>Multi-Agent Systems</span><span class="chip-face chip-b" aria-hidden="true">LangGraph · Agno · SDKs</span></button>
+                <button type="button" class="bio-tag" aria-label="Open Source: Tokalator · 500+ installs"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-branch"/></svg>Open Source</span><span class="chip-face chip-b" aria-hidden="true">Tokalator · 500+ installs</span></button>
+                <button type="button" class="bio-tag" aria-label="Published Research: ACM · arXiv"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-page"/></svg>Published Research</span><span class="chip-face chip-b" aria-hidden="true">ACM · arXiv</span></button>
             </div>
 
             <div class="hero-ctas bead-row">
@@ -2570,6 +2667,46 @@
     </main>
 
     <footer class="site-footer">
+        <div class="footer-journey container">
+            <div class="section-label">Through the tools</div>
+            <h2 class="jr-title">From the abacus to agents.</h2>
+            <div class="jr-track" id="jr-track">
+                <span class="jr-rail" aria-hidden="true"></span>
+                <span class="jr-bead" aria-hidden="true"></span>
+                <ol class="jr-stops pop-group">
+                    <li class="jr-stop" data-i="0" tabindex="0">
+                        <svg class="ab jr-icon" aria-hidden="true"><use href="#ab-abacus"/></svg>
+                        <span class="jr-verb">Count</span>
+                        <span class="jr-sub">Quantities and evidence</span>
+                        <span class="jr-skills">M.A. Economics · Econometrics · Statistics</span>
+                    </li>
+                    <li class="jr-stop" data-i="1" tabindex="0">
+                        <svg class="ab jr-icon" aria-hidden="true"><use href="#ab-calc"/></svg>
+                        <span class="jr-verb">Compute</span>
+                        <span class="jr-sub">Data that answers questions</span>
+                        <span class="jr-skills">SQL · BigQuery · Azure Synapse · Text-to-SQL</span>
+                    </li>
+                    <li class="jr-stop" data-i="2" tabindex="0">
+                        <svg class="ab jr-icon" aria-hidden="true"><use href="#ab-pc"/></svg>
+                        <span class="jr-verb">Build</span>
+                        <span class="jr-sub">Software, end to end</span>
+                        <span class="jr-skills">TypeScript 7 · Python · FastAPI · Next.js</span>
+                    </li>
+                    <li class="jr-stop" data-i="3" tabindex="0">
+                        <svg class="ab jr-icon" aria-hidden="true"><use href="#ab-cloud"/></svg>
+                        <span class="jr-verb">Scale</span>
+                        <span class="jr-sub">Platforms and governance</span>
+                        <span class="jr-skills">Azure · Google Cloud · DataHub · Azure DevOps</span>
+                    </li>
+                    <li class="jr-stop is-now" data-i="4" tabindex="0">
+                        <svg class="ab jr-icon" aria-hidden="true"><use href="#ab-agents"/></svg>
+                        <span class="jr-verb">Orchestrate</span>
+                        <span class="jr-sub">Agents in production</span>
+                        <span class="jr-skills">Anthropic Platform (Claude Agent SDK) · Vercel AI SDK · Microsoft Copilot Studio · MCP · LangGraph</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
         <div class="container footer-inner">
             <div class="footer-top">
                 <div class="footer-left" id="footer-mark">
@@ -2587,7 +2724,7 @@
                     </svg>
                     <span class="footer-name">Vahid Faraji</span>
                     <span class="footer-dot">/</span>
-                    <span class="footer-role">Applied AI</span>
+                    <span class="footer-role">AI-Native Architect</span>
                     <span class="footer-tally" aria-hidden="true">12 years &middot; 3 papers &middot; 4 products</span>
                 </div>
                 <div class="footer-right">
@@ -2866,6 +3003,63 @@
         }
         tick();
         setInterval(tick, 30000);
+    })();
+
+    (function abacusIcons() {
+        // Expand each <use> into its symbol's own shapes so the beads inside an
+        // icon can be animated one by one. The rust bead is the point of the
+        // icon; it pops, and the ink beads slide along their rails behind it.
+        document.querySelectorAll('svg.ab').forEach(function (svg) {
+            var use = svg.querySelector('use');
+            if (!use) return;
+            var sym = document.querySelector(use.getAttribute('href'));
+            if (!sym) return;
+            svg.setAttribute('viewBox', sym.getAttribute('viewBox'));
+            Array.prototype.forEach.call(sym.children, function (n) {
+                if (n.tagName.toLowerCase() === 'title') return;
+                var c = n.cloneNode(true);
+                if (c.tagName.toLowerCase() === 'circle') {
+                    c.classList.add((c.getAttribute('fill') || '').indexOf('rust') > -1 ? 'bead-acc' : 'bead-ink');
+                }
+                svg.appendChild(c);
+            });
+            svg.removeChild(use);
+            svg.querySelectorAll('circle.bead-ink').forEach(function (c, k) { c.style.setProperty('--k', k); });
+        });
+        // Pop each group in as it scrolls into view, staggered.
+        if (!('IntersectionObserver' in window)) {
+            document.querySelectorAll('.pop-group').forEach(function (g) { g.classList.add('is-popped'); });
+            return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('is-popped');
+                io.unobserve(e.target);
+            });
+        }, { threshold: 0.25 });
+        document.querySelectorAll('.pop-group').forEach(function (g) { io.observe(g); });
+    })();
+
+    (function footerJourney() {
+        var track = document.getElementById('jr-track');
+        if (!track) return;
+        var stops = Array.prototype.slice.call(track.querySelectorAll('.jr-stop'));
+        var home = stops.length - 1;
+        function go(i) {
+            stops.forEach(function (s, k) { s.classList.toggle('is-on', k === i); });
+            var icon = stops[i].querySelector('.jr-icon');
+            var a = icon.getBoundingClientRect(), t = track.getBoundingClientRect();
+            track.style.setProperty('--jr-x', (a.left - t.left + a.width / 2) + 'px');
+        }
+        stops.forEach(function (s, i) {
+            s.addEventListener('mouseenter', function () { go(i); });
+            s.addEventListener('focus', function () { go(i); });
+        });
+        track.addEventListener('mouseleave', function () { go(home); });
+        window.addEventListener('resize', function () { go(home); });
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { go(home); });
+        go(home);
     })();
 
     (function siteHeader() {
@@ -3177,7 +3371,7 @@
             'Machine-readable version of this site: /llms.txt\n' +
             'Source: github.com/vfaraji89/vfaraji89.github.io\n' +
             'Open to Applied AI roles: vfaraji89@gmail.com',
-            'font: 600 15px/1.6 sans-serif; color: #b24a1f',
+            'font: 600 15px/1.6 sans-serif; color: #e0301e',
             'font: 400 12px/1.6 ui-monospace, monospace; color: #777'
         );
     })();

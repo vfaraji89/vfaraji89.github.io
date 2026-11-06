@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://vfaraji89.github.io/context-engineering.html">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="author" content="Vahid Faraji">
-    <meta name="theme-color" content="#b24a1f">
+    <meta name="theme-color" content="#e0301e">
     <meta property="og:title" content="How I save 38% on LLM tokens · Context Engineering Methodology">
     <meta property="og:description" content="Compaction, pollution control, incremental context management and knowledge graphs: the method behind a 38% token saving across 16M+ tokens.">
     <meta property="og:type" content="article">
@@ -26,7 +26,7 @@
     <meta name="twitter:description" content="The context engineering methodology behind a 38% token saving across 16M+ tokens.">
     <meta name="twitter:image" content="https://vfaraji89.github.io/assets/og/og-context-engineering.png">
     <meta name="twitter:image:alt" content="Vahid Faraji, context engineering methodology">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='4' y='4' width='40' height='40' rx='8' fill='none' stroke='%23b24a1f' stroke-width='2.5'/><line x1='10' y1='16' x2='38' y2='16' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='26' x2='38' y2='26' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='36' x2='38' y2='36' stroke='%23ccc' stroke-width='1.5'/><circle cx='14' cy='16' r='3.5' fill='%23b24a1f'/><circle cx='23' cy='16' r='3.5' fill='%23b24a1f' opacity='0.7'/><circle cx='16' cy='26' r='3.5' fill='%23b24a1f' opacity='0.8'/><circle cx='26' cy='26' r='3.5' fill='%23b24a1f'/><circle cx='34' cy='26' r='3.5' fill='%23b24a1f' opacity='0.5'/><circle cx='30' cy='36' r='3.5' fill='%23b24a1f' opacity='0.6'/></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><rect x='4' y='4' width='40' height='40' rx='8' fill='none' stroke='%23e0301e' stroke-width='2.5'/><line x1='10' y1='16' x2='38' y2='16' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='26' x2='38' y2='26' stroke='%23ccc' stroke-width='1.5'/><line x1='10' y1='36' x2='38' y2='36' stroke='%23ccc' stroke-width='1.5'/><circle cx='14' cy='16' r='3.5' fill='%23e0301e'/><circle cx='23' cy='16' r='3.5' fill='%23e0301e' opacity='0.7'/><circle cx='16' cy='26' r='3.5' fill='%23e0301e' opacity='0.8'/><circle cx='26' cy='26' r='3.5' fill='%23e0301e'/><circle cx='34' cy='26' r='3.5' fill='%23e0301e' opacity='0.5'/><circle cx='30' cy='36' r='3.5' fill='%23e0301e' opacity='0.6'/></svg>">
     <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,7 +72,7 @@
             --black: #000000; --grey-900: #111111; --grey-800: #1a1a1a;
             --grey-600: #555555; --grey-400: #999999; --grey-300: #bbbbbb;
             --grey-200: #dddddd; --grey-100: #f0f0f0; --grey-50: #f8f8f8; --white: #ffffff;
-            --red: #b24a1f; --red-light: rgba(178,74,31,0.08);
+            --red: #e0301e; --red-light: rgba(224,48,30,0.08);
             --bg: var(--white); --bg-subtle: var(--grey-50); --bg-muted: var(--grey-100);
             --border: var(--grey-200); --border-strong: var(--grey-300);
             --text-primary: var(--black); --text-secondary: var(--grey-600); --text-muted: var(--grey-400);
@@ -733,13 +733,13 @@
             var optBeadCount = Math.ceil(optimized / Math.max(Math.floor(raw / 8), 1));
             var savedBeadCount = rawBeadCount - optBeadCount;
 
-            document.getElementById('ab-beads-raw').innerHTML = makeBeads(rawBeadCount, '#b24a1f');
+            document.getElementById('ab-beads-raw').innerHTML = makeBeads(rawBeadCount, '#e0301e');
             document.getElementById('ab-beads-raw').style.left = Math.min(rawPct, 95) + '%';
 
             document.getElementById('ab-beads-opt').innerHTML = makeBeads(optBeadCount, '#16a34a');
             document.getElementById('ab-beads-opt').style.left = Math.min(optPct, 95) + '%';
 
-            document.getElementById('ab-beads-saved').innerHTML = makeBeads(Math.max(savedBeadCount, 0), '#b24a1f');
+            document.getElementById('ab-beads-saved').innerHTML = makeBeads(Math.max(savedBeadCount, 0), '#e0301e');
             document.getElementById('ab-beads-saved').style.left = Math.min(savedPct, 95) + '%';
 
             document.getElementById('ab-bar-raw-pct').textContent = raw > 0 ? raw.toLocaleString('en-US') : '';
