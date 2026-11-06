@@ -66,7 +66,7 @@ Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group), Ista
 
 ## Availability
 
-Open to senior applied AI roles, advisory engagements, and enterprise AI training. Role fit: AI-Native Architect, Applied AI Engineer, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher. Centre of gravity is building agent harnesses and evals and shipping them to production, spec-first and across the stack. Seniority: Senior, 9+ years shipping production systems, with hands-on engineering of LLM agents in production. Based in Istanbul (GMT+3), remote-friendly with distributed teams.
+Open to senior applied AI roles, advisory engagements, and enterprise AI training. Role fit: AI-Native Architect, Applied AI Engineer, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher. Centre of gravity is building agent harnesses and evals and shipping them to production, spec-first and across the stack. Seniority: Senior, 8 years in industry plus 4 in research, with hands-on engineering of LLM agents in production. Based in Istanbul (GMT+3), remote-friendly with distributed teams.
 Condensed hiring summary: https://vfaraji89.github.io/?hire
 Book directly: https://calendar.app.google/KWQg6gBjXetC4ofp9
 
@@ -76,7 +76,7 @@ Published here rather than on the page. Full text of each answer.
 
 ### Who is Vahid Faraji?
 
-Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group) in Istanbul, Turkey. He has 9+ years shipping production systems and works at the boundary of research and production, publishing peer-reviewed work at ACM while deploying enterprise-scale multi-agent systems. His focus areas are multi-agent orchestration, the Model Context Protocol (MCP), and context engineering for large language models.
+Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group) in Istanbul, Turkey. He has 8 years in industry (2 in applied AI, 6 in data products and business analysis) plus 4 years in research, and works at the boundary of research and production, publishing peer-reviewed work at ACM while deploying enterprise-scale multi-agent systems. His focus areas are multi-agent orchestration, the Model Context Protocol (MCP), and context engineering for large language models.
 
 ### What does Vahid Faraji actually build?
 

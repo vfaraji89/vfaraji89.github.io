@@ -16,7 +16,7 @@ Canonical: https://vfaraji89.github.io/
 
 ## Professional Summary
 
-Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipping production systems. He bridges research and production, publishing peer-reviewed papers at ACM while deploying enterprise-scale multi-agent systems. His work focuses on context engineering, MCP-based agent architectures, and open-source AI tooling.
+Vahid Faraji is a Senior Applied AI Specialist with 8 years in industry (2 in applied AI, 6 in data products and business analysis) plus 4 years in research. He bridges research and production, publishing peer-reviewed papers at ACM while deploying enterprise-scale multi-agent systems. His work focuses on context engineering, MCP-based agent architectures, and open-source AI tooling.
 
 ## Agent Engineering
 
@@ -150,7 +150,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 
 ## Key Metrics
 
-- 9+ years shipping production systems
+- 8 years in industry (2 in applied AI, 6 in data products and business analysis) plus 4 years in research
 - 95% agent accuracy (multi-agent classification)
 - 72.5% faster classification
 - 60% workload reduction (enterprise AI)
@@ -165,7 +165,7 @@ Vahid Faraji is a Senior Applied AI Specialist with 9+ years of experience shipp
 - Role fit: AI-Native Architect, Applied AI Engineer, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher
 - Centre of gravity: building agent harnesses and evals and shipping them to production - framing the problem, writing the spec, designing the schema, building the loop, tools, context and memory, and measuring it
 - Strengths: agent harness engineering, evals from real tasks, tracing and failure analysis, spec-driven design and implementation, database schema design, full-stack ownership, context and token strategy, production reliability, latency and cost
-- Seniority: Senior, 9+ years shipping production systems, with hands-on full-stack engineering of LLM agents in production
+- Seniority: Senior, 8 years in industry plus 4 in research, with hands-on full-stack engineering of LLM agents in production
 - Location: Istanbul, Turkey (GMT+3), remote-friendly with distributed teams
 - Core stack: TypeScript 7, Python/FastAPI, Next.js, Anthropic Platform (Claude Agent SDK), Vercel AI SDK, Microsoft Copilot Studio, MCP, LangGraph, Agno, Langfuse, Arize, SQL, BigQuery, Azure, DataHub
 - Proof: ACM Professional Member, peer-reviewed at ACM CAIS '26, 2 arXiv papers, 1 patent pending, Perplexity AI Business Fellowship programme lead, Tokalator with 500+ installs
@@ -189,7 +189,7 @@ Published here rather than on the page. Full text of each answer.
 
 ### Who is Vahid Faraji?
 
-Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group) in Istanbul, Turkey. He has 9+ years shipping production systems and works at the boundary of research and production, publishing peer-reviewed work at ACM while deploying enterprise-scale multi-agent systems. His focus areas are multi-agent orchestration, the Model Context Protocol (MCP), and context engineering for large language models.
+Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group) in Istanbul, Turkey. He has 8 years in industry (2 in applied AI, 6 in data products and business analysis) plus 4 years in research, and works at the boundary of research and production, publishing peer-reviewed work at ACM while deploying enterprise-scale multi-agent systems. His focus areas are multi-agent orchestration, the Model Context Protocol (MCP), and context engineering for large language models.
 
 ### What does Vahid Faraji actually build?
 
