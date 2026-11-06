@@ -3002,6 +3002,18 @@
         .bio-text strong { color: var(--ink); font-weight: 700; }
         .bio-text mark { color: var(--ink); background: linear-gradient(var(--mark), var(--mark)) left 75% / 100% 40% no-repeat; padding: 0 0.1em; }
         @media (prefers-reduced-motion: reduce) { .bio-three b { animation: none; background-size: 100% 38%; } }
+    
+        /* the portrait hangs in a minimal wooden frame */
+        .hero-portrait {
+            box-sizing: border-box; padding: 6px; border-radius: 6px;
+            background:
+                linear-gradient(90deg, rgba(120,80,40,0.12) 0 1px, transparent 1px 100%) 0 0 / 7px 100%,
+                linear-gradient(135deg, #caa77c 0%, #ecdcc2 30%, #d2b48d 55%, #f0e3cd 75%, #bf9a6d 100%);
+            box-shadow: inset 0 0 0 1px rgba(90,60,30,0.28), inset 0 1px 0 rgba(255,255,255,0.5), 0 14px 24px -14px rgba(60,40,20,0.55);
+        }
+        .hero-portrait canvas { background: var(--paper); border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(90,60,30,0.18), 0 0 0 1px rgba(255,255,255,0.4); cursor: pointer; }
+        .hero-portrait:hover { box-shadow: inset 0 0 0 1px rgba(90,60,30,0.28), inset 0 1px 0 rgba(255,255,255,0.5), 0 18px 28px -14px rgba(60,40,20,0.6); }
+            .pm-hint { color: var(--rust-deep); opacity: 0.75; }
     </style>
     <link rel="stylesheet" href="assets/brand/abacus-frame.css">
 </head>
@@ -3082,7 +3094,6 @@
                 <div class="identity-core" id="identity-core">
                 <figure class="hero-portrait" id="hero-portrait">
                     <canvas width="208" height="208" role="img" aria-label="Portrait of Vahid Faraji, redrawn as halftone, pixels, lines, letters or a network as the pointer moves over it"></canvas>
-                    <span class="hero-portrait-tag" aria-hidden="true">Vahid</span>
                 </figure>
                 <div class="pm-pick"><div class="pm-beads" id="pm-beads" role="group" aria-label="Redraw the portrait"></div><span class="pm-name" id="pm-name" aria-live="polite"></span></div>
                 </div>
@@ -4969,7 +4980,7 @@
         });
         function sync() {
             beads.forEach(function (b, i) { b.setAttribute('aria-pressed', i === mode ? 'true' : 'false'); });
-            if (nameEl) nameEl.textContent = NAMES[MODES[mode]];
+            if (nameEl) nameEl.innerHTML = NAMES[MODES[mode]] + ' <span class="pm-hint">&middot; ' + (window.matchMedia('(hover: hover)').matches ? 'move or click' : 'tap') + '</span>';
             cv.setAttribute('aria-label', 'Portrait of Vahid Faraji, drawn as ' + NAMES[MODES[mode]].toLowerCase() + '. Click for the next of seven.');
         }
         var raf = 0;
@@ -4984,7 +4995,7 @@
                 if (pointer) moved += Math.hypot(np[0] - pointer[0], np[1] - pointer[1]);
                 pointer = np;
                 // the mouse leads: every so much travel across the face, the next medium
-                if (moved > size * 2.2) { moved = 0; mode = (mode + 1) % MODES.length; }
+                if (moved > size * 0.75) { moved = 0; mode = (mode + 1) % MODES.length; if (typeof vfSound === 'function') vfSound(0.04); }
                 queue();
             });
             cv.addEventListener('pointerleave', function () { pointer = null; moved = 0; queue(); });
