@@ -4919,7 +4919,7 @@
         // Seven portraits: halftone, abacus beads, pixels, letters, numbers, a
         // network and the photograph. Click (or tap) for the next; moving across
         // the face keeps redrawing him; the beads below pick one directly.
-        var MODES = ['halftone', 'abacus', 'pixels', 'letters', 'numbers', 'network', 'photo'];
+        var MODES = ['photo', 'halftone', 'abacus', 'pixels', 'letters', 'numbers', 'network'];
         var NAMES = { halftone: 'Halftone', abacus: 'Abacus', pixels: 'Pixels', letters: 'Letters', numbers: 'Numbers', network: 'Network', photo: 'Photograph' };
         var mode = 0, moved = 0;
         var GLYPHS = ' .:;ilcoaeshmHMW', DIGITS = ' .17423569080';
@@ -4961,9 +4961,10 @@
                 }
                 fig.setAttribute('data-mode', m); sync(); return;
             }
+            if (m === 'photo' && !(photo.complete && photo.naturalWidth)) m = 'halftone';   // until the photo arrives
             if (m === 'photo') {
-                if (photo.complete && photo.naturalWidth) {
-                    g.save(); g.filter = 'grayscale(0.15) contrast(1.05)'; g.drawImage(photo, 0, 0, size, size); g.restore();
+                {
+                    g.drawImage(photo, 0, 0, size, size);
                     if (pointer) { var gr = g.createRadialGradient(pointer[0], pointer[1], 0, pointer[0], pointer[1], 40); gr.addColorStop(0, 'rgba(224,48,30,0.18)'); gr.addColorStop(1, 'rgba(224,48,30,0)'); g.fillStyle = gr; g.fillRect(0, 0, size, size); }
                 }
                 fig.setAttribute('data-mode', m); sync(); return;
@@ -5020,7 +5021,7 @@
         });
         function sync() {
             beads.forEach(function (b, i) { b.setAttribute('aria-pressed', i === mode ? 'true' : 'false'); });
-            if (nameEl) nameEl.innerHTML = NAMES[MODES[mode]] + ' <span class="pm-hint">&middot; ' + (window.matchMedia('(hover: hover)').matches ? 'move or click' : 'tap') + '</span>';
+            if (nameEl) nameEl.innerHTML = NAMES[MODES[mode]] + ' <span class="pm-hint">&middot; ' + (window.matchMedia('(hover: hover)').matches ? 'hover or click' : 'tap') + '</span>';
             cv.setAttribute('aria-label', 'Portrait of Vahid Faraji, drawn as ' + NAMES[MODES[mode]].toLowerCase() + '. Click for the next of seven.');
         }
         var raf = 0;
@@ -5028,17 +5029,26 @@
         function set(i) { mode = (i + MODES.length) % MODES.length; moved = 0; queue(); if (typeof vfSound === 'function') vfSound(0.08); }
         function next() { set(mode + 1); }
         cv.addEventListener('click', next);
+        // at rest: the photograph. Hover: he is redrawn in each medium in turn;
+        // leave: back to the photograph.
+        var cycle = 0;
+        function stopCycle() { clearInterval(cycle); cycle = 0; }
         if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            cv.addEventListener('pointerenter', function (e) {
+                if (e.pointerType !== 'mouse') return;
+                stopCycle();
+                set(mode === 0 ? 1 : mode + 1);
+                cycle = setInterval(function () { set(mode + 1 === MODES.length ? 1 : mode + 1); }, 750);
+            });
             cv.addEventListener('pointermove', function (e) {
                 var b = cv.getBoundingClientRect();
-                var np = [(e.clientX - b.left) / b.width * size, (e.clientY - b.top) / b.height * size];
-                if (pointer) moved += Math.hypot(np[0] - pointer[0], np[1] - pointer[1]);
-                pointer = np;
-                // the mouse leads: every so much travel across the face, the next medium
-                if (moved > size * 0.75) { moved = 0; mode = (mode + 1) % MODES.length; if (typeof vfSound === 'function') vfSound(0.04); }
+                pointer = [(e.clientX - b.left) / b.width * size, (e.clientY - b.top) / b.height * size];
                 queue();
             });
-            cv.addEventListener('pointerleave', function () { pointer = null; moved = 0; queue(); });
+            cv.addEventListener('pointerleave', function (e) {
+                pointer = null; stopCycle();
+                if (e.pointerType === 'mouse') set(0); else queue();
+            });
         }
         draw();
     })();
