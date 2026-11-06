@@ -1,27 +1,21 @@
 """Soundtrack for the animated CV, scored to the story.
 
-A light, modern electronic cue at 120 BPM that follows the ten beats:
-  0-6      who I am            warm pad, wooden bead plucks
-  6-13     languages           a pluck and a bead for each greeting
-  13-19.3  data                a looping arpeggio, a soft kick comes in
-  19.3-27  the problem         restless plucks that resolve when the answer lands
-  27-34.3  context design      off-beat stabs
-  34.3-41.3 analytical         steady quarters
-  41.3-45.7 the real problem    the beat drops out, three soft bells
-  45.7-51  count on            the lift: kick, bass octaves, a pluck per word
-  51-55    the abacus          bells, bead clicks, a chord on the red dot
-  55-60    the close           a warm final chord under the photo
+A light, modern electronic cue at 120 BPM that follows the fourteen scenes of the
+90-second cut (D below must match CUT in src/AnimatedCV.tsx): sparse plucks for who I am,
+a pluck per greeting and per station on the roots rod, arpeggios and stabs through the
+work, the beat dropping out for the real problem, the lift for count on, bells for the
+abacus and a warm final chord under the photo.
 Every chapter change gets a soft tonal swell into it and a low bloom on it,
 so the picture changes land on the music without a hard edge. Bead clicks mark the counting moments.
 
 Needs numpy:  pip install numpy  then  python3 make_audio.py
-Writes public/soundtrack.wav (60 s, 44.1 kHz, 16-bit stereo).
+Writes public/soundtrack.wav (90 s, 44.1 kHz, 16-bit stereo).
 """
 import wave
 import numpy as np
 
 SR = 44100
-DUR = 60.0
+DUR = 90.0
 N = int(SR * DUR)
 BPM = 120.0
 BEAT = 60.0 / BPM
@@ -31,21 +25,30 @@ t = np.arange(N) / SR
 L = np.zeros(N)
 R = np.zeros(N)
 
-CUTS = [0, 6.0, 13.0, 19.33, 27.0, 34.33, 41.33, 45.67, 51.0, 55.0, 60]
-# chord per chapter (root, then chord tones in Hz): Am, F, C, G, Dm, F, Am(add9)
+# the cut, in frames (must match CUT in src/AnimatedCV.tsx); each chapter's start in seconds
+D = [190, 230, 250, 200, 210, 250, 240, 280, 250, 200, 150, 180, 140, 190]
+ST = [0]
+for d in D[:-1]:
+    ST.append(ST[-1] + d - 20)
+SEC = [x / 30 for x in ST]                       # where each scene starts
+CUTS = [0] + [(x + 10) / 30 for x in ST[1:]] + [DUR]   # musical change mid-transition
 def hz(n):  # midi -> Hz
     return 440.0 * 2 ** ((n - 69) / 12)
 CHORDS = [
     (45, [57, 60, 64, 67]),   # A minor 7      who I am
     (41, [53, 57, 60, 64]),   # F maj7         languages
+    (50, [57, 60, 62, 65]),   # D minor        roots
     (48, [55, 60, 64, 67]),   # C              data
-    (52, [55, 59, 62, 64]),   # E minor 7      the problem (tension)
+    (43, [55, 59, 62, 67]),   # G              AI at work
+    (52, [55, 59, 62, 64]),   # E minor 7      the problem
     (43, [55, 59, 62, 67]),   # G              context design
     (50, [57, 60, 62, 65]),   # D minor        analytical
-    (40, [55, 59, 62, 64]),   # E minor 7      the real problem (calls back to the problem)
+    (45, [57, 60, 64, 67]),   # A minor 7      Yapay Zeka Izi
+    (48, [55, 60, 64, 67]),   # C              shipping
+    (40, [55, 59, 62, 64]),   # E minor 7      the real problem
     (41, [57, 60, 64, 65]),   # F              you can count on
     (45, [57, 59, 60, 64]),   # A minor add9   the abacus
-    (48, [55, 59, 64, 67]),   # C maj7         the close, back to the person
+    (48, [55, 59, 64, 67]),   # C maj7         the close
 ]
 
 
@@ -87,7 +90,7 @@ def lowpass(x, cutoff):
 
 
 # ---- pad: detuned saw-ish stacks per chapter, crossfaded, filter opens with intensity
-INTENSITY = [0.35, 0.5, 0.65, 0.75, 0.85, 0.9, 0.5, 1.0, 0.45, 0.4]
+INTENSITY = [0.35, 0.5, 0.55, 0.65, 0.75, 0.8, 0.85, 0.9, 0.8, 0.85, 0.5, 1.0, 0.45, 0.4]
 pad = np.zeros(N)
 for ci, (root, tones) in enumerate(CHORDS):
     s, e = CUTS[ci], CUTS[ci + 1]
@@ -139,20 +142,20 @@ beats = np.arange(0, DUR, BEAT)
 for b in beats:
     ci = chapter(b)
     # one quiet pulse, no stacked percussion: a soft kick from 'data', light off-beat hats later
-    if 2 <= ci <= 5 or ci == 7:
+    if 3 <= ci <= 9 or ci == 11:
         kick(b, 0.55)
-    if 3 <= ci <= 5 or ci == 7:
+    if 5 <= ci <= 9 or ci == 11:
         hat(b + BEAT / 2, 0.45, 0.25)
 pad *= duck
 
 # ---- bass: chapter root in eighths, octave jumps in production
-for b in np.arange(6.5, 51.0, BEAT / 2):
+for b in np.arange(CUTS[1] + 0.5, CUTS[12], BEAT / 2):
     ci = chapter(b)
-    if ci == 6:
+    if ci == 10:
         continue
     root = CHORDS[ci][0] - 12
     step = int(round(b / (BEAT / 2)))
-    m = root + (12 if ci == 7 and step % 4 == 3 else 0)
+    m = root + (12 if ci == 11 and step % 4 == 3 else 0)
     n = int(BEAT / 2 * SR * 0.9)
     k = np.arange(n) / SR
     f = hz(m)
@@ -174,51 +177,74 @@ def pluck(midi, at, g=1.0, pan=0.0, decay=0.996):
 # who I am: sparse bead plucks
 for i, at in enumerate([2.2, 3.0, 3.8, 4.6, 5.4]):
     pluck(CHORDS[0][1][i % 4] + 12, at, 0.9, -0.4 + 0.15 * i)
-# languages: one pluck as each greeting rolls in and its bead slides home
-for i, at in enumerate([(170 + 44 + 26 * k) / 30 for k in range(5)]):
-    pluck(CHORDS[1][1][[0, 2, 1, 3, 2][i]] + 12, at, 0.8, -0.5 + 0.25 * i)
-# data: the loop arpeggio in eighths
-for j, at in enumerate(np.arange(13.0, 19.3, BEAT / 2)):
-    pluck(CHORDS[2][1][[0, 1, 2, 3, 2, 1][j % 6]] + 12, at, 0.7, 0.35 * np.sin(j))
-# the problem: restless, resolving when the answer lands
-RESOLVE = (570 + 168) / 30
-for j, at in enumerate(np.arange(19.33, 27.0, BEAT / 2)):
-    tones = CHORDS[3][1]
-    pluck(tones[[0, 3, 1, 2][j % 4]] + (24 if at < RESOLVE else 12), at, 0.45 + 0.2 * (j % 4 == 0), 0.5 * np.sin(j * 0.9))
 def bell(midi, at, g=1.0, pan=0.0):
     f = hz(midi)
     n = int(2.5 * SR)
     k = np.arange(n) / SR
     sig = np.sin(2 * np.pi * f * k) + 0.4 * np.sin(2 * np.pi * f * 2.76 * k) * np.exp(-k * 3) + 0.2 * np.sin(2 * np.pi * f * 5.4 * k) * np.exp(-k * 6)
     add(sig * env_ad(n, 0.002, 0.9), at, 0.11 * g, pan)
-bell(CHORDS[3][1][0] + 24, RESOLVE, 0.9, 0.2)
-# context design: off-beat stabs under the panel
-for j, at in enumerate(np.arange(27.0, 34.3, BEAT)):
+def span(ci):
+    return CUTS[ci], CUTS[ci + 1]
+# languages: one pluck as each greeting pops up
+for i in range(5):
+    pluck(CHORDS[1][1][[0, 2, 1, 3, 2][i]] + 12, SEC[1] + (34 + 22 * i) / 30, 0.8, -0.5 + 0.25 * i)
+# roots: a pluck at every station on the rod
+for i in range(7):
+    pluck(CHORDS[2][1][i % 4] + 12 + (12 if i == 6 else 0), SEC[2] + (40 + 28 * i) / 30, 0.7, -0.6 + 0.2 * i)
+# data: the loop arpeggio in eighths
+s0, e0 = span(3)
+for j, at in enumerate(np.arange(s0, e0 - 0.3, BEAT / 2)):
+    pluck(CHORDS[3][1][[0, 1, 2, 3, 2, 1][j % 6]] + 12, at, 0.65, 0.35 * np.sin(j))
+# AI at work: off-beat stabs
+s0, e0 = span(4)
+for j, at in enumerate(np.arange(s0, e0 - 0.3, BEAT)):
     pluck(CHORDS[4][1][j % 4] + 12, at + BEAT / 2, 0.45, -0.2 + 0.1 * (j % 4))
-# analytical: steady quarter plucks
-for j, at in enumerate(np.arange(34.33, 41.3, BEAT)):
-    pluck(CHORDS[5][1][j % 4] + 12, at, 0.45, 0.3 * np.sin(j))
+# the problem: restless, resolving when the answer lands
+RESOLVE = SEC[5] + 168 / 30
+s0, e0 = span(5)
+for j, at in enumerate(np.arange(s0, e0 - 0.3, BEAT / 2)):
+    tones = CHORDS[5][1]
+    pluck(tones[[0, 3, 1, 2][j % 4]] + (24 if at < RESOLVE else 12), at, 0.45 + 0.2 * (j % 4 == 0), 0.5 * np.sin(j * 0.9))
+bell(CHORDS[5][1][0] + 24, RESOLVE, 0.9, 0.2)
+# context design: off-beat stabs
+s0, e0 = span(6)
+for j, at in enumerate(np.arange(s0, e0 - 0.3, BEAT)):
+    pluck(CHORDS[6][1][j % 4] + 12, at + BEAT / 2, 0.45, -0.2 + 0.1 * (j % 4))
+# analytical: steady quarters
+s0, e0 = span(7)
+for j, at in enumerate(np.arange(s0, e0 - 0.3, BEAT)):
+    pluck(CHORDS[7][1][j % 4] + 12, at, 0.45, 0.3 * np.sin(j))
+# Yapay Zeka Izi: a light arpeggio while the sentences are read, a bell per tag
+s0, e0 = span(8)
+for j, at in enumerate(np.arange(s0, e0 - 0.3, BEAT / 2)):
+    pluck(CHORDS[8][1][[0, 2, 1, 3][j % 4]] + 12, at, 0.4, 0.4 * np.sin(j))
+for i in range(3):
+    bell(CHORDS[8][1][i] + 24, SEC[8] + (56 + 28 * i + 14) / 30, 0.5, -0.3 + 0.3 * i)
+# shipping: steady quarters
+s0, e0 = span(9)
+for j, at in enumerate(np.arange(s0, e0 - 0.3, BEAT)):
+    pluck(CHORDS[9][1][j % 4] + 12, at, 0.42, 0.3 * np.sin(j))
 # the real problem: the beat drops out, one soft bell per line
 for i, fr in enumerate([2, 28, 54]):
-    bell(CHORDS[6][1][[0, 2, 3][i]] + 12, (1230 + fr) / 30, 0.75, -0.3 + 0.3 * i)
+    bell(CHORDS[10][1][[0, 2, 3][i]] + 12, SEC[10] + fr / 30, 0.75, -0.3 + 0.3 * i)
 # you can count on: a pluck per counted word, a chord when the answer lands
 for i in range(9):
-    pluck(CHORDS[7][1][i % 4] + 12 + (12 if i >= 6 else 0), (1360 + i * 12) / 30, 0.5, -0.5 + 0.12 * i)
-LAND = (1360 + 108) / 30
-for m in CHORDS[7][1][:3]:
+    pluck(CHORDS[11][1][i % 4] + 12 + (12 if i >= 6 else 0), SEC[11] + i * 12 / 30, 0.5, -0.5 + 0.12 * i)
+LAND = SEC[11] + 108 / 30
+for m in CHORDS[11][1][:3]:
     pluck(m + 12, LAND, 0.5, -0.2 + 0.1 * (m % 4))
-bell(CHORDS[7][1][0] + 24, LAND, 0.7, 0.0)
+bell(CHORDS[11][1][0] + 24, LAND, 0.7, 0.0)
 # the abacus: bells as it is built, a chord on the red dot
-AB = 1520 / 30
+AB = SEC[12]
 for i, at in enumerate([AB + 0.4, AB + 1.0, AB + 1.6]):
-    bell(CHORDS[8][1][[0, 2, 3][i]] + 12, at, 0.7, -0.3 + 0.3 * i)
-for m in CHORDS[8][1]:
+    bell(CHORDS[12][1][[0, 2, 3][i]] + 12, at, 0.7, -0.3 + 0.3 * i)
+for m in CHORDS[12][1]:
     bell(m + 12, AB + 78 / 30, 1.0, 0.0)
 # the close: a warm final chord as the name lands
-CL = 1640 / 30
-for m in CHORDS[9][1]:
-    bell(m + 12, CL + 30 / 30, 1.1, 0.0)
-bell(CHORDS[9][1][3] + 24, CL + 2.4, 0.6, 0.3)
+CL = SEC[13]
+for m in CHORDS[13][1]:
+    bell(m + 12, CL + 1.0, 1.1, 0.0)
+bell(CHORDS[13][1][3] + 24, CL + 2.4, 0.6, 0.3)
 
 # ---- transitions: riser into each chapter, impact on it
 def swell(end, length=1.8, g=1.0):
@@ -243,9 +269,9 @@ def bloom(at, g=1.0):
     shimmer = np.sin(2 * np.pi * f * 4 * k) * np.minimum(1, k / 0.08) * np.exp(-k * 3) * 0.12
     add(body + shimmer, at, 0.12 * g)
 
-for c in CUTS[1:-1]:
-    swell(c, 2.2 if c == 45.67 else 1.6, 1.15 if c == 45.67 else 1.0)
-    bloom(c, 1.15 if c == 45.67 else (0.7 if c >= 51.0 else 0.9))
+for i, c in enumerate(CUTS[1:-1], start=1):
+    swell(c, 2.2 if i == 11 else 1.6, 1.15 if i == 11 else 1.0)
+    bloom(c, 1.15 if i == 11 else (0.7 if i >= 12 else 0.9))
 
 # ---- bead clicks on the counting moments
 def bead_click(at, g=1.0, pitch=1600.0, pan=0.0):
@@ -257,10 +283,12 @@ for i in range(3):                                             # the cold open: 
     bead_click((16 + i * 5) / 30, 1.0, 1500 + 160 * i, -0.3 + 0.3 * i)
 for i, at in enumerate([(124 + 12 * k) / 30 for k in range(5)]):   # the portrait changes medium
     bead_click(at, 1.0, 1500 + 120 * i, -0.5 + 0.25 * i)
-for i in range(5):                                             # a language bead slides home
-    bead_click((170 + 44 + 26 * i + 10) / 30, 0.7, 1400 + 100 * i, 0.3)
+for i in range(7):                                             # roots: each station lands
+    bead_click(SEC[2] + (40 + 28 * i + 4) / 30, 0.6, 1400 + 70 * i, -0.6 + 0.2 * i)
+for i in range(12):                                            # shipping: beads of commits fill in
+    bead_click(SEC[9] + (24 + 9 * i) / 30, 0.35, 1600 + 40 * (i % 6), -0.5 + 0.09 * i)
 for i in range(9):                                             # count on: one bead per word
-    bead_click((1360 + i * 12 + 6) / 30, 0.55, 1500 + 60 * i, -0.4 + 0.1 * i)
+    bead_click(SEC[11] + (i * 12 + 6) / 30, 0.55, 1500 + 60 * i, -0.4 + 0.1 * i)
 for i in range(5):                                             # beads drop onto the rods
     bead_click(AB + (24 + 8 + i * 6) / 30, 0.9, 1300 + 90 * i, -0.5 + 0.25 * i)
 for i in range(5):                                             # and slide across to count

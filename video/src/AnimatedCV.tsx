@@ -18,7 +18,7 @@ import land from './land.json';
 import icons from './icons.json';
 
 export const FPS = 30;
-export const TOTAL = 60 * FPS;
+export const TOTAL = 90 * FPS;
 
 const C = {
   ink: '#1c1c1e', red: '#e0301e', deep: '#b4200f', mark: '#ffdcd6', paper: '#fff6f4',
@@ -94,7 +94,7 @@ const Brand: React.FC = () => {
           Vahid Faraji<span style={{ color: C.red }}>.</span>
         </span>
       </div>
-      <span style={{ fontFamily: MONO, fontSize: 20, color: C.muted, letterSpacing: '0.08em' }}>ANIMATED CV · ONE MINUTE</span>
+      <span style={{ fontFamily: MONO, fontSize: 20, color: C.muted, letterSpacing: '0.08em' }}>ANIMATED CV · 90 SECONDS</span>
     </div>
   );
 };
@@ -371,7 +371,7 @@ const Outro: React.FC = () => {
 
 const KICK_ICON: Record<string, string> = {
   HELLO: 'abacus', LANGUAGES: 'globe', 'DATA &amp; CONTEXT': 'bars', 'PROBLEM &amp; SOLUTION': 'check',
-  'CONTEXT DESIGN · TOKALATOR': 'window', 'ANALYTICAL THINKING · PROJECTLENS': 'calc', 'WHAT IT CHANGED': 'bars',
+  'CONTEXT DESIGN · TOKALATOR': 'window', 'ANALYTICAL THINKING · PROJECTLENS': 'calc', 'WHAT IT CHANGED': 'bars', ROOTS: 'cap', 'AI AT WORK': 'agents', 'YAPAY ZEKÂ İZİ · CONCEPT': 'page', 'THE SHIPPING HABIT': 'branch',
 };
 const Kicker: React.FC<{ f: number; text: string; at?: number }> = ({ f, text, at = 0 }) => {
   const icon = KICK_ICON[text] || KICK_ICON[text.replace(/&/g, '&amp;')];
@@ -962,8 +962,8 @@ const AbacusName: React.FC = () => {
 
 // the close: the real photo in a wooden frame, who he is again, the skills around him
 const ORBIT: [string, string, string, number][] = [
-  ['agents', 'Applied AI', '2 yrs in production', -158], ['bars', 'Data products', '264M+ records', -112], ['calc', 'Analysis', '95% on 14K+ titles', -68],
-  ['window', 'Context design', '500+ installs', -22], ['layers', 'Tools', '30 in daily use', 22], ['globe', 'Languages', '2.3B+ people', 158],
+  ['agents', 'Applied AI', '2 yrs in production', -158], ['bars', 'Data products', '300M+ datapoints', -112], ['calc', 'Analysis', '95% on 14K+ titles', -68],
+  ['window', 'Context design', '500+ installs', -22], ['branch', 'Shipping', '1,250+ commits', 22], ['globe', 'Languages', '2.3B+ people', 158],
 ];
 const Closing: React.FC = () => {
   const f = useCurrentFrame();
@@ -1003,6 +1003,191 @@ const Closing: React.FC = () => {
         <div style={{ fontFamily: SANS, fontSize: 36, color: C.sec, marginTop: 6, ...fadeUp(f, 42) }}>AI-native architect · I make <b style={{ color: C.ink }}>data-driven decisions</b> easier · <b style={{ color: C.red }}>12 years</b></div>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 34, marginTop: 22, fontFamily: MONO, fontSize: 24, color: C.deep, ...fadeUp(f, 60) }}>
           <span>vfaraji89.github.io</span><span style={{ color: C.muted }}>·</span><span>linkedin.com/in/vahid-faraji-jobehdar</span>
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// roots: economics and management before AI, as a rod you can count along
+const STATIONS2: [string, string][] = [
+  ['2013', 'Business administration'], ['2015', 'Research, 4 years'], ['2019', 'Co-founder, Defaro.io'], ['2019', 'M.A. Economics'],
+  ['2021', 'Business analyst'], ['2022', 'Product manager, Data'], ['2025', 'Senior applied AI'],
+];
+const ROOT_STATS: [string, string][] = [['12 yrs', '8 industry · 4 research'], ['1', 'startup co-founded'], ['400+', 'people trained']];
+const Roots: React.FC = () => {
+  const f = useCurrentFrame();
+  const L = 170, Rr = 1750, y = 880, step = (Rr - L) / (STATIONS2.length - 1);
+  const run = interpolate(f, [40, 40 + 28 * (STATIONS2.length - 1)], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
+  return (
+    <AbsoluteFill>
+      <div style={{ position: 'absolute', left: 120, top: 190, width: 980 }}>
+        <Kicker f={f} text="ROOTS" />
+        <Big f={f} size={84}>Economist by training.<br /><span style={{ color: C.red }}>Builder</span> by habit<Dot /></Big>
+        <div style={{ fontFamily: SANS, fontSize: 34, color: C.sec, marginTop: 22, ...fadeUp(f, 30) }}>Thesis: <b style={{ color: C.ink }}>real-time labour market analysis</b></div>
+      </div>
+      <div style={{ position: 'absolute', left: 1100, top: 200, display: 'flex', flexDirection: 'column', gap: 20 }}>
+        {ROOT_STATS.map(([n, l], k) => {
+          const pop = spring({ frame: f - 60 - k * 24, fps: FPS, config: { damping: 12, stiffness: 140 } });
+          return (
+            <div key={l} style={{ display: 'flex', alignItems: 'baseline', gap: 20, opacity: pop, transform: `translateX(${(1 - pop) * 40}px)` }}>
+              <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 92, letterSpacing: '-0.045em', color: k === 0 ? C.red : C.ink, minWidth: 250, textAlign: 'right' }}>{n}</span>
+              <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 32, color: C.ink }}>{l}</span>
+            </div>
+          );
+        })}
+      </div>
+      {/* the rod: a bead travels from business school to applied AI */}
+      <div style={{ position: 'absolute', left: L - 40, width: (Rr - L + 80) * interpolate(f, [16, 40], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease }), top: y - 5, height: 10, borderRadius: 999, background: 'linear-gradient(180deg, #e9d8bd, #d2b48d 70%, #b8946a)' }} />
+      {STATIONS2.map(([yr, role], k) => {
+        const x = L + k * step;
+        const on = interpolate(f, [40 + k * 28 - 4, 40 + k * 28 + 8], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+        const up = k % 2 === 0;
+        return (
+          <React.Fragment key={k}>
+            <div style={{ position: 'absolute', left: x - 14, top: y - 14 }}><Bead size={28} color={on > 0.5 ? (k === STATIONS2.length - 1 ? C.red : C.ink) : '#e6e1da'} style={{ boxShadow: 'none' }} /></div>
+            <div style={{ position: 'absolute', left: x - 130, width: 260, top: up ? y - 112 : y + 30, textAlign: 'center', opacity: on, transform: `translateY(${(1 - on) * (up ? 14 : -14)}px)` }}>
+              <div style={{ fontFamily: MONO, fontSize: 20, color: C.deep }}>{yr}</div>
+              <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 25, color: C.ink, lineHeight: 1.15, marginTop: 4 }}>{role}</div>
+            </div>
+          </React.Fragment>
+        );
+      })}
+      <div style={{ position: 'absolute', left: L + (Rr - L) * run - 20, top: y - 20, opacity: run > 0 && run < 1 ? 1 : 0 }}><Bead size={40} color={C.red} /></div>
+    </AbsoluteFill>
+  );
+};
+
+// AI at work: the enterprise platform, its users, what it took off people's desks
+const AiAtWork: React.FC = () => {
+  const f = useCurrentFrame();
+  const n60 = interpolate(f, [70, 120], [0, 60], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const cols = 20, rows = 10, gap = 34;
+  const lit = interpolate(f, [30, 150], [0, cols * rows], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const caps: [string, string][] = [['flow', 'Text-to-SQL'], ['page', 'Report automation'], ['loop', 'AI feedback loops']];
+  return (
+    <AbsoluteFill>
+      <div style={{ position: 'absolute', left: 120, top: 200, width: 860 }}>
+        <Kicker f={f} text="AI AT WORK" />
+        <Big f={f} size={96}>Then AI went<br />to work<Dot /></Big>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 18, marginTop: 34, ...fadeUp(f, 64) }}>
+          <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 110, color: C.red, letterSpacing: '-0.045em' }}>{Math.round(n60)}%</span>
+          <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 34, color: C.ink, lineHeight: 1.2 }}>less workload<br /><span style={{ fontFamily: MONO, fontSize: 21, color: C.sec, fontWeight: 400 }}>enterprise AI platform · group-wide standard</span></span>
+        </div>
+        <div style={{ display: 'flex', gap: 14, marginTop: 30 }}>
+          {caps.map(([ic, t], k) => {
+            const pop = spring({ frame: f - 110 - k * 10, fps: FPS, config: { damping: 12, stiffness: 160 } });
+            return <div key={t} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 18px 10px 12px', borderRadius: 999, border: `1.5px solid ${C.ink}`, background: '#fff', transform: `scale(${pop})`, opacity: pop, whiteSpace: 'nowrap' }}><AbIcon name={ic} size={30} /><span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 24 }}>{t}</span></div>;
+          })}
+        </div>
+      </div>
+      {/* every bead a person using it */}
+      <div style={{ position: 'absolute', left: 1130, top: 270, width: cols * gap, height: rows * gap }}>
+        {Array.from({ length: cols * rows }).map((_, k) => {
+          const on = k < lit, r = Math.floor(k / cols), c = k % cols;
+          return <div key={k} style={{ position: 'absolute', left: c * gap, top: r * gap, transform: `scale(${on ? 1 : 0.55})` }}><Bead size={20} color={on ? ((k * 37) % 23 === 0 ? C.red : C.ink) : '#ebe7e1'} style={{ boxShadow: 'none' }} /></div>;
+        })}
+        <div style={{ position: 'absolute', left: 0, top: rows * gap + 22, display: 'flex', alignItems: 'baseline', gap: 14, ...fadeUp(f, 140) }}>
+          <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 64, letterSpacing: '-0.04em', color: C.ink }}>200+</span>
+          <span style={{ fontFamily: MONO, fontSize: 22, color: C.sec }}>people use it · one bead each</span>
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// Yapay Zekâ İzi: a concept. The ad and its sentences are a mock, not real data.
+const YZ_LINES: [string, string, string][] = [
+  ['Üretken yapay zekâ ile içerik üretimi', 'GENERATIVE AI', C.red],
+  ['Makine öğrenmesi modellerinin geliştirilmesi', 'CLASSIC AI · ML', C.ink],
+  ['ChatGPT ve Copilot deneyimi', 'TOOLS · ChatGPT, Copilot', C.deep],
+];
+const YZ_STEPS: [string, string][] = [['page', 'Read every sentence'], ['branch', 'GenAI vs classic ML'], ['check', 'Normalise tool names'], ['bars', 'By period, tool, sector']];
+const Yzi: React.FC = () => {
+  const f = useCurrentFrame();
+  const n = interpolate(f, [20, 90], [0, 1.6], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const cardIn = spring({ frame: f - 24, fps: FPS, config: { damping: 15, stiffness: 110 } });
+  const scanY = interpolate(f, [56, 140], [0, 3], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  return (
+    <AbsoluteFill>
+      <div style={{ position: 'absolute', left: 120, top: 190, width: 860 }}>
+        <Kicker f={f} text="YAPAY ZEKÂ İZİ · CONCEPT" />
+        <Big f={f} size={80}>When did AI show up<br />in job ads<span style={{ color: C.red }}>?</span></Big>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 18, marginTop: 30, ...fadeUp(f, 18) }}>
+          <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 112, color: C.red, letterSpacing: '-0.045em' }}>{n.toFixed(1)}M</span>
+          <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 34, color: C.ink, lineHeight: 1.2 }}>job ads<br /><span style={{ fontFamily: MONO, fontSize: 22, color: C.sec, fontWeight: 400 }}>2022, the GPT moment → 2026 H1</span></span>
+        </div>
+      </div>
+      {/* a mock ad, read sentence by sentence */}
+      <div style={{ position: 'absolute', left: 1080, top: 200, width: 720, padding: '28px 32px', borderRadius: 22, background: '#fff', border: `1.5px solid ${C.line}`, boxShadow: '0 30px 60px -40px rgba(28,28,30,0.6)', opacity: cardIn, transform: `translateY(${(1 - cardIn) * 40}px)` }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <span style={{ fontFamily: MONO, fontSize: 19, color: C.muted, letterSpacing: '0.08em' }}>JOB AD · SAMPLE</span>
+          <span style={{ fontFamily: MONO, fontSize: 17, color: C.red, border: `1.5px solid ${C.red}`, borderRadius: 6, padding: '3px 8px', letterSpacing: '0.08em' }}>CONFIDENTIAL · CONCEPT</span>
+        </div>
+        {YZ_LINES.map(([t, tag, col], k) => {
+          const hit = interpolate(scanY, [k + 0.2, k + 0.7], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+          return (
+            <div key={t} style={{ marginTop: 22 }}>
+              <div style={{ fontFamily: SANS, fontSize: 30, color: C.ink, display: 'inline', backgroundImage: `linear-gradient(${C.mark}, ${C.mark})`, backgroundSize: `${hit * 100}% 100%`, backgroundRepeat: 'no-repeat', padding: '2px 4px', borderRadius: 4 }}>{t}</div>
+              <div style={{ marginTop: 8, display: 'inline-flex', alignItems: 'center', gap: 8, padding: '5px 12px', borderRadius: 999, border: `1.5px solid ${col}`, fontFamily: MONO, fontSize: 18, color: col, opacity: hit, transform: `scale(${0.8 + 0.2 * hit})`, transformOrigin: 'left center', marginLeft: 0, display: 'flex', width: 'fit-content' } as React.CSSProperties}>
+                <Bead size={12} color={col} style={{ boxShadow: 'none' }} />{tag}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {/* the pipeline */}
+      <div style={{ position: 'absolute', left: 120, right: 120, top: 800, display: 'flex', alignItems: 'center', gap: 18 }}>
+        {YZ_STEPS.map(([ic, t], k) => {
+          const pop = spring({ frame: f - 140 - k * 12, fps: FPS, config: { damping: 12, stiffness: 160 } });
+          return (
+            <React.Fragment key={t}>
+              {k > 0 && <div style={{ flex: 1, height: 3, background: C.ink, opacity: 0.2 + 0.6 * pop, transform: `scaleX(${pop})`, transformOrigin: 'left' }} />}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '14px 22px 14px 14px', borderRadius: 18, background: '#fff', border: `2px solid ${k === 3 ? C.red : C.ink}`, transform: `scale(${pop})`, opacity: pop, whiteSpace: 'nowrap' }}>
+                <AbIcon name={ic} size={34} color={k === 3 ? C.red : C.ink} /><span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 27 }}>{t}</span>
+              </div>
+            </React.Fragment>
+          );
+        })}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// the shipping habit: public commits, counted in beads of ten
+const COMMITS = 1258, RECENT = 1127;
+const Shipping: React.FC = () => {
+  const f = useCurrentFrame();
+  const beads = Math.ceil(COMMITS / 10), cols = 14, gap = 40;
+  const n = interpolate(f, [24, 130], [0, COMMITS], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic) });
+  const lit = Math.ceil(n / 10);
+  const facts: [string, string][] = [['30', 'tools in daily use'], ['3 + 1', 'papers + a patent pending'], ['ACM', 'professional member']];
+  return (
+    <AbsoluteFill>
+      <div style={{ position: 'absolute', left: 120, top: 200, width: 900 }}>
+        <Kicker f={f} text="THE SHIPPING HABIT" />
+        <Big f={f} size={96}>I ship<br />in public<Dot /></Big>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 18, marginTop: 30, ...fadeUp(f, 20) }}>
+          <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 116, color: C.red, letterSpacing: '-0.045em' }}>{Math.round(n).toLocaleString('en-US')}</span>
+          <span style={{ fontFamily: SANS, fontWeight: 600, fontSize: 34, color: C.ink, lineHeight: 1.2 }}>public commits<br /><span style={{ fontFamily: MONO, fontSize: 22, color: C.sec, fontWeight: 400 }}>{RECENT.toLocaleString('en-US')} in the last 12 months</span></span>
+        </div>
+        <div style={{ display: 'flex', gap: 34, marginTop: 34 }}>
+          {facts.map(([big, l], k) => (
+            <div key={l} style={{ ...fadeUp(f, 120 + k * 12) }}>
+              <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 52, letterSpacing: '-0.03em', color: C.ink }}>{big}</div>
+              <div style={{ fontFamily: MONO, fontSize: 20, color: C.sec }}>{l}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div style={{ position: 'absolute', left: 1180, top: 250, width: cols * gap }}>
+        {Array.from({ length: beads }).map((_, k) => {
+          const on = k < lit, r = Math.floor(k / cols), c = k % cols;
+          const recent = k >= beads - Math.ceil(RECENT / 10);
+          return <div key={k} style={{ position: 'absolute', left: c * gap, top: r * gap, transform: `scale(${on ? 1 : 0.5})` }}><Bead size={26} color={on ? (recent ? C.red : C.ink) : '#ebe7e1'} style={{ boxShadow: 'none' }} /></div>;
+        })}
+        <div style={{ position: 'absolute', left: 0, top: Math.ceil(beads / cols) * gap + 16, display: 'flex', gap: 22, fontFamily: MONO, fontSize: 20, color: C.sec, whiteSpace: 'nowrap', ...fadeUp(f, 100) }}>
+          <span>one bead = 10 commits</span><span style={{ color: C.red }}>● last 12 months</span>
         </div>
       </div>
     </AbsoluteFill>
@@ -1269,26 +1454,24 @@ const scene = (Scene: React.FC, keys: Key[], tint = '#ffffff', corner = '100% 0%
 );
 // [duration, scene, transition into the next]
 const CUT: [number, React.FC, (() => TransitionPresentation<any>) | null][] = [
-  // who: start close on the portrait, pull back to reveal the name and the promise
   [190, scene(Origin, [[0, 2.4, 1500, 470], [60, 2.4, 1500, 470], [104, 1, 960, 540], [190, 1.04, 920, 540]]), zoomThrough],
-  // languages: the line and the greetings side by side, a slow push
   [230, scene(Languages, [[0, 1, 960, 540], [230, 1.03, 960, 540]], '#ffffff', '0% 100%'), () => slide({ direction: 'from-right' })],
-  // data: dive into one record, then pull back
-  [210, scene(DataContext, [[0, 1, 960, 540], [100, 1, 960, 540], [140, 2.1, 1420, 400], [185, 2.1, 1420, 400], [210, 1.4, 1250, 450]], '#ffffff', '100% 100%'), zoomThrough],
-  // problem and solution
+  // roots: economics and management, along a rod
+  [250, scene(Roots, [[0, 1.04, 960, 520], [250, 1, 960, 540]], C.paper, '0% 0%'), () => wipe({ direction: 'from-left' })],
+  [200, scene(DataContext, [[0, 1, 960, 540], [90, 1, 960, 540], [130, 2.1, 1420, 400], [175, 2.1, 1420, 400], [200, 1.4, 1250, 450]], '#ffffff', '100% 100%'), zoomThrough],
+  // AI at work: the platform and the people on it
+  [210, scene(AiAtWork, [[0, 1, 960, 540], [210, 1.04, 1000, 540]], '#ffffff', '0% 100%'), () => slide({ direction: 'from-bottom' })],
   [250, scene(ProblemSolution, [[0, 1.03, 960, 520], [120, 1.07, 960, 520], [175, 1, 960, 540], [250, 1.05, 960, 540]], '#ffffff', '0% 0%'), () => wipe({ direction: 'from-left' })],
-  // context design: a slow push; the panel zooms inside itself
   [240, scene(TokalatorStory, [[0, 1, 960, 540], [240, 1.06, 1000, 540]], '#fffaf8', '100% 0%'), () => clockWipe({ width: 1920, height: 1080 })],
-  // analytical: the whole sprawl in view, a slight push, then the table
-  [230, scene(Analytical, [[0, 1, 960, 540], [90, 1.05, 960, 540], [140, 1, 960, 540], [230, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
-  // the real problem: a slow push on the three lines
+  [280, scene(Analytical, [[0, 1, 960, 540], [90, 1.05, 960, 540], [140, 1, 960, 540], [280, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
+  // Yapay Zekâ İzi, as a concept
+  [250, scene(Yzi, [[0, 1, 960, 540], [250, 1.03, 960, 540]], '#fffaf8', '100% 100%'), () => slide({ direction: 'from-right' })],
+  // the shipping habit
+  [200, scene(Shipping, [[0, 1.03, 960, 540], [200, 1, 960, 540]], '#ffffff', '0% 0%'), rod],
   [150, scene(Shift, [[0, 1.04, 960, 540], [150, 1, 960, 540]], C.paper, '0% 0%'), () => wipe({ direction: 'from-bottom' })],
-  // you can count on: a slow push
   [180, scene(CountOn, [[0, 1, 960, 540], [180, 1.06, 960, 540]]), rod],
-  // the abacus
   [140, scene(AbacusName, [[0, 1.12, 960, 540], [140, 1, 960, 540]], C.paper, '100% 0%'), zoomThrough],
-  // the close: back to the person
-  [160, scene(Closing, [[0, 1.12, 960, 470], [160, 1, 960, 540]], '#ffffff', '0% 100%'), null],
+  [190, scene(Closing, [[0, 1.12, 960, 470], [190, 1, 960, 540]], '#ffffff', '0% 100%'), null],
 ];
 const START = CUT.reduce<number[]>((acc, [d], i) => (i === 0 ? [0] : [...acc, acc[i - 1] + CUT[i - 1][0] - T]), []);
 
