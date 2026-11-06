@@ -1,13 +1,22 @@
 % Vahid Faraji -- CV
 % Edit this file and push: the Deploy site workflow rebuilds the PDF and
 % publishes it at https://vfaraji89.github.io/assets/cv/vahid-faraji-cv.pdf
-% Build locally: cd cv && pdflatex vahid-faraji-cv.tex
+% Build locally: cd cv && xelatex vahid-faraji-cv.tex
+% Set in Geist (SIL OFL, files in cv/fonts), the same face as the website.
+% XeLaTeX embeds it with a full Unicode map, so ATS parsers read the text.
 
 \documentclass[10pt,a4paper]{article}
 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[scaled=0.95]{helvet}
+\usepackage{fontspec}
+\setmainfont{Geist}[
+  Path = fonts/, Extension = .ttf,
+  UprightFont = *-Regular, BoldFont = *-SemiBold,
+  ItalicFont = *-Italic, BoldItalicFont = *-BoldItalic,
+  FontFace = {m}{n}{*-Medium}, Scale = 0.94]
+\setsansfont{Geist}[
+  Path = fonts/, Extension = .ttf,
+  UprightFont = *-Regular, BoldFont = *-SemiBold,
+  ItalicFont = *-Italic, BoldItalicFont = *-BoldItalic, Scale = 0.94]
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage[a4paper,margin=1.6cm,top=1.4cm,bottom=1.4cm]{geometry}
 \usepackage{xcolor}
@@ -16,7 +25,7 @@
 \usepackage{tabularx}
 \usepackage{titlesec}
 \usepackage[hidelinks]{hyperref}
-\usepackage{microtype}
+\usepackage[protrusion=true]{microtype}
 \usepackage{needspace}
 
 % ---- brand -----------------------------------------------------------------
@@ -47,7 +56,7 @@
 \pagestyle{empty}
 \linespread{1.06}
 
-\titleformat{\section}{\color{brandDeep}\bfseries\scshape\large}{}{0pt}{}[\vspace{1pt}{\color{rule}\titlerule[0.6pt]}]
+\titleformat{\section}{\color{brandDeep}\bfseries\addfontfeatures{LetterSpace=6}}{}{0pt}{\MakeUppercase}[\vspace{1pt}{\color{rule}\titlerule[0.6pt]}]
 \titlespacing*{\section}{0pt}{9pt}{5pt}
 
 \setlist[itemize]{leftmargin=1.05em,itemsep=1.5pt,topsep=2pt,parsep=0pt,label={\color{brand}\textbullet}}
@@ -83,7 +92,7 @@ observability, reliability and token cost. Published at ACM CAIS~'26; ACM Profes
 
 \vspace{4pt}
 {\small\textbf{Core skills:} AI-Native Architecture\sep Agent Harness Engineering\sep LLM Evals\sep RAG\sep Tool Use / MCP\sep
-Agent Skills\sep TypeScript 7\sep Next.js\sep Vercel AI SDK\sep Claude Agent SDK\sep Microsoft Copilot Studio\sep Python\sep
+Agent Skills\sep TypeScript~7\sep Next.js\sep Vercel AI SDK\sep Claude Agent SDK\sep Microsoft Copilot Studio\sep Python\sep
 PostgreSQL\sep Spec-Driven Design\sep Database Schema Design}
 
 % ---- experience ------------------------------------------------------------
@@ -157,7 +166,7 @@ Advise on rapid-deployment agent frameworks: tool integration, text-to-SQL parse
                       Microsoft Copilot Studio, multi-agent orchestration, tool use, guardrails \\[1pt]
   LLM Engineering   & RAG, context engineering, token budgeting, prompt composition, evals and benchmarking,
                       tracing and failure analysis, Arize and Langfuse observability \\[1pt]
-  Full-Stack        & TypeScript 7, Next.js, Vercel AI SDK \& Vercel, Python (async, FastAPI, Pydantic), SQL,
+  Full-Stack        & TypeScript~7, Next.js, Vercel AI SDK \& Vercel, Python (async, FastAPI, Pydantic), SQL,
                       database schema design, REST APIs \\[1pt]
   Product \& Delivery & spec-driven design, problem discovery with operators, stakeholder alignment,
                       PoC-to-production, internal \& operator-facing tools \\[1pt]

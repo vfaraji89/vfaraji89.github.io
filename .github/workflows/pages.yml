@@ -30,6 +30,8 @@ jobs:
         with:
           root_file: vahid-faraji-cv.tex
           working_directory: cv
+          # Geist is loaded from cv/fonts through fontspec, which needs XeLaTeX
+          latexmk_use_xelatex: true
       - name: Publish CV PDF into the site
         run: |
           cp cv/vahid-faraji-cv.pdf site/assets/cv/vahid-faraji-cv.pdf
