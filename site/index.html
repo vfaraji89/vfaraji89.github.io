@@ -1861,7 +1861,7 @@
         /* the storyboard: moving across the card scrubs the film, portrait first */
         .reel-story {
             position: absolute; inset: 0; opacity: 0; pointer-events: none;
-            background: url(assets/video/vahid-cv-story.jpg?v=33) 0 0 / 900% 100% no-repeat;
+            background: url(assets/video/vahid-cv-story.jpg?v=34) 0 0 / 900% 100% no-repeat;
             transition: opacity 0.25s var(--ease-out);
         }
         .reel.is-scrub .reel-story { opacity: 1; }
@@ -3151,7 +3151,7 @@
                 <div class="reel-col">
                 <button type="button" class="reel reel-mini" id="reel-open" aria-haspopup="dialog" aria-label="Watch my animated CV, 90 seconds">
                     <span class="reel-thumb">
-                    <img src="assets/video/vahid-cv-poster.jpg?v=33" alt="" width="1280" height="720" loading="lazy">
+                    <img src="assets/video/vahid-cv-poster.jpg?v=34" alt="" width="1280" height="720" loading="lazy">
                     <span class="reel-story" aria-hidden="true"></span>
                     <span class="reel-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
                     <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></span>
@@ -3894,8 +3894,8 @@
             </div>
         </div>
         <div class="reel-stage" id="rp-stage">
-            <video id="reel-video" controls playsinline preload="none" poster="assets/video/vahid-cv-poster.jpg?v=33">
-                <source src="assets/video/vahid-cv-60s.mp4?v=33" type="video/mp4">
+            <video id="reel-video" controls playsinline preload="none" poster="assets/video/vahid-cv-poster.jpg?v=34">
+                <source src="assets/video/vahid-cv-60s.mp4?v=34" type="video/mp4">
             </video>
             <button type="button" class="rp-sound" id="rp-sound" hidden><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 6h2.2L8 3.3v9.4L4.7 10H2.5z"/><path d="M10.6 6a2.8 2.8 0 010 4"/><path d="M12.4 4.3a5.3 5.3 0 010 7.4"/></svg>Sound on</button>
             <button type="button" class="rp-big" id="rp-big" aria-label="Play"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></button>
@@ -4632,7 +4632,7 @@
         }
         // touch screens: no storyboard, just the cover and a big play button
 
-        if (typeof dlg.showModal !== 'function') { btn.addEventListener('click', function () { location.href = 'assets/video/vahid-cv-60s.mp4?v=33'; }); return; }
+        if (typeof dlg.showModal !== 'function') { btn.addEventListener('click', function () { location.href = 'assets/video/vahid-cv-60s.mp4?v=34'; }); return; }
 
         // 2. the player
         var deck = dlg.querySelector('.rp-deck'), big = document.getElementById('rp-big');
