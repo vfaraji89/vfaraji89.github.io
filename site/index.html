@@ -1938,28 +1938,62 @@
             flex: 1; height: 1px;
             background: linear-gradient(90deg, var(--border-strong), var(--accent));
         }
-        .story-track { display: grid; gap: 0; margin-bottom: 1.75rem; }
-        .story-step {
-            display: grid; grid-template-columns: 60px 1fr; gap: 1rem;
-            padding-bottom: 1.125rem; position: relative;
+        /* The through-line is an abacus stood on end: one ink rod, a bead per
+           stage (light red, deep red, and a bright red bead for now), and a
+           small rail beside each year range whose beads count the years in it.
+           Hovering a stage counts them out in red. The rod draws itself in as
+           the section arrives. */
+        .story-track { display: grid; gap: 0; margin-bottom: 1.75rem; position: relative; }
+        .story-track::before {
+            content: ""; position: absolute; left: 7px; top: 0.6rem; bottom: 0.9rem; width: 2px;
+            border-radius: 2px; background: var(--ink); opacity: 0.85;
+            transform-origin: top; transform: scaleY(0); transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .story-step::before {
-            content: ""; position: absolute; left: 5px; top: 1.25rem; bottom: -0.25rem;
-            width: 1px; background: var(--border);
+        .story-track.is-popped::before { transform: scaleY(1); }
+        .story-step {
+            display: grid; grid-template-columns: 92px 1fr; gap: 1rem;
+            padding-bottom: 1.375rem; position: relative;
         }
         .story-step:last-child { padding-bottom: 0; }
-        .story-step:last-child::before { display: none; }
         .story-step::after {
-            content: ""; position: absolute; left: 0; top: 0.3rem;
-            width: 11px; height: 11px; border-radius: 50%;
-            background: var(--bg); border: 2px solid var(--border-strong);
-            transition: border-color var(--dur-slow) var(--ease-out), background var(--dur-slow) var(--ease-out);
+            content: ""; position: absolute; left: 0; top: 0.15rem;
+            width: 16px; height: 16px; border-radius: 50%; box-sizing: border-box;
+            background: var(--mark); border: 2px solid var(--ink);
+            box-shadow: inset -2px -2px 0 rgba(0,0,0,0.12), inset 2px 2px 0 rgba(255,255,255,0.55);
+            transition: transform 0.6s var(--ease-spring), background var(--dur-slow) var(--ease-out);
         }
-        .story-step:last-child::after { border-color: var(--accent); background: var(--accent); }
-        .story-step:hover::after { border-color: var(--accent); }
+        .story-step:nth-child(even)::after { background: var(--rust-deep); }
+        .story-step:last-child::after { background: var(--rust); animation: now-ring 2.4s var(--ease-move) 1.2s infinite; }
+        @keyframes now-ring {
+            0%   { box-shadow: inset -2px -2px 0 rgba(0,0,0,0.12), inset 2px 2px 0 rgba(255,255,255,0.55), 0 0 0 0 rgba(224,48,30,0.45); }
+            70%  { box-shadow: inset -2px -2px 0 rgba(0,0,0,0.12), inset 2px 2px 0 rgba(255,255,255,0.55), 0 0 0 9px rgba(224,48,30,0); }
+            100% { box-shadow: inset -2px -2px 0 rgba(0,0,0,0.12), inset 2px 2px 0 rgba(255,255,255,0.55), 0 0 0 0 rgba(224,48,30,0); }
+        }
+        .story-step:hover::after { transform: scale(1.22); background: var(--rust); }
         .story-year {
-            font-size: 0.625rem; color: var(--text-muted); padding-top: 0.15rem; padding-left: 1.375rem;
-            font-variation-settings: "MONO" 1, "CASL" 0; font-weight: 500;
+            display: flex; flex-direction: column; gap: 0.4rem;
+            font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500;
+            color: var(--text-secondary); padding-top: 0.1rem; padding-left: 1.625rem; white-space: nowrap;
+        }
+        .story-count { display: inline-flex; gap: 3px; align-items: center; }
+        .story-count::before {
+            content: ""; width: 4px; height: 1px; background: var(--ctl-line-hover); margin-right: 1px;
+        }
+        .story-count i {
+            width: 7px; height: 7px; border-radius: 50%; box-sizing: border-box;
+            border: 1px solid rgba(28,28,30,0.45); background: transparent;
+            transition: background var(--dur-base) var(--ease-move), border-color var(--dur-base) var(--ease-move), transform 0.5s var(--ease-spring);
+        }
+        .story-count i:nth-child(2) { transition-delay: 70ms; }
+        .story-count i:nth-child(3) { transition-delay: 140ms; }
+        .story-count i:nth-child(4) { transition-delay: 210ms; }
+        .story-step:hover .story-count i { background: var(--rust); border-color: var(--rust); transform: translateX(2px); }
+        .story-step:last-child .story-count i { background: var(--rust); border-color: var(--rust); }
+        .story-body h3 { transition: color var(--ctl-ease); }
+        .story-step:hover .story-body h3 { color: var(--rust-deep); }
+        @media (prefers-reduced-motion: reduce) {
+            .story-track::before { transform: none; transition: none; }
+            .story-step:last-child::after { animation: none; }
         }
         .story-body h3 {
             font-size: 0.875rem; font-weight: 600; margin-bottom: 0.2rem;
@@ -2164,8 +2198,8 @@
             .gallery-card { grid-template-columns: 1fr; padding: 1.5rem; }
             .gallery-screenshot { max-width: 100%; }
             .story-facets { grid-template-columns: repeat(2, 1fr); gap: 1.25rem 1rem; }
-            .story-step { grid-template-columns: 48px 1fr; gap: 0.75rem; }
-            .story-year { padding-left: 1.25rem; font-size: 0.625rem; }
+            .story-step { grid-template-columns: 80px 1fr; gap: 0.75rem; }
+            .story-year { padding-left: 1.5rem; font-size: 0.625rem; }
             .story-quote { font-size: 0.875rem; padding: 1rem 1.125rem; }
             .contact-box { padding: 1.5rem; }
             .faq-q { font-size: 0.8125rem; padding: 0.875rem 2.5rem 0.875rem 1rem; }
@@ -2636,44 +2670,44 @@
                 <span>2013</span><span class="story-rule"></span><span>2026</span>
             </div>
 
-            <div class="story-track">
+            <div class="story-track pop-group">
                 <div class="story-step">
-                    <span class="story-year">2013&ndash;15</span>
+                    <span class="story-year">2013&ndash;15<span class="story-count" aria-hidden="true"><i></i><i></i></span></span>
                     <div class="story-body">
                         <h3>Master&rsquo;s, Business Administration</h3>
                         <p>How organisations actually run, and where their decisions get stuck.</p>
                     </div>
                 </div>
                 <div class="story-step">
-                    <span class="story-year">2015&ndash;18</span>
+                    <span class="story-year">2015&ndash;18<span class="story-count" aria-hidden="true"><i></i><i></i><i></i></span></span>
                     <div class="story-body">
                         <h3>Research</h3>
                         <p>Measurement and evidence. What separates a defensible number from a convenient one.</p>
                     </div>
                 </div>
                 <div class="story-step">
-                    <span class="story-year">2019&ndash;21</span>
+                    <span class="story-year">2019&ndash;21<span class="story-count" aria-hidden="true"><i></i><i></i></span></span>
                     <div class="story-body">
                         <h3>Defaro.io, co-founder</h3>
                         <p>Built a data product end to end, from raw signal to something customers paid for. Incubated at &Ouml;zye&#287;in University.</p>
                     </div>
                 </div>
                 <div class="story-step">
-                    <span class="story-year">2019&ndash;23</span>
+                    <span class="story-year">2019&ndash;23<span class="story-count" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
                     <div class="story-body">
                         <h3>M.A. Economics, Ibn Haldun</h3>
                         <p>Thesis on real-time market analysis. Teaching assistant in econometrics.</p>
                     </div>
                 </div>
                 <div class="story-step">
-                    <span class="story-year">2022&ndash;25</span>
+                    <span class="story-year">2022&ndash;25<span class="story-count" aria-hidden="true"><i></i><i></i><i></i></span></span>
                     <div class="story-body">
                         <h3>Kariyer.net, data products</h3>
                         <p>300M+ assets under one metadata architecture. Governance, lineage, real-time pipelines.</p>
                     </div>
                 </div>
                 <div class="story-step">
-                    <span class="story-year">2025&ndash;</span>
+                    <span class="story-year">2025&ndash;<span class="story-count" aria-hidden="true"><i></i></span></span>
                     <div class="story-body">
                         <h3>Applied AI</h3>
                         <p>Multi-agent systems that turn free text into structured decisions. Peer-reviewed at ACM CAIS&nbsp;'26.</p>
