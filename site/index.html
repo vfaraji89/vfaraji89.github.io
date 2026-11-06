@@ -841,8 +841,33 @@
             font-variation-settings: "MONO" 0.8, "CASL" 0; font-weight: 500;
             color: var(--accent); margin-bottom: 0.75rem;
         }
-        .hero-icon-row { display: flex; align-items: flex-start; gap: 1.25rem; margin-bottom: 1.25rem; }
-        .hero-icon { width: 80px; height: 80px; }
+        .hero-icon-row { display: flex; align-items: center; gap: 1.75rem; margin-bottom: 1.25rem; }
+        /* The hero mark is a pencil drawing of an abacus, hung the way a print
+           is: a hairline frame, a paper mat, and a museum-style caption. The
+           mat keeps the paper tone in dark mode too, since it is the artwork. */
+        .hero-art { flex: none; width: 136px; margin: 0; }
+        .hero-art-frame {
+            padding: 7px; background: #f7f3ea;
+            border: 1px solid var(--border-strong); border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 8px 20px -10px rgba(0,0,0,0.25);
+            transition: transform var(--dur-base) var(--ease-spring), box-shadow var(--transition);
+        }
+        .hero-art-frame img {
+            display: block; width: 100%; height: auto; aspect-ratio: 560 / 572;
+            outline: 1px solid rgba(0,0,0,0.08); outline-offset: -1px;
+        }
+        .hero-art:hover .hero-art-frame {
+            transform: translateY(-2px) rotate(-0.6deg);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.06), 0 14px 26px -12px rgba(0,0,0,0.3);
+        }
+        [data-theme="dark"] .hero-art-frame { border-color: #4a4a4a; box-shadow: 0 10px 24px -12px rgba(0,0,0,0.8); }
+        .hero-art figcaption {
+            margin-top: 0.5rem; font-size: 0.5625rem; line-height: 1.4; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--text-muted);
+            font-variation-settings: "MONO" 1, "CASL" 0;
+        }
+        .hero-art figcaption em { font-style: normal; color: var(--accent); }
+        @media (prefers-reduced-motion: reduce) { .hero-art:hover .hero-art-frame { transform: none; } }
         .hero-name { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.035em; line-height: 1.1; }
 
 
@@ -1014,110 +1039,6 @@
         .hero-links a { display: flex; align-items: center; justify-content: center; transition: opacity var(--transition), transform var(--transition); }
         .hero-links a:hover { opacity: 0.75; transform: scale(1.12); text-decoration: none; }
         .hero-links svg { width: 18px; height: 18px; }
-
-        /* Abacus → Calculator → Code → Paper: counting, computing, building,
-           publishing. One 24s loop. Each phase holds ~4.8s (the abacus, the site
-           mark, keeps a little more) and the motion inside a phase is timed to
-           its own window, so the idea finishes playing before the handoff and
-           then holds -- a phase never rewinds itself where it can be seen. Each
-           phase resets during the long stretch where its group sits at zero
-           opacity instead. */
-        .hero-icon { flex-shrink: 0; margin-top: 0.125rem; }
-        .hero-icon g { transform-box: view-box; transform-origin: 24px 24px; }
-
-        .icon-abacus { animation: ic-1 24s ease-in-out infinite; }
-        .icon-calc   { animation: ic-2 24s ease-in-out infinite; }
-        .icon-code   { animation: ic-3 24s ease-in-out infinite; }
-        .icon-paper  { animation: ic-4 24s ease-in-out infinite; }
-
-        /* phase visibility: settle in, hold, lift out */
-        @keyframes ic-1 { 0%,21%{opacity:1;transform:scale(1)}   24%,96%{opacity:0;transform:scale(0.9)}  100%{opacity:1;transform:scale(1)} }
-        /* every handoff is a 3% lift-out against a 4% settle-in, overlapping by 2% */
-        @keyframes ic-2 { 0%,22%{opacity:0;transform:scale(0.9)} 26%,46%{opacity:1;transform:scale(1)}    49%,100%{opacity:0;transform:scale(0.9)} }
-        @keyframes ic-3 { 0%,47%{opacity:0;transform:scale(0.9)} 51%,71%{opacity:1;transform:scale(1)}    74%,100%{opacity:0;transform:scale(0.9)} }
-        @keyframes ic-4 { 0%,72%{opacity:0;transform:scale(0.9)} 76%,95%{opacity:1;transform:scale(1)}    98%,100%{opacity:0;transform:scale(0.9)} }
-
-        /* 1: beads slide along their rails, each settling against the one before.
-           Beads on a rail can never cross or pass through one another, so the
-           lead bead of a pair moves first and every rest leaves a 1px gap at
-           the bead edges -- wide enough that the spring's 5% overshoot still
-           reads as two beads touching rather than one blob. Top rail counts
-           right, the other two count left, the way separate rods on an abacus
-           carry separate digits. The count then holds all the way through the
-           fade-out and glides home at 60-70%, deep inside the window where the
-           whole group sits at zero opacity, so the figure is never seen
-           un-counting itself. */
-        .bead { transform-box: view-box; transform-origin: 24px 24px; }
-        .b1 { animation: bead-1 24s var(--ease-spring) infinite; }
-        .b2 { animation: bead-2 24s var(--ease-spring) infinite; }
-        .b3 { animation: bead-3 24s var(--ease-spring) infinite; }
-        .b4 { animation: bead-4 24s var(--ease-spring) infinite; }
-        .b5 { animation: bead-5 24s var(--ease-spring) infinite; }
-        .b6 { animation: bead-6 24s var(--ease-spring) infinite; }
-        /* the hold keyframe carries --ease-move so the trip home cannot overshoot past the rail end */
-        @keyframes bead-1 { 0%,5.5%{transform:translateX(0)} 11.5%,60%{transform:translateX(11.8px);animation-timing-function:var(--ease-move)} 70%,100%{transform:translateX(0)} }
-        @keyframes bead-2 { 0%,2%{transform:translateX(0)}   8%,60%{transform:translateX(10.8px);animation-timing-function:var(--ease-move)}  70%,100%{transform:translateX(0)} }
-        @keyframes bead-3 { 0%,3%{transform:translateX(0)}   9%,60%{transform:translateX(-2.2px);animation-timing-function:var(--ease-move)}  70%,100%{transform:translateX(0)} }
-        @keyframes bead-4 { 0%,7%{transform:translateX(0)}   13%,60%{transform:translateX(-4.2px);animation-timing-function:var(--ease-move)} 70%,100%{transform:translateX(0)} }
-        @keyframes bead-5 { 0%,10%{transform:translateX(0)}  16%,60%{transform:translateX(-4.2px);animation-timing-function:var(--ease-move)} 70%,100%{transform:translateX(0)} }
-        @keyframes bead-6 { 0%,12%{transform:translateX(0)}  18%,60%{transform:translateX(-15px);animation-timing-function:var(--ease-move)}  70%,100%{transform:translateX(0)} }
-
-        /* 2: the display resolves through three values as keys register */
-        .n1 { animation: calc-n1 24s steps(1,end) infinite; }
-        .n2 { animation: calc-n2 24s steps(1,end) infinite; }
-        .n3 { animation: calc-n3 24s steps(1,end) infinite; }
-        @keyframes calc-n1 { 0%,25%{opacity:1} 31%,100%{opacity:0} }
-        @keyframes calc-n2 { 0%,30%{opacity:0} 31%,36%{opacity:1} 37%,100%{opacity:0} }
-        /* the total holds past the panel's own fade so it is never racing it to zero */
-        @keyframes calc-n3 { 0%,36%{opacity:0} 37%,52%{opacity:1} 53%,100%{opacity:0} }
-        .key { opacity: 0.28; }
-        .k1 { animation: key-1 24s ease-out infinite; }
-        .k2 { animation: key-2 24s ease-out infinite; }
-        .k3 { animation: key-3 24s ease-out infinite; }
-        .k4 { animation: key-4 24s ease-out infinite; }
-        .k5 { animation: key-5 24s ease-out infinite; }
-        .k6 { animation: key-6 24s ease-out infinite; }
-        /* Three presses resolve the first figure, three more resolve the total, and
-           k6 releases on the exact frame 47,328 lands. Nothing is pressed after
-           the display has stopped changing. */
-        @keyframes key-1 { 0%,26.9%{opacity:0.28} 27.5%{opacity:1} 28.5%,100%{opacity:0.28} }
-        @keyframes key-2 { 0%,28.6%{opacity:0.28} 29.2%{opacity:1} 30.2%,100%{opacity:0.28} }
-        @keyframes key-3 { 0%,30.3%{opacity:0.28} 30.9%{opacity:1} 31.9%,100%{opacity:0.28} }
-        @keyframes key-4 { 0%,32.0%{opacity:0.28} 32.6%{opacity:1} 33.6%,100%{opacity:0.28} }
-        @keyframes key-5 { 0%,33.7%{opacity:0.28} 34.3%{opacity:1} 35.3%,100%{opacity:0.28} }
-        @keyframes key-6 { 0%,35.4%{opacity:0.28} 36.0%{opacity:1} 37.0%,100%{opacity:0.28} }
-
-        /* 3: code types itself in; the caret blinks on its own beat */
-        .cline { stroke-dasharray: 20; }
-        .c1 { animation: type-1 24s steps(14,end) infinite; }
-        .c2 { animation: type-2 24s steps(10,end) infinite; }
-        @keyframes type-1 { 0%,52%{stroke-dashoffset:20} 60%,74%{stroke-dashoffset:0} 80%,100%{stroke-dashoffset:20} }
-        @keyframes type-2 { 0%,60%{stroke-dashoffset:20} 67%,74%{stroke-dashoffset:0} 80%,100%{stroke-dashoffset:20} }
-        .caret { animation: caret-blink 1.2s steps(1,end) infinite; }
-        @keyframes caret-blink { 0%,49%{opacity:0.9} 50%,100%{opacity:0.1} }
-
-        /* 4: lines are written left to right, then the stamp lands */
-        .pline { stroke-dasharray: 14; }
-        .p1 { animation: write-1 24s ease-out infinite; }
-        .p2 { animation: write-2 24s ease-out infinite; }
-        .p3 { animation: write-3 24s ease-out infinite; }
-        .p4 { animation: write-4 24s ease-out infinite; }
-        /* The loop seam falls inside this phase, so the written page has to carry
-           across it: the lines hold at full length from 81% right through 100%
-           and 0%, and only rewind over 10-20%, by which point the group has
-           been at zero opacity for a while. Published work does not unpublish
-           itself on screen. */
-        @keyframes write-1 { 0%,10%{stroke-dashoffset:0;animation-timing-function:var(--ease-move)} 20%,77%{stroke-dashoffset:14} 81%,100%{stroke-dashoffset:0} }
-        @keyframes write-2 { 0%,10%{stroke-dashoffset:0;animation-timing-function:var(--ease-move)} 20%,79%{stroke-dashoffset:14} 83%,100%{stroke-dashoffset:0} }
-        @keyframes write-3 { 0%,10%{stroke-dashoffset:0;animation-timing-function:var(--ease-move)} 20%,81%{stroke-dashoffset:14} 85%,100%{stroke-dashoffset:0} }
-        @keyframes write-4 { 0%,10%{stroke-dashoffset:0;animation-timing-function:var(--ease-move)} 20%,83%{stroke-dashoffset:14} 87%,100%{stroke-dashoffset:0} }
-        .acm-stamp { transform-box: view-box; transform-origin: 22px 12px; }
-        .acm-stamp { animation: stamp 24s var(--ease-spring) infinite; }
-        @keyframes stamp {
-            0%,10%   { opacity: 1; transform: scale(1) rotate(0deg); animation-timing-function: var(--ease-move); }
-            18%,88%  { opacity: 0; transform: scale(0.5) rotate(-12deg); }
-            91%,100% { opacity: 1; transform: scale(1) rotate(0deg); }
-        }
 
         /* Hover: Edge Glow */
         .hover-card {
@@ -1915,19 +1836,13 @@
             .reveal, .case-card, .pub-card, .timeline-item, .gallery-card, .case-row {
                 opacity: 1 !important; transform: none !important;
             }
-            .hero-icon g { opacity: 0 !important; transform: none !important; }
-            .hero-icon .icon-abacus { opacity: 1 !important; }
-            .hero-icon .bead { transform: none !important; }
-            .hero-icon .cline, .hero-icon .pline { stroke-dashoffset: 0 !important; }
-            .hero-icon .key { opacity: 0.28 !important; }
-            .hero-icon .caret, .hero-icon .acm-stamp { opacity: 1 !important; }
         }
 
         /* Tablet: 641px – 1024px */
         @media (max-width: 1024px) and (min-width: 641px) {
             .container { max-width: 680px; }
             .hero-name { font-size: 2rem; }
-            .hero-icon { width: 64px; height: 64px; }
+            .hero-art { width: 112px; }
             .metrics-grid { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
             .gallery-card { grid-template-columns: 280px 1fr; gap: 1.5rem; }
             .about-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1944,8 +1859,12 @@
             .hero-photo-stack { width: 64px; height: 64px; margin: 0 auto; }
             .hero-links { gap: 0.375rem; margin-top: 0.5rem; }
             .hero-links svg { width: 15px; height: 15px; }
-            .hero-icon-row { gap: 0.75rem; }
-            .hero-icon { width: 48px; height: 48px; }
+            .hero-icon-row { gap: 1rem; }
+            .hero-art { width: 84px; }
+            .hero-art-frame { padding: 4px; }
+            .hero-art figcaption { display: none; }
+            .hero-label-extra { display: none; }
+            .hero-br { display: none; }
             .bio-tags {
                 gap: 0.3rem; flex-wrap: nowrap; overflow-x: auto;
                 -webkit-overflow-scrolling: touch; scrollbar-width: none;
@@ -2067,67 +1986,21 @@
             </div>
 
             <div class="hero-icon-row">
-                <svg class="hero-icon" viewBox="0 0 48 48" aria-hidden="true">
-                    <rect x="4" y="4" width="40" height="40" rx="8" fill="none" stroke="var(--border-strong)" stroke-width="1.5"/>
-
-                    <!-- 1. Counting: beads slide along the rails -->
-                    <g class="icon-abacus">
-                        <line x1="10" y1="16" x2="38" y2="16" stroke="var(--border)" stroke-width="1.5"/>
-                        <line x1="10" y1="26" x2="38" y2="26" stroke="var(--border)" stroke-width="1.5"/>
-                        <line x1="10" y1="36" x2="38" y2="36" stroke="var(--border)" stroke-width="1.5"/>
-                        <circle class="bead b1" cx="14" cy="16" r="3.5" fill="var(--accent)"/>
-                        <circle class="bead b2" cx="23" cy="16" r="3.5" fill="var(--accent)" opacity="0.7"/>
-                        <circle class="bead b3" cx="16" cy="26" r="3.5" fill="var(--accent)" opacity="0.8"/>
-                        <circle class="bead b4" cx="26" cy="26" r="3.5" fill="var(--accent)"/>
-                        <circle class="bead b5" cx="34" cy="26" r="3.5" fill="var(--accent)" opacity="0.5"/>
-                        <circle class="bead b6" cx="30" cy="36" r="3.5" fill="var(--accent)" opacity="0.6"/>
-                    </g>
-
-                    <!-- 2. Computing: the display resolves, keys register -->
-                    <g class="icon-calc">
-                        <rect x="10" y="10" width="28" height="10" rx="3" fill="var(--bg-muted)" stroke="var(--border)" stroke-width="1"/>
-                        <text class="calc-n n1" x="35" y="18" font-size="7" fill="var(--accent)" text-anchor="end" font-family="monospace" font-weight="700">1,204</text>
-                        <text class="calc-n n2" x="35" y="18" font-size="7" fill="var(--accent)" text-anchor="end" font-family="monospace" font-weight="700">9,867</text>
-                        <text class="calc-n n3" x="35" y="18" font-size="7" fill="var(--accent)" text-anchor="end" font-family="monospace" font-weight="700">47,328</text>
-                        <rect class="key k1" x="10" y="24" width="7.5" height="6" rx="2" fill="var(--accent)"/>
-                        <rect class="key k2" x="20.25" y="24" width="7.5" height="6" rx="2" fill="var(--accent)"/>
-                        <rect class="key k3" x="30.5" y="24" width="7.5" height="6" rx="2" fill="var(--accent)"/>
-                        <rect class="key k4" x="10" y="34" width="7.5" height="6" rx="2" fill="var(--accent)"/>
-                        <rect class="key k5" x="20.25" y="34" width="7.5" height="6" rx="2" fill="var(--accent)"/>
-                        <rect class="key k6" x="30.5" y="34" width="7.5" height="6" rx="2" fill="var(--accent)"/>
-                    </g>
-
-                    <!-- 3. Building: code types itself in, cursor blinks -->
-                    <g class="icon-code">
-                        <rect x="10" y="10" width="28" height="28" rx="4" fill="var(--bg-muted)" stroke="var(--border)" stroke-width="1"/>
-                        <circle cx="15" cy="15" r="1.3" fill="var(--accent)" opacity="0.6"/>
-                        <circle cx="19" cy="15" r="1.3" fill="var(--accent)" opacity="0.4"/>
-                        <circle cx="23" cy="15" r="1.3" fill="var(--accent)" opacity="0.3"/>
-                        <text x="14" y="27" font-size="9" fill="var(--accent)" font-family="monospace" font-weight="700">&gt;_</text>
-                        <line class="cline c1" x1="14" y1="31" x2="32" y2="31" stroke="var(--accent)" stroke-width="0.9" opacity="0.45"/>
-                        <line class="cline c2" x1="14" y1="35" x2="25" y2="35" stroke="var(--accent)" stroke-width="0.9" opacity="0.3"/>
-                        <rect class="caret" x="26" y="23" width="1.5" height="7" rx="0.5" fill="var(--accent)"/>
-                    </g>
-
-                    <!-- 4. Publishing: lines are written, then the stamp lands -->
-                    <g class="icon-paper">
-                        <rect x="12" y="8" width="20" height="28" rx="2" fill="var(--bg-muted)" stroke="var(--accent)" stroke-width="1" opacity="0.6"/>
-                        <line class="pline p1" x1="16" y1="18" x2="28" y2="18" stroke="var(--accent)" stroke-width="0.9" opacity="0.55"/>
-                        <line class="pline p2" x1="16" y1="22" x2="26" y2="22" stroke="var(--accent)" stroke-width="0.9" opacity="0.45"/>
-                        <line class="pline p3" x1="16" y1="26" x2="27" y2="26" stroke="var(--accent)" stroke-width="0.9" opacity="0.35"/>
-                        <line class="pline p4" x1="16" y1="30" x2="23" y2="30" stroke="var(--accent)" stroke-width="0.9" opacity="0.35"/>
-                        <text class="acm-stamp" x="22" y="14" text-anchor="middle" font-size="5" font-weight="700" fill="var(--accent)" font-family="monospace">ACM</text>
-                    </g>
-                </svg>
+                <figure class="hero-art">
+                    <div class="hero-art-frame">
+                        <img src="assets/img/abacus-drawing.jpg" width="560" height="572" alt="Pencil drawing of a wooden abacus with beads counted along its rods" loading="eager" decoding="async">
+                    </div>
+                    <figcaption><em>Fig. 1</em> Abacus, graphite on paper</figcaption>
+                </figure>
                 <div>
-                    <div class="hero-label">Researcher-Builder</div>
-                    <h1 class="hero-name">Applied AI<br>from research to production</h1>
+                    <div class="hero-label">Applied AI Engineer<span class="hero-label-extra"> &middot; Researcher-Builder</span></div>
+                    <h1 class="hero-name">Agents you can<br class="hero-br"> count&nbsp;on</h1>
                 </div>
             </div>
 
             <hr class="hero-rule">
 
-            <p class="hero-tagline">I build the agent harnesses, evals and production systems that let LLM agents finish real work.</p>
+            <p class="hero-tagline">I build the harness around the model: the execution loop, tools, context and memory, plus the evals that prove it works. Spec to production, in TypeScript and Python.</p>
             <div class="hire-cta" id="hire-cta">
                 <span class="hire-phase" aria-hidden="true">
                     <span class="hire-ph hire-ph-1"></span>
