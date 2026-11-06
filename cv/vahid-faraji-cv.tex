@@ -2,21 +2,24 @@
 % Edit this file and push: the Deploy site workflow rebuilds the PDF and
 % publishes it at https://vfaraji89.github.io/assets/cv/vahid-faraji-cv.pdf
 % Build locally: cd cv && xelatex vahid-faraji-cv.tex
-% Set in Geist (SIL OFL, files in cv/fonts), the same face as the website.
+% Set in Vahid Sora (Sora with bead-round dots; SIL OFL, files in cv/fonts),
+% the same face as the website.
 % XeLaTeX embeds it with a full Unicode map, so ATS parsers read the text.
 
 \documentclass[10pt,a4paper]{article}
 
 \usepackage{fontspec}
-\setmainfont{Geist}[
+\setmainfont{VahidSora}[
   Path = fonts/, Extension = .ttf,
   UprightFont = *-Regular, BoldFont = *-SemiBold,
-  ItalicFont = *-Italic, BoldItalicFont = *-BoldItalic,
-  FontFace = {m}{n}{*-Medium}, Scale = 0.94]
-\setsansfont{Geist}[
+  ItalicFont = *-Regular, ItalicFeatures = {FakeSlant = 0.16},
+  BoldItalicFont = *-SemiBold, BoldItalicFeatures = {FakeSlant = 0.16},
+  FontFace = {m}{n}{*-Medium}, Scale = 0.9]
+\setsansfont{VahidSora}[
   Path = fonts/, Extension = .ttf,
   UprightFont = *-Regular, BoldFont = *-SemiBold,
-  ItalicFont = *-Italic, BoldItalicFont = *-BoldItalic, Scale = 0.94]
+  ItalicFont = *-Regular, ItalicFeatures = {FakeSlant = 0.16},
+  BoldItalicFont = *-SemiBold, BoldItalicFeatures = {FakeSlant = 0.16}, Scale = 0.9]
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage[a4paper,margin=1.6cm,top=1.4cm,bottom=1.4cm]{geometry}
 \usepackage{xcolor}
@@ -66,7 +69,7 @@
 \newcommand{\project}[2]{% name, right note
   \par\needspace{4\baselineskip}\vspace{4pt}\textbf{#1}\hfill{\color{muted}#2}\par}
 \newcommand{\keywords}[1]{\par{\small\color{muted}\textit{Keywords:} #1}\par}
-\newcommand{\sep}{\enspace{\color{rule}|}\enspace}
+\newcommand{\sep}{\unskip\hskip 0.45em plus 0.15em{\color{rule}|}\hskip 0.45em plus 0.15em\relax}
 
 \begin{document}
 
@@ -177,13 +180,13 @@ Advise on rapid-deployment agent frameworks: tool integration, text-to-SQL parse
 % ---- publications ----------------------------------------------------------
 \section{Publications}
 \textbf{Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping}\\
-V.~Farajijobehdar, \.I.~K\"ose\u{g}lu Sar\i, N.~K.~\"Ure, E.~Zeydan. Proc.\ ACM Conference on AI and Agentic Systems
+V.~Farajijobehdar, \.I.~Köseoğlu Sar\i, N.~K.~\"Ure, E.~Zeydan. Proc.\ ACM Conference on AI and Agentic Systems
 (CAIS~'26), Demo Track, San Jose, 2026.
 \href{https://doi.org/10.1145/3786335.3813207}{[DOI 10.1145/3786335.3813207]}
 
 \vspace{3pt}
 \textbf{Tokalator: A Context Engineering Toolkit for Artificial Intelligence Coding Assistants}\\
-V.~Farajijobehdar, \.I.~K\"ose\u{g}lu Sar\i, N.~K.~\"Ure, E.~Zeydan. \href{https://arxiv.org/abs/2604.08290}{arXiv:2604.08290}, April 2026.
+V.~Farajijobehdar, \.I.~Köseoğlu Sar\i, N.~K.~\"Ure, E.~Zeydan. \href{https://arxiv.org/abs/2604.08290}{arXiv:2604.08290}, April 2026.
 
 \vspace{3pt}
 \textbf{Leveraging LLMs For Turkish Skill Extraction}\\

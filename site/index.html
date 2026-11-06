@@ -597,10 +597,15 @@
     </style></noscript>
 
     <style>
-        /* Type system: Geist Sans for every word people or parsers read,
-           Geist Mono for labels and data, Geist Pixel Circle for the brand
-           wordmark only. All SIL OFL, self-hosted. */
-        @font-face { font-family: "Geist"; src: url("assets/fonts/Geist-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
+        /* Type system: Vahid Sora (Sora with its square dots redrawn as round
+           beads) for every word people or parsers read, Geist Mono for labels
+           and data, Geist Pixel Circle for the brand wordmark only. All SIL OFL,
+           self-hosted. */
+        @font-face { font-family: "Vahid Sora"; src: url("assets/fonts/VahidSora-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+        @font-face { font-family: "Vahid Sora"; src: url("assets/fonts/VahidSora-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
+        @font-face { font-family: "Vahid Sora"; src: url("assets/fonts/VahidSora-SemiBold.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+        @font-face { font-family: "Vahid Sora"; src: url("assets/fonts/VahidSora-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+        @font-face { font-family: "Vahid Sora"; src: url("assets/fonts/VahidSora-ExtraBold.woff2") format("woff2"); font-weight: 800; font-display: swap; }
         @font-face { font-family: "Geist Mono"; src: url("assets/fonts/GeistMono-Variable.woff2") format("woff2"); font-weight: 100 900; font-display: swap; }
         @font-face { font-family: "Geist Pixel Circle"; src: url("assets/fonts/GeistPixel-Circle.woff2") format("woff2"); font-display: swap; }
         /* Cross-document view transitions: navigating between pages on this site
@@ -619,9 +624,9 @@
         }
 
         :root {
-            --font: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+            --font: "Vahid Sora", "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
             --font-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
-            --font-display: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+            --font-display: "Vahid Sora", "Sora", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
             --black: #000000;
             --grey-900: #111111;
@@ -728,7 +733,7 @@
             transition: background var(--transition), color var(--transition);
         }
 
-        /* Geist / 700 - headings: tight and neutral */
+        /* Vahid Sora / 700 - headings: geometric, with bead full stops */
         h1, h2, h3 {
             font-family: var(--font-display);
             font-weight: 700; letter-spacing: -0.025em; line-height: 1.15;
@@ -908,6 +913,8 @@
             margin-bottom: 0.625rem; white-space: nowrap;
         }
         .hero-is-name { color: var(--rust); }
+        /* Vahid Sora draws the full stop as a round bead; in the headline it is red. */
+        .bead-stop { color: var(--rust); }
         .hero-is mark {
             color: inherit; padding: 0 0.2em; margin: 0 -0.05em; border-radius: 3px;
             background: linear-gradient(var(--mark), var(--mark)) left center / 100% 72% no-repeat;
@@ -1431,6 +1438,10 @@
             transition: transform 0.9s var(--ease-spring);
         }
         .wm-bead svg { width: 100%; height: 100%; display: block; overflow: visible; }
+        .wm-bead { pointer-events: auto; cursor: grab; touch-action: none; }
+        .wm-bead.is-grabbed { cursor: grabbing; }
+        .wm-bead.is-grabbed svg { filter: drop-shadow(0 6px 8px rgba(28,28,30,0.25)); }
+        .footer-wordmark.wm-live .wm-bead { left: 0; transition: none; animation: none !important; opacity: 1; will-change: transform; }
         .wm-bead circle { stroke: var(--ink); stroke-width: 3.5; }
         .wm-bead .t-red { fill: var(--rust); }
         .wm-bead .t-deep { fill: var(--rust-deep); }
@@ -2310,7 +2321,7 @@
             <div class="hero-icon-row">
                 <div>
                     <p class="hero-is"><span class="hero-is-name">Vahid</span> <span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">is an <mark>AI-native architect</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span><span class="sr-only">is an AI-native architect.</span></p>
-                    <h1 class="hero-name">Agents you can<br class="hero-br"> count&nbsp;on</h1>
+                    <h1 class="hero-name">Agents you can<br class="hero-br"> count&nbsp;on<span class="bead-stop">.</span></h1>
                 </div>
             </div>
 
@@ -3235,10 +3246,15 @@
     })();
 
     (function footerWordmark() {
+        // The beads behave like real abacus beads: grab and slide one along the
+        // rod, or flick it with the pointer. They carry momentum, slow with
+        // friction, cannot pass each other, clack and push their neighbours,
+        // and bounce softly off the ends of the rod.
         var wm = document.getElementById('footer-wordmark');
         if (!wm) return;
-        var beads = Array.prototype.slice.call(wm.querySelectorAll('.wm-bead'));
-        beads.forEach(function (b, i) { b.style.setProperty('--i', i); });
+        var rod = wm.querySelector('.wm-rod');
+        var els = Array.prototype.slice.call(wm.querySelectorAll('.wm-bead'));
+        els.forEach(function (b, i) { b.style.setProperty('--i', i); });
         var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (!('IntersectionObserver' in window) || still) { wm.classList.add('is-popped'); }
         else {
@@ -3246,31 +3262,113 @@
                 es.forEach(function (e) { if (e.isIntersecting) { wm.classList.add('is-popped'); io.disconnect(); } });
             }, { threshold: 0.3 });
             io.observe(wm);
-            // once dropped, let the spring transition take over from the keyframes
-            beads[beads.length - 1].addEventListener('animationend', function () {
-                beads.forEach(function (b) { b.style.animation = 'none'; b.style.opacity = '1'; });
-            });
         }
         if (still) return;
-        var raf = 0, px = null;
-        function push() {
-            raf = 0;
-            var box = wm.getBoundingClientRect(), reach = box.width * 0.09;
-            beads.forEach(function (b) {
-                var x = parseFloat(b.style.getPropertyValue('--x')) / 100 * box.width;
-                var dx = 0;
-                if (px !== null) {
-                    var d = x - px, a = Math.abs(d);
-                    if (a < reach) dx = (d >= 0 ? 1 : -1) * (reach - a) * 0.9;
-                }
-                b.style.setProperty('--dx', dx.toFixed(1) + 'px');
+
+        var beads = [], W = 0, live = false, raf = 0, last = 0;
+        var grab = null, ptr = { x: null, y: null, vx: 0, t: 0 };
+        function measure() {
+            W = rod.clientWidth;
+            beads = els.map(function (el, i) {
+                var old = beads[i];
+                var x0 = parseFloat(el.style.getPropertyValue('--x')) / 100 * W;
+                return { el: el, x: old ? Math.min(old.x, W) : x0, v: 0, r: el.offsetWidth / 2, sq: 0 };
             });
         }
+        function goLive() {
+            if (live) return;
+            live = true; measure();
+            wm.classList.add('wm-live');
+            draw(); kick();
+        }
+        // after the drop-in finishes, physics takes over the positions
+        els[els.length - 1].addEventListener('animationend', goLive);
+        setTimeout(goLive, 2600);
+        window.addEventListener('resize', function () { if (live) { measure(); draw(); } });
+
+        function draw() {
+            beads.forEach(function (b) {
+                var s = 1 + 0.12 * b.sq;
+                b.el.style.transform = 'translate(' + (b.x - b.r) + 'px, -50%) scale(' + s + ', ' + (2 - s) + ')';
+            });
+        }
+        function kick() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(step); } }
+        function step(now) {
+            raf = 0;
+            var dt = Math.min(0.032, (now - last) / 1000); last = now;
+            var moving = false, friction = Math.pow(0.08, dt); // keeps ~8% of speed per second
+            beads.forEach(function (b, i) {
+                if (b === grab) return;
+                // a flick: the pointer sweeping across a bead on the rod pushes it
+                if (ptr.x !== null && Math.abs(ptr.x - b.x) < b.r && Math.abs(ptr.y) < b.r * 1.3 && Math.abs(ptr.vx) > 40) {
+                    b.v += ptr.vx * 0.5 * dt * 10;
+                }
+                b.x += b.v * dt; b.v *= friction;
+                if (b.x < b.r) { b.x = b.r; b.v = Math.abs(b.v) * 0.35; b.sq = Math.min(1, b.sq + Math.abs(b.v) / 600); }
+                if (b.x > W - b.r) { b.x = W - b.r; b.v = -Math.abs(b.v) * 0.35; b.sq = Math.min(1, b.sq + Math.abs(b.v) / 600); }
+            });
+            // collisions, a few passes so a push travels down a row of beads
+            for (var pass = 0; pass < 4; pass++) {
+                for (var k = 0; k < beads.length - 1; k++) {
+                    var a = beads[k], c = beads[k + 1], gap = (c.x - c.r) - (a.x + a.r);
+                    if (gap >= 0) continue;
+                    var aFixed = a === grab, cFixed = c === grab;
+                    if (aFixed) c.x -= gap; else if (cFixed) a.x += gap; else { a.x += gap / 2; c.x -= gap / 2; }
+                    var rel = a.v - c.v;
+                    if (rel > 0) {
+                        var e = 0.55, m = (a.v + c.v) / 2;
+                        if (!aFixed) a.v = m - e * rel / 2;
+                        if (!cFixed) c.v = m + e * rel / 2;
+                        if (aFixed) c.v = Math.max(c.v, a.v);
+                        if (cFixed) a.v = Math.min(a.v, c.v);
+                        var hit = Math.min(1, rel / 500); a.sq = Math.max(a.sq, hit); c.sq = Math.max(c.sq, hit);
+                    }
+                }
+            }
+            beads.forEach(function (b) {
+                b.x = Math.max(b.r, Math.min(W - b.r, b.x));
+                b.sq *= Math.pow(0.002, dt);
+                if (Math.abs(b.v) > 2 || b.sq > 0.01) moving = true;
+            });
+            ptr.vx *= Math.pow(0.02, dt);
+            draw();
+            if (moving || grab) kick();
+        }
+
+        function local(e) {
+            var box = rod.getBoundingClientRect();
+            return { x: e.clientX - box.left, y: e.clientY - (box.top + box.height / 2) };
+        }
         wm.addEventListener('pointermove', function (e) {
-            px = e.clientX - wm.getBoundingClientRect().left;
-            if (!raf) raf = requestAnimationFrame(push);
+            if (!live) return;
+            var p = local(e), now = performance.now();
+            if (ptr.x !== null && now > ptr.t) ptr.vx = (p.x - ptr.x) / ((now - ptr.t) / 1000);
+            ptr.x = p.x; ptr.y = p.y; ptr.t = now;
+            if (grab) {
+                var target = p.x - grab.off;
+                grab.v = (target - grab.x) / Math.max(0.008, (now - (grab.t || now)) / 1000 || 0.016);
+                grab.x = Math.max(grab.r, Math.min(W - grab.r, target)); grab.t = now;
+            }
+            kick();
         });
-        wm.addEventListener('pointerleave', function () { px = null; if (!raf) raf = requestAnimationFrame(push); });
+        wm.addEventListener('pointerleave', function () { ptr.x = null; });
+        els.forEach(function (el, i) {
+            el.addEventListener('pointerdown', function (e) {
+                if (!live) goLive();
+                var b = beads[i];
+                grab = b; b.off = local(e).x - b.x; b.v = 0; b.t = performance.now();
+                el.classList.add('is-grabbed'); el.setPointerCapture(e.pointerId);
+                e.preventDefault(); kick();
+            });
+            function release() {
+                if (grab !== beads[i]) return;
+                // keep the throw speed, within reason
+                grab.v = Math.max(-2400, Math.min(2400, grab.v || 0));
+                grab = null; el.classList.remove('is-grabbed'); kick();
+            }
+            el.addEventListener('pointerup', release);
+            el.addEventListener('pointercancel', release);
+        });
     })();
 
     (function siteHeader() {
