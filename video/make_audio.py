@@ -134,15 +134,11 @@ def clap(at, g=1.0):
 beats = np.arange(0, DUR, BEAT)
 for b in beats:
     ci = chapter(b)
-    if 1 <= ci <= 6:
-        if not (ci == 1 and b < 8.3):   # the kick enters on the second bar of 'languages'
-            kick(b, 0.8 if ci == 1 else 1.0)
-        hat(b + BEAT / 2, 1.0, 0.25)
-        if ci >= 3:
-            hat(b + BEAT / 4, 0.5, -0.3)
-            hat(b + 3 * BEAT / 4, 0.5, -0.3)
-    if ci in (5, 6) and int(round(b / BEAT)) % 2 == 1:
-        clap(b)
+    # one quiet pulse, no stacked percussion: a soft kick from 'data', light off-beat hats later
+    if 2 <= ci <= 6:
+        kick(b, 0.55)
+    if 3 <= ci <= 6:
+        hat(b + BEAT / 2, 0.45, 0.25)
 pad *= duck
 
 # ---- bass: chapter root in eighths, octave jumps in production
@@ -172,7 +168,7 @@ def pluck(midi, at, g=1.0, pan=0.0, decay=0.996):
     add(lowpass(out, 4200) * np.exp(-np.arange(n) / SR * 3.5), at, 0.13 * g, pan)
 
 # who I am: sparse bead plucks
-for i, at in enumerate([0.6, 1.6, 2.4, 3.6, 4.4, 5.2, 6.0]):
+for i, at in enumerate([2.2, 3.0, 3.8, 4.6, 5.4]):
     pluck(CHORDS[0][1][i % 4] + 12, at, 0.9, -0.4 + 0.15 * i)
 # languages: plucks answering each greeting as the camera passes it
 for i, at in enumerate([8.7, 9.4, 10.2, 10.9, 11.6, 12.4, 13.1]):
@@ -181,7 +177,7 @@ for i, at in enumerate([8.7, 9.4, 10.2, 10.9, 11.6, 12.4, 13.1]):
 for j, at in enumerate(np.arange(14, 22, BEAT / 2)):
     pluck(CHORDS[2][1][[0, 1, 2, 3, 2, 1][j % 6]] + 12, at, 0.75, 0.35 * np.sin(j))
 # the problem: restless sixteenths, resolving when the answer lands (~27.3 s)
-for j, at in enumerate(np.arange(22, 31, BEAT / 4)):
+for j, at in enumerate(np.arange(22, 31, BEAT / 2)):
     tones = CHORDS[3][1]
     pluck(tones[[0, 3, 1, 2][j % 4]] + (24 if at < 27.3 else 12), at, 0.45 + 0.2 * (j % 4 == 0), 0.5 * np.sin(j * 0.9))
 def bell(midi, at, g=1.0, pan=0.0):
@@ -193,16 +189,15 @@ def bell(midi, at, g=1.0, pan=0.0):
 bell(CHORDS[3][1][0] + 24, 27.3, 0.9, 0.2)
 # context design: off-beat stabs under the panel
 for j, at in enumerate(np.arange(31, 40.3, BEAT)):
-    for m in CHORDS[4][1]:
-        pluck(m + 12, at + BEAT / 2, 0.4, -0.2 + 0.1 * (m % 4))
+    pluck(CHORDS[4][1][j % 4] + 12, at + BEAT / 2, 0.45, -0.2 + 0.1 * (j % 4))
 # analytical: steady eighths that thin out as the bars fall
-for j, at in enumerate(np.arange(40.33, 48, BEAT / 2)):
-    pluck(CHORDS[5][1][j % 4] + 12, at, 0.55 * (1 - 0.4 * (at > 44)), 0.3 * np.sin(j))
+for j, at in enumerate(np.arange(40.33, 48, BEAT)):
+    pluck(CHORDS[5][1][j % 4] + 12, at, 0.45, 0.3 * np.sin(j))
 # you can count on: the biggest section, stabs and a lift into the close
-for j, at in enumerate(np.arange(48, 53.3, BEAT)):
-    for m in CHORDS[6][1]:
-        pluck(m + 12, at + BEAT / 2, 0.45, -0.2 + 0.1 * (m % 4))
-for j, at in enumerate(np.arange(53.3, 55.3, BEAT / 4)):
+for j, at in enumerate(np.arange(48, 53.3, BEAT * 2)):
+    for m in CHORDS[6][1][:3]:
+        pluck(m + 12, at, 0.35, -0.2 + 0.1 * (m % 4))
+for j, at in enumerate(np.arange(53.3, 55.3, BEAT / 2)):
     pluck(CHORDS[6][1][j % 4] + 12 + 12 * (j // 8), at, 0.55, 0.4 * np.sin(j))
 # the abacus: bells as it is built, a final chord on the red dot
 for i, at in enumerate([55.6, 56.4, 57.2]):
@@ -220,8 +215,8 @@ def swell(end, length=1.8, g=1.0):
     tone = np.sin(2 * np.pi * root * k) + 0.5 * np.sin(2 * np.pi * root * 1.5 * k) + 0.25 * np.sin(2 * np.pi * root * 2 * k)
     air = lowpass(rng.uniform(-1, 1, n), 900 + 1600 * (k / length) ** 2) * 0.25
     curve = np.sin((k / length) * np.pi / 2) ** 3          # eases in, no sudden edge
-    add((tone + air) * curve, end - length, 0.05 * g, -0.25)
-    add((tone + air) * curve, end - length, 0.05 * g, 0.25)
+    add((tone + air) * curve, end - length, 0.028 * g, -0.25)
+    add((tone + air) * curve, end - length, 0.028 * g, 0.25)
 
 def bloom(at, g=1.0):
     """A gentle low bloom on the cut: a warm sine with a slow attack, no noise."""
@@ -231,7 +226,7 @@ def bloom(at, g=1.0):
     f = hz(CHORDS[ci][0] - 12)
     body = np.sin(2 * np.pi * f * k) * np.minimum(1, k / 0.03) * np.exp(-k * 2.2)
     shimmer = np.sin(2 * np.pi * f * 4 * k) * np.minimum(1, k / 0.08) * np.exp(-k * 3) * 0.12
-    add(body + shimmer, at, 0.2 * g)
+    add(body + shimmer, at, 0.12 * g)
 
 for c in CUTS[1:-1]:
     swell(c, 2.2 if c == 48.0 else 1.6, 1.15 if c == 48.0 else 1.0)
@@ -243,6 +238,8 @@ def bead_click(at, g=1.0, pitch=1600.0, pan=0.0):
     k = np.arange(n) / SR
     body = np.sin(2 * np.pi * pitch * k) * np.exp(-k * 55) + 0.5 * np.sin(2 * np.pi * pitch * 1.52 * k) * np.exp(-k * 70)
     add(body + rng.uniform(-1, 1, n) * np.exp(-k * 320) * 0.15, at, 0.11 * g, pan)
+for i in range(3):                                             # the cold open: three beads count
+    bead_click((16 + i * 5) / 30, 1.0, 1500 + 160 * i, -0.3 + 0.3 * i)
 for i, at in enumerate([4.13, 4.67, 5.2, 5.73, 6.27]):        # the portrait changes medium
     bead_click(at, 1.0, 1500 + 120 * i, -0.5 + 0.25 * i)
 for i in range(5):                                             # beads drop onto the rods

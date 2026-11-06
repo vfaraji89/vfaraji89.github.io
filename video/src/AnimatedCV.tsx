@@ -13,6 +13,7 @@ import { slide } from '@remotion/transitions/slide';
 import { wipe } from '@remotion/transitions/wipe';
 import { clockWipe } from '@remotion/transitions/clock-wipe';
 import tone from './tone.json';
+import ms from './msicons.json';
 import icons from './icons.json';
 
 export const FPS = 30;
@@ -421,9 +422,21 @@ const Outro: React.FC = () => {
 // One arc, abacus to agents: counting, scale, the harness, Tokalator, production,
 // the through-line, the invitation.
 
-const Kicker: React.FC<{ f: number; text: string; at?: number }> = ({ f, text, at = 0 }) => (
-  <div style={{ fontFamily: MONO, fontSize: 24, letterSpacing: '0.12em', color: C.deep, ...fadeUp(f, at) }}>{text}</div>
-);
+const KICK_ICON: Record<string, string> = {
+  HELLO: 'abacus', LANGUAGES: 'globe', 'DATA &amp; CONTEXT': 'bars', 'PROBLEM &amp; SOLUTION': 'check',
+  'CONTEXT DESIGN · TOKALATOR': 'window', 'ANALYTICAL THINKING · PROJECTLENS': 'calc', 'WHAT IT CHANGED': 'bars',
+};
+const Kicker: React.FC<{ f: number; text: string; at?: number }> = ({ f, text, at = 0 }) => {
+  const icon = KICK_ICON[text] || KICK_ICON[text.replace(/&/g, '&amp;')];
+  const pop = spring({ frame: f - at, fps: FPS, config: { damping: 10, stiffness: 150 } });
+  const bob = Math.sin((f - at) / 14) * 3;
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 18, ...fadeUp(f, at) }}>
+      {icon && <div style={{ transform: `translateY(${bob}px) rotate(${(1 - pop) * -25}deg)` }}><IconTile name={icon} size={64} pop={pop} /></div>}
+      <span style={{ fontFamily: MONO, fontSize: 24, letterSpacing: '0.12em', color: C.deep }}>{text}</span>
+    </div>
+  );
+};
 const Big: React.FC<{ f: number; at?: number; size?: number; children: React.ReactNode }> = ({ f, at = 6, size = 104, children }) => (
   <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: size, lineHeight: 1.02, letterSpacing: '-0.045em', color: C.ink, marginTop: 16, ...fadeUp(f, at, 20, 30) }}>{children}</div>
 );
@@ -450,9 +463,6 @@ const Origin: React.FC = () => {
         <Big f={f} size={124}>I&rsquo;m Vahid<Dot /></Big>
         <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 52, letterSpacing: '-0.02em', color: C.ink, marginTop: 26, ...fadeUp(f, 26) }}>
           AI-native <span style={{ backgroundImage: `linear-gradient(${C.mark}, ${C.mark})`, backgroundSize: `${interpolate(f, [40, 66], [0, 100], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })}% 70%`, backgroundRepeat: 'no-repeat', backgroundPosition: 'left 60%' }}>architect</span><Dot />
-        </div>
-        <div style={{ fontFamily: SANS, fontSize: 36, color: C.sec, marginTop: 20, lineHeight: 1.4, maxWidth: 820, ...fadeUp(f, 46) }}>
-          I build AI that people trust and teams actually use.
         </div>
         <span style={{ display: 'none' }}>{art}</span>
       </div>
@@ -714,7 +724,7 @@ const Languages: React.FC = () => {
         <Kicker f={f} text="LANGUAGES" />
         <Big f={f} size={104}>I read people<br />first<Dot /></Big>
         <div style={{ fontFamily: SANS, fontSize: 38, color: C.sec, marginTop: 30, lineHeight: 1.4, ...fadeUp(f, 175) }}>
-          Five languages taught me that <span style={{ color: C.ink, fontWeight: 600 }}>meaning lives in context</span>, not in words.
+          <span style={{ color: C.ink, fontWeight: 600 }}>Meaning lives in context.</span>
         </div>
       </div>
       {LANGS.map(([hi, name, lvl], i) => {
@@ -945,35 +955,78 @@ const ProblemSolution: React.FC = () => {
   );
 };
 
-// analytical thinking: measure, then decide
+// analytical thinking, shown on ProjectLens: the old sprawl, then before and after
+const MsIcon: React.FC<{ kind: 'excel' | 'word' | 'outlook'; size: number }> = ({ kind, size }) => {
+  const i = (ms as Record<string, { vb: string; body: string }>)[kind];
+  return <svg width={size} height={size} viewBox={i.vb} dangerouslySetInnerHTML={{ __html: i.body }} />;
+};
+const SPRAWL: ['excel' | 'word' | 'outlook', string, number, number, number][] = [
+  ['outlook', 'Approval? (3rd reminder)', 1000, 250, -4], ['word', 'effort_estimate.docx', 1380, 210, 3], ['excel', 'quote_v2_final2.xlsx', 1660, 300, -2],
+  ['outlook', 'RE: RE: Price?', 1080, 410, 2], ['excel', 'quote_FINAL_v7.xlsx', 1420, 400, -5], ['outlook', 'RE: Revised quote', 1700, 470, 4],
+  ['outlook', 'Urgent: latest price?', 1020, 590, -3], ['word', 'quote_text_final2.docx', 1340, 610, 2], ['excel', 'price_list_old.xlsx', 1640, 650, -4],
+  ['word', 'scope_v3.docx', 1180, 760, 5], ['outlook', 'Who approved this?', 1520, 800, -2],
+];
+const GAINS: [string, string, string][] = [
+  ['Pricing a project', '2 hours', '10 minutes'],
+  ['Collecting a request', '30 minutes', '5 minutes'],
+  ['Arithmetic and copy errors', 'Yes', 'Designed out'],
+  ['Waiting in an approval queue', 'Yes', 'No'],
+  ['Cycle time, conversion, margin', 'Not measured', 'Measured'],
+];
 const Analytical: React.FC = () => {
   const f = useCurrentFrame();
-  const grow = interpolate(f, [20, 60], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
-  const shrink = interpolate(f, [90, 140], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
-  const hours = 64 - (64 - 5.5) * shrink;
-  const pct = Math.round(91 * shrink);
-  const maxH = 520, base = 840;
-  const bar = (x: number, h: number, label: string, val: string, col: string) => (
-    <>
-      <div style={{ position: 'absolute', left: x, top: base - h, width: 170, height: h, borderRadius: '14px 14px 4px 4px', background: col, boxShadow: '0 24px 40px -30px rgba(28,28,30,0.6)' }} />
-      <div style={{ position: 'absolute', left: x, top: base - h - 64, width: 170, textAlign: 'center', fontFamily: SANS, fontWeight: 800, fontSize: 46, color: C.ink }}>{val}</div>
-      <div style={{ position: 'absolute', left: x - 20, top: base + 18, width: 210, textAlign: 'center', fontFamily: MONO, fontSize: 21, color: C.sec }}>{label}</div>
-    </>
-  );
+  const gather = interpolate(f, [78, 106], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
+  const lens = spring({ frame: f - 98, fps: FPS, config: { damping: 12, stiffness: 130 } });
+  const table = interpolate(f, [146, 166], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const cx = 1360, cy = 520;
   return (
     <AbsoluteFill>
-      <div style={{ position: 'absolute', left: 120, top: 220, width: 760 }}>
-        <Kicker f={f} text="ANALYTICAL THINKING" />
-        <Big f={f} size={100}>Measure,<br />then decide<Dot /></Big>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginTop: 34, ...fadeUp(f, 120) }}>
-          <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 110, color: C.red, letterSpacing: '-0.04em' }}>{pct}%</span>
-          <span style={{ fontFamily: MONO, fontSize: 24, color: C.sec, lineHeight: 1.4 }}>less manual work<br />ProjectLens, in production</span>
+      <div style={{ position: 'absolute', left: 120, top: 200, width: 760 }}>
+        <div style={{ opacity: 1 - table }}>
+          <Kicker f={f} text="ANALYTICAL THINKING · PROJECTLENS" />
+          <Big f={f} size={92}>Before: Excel<br />and e-mail sprawl<Dot /></Big>
         </div>
       </div>
-      <div style={{ position: 'absolute', left: 1040, right: 120, top: base, height: 3, background: C.ink, opacity: 0.8 }} />
-      {bar(1120, maxH * grow * (hours / 64), 'manual, per month', `${hours.toFixed(hours < 10 ? 1 : 0)}h`, shrink > 0.05 ? C.red : C.ink)}
-      {bar(1380, maxH * grow * (31 / 64) * (1 - shrink) + 16 * shrink * grow, 'spreadsheets', `${Math.round(31 - 30 * shrink)}`, C.mark)}
-      <div style={{ position: 'absolute', left: 1620, top: base - 200, fontFamily: MONO, fontSize: 22, color: C.deep, lineHeight: 1.5, ...fadeUp(f, 150) }}>59 hours<br />freed</div>
+      {/* the sprawl: real file and mail cards drifting, then pulled into one tool */}
+      {SPRAWL.map(([k, t, x, y, rot], i) => {
+        const pop = spring({ frame: f - 6 - i * 5, fps: FPS, config: { damping: 12, stiffness: 140 } });
+        const drift = Math.sin((f + i * 17) / 14) * 8 * (1 - gather);
+        const px = x + (cx - x) * gather, py = y + (cy - y) * gather + drift;
+        const label = k === 'excel' ? 'EXCEL' : k === 'word' ? 'WORD' : 'OUTLOOK';
+        return (
+          <div key={t} style={{ position: 'absolute', left: px, top: py, transform: `translate(-50%, -50%) rotate(${rot * (1 - gather)}deg) scale(${pop * (1 - gather * 0.7)})`, opacity: pop * (1 - gather), padding: '14px 20px 16px', borderRadius: 14, background: 'rgba(255,255,255,0.94)', border: `1px solid ${C.line}`, boxShadow: '0 18px 30px -22px rgba(28,28,30,0.55)', minWidth: 300 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <MsIcon kind={k} size={34} />
+              <span style={{ fontFamily: MONO, fontSize: 18, letterSpacing: '0.1em', color: C.muted }}>{label}</span>
+            </div>
+            <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 26, color: C.ink, marginTop: 8, whiteSpace: 'nowrap' }}>{t}</div>
+          </div>
+        );
+      })}
+      {/* one tool */}
+      <div style={{ position: 'absolute', left: cx, top: cy, transform: `translate(-50%, -50%) scale(${lens * (1 - table * 0.25)}) translateY(${-table * 600}px)`, opacity: lens * (1 - table), padding: '26px 40px', borderRadius: 22, background: '#fff', border: `2px solid ${C.ink}`, boxShadow: '0 40px 60px -30px rgba(28,28,30,0.6)', display: 'flex', alignItems: 'center', gap: 20 }}>
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none"><circle cx="10.5" cy="10.5" r="7.5" fill="#6a1b9a" /><path d="M10.5 7.25v6.5M7.25 10.5h6.5" stroke="#fff" strokeWidth="1.9" strokeLinecap="round" /><path d="M16 16l4.75 4.75" stroke="#6a1b9a" strokeWidth="2.6" strokeLinecap="round" /></svg>
+        <div><div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 48, color: C.ink, letterSpacing: '-0.02em' }}>ProjectLens</div><div style={{ fontFamily: MONO, fontSize: 20, color: C.sec }}>one flow · request to approval</div></div>
+      </div>
+      {/* before and after */}
+      <div style={{ position: 'absolute', left: 120, right: 120, top: 200, opacity: table }}>
+        <div style={{ fontFamily: MONO, fontSize: 24, letterSpacing: '0.12em', color: C.deep }}>WHAT IT CHANGED</div>
+        <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 84, letterSpacing: '-0.04em', color: C.ink, marginTop: 10 }}>Measure, then decide<Dot /></div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 0.8fr 1fr', marginTop: 30, fontFamily: MONO, fontSize: 20, letterSpacing: '0.12em', color: C.muted }}>
+          <span>WORK</span><span>BEFORE</span><span style={{ color: C.deep }}>AFTER</span>
+        </div>
+        {GAINS.map(([w, before, after], i) => {
+          const k = interpolate(f, [158 + i * 11, 174 + i * 11], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+          const strike = interpolate(f, [166 + i * 11, 182 + i * 11], [0, 100], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+          return (
+            <div key={w} style={{ display: 'grid', gridTemplateColumns: '1.3fr 0.8fr 1fr', alignItems: 'center', padding: '14px 0', borderTop: `1px solid ${C.line}`, opacity: k, transform: `translateY(${(1 - k) * 16}px)` }}>
+              <span style={{ fontFamily: SANS, fontSize: 34, color: C.ink }}>{w}</span>
+              <span style={{ fontFamily: SANS, fontSize: 30, color: C.muted, backgroundImage: `linear-gradient(${C.muted}, ${C.muted})`, backgroundSize: `${strike}% 2px`, backgroundPosition: 'left 55%', backgroundRepeat: 'no-repeat', justifySelf: 'start' }}>{before}</span>
+              <span style={{ justifySelf: 'start', padding: '8px 20px', borderRadius: 12, background: C.paper, border: '1px solid rgba(224,48,30,0.25)', fontFamily: SANS, fontWeight: 800, fontSize: 36, color: C.red, transform: `scale(${0.9 + 0.1 * k})` }}>{after}</span>
+            </div>
+          );
+        })}
+      </div>
     </AbsoluteFill>
   );
 };
@@ -1001,6 +1054,30 @@ const RodView: React.FC<TransitionPresentationComponentProps<ZoomProps>> = ({ ch
   );
 };
 const rod = (): TransitionPresentation<ZoomProps> => ({ component: RodView, props: {} });
+
+// ---- cold open: an abacus counts three, the name lands, we dive through ------
+const Intro: React.FC = () => {
+  const f = useCurrentFrame();
+  if (f > 64) return null;
+  const out = interpolate(f, [44, 62], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.in(Easing.cubic) });
+  const posts = spring({ frame: f, fps: FPS, config: { damping: 14, stiffness: 120 } });
+  const word = interpolate(f, [20, 34], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const dowel = 'linear-gradient(90deg, #b48a5c 0%, #d8bb94 24%, #f1e3cc 48%, #dcc29e 70%, #ad8455 100%)';
+  return (
+    <AbsoluteFill style={{ background: C.paper, opacity: 1 - out, transform: `scale(${1 + out * 1.8})`, filter: `blur(${out * 8}px)` }}>
+      <div style={{ position: 'absolute', left: 660, top: 330, width: 600, height: 300 }}>
+        {[0, 1].map((k) => <div key={k} style={{ position: 'absolute', left: k ? 560 : 0, top: (1 - posts) * -120, width: 40, height: 300, borderRadius: 999, background: dowel, opacity: posts }} />)}
+        <div style={{ position: 'absolute', left: 20, right: 20, top: 222, height: 10, borderRadius: 999, background: 'linear-gradient(180deg, #e9d8bd, #b8946a)' }} />
+        {[0, 1, 2].map((i) => {
+          const slide = interpolate(f, [6 + i * 5, 16 + i * 5], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.back(1.6)) });
+          const x = 60 + i * 70 + slide * 240;
+          return <div key={i} style={{ position: 'absolute', left: x, top: 196, width: 62, height: 62, borderRadius: '50%', background: `radial-gradient(circle at 34% 28%, ${i === 2 ? '#ff8f80' : '#ffffff'} 0%, ${i === 2 ? '#e0301e' : '#f1ede9'} 40%, ${i === 2 ? '#9e1a0c' : '#d6cfc8'} 100%)`, boxShadow: '0 12px 16px -10px rgba(40,20,10,0.45)' }} />;
+        })}
+        <div style={{ position: 'absolute', left: 70, top: 30, fontFamily: PIXEL, fontSize: 170, lineHeight: 0.8, color: C.ink, opacity: word, transform: `translateY(${(1 - word) * 20}px)` }}>vahid<span style={{ color: C.red }}>.</span></div>
+      </div>
+    </AbsoluteFill>
+  );
+};
 
 const Push: React.FC<{ dur: number; children: React.ReactNode }> = ({ dur, children }) => {
   const f = useCurrentFrame();
@@ -1075,7 +1152,7 @@ const CUT: [number, React.FC, (() => TransitionPresentation<any>) | null][] = [
   // context design: up to the panel, then back
   [300, scene(TokalatorStory, [[0, 1, 960, 540], [70, 1, 960, 540], [120, 1.6, 1380, 520], [230, 1.6, 1380, 520], [280, 1, 960, 540]], '#fffaf8', '100% 0%'), () => clockWipe({ width: 1920, height: 1080 })],
   // analytical: start on the bars, pull out to the number
-  [250, scene(Analytical, [[0, 1.8, 1400, 600], [80, 1.8, 1400, 600], [140, 1, 960, 540], [250, 1.03, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
+  [250, scene(Analytical, [[0, 1.25, 1360, 520], [80, 1.25, 1360, 520], [120, 1.1, 1300, 520], [150, 1, 960, 540], [250, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
   // you can count on: a slow push
   [240, scene(CountOn, [[0, 1, 960, 540], [240, 1.06, 960, 540]]), rod],
   // the abacus
@@ -1095,12 +1172,7 @@ export const AnimatedCV: React.FC = () => (
       ))}
     </TransitionSeries>
     <Brand />
-    <Caption text="Hi, I'm Vahid. I build AI people trust." start={30} end={START[1] - 6} />
-    <Caption text="I read people first, in five languages." start={START[1] + 20} end={START[2] - 6} />
-    <Caption text="Every number needs its story." start={START[2] + 20} end={START[3] - 6} />
-    <Caption text="Know the problem. Then build the solution." start={START[3] + 20} end={START[4] - 6} />
-    <Caption text="Context, designed: a live budget in VS Code." start={START[4] + 20} end={START[5] - 6} />
-    <Caption text="Measure, then decide." start={START[5] + 20} end={START[6] - 6} />
+    <Intro />
     <Timer />
   </AbsoluteFill>
 );
