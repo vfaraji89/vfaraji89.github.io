@@ -7,6 +7,11 @@ import {
   AbsoluteFill, Audio, Img, Sequence, continueRender, delayRender, interpolate,
   spring, staticFile, useCurrentFrame, useVideoConfig, Easing,
 } from 'remotion';
+import { TransitionSeries, linearTiming, springTiming } from '@remotion/transitions';
+import type { TransitionPresentation, TransitionPresentationComponentProps } from '@remotion/transitions';
+import { slide } from '@remotion/transitions/slide';
+import { wipe } from '@remotion/transitions/wipe';
+import { clockWipe } from '@remotion/transitions/clock-wipe';
 import tone from './tone.json';
 import icons from './icons.json';
 
@@ -428,7 +433,7 @@ const Dot = () => <span style={{ color: C.red }}>.</span>;
 const Origin: React.FC = () => {
   const f = useCurrentFrame();
   const size = 520, px = 1240, py = 230;
-  const p = interpolate(f, [30, 120], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+  const p = interpolate(f, [0, 90], [0.15, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
   const t = interpolate(f, [70, 120], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
   const hx = px + 290 + Math.sin(f / 9) * 40, hy = py + 250 + Math.cos(f / 11) * 30;
   const cx = interpolate(t, [0, 1], [1880, hx]), cy = interpolate(t, [0, 1], [1040, hy]) - Math.sin(t * Math.PI) * 120;
@@ -451,7 +456,7 @@ const Origin: React.FC = () => {
         </div>
         <span style={{ display: 'none' }}>{art}</span>
       </div>
-      <div style={{ position: 'absolute', left: px, top: py, borderRadius: 18, boxShadow: '0 30px 60px -40px rgba(28,28,30,0.6)', opacity: interpolate(f, [24, 40], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
+      <div style={{ position: 'absolute', left: px, top: py, borderRadius: 18, boxShadow: '0 30px 60px -40px rgba(28,28,30,0.6)', opacity: interpolate(f, [0, 8], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' }) }}>
         <div style={{ transform: `scale(${flash})`, transformOrigin: '50% 50%' }}>
           <Halftone progress={p} size={size} medium={medium} lensX={f > 100 ? cx - px : undefined} lensY={f > 100 ? cy - py : undefined} />
         </div>
@@ -553,9 +558,9 @@ const TokalatorStory: React.FC = () => {
   return (
     <AbsoluteFill>
       <div style={{ position: 'absolute', left: 120, top: 140, width: 840 }}>
-        <Kicker f={f} text="OPEN SOURCE · TOKALATOR" />
+        <Kicker f={f} text="CONTEXT DESIGN · TOKALATOR" />
         <div style={{ fontFamily: SANS, fontSize: 46, color: C.sec, marginTop: 22, lineHeight: 1.3, ...fadeUp(f, 4) }}>Agents burned tokens blind<Dot /></div>
-        <Big f={f} at={34} size={96}>So I built Tokalator<Dot /></Big>
+        <Big f={f} at={34} size={92}>So I designed<br />the context<Dot /></Big>
         {TOK_REGIONS.map(([, , , , t, d], k) => (
           <div key={t} style={{ display: 'flex', gap: 18, alignItems: 'flex-start', marginTop: k === 0 ? 34 : 16, opacity: f >= 70 + k * step ? 1 : 0.22, transform: `translateX(${f >= 70 + k * step ? 0 : -8}px)` }}>
             <Bead size={20} color={k === i ? C.red : C.mark} style={{ marginTop: 10 }} />
@@ -708,7 +713,7 @@ const Languages: React.FC = () => {
       <div style={{ position: 'absolute', left: 120, top: 210, width: 820 }}>
         <Kicker f={f} text="LANGUAGES" />
         <Big f={f} size={104}>I read people<br />first<Dot /></Big>
-        <div style={{ fontFamily: SANS, fontSize: 38, color: C.sec, marginTop: 30, lineHeight: 1.4, ...fadeUp(f, 150) }}>
+        <div style={{ fontFamily: SANS, fontSize: 38, color: C.sec, marginTop: 30, lineHeight: 1.4, ...fadeUp(f, 175) }}>
           Five languages taught me that <span style={{ color: C.ink, fontWeight: 600 }}>meaning lives in context</span>, not in words.
         </div>
       </div>
@@ -716,9 +721,10 @@ const Languages: React.FC = () => {
         const pop = spring({ frame: f - 20 - i * 16, fps: FPS, config: { damping: 13, stiffness: 120 } });
         const col = i % 2, row = Math.floor(i / 2);
         const x = 1060 + col * 380 + (i === 4 ? 190 : 0), y = 200 + row * 200;
+        const focus = interpolate(f, [70 + i * 22, 80 + i * 22, 92 + i * 22, 102 + i * 22], [0, 1, 1, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
         return (
-          <div key={hi} style={{ position: 'absolute', left: x, top: y, width: 340, padding: '26px 30px', borderRadius: 22, background: '#fff', border: `1px solid ${C.line}`, boxShadow: '0 30px 50px -40px rgba(28,28,30,0.6)', opacity: pop, transform: `translateY(${(1 - pop) * 40}px) scale(${0.92 + 0.08 * pop})` }}>
-            <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 50, letterSpacing: '-0.03em', color: i === 0 ? C.red : C.ink }}>{hi}</div>
+          <div key={hi} style={{ position: 'absolute', left: x, top: y, width: 340, padding: '26px 30px', borderRadius: 22, background: '#fff', border: `${1 + focus * 1.5}px solid ${focus > 0.1 ? C.red : C.line}`, boxShadow: `0 30px 50px -40px rgba(28,28,30,0.6), 0 0 0 ${focus * 8}px rgba(224,48,30,0.08)`, opacity: pop, transform: `translateY(${(1 - pop) * 40}px) scale(${0.92 + 0.08 * pop + focus * 0.05})` }}>
+            <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 50, letterSpacing: '-0.03em', color: i === 0 || focus > 0.5 ? C.red : C.ink }}>{hi}</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 10 }}>
               <Bead size={14} color={i < 3 ? C.red : C.mark} style={{ boxShadow: 'none' }} />
               <span style={{ fontFamily: MONO, fontSize: 22, color: C.sec }}>{name} · {lvl}</span>
@@ -825,7 +831,7 @@ const CountOn: React.FC = () => {
   return (
     <AbsoluteFill style={{ justifyContent: 'center', paddingLeft: 140 }}>
       <div style={{ fontFamily: SANS, fontWeight: 600, fontSize: 56, color: C.sec, letterSpacing: '-0.02em', ...fadeUp(f, 0) }}>You can count on</div>
-      <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: landed ? 176 : 150, lineHeight: 1.02, letterSpacing: '-0.05em', marginTop: 10, color: landed ? C.ink : C.red, opacity: inn, transform: `translateY(${(1 - inn) * 30}px)`, filter: `blur(${(1 - inn) * 6}px)` }}>
+      <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: landed ? 160 : Math.min(150, Math.floor(2800 / word.length)), lineHeight: 1.02, letterSpacing: '-0.05em', marginTop: 10, color: landed ? C.ink : C.red, opacity: inn, transform: `translateY(${(1 - inn) * 30}px)`, filter: `blur(${(1 - inn) * 6}px)` }}>
         <span style={{ backgroundImage: `linear-gradient(${C.mark}, ${C.mark})`, backgroundSize: `${sweep}% 32%`, backgroundRepeat: 'no-repeat', backgroundPosition: 'left 88%' }}>{word}</span>{landed && <Dot />}
       </div>
     </AbsoluteFill>
@@ -868,6 +874,133 @@ const AbacusName: React.FC = () => {
     </AbsoluteFill>
   );
 };
+
+// ================= camera, new scenes and transitions =================
+
+// A camera inside each scene: keyframes of [frame, scale, x, y] (x, y = the
+// point to look at), eased between, with a touch of blur while it moves fast.
+type Key = [number, number, number, number];
+const Camera: React.FC<{ keys: Key[]; children: React.ReactNode }> = ({ keys, children }) => {
+  const f = useCurrentFrame();
+  const at = (fr: number) => {
+    const fs = keys.map((k) => k[0]);
+    const o = { extrapolateLeft: 'clamp' as const, extrapolateRight: 'clamp' as const, easing: Easing.bezier(0.65, 0, 0.35, 1) };
+    // piecewise: ease each segment on its own
+    let i = 0; while (i < keys.length - 2 && fr > keys[i + 1][0]) i++;
+    const a = keys[i], b = keys[Math.min(i + 1, keys.length - 1)];
+    const k = a[0] === b[0] ? 1 : interpolate(fr, [a[0], b[0]], [0, 1], o);
+    return [a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k, a[3] + (b[3] - a[3]) * k];
+  };
+  const [z, x, y] = at(f), [z0, x0, y0] = at(f - 1);
+  const speed = Math.abs(z - z0) * 220 + Math.hypot(x - x0, y - y0) * 0.06;
+  const blur = Math.min(3, speed);
+  // the focus point is brought to the centre of the frame (keys use the centre when not zoomed)
+  const tx = 960 - x, ty = 540 - y;
+  return (
+    <AbsoluteFill style={{ transform: `scale(${z}) translate(${tx}px, ${ty}px)`, transformOrigin: '50% 50%', filter: blur > 0.2 ? `blur(${blur}px)` : undefined }}>
+      {children}
+    </AbsoluteFill>
+  );
+};
+
+// know the problem: the same job, written a dozen ways, converges to one answer
+const MESSY: [string, number, number, number][] = [
+  ['Sr. Data Analyst', 1080, 210, -6], ['Kıdemli Veri Analisti', 1380, 300, 4], ['data analist (jr)', 1120, 400, 3],
+  ['Veri Analizi Uzmanı', 1460, 470, -5], ['Analyst, Data – BI', 1060, 560, -2], ['DATA ANALYST!!!', 1400, 640, 6],
+  ['Analista de datos', 1150, 720, -4], ['Raporlama & Veri Uzm.', 1480, 780, 2],
+];
+const ProblemSolution: React.FC = () => {
+  const f = useCurrentFrame();
+  const merge = interpolate(f, [130, 175], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
+  const answer = spring({ frame: f - 168, fps: FPS, config: { damping: 12, stiffness: 120 } });
+  const n95 = interpolate(f, [200, 250], [0, 95], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const cx = 1290, cy = 500;
+  return (
+    <AbsoluteFill>
+      <div style={{ position: 'absolute', left: 120, top: 220, width: 800 }}>
+        <Kicker f={f} text="PROBLEM &amp; SOLUTION" />
+        <Big f={f} size={100}>Know the<br />problem<Dot /></Big>
+        <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 64, letterSpacing: '-0.03em', color: C.red, marginTop: 24, ...fadeUp(f, 172) }}>Then the solution.</div>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginTop: 30, ...fadeUp(f, 196) }}>
+          <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 84, color: C.ink, letterSpacing: '-0.03em' }}>{Math.round(n95)}%</span>
+          <span style={{ fontFamily: MONO, fontSize: 24, color: C.sec, lineHeight: 1.4 }}>accuracy on 14K+ titles<br />peer-reviewed, ACM CAIS ’26</span>
+        </div>
+      </div>
+      {MESSY.map(([t, x, y, rot], i) => {
+        const pop = spring({ frame: f - 12 - i * 7, fps: FPS, config: { damping: 12, stiffness: 140 } });
+        const jitter = Math.sin((f + i * 13) / 9) * 6 * (1 - merge);
+        const px = x + (cx - x) * merge, py = y + (cy - y) * merge + jitter;
+        return (
+          <div key={t} style={{ position: 'absolute', left: px, top: py, transform: `translate(-50%, -50%) rotate(${rot * (1 - merge)}deg) scale(${pop * (1 - merge * 0.6)})`, opacity: pop * (1 - merge), padding: '12px 22px', borderRadius: 12, background: '#fff', border: `1.5px dashed ${i % 3 === 0 ? C.red : 'rgba(28,28,30,0.3)'}`, fontFamily: MONO, fontSize: 26, color: C.ink, whiteSpace: 'nowrap', boxShadow: '0 16px 26px -20px rgba(28,28,30,0.6)' }}>{t}</div>
+        );
+      })}
+      <div style={{ position: 'absolute', left: cx, top: cy, transform: `translate(-50%, -50%) scale(${0.6 + 0.4 * answer})`, opacity: answer, padding: '30px 40px', borderRadius: 22, background: C.ink, color: '#fff', boxShadow: '0 40px 60px -30px rgba(28,28,30,0.7)', minWidth: 520 }}>
+        <div style={{ fontFamily: MONO, fontSize: 20, letterSpacing: '0.1em', color: '#ff9d8f' }}>ONE STANDARD OCCUPATION</div>
+        <div style={{ fontFamily: SANS, fontWeight: 800, fontSize: 52, letterSpacing: '-0.02em', marginTop: 8 }}>Data Analyst</div>
+        <div style={{ display: 'flex', gap: 12, marginTop: 16 }}>
+          {['O*NET', 'ESCO', 'skills linked'].map((tag) => <span key={tag} style={{ padding: '6px 14px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.3)', fontFamily: MONO, fontSize: 19 }}>{tag}</span>)}
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// analytical thinking: measure, then decide
+const Analytical: React.FC = () => {
+  const f = useCurrentFrame();
+  const grow = interpolate(f, [20, 60], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const shrink = interpolate(f, [90, 140], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
+  const hours = 64 - (64 - 5.5) * shrink;
+  const pct = Math.round(91 * shrink);
+  const maxH = 520, base = 840;
+  const bar = (x: number, h: number, label: string, val: string, col: string) => (
+    <>
+      <div style={{ position: 'absolute', left: x, top: base - h, width: 170, height: h, borderRadius: '14px 14px 4px 4px', background: col, boxShadow: '0 24px 40px -30px rgba(28,28,30,0.6)' }} />
+      <div style={{ position: 'absolute', left: x, top: base - h - 64, width: 170, textAlign: 'center', fontFamily: SANS, fontWeight: 800, fontSize: 46, color: C.ink }}>{val}</div>
+      <div style={{ position: 'absolute', left: x - 20, top: base + 18, width: 210, textAlign: 'center', fontFamily: MONO, fontSize: 21, color: C.sec }}>{label}</div>
+    </>
+  );
+  return (
+    <AbsoluteFill>
+      <div style={{ position: 'absolute', left: 120, top: 220, width: 760 }}>
+        <Kicker f={f} text="ANALYTICAL THINKING" />
+        <Big f={f} size={100}>Measure,<br />then decide<Dot /></Big>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, marginTop: 34, ...fadeUp(f, 120) }}>
+          <span style={{ fontFamily: SANS, fontWeight: 800, fontSize: 110, color: C.red, letterSpacing: '-0.04em' }}>{pct}%</span>
+          <span style={{ fontFamily: MONO, fontSize: 24, color: C.sec, lineHeight: 1.4 }}>less manual work<br />ProjectLens, in production</span>
+        </div>
+      </div>
+      <div style={{ position: 'absolute', left: 1040, right: 120, top: base, height: 3, background: C.ink, opacity: 0.8 }} />
+      {bar(1120, maxH * grow * (hours / 64), 'manual, per month', `${hours.toFixed(hours < 10 ? 1 : 0)}h`, shrink > 0.05 ? C.red : C.ink)}
+      {bar(1380, maxH * grow * (31 / 64) * (1 - shrink) + 16 * shrink * grow, 'spreadsheets', `${Math.round(31 - 30 * shrink)}`, C.mark)}
+      <div style={{ position: 'absolute', left: 1620, top: base - 200, fontFamily: MONO, fontSize: 22, color: C.deep, lineHeight: 1.5, ...fadeUp(f, 150) }}>59 hours<br />freed</div>
+    </AbsoluteFill>
+  );
+};
+
+// a zoom-through transition: the old scene rushes towards you, the new one settles in
+type ZoomProps = Record<string, never>;
+const ZoomThroughView: React.FC<TransitionPresentationComponentProps<ZoomProps>> = ({ children, presentationDirection, presentationProgress }) => {
+  const p = presentationProgress;
+  const style: React.CSSProperties = presentationDirection === 'exiting'
+    ? { transform: `scale(${1 + p * 0.9})`, opacity: 1 - p, filter: `blur(${p * 10}px)` }
+    : { transform: `scale(${0.82 + 0.18 * p})`, opacity: p, filter: `blur(${(1 - p) * 8}px)` };
+  return <AbsoluteFill style={style}>{children}</AbsoluteFill>;
+};
+const zoomThrough = (): TransitionPresentation<ZoomProps> => ({ component: ZoomThroughView, props: {} });
+
+// the red rod sweeps down and the abacus rolls in behind it
+const RodView: React.FC<TransitionPresentationComponentProps<ZoomProps>> = ({ children, presentationDirection, presentationProgress }) => {
+  const p = presentationProgress;
+  if (presentationDirection === 'exiting') return <AbsoluteFill>{children}</AbsoluteFill>;
+  return (
+    <AbsoluteFill>
+      <AbsoluteFill style={{ clipPath: `inset(0 0 ${(1 - p) * 100}% 0)` }}>{children}</AbsoluteFill>
+      {p < 1 && <div style={{ position: 'absolute', left: 0, right: 0, top: `${p * 100}%`, height: 6, marginTop: -3, background: C.red }} />}
+    </AbsoluteFill>
+  );
+};
+const rod = (): TransitionPresentation<ZoomProps> => ({ component: RodView, props: {} });
 
 const Push: React.FC<{ dur: number; children: React.ReactNode }> = ({ dur, children }) => {
   const f = useCurrentFrame();
@@ -921,39 +1054,53 @@ const Enter: React.FC<{ kind: Kind; dur?: number; children: React.ReactNode }> =
   );
 };
 
-const SCENES: [number, number, Kind, React.FC, string, string][] = [
-  [0, 7, 'rise', () => <Origin />, '#ffffff', '100% 0%'],
-  [7, 15, 'zoom', () => <Languages />, '#ffffff', '0% 100%'],
-  [15, 24, 'wipe', () => <DataContext />, '#ffffff', '100% 100%'],
-  [24, 35, 'iris', () => <ModelShip />, '#ffffff', '0% 0%'],
-  [35, 45, 'slide', () => <TokalatorStory />, '#fffaf8', '100% 0%'],
-  [45, 53, 'rise', () => <CountOn />, '#ffffff', '0% 100%'],
+// ---- the cut: eight scenes, seven transitions, 60 seconds -----------------
+const T = 20; // transition length in frames
+const scene = (Scene: React.FC, keys: Key[], tint = '#ffffff', corner = '100% 0%') => () => (
+  <AbsoluteFill>
+    <Paper tint={tint} corner={corner} />
+    <Camera keys={keys}><Scene /></Camera>
+  </AbsoluteFill>
+);
+// [duration, scene, transition into the next]
+const CUT: [number, React.FC, (() => TransitionPresentation<any>) | null][] = [
+  // who: start close on the portrait, pull back to reveal the name
+  [200, scene(Origin, [[0, 2.4, 1500, 470], [60, 2.4, 1500, 470], [110, 1, 960, 540], [200, 1.04, 900, 540]]), zoomThrough],
+  // languages: glide along the greetings, then step back for the line
+  [250, scene(Languages, [[0, 1, 960, 540], [55, 1.8, 1480, 330], [120, 1.8, 1480, 600], [165, 1.6, 1480, 680], [205, 1, 960, 540]], '#ffffff', '0% 100%'), () => slide({ direction: 'from-right' })],
+  // data: dive into one asset, then pull back
+  [260, scene(DataContext, [[0, 1, 960, 540], [110, 1, 960, 540], [160, 2.1, 1420, 400], [225, 2.1, 1420, 400], [260, 1.4, 1250, 450]], '#ffffff', '100% 100%'), zoomThrough],
+  // problem and solution: lean into the mess, then out to the answer
+  [290, scene(ProblemSolution, [[0, 1.6, 1300, 500], [120, 1.6, 1300, 500], [175, 1, 960, 540], [290, 1.05, 960, 540]], '#ffffff', '0% 0%'), () => wipe({ direction: 'from-left' })],
+  // context design: up to the panel, then back
+  [300, scene(TokalatorStory, [[0, 1, 960, 540], [70, 1, 960, 540], [120, 1.6, 1380, 520], [230, 1.6, 1380, 520], [280, 1, 960, 540]], '#fffaf8', '100% 0%'), () => clockWipe({ width: 1920, height: 1080 })],
+  // analytical: start on the bars, pull out to the number
+  [250, scene(Analytical, [[0, 1.8, 1400, 600], [80, 1.8, 1400, 600], [140, 1, 960, 540], [250, 1.03, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
+  // you can count on: a slow push
+  [240, scene(CountOn, [[0, 1, 960, 540], [240, 1.06, 960, 540]]), rod],
+  // the abacus
+  [150, scene(AbacusName, [[0, 1.12, 960, 540], [150, 1, 960, 540]], C.paper, '100% 0%'), null],
 ];
+const START = CUT.reduce<number[]>((acc, [d], i) => (i === 0 ? [0] : [...acc, acc[i - 1] + CUT[i - 1][0] - T]), []);
 
 export const AnimatedCV: React.FC = () => (
   <AbsoluteFill style={{ background: '#ffffff' }}>
     <Audio src={staticFile('soundtrack.wav')} />
-    {SCENES.map(([a, b, kind, Scene, tint, corner], i) => {
-      const from = i === 0 ? 0 : s(a) - OV;
-      const dur = s(b) - from + (i === SCENES.length - 1 ? OV : OV);
-      return (
-        <Sequence key={a} from={from} durationInFrames={dur}>
-          <Enter kind={i === 0 ? 'rise' : kind} dur={['rise', 'zoom'].includes(SCENES[i + 1]?.[2] ?? '') ? dur : undefined}>
-            <Paper tint={tint} corner={corner} />
-            <Push dur={dur}><Scene /></Push>
-          </Enter>
-        </Sequence>
-      );
-    })}
-    <Sequence from={s(53) - OV} durationInFrames={s(7) + OV}>
-      <Enter kind="rod"><Paper tint={C.paper} corner="100% 0%" /><AbacusName /></Enter>
-    </Sequence>
+    <TransitionSeries>
+      {CUT.map(([d, Scene, tr], i) => (
+        <React.Fragment key={i}>
+          <TransitionSeries.Sequence durationInFrames={d}><Scene /></TransitionSeries.Sequence>
+          {tr && <TransitionSeries.Transition presentation={tr()} timing={i % 2 ? springTiming({ config: { damping: 200 }, durationInFrames: T }) : linearTiming({ durationInFrames: T })} />}
+        </React.Fragment>
+      ))}
+    </TransitionSeries>
     <Brand />
-    <Caption text="Hi, I'm Vahid. I build AI people trust." start={s(1.2)} end={s(6.6)} />
-    <Caption text="Five languages taught me context." start={s(8)} end={s(14.6)} />
-    <Caption text="Data is only useful when you know its story." start={s(16)} end={s(23.6)} />
-    <Caption text="Models that read, checks that prove it, tools that ship." start={s(25)} end={s(34.6)} />
-    <Caption text="A live context budget, inside VS Code." start={s(36)} end={s(44.6)} />
+    <Caption text="Hi, I'm Vahid. I build AI people trust." start={30} end={START[1] - 6} />
+    <Caption text="I read people first, in five languages." start={START[1] + 20} end={START[2] - 6} />
+    <Caption text="Every number needs its story." start={START[2] + 20} end={START[3] - 6} />
+    <Caption text="Know the problem. Then build the solution." start={START[3] + 20} end={START[4] - 6} />
+    <Caption text="Context, designed: a live budget in VS Code." start={START[4] + 20} end={START[5] - 6} />
+    <Caption text="Measure, then decide." start={START[5] + 20} end={START[6] - 6} />
     <Timer />
   </AbsoluteFill>
 );
