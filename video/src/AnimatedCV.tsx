@@ -15,6 +15,7 @@ import { clockWipe } from '@remotion/transitions/clock-wipe';
 import tone from './tone.json';
 import ms from './msicons.json';
 import land from './land.json';
+import aitools from './aitools.json';
 import icons from './icons.json';
 
 export const FPS = 30;
@@ -1119,6 +1120,17 @@ const YZ_LINES: [string, string, string][] = [
   ['Makine öğrenmesi modellerinin geliştirilmesi', 'CLASSIC AI · ML', C.ink],
   ['ChatGPT ve Copilot deneyimi', 'TOOLS · ChatGPT, Copilot', C.deep],
 ];
+// the tools employers name, grouped as the pipeline reports them (logos only: the counts stay confidential)
+const YZ_TOOLS: [string, string[]][] = [
+  ['CHAT ASSISTANTS', ['ChatGPT', 'Gemini', 'Claude', 'Copilot', 'Perplexity', 'DeepSeek']],
+  ['IMAGE, VIDEO, AUDIO', ['Midjourney', 'Runway', 'Firefly', 'Kling', 'DALL·E', 'ElevenLabs']],
+  ['CODE', ['Cursor']],
+  ['MODELS, FRAMEWORKS', ['LangChain', 'Hugging Face']],
+];
+const ToolLogo: React.FC<{ name: string; size: number }> = ({ name, size }) => {
+  const t = (aitools as Record<string, { vb: string; body: string }>)[name];
+  return <svg width={size} height={size} viewBox={t.vb} fill={C.ink} dangerouslySetInnerHTML={{ __html: t.body }} />;
+};
 const YZ_STEPS: [string, string][] = [['page', 'Read every sentence'], ['branch', 'GenAI vs classic ML'], ['check', 'Normalise tool names'], ['bars', 'By period, tool, sector']];
 const Yzi: React.FC = () => {
   const f = useCurrentFrame();
@@ -1153,8 +1165,30 @@ const Yzi: React.FC = () => {
           );
         })}
       </div>
+      {/* the tools it finds */}
+      <div style={{ position: 'absolute', left: 120, right: 120, top: 712, display: 'flex', gap: 46, alignItems: 'flex-start' }}>
+        {(() => {
+          let n = 0;
+          return YZ_TOOLS.map(([group, tools]) => (
+            <div key={group} style={{ ...fadeUp(f, 92 + n * 2) }}>
+              <div style={{ fontFamily: MONO, fontSize: 18, letterSpacing: '0.1em', color: C.deep, marginBottom: 10, whiteSpace: 'nowrap' }}>{group}</div>
+              <div style={{ display: 'flex', gap: 10 }}>
+                {tools.map((t) => {
+                  const k = n++;
+                  const pp = spring({ frame: f - 96 - k * 2, fps: FPS, config: { damping: 11, stiffness: 200 } });
+                  return (
+                    <div key={t} style={{ width: 64, height: 64, borderRadius: 16, background: '#fff', border: `1.5px solid ${C.line}`, boxShadow: '0 10px 18px -14px rgba(28,28,30,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `scale(${pp})` }}>
+                      <ToolLogo name={t} size={36} />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ));
+        })()}
+      </div>
       {/* the pipeline */}
-      <div style={{ position: 'absolute', left: 120, right: 120, top: 800, display: 'flex', alignItems: 'center', gap: 18 }}>
+      <div style={{ position: 'absolute', left: 120, right: 120, top: 880, display: 'flex', alignItems: 'center', gap: 18 }}>
         {YZ_STEPS.map(([ic, t], k) => {
           const pop = spring({ frame: f - 140 - k * 12, fps: FPS, config: { damping: 12, stiffness: 160 } });
           return (
