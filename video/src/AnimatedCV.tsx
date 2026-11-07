@@ -17,6 +17,7 @@ import ms from './msicons.json';
 import land from './land.json';
 import aitools from './aitools.json';
 import heat from './heat.json';
+import region from './region.json';
 import icons from './icons.json';
 
 export const FPS = 30;
@@ -373,7 +374,7 @@ const Outro: React.FC = () => {
 
 const KICK_ICON: Record<string, string> = {
   HELLO: 'abacus', LANGUAGES: 'globe', 'DATA &amp; CONTEXT': 'bars', 'PROBLEM &amp; SOLUTION': 'check',
-  'CONTEXT DESIGN · TOKALATOR': 'window', 'ANALYTICAL THINKING · PROJECTLENS': 'calc', 'WHAT IT CHANGED': 'bars', ROOTS: 'cap', 'TALKING TO AGENTS': 'agents', 'TOKENS · 2026': 'window', 'PROBLEM → DATA → SOLUTION': 'flow', 'AI AT WORK': 'agents', 'YAPAY ZEKÂ İZİ · CONCEPT': 'page', 'THE SHIPPING HABIT': 'branch',
+  'CONTEXT DESIGN · TOKALATOR': 'window', 'ANALYTICAL THINKING · PROJECTLENS': 'calc', 'WHAT IT CHANGED': 'bars', ROOTS: 'cap', 'TALKING TO AGENTS': 'agents', 'THE ROAD': 'globe', 'TOKENS · 2026': 'window', 'PROBLEM → DATA → SOLUTION': 'flow', 'AI AT WORK': 'agents', 'YAPAY ZEKÂ İZİ · CONCEPT': 'page', 'THE SHIPPING HABIT': 'branch',
 };
 const Kicker: React.FC<{ f: number; text: string; at?: number }> = ({ f, text, at = 0 }) => {
   const icon = KICK_ICON[text] || KICK_ICON[text.replace(/&/g, '&amp;')];
@@ -1084,7 +1085,7 @@ const ROOT_STATS: [string, string][] = [['12 yrs', '8 industry · 4 research'], 
 const Roots: React.FC = () => {
   const f = useCurrentFrame();
   const L = 170, Rr = 1750, y = 880, step = (Rr - L) / (STATIONS2.length - 1);
-  const run = interpolate(f, [40, 40 + 22 * (STATIONS2.length - 1)], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
+  const run = interpolate(f, [36, 36 + 20 * (STATIONS2.length - 1)], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) });
   return (
     <AbsoluteFill>
       <div style={{ position: 'absolute', left: 120, top: 190, width: 980 }}>
@@ -1107,7 +1108,7 @@ const Roots: React.FC = () => {
       <div style={{ position: 'absolute', left: L - 40, width: (Rr - L + 80) * interpolate(f, [16, 40], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease }), top: y - 5, height: 10, borderRadius: 999, background: 'linear-gradient(180deg, #e9d8bd, #d2b48d 70%, #b8946a)' }} />
       {STATIONS2.map(([yr, role], k) => {
         const x = L + k * step;
-        const on = interpolate(f, [40 + k * 22 - 4, 40 + k * 22 + 8], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+        const on = interpolate(f, [36 + k * 20 - 4, 36 + k * 20 + 8], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
         const up = k % 2 === 0;
         return (
           <React.Fragment key={k}>
@@ -1325,7 +1326,7 @@ const Opening: React.FC = () => {
   );
   // 2. calculator: keys pressed in time, the display counting
   const ck = Math.max(0, Math.floor((f - T0[1] - 6) / 4));
-  const digits = f < T0[1] + 6 ? '0' : ['1', '12', '12+', '12+30', '12+30=', '42'][Math.min(5, ck)];
+  const digits = f < T0[1] + 6 ? '0' : ['1', '19', '19+', '19+18', '19+18=', '37'][Math.min(5, ck)];   // 37 this year
   const calc = (
     <div style={{ width: 170, height: 230, borderRadius: 22, background: C.ink, padding: 14, boxShadow: '0 20px 30px -18px rgba(28,28,30,0.7)' }}>
       <div style={{ height: 50, borderRadius: 10, background: '#f4efe9', fontFamily: MONO, fontSize: 30, color: C.ink, textAlign: 'right', padding: '6px 12px' }}>{digits}</div>
@@ -1559,6 +1560,116 @@ const Tokens: React.FC = () => {
         </div>
         <div style={{ fontFamily: TM, fontSize: 22, color: '#b9b4f0', marginTop: 20, ...fadeUp(f, 128, 14, 8) }}>Input and output ≈ 313× the tokens in War and Peace</div>
       </div>
+    </AbsoluteFill>
+  );
+};
+
+// the road: Jobehdar, Ardabil, Tehran, Istanbul, drawn on a dotted map (Jobehdar's position is approximate)
+const STOPS: [string, string, number, number, string, string][] = [
+  ['Jobehdar', 'ages 0–13', 38.45, 48.0, 'abacus', 'where it started'], ['Ardabil', 'ages 14–19', 38.25, 48.3, 'page', ''],
+  ['Tehran', 'ages 19–29', 35.69, 51.39, 'cap', 'University of Tehran'], ['Istanbul', 'ages 29–37', 41.01, 28.98, 'agents', 'Kariyer.net'],
+];
+// logos for the pop-ups: drop the files into public/img and name them here; until then the icon is used
+const ROAD_LOGOS: Record<string, string> = {};
+const Road: React.FC = () => {
+  const f = useCurrentFrame();
+  const bx = 820, by = 250, bw = 1000, bh = 620, lon0 = 25, lon1 = 55, lat0 = 33, lat1 = 44;
+  const P = (lat: number, lon: number): [number, number] => [bx + ((lon - lon0) / (lon1 - lon0)) * bw, by + ((lat1 - lat) / (lat1 - lat0)) * bh];
+  const mapIn = interpolate(f, [0, 24], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease });
+  const pts = STOPS.map((st) => P(st[2], st[3]));
+  // segments: a short hop, the drive to Tehran, then the long arc west to Istanbul
+  const T = [[22, 34], [38, 58], [62, 96]];
+  const seg = T.map(([a2, b2]) => interpolate(f, [a2, b2], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic) }));
+  const ctrl = (i: number): [number, number] => {
+    const [x1, y1] = pts[i], [x2, y2] = pts[i + 1];
+    const lift = i === 2 ? 0.35 : 0.15;
+    return [(x1 + x2) / 2, (y1 + y2) / 2 - lift * Math.hypot(x2 - x1, y2 - y1)];
+  };
+  const at = (i: number, t: number): [number, number] => {
+    const [x1, y1] = pts[i], [x2, y2] = pts[i + 1], [cx, cy] = ctrl(i);
+    return [(1 - t) * (1 - t) * x1 + 2 * (1 - t) * t * cx + t * t * x2, (1 - t) * (1 - t) * y1 + 2 * (1 - t) * t * cy + t * t * y2];
+  };
+  const cur = seg[2] > 0 ? at(2, seg[2]) : seg[1] > 0 ? at(1, seg[1]) : at(0, seg[0]);
+  const reached = (k: number) => (k === 0 ? f >= 14 : seg[k - 1] >= 0.98);
+  return (
+    <AbsoluteFill>
+      <div style={{ position: 'absolute', left: 120, top: 230, width: 680 }}>
+        <Kicker f={f} text="THE ROAD" />
+        <Big f={f} size={96}>From Jobehdar<br />to Istanbul<Dot /></Big>
+        <div style={{ fontFamily: SANS, fontSize: 34, color: C.sec, marginTop: 24, lineHeight: 1.35, ...fadeUp(f, 30) }}>
+          A <b style={{ color: C.red }}>lifelong migrant</b>: thirty-seven years, one direction.
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 28 }}>
+          {STOPS.map(([name, ages, , , ic, what], k) => (
+            <div key={name} style={{ display: 'flex', alignItems: 'center', gap: 14, opacity: reached(k) ? 1 : 0.25, transform: `translateX(${reached(k) ? 0 : -8}px)` }}>
+              <IconTile name={ic} size={48} on={reached(k)} />
+              <div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+                  <span style={{ fontFamily: SANS, fontWeight: 700, fontSize: 29, color: k === 3 && reached(k) ? C.red : C.ink }}>{name}</span>
+                  <span style={{ fontFamily: MONO, fontSize: 19, color: C.deep }}>{ages}</span>
+                </div>
+                {what && <div style={{ fontFamily: SANS, fontSize: 21, color: C.sec }}>{what}</div>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <svg style={{ position: 'absolute', left: 0, top: 0 }} width={1920} height={1080}>
+        {(region as number[][]).map(([la, lo], k) => {
+          const [x, y] = P(la, lo);
+          if (x < bx - 10 || x > bx + bw + 10) return null;
+          return <circle key={k} cx={x} cy={y} r={3.4} fill={C.ink} opacity={0.2 * mapIn} />;
+        })}
+        {[0, 1, 2].map((i) => {
+          if (seg[i] <= 0) return null;
+          const [x1, y1] = pts[i], [x2, y2] = pts[i + 1], [cx, cy] = ctrl(i);
+          return <path key={i} d={`M${x1},${y1} Q${cx},${cy} ${x2},${y2}`} fill="none" stroke={C.red} strokeWidth={4} strokeLinecap="round" strokeDasharray="3 11" opacity={0.95} mask={`url(#m${i})`} />;
+        })}
+        <defs>
+          {[0, 1, 2].map((i) => {
+            const [x1, y1] = pts[i], [x2, y2] = pts[i + 1], [cx, cy] = ctrl(i);
+            return <mask key={i} id={`m${i}`}><path d={`M${x1},${y1} Q${cx},${cy} ${x2},${y2}`} fill="none" stroke="#fff" strokeWidth={14} pathLength={100} strokeDasharray="100 100" strokeDashoffset={100 - seg[i] * 100} /></mask>;
+          })}
+        </defs>
+        {STOPS.map(([name], k) => {
+          if (!reached(k)) return null;
+          const [x, y] = pts[k];
+          const pop = spring({ frame: f - (k === 0 ? 14 : T[k - 1][1] - 2), fps: FPS, config: { damping: 10, stiffness: 180 } });
+          return (
+            <g key={name} transform={`translate(${x},${y}) scale(${pop})`}>
+              <circle r={k === 3 ? 13 : 10} fill={k === 3 ? C.red : '#fff'} stroke={k === 3 ? '#fff' : C.ink} strokeWidth={3} />
+            </g>
+          );
+        })}
+      </svg>
+      {/* labels for the map pins */}
+      {STOPS.map(([name], k) => {
+        if (!reached(k)) return null;
+        const [x, y] = pts[k];
+        const left = k === 1 ? x + 22 : k === 0 ? x - 22 : k === 2 ? x + 22 : x - 22;
+        const align = k === 0 || k === 3 ? 'translate(-100%, -50%)' : 'translate(0, -50%)';
+        const dy = k === 0 ? -26 : k === 1 ? 24 : 0;
+        return <div key={name} style={{ position: 'absolute', left, top: y + dy, transform: align, display: 'flex', alignItems: 'center', gap: 8, padding: '5px 14px 5px 8px', borderRadius: 999, background: '#fff', border: `1.5px solid ${k === 3 ? C.red : C.ink}`, fontFamily: SANS, fontWeight: 700, fontSize: 23, color: k === 3 ? C.red : C.ink, whiteSpace: 'nowrap' }}><AbIcon name={STOPS[k][4]} size={24} color={k === 3 ? C.red : C.ink} />{name}</div>;
+      })}
+      {/* where the work happened: a card pops up over Tehran and Istanbul */}
+      {[2, 3].map((k) => {
+        if (!reached(k)) return null;
+        const [x, y] = pts[k];
+        const pp = spring({ frame: f - T[k - 1][1] - 2, fps: FPS, config: { damping: 11, stiffness: 170 } });
+        const [, ages, , , ic, org] = STOPS[k];
+        const logo = ROAD_LOGOS[org];
+        const leftX = k === 3 ? x + 10 : x - 360, topY = k === 3 ? y + 46 : y + 40;
+        return (
+          <div key={org} style={{ position: 'absolute', left: leftX, top: topY, width: 350, whiteSpace: 'nowrap', display: 'flex', alignItems: 'center', gap: 14, padding: '14px 18px 14px 14px', borderRadius: 18, background: '#fff', border: `1.5px solid ${k === 3 ? C.red : C.ink}`, boxShadow: '0 24px 36px -24px rgba(28,28,30,0.65)', transform: `scale(${pp})`, transformOrigin: k === 3 ? '0% 0%' : '100% 0%', opacity: Math.min(1, pp * 1.4) }}>
+            {logo ? <Img src={staticFile('img/' + logo)} style={{ width: 56, height: 56, borderRadius: 12, objectFit: 'contain', background: '#fff' }} /> : <IconTile name={ic} size={56} />}
+            <div>
+              <div style={{ fontFamily: SANS, fontWeight: 700, fontSize: 24, color: C.ink, lineHeight: 1.15 }}>{org}</div>
+              <div style={{ fontFamily: MONO, fontSize: 18, color: C.deep, marginTop: 4 }}>{STOPS[k][0]} · {ages}</div>
+            </div>
+          </div>
+        );
+      })}
+      {f >= 22 && f < 100 && <div style={{ position: 'absolute', left: cur[0] - 16, top: cur[1] - 16 }}><Bead size={32} color={C.red} /></div>}
     </AbsoluteFill>
   );
 };
@@ -1823,23 +1934,25 @@ const scene = (Scene: React.FC, keys: Key[], tint = '#ffffff', corner = '100% 0%
 );
 // [duration, scene, transition into the next]
 const CUT: [number, React.FC, (() => TransitionPresentation<any>) | null][] = [
-  [190, scene(Opening, [[0, 1.06, 960, 540], [140, 1, 960, 540], [190, 1.25, 960, 540]], C.paper, '50% 0%'), zoomThrough],
-  [210, scene(Origin, [[0, 1.6, 1500, 470], [50, 1.6, 1500, 470], [96, 1, 960, 540], [210, 1.02, 940, 540]]), () => slide({ direction: 'from-right' })],
-  [190, scene(Languages, [[0, 1, 960, 540], [190, 1.03, 960, 540]], '#ffffff', '0% 100%'), () => wipe({ direction: 'from-left' })],
+  [180, scene(Opening, [[0, 1.06, 960, 540], [140, 1, 960, 540], [180, 1.25, 960, 540]], C.paper, '50% 0%'), zoomThrough],
+  [200, scene(Origin, [[0, 1.6, 1500, 470], [50, 1.6, 1500, 470], [96, 1, 960, 540], [200, 1.02, 940, 540]]), () => slide({ direction: 'from-right' })],
+  // the road: Jobehdar, Ardabil, Tehran, Istanbul
+  [150, scene(Road, [[0, 1, 960, 540], [150, 1.03, 960, 540]], C.paper, '100% 0%'), () => wipe({ direction: 'from-left' })],
+  [180, scene(Languages, [[0, 1, 960, 540], [180, 1.03, 960, 540]], '#ffffff', '0% 100%'), () => wipe({ direction: 'from-left' })],
   [170, scene(Agents, [[0, 1, 960, 540], [170, 1.04, 1000, 540]], '#fffaf8', '100% 0%'), zoomThrough],
-  [240, scene(ProblemData, [[0, 1, 960, 540], [240, 1.04, 960, 540]], '#ffffff', '0% 0%'), () => slide({ direction: 'from-bottom' })],
-  [180, scene(Roots, [[0, 1.04, 960, 520], [180, 1, 960, 540]], C.paper, '0% 0%'), () => wipe({ direction: 'from-left' })],
-  [180, scene(AiAtWork, [[0, 1, 960, 540], [180, 1.04, 1000, 540]], '#ffffff', '0% 100%'), () => slide({ direction: 'from-right' })],
-  [210, scene(TokalatorStory, [[0, 1, 960, 540], [210, 1.06, 1000, 540]], '#fffaf8', '100% 0%'), zoomThrough],
+  [230, scene(ProblemData, [[0, 1, 960, 540], [230, 1.04, 960, 540]], '#ffffff', '0% 0%'), () => slide({ direction: 'from-bottom' })],
+  [170, scene(Roots, [[0, 1.04, 960, 520], [170, 1, 960, 540]], C.paper, '0% 0%'), () => wipe({ direction: 'from-left' })],
+  [170, scene(AiAtWork, [[0, 1, 960, 540], [170, 1.04, 1000, 540]], '#ffffff', '0% 100%'), () => slide({ direction: 'from-right' })],
+  [200, scene(TokalatorStory, [[0, 1, 960, 540], [200, 1.06, 1000, 540]], '#fffaf8', '100% 0%'), zoomThrough],
   // tokens in 2026, in the stats-screen format
-  [170, scene(Tokens, [[0, 1.04, 960, 560], [170, 1, 960, 540]], C.paper, '0% 0%'), () => clockWipe({ width: 1920, height: 1080 })],
-  [240, scene(Analytical, [[0, 1, 960, 540], [90, 1.05, 960, 540], [140, 1, 960, 540], [240, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
-  [220, scene(Yzi, [[0, 1, 960, 540], [220, 1.03, 960, 540]], '#fffaf8', '100% 100%'), () => slide({ direction: 'from-right' })],
-  [190, scene(Shipping, [[0, 1.03, 960, 540], [190, 1, 960, 540]], '#ffffff', '0% 0%'), rod],
+  [160, scene(Tokens, [[0, 1.04, 960, 560], [160, 1, 960, 540]], C.paper, '0% 0%'), () => clockWipe({ width: 1920, height: 1080 })],
+  [230, scene(Analytical, [[0, 1, 960, 540], [90, 1.05, 960, 540], [140, 1, 960, 540], [230, 1.02, 960, 540]], '#ffffff', '0% 100%'), zoomThrough],
+  [210, scene(Yzi, [[0, 1, 960, 540], [210, 1.03, 960, 540]], '#fffaf8', '100% 100%'), () => slide({ direction: 'from-right' })],
+  [180, scene(Shipping, [[0, 1.03, 960, 540], [180, 1, 960, 540]], '#ffffff', '0% 0%'), rod],
   [130, scene(Shift, [[0, 1.04, 960, 540], [130, 1, 960, 540]], C.paper, '0% 0%'), () => wipe({ direction: 'from-bottom' })],
-  [180, scene(CountOn, [[0, 1, 960, 540], [180, 1.04, 960, 540]]), rod],
+  [170, scene(CountOn, [[0, 1, 960, 540], [170, 1.04, 960, 540]]), rod],
   [130, scene(AbacusName, [[0, 1.12, 960, 540], [130, 1, 960, 540]], C.paper, '100% 0%'), zoomThrough],
-  [170, scene(Closing, [[0, 1.12, 960, 470], [170, 1, 960, 540]], '#ffffff', '0% 100%'), null],
+  [160, scene(Closing, [[0, 1.12, 960, 470], [160, 1, 960, 540]], '#ffffff', '0% 100%'), null],
 ];
 const START = CUT.reduce<number[]>((acc, [d], i) => (i === 0 ? [0] : [...acc, acc[i - 1] + CUT[i - 1][0] - T]), []);
 
