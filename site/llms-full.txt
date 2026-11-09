@@ -66,12 +66,11 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 
 ## Projects
 
-### awesome-applied-ai: Applied AI Taxonomy
+### awesome-applied-ai: Applied AI, mapped
 - URL: https://vfaraji89.github.io/awesome-applied-ai/
 - GitHub: github.com/vfaraji89/awesome-applied-ai
 - Type: Open source, curated reference
-- What it is: A working map of applied AI for the enterprise. Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, equations, dictionary, commands, design problems and research findings.
-- Scope: The tools, protocols, benchmarks and regulation that decide what a system knows, what it costs, and what you can prove about it.
+- What it is: An open, plain-language map of applied AI in six steps: the market (what applied AI jobs ask for, tracked daily from public job boards), roles, skills and tasks, the AI-native architect (architecture, tools and common problems), industry certificates, technical docs in motion, and contributions.
 
 ### Tokalator: Context Engineering Toolkit
 - URL: https://tokalator.wiki

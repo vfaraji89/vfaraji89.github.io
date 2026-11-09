@@ -588,7 +588,7 @@
                         "@type": "CreativeWork",
                         "name": "awesome-applied-ai",
                         "url": "https://vfaraji89.github.io/awesome-applied-ai/",
-                        "description": "Open taxonomy of applied AI for the enterprise across six layers: guardrails, evaluation, orchestration, caching, memory and retrieval."
+                        "description": "An open, plain-language map of applied AI: the market, roles and skills, the AI-native architect, certificates, technical docs and contributions."
                     }
                 }
             ]
@@ -1296,6 +1296,27 @@
         }
         .cta-band h3 { font-size: 1.5rem; margin: 0.75rem 0 0.5rem; }
         .cta-band p { margin-bottom: 1.5rem; max-width: 34rem; }
+        /* ---- skills, compact: pills that fit their words, both faces in one grid cell ---- */
+        #skills .bio-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.25rem 0 1.5rem; padding: 0; overflow: visible; }
+        #skills .bio-tag { display: inline-grid; flex: none; height: 2.125rem; padding: 0 0.875rem; border-radius: 999px; }
+        #skills .chip-face { position: static; grid-area: 1 / 1; padding: 0; }
+        #skills .stack-abacus { margin-top: 0.5rem; }
+
+        /* ---- awesome-applied-ai card: the logo, the line, the six steps ---- */
+        .aai-head { display: flex; align-items: center; gap: 0.875rem; }
+        .aai-logo { width: 52px; height: 52px; flex: none; display: grid; place-items: center; border-radius: 14px; background: var(--bg); border: 1px solid var(--border); }
+        .aai-card h3 { margin: 0.25rem 0 0; }
+        .aai-card h3 .dot { color: var(--rust); }
+        .aai-card > p { margin: 1rem 0 1.25rem; }
+        .aai-steps { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; position: relative; }
+        .aai-steps a { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 0.625rem; padding: 0.75rem 0.875rem; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); text-decoration: none; color: var(--ink); transition: border-color var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
+        .aai-steps a:hover { border-color: var(--rust); transform: translateY(-2px); }
+        .aai-n { grid-row: 1 / span 2; align-self: center; font-family: var(--font-mono); font-size: 0.6875rem; color: #fff; background: var(--ink); border-radius: 7px; padding: 0.25rem 0.4rem; }
+        .aai-steps li:first-child .aai-n { background: var(--rust); }
+        .aai-steps b { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
+        .aai-steps em { font-style: normal; font-size: 0.75rem; color: var(--text-secondary); }
+        @media (max-width: 760px) { .aai-steps { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 420px) { .aai-steps { grid-template-columns: 1fr; } }
         .cta-actions { display: flex; flex-wrap: wrap; gap: 0.625rem; }
         /* Buttons are the nav beads at reading size: a pill with a hairline
            edge, filled only on hover, when it also slides a few pixels along
@@ -3105,6 +3126,7 @@
             </a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="#work">Work</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#publications">Research</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#about">About</a></li>
@@ -3124,6 +3146,7 @@
         <div class="nav-sheet" id="nav-sheet">
             <div class="container">
                 <a href="#work">Work <span>Case studies</span></a>
+                <a href="#skills">Skills <span>What I bring, and the stack</span></a>
                 <a href="#publications">Research <span>ACM · arXiv</span></a>
                 <a href="#experience">Experience <span>Where I built it</span></a>
                 <a href="#about">About <span>Background</span></a>
@@ -3294,6 +3317,46 @@
                 <p class="rec-share">Share this view: <code>vfaraji89.github.io/?hire</code> <button type="button" class="rc-copy" id="rc-copy">Copy link</button></p>
             </div>
 
+            <div class="hero-ctas" id="cta-nav">
+                <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="btn btn-primary cta-cv">
+                    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg>
+                    Download CV
+                </a>
+                <a href="#work" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg>See work</a>
+                <a href="#publications" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-page"/></svg>Research</a>
+                <a href="#engage" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-advise"/></svg>Work with me</a>
+                <a href="#" class="btn btn-outline cta-go" onclick="openBooking();return false;"><svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg>Suggest a time</a>
+            </div>
+            <div class="product-badges" aria-label="Products">
+                <a class="pbadge" href="https://tokalator.ai/" target="_blank" rel="noopener">
+                    <span class="pb-mark" style="color:var(--rust);"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="13" height="13" rx="2.5"/><line x1="3.5" y1="5.5" x2="12.5" y2="5.5"/><line x1="3.5" y1="8.5" x2="12.5" y2="8.5"/><line x1="3.5" y1="11.5" x2="12.5" y2="11.5"/><circle cx="5.5" cy="5.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="8.5" cy="5.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="6" cy="8.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="10" cy="8.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="11.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>
+                    <span class="pb-text"><b>Tokalator</b><em>500+ installs</em></span>
+                    <span class="pb-go" aria-hidden="true">&nearr;</span>
+                </a>
+                <a class="pbadge" href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">
+                    <span class="pb-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><radialGradient id="aai-b2" cx=".34" cy=".3" r=".75"><stop offset="0" stop-color="#ff9d8f"/><stop offset=".45" stop-color="#e0301e"/><stop offset="1" stop-color="#9e1a0c"/></radialGradient></defs><rect x="1.6" y="3.6" width="15.4" height="16.8" rx="4.6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/><path d="M12.4 12h7.4" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"/><rect x="19.2" y="9.6" width="4.2" height="4.8" rx="1.3" fill="var(--ink)"/><circle cx="9.3" cy="12" r="3.3" fill="url(#aai-b2)"/></svg></span>
+                    <span class="pb-text"><b>awesome-applied-ai</b><em>Applied AI, mapped</em></span>
+                    <span class="pb-go" aria-hidden="true">&nearr;</span>
+                </a>
+                <a class="pbadge" href="#work">
+                    <span class="pb-mark pb-pl"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5" fill="#6a1b9a"/><path d="M10.5 7.25v6.5M7.25 10.5h6.5" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/><path d="M16 16l4.75 4.75" stroke="#6a1b9a" stroke-width="2.6" stroke-linecap="round"/></svg></span>
+                    <span class="pb-text"><b>ProjectLens</b><em>91% effort cut</em></span>
+                    <span class="pb-go" aria-hidden="true">&darr;</span>
+                </a>
+                <a class="pbadge" href="#yzi">
+                    <span class="pb-mark pb-yzi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5L21 19.5H3z" fill="#efe7fb" stroke="#5b21b6" stroke-width="1.6" stroke-linejoin="round"/><path d="M1.5 12.5L9.6 11.4" stroke="#5b21b6" stroke-width="1.4" stroke-linecap="round"/><path d="M14.3 11.2l8 -2.2" stroke="#e0301e" stroke-width="1.3" stroke-linecap="round"/><path d="M14.6 12.4l8 0.4" stroke="#f2b134" stroke-width="1.3" stroke-linecap="round"/><path d="M14.8 13.6l7.6 2.8" stroke="#2f9e6e" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+                    <span class="pb-text"><b>Yapay Zek&acirc; &#304;zi</b><em>Concept &middot; confidential</em></span>
+                    <span class="pb-go" aria-hidden="true">&darr;</span>
+                </a>
+            </div>
+
+
+
+        </section>
+
+        <section id="skills" class="reveal">
+            <div class="section-label">Skills</div>
+            <p class="section-tagline">What I bring, and what I build with.</p>
             <div class="bio-tags pop-group" id="bio-tags">
                 <button type="button" class="bio-tag accent" aria-label="AI-Native Architecture: Spec → Agents → Evals"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg>AI-Native Architecture</span><span class="chip-face chip-b" aria-hidden="true">Spec → Agents → Evals</span></button>
                 <button type="button" class="bio-tag accent" aria-label="Agent Harnesses: Loops · Tools · Memory"><span class="chip-face chip-a"><svg class="ab" aria-hidden="true"><use href="#ab-loop"/></svg>Agent Harnesses</span><span class="chip-face chip-b" aria-hidden="true">Loops · Tools · Memory</span></button>
@@ -3349,49 +3412,26 @@
                     <li class="sb" style="--k:29"><span class="sb-bead" title="Zapier"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.5 16h-13v3h13v-3z" fill="#FF4F00"></path></svg></span><span class="sb-name">Zapier</span></li>
                 </ul></div>
             </div>
-
-            <div class="hero-ctas" id="cta-nav">
-                <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="btn btn-primary cta-cv">
-                    <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg>
-                    Download CV
-                </a>
-                <a href="#work" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg>See work</a>
-                <a href="#publications" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-page"/></svg>Research</a>
-                <a href="#engage" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-advise"/></svg>Work with me</a>
-                <a href="#" class="btn btn-outline cta-go" onclick="openBooking();return false;"><svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg>Suggest a time</a>
-            </div>
-            <div class="product-badges" aria-label="Products">
-                <a class="pbadge" href="https://tokalator.ai/" target="_blank" rel="noopener">
-                    <span class="pb-mark" style="color:var(--rust);"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="13" height="13" rx="2.5"/><line x1="3.5" y1="5.5" x2="12.5" y2="5.5"/><line x1="3.5" y1="8.5" x2="12.5" y2="8.5"/><line x1="3.5" y1="11.5" x2="12.5" y2="11.5"/><circle cx="5.5" cy="5.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="8.5" cy="5.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="6" cy="8.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="10" cy="8.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="11.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>
-                    <span class="pb-text"><b>Tokalator</b><em>500+ installs</em></span>
-                    <span class="pb-go" aria-hidden="true">&nearr;</span>
-                </a>
-                <a class="pbadge" href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">
-                    <span class="pb-mark"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg></span>
-                    <span class="pb-text"><b>awesome-applied-ai</b><em>Applied AI map</em></span>
-                    <span class="pb-go" aria-hidden="true">&nearr;</span>
-                </a>
-                <a class="pbadge" href="#work">
-                    <span class="pb-mark pb-pl"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5" fill="#6a1b9a"/><path d="M10.5 7.25v6.5M7.25 10.5h6.5" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/><path d="M16 16l4.75 4.75" stroke="#6a1b9a" stroke-width="2.6" stroke-linecap="round"/></svg></span>
-                    <span class="pb-text"><b>ProjectLens</b><em>91% effort cut</em></span>
-                    <span class="pb-go" aria-hidden="true">&darr;</span>
-                </a>
-                <a class="pbadge" href="#yzi">
-                    <span class="pb-mark pb-yzi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5L21 19.5H3z" fill="#efe7fb" stroke="#5b21b6" stroke-width="1.6" stroke-linejoin="round"/><path d="M1.5 12.5L9.6 11.4" stroke="#5b21b6" stroke-width="1.4" stroke-linecap="round"/><path d="M14.3 11.2l8 -2.2" stroke="#e0301e" stroke-width="1.3" stroke-linecap="round"/><path d="M14.6 12.4l8 0.4" stroke="#f2b134" stroke-width="1.3" stroke-linecap="round"/><path d="M14.8 13.6l7.6 2.8" stroke="#2f9e6e" stroke-width="1.3" stroke-linecap="round"/></svg></span>
-                    <span class="pb-text"><b>Yapay Zek&acirc; &#304;zi</b><em>Concept &middot; confidential</em></span>
-                    <span class="pb-go" aria-hidden="true">&darr;</span>
-                </a>
-            </div>
-
-
-
         </section>
 
         <section class="reveal">
-            <div class="cta-band">
-                <div class="cta-label">awesome-applied-ai · July 2026</div>
-                <h3>A working map of applied AI for the enterprise</h3>
-                <p>Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, equations, a dictionary and research for enterprise AI architects.</p>
+            <div class="cta-band aai-card">
+                <div class="aai-head">
+                    <span class="aai-logo"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><radialGradient id="aai-b" cx=".34" cy=".3" r=".75"><stop offset="0" stop-color="#ff9d8f"/><stop offset=".45" stop-color="#e0301e"/><stop offset="1" stop-color="#9e1a0c"/></radialGradient></defs><rect x="1.6" y="3.6" width="15.4" height="16.8" rx="4.6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/><path d="M12.4 12h7.4" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"/><rect x="19.2" y="9.6" width="4.2" height="4.8" rx="1.3" fill="var(--ink)"/><circle cx="9.3" cy="12" r="3.3" fill="url(#aai-b)"/></svg></span>
+                    <div>
+                        <div class="cta-label">awesome-applied-ai · open source</div>
+                        <h3>Applied AI, mapped<span class="dot">.</span></h3>
+                    </div>
+                </div>
+                <p>From what the market asks for to the docs you need to build it: six steps, in order.</p>
+                <ol class="aai-steps">
+                    <li><a href="https://vfaraji89.github.io/awesome-applied-ai/market/" target="_blank" rel="noopener"><span class="aai-n">01</span><b>Market</b><em>What applied AI jobs ask for</em></a></li>
+                    <li><a href="https://vfaraji89.github.io/awesome-applied-ai/roles/" target="_blank" rel="noopener"><span class="aai-n">02</span><b>Roles &amp; skills</b><em>Who does the work, and the skills</em></a></li>
+                    <li><a href="https://vfaraji89.github.io/awesome-applied-ai/architect/" target="_blank" rel="noopener"><span class="aai-n">03</span><b>AI-native architect</b><em>Layers, stack and problems</em></a></li>
+                    <li><a href="https://vfaraji89.github.io/awesome-applied-ai/certificates/" target="_blank" rel="noopener"><span class="aai-n">04</span><b>Certificates</b><em>What the industry asks for</em></a></li>
+                    <li><a href="https://vfaraji89.github.io/awesome-applied-ai/docs/" target="_blank" rel="noopener"><span class="aai-n">05</span><b>Docs</b><em>Technical docs, in motion</em></a></li>
+                    <li><a href="https://vfaraji89.github.io/awesome-applied-ai/contribute/" target="_blank" rel="noopener"><span class="aai-n">06</span><b>Contribute</b><em>Open source, open to all</em></a></li>
+                </ol>
                 <div class="cta-actions bead-row">
                     <a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener" class="btn btn-primary">Explore the map →</a>
                     <a href="https://github.com/vfaraji89/awesome-applied-ai" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
