@@ -2925,7 +2925,7 @@
             .hero-bio { flex-direction: column; align-items: stretch; gap: 1rem; }
             .reel-mini { width: 100%; }
         }
-        /* open to roles: a quiet link to the recruiter view */
+        /* now building: a quiet link to the short version */
         .hire-main { cursor: pointer; border-radius: 6px; outline-offset: 4px; }
         .hire-more { margin-left: 0.5rem; color: var(--rust-deep); letter-spacing: 0.04em; opacity: 0.75; transition: opacity 0.25s; }
         .hire-main:hover .hire-more, .hire-main:focus-visible .hire-more { opacity: 1; }
@@ -3265,11 +3265,11 @@
                     <span class="hire-ph hire-ph-3"></span>
                     <span class="hire-ph hire-ph-4"></span>
                 </span>
-                <span class="hire-main" role="button" tabindex="0" id="hire-open" aria-controls="recruiter-card" title="Open the recruiter view">
-                <span class="hire-lead">Open to roles <span class="hire-more">Recruiter view &rarr;</span></span>
-                <span class="hire-role ticker" id="hire-role" aria-hidden="true"><span class="tk is-on">Applied AI Engineer</span><span class="tk">Agentic AI Engineer</span><span class="tk">AI Platform Engineer</span><span class="tk">AI Solutions Architect</span><span class="tk">R&amp;D Researcher</span></span>
+                <span class="hire-main" role="button" tabindex="0" id="hire-open" aria-controls="recruiter-card" title="Open the short version">
+                <span class="hire-lead">Now building <span class="hire-more">The short version &rarr;</span></span>
+                <span class="hire-role ticker" id="hire-role" aria-hidden="true"><span class="tk is-on">Agent harnesses</span><span class="tk">Evals from real tasks</span><span class="tk">Tokalator</span><span class="tk">awesome-applied-ai</span><span class="tk">Data pipelines</span></span>
                 </span>
-                <span class="sr-only">Open to Applied AI Engineer, Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect and R&amp;D Researcher roles.</span>
+                <span class="sr-only">Now building: agent harnesses, evals from real tasks, Tokalator, awesome-applied-ai and data pipelines.</span>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="hire-btn" id="hire-book" aria-haspopup="true" aria-expanded="false" aria-controls="book-pick"><span class="live-bead"></span>Book a call <span aria-hidden="true">&rarr;</span></a>
                 <div class="book-pick" id="book-pick" role="dialog" aria-label="Choose how to book" hidden>
                     <p class="bp-fit" id="bp-fit">Checking our time zones&hellip;</p>
@@ -3341,7 +3341,7 @@
                         <h3 class="rc-title">Applied AI engineer who ships agent systems, and the evals that prove them<span class="bead-stop">.</span></h3>
                         <p class="rc-sub">Senior Applied AI Specialist, Kariyer.net (ilab group) &middot; 8 years in industry + 4 in research</p>
                     </div>
-                    <span class="rc-status"><i aria-hidden="true"></i>Open to interviews</span>
+                    <span class="rc-status"><i aria-hidden="true"></i>Happy to talk</span>
                 </div>
 
                 <ul class="rc-proof">
@@ -4945,7 +4945,7 @@
         btn.addEventListener('click', function () {
             set(btn.getAttribute('aria-pressed') !== 'true', true);
         });
-        // the hero's "Open to roles" card opens the same view
+        // the hero's "Now building" card opens the same view
         var open = document.getElementById('hire-open');
         if (open) {
             var go = function () { set(true, true); };
@@ -5291,7 +5291,7 @@
             '%cVahid Faraji%c  Applied AI, Istanbul\n\n' +
             'Machine-readable version of this site: /llms.txt\n' +
             'Source: github.com/vfaraji89/vfaraji89.github.io\n' +
-            'Open to Applied AI roles: vfaraji89@gmail.com',
+            'Say hello: vfaraji89@gmail.com',
             'font: 600 15px/1.6 sans-serif; color: #e0301e',
             'font: 400 12px/1.6 ui-monospace, monospace; color: #777'
         );
