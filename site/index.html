@@ -1307,6 +1307,34 @@
             #skills .chip-face { white-space: normal; text-align: left; justify-content: flex-start; line-height: 1.2; }
         }
 
+        /* ---- Tokalator card: the promise, the facts, install and star, and a context meter ---- */
+        .tok-card { margin-bottom: 1rem; }
+        .tok-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 2rem; align-items: center; position: relative; }
+        @media (max-width: 860px) { .tok-grid { grid-template-columns: 1fr; } }
+        .tok-logo { width: 52px; height: 52px; flex: none; border-radius: 13px; }
+        .tok-card h3 { margin: 0.25rem 0 0; line-height: 1.2; }
+        .tok-card h3 mark { color: inherit; background: linear-gradient(transparent 58%, var(--mark) 58%, var(--mark) 92%, transparent 92%); }
+        .tok-card h3 .dot { color: var(--rust); }
+        .tok-card p { margin: 1rem 0 1rem; }
+        .tok-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+        .tok-badges span { display: inline-flex; border-radius: 7px; overflow: hidden; border: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.75rem; }
+        .tok-badges i { font-style: normal; padding: 0.25rem 0.5rem; background: var(--bg); color: var(--text-secondary); }
+        .tok-badges b { font-weight: 500; padding: 0.25rem 0.5rem; background: var(--ink); color: #fff; }
+        .tok-badges .r b { background: var(--rust); } .tok-badges .g b { background: #16a34a; }
+        .tok-panel { background: var(--bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.1rem 1.2rem; box-shadow: 0 24px 40px -32px rgba(60,30,10,.55); }
+        .tok-ph { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+        .tok-meter { display: flex; height: 18px; border-radius: 7px; overflow: hidden; background: #efe9e4; margin-top: 0.6rem; }
+        .tok-meter span { transform-origin: left; transform: scaleX(0); transition: transform 0.9s var(--ease-out); }
+        .tok-meter span:nth-child(1) { width: 38%; background: #16a34a; } .tok-meter span:nth-child(2) { width: 22%; background: #4ade80; transition-delay: .15s; }
+        .tok-meter span:nth-child(3) { width: 12%; background: #d4a017; transition-delay: .3s; } .tok-meter span:nth-child(4) { width: 8%; background: #e0301e; transition-delay: .45s; }
+        .tok-card.is-in .tok-meter span, .reveal.visible .tok-meter span, .reveal.is-visible .tok-meter span { transform: scaleX(1); }
+        .tok-panel ul { list-style: none; margin: 0.9rem 0 0; padding: 0; display: grid; gap: 0.45rem; font-size: 0.875rem; }
+        .tok-panel li { display: grid; grid-template-columns: 10px 1fr auto; gap: 0.6rem; align-items: center; color: var(--ink); }
+        .tok-panel li i { width: 10px; height: 10px; border-radius: 50%; }
+        .tok-panel em { font-style: normal; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); }
+        .pb-img img { display: block; border-radius: 5px; }
+        @media (max-width: 640px) { .tok-panel { display: none; } .tok-logo { width: 40px; height: 40px; border-radius: 10px; } .tok-card .aai-head { align-items: flex-start; } }
+        @media (prefers-reduced-motion: reduce) { .tok-meter span { transform: none; transition: none; } }
         /* ---- awesome-applied-ai card: the logo, the line, the six steps ---- */
         .aai-head { display: flex; align-items: center; gap: 0.875rem; }
         .aai-logo { width: 52px; height: 52px; flex: none; display: grid; place-items: center; border-radius: 14px; background: var(--bg); border: 1px solid var(--border); }
@@ -3350,7 +3378,7 @@
             </div>
             <div class="product-badges" aria-label="Products">
                 <a class="pbadge" href="https://tokalator.ai/" target="_blank" rel="noopener">
-                    <span class="pb-mark" style="color:var(--rust);"><svg width="20" height="20" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="13" height="13" rx="2.5"/><line x1="3.5" y1="5.5" x2="12.5" y2="5.5"/><line x1="3.5" y1="8.5" x2="12.5" y2="8.5"/><line x1="3.5" y1="11.5" x2="12.5" y2="11.5"/><circle cx="5.5" cy="5.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="8.5" cy="5.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="6" cy="8.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="10" cy="8.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="9" cy="11.5" r="1.2" fill="currentColor" stroke="none"/></svg></span>
+                    <span class="pb-mark pb-img"><img src="assets/brand/tokalator-icon.png" width="22" height="22" alt=""></span>
                     <span class="pb-text"><b>Tokalator</b><em>500+ installs</em></span>
                     <span class="pb-go" aria-hidden="true">&nearr;</span>
                 </a>
@@ -3528,6 +3556,39 @@
                         </div>
                         </details>
                         <div class="case-stack"><span>DataHub</span><span>·</span><span>Azure Synapse</span><span>·</span><span>BigQuery</span><span>·</span><span>Real-time Pipelines</span><span>·</span><span>Retool</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <div class="cta-band tok-card">
+                <div class="tok-grid">
+                    <div>
+                        <div class="aai-head">
+                            <img class="tok-logo" src="assets/brand/tokalator-icon.png" width="52" height="52" alt="">
+                            <div>
+                                <div class="cta-label">Tokalator · open source · MIT</div>
+                                <h3>See what your AI coding assistant <mark>reads</mark>, and what it <mark>costs</mark><span class="dot">.</span></h3>
+                            </div>
+                        </div>
+                        <p>Context engineering for AI coding assistants: token budgeting in real time and cost modelling across 17 LLMs.</p>
+                        <div class="tok-badges"><span><i>VS Code</i><b>500+ installs</b></span><span class="r"><i>arXiv</i><b>2604.08290</b></span><span class="g"><i>models</i><b>17 LLMs</b></span></div>
+                        <div class="cta-actions bead-row">
+                            <a href="https://marketplace.visualstudio.com/items?itemName=vfaraji89.tokalator" target="_blank" rel="noopener" class="btn btn-primary">Install for VS Code →</a>
+                            <a href="https://github.com/vfaraji89/tokalator" target="_blank" rel="noopener" class="btn btn-outline">&#9733; Star on GitHub</a>
+                            <a href="https://tokalator.wiki" target="_blank" rel="noopener" class="btn btn-outline">tokalator.wiki</a>
+                        </div>
+                    </div>
+                    <div class="tok-panel" aria-hidden="true">
+                        <div class="tok-ph"><span>context window</span><span class="tok-pct">example</span></div>
+                        <div class="tok-meter"><span></span><span></span><span></span><span></span></div>
+                        <ul>
+                            <li><i style="background:#16a34a"></i>Pinned files<em>high relevance</em></li>
+                            <li><i style="background:#4ade80"></i>Open tabs<em>scored</em></li>
+                            <li><i style="background:#d4a017"></i>History<em>cache it</em></li>
+                            <li><i style="background:#e0301e"></i>Low relevance<em>drop it</em></li>
+                        </ul>
                     </div>
                 </div>
             </div>
