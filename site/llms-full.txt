@@ -1,4 +1,4 @@
-# Vahid Faraji, AI-Native Architect: Agent Harnesses, Evals, Production LLM Agents (Full Context)
+# Vahid Faraji, Applied AI: Agent Harnesses, Evals, Production LLM Agents (Full Context)
 
 > Applied AI engineer who builds LLM agent harnesses end to end (execution loops, tool calling, context and memory, agent skills), makes quality measurable with evals from real tasks, and owns production reliability, latency and cost. Full stack in TypeScript and Python. Published at ACM.
 
@@ -175,7 +175,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 ## Hiring Summary
 
 - Open to: senior applied AI roles (full-time), advisory engagements, enterprise AI training
-- Role fit: AI-Native Architect, Applied AI Engineer, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher
+- Role fit: Applied AI Engineer, AI-Native Architect, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher
 - Centre of gravity: building agent harnesses and evals and shipping them to production - framing the problem, writing the spec, designing the schema, building the loop, tools, context and memory, and measuring it
 - Strengths: agent harness engineering, evals from real tasks, tracing and failure analysis, spec-driven design and implementation, database schema design, full-stack ownership, context and token strategy, production reliability, latency and cost
 - Seniority: Senior, 8 years in industry plus 4 in research, with hands-on full-stack engineering of LLM agents in production
