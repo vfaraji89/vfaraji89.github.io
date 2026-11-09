@@ -174,7 +174,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 
 ## Hiring Summary
 
-- Open to: senior applied AI roles (full-time), advisory engagements, enterprise AI training
+- Talks with teams about: senior applied AI roles, advisory engagements, enterprise AI training
 - Role fit: Applied AI Engineer, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher
 - Centre of gravity: building agent harnesses and evals and shipping them to production - framing the problem, writing the spec, designing the schema, building the loop, tools, context and memory, and measuring it
 - Strengths: agent harness engineering, evals from real tasks, tracing and failure analysis, spec-driven design and implementation, database schema design, full-stack ownership, context and token strategy, production reliability, latency and cost
@@ -226,7 +226,7 @@ Agent and LLM stack: Anthropic Platform (Claude Agent SDK), Vercel AI SDK, Micro
 
 ### Is Vahid Faraji available to hire or consult?
 
-Yes. Open to Applied AI Engineer, Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect and R&D Researcher roles, plus advisory engagements and enterprise AI training. His centre of gravity is building agent harnesses and evals and shipping them to production, backed by a peer-reviewed ACM publication and two arXiv papers. Based in Istanbul (GMT+3) and remote-friendly with distributed teams. Email vfaraji89@gmail.com or book a call; a condensed hiring summary is at https://vfaraji89.github.io/?hire
+He talks with teams about applied AI work: Applied AI Engineer, Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect and R&D Researcher roles, plus advisory engagements and enterprise AI training. His centre of gravity is building agent harnesses and evals and shipping them to production, backed by a peer-reviewed ACM publication and two arXiv papers. Based in Istanbul (GMT+3) and remote-friendly with distributed teams. Email vfaraji89@gmail.com or book a call; a condensed hiring summary is at https://vfaraji89.github.io/?hire
 
 ### Does Vahid Faraji do training and teaching?
 
