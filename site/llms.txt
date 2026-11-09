@@ -1,4 +1,4 @@
-# Vahid Faraji, AI-Native Architect: Agent Harnesses, Evals, Production LLM Agents
+# Vahid Faraji, Applied AI: Agent Harnesses, Evals, Production LLM Agents
 
 > Applied AI engineer who builds LLM agent harnesses end to end (execution loops, tool calling, context and memory, agent skills), makes quality measurable with evals from real tasks, and owns production reliability, latency and cost. Full stack in TypeScript and Python. Published at ACM.
 
@@ -43,7 +43,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 
 ## Key Projects
 
-- awesome-applied-ai (vfaraji89.github.io/awesome-applied-ai): Public taxonomy of applied AI for the enterprise. Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, formulas, dictionary, and research.
+- awesome-applied-ai (vfaraji89.github.io/awesome-applied-ai): An open, plain-language map of applied AI in six steps: the market (tracked daily from public job boards), roles, skills and tasks, the AI-native architect, industry certificates, technical docs in motion, and contributions.
 - Tokalator (tokalator.wiki): Open-source context engineering toolkit. VS Code extension with 500+ installs. Token budgeting, cost modeling across 17 LLMs. MIT license.
 - Multi-Agent Job Classification: MCP-based system achieving 95% accuracy on 14K+ positions, 72.5% faster classification. Published at ACM.
 - Yapay Zekâ İzi (concept, confidential Kariyer.net work, October 2026): an LLM pipeline over 1.6M job ads from 2022 to the first half of 2026, reading ads sentence by sentence to trace generative and classic AI demand and which AI tools employers name, with a validation and method layer. Shown on the portfolio as a concept only; no data, link or product is public.
@@ -74,7 +74,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 
 ## Availability
 
-Open to senior applied AI roles, advisory engagements, and enterprise AI training. Role fit: AI-Native Architect, Applied AI Engineer, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher. Centre of gravity is building agent harnesses and evals and shipping them to production, spec-first and across the stack. Seniority: Senior, 8 years in industry plus 4 in research, with hands-on engineering of LLM agents in production. Based in Istanbul (GMT+3), remote-friendly with distributed teams.
+Open to senior applied AI roles, advisory engagements, and enterprise AI training. Role fit: Applied AI Engineer, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher. Centre of gravity is building agent harnesses and evals and shipping them to production, spec-first and across the stack. Seniority: Senior, 8 years in industry plus 4 in research, with hands-on engineering of LLM agents in production. Based in Istanbul (GMT+3), remote-friendly with distributed teams.
 Condensed hiring summary: https://vfaraji89.github.io/?hire
 Book directly: https://calendar.app.google/KWQg6gBjXetC4ofp9
 
