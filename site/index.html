@@ -3041,6 +3041,9 @@
         .bio-three span:nth-child(3) b { animation-delay: 0.5s; color: var(--rust); }
         .bio-three i { font-style: normal; font-weight: 800; color: var(--rust); }
         @keyframes bio-mark { to { background-size: 100% 38%; } }
+        .bio-three span { font-weight: 800; color: var(--ink); }
+        .bio-three b.b-roi { color: #16a34a; }
+        .bio-three b.b-cost { color: var(--rust); }
         .bio-text { margin: 0; max-width: 36rem; font-size: 1.0625rem; line-height: 1.6; color: var(--text-secondary); }
         .bio-text strong { color: var(--ink); font-weight: 700; }
         .bio-text mark { color: var(--ink); background: linear-gradient(var(--mark), var(--mark)) left 75% / 100% 40% no-repeat; padding: 0 0.1em; }
@@ -3188,8 +3191,8 @@
             <hr class="hero-rule">
             <div class="hero-bio">
                 <div class="hero-tagline bio">
-                    <p class="bio-three" aria-label="Clear. Measured. Shipped."><span><b>Clear</b><i class="bead-stop">.</i></span> <span><b>Measured</b><i class="bead-stop">.</i></span> <span><b>Shipped</b><i class="bead-stop">.</i></span></p>
-                    <p class="bio-text">I turn <mark>messy information</mark> into AI tools <strong>teams actually use</strong>, from the first conversation to the day it ships, with <strong>the numbers to prove it worked</strong>.</p>
+                    <p class="bio-three" aria-label="Maximize ROI. Minimize cost."><span>Maximize&nbsp;<b class="b-roi">ROI</b><i class="bead-stop">.</i></span> <span>Minimize&nbsp;<b class="b-cost">cost</b><i class="bead-stop">.</i></span></p>
+                    <p class="bio-text">I build <strong>workflows, data pipelines and agents</strong> that teams use in their daily work. I write the spec, build the tools the agent can use, and measure whether it actually helps: <mark>evidence more than demos</mark>.</p>
                 </div>
                 <div class="reel-col">
                 <button type="button" class="reel reel-mini" id="reel-open" aria-haspopup="dialog" aria-label="Watch my animated CV, 90 seconds">
