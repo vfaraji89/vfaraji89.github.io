@@ -3011,13 +3011,26 @@
             .sa-row .sb::before { display: none; }
             .sa-row-label { position: relative; z-index: 1; justify-self: start; background: var(--bg); padding-right: 0.6rem; }
         }
+        /* phones: each group is one rod you swipe along, like a real abacus row,
+           so the whole stack takes three short lines instead of a tall grid */
         @media (max-width: 760px) {
-            .sa-row { grid-template-columns: 1fr; gap: 0.25rem; }
-            .sa-row-label { padding-top: 0.25rem; }
-            .sa-row .sb { width: 25%; }
-            .sa-row .sa-rod { gap: 0.4rem 0; }
+            .sa-row { grid-template-columns: 1fr; gap: 0.15rem; padding: 0.3rem 0; }
+            .sa-row-label { padding-top: 0.25rem; display: flex; justify-content: space-between; }
+            .sa-row-label::after { content: "swipe \2192"; color: var(--text-muted); letter-spacing: 0.04em; text-transform: none; }
+            .sa-row .sa-rod {
+                position: relative; flex-wrap: nowrap; justify-content: flex-start; gap: 0; overflow-x: auto; overscroll-behavior-x: contain;
+                scroll-snap-type: x proximity; scrollbar-width: none; margin: 0 -1.25rem; padding: 0 1.25rem 0.15rem;
+                -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
+                        mask-image: linear-gradient(90deg, #000 calc(100% - 2.5rem), transparent);
+            }
+            .sa-row .sa-rod::-webkit-scrollbar { display: none; }
+            .sa-row .sb { flex: 0 0 62px; width: 62px; gap: 0.2rem; scroll-snap-align: start; }
+            .sa-row .sb::before { left: 0; right: 0; top: 16px; border-radius: 0; }
+            .sa-row .sb-bead { width: 32px; height: 32px; }
+            .sa-row .sb-bead svg { width: 16px; height: 16px; }
+            .sa-row .sb-name { font-size: 0.5rem; max-width: 60px; }
+            .sa-msg { font-size: 1.125rem; }
         }
-        @media (max-width: 400px) { .sa-row .sb { width: 33.33%; } }
     
         .rp-sound {
             position: absolute; z-index: 3; right: 16px; top: 16px; display: inline-flex; align-items: center; gap: 0.45rem;
