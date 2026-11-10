@@ -1228,11 +1228,17 @@
         /* phones: the portrait lives in About, so the hero carries a small photo by the name */
         .hero-avatar { display: none; }
         @media (max-width: 640px) {
+            /* phones: a framed portrait sits above the name, like the desktop one */
             .hero-avatar {
-                display: inline-block; width: 0.95em; height: 0.95em; margin: 0 0.22em 0 3px; vertical-align: -0.1em;
-                border-radius: 22%; object-fit: cover; background: var(--paper);
-                box-shadow: -3px 0 0 #c9a273, 3px 0 0 #c9a273, 0 6px 14px -8px rgba(28,28,30,0.5);
+                display: block; width: 104px; height: 104px; margin: 0 0 1rem 6px;
+                border-radius: 24px; object-fit: cover; object-position: 50% 22%; background: var(--paper);
+                border: 4px solid #fff;
+                box-shadow: 0 0 0 5px #d8bb94, 0 0 0 6px #b48a5c, 0 22px 30px -20px rgba(60,30,10,0.65);
             }
+            .hero { display: flex; flex-direction: column; }
+            .hero > * { order: 3; }
+            .hero > .hero-icon-row { order: 1; margin-bottom: 0.75rem; }
+            .hero > .hero-identity { order: 2; margin: 0 0 0.5rem; }
         }
         .hero-portrait-tag {
             position: absolute; right: -10px; bottom: -8px; pointer-events: none;
@@ -3284,7 +3290,7 @@
 
             <div class="hero-icon-row">
                 <div>
-                    <h1 class="hero-name hero-is"><span class="sr-only">Vahid Faraji works in applied AI.</span><span aria-hidden="true"><span class="hero-is-name"><img class="hero-avatar" src="assets/foto-vahid.jpg" alt="" width="64" height="64" decoding="async">Vahid</span><br><span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">works in <mark>applied AI</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">works <mark>AI-native</mark>.</span><span class="tk">loves <mark>creative data products</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span></span></h1>
+                    <h1 class="hero-name hero-is"><span class="sr-only">Vahid Faraji works in applied AI.</span><span aria-hidden="true"><span class="hero-is-name"><img class="hero-avatar" src="assets/foto-vahid.jpg" alt="" width="104" height="104" decoding="async">Vahid</span><br><span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">works in <mark>applied AI</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">works <mark>AI-native</mark>.</span><span class="tk">loves <mark>creative data products</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span></span></h1>
                 </div>
             </div>
 
@@ -3425,6 +3431,7 @@
 
                 <div class="rc-actions">
                     <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="btn btn-primary rc-book"><span class="live-bead" aria-hidden="true"></span>Book an interview</a>
+                    <a href="#" class="btn btn-outline" onclick="openBooking();return false;"><svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg>Suggest a time</a>
                     <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="btn btn-outline"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 3C4.4 3 1.6 5.5.5 8c1.1 2.5 3.9 5 7.5 5s6.4-2.5 7.5-5C14.4 5.5 11.6 3 8 3zm0 8.25A3.25 3.25 0 118 4.75a3.25 3.25 0 010 6.5zM8 6.25a1.75 1.75 0 100 3.5 1.75 1.75 0 000-3.5z"/></svg>Preview CV</a>
                     <a href="mailto:vfaraji89@gmail.com?subject=Interview%20request" class="btn btn-outline">Email</a>
                     <a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
