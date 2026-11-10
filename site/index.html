@@ -2450,7 +2450,11 @@
             background: var(--paper); border: 1px solid rgba(224,48,30,0.25);
         }
         .rc-status i { width: 8px; height: 8px; border-radius: 50%; background-color: var(--rust); animation: live-ring 1.8s var(--ease-move) infinite; }
-        .rc-proof { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.625rem; }
+        .rc-proof { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.625rem; }
+        @media (max-width: 1000px) and (min-width: 641px) { .rc-proof { grid-template-columns: 1fr 1fr; } }
+        .rc-line { margin: 0.5rem 0 0; font-size: 0.9375rem; line-height: 1.5; color: var(--text-secondary); max-width: 46rem; }
+        .rc-line b { font-weight: 800; color: var(--ink); } .rc-line .b-roi { color: #16a34a; } .rc-line .b-cost { color: var(--rust); }
+        .rc-facts dd a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--mark); text-underline-offset: 3px; }
         .rc-proof li { padding: 0.875rem 1rem; border-radius: 12px; background: var(--paper); border: 1px solid rgba(224,48,30,0.12); }
         .rc-proof b { display: block; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em; color: var(--rust); line-height: 1.1; }
         .rc-proof span { display: block; font-size: 0.8125rem; font-weight: 600; color: var(--ink); margin-top: 0.125rem; }
@@ -2703,8 +2707,8 @@
         /* Mobile: ≤640px */
         @media (max-width: 640px) {
             .container { padding: 0 1.25rem; }
-            .hero { padding: 2.5rem 0; }
-            .hero-name { font-size: 1.5rem; }
+            .hero { padding: 1.5rem 0 2.5rem; }
+            .hero-name { font-size: clamp(1.875rem, 8.4vw, 2.5rem); line-height: 1.08; }
             /* phones: the identity becomes a row above the headline */
             /* phones: one animation at a time. The headline keeps its ticker;
                the portrait and the "Vahid is" line move to the head of About. */
@@ -2717,8 +2721,9 @@
             .about-identity .hero-is { margin: 0; align-self: end; }
             .about-identity .hero-is .ticker > .tk { justify-self: start; }
             .hero-portrait { width: 72px; height: 72px; margin: 0 auto; }
-            .hero-links { gap: 0.375rem; margin-top: 0.5rem; }
-            .hero-links svg { width: 15px; height: 15px; }
+            .hero-links { gap: clamp(0.125rem, 1.6vw, 0.5rem); margin-top: 0.5rem; }
+            .hero-links a { min-width: clamp(26px, 8.2vw, 32px); min-height: 32px; }
+            .hero-links svg { width: 20px; height: 20px; }
             .hero-icon-row { gap: 1rem; }
             .story-art-row { flex-direction: column; align-items: flex-start; }
             .story-art { width: 140px; }
@@ -3249,6 +3254,7 @@
                 <a href="#skills">Skills <span>What I bring, and the stack</span></a>
                 <a href="#about">About <span>Background</span></a>
                 <a href="updates.html">Updates <span>Notes</span></a>
+                <a href="https://wa.me/905419402411" target="_blank" rel="noopener">WhatsApp <span>+90 541 940 2411</span></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener">Book a call <span>Google Calendar</span></a>
             </div>
         </div>
@@ -3265,7 +3271,7 @@
                 <div class="pm-pick"><div class="pm-beads" id="pm-beads" role="group" aria-label="Redraw the portrait"></div><span class="pm-name" id="pm-name" aria-live="polite"></span></div>
                 </div>
                 <div class="hero-links">
-                    
+                    <a href="https://wa.me/905419402411" target="_blank" rel="noopener" aria-label="WhatsApp" style="color:#25d366;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M13.601 2.326A7.854 7.854 0 008.036 0C3.596 0 .003 3.59.001 8.003a7.95 7.95 0 001.078 3.997L0 16l4.12-1.08a7.987 7.987 0 003.81.965h.004c4.438 0 8.032-3.592 8.034-8.005a7.952 7.952 0 00-2.367-5.654zM8.036 14.6a6.61 6.61 0 01-3.374-.924l-.242-.144-2.508.657.67-2.443-.158-.252a6.585 6.585 0 01-1.015-3.497c.002-3.662 2.985-6.64 6.65-6.64a6.608 6.608 0 014.7 1.947 6.595 6.595 0 011.947 4.698c-.002 3.662-2.985 6.64-6.65 6.64h-.02zm3.64-4.972c-.2-.1-1.182-.583-1.365-.65-.183-.066-.316-.1-.45.1-.132.198-.515.65-.632.783-.116.133-.233.15-.432.05-.2-.1-.843-.31-1.606-.99-.593-.529-.994-1.182-1.11-1.382-.117-.2-.013-.307.088-.406.09-.088.2-.232.3-.348.099-.117.132-.2.198-.333.067-.133.034-.25-.016-.348-.05-.1-.45-1.082-.616-1.482-.162-.389-.327-.336-.45-.342l-.382-.007a.733.733 0 00-.532.25c-.183.2-.698.682-.698 1.664s.715 1.93.815 2.064c.1.133 1.408 2.15 3.413 3.015.477.206.849.329 1.139.421.478.152.914.13 1.258.079.384-.058 1.182-.484 1.35-.95.165-.467.165-.868.115-.951-.05-.084-.183-.133-.383-.233z"/></svg></a>
                     <a href="https://github.com/vfaraji89" target="_blank" rel="noopener" aria-label="GitHub" style="color:#24292e;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></a>
                     <a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noopener" aria-label="LinkedIn" style="color:#0a66c2;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg></a>
                     <a href="https://x.com/vfaraji89" target="_blank" rel="noopener" aria-label="X" style="color:#000000;"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/></svg></a>
@@ -3393,7 +3399,8 @@
                     <div class="rc-intro">
                         <p class="rc-eyebrow">Recruiter view</p>
                         <h2 class="rc-title">Applied AI engineer who ships agent systems, and the evals that prove them<span class="bead-stop">.</span></h2>
-                        <p class="rc-sub">Senior Applied AI Specialist, Kariyer.net (ilab group) &middot; 8 years in industry + 4 in research</p>
+                        <p class="rc-sub">Senior Applied AI, R&amp;D &middot; 8 years in industry + 4 in research &middot; M.A. Economics</p>
+                        <p class="rc-line">Maximize <b class="b-roi">ROI</b>. Minimize <b class="b-cost">cost</b>. Workflows, data pipelines and agents teams use every day: evidence more than demos.</p>
                     </div>
                     <span class="rc-status"><i aria-hidden="true"></i>Happy to talk</span>
                 </div>
@@ -3402,11 +3409,16 @@
                     <li><b>95%</b><span>accuracy on 14K+ job titles</span><em>Multi-agent MCP system &middot; ACM CAIS '26</em></li>
                     <li><b>91%</b><span>manual effort removed</span><em>ProjectLens &middot; in production</em></li>
                     <li><b>500+</b><span>installs</span><em>Tokalator &middot; open source</em></li>
+                    <li><b>3 + 1</b><span>papers + patent pending</span><em>ACM CAIS '26 &middot; 2 arXiv</em></li>
                 </ul>
 
                 <dl class="rc-facts">
                     <div><dt>Role fit</dt><dd>Applied AI Engineer &middot; Agentic AI Engineer &middot; AI Platform Engineer</dd></div>
                     <div><dt>Builds</dt><dd>Agent harnesses (loop, tools, context, memory) &middot; evals from real tasks &middot; spec to production, full stack</dd></div>
+                    <div><dt>How I work</dt><dd>Write the spec &middot; build the tools the agent can use &middot; measure whether it actually helps</dd></div>
+                    <div><dt>Shipped</dt><dd>Multi-agent job classification (95% on 14K+ positions) &middot; ProjectLens (64h of pricing work down to 5.5) &middot; enterprise AI rollout (60% less manual work, 200+ colleagues) &middot; metadata platform (300M+ datapoints)</dd></div>
+                    <div><dt>Open source</dt><dd><a href="https://tokalator.wiki" target="_blank" rel="noopener">Tokalator</a>: token budgets and cost across 17 LLMs &middot; <a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">awesome-applied-ai</a>: applied AI, mapped</dd></div>
+                    <div><dt>Research</dt><dd><a href="papers/cais-2026.html">ACM CAIS '26</a>, peer-reviewed &middot; <a href="papers/tokalator.html">Tokalator</a> and <a href="papers/skill-extraction.html">Turkish skill extraction</a> on arXiv &middot; 1 patent pending</dd></div>
                     <div><dt>Stack</dt><dd>TypeScript&nbsp;7 &middot; Python &middot; Next.js &middot; Claude Agent SDK &middot; Vercel AI SDK &middot; Copilot Studio &middot; MCP &middot; LangGraph &middot; Langfuse tracing &middot; deploys on Vercel</dd></div>
                     <div><dt>Logistics</dt><dd>Istanbul, GMT+3 &middot; remote-friendly &middot; English C1</dd></div>
                 </dl>
@@ -3416,6 +3428,7 @@
                     <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="btn btn-outline"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 3C4.4 3 1.6 5.5.5 8c1.1 2.5 3.9 5 7.5 5s6.4-2.5 7.5-5C14.4 5.5 11.6 3 8 3zm0 8.25A3.25 3.25 0 118 4.75a3.25 3.25 0 010 6.5zM8 6.25a1.75 1.75 0 100 3.5 1.75 1.75 0 000-3.5z"/></svg>Preview CV</a>
                     <a href="mailto:vfaraji89@gmail.com?subject=Interview%20request" class="btn btn-outline">Email</a>
                     <a href="https://linkedin.com/in/vahid-faraji-jobehdar" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+                    <a href="https://wa.me/905419402411" target="_blank" rel="noopener" class="btn btn-outline">WhatsApp</a>
                 </div>
                 <p class="rec-share">Share this view: <code>vfaraji89.github.io/?hire</code> <button type="button" class="rc-copy" id="rc-copy">Copy link</button></p>
             </div>
