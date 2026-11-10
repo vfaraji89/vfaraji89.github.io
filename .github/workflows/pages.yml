@@ -28,7 +28,7 @@ jobs:
       # The CV is written in LaTeX (cv/vahid-faraji-cv.tex). Every deploy
       # rebuilds it, so the PDF the site links to always matches the source.
       - name: Build CV from LaTeX
-        uses: xu-cheng/latex-action@v4
+        uses: xu-cheng/latex-action@6549dc21effb2730855a1281407ecfcececc6c1b  # v4
         with:
           root_file: vahid-faraji-cv.tex
           working_directory: cv

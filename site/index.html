@@ -5,6 +5,11 @@
     <script>document.documentElement.classList.add('js');</script>
     <meta name="color-scheme" content="light">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google.com/s2/favicons https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; media-src 'self'; connect-src 'self' https://api.github.com https://script.google.com https://script.googleusercontent.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="preload" href="assets/fonts/VahidSora-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/VahidSora-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/VahidSora-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
     <title>Vahid Faraji | Applied AI: Agent Harnesses, Evals, Production LLM Agents</title>
     <meta name="description" content="Applied AI engineer shipping LLM agents to production: agent harnesses, tool calling, context and memory, evals, tracing and failure analysis. Full stack in TypeScript and Python. ACM-published.">
     <meta name="theme-color" content="#e0301e">
@@ -16,7 +21,7 @@
     <meta property="og:description" content="Applied AI engineer who builds agent harnesses end to end: execution loops, tool calling, context and memory, evals from real tasks, and production reliability, latency and cost. TypeScript and Python. Published at ACM.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vfaraji89.github.io/">
-    <meta property="og:image" content="https://vfaraji89.github.io/assets/og/og-card.png">
+    <meta property="og:image" content="https://vfaraji89.github.io/assets/og/og-card.png?v=2">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Vahid Faraji, Applied AI Engineer: agent harnesses, evals, production LLM agents">
@@ -26,7 +31,7 @@
     <meta name="twitter:site" content="@vfaraji89">
     <meta name="twitter:title" content="Vahid Faraji, Applied AI: Agent Harnesses, Evals, Production LLM Agents">
     <meta name="twitter:description" content="Applied AI engineer who builds agent harnesses end to end: execution loops, tool calling, context and memory, evals from real tasks, and production reliability, latency and cost. TypeScript and Python. Published at ACM.">
-    <meta name="twitter:image" content="https://vfaraji89.github.io/assets/og/og-card.png">
+    <meta name="twitter:image" content="https://vfaraji89.github.io/assets/og/og-card.png?v=2">
     <meta name="twitter:image:alt" content="Vahid Faraji, Applied AI Engineer: agent harnesses, evals, production LLM agents">
     <meta name="twitter:creator" content="@vfaraji89">
 
@@ -379,7 +384,7 @@
             },
             "primaryImageOfPage": {
                 "@type": "ImageObject",
-                "url": "https://vfaraji89.github.io/assets/photos/tokalator-dashboard.png"
+                "url": "https://vfaraji89.github.io/assets/photos/tokalator-dashboard.webp"
             },
             "inLanguage": "en",
             "description": "Portfolio of Vahid Faraji, Applied AI engineer: agent harnesses, evals, production multi-agent systems, context engineering, peer-reviewed research and open-source tooling.",
@@ -645,7 +650,7 @@
             --grey-700: #333333;
             --grey-600: #555555;
             --grey-500: #777777;
-            --grey-400: #999999;
+            --grey-400: #6e6e73;
             --grey-300: #bbbbbb;
             --grey-200: #dddddd;
             --grey-100: #f0f0f0;
@@ -1293,7 +1298,7 @@
             color: var(--accent); font-variation-settings: "MONO" 1, "CASL" 0;
             display: flex; align-items: center; gap: 0.5rem;
         }
-        .cta-band h3 { font-size: 1.5rem; margin: 0.75rem 0 0.5rem; }
+        .cta-band h3, .cta-band .cta-h { font-size: 1.5rem; margin: 0.75rem 0 0.5rem; }
         .cta-band p { margin-bottom: 1.5rem; max-width: 34rem; }
         /* ---- skills, compact: pills that fit their words, both faces in one grid cell ---- */
         #skills .bio-tags { display: flex; flex-wrap: wrap; align-self: stretch; width: 100%; gap: 0.5rem; margin: 0.15rem 0 0.75rem; padding: 0 0 0.9rem; overflow: visible; border-bottom: 1px dashed rgba(28,28,30,0.1); }
@@ -1307,14 +1312,21 @@
             #skills .chip-face { white-space: normal; text-align: left; justify-content: flex-start; line-height: 1.2; }
         }
 
+        /* ---- proof strip: four facts under the bio ---- */
+        .proof-strip { list-style: none; margin: 1.25rem 0 0; padding: 0.75rem 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.75rem 1.25rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .proof-strip li { display: flex; align-items: baseline; gap: 0.5rem; min-width: 0; }
+        .proof-strip b { font-size: 1.0625rem; font-weight: 800; letter-spacing: -0.02em; color: var(--ink); white-space: nowrap; }
+        .proof-strip li:first-child b { color: var(--rust); }
+        .proof-strip span { font-size: 0.75rem; line-height: 1.3; color: var(--text-secondary); }
+        @media (max-width: 860px) { .proof-strip { grid-template-columns: 1fr 1fr; } }
         /* ---- Tokalator card: the promise, the facts, install and star, and a context meter ---- */
         .tok-card { margin-bottom: 1rem; }
         .tok-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 2rem; align-items: center; position: relative; }
         @media (max-width: 860px) { .tok-grid { grid-template-columns: 1fr; } }
         .tok-logo { width: 52px; height: 52px; flex: none; border-radius: 13px; }
-        .tok-card h3 { margin: 0.25rem 0 0; line-height: 1.2; }
-        .tok-card h3 mark { color: inherit; background: linear-gradient(transparent 58%, var(--mark) 58%, var(--mark) 92%, transparent 92%); }
-        .tok-card h3 .dot { color: var(--rust); }
+        .tok-card .cta-h { margin: 0.25rem 0 0; line-height: 1.2; }
+        .tok-card .cta-h mark { color: inherit; background: linear-gradient(transparent 58%, var(--mark) 58%, var(--mark) 92%, transparent 92%); }
+        .tok-card .cta-h .dot { color: var(--rust); }
         .tok-card p { margin: 1rem 0 1rem; }
         .tok-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
         .tok-badges span { display: inline-flex; border-radius: 7px; overflow: hidden; border: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.75rem; }
@@ -1333,13 +1345,14 @@
         .tok-panel li i { width: 10px; height: 10px; border-radius: 50%; }
         .tok-panel em { font-style: normal; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); }
         .pb-img img { display: block; border-radius: 5px; }
+        .bk-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
         @media (max-width: 640px) { .tok-panel { display: none; } .tok-logo { width: 40px; height: 40px; border-radius: 10px; } .tok-card .aai-head { align-items: flex-start; } }
         @media (prefers-reduced-motion: reduce) { .tok-meter span { transform: none; transition: none; } }
         /* ---- awesome-applied-ai card: the logo, the line, the six steps ---- */
         .aai-head { display: flex; align-items: center; gap: 0.875rem; }
         .aai-logo { width: 52px; height: 52px; flex: none; display: grid; place-items: center; border-radius: 14px; background: var(--bg); border: 1px solid var(--border); }
-        .aai-card h3 { margin: 0.25rem 0 0; }
-        .aai-card h3 .dot { color: var(--rust); }
+        .aai-card .cta-h { margin: 0.25rem 0 0; }
+        .aai-card .cta-h .dot { color: var(--rust); }
         .aai-card > p { margin: 1rem 0 1.25rem; }
         .aai-steps { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; position: relative; }
         .aai-steps a { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 0.625rem; padding: 0.75rem 0.875rem; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); text-decoration: none; color: var(--ink); transition: border-color var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
@@ -1380,10 +1393,10 @@
         .bead-row { background: none; }
 
         .hero-links {
-            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            display: flex; flex-wrap: nowrap; gap: 0.125rem;
             margin-top: 0.75rem; justify-content: center; align-items: center;
         }
-        .hero-links a { display: flex; align-items: center; justify-content: center; transition: opacity var(--transition), transform var(--transition); }
+        .hero-links a { display: flex; align-items: center; justify-content: center; min-width: 24px; min-height: 24px; transition: opacity var(--transition), transform var(--transition); }
         .hero-links a:hover { opacity: 0.75; transform: scale(1.12); text-decoration: none; }
         .hero-links svg { width: 18px; height: 18px; }
 
@@ -3132,7 +3145,39 @@
         .gains-row b { justify-self: start; padding: 0.15rem 0.55rem; border-radius: 6px; background: var(--paper); border: 1px solid rgba(224,48,30,0.25); color: var(--rust); font-weight: 800; }
         @media (max-width: 640px) { .gains-head, .gains-row { grid-template-columns: 1.2fr 0.8fr 1fr; gap: 0.4rem; font-size: 0.75rem; } }
     </style>
-    <link rel="stylesheet" href="assets/brand/abacus-frame.css">
+    <style>/* Abacus frames for cards, shared by every page.
+   A card is held like a minimal wooden abacus: a beech dowel at each side
+   (three inset shades read as a turned cylinder) and a thin rod near the
+   foot that fills red on hover. Buttons and calls to action keep their own
+   look; this is for things you read. */
+:root {
+  --dowel-l: inset 1.5px 0 0 #ad8456, inset 3.5px 0 0 #eedfc6, inset 5px 0 0 #c9a67b;
+  --dowel-r: inset -1.5px 0 0 #ad8456, inset -3.5px 0 0 #eedfc6, inset -5px 0 0 #c9a67b;
+  --rod: rgba(28, 28, 30, 0.14);
+  --rod-on: #e0301e;
+}
+.case-card, .pub-card, .about-card, .metric-card, .recruiter-card, .gallery-card,
+.news-card, .principle-card, .abacus-box, .result, .cite, .frame, .abacus-frame {
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-radius: 6px !important;
+  box-shadow: var(--dowel-l), var(--dowel-r) !important;
+  background-image:
+    linear-gradient(var(--rod-on), var(--rod-on)),
+    linear-gradient(var(--rod), var(--rod));
+  background-size: 0% 1px, calc(100% - 10px) 1px;
+  background-position: 5px calc(100% - 6px), 5px calc(100% - 6px);
+  background-repeat: no-repeat;
+  transition: background-size 0.7s cubic-bezier(0.65, 0, 0.25, 1), border-color 0.3s, transform 0.4s;
+}
+.case-card:hover, .pub-card:hover, .about-card:hover, .metric-card:hover, .gallery-card:hover,
+.news-card:hover, .principle-card:hover, .abacus-box:hover, .result:hover, .cite:hover, .abacus-frame:hover {
+  box-shadow: var(--dowel-l), var(--dowel-r), 0 14px 30px -24px rgba(28, 28, 30, 0.45) !important;
+  background-size: calc(100% - 10px) 1px, calc(100% - 10px) 1px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-card, .pub-card, .about-card, .metric-card, .gallery-card, .news-card, .principle-card, .abacus-box, .result, .cite, .frame, .abacus-frame { transition: none; }
+}</style>
 </head>
 <body>
     <!-- Abacus icon kit: one ink frame, grey rails, beads; the rust bead marks the point. Also in assets/brand/abacus-icons.svg -->
@@ -3241,15 +3286,15 @@
                     <p class="bio-text">I build <strong>workflows, data pipelines and agents</strong> that teams use in their daily work. I write the spec, build the tools the agent can use, and measure whether it actually helps: <mark>evidence more than demos</mark>.</p>
                 </div>
                 <div class="reel-col">
-                <button type="button" class="reel reel-mini" id="reel-open" aria-haspopup="dialog" aria-label="Watch my animated CV, 90 seconds">
+                <button type="button" class="reel reel-mini" id="reel-open" aria-haspopup="dialog">
                     <span class="reel-thumb">
-                    <img src="assets/video/vahid-cv-poster.jpg?v=36" alt="" width="1280" height="720" loading="lazy">
+                    <img src="assets/video/vahid-cv-poster.jpg?v=36" alt="" width="1280" height="720" fetchpriority="high" decoding="async">
                     <span class="reel-story" aria-hidden="true"></span>
                     <span class="reel-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
                     <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></span>
                     <span class="reel-time">1:30</span>
                 </span>
-                    <span class="reel-cap">Animated CV <b>1:30</b></span>
+                    <span class="reel-cap">Animated CV <b>1:30</b><span class="sr-only">, watch the film</span></span>
                 </button>
                 <div class="reel-share" aria-label="Share the animated CV">
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fvfaraji89.github.io%2F%3Freel" target="_blank" rel="noopener" class="rs-li" aria-label="Share on LinkedIn" title="Share on LinkedIn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a>
@@ -3257,6 +3302,12 @@
                 </div>
                 </div>
             </div>
+            <ul class="proof-strip" aria-label="Proof">
+                <li><b>ACM CAIS &rsquo;26</b><span>peer-reviewed paper</span></li>
+                <li><b>95%</b><span>agent accuracy on 14K+ job titles</span></li>
+                <li><b>500+</b><span>Tokalator installs</span></li>
+                <li><b>3 + 1</b><span>publications + patent pending</span></li>
+            </ul>
             <div class="hero-cards">
             <div class="hire-cta" id="hire-cta">
                 <span class="hire-phase" aria-hidden="true">
@@ -3288,9 +3339,9 @@
             </div>
             <a class="upd-card cat-card" href="updates.html">
                 <span class="upd-stack" aria-hidden="true">
-                    <img src="assets/photos/techcaeer-training.png" alt="" loading="lazy">
-                    <img src="assets/event-photos/tokalator-paper.png" alt="" loading="lazy">
-                    <img src="assets/photos/projectlens/projectlens-home.png" alt="" loading="lazy">
+                    <img width="348" height="184" src="assets/photos/techcaeer-training.webp" alt="" loading="lazy">
+                    <img width="520" height="587" src="assets/event-photos/tokalator-paper.webp" alt="" loading="lazy">
+                    <img width="1600" height="783" src="assets/photos/projectlens/projectlens-home.webp" alt="" loading="lazy">
                 </span>
                 <span class="upd-text">
                     <span class="upd-k"><svg class="ab" aria-hidden="true"><use href="#ab-board"/></svg>Updates</span>
@@ -3301,9 +3352,9 @@
             </a>
             <a class="upd-card cat-card" href="#work">
                 <span class="upd-stack" aria-hidden="true">
-                    <img src="assets/photos/pms-dashboard.png" alt="" loading="lazy">
-                    <img src="assets/photos/projectlens/projectlens-login.jpg" alt="" loading="lazy">
-                    <img src="assets/photos/tokalator-vscode.png" alt="" loading="lazy">
+                    <img width="1600" height="781" src="assets/photos/pms-dashboard.webp" alt="" loading="lazy">
+                    <img width="1440" height="900" src="assets/photos/projectlens/projectlens-login.webp" alt="" loading="lazy">
+                    <img width="1600" height="900" src="assets/photos/tokalator-vscode.webp" alt="" loading="lazy">
                 </span>
                 <span class="upd-text">
                     <span class="upd-k"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg>Cases</span>
@@ -3314,9 +3365,9 @@
             </a>
             <a class="upd-card cat-card" href="updates.html?topic=events">
                 <span class="upd-stack" aria-hidden="true">
-                    <img src="assets/event-photos/saas-bridge.jpg" alt="" loading="lazy">
-                    <img src="assets/event-photos/perplexity-fellowship.jpg" alt="" loading="lazy">
-                    <img src="assets/event-photos/cais-2026.jpg" alt="" loading="lazy">
+                    <img width="450" height="558" src="assets/event-photos/saas-bridge.webp" alt="" loading="lazy">
+                    <img width="600" height="403" src="assets/event-photos/perplexity-fellowship.webp" alt="" loading="lazy">
+                    <img width="1400" height="672" src="assets/event-photos/cais-2026.webp" alt="" loading="lazy">
                 </span>
                 <span class="upd-text">
                     <span class="upd-k"><svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg>Events</span>
@@ -3338,7 +3389,7 @@
                     </svg>
                     <div class="rc-intro">
                         <p class="rc-eyebrow">Recruiter view</p>
-                        <h3 class="rc-title">Applied AI engineer who ships agent systems, and the evals that prove them<span class="bead-stop">.</span></h3>
+                        <h2 class="rc-title">Applied AI engineer who ships agent systems, and the evals that prove them<span class="bead-stop">.</span></h2>
                         <p class="rc-sub">Senior Applied AI Specialist, Kariyer.net (ilab group) &middot; 8 years in industry + 4 in research</p>
                     </div>
                     <span class="rc-status"><i aria-hidden="true"></i>Happy to talk</span>
@@ -3419,8 +3470,8 @@
             <div class="case-grid">
                 <div class="case-card hover-card featured" data-hover>
                     <div class="card-content">
-                        <div class="gallery-screenshot" data-lightbox="tokalator" data-images='["assets/photos/tokalator-vscode.png","assets/photos/tokalator-dashboard.png","assets/photos/tokalator-wiki.png","assets/photos/tokalator-calculator.png"]'>
-                            <img src="assets/photos/tokalator-vscode.png" alt="Tokalator token budget panel in VS Code: context usage, turn analytics, Claude Code session tokens and workspace tools" loading="lazy">
+                        <div class="gallery-screenshot" data-lightbox="tokalator" data-images='["assets/photos/tokalator-vscode.webp","assets/photos/tokalator-dashboard.webp","assets/photos/tokalator-wiki.webp","assets/photos/tokalator-calculator.webp"]'>
+                            <img width="1600" height="900" src="assets/photos/tokalator-vscode.webp" alt="Tokalator token budget panel in VS Code: context usage, turn analytics, Claude Code session tokens and workspace tools" loading="lazy">
                             <span class="gallery-screenshot-count">1 / 4</span>
                         </div>
                         <div class="case-meta"><span class="case-tag">Open Source</span><span class="case-tag">Shipped</span></div>
@@ -3449,8 +3500,8 @@
                 </div>
                 <div class="case-card hover-card featured" data-hover>
                     <div class="card-content">
-                        <div class="gallery-screenshot" data-lightbox="pms" data-images='["assets/photos/pms-dashboard.png","assets/photos/pms-architect.png","assets/photos/pms-quality.png"]'>
-                            <img src="assets/photos/pms-dashboard.png" alt="Multi-agent classification dashboard" loading="lazy">
+                        <div class="gallery-screenshot" data-lightbox="pms" data-images='["assets/photos/pms-dashboard.webp","assets/photos/pms-architect.webp","assets/photos/pms-quality.webp"]'>
+                            <img width="1600" height="781" src="assets/photos/pms-dashboard.webp" alt="Multi-agent classification dashboard" loading="lazy">
                             <span class="gallery-screenshot-count">1 / 3</span>
                         </div>
                         <div class="case-meta"><span class="case-tag">Research</span><span class="case-tag">ACM CAIS '26</span></div>
@@ -3493,8 +3544,8 @@
                 </div>
                 <div class="case-card hover-card" data-hover>
                     <div class="card-content">
-                        <div class="gallery-screenshot" data-lightbox="projectlens" data-images='["assets/photos/projectlens/projectlens-login.jpg","assets/photos/projectlens/projectlens-jury.jpg","assets/photos/projectlens/projectlens-home.png"]'>
-                            <img src="assets/photos/projectlens/projectlens-login.jpg" alt="ProjectLens sign-in: the pricing tool built with the Pricing &amp; Revenue team, with request, tracking and help entry points" loading="lazy" onerror="this.closest('.gallery-screenshot').remove();">
+                        <div class="gallery-screenshot" data-lightbox="projectlens" data-images='["assets/photos/projectlens/projectlens-login.webp","assets/photos/projectlens/projectlens-jury.webp","assets/photos/projectlens/projectlens-home.webp"]'>
+                            <img width="1440" height="900" src="assets/photos/projectlens/projectlens-login.webp" alt="ProjectLens sign-in: the pricing tool built with the Pricing &amp; Revenue team, with request, tracking and help entry points" loading="lazy" onerror="this.closest('.gallery-screenshot').remove();">
                             <span class="gallery-screenshot-count">1 / 3</span>
                         </div>
                         <div class="case-meta"><span class="case-tag">Enterprise</span><span class="case-tag">Shipped</span><span class="case-tag">Aug 2026</span></div>
@@ -3565,7 +3616,7 @@
                             <img class="tok-logo" src="assets/brand/tokalator-icon.png" width="52" height="52" alt="">
                             <div>
                                 <div class="cta-label">Tokalator · open source · MIT</div>
-                                <h3>See what your AI coding assistant <mark>reads</mark>, and what it <mark>costs</mark><span class="dot">.</span></h3>
+                                <h2 class="cta-h">See what your AI coding assistant <mark>reads</mark>, and what it <mark>costs</mark><span class="dot">.</span></h2>
                             </div>
                         </div>
                         <p>Context engineering for AI coding assistants: token budgeting in real time and cost modelling across 17 LLMs.</p>
@@ -3596,7 +3647,7 @@
                     <span class="aai-logo"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><radialGradient id="aai-b" cx=".34" cy=".3" r=".75"><stop offset="0" stop-color="#ff9d8f"/><stop offset=".45" stop-color="#e0301e"/><stop offset="1" stop-color="#9e1a0c"/></radialGradient></defs><rect x="1.6" y="3.6" width="15.4" height="16.8" rx="4.6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/><path d="M12.4 12h7.4" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"/><rect x="19.2" y="9.6" width="4.2" height="4.8" rx="1.3" fill="var(--ink)"/><circle cx="9.3" cy="12" r="3.3" fill="url(#aai-b)"/></svg></span>
                     <div>
                         <div class="cta-label">awesome-applied-ai · open source</div>
-                        <h3>Applied AI, mapped<span class="dot">.</span></h3>
+                        <h2 class="cta-h">Applied AI, mapped<span class="dot">.</span></h2>
                     </div>
                 </div>
                 <p>From what the market asks for to the docs you need to build it: six steps, in order.</p>
@@ -4100,7 +4151,7 @@
         </div>
         <div class="container footer-inner">
             <div class="footer-top">
-                <a href="#" class="brand footer-brand" id="footer-mark" aria-label="Vahid Faraji, back to top">
+                <a href="#" class="brand footer-brand" id="footer-mark" aria-label="Vahid Faraji, Applied AI, back to top">
                     <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true" fill="none">
                         <rect x="1" y="1" width="22" height="22" rx="5" stroke="var(--ink)" stroke-width="1.5"/>
                         <path d="M5 8h14M5 12h14M5 16h14" stroke="rgba(28,28,30,0.22)" stroke-width="1"/>
@@ -4183,16 +4234,17 @@
                 </div>
                 <div class="field">
                     <label for="bk-name">Name</label>
-                    <input type="text" id="bk-name" required placeholder="Your name">
+                    <input type="text" id="bk-name" required maxlength="80" autocomplete="name" placeholder="Your name">
                 </div>
                 <div class="field">
                     <label for="bk-email">Email</label>
-                    <input type="email" id="bk-email" required placeholder="you@company.com">
+                    <input type="email" id="bk-email" required maxlength="120" autocomplete="email" placeholder="you@company.com">
                 </div>
                 <div class="field">
                     <label for="bk-topic">Topic <span style="text-transform:none;font-weight:400;color:var(--text-muted)">(optional)</span></label>
-                    <textarea id="bk-topic" placeholder="Role, project, or question"></textarea>
+                    <textarea id="bk-topic" maxlength="600" placeholder="Role, project, or question"></textarea>
                 </div>
+                <div class="bk-hp" aria-hidden="true"><label for="bk-company">Company website</label><input type="text" id="bk-company" name="company_website" tabindex="-1" autocomplete="off"></div>
                 <div class="booking-actions">
                     <button type="submit" class="btn btn-primary" id="bk-submit">Propose this time</button>
                 </div>
@@ -4286,8 +4338,13 @@
             if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
         });
 
+        var formShownAt = Date.now();
         form.addEventListener('submit', function(e) {
             e.preventDefault();
+            // spam guard: bots fill the hidden field or submit within a couple of seconds
+            if (document.getElementById('bk-company').value || Date.now() - formShownAt < 2500) {
+                form.style.display = 'none'; successEl.style.display = 'block'; return;
+            }
             var name = document.getElementById('bk-name').value.trim();
             var email = document.getElementById('bk-email').value.trim();
             var date = document.getElementById('bk-date').value;
@@ -4863,27 +4920,6 @@
         function soundOn() { v.muted = false; muteB.setAttribute('aria-pressed', 'false'); muteB.setAttribute('aria-label', 'Mute'); sound.hidden = true; }
         sound.addEventListener('click', soundOn);
         muteB.addEventListener('click', function () { sound.hidden = true; });
-        var desk = window.matchMedia('(hover: hover) and (min-width: 641px)').matches;
-        var seen = false; try { seen = sessionStorage.getItem('vf-reel-auto') === '1'; } catch (e) {}
-        if (desk && !reduce && !seen && !/(^|[?&])(reel|hire)(=|&|$)/.test(location.search) && 'IntersectionObserver' in window) {
-            var timer = 0;
-            var auto = new IntersectionObserver(function (es) {
-                es.forEach(function (en) {
-                    clearTimeout(timer);
-                    if (!en.isIntersecting) return;
-                    timer = setTimeout(function () {
-                        if (dlg.open || document.hidden || document.querySelector('dialog[open]')) return;
-                        auto.disconnect();
-                        try { sessionStorage.setItem('vf-reel-auto', '1'); } catch (e) {}
-                        v.muted = true; muteB.setAttribute('aria-pressed', 'true'); muteB.setAttribute('aria-label', 'Unmute');
-                        sound.hidden = false;
-                        btn.click();
-                    }, 1400);
-                });
-            }, { threshold: 0.9 });
-            auto.observe(btn);
-        }
-        // a shared link (?reel or #reel) opens straight into the film
         if (/(^|[?&])reel(=|&|$)/.test(location.search) || location.hash === '#reel') setTimeout(function () { btn.click(); }, 400);
         dlg.addEventListener('close', function () { v.pause(); document.documentElement.classList.remove('cvv-lock'); });
         dlg.querySelector('.cvv-close').addEventListener('click', close);
