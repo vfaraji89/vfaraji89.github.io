@@ -9,30 +9,42 @@
     if (saved === 'yes') grant();
 
     function banner() {
+        // a small pill in the corner: one bead, one line, two tiny buttons
         var bar = document.createElement('div');
         bar.setAttribute('role', 'region');
         bar.setAttribute('aria-label', 'Analytics consent');
-        bar.style.cssText = 'position:fixed;left:16px;right:16px;bottom:16px;z-index:90;max-width:560px;margin:0 auto;' +
-            'display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 14px;border-radius:14px;' +
-            'background:#fff;color:#1c1c1e;border:1px solid rgba(28,28,30,.14);box-shadow:0 18px 40px -22px rgba(28,28,30,.55);' +
-            'font:400 13px/1.45 inherit';
+        bar.style.cssText = 'position:fixed;left:16px;bottom:16px;z-index:90;max-width:calc(100vw - 32px);' +
+            'display:flex;align-items:center;gap:10px;padding:7px 8px 7px 12px;border-radius:999px;' +
+            'background:#fff6f4;color:#1c1c1e;border:1px solid rgba(180,138,92,.45);box-shadow:0 12px 26px -16px rgba(60,30,10,.55);' +
+            'font:500 12.5px/1.3 inherit;opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s cubic-bezier(.34,1.56,.64,1)';
+        var bead = document.createElement('span');
+        bead.setAttribute('aria-hidden', 'true');
+        bead.style.cssText = 'flex:none;width:14px;height:14px;border-radius:50%;' +
+            'background:radial-gradient(circle at 34% 30%,#ff9d8f,#e0301e 45%,#9e1a0c);box-shadow:0 3px 5px -2px rgba(158,26,12,.6)';
         var text = document.createElement('span');
-        text.style.cssText = 'flex:1 1 240px';
-        text.textContent = 'This site counts visits with Google Analytics. No ads, no tracking across sites. OK to use an analytics cookie?';
+        text.textContent = 'One cookie to count visits?';
+        text.title = 'Google Analytics, only to count visits. No ads, no tracking across sites.';
         function btn(label, primary) {
             var b = document.createElement('button');
             b.type = 'button';
             b.textContent = label;
-            b.style.cssText = 'font:600 13px/1 inherit;padding:9px 14px;border-radius:999px;cursor:pointer;' +
-                (primary ? 'background:#1c1c1e;color:#fff;border:1px solid #1c1c1e' : 'background:#fff;color:#55555a;border:1px solid rgba(28,28,30,.18)');
+            b.style.cssText = 'font:600 12px/1 inherit;padding:7px 12px;border-radius:999px;cursor:pointer;' +
+                (primary ? 'background:#1c1c1e;color:#fff;border:1px solid #1c1c1e' : 'background:transparent;color:#55555a;border:1px solid transparent');
             return b;
         }
-        var yes = btn('OK', true), no = btn('No thanks', false);
-        function close(v) { try { localStorage.setItem(KEY, v); } catch (e) {} bar.remove(); }
+        var yes = btn('Sure', true), no = btn('No', false);
+        no.setAttribute('aria-label', 'No, do not use an analytics cookie');
+        yes.setAttribute('aria-label', 'Sure, use an analytics cookie');
+        function close(v) {
+            try { localStorage.setItem(KEY, v); } catch (e) {}
+            bar.style.opacity = '0'; bar.style.transform = 'translateY(10px)';
+            setTimeout(function () { bar.remove(); }, 400);
+        }
         yes.addEventListener('click', function () { grant(); close('yes'); });
         no.addEventListener('click', function () { close('no'); });
-        bar.appendChild(text); bar.appendChild(no); bar.appendChild(yes);
+        bar.appendChild(bead); bar.appendChild(text); bar.appendChild(no); bar.appendChild(yes);
         document.body.appendChild(bar);
+        requestAnimationFrame(function () { bar.style.opacity = '1'; bar.style.transform = 'none'; });
     }
     function ready(fn) { if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
     if (saved === null) ready(function () { setTimeout(banner, 1200); });
