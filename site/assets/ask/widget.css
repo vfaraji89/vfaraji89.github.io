@@ -1,4 +1,4 @@
-/* Ask my work: the corner agent. A small abacus in the corner opens a minimal
+/* Vahid’s agent: the corner agent. A small abacus in the corner opens a minimal
    agent panel that shows its pipeline step by step. Self-contained: works on
    any page of the site, with fallbacks for the brand tokens. */
 .vfa, .vfa * { box-sizing: border-box; }
@@ -63,7 +63,7 @@
 .vfa-body { flex: 1; min-height: 0; overflow-y: auto; padding: 0.9rem; display: flex; flex-direction: column; gap: 0.9rem; scroll-behavior: smooth; }
 .vfa-intro { font-size: 0.8125rem; line-height: 1.55; color: #3a3a3c; }
 .vfa-intro b { color: var(--a-ink); }
-.vfa-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.vfa-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
 .vfa-chip { padding: 0.35rem 0.65rem; border-radius: 999px; border: 1px solid var(--a-line); background: #fff; font: inherit; font-size: 0.75rem; color: #3a3a3c; cursor: pointer; text-align: left; }
 .vfa-chip:hover { border-color: var(--a-ink); color: var(--a-ink); }
 .vfa-chip:focus-visible { outline: 2px solid var(--a-rust); outline-offset: 2px; }

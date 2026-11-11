@@ -1,4 +1,4 @@
-/* Ask my work: the corner agent.
+/* Vahid’s agent: the corner agent (was "Ask my work").
    A small abacus in the corner. Opening it loads the engine and the evidence
    file (nothing loads before that), and every question runs as a visible
    pipeline: read the question, search the evidence, weigh the proof, decide
@@ -31,13 +31,13 @@
     var root = el('div', 'vfa'); root.setAttribute('data-nosnippet', '');
     root.innerHTML =
         '<button type="button" class="vfa-launch" aria-haspopup="dialog" aria-expanded="false">' + ABACUS +
-        '<span class="vfa-l-text"><b>Ask my work</b><em>Agent · sources shown</em></span><span class="vfa-sr">Ask my work: an agent that answers from public evidence</span></button>' +
-        '<div class="vfa-panel" role="dialog" aria-label="Ask my work">' +
-        '<div class="vfa-head">' + ABACUS + '<div class="vfa-title"><b>Ask my work</b><span><i></i>' + (ENDPOINT ? 'Claude · grounded in evidence' : 'Retrieval agent · runs in your browser') + '</span></div>' +
+        '<span class="vfa-l-text"><b>Vahid’s agent</b><em>Ask · sources shown</em></span><span class="vfa-sr">Vahid’s agent: ask about his work, answered from public evidence</span></button>' +
+        '<div class="vfa-panel" role="dialog" aria-label="Vahid’s agent">' +
+        '<div class="vfa-head">' + ABACUS + '<div class="vfa-title"><b>Vahid’s agent</b><span><i></i>' + (ENDPOINT ? 'Claude · grounded in evidence' : 'Retrieval agent · runs in your browser') + '</span></div>' +
         '<button type="button" class="vfa-x" aria-label="Close"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>' +
         '<div class="vfa-body" aria-live="polite"></div>' +
         '<div class="vfa-foot"><form class="vfa-form"><label class="vfa-sr" for="vfa-in">Your question</label>' +
-        '<input id="vfa-in" type="text" maxlength="400" autocomplete="off" placeholder="Ask about agents, papers, results…">' +
+        '<input id="vfa-in" type="text" maxlength="400" autocomplete="off" placeholder="Ask about his projects, papers, results…">' +
         '<button type="submit" aria-label="Ask"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5L13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form>' +
         '<p class="vfa-meta"><span>Only answers from public evidence</span><a href="' + BASE + 'evals.html">How it’s tested →</a></p></div></div>';
     document.body.appendChild(root);
@@ -47,7 +47,7 @@
     var CHIPS = ['Has he shipped agents to production?', 'What did ProjectLens save?', 'How does he cut token costs?', 'Which papers are peer-reviewed?', 'Kubernetes experience?'];
     var intro = el('div');
     var ip = el('p', 'vfa-intro');
-    ip.innerHTML = 'I answer only from <b>public evidence</b> on this site, show each step I take, and say so when the evidence doesn’t cover something.';
+    ip.innerHTML = 'I\u2019m Vahid\u2019s agent. I answer questions about his work only from <b>public evidence</b> on this site, show each step I take, and say so when the evidence doesn\u2019t cover something.';
     intro.appendChild(ip);
     var chips = el('div', 'vfa-chips');
     CHIPS.forEach(function (c) { var b = el('button', 'vfa-chip', c); b.type = 'button'; b.addEventListener('click', function () { run(c); }); chips.appendChild(b); });
