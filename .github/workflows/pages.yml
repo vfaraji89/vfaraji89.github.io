@@ -39,10 +39,23 @@ jobs:
           cp cv/vahid-faraji-cv.pdf site/assets/cv/vahid-faraji-cv.pdf
           # the older address, kept so links already shared keep working
           cp cv/vahid-faraji-cv.pdf site/assets/cv/01-cv-vahid-faraji-202610.pdf
-      # Page images for the in-page CV preview, rendered from the same PDF
+      # Page images for the in-page CV preview, rendered from the same PDF.
+      # Installing the renderer needs Ubuntu's package mirrors, which runners
+      # sometimes cannot reach. Retry, and if it still fails keep the preview
+      # images already in the repo: a slightly older preview must never block
+      # a deploy.
       - name: Render CV preview pages
         run: |
-          sudo apt-get install -y --no-install-recommends poppler-utils
+          if ! command -v pdftoppm >/dev/null; then
+            for try in 1 2 3; do
+              sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends poppler-utils && break
+              echo "poppler-utils install failed (attempt $try), retrying in 20s"; sleep 20
+            done
+          fi
+          if ! command -v pdftoppm >/dev/null; then
+            echo "::warning title=CV preview not refreshed::Could not install poppler-utils; the committed preview images are published instead."
+            exit 0
+          fi
           for n in 1 2; do
             pdftoppm -jpeg -jpegopt quality=82,progressive=y -r 115 -f $n -l $n -singlefile \
               cv/vahid-faraji-cv.pdf site/assets/cv/vahid-faraji-cv-$n

@@ -1,0 +1,127 @@
+/* Vahid’s agent: the corner agent. A small abacus in the corner opens a minimal
+   agent panel that shows its pipeline step by step. Self-contained: works on
+   any page of the site, with fallbacks for the brand tokens. */
+.vfa, .vfa * { box-sizing: border-box; }
+.vfa {
+    --a-ink: var(--ink, #1c1c1e); --a-rust: var(--rust, #e0301e); --a-deep: var(--rust-deep, #b4200f);
+    --a-paper: var(--paper, #fff6f4); --a-mark: var(--mark, #ffdcd6); --a-line: rgba(28,28,30,0.12); --a-muted: #6e6e73;
+    --a-mono: var(--font-mono, "Geist Mono", ui-monospace, monospace);
+    position: fixed; right: 20px; bottom: 20px; z-index: 120;
+    font-family: var(--font, "Vahid Sora", ui-sans-serif, system-ui, sans-serif); color: var(--a-ink);
+    transition: bottom 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* launcher: a small wooden abacus whose beads slide when you hover */
+.vfa-launch {
+    display: inline-flex; align-items: center; gap: 0.6rem; height: 52px; padding: 0 1rem 0 0.5rem;
+    border-radius: 999px; border: 1px solid var(--a-line); background: #fff; cursor: pointer; font: inherit; color: var(--a-ink);
+    box-shadow: 0 10px 30px -12px rgba(28,28,30,0.45), 0 1px 0 rgba(255,255,255,0.9) inset;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+}
+.vfa-launch:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -12px rgba(28,28,30,0.5); }
+.vfa-launch:focus-visible { outline: 2px solid var(--a-rust); outline-offset: 3px; }
+.vfa-abacus { width: 38px; height: 38px; flex: none; }
+.vfa-abacus .bd { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); transform-box: view-box; }
+.vfa-launch:hover .bd-1, .vfa.is-thinking .bd-1 { transform: translateX(9px); }
+.vfa-launch:hover .bd-2, .vfa.is-thinking .bd-2 { transform: translateX(-6px); }
+.vfa-launch:hover .bd-3, .vfa.is-thinking .bd-3 { transform: translateX(7px); }
+.vfa-l-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.15; }
+.vfa-l-text b { font-size: 0.875rem; font-weight: 700; letter-spacing: -0.01em; }
+.vfa-l-text em { font-style: normal; font-family: var(--a-mono); font-size: 0.5625rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--a-rust); }
+.vfa.is-open .vfa-launch { display: none; }
+@media (max-width: 640px) {
+    .vfa { right: 14px; bottom: 14px; }
+    .vfa-launch { height: 52px; width: 52px; padding: 0; justify-content: center; }
+    .vfa-l-text { display: none; }
+}
+
+/* panel */
+.vfa-panel {
+    display: none; flex-direction: column; width: 380px; height: min(600px, calc(100vh - 40px));
+    border-radius: 18px; background: #fff; border: 1px solid var(--a-line); overflow: hidden;
+    box-shadow: 0 30px 70px -24px rgba(28,28,30,0.5), 0 2px 6px rgba(28,28,30,0.06);
+    transform-origin: bottom right; animation: vfa-in 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.vfa.is-open .vfa-panel { display: flex; }
+@keyframes vfa-in { from { opacity: 0; transform: translateY(10px) scale(0.97); } to { opacity: 1; transform: none; } }
+@media (max-width: 640px) {
+    .vfa.is-open { left: 0; right: 0; bottom: 0; }
+    .vfa-panel { width: 100%; height: 88vh; border-radius: 18px 18px 0 0; transform-origin: bottom center; }
+}
+.vfa-head { display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem 0.75rem 0.75rem 0.9rem; border-bottom: 1px solid var(--a-line); background: var(--a-paper); }
+.vfa-head .vfa-abacus { width: 30px; height: 30px; }
+.vfa-title { flex: 1; min-width: 0; line-height: 1.2; }
+.vfa-title b { display: block; font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
+.vfa-title span { font-family: var(--a-mono); font-size: 0.5625rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--a-muted); }
+.vfa-title span i { display: inline-block; width: 6px; height: 6px; margin-right: 0.3rem; border-radius: 50%; background: #2fa84f; vertical-align: 1px; font-style: normal; }
+.vfa-x { width: 32px; height: 32px; border-radius: 9px; border: 1px solid var(--a-line); background: #fff; cursor: pointer; display: grid; place-items: center; color: var(--a-ink); }
+.vfa-x:hover { border-color: var(--a-ink); }
+.vfa-x:focus-visible { outline: 2px solid var(--a-rust); outline-offset: 2px; }
+
+.vfa-body > * { flex: none; }
+.vfa-panel > .vfa-head, .vfa-panel > .vfa-foot { flex: none; margin: 0; }
+.vfa-body { flex: 1; min-height: 0; overflow-y: auto; padding: 0.9rem; display: flex; flex-direction: column; gap: 0.9rem; scroll-behavior: smooth; }
+.vfa-intro { font-size: 0.8125rem; line-height: 1.55; color: #3a3a3c; }
+.vfa-intro b { color: var(--a-ink); }
+.vfa-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
+.vfa-chip { padding: 0.35rem 0.65rem; border-radius: 999px; border: 1px solid var(--a-line); background: #fff; font: inherit; font-size: 0.75rem; color: #3a3a3c; cursor: pointer; text-align: left; }
+.vfa-chip:hover { border-color: var(--a-ink); color: var(--a-ink); }
+.vfa-chip:focus-visible { outline: 2px solid var(--a-rust); outline-offset: 2px; }
+
+.vfa-q { align-self: flex-end; max-width: 85%; padding: 0.5rem 0.75rem; border-radius: 14px 14px 4px 14px; background: var(--a-ink); color: #fff; font-size: 0.8125rem; line-height: 1.45; }
+
+/* the pipeline: one row per step, a bead on a rod marks progress */
+.vfa-run { border: 1px solid var(--a-line); border-radius: 14px; overflow: hidden; }
+.vfa-steps { list-style: none; margin: 0; padding: 0.6rem 0.75rem 0.4rem; position: relative; }
+.vfa-steps::before { content: ""; position: absolute; left: 1.15rem; top: 0.9rem; bottom: 0.9rem; width: 1.5px; background: var(--a-line); }
+.vfa-step { position: relative; display: grid; grid-template-columns: 0.8rem 1fr; gap: 0.6rem; padding: 0.3rem 0; opacity: 0.35; transition: opacity 0.25s; }
+.vfa-step.on, .vfa-step.done { opacity: 1; }
+.vfa-step .dot { margin-top: 0.3rem; width: 0.8rem; height: 0.8rem; border-radius: 50%; border: 1.5px solid rgba(28,28,30,0.35); background: #fff; position: relative; z-index: 1; }
+.vfa-step.on .dot { border-color: var(--a-rust); animation: vfa-pulse 0.9s ease-in-out infinite alternate; }
+.vfa-step.done .dot { background: var(--a-ink); border-color: var(--a-ink); }
+.vfa-step.done.final .dot { background: var(--a-rust); border-color: var(--a-rust); }
+@keyframes vfa-pulse { from { box-shadow: 0 0 0 0 rgba(224,48,30,0.35); } to { box-shadow: 0 0 0 5px rgba(224,48,30,0); } }
+.vfa-step b { display: block; font-size: 0.75rem; font-weight: 650; }
+.vfa-step .det { font-family: var(--a-mono); font-size: 0.625rem; line-height: 1.5; color: var(--a-muted); }
+.vfa-bars { display: flex; flex-direction: column; gap: 3px; margin-top: 0.3rem; }
+.vfa-bar { display: grid; grid-template-columns: 1fr 2.2rem; gap: 0.4rem; align-items: center; font-family: var(--a-mono); font-size: 0.5625rem; color: #3a3a3c; }
+.vfa-bar span { position: relative; display: block; padding: 2px 6px; border-radius: 4px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; background: #f3f3f4; }
+.vfa-bar span i { position: absolute; left: 0; top: 0; bottom: 0; background: var(--a-mark); z-index: 0; }
+.vfa-bar span em { position: relative; font-style: normal; z-index: 1; }
+.vfa-bar.pick span i { background: rgba(224,48,30,0.28); }
+.vfa-bar u { text-decoration: none; text-align: right; }
+.vfa-verdict { display: inline-block; margin-top: 0.2rem; padding: 1px 6px; border-radius: 4px; font-family: var(--a-mono); font-size: 0.5625rem; text-transform: uppercase; letter-spacing: 0.04em; background: var(--a-ink); color: #fff; }
+.vfa-verdict.no { background: #fff; color: var(--a-deep); border: 1px dashed var(--a-deep); }
+
+.vfa-ans { padding: 0.75rem 0.85rem 0.7rem; border-top: 1px solid var(--a-line); background: var(--a-paper); }
+.vfa-ans p { margin: 0 0 0.4rem; font-size: 0.8125rem; line-height: 1.55; color: var(--a-ink); }
+.vfa-ans p.quote { padding-left: 0.6rem; border-left: 2px solid rgba(224,48,30,0.4); }
+.vfa-ans .none { font-weight: 650; }
+.vfa-ans .why { font-size: 0.75rem; color: #3a3a3c; }
+.vfa-ans a { color: var(--a-deep); }
+.vfa-cn { display: inline-grid; place-items: center; min-width: 15px; height: 15px; margin-left: 3px; padding: 0 3px; border-radius: 4px; background: var(--a-rust); color: #fff !important; font-family: var(--a-mono); font-size: 0.5625rem; text-decoration: none; vertical-align: 2px; }
+.vfa-src { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.vfa-src li { display: flex; gap: 0.45rem; align-items: center; font-size: 0.6875rem; }
+.vfa-src li > b { flex: none; width: 15px; height: 15px; border-radius: 50%; display: grid; place-items: center; background: var(--a-ink); color: #fff; font-family: var(--a-mono); font-size: 0.5rem; font-weight: 500; }
+.vfa-src li a { flex: 1; min-width: 0; color: var(--a-ink); font-weight: 600; text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vfa-src li a:hover { color: var(--a-rust); }
+.vfa-src li em { flex: none; font-style: normal; font-family: var(--a-mono); font-size: 0.5rem; text-transform: uppercase; letter-spacing: 0.04em; padding: 1px 5px; border-radius: 3px; border: 1px solid var(--a-line); color: var(--a-muted); }
+.vfa-src li em.strong { background: var(--a-mark); border-color: transparent; color: var(--a-deep); }
+.vfa-rc { margin: 0.5rem 0 0; padding-top: 0.45rem; border-top: 1px dashed rgba(28,28,30,0.18); font-family: var(--a-mono); font-size: 0.5625rem; color: var(--a-muted); }
+
+.vfa-foot { border-top: 1px solid var(--a-line); padding: 0.6rem; background: #fff; }
+.vfa-form { display: flex; gap: 0.4rem; }
+.vfa-form input { flex: 1; min-width: 0; height: 40px; padding: 0 0.8rem; border-radius: 10px; border: 1px solid rgba(28,28,30,0.2); font: inherit; font-size: 0.875rem; color: var(--a-ink); background: #fff; }
+.vfa-form input:focus { outline: 2px solid var(--a-rust); outline-offset: 0; border-color: transparent; }
+.vfa-form button { width: 40px; height: 40px; border-radius: 10px; border: 0; background: var(--a-ink); color: #fff; cursor: pointer; display: grid; place-items: center; }
+.vfa-form button:hover { background: #000; }
+.vfa-form button:focus-visible { outline: 2px solid var(--a-rust); outline-offset: 2px; }
+.vfa-meta { display: flex; justify-content: space-between; gap: 0.5rem; margin-top: 0.45rem; font-family: var(--a-mono); font-size: 0.5625rem; color: var(--a-muted); }
+.vfa-meta a { color: var(--a-muted); }
+.vfa-meta a:hover { color: var(--a-rust); }
+.vfa-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) {
+    .vfa-panel { animation: none; }
+    .vfa-abacus .bd, .vfa-launch { transition: none; }
+    .vfa-step.on .dot { animation: none; }
+}

@@ -1,4 +1,4 @@
-/* Ask my work + Fit brief: the engine.
+/* Vahid’s agent + Fit brief: the engine.
    Runs the same in the browser (window.VFEngine) and in Node (require), so the
    evals in tools/evals test exactly the code visitors use.
    No model, no network: BM25 retrieval over data/evidence.json, answers built
