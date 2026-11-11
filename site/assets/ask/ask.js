@@ -272,6 +272,10 @@
     // ---- deep links: ?q=… asks; #fit opens the brief -------------------------
     var q = null; try { q = new URLSearchParams(location.search).get('q'); } catch (e) {}
     if (location.hash === '#fit') show('panel-fit');
+    // the navbar's "Check fit" button on this page: switch tabs without a reload
+    window.addEventListener('hashchange', function () { if (location.hash === '#fit') { show('panel-fit'); fitIn.focus(); } });
+    var navFit = $('.nav-fit');
+    if (navFit) navFit.addEventListener('click', function (e) { e.preventDefault(); show('panel-fit'); history.replaceState(null, '', '#fit'); fitIn.focus(); });
     if (q) { show('panel-ask'); runAsk(q); }
     var mode = $('#mode-line');
     if (mode) mode.textContent = ENDPOINT ? 'Answers are written by Claude from the evidence, with a cost receipt. If Claude is unavailable, retrieval answers instead.' : 'Answers are quoted from the evidence in your browser: no model, no cost, nothing sent anywhere.';
