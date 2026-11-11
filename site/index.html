@@ -5,7 +5,7 @@
     <script>document.documentElement.classList.add('js');</script>
     <meta name="color-scheme" content="light">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google.com/s2/favicons https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; media-src 'self'; connect-src 'self' https://api.github.com https://script.google.com https://script.googleusercontent.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google.com/s2/favicons https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; media-src 'self'; connect-src 'self' https://*.workers.dev https://api.github.com https://script.google.com https://script.googleusercontent.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="preload" href="assets/fonts/VahidSora-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/VahidSora-Bold.woff2" as="font" type="font/woff2" crossorigin>
@@ -850,52 +850,53 @@
         }
 
         .nav-actions { display: flex; align-items: center; gap: 0.5rem; flex: none; }
-        /* hero: the fit check as the second way in, after the film */
-        .hero-fit-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin-top: 1.25rem; }
+        /* hero: the hiring chip, built like the cards below it (wooden dowels, rod at the foot) */
+        .hero-fit-row { margin-top: 1.25rem; }
         .hero-fit {
-            position: relative; display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1.1rem 0.65rem 0.85rem;
-            border-radius: 14px; border: 1px solid rgba(224,48,30,0.4); background: var(--paper); color: var(--ink); text-decoration: none;
-            box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 6px 18px -12px rgba(224,48,30,0.55);
-            transition: transform var(--dur-slow) var(--ease-spring), box-shadow var(--dur-base) var(--ease-move), border-color var(--dur-base) var(--ease-move);
+            position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 0.9rem;
+            max-width: 34rem; padding: 0.9rem 1rem 1rem 0.9rem; border-radius: 6px; border: 1px solid rgba(28,28,30,0.12);
+            background-color: #fff; color: var(--ink); text-decoration: none;
+            box-shadow: inset 1.5px 0 0 #ad8456, inset 3.5px 0 0 #eedfc6, inset 5px 0 0 #c9a67b, inset -1.5px 0 0 #ad8456, inset -3.5px 0 0 #eedfc6, inset -5px 0 0 #c9a67b;
+            background-image: linear-gradient(var(--rust), var(--rust)), linear-gradient(rgba(28,28,30,0.14), rgba(28,28,30,0.14));
+            background-size: 0% 1px, calc(100% - 10px) 1px; background-position: 5px calc(100% - 6px), 5px calc(100% - 6px); background-repeat: no-repeat;
+            transition: background-size 0.7s cubic-bezier(0.65, 0, 0.25, 1), transform var(--dur-slow) var(--ease-spring);
         }
-        .hero-fit:hover { transform: translateY(-2px); border-color: var(--rust); box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 12px 26px -14px rgba(224,48,30,0.7); text-decoration: none; }
+        .hero-fit:hover { background-size: calc(100% - 10px) 1px, calc(100% - 10px) 1px; transform: translateY(-2px); text-decoration: none; }
         .hero-fit:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
-        .hero-fit .fit-gauge { color: var(--rust); gap: 3px; }
-        .hero-fit .fit-gauge i { width: 9px; height: 9px; border-width: 1.5px; }
-        .hf-text { display: flex; flex-direction: column; line-height: 1.25; }
-        .hf-text b { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
-        .hf-text em { font-style: normal; font-size: 0.75rem; color: var(--text-secondary); }
-        .hf-go { margin-left: 0.25rem; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--rust); color: #fff; font-size: 0.875rem; transition: transform var(--dur-slow) var(--ease-spring); }
+        .hf-icon { display: grid; place-items: center; width: 46px; height: 46px; margin-left: 0.35rem; border-radius: 12px; background: var(--paper); border: 1px solid rgba(224,48,30,0.2); color: var(--ink); }
+        .hf-icon .fit-ic { width: 28px; height: 28px; }
+        .hf-text { display: flex; flex-direction: column; gap: 0.15rem; line-height: 1.3; }
+        .hf-k { font-family: var(--font-mono); font-size: 0.5625rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rust); }
+        .hf-text b { font-size: 1rem; font-weight: 700; letter-spacing: -0.015em; }
+        .hf-text em { font-style: normal; font-size: 0.75rem; color: var(--text-secondary); line-height: 1.45; }
+        .hf-go { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--rust); color: #fff; font-size: 0.875rem; transition: transform var(--dur-slow) var(--ease-spring); }
         .hero-fit:hover .hf-go { transform: translateX(3px); }
-        .hero-ask { font-size: 0.8125rem; font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: rgba(28,28,30,0.25); text-underline-offset: 3px; }
-        .hero-ask:hover { color: var(--rust); text-decoration-color: currentColor; }
+        @media (max-width: 480px) { .hero-fit { grid-template-columns: auto minmax(0, 1fr); } .hf-go { display: none; } }
         @media (prefers-reduced-motion: reduce) { .hero-fit, .hf-go { transition: none; } .hero-fit:hover { transform: none; } }
 
-        /* "Check fit": the one red-outlined control in the bar. Three beads read
-           as a gauge and fill on hover, the way the brief scores a requirement. */
+        /* "Fit check": the hiring chip. A job description whose rows are scored
+           with beads, and a check; the beads slide along their rods on hover. */
         .nav-fit {
-            display: inline-flex; align-items: center; gap: 0.45rem; height: var(--ctl-h-sm); padding: 0 0.8rem 0 0.65rem;
+            display: inline-flex; align-items: center; gap: 0.4rem; height: var(--ctl-h-sm); padding: 0 0.8rem 0 0.5rem;
             border-radius: 999px; border: 1px solid rgba(224,48,30,0.45); background: var(--paper, #fff6f4);
-            color: var(--rust-deep, #b4200f); font-size: 0.8125rem; font-weight: 650; letter-spacing: -0.005em; white-space: nowrap; text-decoration: none;
+            color: var(--ink, #1c1c1e); font-size: 0.8125rem; font-weight: 650; letter-spacing: -0.005em; white-space: nowrap; text-decoration: none;
             transition: background var(--dur-fast) var(--ease-move), border-color var(--dur-fast) var(--ease-move), box-shadow var(--dur-fast) var(--ease-move);
         }
         .nav-fit:hover { background: #ffece8; border-color: var(--rust, #e0301e); text-decoration: none; box-shadow: 0 4px 12px -6px rgba(224,48,30,0.55); }
         .nav-fit:focus-visible { outline: 2px solid var(--blue, #c8261a); outline-offset: 2px; }
-        .nav-fit[aria-current="page"] { background: var(--rust, #e0301e); border-color: var(--rust, #e0301e); color: #fff; }
-        .fit-gauge { display: inline-flex; gap: 2px; }
-        .fit-gauge i { width: 6px; height: 6px; border-radius: 50%; border: 1.25px solid currentColor; transition: background 0.25s var(--ease-move); }
-        .fit-gauge i:nth-child(1) { background: currentColor; }
-        .nav-fit:hover .fit-gauge i:nth-child(2), .hero-fit:hover .fit-gauge i:nth-child(2) { background: currentColor; transition-delay: 0.08s; }
-        .nav-fit:hover .fit-gauge i:nth-child(3), .hero-fit:hover .fit-gauge i:nth-child(3) { background: currentColor; transition-delay: 0.16s; }
-        .nav-fit[aria-current="page"] .fit-gauge i { background: currentColor; }
-        .nav-fit .nf-short { display: none; }
-        @media (max-width: 920px) { .nav-fit .nf-word, .nav-fit .nf-long { display: none; } .nav-fit .nf-short { display: inline; } .nav-fit { gap: 0.35rem; padding: 0 0.6rem 0 0.5rem; } }
+        .nav-fit[aria-current="page"] { background: #ffece8; border-color: var(--rust, #e0301e); }
+        .nav-fit .nf-long { color: var(--rust-deep, #b4200f); }
+        .fit-ic { width: 20px; height: 20px; flex: none; }
+        .fit-ic .fb { transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); transform-box: view-box; }
+        .nav-fit:hover .fb-1, .hero-fit:hover .fb-1 { transform: translateX(4.5px); }
+        .nav-fit:hover .fb-2, .hero-fit:hover .fb-2 { transform: translateX(2.5px); }
+        .nav-sheet a.sheet-fit { color: var(--rust-deep, #b4200f); }
+        .nav-sheet a.sheet-fit span { color: var(--rust, #e0301e); }
+        @media (max-width: 460px) { .nav-fit .nf-long { display: none; } .nav-fit { padding: 0 0.6rem 0 0.45rem; } }
+        @media (prefers-reduced-motion: reduce) { .fit-ic .fb { transition: none; } }
         /* small phones: tighter bar, CV without its arrow; the name yields to the logo below 340px */
         @media (max-width: 420px) { .site-nav { gap: 0.75rem; } .nav-actions { gap: 0.3rem; } .nav-btn-ghost { padding: 0 0.55rem; } .nav-btn-ghost svg { display: none; } }
         @media (max-width: 350px) { .brand-name { display: none; } }
-        .nav-sheet a.sheet-fit { color: var(--rust-deep, #b4200f); }
-        .nav-sheet a.sheet-fit span { color: var(--rust, #e0301e); }
-        @media (prefers-reduced-motion: reduce) { .fit-gauge i { transition: none; } }
 
         .nav-btn-ghost, .nav-btn-solid {
             display: inline-flex; align-items: center; gap: 0.375rem; height: var(--ctl-h-sm); padding: 0 0.875rem;
@@ -3295,6 +3296,8 @@
 @media (prefers-reduced-motion: reduce) {
   .case-card, .pub-card, .about-card, .metric-card, .gallery-card, .news-card, .principle-card, .abacus-box, .result, .cite, .frame, .abacus-frame { transition: none; }
 }</style>
+    <link rel="stylesheet" href="assets/ask/widget.css">
+    <script src="assets/ask/widget.js" defer></script>
 </head>
 <body>
     <!-- Abacus icon kit: one ink frame, grey rails, beads; the rust bead marks the point. Also in assets/brand/abacus-icons.svg -->
@@ -3338,10 +3341,7 @@
             <ul class="nav-links" id="nav-links">
                 <li><a href="#work">Work</a></li>
                 <li><a href="#publications">Research</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="ask.html">Ask</a></li>
+                <li><a href="#experience" data-also="#skills #about #story #engage">About</a></li>
                 <li><a href="updates.html">Updates</a></li>
                 <li class="nav-indicator" aria-hidden="true"></li>
             </ul>
@@ -3350,7 +3350,7 @@
                     <span class="rec-toggle-label">Recruiter view</span>
                     <span class="rec-track"><span class="rec-knob"></span></span>
                 </button>
-                <a href="ask.html#fit" class="nav-fit" title="Paste a job description, get a scored fit brief" aria-label="Check fit: paste a job description, get a scored brief"><span class="fit-gauge" aria-hidden="true"><i></i><i></i><i></i></span><span class="nf-text"><span class="nf-word">Check </span><span class="nf-long">fit</span><span class="nf-short">Fit</span></span></a>
+                <a href="fit.html" class="nav-fit" title="Hiring? Paste your job description and see every requirement scored" aria-label="Fit check: paste a job description, see every requirement scored"><svg class="fit-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5.5 2.75h9l3.75 3.75v6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 2.75v18.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8.5h7M8 12.5h7M8 16.5h3.5" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.1" stroke-linecap="round"/><circle class="fb fb-1" cx="9.25" cy="8.5" r="1.55" fill="currentColor"/><circle class="fb fb-2" cx="11.5" cy="12.5" r="1.55" fill="currentColor"/><circle cx="17.75" cy="17.75" r="4" fill="var(--rust, #e0301e)"/><path d="M15.9 17.8l1.3 1.3 2.5-2.7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nf-text"><span class="nf-word">Fit </span><span class="nf-long">check</span></span></a>
                 <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="nav-btn-ghost" aria-label="Download CV (PDF)">CV <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="nav-btn-solid"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
                 <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-sheet"><span></span><span></span></button>
@@ -3358,15 +3358,12 @@
         </nav>
         <div class="nav-sheet" id="nav-sheet">
             <div class="container">
-                <a href="ask.html#fit" class="sheet-fit">Check your fit <span>Paste a job description</span></a>
+                <a href="fit.html" class="sheet-fit">Fit check <span>Hiring? Paste your role</span></a>
                 <a href="#work">Work <span>Case studies</span></a>
                 <a href="#publications">Research <span>ACM · arXiv</span></a>
-                <a href="#experience">Experience <span>Where I built it</span></a>
-                <a href="#skills">Skills <span>What I bring, and the stack</span></a>
-                <a href="#about">About <span>Background</span></a>
-                <a href="ask.html">Ask my work <span>Questions and fit brief</span></a>
+                <a href="#experience">About <span>Experience, skills, background</span></a>
                 <a href="updates.html">Updates <span>Notes</span></a>
-                <a href="https://wa.me/905419402411" target="_blank" rel="noopener">WhatsApp <span>+90 541 940 2411</span></a>
+                <a href="#ask" data-ask="">Ask my work <span>The agent in the corner</span></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener">Book a call <span>Google Calendar</span></a>
             </div>
         </div>
@@ -3406,12 +3403,11 @@
                     <p class="bio-three" aria-label="Maximize ROI. Minimize cost."><span>Maximize&nbsp;<b class="b-roi">ROI</b><i class="bead-stop">.</i></span> <span>Minimize&nbsp;<b class="b-cost">cost</b><i class="bead-stop">.</i></span></p>
                     <p class="bio-text">I build <strong>workflows, data pipelines and agents</strong> that teams use in their daily work. I write the spec, build the tools the agent can use, and measure whether it actually helps: <mark>evidence more than demos</mark>.</p>
                     <div class="hero-fit-row">
-                        <a class="hero-fit" href="ask.html#fit">
-                            <span class="fit-gauge" aria-hidden="true"><i></i><i></i><i></i></span>
-                            <span class="hf-text"><b>Check your role&rsquo;s fit</b><em>Paste a job description, get a scored brief with gaps</em></span>
+                        <a class="hero-fit" href="fit.html">
+                            <span class="hf-icon"><svg class="fit-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5.5 2.75h9l3.75 3.75v6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 2.75v18.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8.5h7M8 12.5h7M8 16.5h3.5" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.1" stroke-linecap="round"/><circle class="fb fb-1" cx="9.25" cy="8.5" r="1.55" fill="currentColor"/><circle class="fb fb-2" cx="11.5" cy="12.5" r="1.55" fill="currentColor"/><circle cx="17.75" cy="17.75" r="4" fill="var(--rust, #e0301e)"/><path d="M15.9 17.8l1.3 1.3 2.5-2.7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                            <span class="hf-text"><span class="hf-k">For hiring teams</span><b>Hiring? See how I fit your role</b><em>Paste the job description. Every requirement scored against real work, gaps named. Ten seconds, nothing leaves your browser.</em></span>
                             <span class="hf-go" aria-hidden="true">&rarr;</span>
                         </a>
-                        <a class="hero-ask" href="ask.html">or ask my work a question</a>
                     </div>
                 </div>
                 <div class="reel-col">
@@ -3957,22 +3953,6 @@
             </div>
         </section>
 
-        <section id="fit" class="reveal">
-            <div class="section-label">Role fit</div>
-            <p class="section-tagline">Paste a job description. See what matches.</p>
-            <div class="fit-card">
-                <form id="fit-form">
-                    <label class="sr-only" for="fit-input">Job description</label>
-                    <textarea id="fit-input" rows="5" maxlength="12000" placeholder="Paste the requirements part of a job description here…"></textarea>
-                    <div class="fit-row">
-                        <button type="submit" class="btn btn-primary">Check the fit</button>
-                        <span class="fit-hint">Runs in your browser. Nothing you paste is sent anywhere.</span>
-                    </div>
-                </form>
-                <div id="fit-out" aria-live="polite"></div>
-                <p class="fit-hint" style="margin-top:0.875rem"><a href="ask.html#fit">Full fit brief: every requirement, its evidence and the honest gaps &rarr;</a> &middot; <a href="ask.html">Ask my work a question</a></p>
-            </div>
-        </section>
 
         <section id="engage" class="reveal">
             <div class="section-label">Working Together</div>
@@ -4896,15 +4876,21 @@
             bar.style.transform = 'translateX(' + (a.offsetLeft + pad) + 'px)';
             bar.style.opacity = '1';
         }
-        var sections = links.map(function (l) { return document.querySelector(l.getAttribute('href')); });
+        var owner = new Map();
+        links.forEach(function (l) {
+            [l.getAttribute('href')].concat((l.getAttribute('data-also') || '').split(' ').filter(Boolean)).forEach(function (sel) {
+                var sec = document.querySelector(sel); if (sec) owner.set(sec, l);
+            });
+        });
+        var sections = Array.from(owner.keys());
         if ('IntersectionObserver' in window) {
             var visible = new Map();
             var io = new IntersectionObserver(function (entries) {
                 entries.forEach(function (e) { visible.set(e.target, e.isIntersecting ? e.intersectionRatio : 0); });
                 var best = null, bestRatio = 0;
-                sections.forEach(function (sec, k) {
+                sections.forEach(function (sec) {
                     var r = visible.get(sec) || 0;
-                    if (r > bestRatio) { bestRatio = r; best = links[k]; }
+                    if (r > bestRatio) { bestRatio = r; best = owner.get(sec); }
                 });
                 moveTo(best);
             }, { rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.01, 0.5, 1] });

@@ -134,7 +134,8 @@ Istanbul, Turkey (GMT+3). He speaks Turkish natively, English at C1 level, Spani
 
 - [Full Portfolio](https://vfaraji89.github.io/)
 - [Updates](https://vfaraji89.github.io/updates.html)
-- [Ask my work](https://vfaraji89.github.io/ask.html): answers about Vahid's work, quoted from public evidence; also scores a job description requirement by requirement, with gaps
+- [Fit check](https://vfaraji89.github.io/fit.html): paste a job description; each requirement is scored against public evidence, with the strongest proof and the gaps
+- Ask my work: an agent in the corner of every page that answers only from the evidence file and shows its pipeline (open any page with ?ask=your+question)
 - [Evidence file](https://vfaraji89.github.io/data/evidence.json): every claim with its proof level and a link to where it is shown
 - [Evals](https://vfaraji89.github.io/evals.html): the tests behind Ask my work, run on every deploy
 - [Tokalator](https://tokalator.wiki)

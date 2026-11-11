@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="color-scheme" content="light">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; upgrade-insecure-requests">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.workers.dev https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; upgrade-insecure-requests">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Evals · Vahid Faraji</title>
     <meta name="description" content="The test suite behind Ask my work and the fit brief: pass rates, every case, and the history of each run.">
@@ -35,6 +35,8 @@
     <link rel="preload" href="assets/fonts/VahidSora-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/ask/base.css">
     <link rel="stylesheet" href="assets/ask/ask.css">
+    <link rel="stylesheet" href="assets/ask/widget.css">
+    <script src="assets/ask/widget.js" defer></script>
 </head>
 <body>
     <div class="load-bar" id="load-bar" aria-hidden="true"><span></span></div>
@@ -54,15 +56,11 @@
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html#work">Work</a></li>
                 <li><a href="index.html#publications">Research</a></li>
-                <li><a href="index.html#experience">Experience</a></li>
-                <li><a href="index.html#skills">Skills</a></li>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="ask.html">Ask</a></li>
+                <li><a href="index.html#experience" data-also="#skills #about #story #engage">About</a></li>
                 <li><a href="updates.html">Updates</a></li>
-                
             </ul>
             <div class="nav-actions">
-                <a href="ask.html#fit" class="nav-fit" title="Paste a job description, get a scored fit brief" aria-label="Check fit: paste a job description, get a scored brief"><span class="fit-gauge" aria-hidden="true"><i></i><i></i><i></i></span><span class="nf-text"><span class="nf-word">Check </span><span class="nf-long">fit</span><span class="nf-short">Fit</span></span></a>
+                <a href="fit.html" class="nav-fit" title="Hiring? Paste your job description and see every requirement scored" aria-label="Fit check: paste a job description, see every requirement scored"><svg class="fit-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5.5 2.75h9l3.75 3.75v6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 2.75v18.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8.5h7M8 12.5h7M8 16.5h3.5" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.1" stroke-linecap="round"/><circle class="fb fb-1" cx="9.25" cy="8.5" r="1.55" fill="currentColor"/><circle class="fb fb-2" cx="11.5" cy="12.5" r="1.55" fill="currentColor"/><circle cx="17.75" cy="17.75" r="4" fill="var(--rust, #e0301e)"/><path d="M15.9 17.8l1.3 1.3 2.5-2.7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nf-text"><span class="nf-word">Fit </span><span class="nf-long">check</span></span></a>
                 <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="nav-btn-ghost" aria-label="Download CV (PDF)">CV <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="nav-btn-solid"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
                 <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-sheet"><span></span><span></span></button>
@@ -70,15 +68,12 @@
         </nav>
         <div class="nav-sheet" id="nav-sheet">
             <div class="container">
-                <a href="ask.html#fit" class="sheet-fit">Check your fit <span>Paste a job description</span></a>
+                <a href="fit.html" class="sheet-fit">Fit check <span>Hiring? Paste your role</span></a>
                 <a href="index.html#work">Work <span>Case studies</span></a>
                 <a href="index.html#publications">Research <span>ACM · arXiv</span></a>
-                <a href="index.html#experience">Experience <span>Where I built it</span></a>
-                <a href="index.html#skills">Skills <span>What I bring, and the stack</span></a>
-                <a href="index.html#about">About <span>Background</span></a>
-                <a href="ask.html">Ask my work <span>Questions and fit brief</span></a>
+                <a href="index.html#experience">About <span>Experience, skills, background</span></a>
                 <a href="updates.html">Updates <span>Notes</span></a>
-                <a href="https://wa.me/905419402411" target="_blank" rel="noopener">WhatsApp <span>+90 541 940 2411</span></a>
+                <a href="#ask" data-ask="">Ask my work <span>The agent in the corner</span></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener">Book a call <span>Google Calendar</span></a>
             </div>
         </div>
@@ -87,8 +82,8 @@
     <main class="container">
         <header class="page-head">
             <p class="eyebrow">Evals &middot; run on every deploy</p>
-            <h1>The tests behind <mark>Ask my work</mark><span class="bead-stop">.</span></h1>
-            <p class="lede">I tell teams to ship evals with every AI feature. These are the ones for this site: what they check, every case, and whether the latest run passed. The deploy stops if a score drops below its threshold.</p>
+            <h1>The tests behind <mark>the agent</mark><span class="bead-stop">.</span></h1>
+            <p class="lede">I tell teams to ship evals with every AI feature. These are the ones for this site&rsquo;s corner agent and fit check: what they check, every case, and whether the latest run passed. The deploy stops if a score drops below its threshold.</p>
         </header>
 
         <div class="tiles" id="tiles"></div>
@@ -131,7 +126,7 @@
                     <a href="index.html">Portfolio</a>
                     <a href="index.html#publications">Publications</a>
                     <a href="index.html#work">Work</a>
-                    <a href="ask.html">Ask my work</a>
+                    <a href="fit.html">Fit check</a>
                     <a href="evals.html">Evals</a>
                     <a href="context-engineering.html">Context Engineering</a>
                 </nav>
