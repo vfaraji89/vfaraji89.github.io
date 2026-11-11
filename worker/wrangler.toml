@@ -4,10 +4,11 @@ compatibility_date = "2026-10-01"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-# Claude Opus 5.5 by default. Change to "claude-sonnet-5-5" or "claude-haiku-5-5" to cut cost per question.
-MODEL = "claude-opus-5-5"
-# Hard daily spend cap in US dollars. Past it, the site answers from retrieval only.
-DAILY_BUDGET_USD = "2.00"
+# Claude Haiku 5.5: the cheapest model, about $0.0005 an answer.
+# For better writing at higher cost: "claude-sonnet-5-5" (~$0.006) or "claude-opus-5-5" (~$0.011).
+MODEL = "claude-haiku-5-5"
+# Hard daily spend cap in US dollars (about 1,000 Haiku answers). Past it, the site answers from retrieval only.
+DAILY_BUDGET_USD = "0.50"
 ALLOWED_ORIGINS = "https://vfaraji89.github.io,http://localhost:8765"
 
 # Spend counter for the daily cap. Create it with:

@@ -17,13 +17,15 @@ receipt on each one.
 - `GET /health`: model, today's spend, the cap.
 
 Guardrails: only the site's origin is allowed, 10 requests a minute per visitor,
-and a daily dollar cap (`DAILY_BUDGET_USD`, default $2). Past the cap, or on any
+and a daily dollar cap (`DAILY_BUDGET_USD`, default $0.50). Past the cap, or on any
 API error, the page falls back to retrieval and says so.
 
-Model: `claude-opus-5-5` (set `MODEL` in `wrangler.toml`). At $4 / $20 per million
-tokens a typical answer is about 2,000 tokens in and 150 out, roughly $0.011. To
-spend less, set `MODEL = "claude-sonnet-5-5"` (half the price) or
-`"claude-haiku-5-5"`. Server-side refusal fallback is on (`fallbacks: "default"`).
+Model: `claude-haiku-5-5`, the cheapest (set `MODEL` in `wrangler.toml`). At
+$0.10 / $0.50 per million tokens, a typical answer (about 2,000 tokens in, a few
+hundred out including thinking) costs roughly $0.0005, so $0.50 a day covers about
+1,000 answers. For better writing, `"claude-sonnet-5-5"` (~$0.006 an answer) or
+`"claude-opus-5-5"` (~$0.011). On those two, server-side refusal fallback is sent;
+Haiku has none, so on Haiku a declined request falls back to the retrieval answer.
 
 ## Deploy (about 10 minutes)
 

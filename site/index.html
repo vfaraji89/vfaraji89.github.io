@@ -850,6 +850,53 @@
         }
 
         .nav-actions { display: flex; align-items: center; gap: 0.5rem; flex: none; }
+        /* hero: the fit check as the second way in, after the film */
+        .hero-fit-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin-top: 1.25rem; }
+        .hero-fit {
+            position: relative; display: inline-flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1.1rem 0.65rem 0.85rem;
+            border-radius: 14px; border: 1px solid rgba(224,48,30,0.4); background: var(--paper); color: var(--ink); text-decoration: none;
+            box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 6px 18px -12px rgba(224,48,30,0.55);
+            transition: transform var(--dur-slow) var(--ease-spring), box-shadow var(--dur-base) var(--ease-move), border-color var(--dur-base) var(--ease-move);
+        }
+        .hero-fit:hover { transform: translateY(-2px); border-color: var(--rust); box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 12px 26px -14px rgba(224,48,30,0.7); text-decoration: none; }
+        .hero-fit:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+        .hero-fit .fit-gauge { color: var(--rust); gap: 3px; }
+        .hero-fit .fit-gauge i { width: 9px; height: 9px; border-width: 1.5px; }
+        .hf-text { display: flex; flex-direction: column; line-height: 1.25; }
+        .hf-text b { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
+        .hf-text em { font-style: normal; font-size: 0.75rem; color: var(--text-secondary); }
+        .hf-go { margin-left: 0.25rem; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--rust); color: #fff; font-size: 0.875rem; transition: transform var(--dur-slow) var(--ease-spring); }
+        .hero-fit:hover .hf-go { transform: translateX(3px); }
+        .hero-ask { font-size: 0.8125rem; font-weight: 600; color: var(--ink); text-decoration: underline; text-decoration-color: rgba(28,28,30,0.25); text-underline-offset: 3px; }
+        .hero-ask:hover { color: var(--rust); text-decoration-color: currentColor; }
+        @media (prefers-reduced-motion: reduce) { .hero-fit, .hf-go { transition: none; } .hero-fit:hover { transform: none; } }
+
+        /* "Check fit": the one red-outlined control in the bar. Three beads read
+           as a gauge and fill on hover, the way the brief scores a requirement. */
+        .nav-fit {
+            display: inline-flex; align-items: center; gap: 0.45rem; height: var(--ctl-h-sm); padding: 0 0.8rem 0 0.65rem;
+            border-radius: 999px; border: 1px solid rgba(224,48,30,0.45); background: var(--paper, #fff6f4);
+            color: var(--rust-deep, #b4200f); font-size: 0.8125rem; font-weight: 650; letter-spacing: -0.005em; white-space: nowrap; text-decoration: none;
+            transition: background var(--dur-fast) var(--ease-move), border-color var(--dur-fast) var(--ease-move), box-shadow var(--dur-fast) var(--ease-move);
+        }
+        .nav-fit:hover { background: #ffece8; border-color: var(--rust, #e0301e); text-decoration: none; box-shadow: 0 4px 12px -6px rgba(224,48,30,0.55); }
+        .nav-fit:focus-visible { outline: 2px solid var(--blue, #c8261a); outline-offset: 2px; }
+        .nav-fit[aria-current="page"] { background: var(--rust, #e0301e); border-color: var(--rust, #e0301e); color: #fff; }
+        .fit-gauge { display: inline-flex; gap: 2px; }
+        .fit-gauge i { width: 6px; height: 6px; border-radius: 50%; border: 1.25px solid currentColor; transition: background 0.25s var(--ease-move); }
+        .fit-gauge i:nth-child(1) { background: currentColor; }
+        .nav-fit:hover .fit-gauge i:nth-child(2), .hero-fit:hover .fit-gauge i:nth-child(2) { background: currentColor; transition-delay: 0.08s; }
+        .nav-fit:hover .fit-gauge i:nth-child(3), .hero-fit:hover .fit-gauge i:nth-child(3) { background: currentColor; transition-delay: 0.16s; }
+        .nav-fit[aria-current="page"] .fit-gauge i { background: currentColor; }
+        .nav-fit .nf-short { display: none; }
+        @media (max-width: 920px) { .nav-fit .nf-word, .nav-fit .nf-long { display: none; } .nav-fit .nf-short { display: inline; } .nav-fit { gap: 0.35rem; padding: 0 0.6rem 0 0.5rem; } }
+        /* small phones: tighter bar, CV without its arrow; the name yields to the logo below 340px */
+        @media (max-width: 420px) { .site-nav { gap: 0.75rem; } .nav-actions { gap: 0.3rem; } .nav-btn-ghost { padding: 0 0.55rem; } .nav-btn-ghost svg { display: none; } }
+        @media (max-width: 350px) { .brand-name { display: none; } }
+        .nav-sheet a.sheet-fit { color: var(--rust-deep, #b4200f); }
+        .nav-sheet a.sheet-fit span { color: var(--rust, #e0301e); }
+        @media (prefers-reduced-motion: reduce) { .fit-gauge i { transition: none; } }
+
         .nav-btn-ghost, .nav-btn-solid {
             display: inline-flex; align-items: center; gap: 0.375rem; height: var(--ctl-h-sm); padding: 0 0.875rem;
             border-radius: var(--ctl-radius); font-size: 0.8125rem; font-weight: 600; letter-spacing: -0.005em;
@@ -892,8 +939,8 @@
         .nav-sheet .container { padding-top: 0.25rem; padding-bottom: 1rem; }
 
         /* laptops: the recruiter toggle keeps its switch and drops its words */
-        @media (max-width: 1279px) and (min-width: 1121px) { .nav-rec .rec-toggle-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } }
-        @media (max-width: 1120px) {
+        @media (max-width: 1279px) and (min-width: 1201px) { .nav-rec .rec-toggle-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } }
+        @media (max-width: 1200px) {
             .nav-links { display: none; }
             .nav-toggle { display: inline-block; }
             .site-header.menu-open { background: rgba(255,255,255,0.97); border-bottom-color: rgba(28,28,30,0.08); }
@@ -3303,6 +3350,7 @@
                     <span class="rec-toggle-label">Recruiter view</span>
                     <span class="rec-track"><span class="rec-knob"></span></span>
                 </button>
+                <a href="ask.html#fit" class="nav-fit" title="Paste a job description, get a scored fit brief" aria-label="Check fit: paste a job description, get a scored brief"><span class="fit-gauge" aria-hidden="true"><i></i><i></i><i></i></span><span class="nf-text"><span class="nf-word">Check </span><span class="nf-long">fit</span><span class="nf-short">Fit</span></span></a>
                 <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="nav-btn-ghost" aria-label="Download CV (PDF)">CV <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="nav-btn-solid"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
                 <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-sheet"><span></span><span></span></button>
@@ -3310,6 +3358,7 @@
         </nav>
         <div class="nav-sheet" id="nav-sheet">
             <div class="container">
+                <a href="ask.html#fit" class="sheet-fit">Check your fit <span>Paste a job description</span></a>
                 <a href="#work">Work <span>Case studies</span></a>
                 <a href="#publications">Research <span>ACM · arXiv</span></a>
                 <a href="#experience">Experience <span>Where I built it</span></a>
@@ -3356,6 +3405,14 @@
                 <div class="hero-tagline bio">
                     <p class="bio-three" aria-label="Maximize ROI. Minimize cost."><span>Maximize&nbsp;<b class="b-roi">ROI</b><i class="bead-stop">.</i></span> <span>Minimize&nbsp;<b class="b-cost">cost</b><i class="bead-stop">.</i></span></p>
                     <p class="bio-text">I build <strong>workflows, data pipelines and agents</strong> that teams use in their daily work. I write the spec, build the tools the agent can use, and measure whether it actually helps: <mark>evidence more than demos</mark>.</p>
+                    <div class="hero-fit-row">
+                        <a class="hero-fit" href="ask.html#fit">
+                            <span class="fit-gauge" aria-hidden="true"><i></i><i></i><i></i></span>
+                            <span class="hf-text"><b>Check your role&rsquo;s fit</b><em>Paste a job description, get a scored brief with gaps</em></span>
+                            <span class="hf-go" aria-hidden="true">&rarr;</span>
+                        </a>
+                        <a class="hero-ask" href="ask.html">or ask my work a question</a>
+                    </div>
                 </div>
                 <div class="reel-col">
                 <button type="button" class="reel reel-mini" id="reel-open" aria-haspopup="dialog">

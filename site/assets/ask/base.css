@@ -181,7 +181,7 @@
        .nav-sheet a span { color: var(--text-muted); font-weight: 500; font-size: 0.8125rem; }
        .nav-sheet .container { padding-top: 0.25rem; padding-bottom: 1rem; }
 
-       @media (max-width: 920px) {
+       @media (max-width: 1000px) {
            .nav-links { display: none; }
            .nav-toggle { display: inline-block; }
            .site-header.menu-open { background: rgba(255,255,255,0.97); border-bottom-color: rgba(28,28,30,0.08); }
@@ -265,3 +265,30 @@
     .footer-abacus .bead { transition: none; }
 }
 
+
+
+/* "Check fit": the one red-outlined control in the bar. Three beads read
+   as a gauge and fill on hover, the way the brief scores a requirement. */
+.nav-fit {
+    display: inline-flex; align-items: center; gap: 0.45rem; height: var(--ctl-h-sm); padding: 0 0.8rem 0 0.65rem;
+    border-radius: 999px; border: 1px solid rgba(224,48,30,0.45); background: var(--paper, #fff6f4);
+    color: var(--rust-deep, #b4200f); font-size: 0.8125rem; font-weight: 650; letter-spacing: -0.005em; white-space: nowrap; text-decoration: none;
+    transition: background var(--dur-fast) var(--ease-move), border-color var(--dur-fast) var(--ease-move), box-shadow var(--dur-fast) var(--ease-move);
+}
+.nav-fit:hover { background: #ffece8; border-color: var(--rust, #e0301e); text-decoration: none; box-shadow: 0 4px 12px -6px rgba(224,48,30,0.55); }
+.nav-fit:focus-visible { outline: 2px solid var(--blue, #c8261a); outline-offset: 2px; }
+.nav-fit[aria-current="page"] { background: var(--rust, #e0301e); border-color: var(--rust, #e0301e); color: #fff; }
+.fit-gauge { display: inline-flex; gap: 2px; }
+.fit-gauge i { width: 6px; height: 6px; border-radius: 50%; border: 1.25px solid currentColor; transition: background 0.25s var(--ease-move); }
+.fit-gauge i:nth-child(1) { background: currentColor; }
+.nav-fit:hover .fit-gauge i:nth-child(2), .hero-fit:hover .fit-gauge i:nth-child(2) { background: currentColor; transition-delay: 0.08s; }
+.nav-fit:hover .fit-gauge i:nth-child(3), .hero-fit:hover .fit-gauge i:nth-child(3) { background: currentColor; transition-delay: 0.16s; }
+.nav-fit[aria-current="page"] .fit-gauge i { background: currentColor; }
+.nav-fit .nf-short { display: none; }
+        @media (max-width: 1000px) { .nav-fit .nf-word, .nav-fit .nf-long { display: none; } .nav-fit .nf-short { display: inline; } .nav-fit { gap: 0.35rem; padding: 0 0.6rem 0 0.5rem; } }
+        /* small phones: tighter bar, CV without its arrow; the name yields to the logo below 340px */
+        @media (max-width: 420px) { .site-nav { gap: 0.75rem; } .nav-actions { gap: 0.3rem; } .nav-btn-ghost { padding: 0 0.55rem; } .nav-btn-ghost svg { display: none; } }
+        @media (max-width: 350px) { .brand-name { display: none; } }
+        .nav-sheet a.sheet-fit { color: var(--rust-deep, #b4200f); }
+        .nav-sheet a.sheet-fit span { color: var(--rust, #e0301e); }
+@media (prefers-reduced-motion: reduce) { .fit-gauge i { transition: none; } }

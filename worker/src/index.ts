@@ -25,11 +25,18 @@ type Evidence = { id: string; title: string; text: string; url: string; level: s
 const engine = EngineModule.create(evidenceData);
 const byId: Record<string, Evidence> = engine.byId;
 
-// US dollars per million tokens. Priced by the model that actually served the reply.
+// Server-side refusal fallback exists only on these models. Claude Haiku 5.5 has
+// none: sending `fallbacks` to it does nothing, or returns a 400 with a model list.
+const FALLBACK_MODELS = new Set(["claude-opus-5-5", "claude-opus-5", "claude-sonnet-5-5", "claude-fable-5-2", "claude-fable-5-1"]);
+function fallbackParams(model: string) {
+  return FALLBACK_MODELS.has(model) ? { betas: ["server-side-fallback-2026-07-01"], fallbacks: "default" as const } : {};
+}
+
+// US dollars per million tokens (prompts under 100K tokens). Priced by the model that served the reply.
 const PRICES: Record<string, { in: number; out: number; cacheRead: number }> = {
   "claude-opus-5-5": { in: 4, out: 20, cacheRead: 0.2 },
   "claude-sonnet-5-5": { in: 2, out: 10, cacheRead: 0.1 },
-  "claude-haiku-5-5": { in: 0.1, out: 0.5, cacheRead: 0.01 },
+  "claude-haiku-5-5": { in: 0.1, out: 0.5, cacheRead: 0.01 }, // $0.50 / $2.50 above 100K-token prompts; ours are ~2K
   "claude-opus-5": { in: 5, out: 25, cacheRead: 0.5 },
   "claude-opus-4-8": { in: 5, out: 25, cacheRead: 0.5 },
   "claude-sonnet-5": { in: 2, out: 10, cacheRead: 0.2 },
@@ -147,11 +154,10 @@ async function ask(client: Anthropic, env: Env, q: string) {
   // 2. Claude writes the answer from those documents, citing them.
   const msg = await client.beta.messages.create({
     model: env.MODEL,
-    max_tokens: 1024,
+    max_tokens: 2048, // thinking counts toward this; leaves room for it plus a short answer
     system: ASK_SYSTEM,
     output_config: { effort: "low" },
-    betas: ["server-side-fallback-2026-07-01"],
-    fallbacks: "default",
+    ...fallbackParams(env.MODEL),
     messages: [{
       role: "user",
       content: [
@@ -204,11 +210,10 @@ async function fit(client: Anthropic, env: Env, jd: string) {
   // 2. Claude turns it into a recruiter-ready brief, as JSON.
   const msg = await client.beta.messages.create({
     model: env.MODEL,
-    max_tokens: 2048,
+    max_tokens: 4096, // thinking counts toward this
     system: FIT_SYSTEM,
     output_config: { effort: "medium", format: { type: "json_schema", schema: FIT_SCHEMA } },
-    betas: ["server-side-fallback-2026-07-01"],
-    fallbacks: "default",
+    ...fallbackParams(env.MODEL),
     messages: [{
       role: "user",
       content: `<job_description>\n${jd}\n</job_description>\n\n<rule_scoring>\n${JSON.stringify(rules.requirements.map((r: { text: string; status: string; concepts: { label: string; status: string }[] }) => ({ requirement: r.text, status: r.status, concepts: r.concepts.map((c) => `${c.label}: ${c.status}`) })))}\n</rule_scoring>\n\n<evidence>\n${items.map((e) => `[${e.id}] (${e.level}) ${e.title}: ${e.text}`).join("\n")}\n</evidence>`,
