@@ -1,0 +1,412 @@
+{
+  "note": "Eval cases for Ask my work and the Fit brief. 'expect' passes if any listed evidence id is among the cited sources. 'abstain' cases must answer 'no evidence' instead of guessing. Fit cases name the status each concept must get. Run: node tools/evals/run.mjs 'first' cases also require the top source to be one of the listed ids (strongest proof first).",
+  "ask": [
+    {
+      "id": "a01",
+      "q": "Has he shipped agents to production?",
+      "expect": [
+        "case-enterprise",
+        "role-senior",
+        "role-text-to-report"
+      ],
+      "first": [
+        "case-enterprise",
+        "role-senior",
+        "role-text-to-report"
+      ]
+    },
+    {
+      "id": "a02",
+      "q": "What did ProjectLens save?",
+      "expect": [
+        "case-projectlens"
+      ],
+      "first": [
+        "case-projectlens"
+      ]
+    },
+    {
+      "id": "a03",
+      "q": "Which peer-reviewed papers has he published?",
+      "expect": [
+        "paper-cais",
+        "case-cais"
+      ],
+      "first": [
+        "paper-cais",
+        "case-cais"
+      ]
+    },
+    {
+      "id": "a04",
+      "q": "What accuracy did the job classification system reach?",
+      "expect": [
+        "case-cais"
+      ]
+    },
+    {
+      "id": "a05",
+      "q": "Does he know MCP?",
+      "expect": [
+        "case-cais",
+        "case-enterprise",
+        "cred-anthropic-courses",
+        "case-tokalator"
+      ]
+    },
+    {
+      "id": "a06",
+      "q": "How does he reduce token costs?",
+      "expect": [
+        "case-tokalator",
+        "role-context-standard",
+        "paper-tokalator"
+      ],
+      "first": [
+        "case-tokalator",
+        "role-context-standard"
+      ]
+    },
+    {
+      "id": "a07",
+      "q": "What is Tokalator?",
+      "expect": [
+        "case-tokalator",
+        "paper-tokalator"
+      ]
+    },
+    {
+      "id": "a08",
+      "q": "Experience with text-to-SQL?",
+      "expect": [
+        "case-enterprise",
+        "role-text-to-report"
+      ]
+    },
+    {
+      "id": "a09",
+      "q": "Has he worked on data governance and metadata?",
+      "expect": [
+        "case-metadata",
+        "role-pm-data"
+      ]
+    },
+    {
+      "id": "a10",
+      "q": "Is he certified by Anthropic?",
+      "expect": [
+        "cred-claude-architect",
+        "cred-anthropic-courses"
+      ]
+    },
+    {
+      "id": "a11",
+      "q": "Does he teach or mentor?",
+      "expect": [
+        "teach-techcareer",
+        "teach-tev",
+        "teach-400"
+      ]
+    },
+    {
+      "id": "a12",
+      "q": "Which languages does he speak?",
+      "expect": [
+        "languages"
+      ]
+    },
+    {
+      "id": "a13",
+      "q": "What is his education?",
+      "expect": [
+        "edu-ma"
+      ]
+    },
+    {
+      "id": "a14",
+      "q": "Has he worked with LangGraph?",
+      "expect": [
+        "case-enterprise",
+        "case-cais",
+        "cred-langchain",
+        "role-senior"
+      ]
+    },
+    {
+      "id": "a15",
+      "q": "How does he evaluate or trace LLM systems?",
+      "expect": [
+        "case-enterprise",
+        "role-senior",
+        "oss-aai",
+        "case-cais"
+      ]
+    },
+    {
+      "id": "a16",
+      "q": "Has he built a startup?",
+      "expect": [
+        "role-defaro"
+      ]
+    },
+    {
+      "id": "a17",
+      "q": "Experience with Azure and Microsoft Teams?",
+      "expect": [
+        "case-projectlens",
+        "case-enterprise",
+        "role-senior"
+      ]
+    },
+    {
+      "id": "a18",
+      "q": "Turkish NLP research",
+      "expect": [
+        "paper-skill",
+        "case-yzi"
+      ]
+    },
+    {
+      "id": "a19",
+      "q": "Does he lead teams or own delivery end to end?",
+      "expect": [
+        "role-senior",
+        "case-enterprise",
+        "case-projectlens",
+        "perplexity"
+      ]
+    },
+    {
+      "id": "a20",
+      "q": "What open source has he released?",
+      "expect": [
+        "case-tokalator",
+        "oss-aai",
+        "paper-tokalator"
+      ]
+    },
+    {
+      "id": "a21",
+      "q": "Any talks at conferences?",
+      "expect": [
+        "talk-bridge",
+        "talk-builders",
+        "paper-cais"
+      ]
+    },
+    {
+      "id": "a22",
+      "q": "Has he built RAG or retrieval systems?",
+      "expect": [
+        "case-metadata",
+        "case-cais",
+        "stack-daily",
+        "oss-aai"
+      ]
+    },
+    {
+      "id": "a23",
+      "q": "What is he working on most recently?",
+      "expect": [
+        "paper-projectlens",
+        "case-projectlens",
+        "case-yzi"
+      ]
+    },
+    {
+      "id": "a24",
+      "q": "Finance automation for banks",
+      "expect": [
+        "role-finance"
+      ]
+    },
+    {
+      "id": "x01",
+      "q": "Has he trained a diffusion model on GPUs?",
+      "abstain": true
+    },
+    {
+      "id": "x02",
+      "q": "What is his favourite football team?",
+      "abstain": true
+    },
+    {
+      "id": "x03",
+      "q": "Kubernetes cluster administration experience",
+      "abstain": true
+    },
+    {
+      "id": "x04",
+      "q": "Has he written iOS apps in Swift?",
+      "abstain": true
+    },
+    {
+      "id": "x05",
+      "q": "What salary does he expect?",
+      "abstain": true
+    },
+    {
+      "id": "x06",
+      "q": "Rust systems programming",
+      "abstain": true
+    },
+    {
+      "id": "h01",
+      "q": "Can he build a pricing or quoting tool?",
+      "expect": [
+        "case-projectlens"
+      ],
+      "split": "holdout"
+    },
+    {
+      "id": "h02",
+      "q": "How many people has he taught?",
+      "expect": [
+        "teach-400"
+      ],
+      "split": "holdout"
+    },
+    {
+      "id": "h03",
+      "q": "Has he presented a live demo at an ACM conference?",
+      "expect": [
+        "paper-cais",
+        "case-cais"
+      ],
+      "split": "holdout"
+    },
+    {
+      "id": "h04",
+      "q": "Experience with BigQuery or Google Cloud?",
+      "expect": [
+        "case-metadata",
+        "role-pm-data",
+        "stack-daily",
+        "cred-google"
+      ],
+      "split": "holdout"
+    },
+    {
+      "id": "h05",
+      "q": "Has he reduced API calls with caching?",
+      "expect": [
+        "case-cais",
+        "case-tokalator"
+      ],
+      "split": "holdout"
+    },
+    {
+      "id": "h06",
+      "q": "Does he have a master's degree in economics?",
+      "expect": [
+        "edu-ma"
+      ],
+      "split": "holdout"
+    },
+    {
+      "id": "h07",
+      "q": "Who are his references at Google?",
+      "abstain": true,
+      "split": "holdout"
+    },
+    {
+      "id": "h08",
+      "q": "Has he deployed models on AWS SageMaker?",
+      "abstain": true,
+      "split": "holdout"
+    },
+    {
+      "id": "h09",
+      "q": "Did he do forecasting work?",
+      "expect": [
+        "role-worq"
+      ],
+      "split": "holdout"
+    },
+    {
+      "id": "h10",
+      "q": "What did Perplexity have to do with his work?",
+      "expect": [
+        "perplexity"
+      ],
+      "split": "holdout"
+    }
+  ],
+  "fit": [
+    {
+      "id": "f01",
+      "title": "Applied AI engineer (agents)",
+      "jd": "We are hiring an Applied AI Engineer.\n- Build and ship LLM agents with tool calling (MCP)\n- Design evals and tracing for production systems\n- Strong Python; TypeScript a plus\n- Work with business stakeholders end to end\n- Experience with Kubernetes",
+      "expect": {
+        "agents": "strong",
+        "mcp": "strong",
+        "evals": "strong",
+        "observability": "strong",
+        "python": "strong",
+        "typescript": "strong",
+        "stakeholders": "strong",
+        "kubernetes": "gap"
+      }
+    },
+    {
+      "id": "f02",
+      "title": "ML engineer (training)",
+      "jd": "Requirements:\n- Fine-tuning LLMs with LoRA and RLHF\n- PyTorch at scale on GPU clusters\n- Computer vision experience\n- Publications at top venues",
+      "expect": {
+        "fine-tuning": "gap",
+        "ml-frameworks": "gap",
+        "cv": "gap",
+        "research": "strong"
+      }
+    },
+    {
+      "id": "f03",
+      "title": "AI solutions architect",
+      "jd": "As an AI Solutions Architect you will lead customer-facing discovery, design RAG and multi-agent architectures on Azure or Google Cloud, set governance and security guardrails, and enable teams through workshops.",
+      "expect": {
+        "rag": "strong",
+        "multi-agent": "strong",
+        "azure": "strong",
+        "gcp": "strong",
+        "governance": "strong",
+        "security": "strong",
+        "teaching": "strong",
+        "stakeholders": "strong"
+      }
+    },
+    {
+      "id": "f04",
+      "title": "Data product manager",
+      "jd": "- Own the data product roadmap\n- Define metrics and dashboards with analytics teams\n- Build reliable ETL pipelines and data quality checks\n- SQL fluency",
+      "expect": {
+        "data-products": "strong",
+        "pipelines": "strong",
+        "governance": "strong",
+        "sql": "strong",
+        "leadership": "strong"
+      }
+    },
+    {
+      "id": "f05",
+      "title": "Voice AI engineer",
+      "jd": "- Build voice agents with ElevenLabs or Vapi\n- Text-to-speech and speech recognition pipelines\n- Java or Go backend services",
+      "expect": {
+        "voice": "partial",
+        "agents": "strong",
+        "java": "gap"
+      }
+    },
+    {
+      "id": "f06",
+      "title": "Forward deployed engineer",
+      "jd": "Forward deployed engineer. You will sit with clients, turn their workflows into automation with Claude and the Anthropic API, prototype in Next.js, and measure ROI.",
+      "expect": {
+        "stakeholders": "strong",
+        "workflow": "strong",
+        "llm": "strong",
+        "react": "strong",
+        "cost": "strong"
+      }
+    }
+  ]
+}

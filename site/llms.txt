@@ -134,6 +134,9 @@ Istanbul, Turkey (GMT+3). He speaks Turkish natively, English at C1 level, Spani
 
 - [Full Portfolio](https://vfaraji89.github.io/)
 - [Updates](https://vfaraji89.github.io/updates.html)
+- [Ask my work](https://vfaraji89.github.io/ask.html): answers about Vahid's work, quoted from public evidence; also scores a job description requirement by requirement, with gaps
+- [Evidence file](https://vfaraji89.github.io/data/evidence.json): every claim with its proof level and a link to where it is shown
+- [Evals](https://vfaraji89.github.io/evals.html): the tests behind Ask my work, run on every deploy
 - [Tokalator](https://tokalator.wiki)
 - [awesome-applied-ai](https://vfaraji89.github.io/awesome-applied-ai/)
 - [ACM Paper](https://dl.acm.org/doi/10.1145/3786335.3813207)
