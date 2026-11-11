@@ -559,6 +559,170 @@
         @media (prefers-reduced-motion: reduce) {
             .footer-abacus .bead { transition: none; }
         }
+
+        /* ===== Updates, redesigned: a cover story over a beaded timeline ===== */
+        main.container { max-width: 1040px; }
+        .page-header { max-width: 760px; }
+        .anchor { position: absolute; top: -80px; left: 0; width: 1px; height: 1px; }
+        .tl .news-card { position: relative; }
+        [id] { scroll-margin-top: 80px; }
+
+        /* Cover: the latest thing, given the room it deserves */
+        .cover {
+            position: relative; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+            gap: 2.5rem; align-items: center; margin: 0.5rem 0 3.5rem; padding: 2.25rem;
+            border-radius: 14px; background: var(--paper); border: 1px solid rgba(224,48,30,0.14);
+            overflow: hidden;
+        }
+        .cover::before {
+            content: ""; position: absolute; inset: 0; pointer-events: none;
+            background-image: radial-gradient(rgba(224,48,30,0.16) 1px, transparent 1.2px);
+            background-size: 18px 18px; mask-image: linear-gradient(110deg, transparent 45%, #000 100%);
+            -webkit-mask-image: linear-gradient(110deg, transparent 45%, #000 100%);
+        }
+        .cover > * { position: relative; }
+        .cover-kicker {
+            display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.875rem; margin-bottom: 1rem;
+            font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary);
+        }
+        .cover-status {
+            display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.3rem 0.65rem 0.3rem 0.55rem;
+            border-radius: 999px; background: var(--bg); border: 1px solid rgba(224,48,30,0.3); color: var(--rust-deep); font-weight: 600;
+        }
+        .cover-status::before {
+            content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--rust);
+            box-shadow: 0 0 0 0 rgba(224,48,30,0.5); animation: pulse-bead 2.4s var(--ease-move) infinite;
+        }
+        @keyframes pulse-bead { 0% { box-shadow: 0 0 0 0 rgba(224,48,30,0.45); } 70%, 100% { box-shadow: 0 0 0 7px rgba(224,48,30,0); } }
+        .cover-title {
+            font-family: var(--font-display); font-size: 2.125rem; font-weight: 700; line-height: 1.1;
+            letter-spacing: -0.03em; color: var(--ink); margin-bottom: 0.875rem;
+        }
+        .cover-desc { font-size: 0.9375rem; line-height: 1.65; color: var(--text-secondary); margin-bottom: 1.25rem; }
+        .cover-nums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; list-style: none; margin-bottom: 1.5rem; }
+        .cover-nums li {
+            display: flex; flex-direction: column; gap: 0.1rem; padding: 0.625rem 0.75rem;
+            border-radius: 10px; background: var(--bg); border: 1px solid var(--ctl-line);
+        }
+        .cover-nums b { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.03em; color: var(--ink); line-height: 1.2; }
+        .cover-nums li:first-child b { color: var(--rust); }
+        .cover-nums span { font-size: 0.6875rem; color: var(--text-muted); }
+        .cover-ctas { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .btn-solid, .btn-ghost {
+            display: inline-flex; align-items: center; gap: 0.4rem; height: var(--ctl-h); padding: 0 1rem;
+            border-radius: var(--ctl-radius); font-size: 0.8125rem; font-weight: 600; text-decoration: none;
+            transition: background var(--ctl-ease), border-color var(--ctl-ease), box-shadow var(--ctl-ease);
+        }
+        .btn-solid { background: var(--ink); color: #fff; border: 1px solid var(--ink); }
+        .btn-solid:hover { background: #000; color: #fff; text-decoration: none; box-shadow: 0 6px 16px -6px rgba(28,28,30,0.5); }
+        .btn-ghost { background: var(--bg); color: var(--ink); border: 1px solid var(--ctl-line); }
+        .btn-ghost:hover { border-color: var(--ink); text-decoration: none; }
+        .btn-solid:focus-visible, .btn-ghost:focus-visible, .cover-visual:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+        .cover-note { margin-top: 0.875rem; font-family: var(--font-mono); font-size: 0.625rem; color: var(--text-muted); letter-spacing: 0.02em; }
+
+        /* three screenshots fanned like papers on a desk, with the paper itself on top */
+        .cover-visual { position: relative; display: block; aspect-ratio: 6 / 5; }
+        .cover-visual img {
+            position: absolute; height: auto; border-radius: 8px; background: #fff; object-fit: cover; object-position: top left;
+            border: 1px solid rgba(28,28,30,0.1); box-shadow: 0 18px 40px -22px rgba(28,28,30,0.55);
+            transition: transform var(--dur-enter) var(--ease-out);
+        }
+        .cv-a { width: 50%; aspect-ratio: 16 / 10; right: 2%; top: 0; transform: rotate(4deg); }
+        .cv-c { width: 90%; aspect-ratio: 1600 / 783; left: 0; top: 24%; transform: rotate(-2deg); z-index: 1; }
+        .cv-b { width: 54%; aspect-ratio: 917 / 386; left: 6%; bottom: 2%; transform: rotate(2deg); z-index: 2; }
+        .cover-visual:hover .cv-a { transform: rotate(-6deg) translate(-6px, -4px); }
+        .cover-visual:hover .cv-b { transform: rotate(5deg) translate(6px, -6px); }
+        .cover-visual:hover .cv-c { transform: rotate(0deg) translateY(-4px); }
+        .cover-paper {
+            position: absolute; right: 4%; bottom: 0; width: 24%; z-index: 3; aspect-ratio: 8.5 / 11; padding: 10% 3% 0;
+            display: flex; flex-direction: column; gap: 6%; border-radius: 4px; background: #fff;
+            border: 1px solid rgba(28,28,30,0.12); box-shadow: 0 14px 30px -16px rgba(28,28,30,0.5); transform: rotate(5deg);
+            transition: transform var(--dur-enter) var(--ease-spring);
+        }
+        .cover-paper i { display: block; height: 3px; border-radius: 2px; background: rgba(28,28,30,0.14); }
+        .cover-paper i:first-child { height: 5px; width: 80%; background: var(--ink); }
+        .cover-paper i:nth-child(3) { width: 70%; }
+        .cover-paper b {
+            margin-top: auto; margin-bottom: 10%; align-self: flex-start; padding: 2px 5px; border-radius: 3px;
+            background: var(--mark); color: var(--rust-deep); font-family: var(--font-mono); font-size: 0.5rem;
+            letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; white-space: nowrap;
+        }
+        @media (max-width: 640px) { .cover-paper b { font-size: 0.4375rem; padding: 1px 3px; } }
+        .cover-visual:hover .cover-paper { transform: rotate(2deg) translateY(-8px); }
+
+        /* Feed header: title and filters on one line, sticky under the navbar */
+        .feed-head {
+            position: sticky; top: 52px; z-index: 20; display: flex; flex-wrap: wrap; align-items: center;
+            justify-content: space-between; gap: 0.75rem 1.5rem; padding: 0.75rem 0; margin-bottom: 0.25rem;
+            background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--ctl-line);
+        }
+        .feed-title { font-size: 1rem; font-weight: 650; letter-spacing: -0.015em; color: var(--ink); }
+        .feed-head .filter-bar { margin: 0; gap: 0.5rem 1rem; }
+        .feed-head .filter-group { gap: 0.5rem; }
+        .feed-head .filter-label { min-width: 0; }
+        .filter-count { margin: 0.75rem 0 0; }
+
+        /* Timeline: date on the left, a bead on the rod, the card on the right */
+        .year-label { padding-top: 1.5rem; margin-bottom: 0.5rem; border-bottom: 0; font-size: 1.25rem; }
+        .tl { list-style: none; position: relative; display: flex; flex-direction: column; gap: 1rem; margin: 0 0 2rem; padding: 0.5rem 0; }
+        .tl::before { content: ""; position: absolute; top: 0; bottom: 0; left: 84px; width: 2px; border-radius: 2px; background: rgba(28,28,30,0.1); }
+        .tl-item { display: grid; grid-template-columns: 72px 26px minmax(0, 1fr); column-gap: 0; align-items: start; }
+        .tl-item.filter-hidden { display: none; }
+        .tl-when {
+            padding-top: 1.35rem; text-align: right; padding-right: 0.25rem;
+            font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.04em;
+            text-transform: uppercase; color: var(--text-muted);
+        }
+        .tl-bead {
+            justify-self: center; margin-top: 1.4rem; width: 12px; height: 12px; border-radius: 50%;
+            background: var(--bg); border: 2px solid rgba(28,28,30,0.35); position: relative; z-index: 1;
+            transition: transform var(--dur-slow) var(--ease-spring), background var(--ctl-ease), border-color var(--ctl-ease);
+        }
+        .tl-item.is-first .tl-bead, .tl-item:hover .tl-bead { background: var(--rust); border-color: var(--rust); transform: scale(1.2); }
+        .tl-item.is-first .tl-when { color: var(--rust); }
+
+        .tl .news-card {
+            display: grid; grid-template-columns: minmax(0, 1fr) 188px; gap: 1.5rem; align-items: start;
+            padding: 1.25rem 1.375rem 1.375rem; margin-left: 0.5rem; background-color: var(--bg);
+        }
+        .tl .news-card:hover { transform: translateX(3px); }
+        .tl .news-photo { width: 188px; height: 128px; }
+        .tl .news-photo.is-contain img { object-fit: contain; padding: 12%; background: #fff; }
+        .tl .news-title { font-size: 1.0625rem; line-height: 1.3; letter-spacing: -0.015em; }
+        .tl .news-desc { font-size: 0.875rem; }
+        .tl .news-body { gap: 0.45rem; }
+        .news-tag.tag-r { background: var(--mark); border-color: transparent; color: var(--rust-deep); }
+        .news-tag { padding: 0.18rem 0.5rem; }
+        .news-date { display: none; }
+
+        @media (max-width: 860px) {
+            .cover { grid-template-columns: 1fr; padding: 1.5rem; gap: 1.75rem; }
+            .cover-visual { max-width: 520px; width: 100%; justify-self: center; }
+            .cover-title { font-size: 1.75rem; }
+        }
+        @media (max-width: 640px) {
+            .cover { margin: 0 -0.25rem 2.5rem; padding: 1.25rem; border-radius: 12px; }
+            .cover-title { font-size: 1.5rem; }
+            .cover-nums li { padding: 0.5rem 0.625rem; }
+            .cover-nums b { font-size: 1.0625rem; }
+            .feed-head { position: static; margin: 0 -1.25rem; padding: 0.625rem 1.25rem; background: var(--bg); }
+            .feed-head .filter-label { display: none; }
+            .feed-title { display: none; }
+            .feed-head .filter-bar { width: 100%; flex-direction: column; align-items: stretch; }
+            .tl::before { left: 6px; }
+            .tl-item { grid-template-columns: 14px minmax(0, 1fr); }
+            .tl-when { display: none; }
+            .tl-bead { width: 10px; height: 10px; margin-top: 1.5rem; justify-self: start; margin-left: 1px; }
+            .tl .news-card { grid-template-columns: 1fr; margin-left: 0.5rem; padding: 1rem 1.125rem 1.25rem; gap: 0.875rem; }
+            .tl .news-photo { order: -1; width: 100%; height: 160px; }
+            .tl .news-card:hover { transform: none; }
+            .news-date { display: inline; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cover-status::before { animation: none; }
+            .cover-visual img, .cover-paper { transition: none; }
+        }
     </style>
     <script type="application/ld+json">
 {
@@ -618,7 +782,20 @@
                     "position": 1,
                     "item": {
                         "@type": "Article",
-                        "headline": "A 90-second animated CV, and a rebuilt portfolio around it",
+                        "headline": "ProjectLens demo paper submitted",
+                        "datePublished": "2026-11-11",
+                        "url": "https://vfaraji89.github.io/updates.html#projectlens-paper",
+                        "author": {
+                            "@id": "https://vfaraji89.github.io/#person"
+                        }
+                    }
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@type": "Article",
+                        "headline": "A 90-second animated CV, and a portfolio rebuilt around it",
                         "datePublished": "2026-11-06",
                         "url": "https://vfaraji89.github.io/updates.html#animated-cv",
                         "author": {
@@ -628,7 +805,7 @@
                 },
                 {
                     "@type": "ListItem",
-                    "position": 2,
+                    "position": 3,
                     "item": {
                         "@type": "Article",
                         "headline": "Claude Certified Architect, Foundations",
@@ -641,10 +818,10 @@
                 },
                 {
                     "@type": "ListItem",
-                    "position": 3,
+                    "position": 4,
                     "item": {
                         "@type": "Article",
-                        "headline": "ProjectLens: pricing, from Excel habit to auditable flow",
+                        "headline": "ProjectLens goes live: pricing, from Excel habit to an auditable flow",
                         "datePublished": "2026-08-27",
                         "url": "https://vfaraji89.github.io/updates.html#projectlens",
                         "author": {
@@ -654,7 +831,7 @@
                 },
                 {
                     "@type": "ListItem",
-                    "position": 4,
+                    "position": 5,
                     "item": {
                         "@type": "Article",
                         "headline": "awesome-applied-ai: a working map of applied AI for the enterprise",
@@ -667,25 +844,12 @@
                 },
                 {
                     "@type": "ListItem",
-                    "position": 5,
-                    "item": {
-                        "@type": "Article",
-                        "headline": "Presenting demo at ACM CAIS '26, San Jose",
-                        "datePublished": "2026-05-29",
-                        "url": "https://vfaraji89.github.io/updates.html#cais-demo",
-                        "author": {
-                            "@id": "https://vfaraji89.github.io/#person"
-                        }
-                    }
-                },
-                {
-                    "@type": "ListItem",
                     "position": 6,
                     "item": {
                         "@type": "Article",
-                        "headline": "Multi-Agent Position Classification with Tool Orchestration",
-                        "datePublished": "2026-05-01",
-                        "url": "https://vfaraji89.github.io/updates.html#cais-paper",
+                        "headline": "ACM CAIS ’26, San Jose: demo presented, paper published",
+                        "datePublished": "2026-05-29",
+                        "url": "https://vfaraji89.github.io/updates.html#cais-demo",
                         "author": {
                             "@id": "https://vfaraji89.github.io/#person"
                         }
@@ -696,9 +860,9 @@
                     "position": 7,
                     "item": {
                         "@type": "Article",
-                        "headline": "Applied AI Course: Agents, MCP, and AI-Native Development",
-                        "datePublished": "2026-03-01",
-                        "url": "https://vfaraji89.github.io/updates.html#techcareer-training",
+                        "headline": "Tokalator: a context engineering toolkit for AI coding assistants",
+                        "datePublished": "2026-04-01",
+                        "url": "https://vfaraji89.github.io/updates.html#tokalator-paper",
                         "author": {
                             "@id": "https://vfaraji89.github.io/#person"
                         }
@@ -709,9 +873,9 @@
                     "position": 8,
                     "item": {
                         "@type": "Article",
-                        "headline": "Tokalator: A Context Engineering Toolkit for AI Coding Assistants",
-                        "datePublished": "2026-04-01",
-                        "url": "https://vfaraji89.github.io/updates.html#tokalator-paper",
+                        "headline": "Leveraging LLMs for Turkish skill extraction",
+                        "datePublished": "2026-01-01",
+                        "url": "https://vfaraji89.github.io/updates.html#skill-paper",
                         "author": {
                             "@id": "https://vfaraji89.github.io/#person"
                         }
@@ -722,9 +886,9 @@
                     "position": 9,
                     "item": {
                         "@type": "Article",
-                        "headline": "Leveraging LLMs For Turkish Skill Extraction",
-                        "datePublished": "2026-01-01",
-                        "url": "https://vfaraji89.github.io/updates.html#skill-paper",
+                        "headline": "Applied AI course: agents, MCP and AI-native development",
+                        "datePublished": "2026-03-01",
+                        "url": "https://vfaraji89.github.io/updates.html#techcareer-training",
                         "author": {
                             "@id": "https://vfaraji89.github.io/#person"
                         }
@@ -735,7 +899,7 @@
                     "position": 10,
                     "item": {
                         "@type": "Article",
-                        "headline": "Context Engineering for AI-Native Dev, Only Builders Club",
+                        "headline": "Context engineering for AI-native development",
                         "datePublished": "2026-02-01",
                         "url": "https://vfaraji89.github.io/updates.html#builders-club-talk",
                         "author": {
@@ -748,7 +912,7 @@
                     "position": 11,
                     "item": {
                         "@type": "Article",
-                        "headline": "AI Career Mentor, TEV (Turkish Education Foundation)",
+                        "headline": "AI career mentor at TEV, the Turkish Education Foundation",
                         "datePublished": "2026-01-01",
                         "url": "https://vfaraji89.github.io/updates.html#tev-mentor",
                         "author": {
@@ -774,7 +938,7 @@
                     "position": 13,
                     "item": {
                         "@type": "Article",
-                        "headline": "Deep Agent Frameworks for SaaS, Bridge Summit '25",
+                        "headline": "Deep agent frameworks for SaaS, Bridge Summit ’25",
                         "datePublished": "2025-01-01",
                         "url": "https://vfaraji89.github.io/updates.html#bridge-summit",
                         "author": {
@@ -787,7 +951,7 @@
                     "position": 14,
                     "item": {
                         "@type": "Article",
-                        "headline": "Enterprise Prompt Engineering and Tool Design",
+                        "headline": "Enterprise prompt engineering and tool design",
                         "datePublished": "2025-01-01",
                         "url": "https://vfaraji89.github.io/updates.html#uni-talks",
                         "author": {
@@ -847,18 +1011,45 @@
     </header>
     <main class="container">
         <header class="page-header">
-            <p class="page-eyebrow">Updates &middot; newest first</p>
+            <p class="page-eyebrow">Updates &middot; last entry November 2026</p>
             <h1>What I <mark>shipped</mark>, said and published<span class="bead-stop">.</span></h1>
             <p class="subtitle">Launches, papers, talks and credentials from my applied AI work, with the links to check each one.</p>
             <ul class="page-stats" aria-label="At a glance">
                 <li><b>ACM CAIS &rsquo;26</b>peer-reviewed demo paper</li>
+                <li><b>+1</b>demo paper under review</li>
                 <li><b>2</b>arXiv papers</li>
                 <li><b>500+</b>Tokalator installs</li>
-                <li><b>4</b>talks and demos</li>
+                
             </ul>
         </header>
 
-        <div class="filter-bar">
+        <section class="cover" id="projectlens-paper" aria-labelledby="cover-title">
+            <div class="cover-text">
+                <p class="cover-kicker"><span class="cover-status">Submitted &middot; under review</span><span>Latest &middot; demo paper</span></p>
+                <h2 class="cover-title" id="cover-title">ProjectLens, written up as a demo paper<span class="bead-stop">.</span></h2>
+                <p class="cover-desc">The pricing tool I built with the Pricing &amp; Revenue team at Kariyer.net is now a submitted demo paper. It walks through how a project request moves from effort calculation to price, proposal, approval and follow-up in one auditable flow, wired into Microsoft Teams and Azure DevOps, with a read-only SQL console for the questions dashboards miss.</p>
+                <ul class="cover-nums" aria-label="ProjectLens in production">
+                    <li><b>91%</b><span>manual effort removed</span></li>
+                    <li><b>64h&rarr;5.5h</b><span>per pricing cycle</span></li>
+                    <li><b>31</b><span>spreadsheets avoided</span></li>
+                </ul>
+                <div class="cover-ctas">
+                    <a class="btn-solid" href="index.html#work">Read the case study <span aria-hidden="true">&rarr;</span></a>
+                    <a class="btn-ghost" href="#projectlens">In production since August</a>
+                </div>
+                <p class="cover-note">Venue and paper link go here once it is accepted.</p>
+            </div>
+            <a class="cover-visual" href="index.html#work" aria-label="ProjectLens screenshots, open the case study">
+                <img class="cv-a" width="1440" height="900" src="assets/photos/projectlens/projectlens-login.webp" alt="" loading="eager">
+                <img class="cv-b" width="917" height="386" src="assets/photos/projectlens/projectlens-jury.webp" alt="" loading="eager">
+                <img class="cv-c" width="1600" height="783" src="assets/photos/projectlens/projectlens-home.webp" alt="ProjectLens dashboard: proposals, conversion and margin" loading="eager">
+                <span class="cover-paper" aria-hidden="true"><i></i><i></i><i></i><i></i><b>Demo paper</b></span>
+            </a>
+        </section>
+
+        <div class="feed-head">
+            <h2 class="feed-title">Everything else, newest first</h2>
+            <div class="filter-bar" id="filter-bar">
             <div class="filter-group">
                 <span class="filter-label">Year</span>
                 <div class="year-filter" id="year-filter">
@@ -880,274 +1071,194 @@
             </div>
         </div>
 
-        <div id="filter-count" class="filter-count"></div>
+        </div>
+        <div id="filter-count" class="filter-count" aria-live="polite"></div>
 
         <div class="news-feed" id="news-feed">
-
-            <div class="year-label" data-year-label="2026">2026</div>
-
-            <div class="news-grid" data-year-grid="2026">
-
-                <article class="news-card featured" id="animated-cv" data-year="2026" data-topics="launch">
-                    <div class="news-photo">
-                        <a class="news-play" href="index.html#reel" aria-label="Watch the 90-second animated CV">
-                            <img width="1280" height="720" src="assets/video/vahid-cv-poster.jpg?v=36" alt="Opening frame of the animated CV: the tools keep changing, from abacus to agent" loading="lazy">
-                        </a>
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-new">New</span>
-                            <span class="news-tag tag-oss">Launch</span>
-                            <span class="news-date">November 2026</span>
+            <h2 class="year-label" data-year-label="2026">2026</h2>
+            <ol class="tl news-grid" data-year-grid="2026">
+                <li class="tl-item is-first">
+                    <span class="tl-when"><time datetime="2026-11">Nov</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="animated-cv" data-year="2026" data-topics="launch">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-new">New</span><span class="news-tag">Launch</span><span class="news-date">Nov 2026</span></div>
+                            <h3 class="news-title"><a href="index.html#reel">A 90-second animated CV, and a portfolio rebuilt around it</a></h3>
+                            <p class="news-desc">My work as a short film: the tools that keep changing, the languages I work in, talking to agents, problem to data to solution, and 2026 in tokens. The portfolio around it gained a recruiter view, number-led case studies and a playable stack.</p>
+                            <p class="news-venue">vfaraji89.github.io &middot; 1:30</p>
+                            <div class="news-links"><a href="index.html#reel">Watch the film</a><a href="index.html?hire">Recruiter view</a></div>
                         </div>
-                        <h2 class="news-title"><a href="index.html#reel">A 90-second animated CV, and a rebuilt portfolio around it</a></h2>
-                        <p class="news-desc">The short version of my work as a film: the tools that keep changing, the languages I work in, talking to agents, going from problem to data to solution, and what 2026 looked like in tokens. The portfolio was rebuilt around it with a recruiter view, number-led case studies, and a playable stack.</p>
-                        <p class="news-venue">vfaraji89.github.io &middot; 1:30 &middot; English</p>
-                        <div class="news-links">
-                            <a href="index.html#reel">Watch the film</a>
-                            <a href="index.html?hire">Recruiter view</a>
+                        <div class="news-photo"><a class="news-play" href="index.html#reel" aria-label="Watch the 90-second animated CV"><img width="1280" height="720" src="assets/video/vahid-cv-poster.jpg?v=36" alt="Opening frame of the animated CV: the tools keep changing, from abacus to agent" loading="lazy" onerror="this.remove();"></a></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2026">2026</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="credentials-2026" data-year="2026" data-topics="credential">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag">Credential</span><span class="news-date">2026</span></div>
+                            <h3 class="news-title">Claude Certified Architect, Foundations</h3>
+                            <p class="news-desc">Certified by Anthropic. Alongside it: Google Generative AI Leader, ACM Professional Membership, Anthropic courses on MCP, Agent Skills, the Claude API and Claude Code, and LangChain&rsquo;s LangGraph and LangSmith.</p>
+                            <p class="news-venue">Anthropic &middot; Google &middot; ACM &middot; LangChain</p>
+                            <div class="news-links"><a href="index.html#about">All credentials</a><a href="https://vfaraji89.github.io/awesome-applied-ai/certificates/" target="_blank" rel="noopener">Certificates worth having</a></div>
                         </div>
-                    </div>
-                </article>
-
-                <article class="news-card" id="credentials-2026" data-year="2026" data-topics="credential">
-                    <div class="news-photo">
-                        <div class="news-photo-placeholder">
-                            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="12" cy="10" r="6.25" stroke="currentColor" stroke-width="1.5"/><path d="M8.75 15.25L7.5 21l4.5-2.25L16.5 21l-1.25-5.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 10h7" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/><circle cx="14" cy="10" r="1.5" fill="var(--rust)"/></svg>
-                            <span>Credentials</span>
+                        <div class="news-photo"><div class="news-photo-placeholder"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none"><circle cx="12" cy="10" r="6.25" stroke="currentColor" stroke-width="1.5"/><path d="M8.75 15.25L7.5 21l4.5-2.25L16.5 21l-1.25-5.75" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.5 10h7" stroke="currentColor" stroke-opacity="0.35" stroke-width="1" stroke-linecap="round"/><circle cx="10" cy="10" r="1.5" fill="currentColor"/><circle cx="14" cy="10" r="1.5" fill="var(--rust)"/></svg><span>Credentials</span></div></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2026-08">Aug</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="projectlens" data-year="2026" data-topics="launch enterprise">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag">In production</span><span class="news-date">Aug 2026</span></div>
+                            <h3 class="news-title">ProjectLens goes live: pricing, from Excel habit to an auditable flow</h3>
+                            <p class="news-desc">Shipped with the Pricing &amp; Revenue team at Kariyer.net. A project request moves through effort, price, proposal, approval and follow-up in one tool that plugs into Microsoft Teams and Azure DevOps, with a read-only SQL console for what dashboards miss. 64 hours of hand work down to 5.5; 31 spreadsheets avoided.</p>
+                            <p class="news-venue">Applied AI &times; Pricing &amp; Revenue &middot; Kariyer.net</p>
+                            <div class="news-links"><a href="index.html#work">Case study</a></div>
                         </div>
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-award">Credential</span>
-                            <span class="news-date">2026</span>
+                        <div class="news-photo"><img width="1600" height="783" src="assets/photos/projectlens/projectlens-home.webp" alt="ProjectLens dashboard: proposals, conversion and margin" loading="lazy" onerror="this.remove();"></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2026-07">Jul</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="awesome-applied-ai" data-year="2026" data-topics="launch oss">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag">Open source</span><span class="news-date">Jul 2026</span></div>
+                            <h3 class="news-title"><a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">awesome-applied-ai: a working map of applied AI for the enterprise</a></h3>
+                            <p class="news-desc">A public taxonomy in six layers: guardrails and governance, evaluation and observability, orchestration, caching, memory and retrieval. With a live tool index, formulas, a dictionary, commands and research for enterprise AI architects.</p>
+                            <p class="news-venue">github.com/vfaraji89/awesome-applied-ai</p>
+                            <div class="news-links"><a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">Live site</a><a href="https://github.com/vfaraji89/awesome-applied-ai" target="_blank" rel="noopener">GitHub</a></div>
                         </div>
-                        <h2 class="news-title">Claude Certified Architect, Foundations</h2>
-                        <p class="news-desc">Certified by Anthropic as a Claude Architect. Alongside it: Google Generative AI Leader, ACM Professional Membership, and Anthropic courses on the Model Context Protocol, Agent Skills, the Claude API and Claude Code, plus LangChain&rsquo;s LangGraph and LangSmith.</p>
-                        <p class="news-venue">Anthropic &middot; Google &middot; ACM &middot; LangChain</p>
-                        <div class="news-links">
-                            <a href="index.html#about">All credentials</a>
-                            <a href="https://vfaraji89.github.io/awesome-applied-ai/certificates/" target="_blank" rel="noopener">Certificates worth having</a>
+                        <div class="news-photo"><div class="news-photo-placeholder"><svg viewBox="0 0 36 36" fill="none" aria-hidden="true"><rect x="4" y="4" width="28" height="7" rx="2" stroke="currentColor" stroke-width="1.75"/><rect x="4" y="14.5" width="28" height="7" rx="2" stroke="currentColor" stroke-width="1.75"/><rect x="4" y="25" width="28" height="7" rx="2" stroke="currentColor" stroke-width="1.75"/><circle cx="9" cy="7.5" r="1.8" fill="var(--rust)"/><circle cx="18" cy="18" r="1.8" fill="currentColor"/><circle cx="25" cy="28.5" r="1.8" fill="currentColor"/></svg><span>awesome-applied-ai</span></div></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2026-05">May</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="cais-demo" data-year="2026" data-topics="conference publish"><span class="anchor" id="cais-paper"></span>
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag tag-r">Conference</span><span class="news-tag tag-r">Published</span><span class="news-date">May 2026</span></div>
+                            <h3 class="news-title"><a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">ACM CAIS &rsquo;26, San Jose: demo presented, paper published</a></h3>
+                            <p class="news-desc">Live demo of our tool-augmented multi-agent system that maps free-form job titles to O*NET and ESCO through MCP-based coordination: 72.5% less classification time, up to 95% segment-level accuracy. The peer-reviewed demo paper is in the ACM Digital Library.</p>
+                            <p class="news-venue">ACM Conference on AI and Agentic Systems &middot; May 26&ndash;29, 2026</p>
+                            <div class="news-links"><a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">DOI 10.1145/3786335.3813207</a><a href="https://www.alphaxiv.org/abs/multi-agent-position-classification" target="_blank" rel="noopener">alphaXiv</a><a href="https://www.caisconf.org/" target="_blank" rel="noopener">CAIS &rsquo;26</a></div>
                         </div>
-                    </div>
-                </article>
-
-                <article class="news-card" id="awesome-applied-ai" data-year="2026" data-topics="launch oss">
-                    <div class="news-photo">
-                        <div class="news-photo-placeholder">
-                            <svg viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                                <rect x="4" y="4" width="28" height="7" rx="2" stroke="currentColor" stroke-width="1.75"/>
-                                <rect x="4" y="14.5" width="28" height="7" rx="2" stroke="currentColor" stroke-width="1.75"/>
-                                <rect x="4" y="25" width="28" height="7" rx="2" stroke="currentColor" stroke-width="1.75"/>
-                                <circle cx="9" cy="7.5" r="1.8" fill="var(--rust)"/><circle cx="18" cy="18" r="1.8" fill="currentColor"/><circle cx="25" cy="28.5" r="1.8" fill="currentColor"/>
-                            </svg>
-                            <span>awesome-applied-ai</span>
+                        <div class="news-photo"><img width="1400" height="672" src="assets/event-photos/cais-2026.webp" alt="ACM Conference on AI and Agentic Systems, CAIS 2026, San Jose" loading="lazy" onerror="this.remove();"></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2026-04">Apr</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="tokalator-paper" data-year="2026" data-topics="publish launch oss">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag tag-r">arXiv</span><span class="news-tag">Open source</span><span class="news-date">Apr 2026</span></div>
+                            <h3 class="news-title"><a href="https://arxiv.org/abs/2604.08290" target="_blank" rel="noopener">Tokalator: a context engineering toolkit for AI coding assistants</a></h3>
+                            <p class="news-desc">An open-source toolkit for token-aware context management, cost modelling and workflow tuning, with a VS Code extension past 500 installs.</p>
+                            <p class="news-venue">arXiv:2604.08290</p>
+                            <div class="news-links"><a href="https://arxiv.org/abs/2604.08290" target="_blank" rel="noopener">arXiv</a><a href="https://tokalator.wiki" target="_blank" rel="noopener">tokalator.wiki</a></div>
                         </div>
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-oss">Open Source</span>
-                            <span class="news-date">July 2026</span>
+                        <div class="news-photo"><img width="520" height="587" src="assets/event-photos/tokalator-paper.webp" alt="Tokalator paper, first page" loading="lazy" onerror="this.remove();"></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2026-01">Jan</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="skill-paper" data-year="2026" data-topics="publish">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag tag-r">arXiv</span><span class="news-date">Jan 2026</span></div>
+                            <h3 class="news-title"><a href="https://arxiv.org/abs/2601.22885" target="_blank" rel="noopener">Leveraging LLMs for Turkish skill extraction</a></h3>
+                            <p class="news-desc">A large-scale study of extracting structured skills for the Turkish labour market with LLM pipelines: the first systematic benchmark for Turkish NLP in workforce analytics.</p>
+                            <p class="news-venue">arXiv:2601.22885</p>
+                            <div class="news-links"><a href="https://arxiv.org/abs/2601.22885" target="_blank" rel="noopener">arXiv</a></div>
                         </div>
-                        <h2 class="news-title"><a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">awesome-applied-ai: a working map of applied AI for the enterprise</a></h2>
-                        <p class="news-desc">A public taxonomy of applied AI. Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, formulas, dictionary, commands, and research for enterprise AI architects.</p>
-                        <p class="news-venue">vfaraji89.github.io/awesome-applied-ai · github.com/vfaraji89/awesome-applied-ai</p>
-                        <div class="news-links">
-                            <a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">Live site</a>
-                            <a href="https://github.com/vfaraji89/awesome-applied-ai" target="_blank" rel="noopener">GitHub</a>
+                        <div class="news-photo"><img width="520" height="463" src="assets/event-photos/skill-extraction.webp" alt="Skill extraction paper, first page" loading="lazy" onerror="this.remove();"></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2026">2026</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="techcareer-training" data-year="2026" data-topics="mentor">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag">Teaching</span><span class="news-date">2026</span></div>
+                            <h3 class="news-title">Applied AI course: agents, MCP and AI-native development</h3>
+                            <p class="news-desc">An 18-hour technical programme on custom tool design, context architecture, multi-agent coordination and running tools in production.</p>
+                            <p class="news-venue">Techcareer &middot; 18 hours &middot; Istanbul</p>
+                            <div class="news-links"><a href="https://www.techcareer.net/bootcamp/uygulamali-ai-araclar-agent-lar-ve-otomasyon-egitimi-icin-bulusuyoruz" target="_blank" rel="noopener">Techcareer bootcamp</a></div>
                         </div>
-                    </div>
-                </article>
-
-                <article class="news-card" id="projectlens" data-year="2026" data-topics="launch enterprise">
-                    <div class="news-photo">
-                        <img width="1600" height="783" src="assets/photos/projectlens/projectlens-home.webp" alt="ProjectLens: Pricing Internal Tool" loading="lazy" onerror="this.remove();">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-oss">Enterprise launch</span>
-                            <span class="news-date">August 2026</span>
+                        <div class="news-photo"><img width="348" height="184" src="assets/photos/techcaeer-training.webp" alt="Applied AI course at Techcareer" loading="lazy" onerror="this.remove();"></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2026">2026</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="builders-club-talk" data-year="2026" data-topics="talk conference">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag">Talk</span><span class="news-date">2026</span></div>
+                            <h3 class="news-title">Context engineering for AI-native development</h3>
+                            <p class="news-desc">Invited talk on context-aware systems for AI-native workflows: token budgets, relevance scoring and production patterns.</p>
+                            <p class="news-venue">Only Builders Club &middot; Istanbul</p>
+                            <div class="news-links"><a href="context-engineering.html">Context engineering notes</a></div>
                         </div>
-                        <h2 class="news-title">ProjectLens: pricing, from Excel habit to auditable flow</h2>
-                        <p class="news-desc">Shipped with the Pricing &amp; Revenue team at Kariyer.net. ProjectLens takes a project request and carries it end to end: effort calculation, pricing, proposal preparation, approval and follow-up, instead of spawning a fresh Excel file per quote. It plugs into Microsoft Teams and Azure DevOps so requests arrive where the team already works, and ships a read-only SQL console for the questions the dashboards do not answer. 91% of the manual effort removed: 64 hours of hand work down to 5.5, freeing 59 hours (7.3 working days) and avoiding 31 spreadsheets.</p>
-                        <p class="news-venue">Applied AI &times; Pricing &amp; Revenue &middot; Kariyer.net &middot; internal tool</p>
-                    </div>
-                </article>
-
-                <article class="news-card" id="cais-demo" data-year="2026" data-topics="conference publish">
-                    <div class="news-photo">
-                        <img width="1400" height="672" src="assets/event-photos/cais-2026.webp" alt="ACM Conference on AI and Agentic Systems, CAIS 2026, San Jose" loading="lazy">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-conference">Conference</span>
-                            <span class="news-tag tag-paper">Demo Paper</span>
-                            <span class="news-date">May 29, 2026</span>
+                        <div class="news-photo"><img src="assets/photos/only-builders.avif" alt="Context engineering talk at Only Builders Club" loading="lazy" onerror="this.remove();"></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2026">2026</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="tev-mentor" data-year="2026" data-topics="mentor">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag">Mentoring</span><span class="news-date">2026</span></div>
+                            <h3 class="news-title">AI career mentor at TEV, the Turkish Education Foundation</h3>
+                            <p class="news-desc">Mentoring students on AI career paths, portfolios, and the move from traditional engineering into applied AI roles.</p>
+                            <p class="news-venue">T&uuml;rk E&#287;itim Vakf&#305;</p>
                         </div>
-                        <h2 class="news-title"><a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">Presenting demo at ACM CAIS '26, San Jose</a></h2>
-                        <p class="news-desc">Live demo of our tool-augmented multi-agent system for job position normalisation. The system uses MCP-based multi-agent coordination to map free-form job titles to O*NET and ESCO taxonomies, with a 72.5% reduction in classification time, up to 95% segment-level accuracy.</p>
-                        <p class="news-venue">ACM Conference on AI and Agentic Systems · DoubleTree by Hilton San Jose · May 26–29, 2026</p>
-                        <div class="news-links">
-                            <a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">ACM Digital Library</a>
-                            <a href="https://www.alphaxiv.org/abs/multi-agent-position-classification" target="_blank" rel="noopener">alphaXiv</a>
-                            <a href="https://www.caisconf.org/" target="_blank" rel="noopener">CAIS '26 Website</a>
+                        <div class="news-photo is-contain"><img src="assets/event-photos/TEV_logo.png" alt="TEV, Turkish Education Foundation" loading="lazy" onerror="this.remove();"></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2026">2026</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="perplexity-fellowship" data-year="2026" data-topics="credential">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag">Fellowship</span><span class="news-date">2026</span></div>
+                            <h3 class="news-title">Leading the Perplexity AI Business Fellowship programme</h3>
+                            <p class="news-desc">Leading the programme behind the group-wide AI transformation at Kariyer.net (ilab group), and setting the baseline standards for agentic infrastructure.</p>
+                            <p class="news-venue">Perplexity &middot; Kariyer.net</p>
                         </div>
-                    </div>
-                </article>
-
-                <article class="news-card" id="cais-paper" data-year="2026" data-topics="publish conference">
-                    <div class="news-photo">
-                        <img width="1600" height="765" src="assets/photos/pms-quality.webp" alt="Data quality view, multi-agent position classification" loading="lazy">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-paper">Published</span>
-                            <span class="news-date">May 2026</span>
+                        <div class="news-photo"><img width="600" height="403" src="assets/event-photos/perplexity-fellowship.webp" alt="Perplexity AI Business Fellowship" loading="lazy" onerror="this.remove();"></div>
+                    </article>
+                </li>
+            </ol>
+            <h2 class="year-label" data-year-label="2025">2025</h2>
+            <ol class="tl news-grid" data-year-grid="2025">
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2025">2025</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="bridge-summit" data-year="2025" data-topics="talk conference">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag">Talk</span><span class="news-date">2025</span></div>
+                            <h3 class="news-title">Deep agent frameworks for SaaS, Bridge Summit &rsquo;25</h3>
+                            <p class="news-desc">Invited speaker on deep agent frameworks for SaaS: multi-agent orchestration, tool integration and shipping LLM features to production.</p>
+                            <p class="news-venue">Bridge Summit &rsquo;25</p>
                         </div>
-                        <h2 class="news-title"><a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping</a></h2>
-                        <p class="news-desc">Accepted and published in the ACM Digital Library. DOI: 10.1145/3786335.3813207. Peer-reviewed demo paper presenting a novel MCP-based architecture for cross-lingual occupation classification at enterprise scale.</p>
-                        <div class="news-links">
-                            <a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">DOI: 10.1145/3786335.3813207</a>
-                            <a href="https://www.alphaxiv.org/abs/multi-agent-position-classification" target="_blank" rel="noopener">alphaXiv</a>
+                        <div class="news-photo"><img width="450" height="558" src="assets/event-photos/saas-bridge.webp" alt="SaaS Bridge Summit workshop" loading="lazy" onerror="this.remove();"></div>
+                    </article>
+                </li>
+                <li class="tl-item">
+                    <span class="tl-when"><time datetime="2025">2025</time></span>
+                    <span class="tl-bead" aria-hidden="true"></span>
+                    <article class="news-card" id="uni-talks" data-year="2025" data-topics="talk mentor">
+                        <div class="news-body">
+                            <div class="news-meta"><span class="news-tag">University talk</span><span class="news-date">2025</span></div>
+                            <h3 class="news-title">Enterprise prompt engineering and tool design</h3>
+                            <p class="news-desc">Guest lectures on enterprise prompt engineering, tool design patterns and AI system architecture for graduate and undergraduate students.</p>
+                            <p class="news-venue">Kayseri University &amp; Van University</p>
                         </div>
-                    </div>
-                </article>
-
-                <article class="news-card" id="techcareer-training" data-year="2026" data-topics="mentor">
-                    <div class="news-photo">
-                        <img width="348" height="184" src="assets/photos/techcaeer-training.webp" alt="Applied AI course at Techcareer" loading="lazy">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-training">Training</span>
-                            <span class="news-date">2026</span>
-                        </div>
-                        <h2 class="news-title">Applied AI Course: Agents, MCP, and AI-Native Development</h2>
-                        <p class="news-desc">18-hour technical training program covering custom tool design, contextual system architecture, multi-agent coordination, and production tool execution. Delivered through Techcareer platform.</p>
-                        <p class="news-venue">Techcareer · 18 hours · Istanbul</p>
-                        <div class="news-links">
-                            <a href="https://www.techcareer.net/bootcamp/uygulamali-ai-araclar-agent-lar-ve-otomasyon-egitimi-icin-bulusuyoruz" target="_blank" rel="noopener">Techcareer Bootcamp</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="news-card" id="tokalator-paper" data-year="2026" data-topics="publish launch oss">
-                    <div class="news-photo">
-                        <img width="520" height="587" src="assets/event-photos/tokalator-paper.webp" alt="Tokalator: Context Engineering Toolkit" loading="lazy">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-paper">arXiv</span>
-                            <span class="news-tag tag-oss">Open Source</span>
-                            <span class="news-date">April 2026</span>
-                        </div>
-                        <h2 class="news-title"><a href="https://arxiv.org/abs/2604.08290" target="_blank" rel="noopener">Tokalator: A Context Engineering Toolkit for AI Coding Assistants</a></h2>
-                        <p class="news-desc">Technical paper on arXiv introducing an open-source toolkit for token-aware context management, cost modeling, and workflow optimization. VS Code extension with 500+ installs.</p>
-                        <div class="news-links">
-                            <a href="https://arxiv.org/abs/2604.08290" target="_blank" rel="noopener">arXiv:2604.08290</a>
-                            <a href="https://tokalator.wiki" target="_blank" rel="noopener">tokalator.wiki</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="news-card" id="skill-paper" data-year="2026" data-topics="publish">
-                    <div class="news-photo">
-                        <img width="520" height="463" src="assets/event-photos/skill-extraction.webp" alt="Skill extraction for the Turkish labour market" loading="lazy">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-paper">arXiv</span>
-                            <span class="news-date">January 2026</span>
-                        </div>
-                        <h2 class="news-title"><a href="https://arxiv.org/abs/2601.22885" target="_blank" rel="noopener">Leveraging LLMs For Turkish Skill Extraction</a></h2>
-                        <p class="news-desc">Large-scale empirical study on extracting structured skill signals for the Turkish labor market using modern LLM-based pipelines. First systematic benchmark for Turkish NLP in workforce analytics.</p>
-                        <div class="news-links">
-                            <a href="https://arxiv.org/abs/2601.22885" target="_blank" rel="noopener">arXiv:2601.22885</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="news-card" id="builders-club-talk" data-year="2026" data-topics="talk conference">
-                    <div class="news-photo">
-                        <img src="assets/photos/only-builders.avif" alt="Context engineering talk at Only Builders Club" loading="lazy">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-talk">Talk</span>
-                            <span class="news-date">2026</span>
-                        </div>
-                        <h2 class="news-title">Context Engineering for AI-Native Dev</h2>
-                        <p class="news-desc">Invited talk on designing context-aware systems for AI-native development workflows. Covering token budgeting, relevance scoring, and production deployment patterns.</p>
-                        <p class="news-venue">Only Builders Club · Istanbul</p>
-                    </div>
-                </article>
-
-                <article class="news-card" id="tev-mentor" data-year="2026" data-topics="mentor">
-                    <div class="news-photo">
-                        <img src="assets/event-photos/TEV_logo.png" alt="TEV, Turkish Education Foundation" loading="lazy">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-training">Mentorship</span>
-                            <span class="news-date">2026</span>
-                        </div>
-                        <h2 class="news-title">AI Career Mentor, TEV (Turkish Education Foundation)</h2>
-                        <p class="news-desc">Mentoring emerging talent on AI career paths, portfolio building, and navigating the transition from traditional engineering to applied AI roles.</p>
-                    </div>
-                </article>
-
-                <article class="news-card" id="perplexity-fellowship" data-year="2026" data-topics="credential">
-                    <div class="news-photo">
-                        <img width="600" height="403" src="assets/event-photos/perplexity-fellowship.webp" alt="Perplexity AI Business Fellowship" loading="lazy">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-award">Fellowship</span>
-                            <span class="news-date">2026</span>
-                        </div>
-                        <h2 class="news-title">Leading the Perplexity AI Business Fellowship programme</h2>
-                        <p class="news-desc">Leading the Perplexity AI Business Fellowship programme, supporting the group-wide AI transformation initiative at Kariyer.net (ilab group) and establishing baseline standards for agentic infrastructure.</p>
-                    </div>
-                </article>
-
-            </div>
-
-            <div class="year-label" data-year-label="2025">2025</div>
-
-            <div class="news-grid" data-year-grid="2025">
-
-                <article class="news-card" id="bridge-summit" data-year="2025" data-topics="talk conference">
-                    <div class="news-photo">
-                        <img width="450" height="558" src="assets/event-photos/saas-bridge.webp" alt="SaaS Bridge Summit workshop" loading="lazy">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-talk">Talk</span>
-                            <span class="news-date">2025</span>
-                        </div>
-                        <h2 class="news-title">Deep Agent Frameworks for SaaS, Bridge Summit '25</h2>
-                        <p class="news-desc">Invited speaker on building deep agent frameworks for SaaS platforms. Covering multi-agent orchestration, tool integration patterns, and production deployment of LLM-powered features.</p>
-                        <p class="news-venue">Bridge Summit '25</p>
-                    </div>
-                </article>
-
-                <article class="news-card" id="uni-talks" data-year="2025" data-topics="talk mentor">
-                    <div class="news-photo">
-                        <img width="520" height="693" src="assets/event-photos/kayseri.webp" alt="University talk in Kayseri" loading="lazy">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-meta">
-                            <span class="news-tag tag-talk">University Talk</span>
-                            <span class="news-date">2025</span>
-                        </div>
-                        <h2 class="news-title">Enterprise Prompt Engineering and Tool Design</h2>
-                        <p class="news-desc">Guest lectures on enterprise-grade prompt engineering, tool design patterns, and AI system architecture for graduate and undergraduate programs.</p>
-                        <p class="news-venue">Kayseri University &amp; Van University</p>
-                    </div>
-                </article>
-
-            </div>
-
+                        <div class="news-photo"><img width="520" height="693" src="assets/event-photos/kayseri.webp" alt="University talk in Kayseri" loading="lazy" onerror="this.remove();"></div>
+                    </article>
+                </li>
+            </ol>
         </div>
 
         <footer class="site-foot">
@@ -1216,12 +1327,10 @@
                 var matchYear = activeYear === 'all' || y === activeYear;
                 var want = GROUPS[activeTopic] || [activeTopic];
                 var matchTopic = activeTopic === 'all' || want.some(function (w) { return t.indexOf(w) !== -1; });
-                if (matchYear && matchTopic) {
-                    card.classList.remove('filter-hidden');
-                    visible++;
-                } else {
-                    card.classList.add('filter-hidden');
-                }
+                var show = matchYear && matchTopic;
+                card.classList.toggle('filter-hidden', !show);
+                if (card.parentElement) card.parentElement.classList.toggle('filter-hidden', !show);
+                if (show) visible++;
             });
 
             yearLabels.forEach(function(label) {
