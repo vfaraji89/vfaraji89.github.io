@@ -891,7 +891,9 @@
         .nav-sheet a span { color: var(--text-muted); font-weight: 500; font-size: 0.8125rem; }
         .nav-sheet .container { padding-top: 0.25rem; padding-bottom: 1rem; }
 
-        @media (max-width: 920px) {
+        /* laptops: the recruiter toggle keeps its switch and drops its words */
+        @media (max-width: 1279px) and (min-width: 1121px) { .nav-rec .rec-toggle-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } }
+        @media (max-width: 1120px) {
             .nav-links { display: none; }
             .nav-toggle { display: inline-block; }
             .site-header.menu-open { background: rgba(255,255,255,0.97); border-bottom-color: rgba(28,28,30,0.08); }
@@ -3292,6 +3294,7 @@
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="ask.html">Ask</a></li>
                 <li><a href="updates.html">Updates</a></li>
                 <li class="nav-indicator" aria-hidden="true"></li>
             </ul>
@@ -3312,6 +3315,7 @@
                 <a href="#experience">Experience <span>Where I built it</span></a>
                 <a href="#skills">Skills <span>What I bring, and the stack</span></a>
                 <a href="#about">About <span>Background</span></a>
+                <a href="ask.html">Ask my work <span>Questions and fit brief</span></a>
                 <a href="updates.html">Updates <span>Notes</span></a>
                 <a href="https://wa.me/905419402411" target="_blank" rel="noopener">WhatsApp <span>+90 541 940 2411</span></a>
                 <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener">Book a call <span>Google Calendar</span></a>
@@ -3562,7 +3566,7 @@
                 <div class="metric-card hover-card" data-hover data-flip-num="+50" data-flip-label="Courses delivered"><div class="metric-num">400+</div><div class="metric-label">People trained</div></div>
             </div>
             <div class="case-grid">
-                <div class="case-card hover-card featured" data-hover>
+                <div class="case-card hover-card featured" data-hover id="case-tokalator">
                     <div class="card-content">
                         <div class="gallery-screenshot" data-lightbox="tokalator" data-images='["assets/photos/tokalator-vscode.webp","assets/photos/tokalator-dashboard.webp","assets/photos/tokalator-wiki.webp","assets/photos/tokalator-calculator.webp"]'>
                             <img width="1600" height="900" src="assets/photos/tokalator-vscode.webp" alt="Tokalator token budget panel in VS Code: context usage, turn analytics, Claude Code session tokens and workspace tools" loading="lazy">
@@ -3592,7 +3596,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="case-card hover-card featured" data-hover>
+                <div class="case-card hover-card featured" data-hover id="case-cais">
                     <div class="card-content">
                         <div class="gallery-screenshot" data-lightbox="pms" data-images='["assets/photos/pms-dashboard.webp","assets/photos/pms-architect.webp","assets/photos/pms-quality.webp"]'>
                             <img width="1600" height="781" src="assets/photos/pms-dashboard.webp" alt="Multi-agent classification dashboard" loading="lazy">
@@ -3637,7 +3641,7 @@
                         <div class="case-stack"><span>LLM Pipeline</span><span>&middot;</span><span>Turkish NLP</span><span>&middot;</span><span>Classification</span><span>&middot;</span><span>Validation</span><span>&middot;</span><span>Data Product</span></div>
                     </div>
                 </div>
-                <div class="case-card hover-card" data-hover>
+                <div class="case-card hover-card" data-hover id="case-projectlens">
                     <div class="card-content">
                         <div class="gallery-screenshot" data-lightbox="projectlens" data-images='["assets/photos/projectlens/projectlens-login.webp","assets/photos/projectlens/projectlens-jury.webp","assets/photos/projectlens/projectlens-home.webp"]'>
                             <img width="1440" height="900" src="assets/photos/projectlens/projectlens-login.webp" alt="ProjectLens sign-in: the pricing tool built with the Pricing &amp; Revenue team, with request, tracking and help entry points" loading="lazy" onerror="this.closest('.gallery-screenshot').remove();">
@@ -3670,7 +3674,7 @@
                         <div class="case-stack"><span>Applied AI</span><span>·</span><span>Microsoft Teams</span><span>·</span><span>Azure DevOps</span><span>·</span><span>SQL</span><span>·</span><span>Workflow Automation</span></div>
                     </div>
                 </div>
-                <div class="case-card hover-card" data-hover>
+                <div class="case-card hover-card" data-hover id="case-enterprise">
                     <div class="card-content">
                         <div class="case-meta"><span class="case-tag">Enterprise</span><span class="case-tag">Production</span></div>
                         <div class="case-title">Enterprise AI Transformation: 60% less manual work for 200+ colleagues</div>
@@ -3686,7 +3690,7 @@
                         <div class="case-stack"><span>FastAPI</span><span>·</span><span>LangGraph</span><span>·</span><span>Agno</span><span>·</span><span>Pydantic</span><span>·</span><span>Arize</span></div>
                     </div>
                 </div>
-                <div class="case-card hover-card" data-hover>
+                <div class="case-card hover-card" data-hover id="case-metadata">
                     <div class="card-content">
                         <div class="case-meta"><span class="case-tag">Data Product</span><span class="case-tag">Infrastructure</span></div>
                         <div class="case-title">Metadata Platform: 300M+ datapoints unified</div>
@@ -3909,6 +3913,7 @@
                     </div>
                 </form>
                 <div id="fit-out" aria-live="polite"></div>
+                <p class="fit-hint" style="margin-top:0.875rem"><a href="ask.html#fit">Full fit brief: every requirement, its evidence and the honest gaps &rarr;</a> &middot; <a href="ask.html">Ask my work a question</a></p>
             </div>
         </section>
 

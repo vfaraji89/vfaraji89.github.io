@@ -3,7 +3,7 @@ name: Deploy site
 on:
   push:
     branches: [main]
-    paths: ["site/**", "cv/**", ".github/workflows/pages.yml"]
+    paths: ["site/**", "cv/**", "tools/evals/**", ".github/workflows/pages.yml"]
   workflow_dispatch:
 
 permissions:
@@ -47,6 +47,10 @@ jobs:
             pdftoppm -jpeg -jpegopt quality=82,progressive=y -r 115 -f $n -l $n -singlefile \
               cv/vahid-faraji-cv.pdf site/assets/cv/vahid-faraji-cv-$n
           done
+      # Evals for Ask my work and the fit brief. A score below its threshold
+      # stops the deploy; the results page (site/evals.html) shows this run.
+      - name: Run evals
+        run: node tools/evals/run.mjs --check
       - id: pages
         uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5

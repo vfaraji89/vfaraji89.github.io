@@ -1,0 +1,770 @@
+{
+ "version": 1,
+ "updated": "2026-11-11",
+ "note": "Every claim the Ask and Fit tools can use. Each item links to where it is shown on the site. Levels say how strong the proof is; 'answers' is the kind of question a weaker level still answers in full (a course proves teaching). Edit here, then run: node tools/evals/run.mjs",
+ "levels": {
+  "production": {
+   "label": "In production",
+   "weight": 3
+  },
+  "published": {
+   "label": "Published",
+   "weight": 3
+  },
+  "shipped": {
+   "label": "Shipped",
+   "weight": 3
+  },
+  "credential": {
+   "label": "Certified",
+   "weight": 2,
+   "answers": "certif|credential|course|qualif"
+  },
+  "teaching": {
+   "label": "Taught",
+   "weight": 2,
+   "answers": "teach|mentor|train(ed|ing|s)? (people|others|teams|students)|course|lectur|workshop|taught"
+  },
+  "talk": {
+   "label": "Talk",
+   "weight": 2,
+   "answers": "\\btalks?\\b|speak|conference|present|summit|keynote"
+  },
+  "submitted": {
+   "label": "Under review",
+   "weight": 2,
+   "answers": "submit|under review|recent|latest|newest|lately"
+  },
+  "concept": {
+   "label": "Confidential concept",
+   "weight": 2,
+   "answers": "turkish|job ads|confidential"
+  },
+  "education": {
+   "label": "Education",
+   "weight": 2,
+   "answers": "educat|degree|master|universit|stud(y|ied)|languages?|speak"
+  },
+  "listed": {
+   "label": "Daily stack",
+   "weight": 1,
+   "answers": "stack|tools?|daily|use every"
+  }
+ },
+ "concepts": [
+  {
+   "key": "agents",
+   "label": "AI agents",
+   "jd": "\\bagent(s|ic)?\\b|\\bai agents?\\b|autonomous"
+  },
+  {
+   "key": "multi-agent",
+   "label": "Multi-agent systems",
+   "jd": "multi[- ]?agent|agent orchestration|orchestrat"
+  },
+  {
+   "key": "mcp",
+   "label": "MCP / tool calling",
+   "jd": "\\bmcp\\b|model context protocol|tool (calling|use)|function calling"
+  },
+  {
+   "key": "rag",
+   "label": "RAG / retrieval",
+   "jd": "\\brag\\b|retrieval|semantic search|knowledge base"
+  },
+  {
+   "key": "vector",
+   "label": "Vector search / embeddings",
+   "jd": "vector|embedding"
+  },
+  {
+   "key": "evals",
+   "label": "Evals",
+   "jd": "\\bevals?\\b|evaluation|benchmark|test (sets?|suites?)|llm[- ]as[- ]a[- ]judge"
+  },
+  {
+   "key": "observability",
+   "label": "Tracing / observability",
+   "jd": "tracing|observability|langfuse|langsmith|arize|monitoring"
+  },
+  {
+   "key": "context",
+   "label": "Context / prompt engineering",
+   "jd": "context engineering|prompt(ing| engineering| design)|context window"
+  },
+  {
+   "key": "llm",
+   "label": "LLM APIs",
+   "jd": "\\bllms?\\b|large language model|claude|anthropic|openai|\\bgpt|gemini|generative ai|genai|foundation model"
+  },
+  {
+   "key": "langgraph",
+   "label": "LangChain / LangGraph",
+   "jd": "langchain|langgraph"
+  },
+  {
+   "key": "agent-frameworks",
+   "label": "Agent frameworks & SDKs",
+   "jd": "agent sdk|agno|crewai|autogen|deep agents|semantic kernel|agents sdk"
+  },
+  {
+   "key": "cost",
+   "label": "Cost / token optimisation",
+   "jd": "\\broi\\b|cost|token (cost|budget|usage)|efficien|latency"
+  },
+  {
+   "key": "python",
+   "label": "Python",
+   "jd": "\\bpython\\b|fastapi|pydantic"
+  },
+  {
+   "key": "typescript",
+   "label": "TypeScript",
+   "jd": "typescript|javascript|\\bnode(\\.js)?\\b"
+  },
+  {
+   "key": "react",
+   "label": "Next.js / React",
+   "jd": "next\\.?js|\\breact\\b|frontend|front-end"
+  },
+  {
+   "key": "sql",
+   "label": "SQL",
+   "jd": "\\bsql\\b|postgres|mysql|t-sql"
+  },
+  {
+   "key": "text-to-sql",
+   "label": "Text-to-SQL",
+   "jd": "text[- ]to[- ]sql|nl2sql|natural language (to|over) (sql|data)|self-service analytics"
+  },
+  {
+   "key": "pipelines",
+   "label": "Data pipelines",
+   "jd": "pipeline|\\betl\\b|\\belt\\b|data engineering|streaming data|real[- ]time data"
+  },
+  {
+   "key": "data-products",
+   "label": "Data products / analytics",
+   "jd": "data product|analytics|dashboard|business intelligence|\\bbi\\b|reporting|metrics"
+  },
+  {
+   "key": "governance",
+   "label": "Data governance / quality",
+   "jd": "governance|data quality|lineage|metadata|catalog|datahub|compliance"
+  },
+  {
+   "key": "azure",
+   "label": "Azure / Microsoft",
+   "jd": "azure|microsoft|copilot studio|power automate|teams"
+  },
+  {
+   "key": "gcp",
+   "label": "Google Cloud",
+   "jd": "\\bgcp\\b|google cloud|vertex|bigquery"
+  },
+  {
+   "key": "aws",
+   "label": "AWS",
+   "jd": "\\baws\\b|bedrock|sagemaker|lambda"
+  },
+  {
+   "key": "kubernetes",
+   "label": "Kubernetes / Docker",
+   "jd": "kubernetes|\\bk8s\\b|docker|container"
+  },
+  {
+   "key": "cicd",
+   "label": "CI/CD / DevOps",
+   "jd": "ci/cd|devops|github actions|deployment pipeline"
+  },
+  {
+   "key": "ml-frameworks",
+   "label": "PyTorch / TensorFlow",
+   "jd": "pytorch|tensorflow|jax\\b"
+  },
+  {
+   "key": "fine-tuning",
+   "label": "Fine-tuning / training models",
+   "jd": "fine[- ]?tun|\\blora\\b|rlhf|model training|train(ing)? (models|llms)"
+  },
+  {
+   "key": "cv",
+   "label": "Computer vision",
+   "jd": "computer vision|image (model|recognition|classification)|object detection"
+  },
+  {
+   "key": "voice",
+   "label": "Voice AI",
+   "jd": "\\bvoice\\b|speech|elevenlabs|vapi|text[- ]to[- ]speech"
+  },
+  {
+   "key": "nlp",
+   "label": "NLP / text classification",
+   "jd": "\\bnlp\\b|natural language processing|text classification|information extraction|entity|taxonomy|classification"
+  },
+  {
+   "key": "multilingual",
+   "label": "Multilingual / Turkish",
+   "jd": "multilingual|cross[- ]lingual|turkish|localis|localiz"
+  },
+  {
+   "key": "workflow",
+   "label": "Workflow automation",
+   "jd": "workflow|automation|automate|process improvement"
+  },
+  {
+   "key": "security",
+   "label": "Security / privacy",
+   "jd": "security|privacy|guardrail|\\bpii\\b|access control|safety"
+  },
+  {
+   "key": "stakeholders",
+   "label": "Stakeholders / business",
+   "jd": "stakeholder|business (problem|partners|teams|units)|cross[- ]functional|customer[- ]facing|forward[- ]deployed|client"
+  },
+  {
+   "key": "leadership",
+   "label": "Leading / owning delivery",
+   "jd": "\\blead\\b|leadership|ownership|own (the|end)|end[- ]to[- ]end|roadmap|strategy"
+  },
+  {
+   "key": "teaching",
+   "label": "Training / mentoring",
+   "jd": "mentor|training|workshop|teach|enablement|educat"
+  },
+  {
+   "key": "research",
+   "label": "Research / publications",
+   "jd": "research|publication|paper|peer[- ]review|phd|scientist"
+  },
+  {
+   "key": "oss",
+   "label": "Open source",
+   "jd": "open[- ]source|github"
+  },
+  {
+   "key": "product",
+   "label": "Product management",
+   "jd": "product manag|product sense|product thinking|discovery|requirements gathering|\\bspec"
+  },
+  {
+   "key": "economics",
+   "label": "Economics / forecasting",
+   "jd": "econom|forecast|statistic|econometric|causal"
+  },
+  {
+   "key": "java",
+   "label": "Java",
+   "jd": "\\bjava\\b|spring boot|kotlin"
+  },
+  {
+   "key": "go",
+   "label": "Go",
+   "jd": "\\bgolang\\b|\\bgo (developer|engineer|services)"
+  },
+  {
+   "key": "rust",
+   "label": "Rust",
+   "jd": "\\brust\\b"
+  },
+  {
+   "key": "mobile",
+   "label": "Mobile apps",
+   "jd": "\\bios\\b|android|mobile app|swift\\b|flutter"
+  }
+ ],
+ "evidence": [
+  {
+   "id": "case-tokalator",
+   "level": "shipped",
+   "date": "2026-04",
+   "title": "Tokalator: token budgets and cost across 17 LLMs",
+   "text": "AI coding assistants burn tokens blindly, with no visibility into context cost and no budget guardrails. I built Tokalator: real-time token budgeting, tab relevance scoring, output-quality models and caching break-even analysis across 17 LLMs. Shipped as a VS Code extension and a web platform with 500+ installs, MIT licensed, built with Next.js, TypeScript and MCP.",
+   "url": "index.html#case-tokalator",
+   "tags": [
+    "context",
+    "cost",
+    "llm",
+    "typescript",
+    "react",
+    "mcp",
+    "oss"
+   ]
+  },
+  {
+   "id": "paper-tokalator",
+   "level": "published",
+   "date": "2026-04",
+   "title": "Tokalator paper (arXiv 2604.08290)",
+   "text": "Tokalator: A Context Engineering Toolkit for AI Coding Assistants. Sole author. An open-source toolkit for token-aware context management, cost modelling and workflow optimisation, published on arXiv in April 2026.",
+   "url": "https://arxiv.org/abs/2604.08290",
+   "tags": [
+    "research",
+    "context",
+    "cost",
+    "oss",
+    "llm"
+   ]
+  },
+  {
+   "id": "case-cais",
+   "level": "published",
+   "date": "2026-05",
+   "title": "Multi-agent job classification: 95% accuracy on 14K+ positions",
+   "text": "Free-form job titles in several languages could not be mapped to O*NET and ESCO taxonomies at scale. I built an MCP-based multi-agent system with planner, search, extraction and evaluation agents over a shared caching layer, using LangGraph. Result: 95% accuracy on 14K+ positions, 72.5% faster classification and 41.8% fewer API calls.",
+   "url": "index.html#case-cais",
+   "tags": [
+    "agents",
+    "multi-agent",
+    "mcp",
+    "langgraph",
+    "evals",
+    "cost",
+    "nlp",
+    "multilingual",
+    "llm",
+    "rag"
+   ]
+  },
+  {
+   "id": "paper-cais",
+   "level": "published",
+   "date": "2026-05",
+   "title": "ACM CAIS '26 paper and live demo, San Jose",
+   "text": "Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping. Peer-reviewed demo paper at the ACM Conference on AI and Agentic Systems, San Jose, May 2026, presented as a live demo. DOI 10.1145/3786335.3813207.",
+   "url": "https://dl.acm.org/doi/10.1145/3786335.3813207",
+   "tags": [
+    "research",
+    "multi-agent",
+    "mcp",
+    "agents",
+    "nlp",
+    "talk-demo"
+   ]
+  },
+  {
+   "id": "paper-skill",
+   "level": "published",
+   "date": "2026-01",
+   "title": "Leveraging LLMs for Turkish skill extraction (arXiv 2601.22885)",
+   "text": "A large-scale study of extracting structured skills from Turkish job postings with LLM pipelines: the first systematic benchmark for Turkish NLP in workforce analytics. Published on arXiv in January 2026.",
+   "url": "https://arxiv.org/abs/2601.22885",
+   "tags": [
+    "research",
+    "nlp",
+    "multilingual",
+    "llm",
+    "evals",
+    "pipelines"
+   ]
+  },
+  {
+   "id": "case-projectlens",
+   "level": "production",
+   "date": "2026-08",
+   "title": "ProjectLens: 64 hours of pricing work down to 5.5",
+   "text": "Every project quote started as a fresh Excel file. With the Pricing & Revenue team I built ProjectLens, one tool that runs request intake, effort calculation, pricing, proposal, approval and follow-up end to end, wired into Microsoft Teams and Azure DevOps, with a read-only SQL console and a presentation mode that masks figures. 91% of the manual effort removed: 64 hours down to 5.5, 31 spreadsheets no longer created. The 2-hour manual baseline is a team estimate, not a measurement.",
+   "url": "index.html#case-projectlens",
+   "tags": [
+    "workflow",
+    "azure",
+    "sql",
+    "stakeholders",
+    "cost",
+    "data-products",
+    "leadership",
+    "security",
+    "product"
+   ]
+  },
+  {
+   "id": "paper-projectlens",
+   "level": "submitted",
+   "date": "2026-11",
+   "title": "ProjectLens demo paper (submitted)",
+   "text": "ProjectLens written up as a demo paper and submitted; it is under review. Venue and link will be added if it is accepted.",
+   "url": "updates.html#projectlens-paper",
+   "tags": [
+    "research",
+    "workflow"
+   ]
+  },
+  {
+   "id": "case-enterprise",
+   "level": "production",
+   "date": "2025",
+   "title": "Enterprise AI transformation: 60% less manual work for 200+ colleagues",
+   "text": "Manual reporting across Sales, Finance and R&D consumed analyst time with no self-service. I built multi-agent orchestration with LangGraph, MCP and Agno for text-to-SQL, report automation and AI feedback loops with human checkpoints, on FastAPI and Pydantic, observed with Arize. 60% less manual workload, 200+ users, adopted as the group-wide AI standard.",
+   "url": "index.html#case-enterprise",
+   "tags": [
+    "multi-agent",
+    "agents",
+    "langgraph",
+    "mcp",
+    "agent-frameworks",
+    "text-to-sql",
+    "sql",
+    "python",
+    "observability",
+    "workflow",
+    "stakeholders",
+    "leadership",
+    "data-products"
+   ]
+  },
+  {
+   "id": "case-metadata",
+   "level": "production",
+   "date": "2022-2025",
+   "title": "Metadata platform: 300M+ datapoints unified",
+   "text": "A live job platform had no unified metadata layer: fragmented schemas, no lineage, analytics stuck on ad-hoc queries. I designed the metadata architecture with DataHub governance, real-time pipelines and product-analytics instrumentation on Azure Synapse and BigQuery. 300M+ datapoints unified; it became the foundation for later embedding generation, RAG retrieval and context grounding.",
+   "url": "index.html#case-metadata",
+   "tags": [
+    "governance",
+    "pipelines",
+    "data-products",
+    "gcp",
+    "azure",
+    "rag",
+    "vector",
+    "sql",
+    "product"
+   ]
+  },
+  {
+   "id": "case-yzi",
+   "level": "concept",
+   "date": "2026-10",
+   "title": "Yapay Zekâ İzi: AI in 1.6M job ads (confidential concept)",
+   "text": "An LLM pipeline over 1.6M Turkish job ads from 2022 to the first half of 2026: sentence-level reading of every ad, generative AI kept apart from classic machine learning, tool names normalised, and an internal analysis site with a validation page. Confidential Kariyer.net work, shown on the site as a concept only.",
+   "url": "index.html#yzi",
+   "tags": [
+    "llm",
+    "pipelines",
+    "nlp",
+    "multilingual",
+    "evals",
+    "data-products"
+   ]
+  },
+  {
+   "id": "role-senior",
+   "level": "production",
+   "date": "2025-now",
+   "title": "Senior Applied AI Specialist, Kariyer.net (ilab group)",
+   "text": "Since 2025 I lead applied AI across Sales, Finance and R&D at Kariyer.net in Istanbul, from the business problem to agents running in production. Daily tools: Claude Code, the Claude Agent SDK, LangGraph, MCP, Langfuse and Azure DevOps.",
+   "url": "index.html#experience",
+   "tags": [
+    "leadership",
+    "agents",
+    "stakeholders",
+    "agent-frameworks",
+    "langgraph",
+    "mcp",
+    "observability",
+    "azure",
+    "llm"
+   ]
+  },
+  {
+   "id": "role-text-to-report",
+   "level": "production",
+   "date": "2025-now",
+   "title": "Text-to-Report agents: analytics backlog down 40%",
+   "text": "Text-to-Report agents answer data questions in plain language, so business teams stop queuing for analysts: the analytics backlog went down 40%.",
+   "url": "index.html#experience",
+   "tags": [
+    "text-to-sql",
+    "agents",
+    "sql",
+    "data-products",
+    "stakeholders"
+   ]
+  },
+  {
+   "id": "role-context-standard",
+   "level": "production",
+   "date": "2025-now",
+   "title": "Context-engineering framework became the company standard",
+   "text": "My context-engineering framework became the company standard at Kariyer.net, cutting token spend while improving accuracy.",
+   "url": "index.html#experience",
+   "tags": [
+    "context",
+    "cost",
+    "llm",
+    "leadership",
+    "evals"
+   ]
+  },
+  {
+   "id": "role-finance",
+   "level": "production",
+   "date": "2025-now",
+   "title": "Finance exception detection across 4 major Turkish banks",
+   "text": "Finance exception detection across statements from 4 major Turkish banks, so the finance team reviews only the lines that need a person.",
+   "url": "index.html#experience",
+   "tags": [
+    "workflow",
+    "data-products",
+    "llm",
+    "multilingual"
+   ]
+  },
+  {
+   "id": "role-pm-data",
+   "level": "production",
+   "date": "2022-2025",
+   "title": "Product Manager, Data, Kariyer.net",
+   "text": "From 2022 to 2025 I built the data foundation the AI work stands on: metadata design for 300M+ data assets so every number has an owner and a trail, real-time labour-statistics pipelines with data quality, governance and executive dashboards, and AI adoption training for C-level executives.",
+   "url": "index.html#experience",
+   "tags": [
+    "product",
+    "governance",
+    "pipelines",
+    "data-products",
+    "gcp",
+    "teaching",
+    "stakeholders",
+    "leadership"
+   ]
+  },
+  {
+   "id": "role-worq",
+   "level": "production",
+   "date": "2021-2022",
+   "title": "Business Analyst, Data Analytics, WorqCompany",
+   "text": "Financial forecasts and revenue simulations used for mid-range planning, plus dashboards and process automation for finance and operations.",
+   "url": "index.html#experience",
+   "tags": [
+    "economics",
+    "sql",
+    "data-products",
+    "workflow"
+   ]
+  },
+  {
+   "id": "role-defaro",
+   "level": "shipped",
+   "date": "2019-2021",
+   "title": "Co-founder, Defaro.io (backed by Özyeğin University)",
+   "text": "Co-founded a startup and built a labour-market and compensation analytics product from zero: data pipelines, benchmarking models and product strategy.",
+   "url": "index.html#experience",
+   "tags": [
+    "product",
+    "pipelines",
+    "data-products",
+    "economics",
+    "leadership"
+   ]
+  },
+  {
+   "id": "oss-aai",
+   "level": "shipped",
+   "date": "2026-07",
+   "title": "awesome-applied-ai: a working map of applied AI",
+   "text": "A public, open-source taxonomy of applied AI for enterprise architects in six layers: guardrails and governance, evaluation and observability, orchestration, caching, memory and retrieval, with a live tool index, formulas, a dictionary and research notes.",
+   "url": "https://vfaraji89.github.io/awesome-applied-ai/",
+   "tags": [
+    "oss",
+    "security",
+    "evals",
+    "observability",
+    "multi-agent",
+    "rag",
+    "cost",
+    "teaching"
+   ]
+  },
+  {
+   "id": "cred-claude-architect",
+   "level": "credential",
+   "date": "2026",
+   "title": "Claude Certified Architect, Foundations (Anthropic)",
+   "text": "Certified by Anthropic as a Claude Architect, Foundations.",
+   "url": "index.html#about",
+   "tags": [
+    "llm",
+    "agents",
+    "mcp",
+    "context"
+   ]
+  },
+  {
+   "id": "cred-anthropic-courses",
+   "level": "credential",
+   "date": "2026",
+   "title": "Anthropic courses: MCP, Agent Skills, Claude API, Claude Code",
+   "text": "Completed Anthropic courses on the Model Context Protocol, Introduction to Agent Skills, Building with the Claude API, and Claude Code in Action.",
+   "url": "index.html#about",
+   "tags": [
+    "mcp",
+    "llm",
+    "agents",
+    "agent-frameworks"
+   ]
+  },
+  {
+   "id": "cred-google",
+   "level": "credential",
+   "date": "2026",
+   "title": "Google Generative AI Leader",
+   "text": "Certified Google Generative AI Leader.",
+   "url": "index.html#about",
+   "tags": [
+    "llm",
+    "gcp",
+    "leadership"
+   ]
+  },
+  {
+   "id": "cred-langchain",
+   "level": "credential",
+   "date": "2026",
+   "title": "LangChain: LangGraph and LangSmith",
+   "text": "Completed LangChain's Introduction to LangGraph and Introduction to LangSmith.",
+   "url": "index.html#about",
+   "tags": [
+    "langgraph",
+    "observability",
+    "agents"
+   ]
+  },
+  {
+   "id": "cred-acm",
+   "level": "credential",
+   "date": "2026",
+   "title": "ACM Professional Member",
+   "text": "Professional member of the ACM.",
+   "url": "index.html#about",
+   "tags": [
+    "research"
+   ]
+  },
+  {
+   "id": "perplexity",
+   "level": "production",
+   "date": "2026",
+   "title": "Leading the Perplexity AI Business Fellowship programme",
+   "text": "Leading the Perplexity AI Business Fellowship programme behind the group-wide AI transformation at Kariyer.net (ilab group), and setting baseline standards for agentic infrastructure.",
+   "url": "updates.html#perplexity-fellowship",
+   "tags": [
+    "leadership",
+    "agents",
+    "stakeholders",
+    "llm"
+   ]
+  },
+  {
+   "id": "teach-techcareer",
+   "level": "teaching",
+   "date": "2026",
+   "title": "18-hour Applied AI course at Techcareer",
+   "text": "Designed and taught an 18-hour technical programme on custom tool design, context architecture, multi-agent coordination and running tools in production.",
+   "url": "updates.html#techcareer-training",
+   "tags": [
+    "teaching",
+    "mcp",
+    "multi-agent",
+    "context",
+    "agents"
+   ]
+  },
+  {
+   "id": "teach-tev",
+   "level": "teaching",
+   "date": "2026",
+   "title": "AI career mentor at TEV",
+   "text": "Mentoring students at the Turkish Education Foundation on AI career paths, portfolios and the move into applied AI roles.",
+   "url": "updates.html#tev-mentor",
+   "tags": [
+    "teaching"
+   ]
+  },
+  {
+   "id": "teach-400",
+   "level": "teaching",
+   "date": "2019-now",
+   "title": "400+ people taught, including C-level AI training",
+   "text": "Over 400 people taught, from university lectures on enterprise prompt engineering and tool design to AI adoption training for C-level executives.",
+   "url": "index.html#experience",
+   "tags": [
+    "teaching",
+    "context",
+    "stakeholders",
+    "leadership"
+   ]
+  },
+  {
+   "id": "talk-builders",
+   "level": "talk",
+   "date": "2026",
+   "title": "Talk: Context engineering for AI-native development",
+   "text": "Invited talk at Only Builders Club, Istanbul, on context-aware systems for AI-native workflows: token budgets, relevance scoring and production patterns.",
+   "url": "updates.html#builders-club-talk",
+   "tags": [
+    "context",
+    "cost",
+    "talk-demo"
+   ]
+  },
+  {
+   "id": "talk-bridge",
+   "level": "talk",
+   "date": "2025",
+   "title": "Talk: Deep agent frameworks for SaaS, Bridge Summit '25",
+   "text": "Invited speaker on deep agent frameworks for SaaS: multi-agent orchestration, tool integration and shipping LLM features to production.",
+   "url": "updates.html#bridge-summit",
+   "tags": [
+    "multi-agent",
+    "agent-frameworks",
+    "agents",
+    "talk-demo"
+   ]
+  },
+  {
+   "id": "edu-ma",
+   "level": "education",
+   "date": "",
+   "title": "M.A. Economics, Ibn Haldun University",
+   "text": "Education: M.A. in Economics with a thesis on real-time labour market analysis; teaching assistant for Econometrics I.",
+   "url": "index.html#about",
+   "tags": [
+    "economics",
+    "research",
+    "teaching"
+   ]
+  },
+  {
+   "id": "languages",
+   "level": "education",
+   "date": "",
+   "title": "Languages",
+   "text": "Turkish native, English C1, Spanish instructor level, Portuguese basic, learning Japanese.",
+   "url": "index.html#about",
+   "tags": [
+    "multilingual"
+   ]
+  },
+  {
+   "id": "stack-daily",
+   "level": "listed",
+   "date": "2026",
+   "title": "Daily stack",
+   "text": "Tools in daily use: Claude Code, Claude Agent SDK, Copilot Studio, Azure AI Foundry, Vertex AI, LangChain, LangGraph, Deep Agents, Agno, ElevenLabs, Vapi, RAG, vector databases, BigQuery, SQL, DataHub, Hugging Face, Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agents SDK, Azure DevOps, MCP, Langfuse, Power Automate and Zapier.",
+   "url": "index.html#skills",
+   "tags": [
+    "voice",
+    "vector",
+    "rag",
+    "azure",
+    "gcp",
+    "python",
+    "typescript",
+    "react",
+    "agent-frameworks",
+    "observability",
+    "workflow"
+   ]
+  }
+ ]
+}
