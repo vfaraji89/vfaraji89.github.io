@@ -24,11 +24,15 @@
     <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5"></script>
     <script>
+      // GA4 with consent mode v2. A stored "yes" is applied here, before the first hit,
+      // so a returning visitor is not counted as new. ?ga_debug=1 opens DebugView.
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+      var vfOk = false; try { vfOk = localStorage.getItem('vf-consent') === 'yes'; } catch (e) {}
+      gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: vfOk ? 'granted' : 'denied', wait_for_update: 500 });
       gtag('js', new Date());
-      gtag('config', 'G-GTZW5NNEZ5');
+      var vfCfg = { content_group: 'evals' }; if (/[?&]ga_debug/.test(location.search)) vfCfg.debug_mode = true;
+      gtag('config', 'G-GTZW5NNEZ5', vfCfg);
     </script>
     <script src="assets/brand/favicon-anim.js" defer></script>
     <script src="assets/brand/consent.js" defer></script>
@@ -37,6 +41,8 @@
     <link rel="stylesheet" href="assets/ask/ask.css">
     <link rel="stylesheet" href="assets/ask/widget.css">
     <script src="assets/ask/widget.js" defer></script>
+    <link rel="stylesheet" href="assets/brand/pop.css">
+    <script src="assets/brand/pop.js" defer></script>
 </head>
 <body>
     <div class="load-bar" id="load-bar" aria-hidden="true"><span></span></div>

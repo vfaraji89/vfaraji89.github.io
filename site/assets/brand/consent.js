@@ -60,6 +60,22 @@
         else if (/marketplace\.visualstudio\.com/.test(href)) name = 'tokalator_install';
         else if (/github\.com\/vfaraji89\/(tokalator|awesome-applied-ai)\/?$/.test(href)) name = 'github_repo';
         else if (/^mailto:/.test(href)) name = 'email_click';
-        if (name) gtag('event', name);
+        if (name) gtag('event', name, { link_url: href, link_text: (a.textContent || '').trim().slice(0, 80), page_group: document.body.dataset.group || location.pathname });
     }, true);
+
+    // Which sections people actually reach: one section_view per section per page view.
+    if ('IntersectionObserver' in window) {
+        ready(function () {
+            var secs = Array.prototype.slice.call(document.querySelectorAll('main section[id], body > section[id]'));
+            if (!secs.length) return;
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (en) {
+                    if (!en.isIntersecting) return;
+                    io.unobserve(en.target);
+                    if (window.gtag) gtag('event', 'section_view', { section: en.target.id });
+                });
+            }, { threshold: 0.35 });
+            secs.forEach(function (s) { io.observe(s); });
+        });
+    }
 })();
