@@ -24,14 +24,35 @@
     <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5"></script>
     <script>
-      // GA4 with consent mode v2. A stored "yes" is applied here, before the first hit,
-      // so a returning visitor is not counted as new. ?ga_debug=1 opens DebugView.
+      // GA4 with consent mode v2 and a privacy guard (see ANALYTICS.md).
+      // - A stored "yes" is applied before the first hit, so returning visitors are not counted as new.
+      // - Every event passes through vfClean: emails, phone numbers and mailto/tel links are
+      //   redacted and values are capped, so no personal data reaches Google.
+      // - page_location drops ?q= (a visitor's question) and similar free-text parameters.
+      // - The page context is pushed to the dataLayer for Tag Manager, if one is ever added.
+      // ?ga_debug=1 opens DebugView.
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function vfClean(p) {
+        var o = {};
+        for (var k in p) {
+          var v = p[k];
+          if (typeof v === 'string') {
+            v = v.replace(/^(mailto|tel):.*/i, '$1:[redacted]')
+                 .replace(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g, '[email]')
+                 .replace(/\+?\d[\d\s().-]{8,}\d/g, '[number]')
+                 .slice(0, 100);
+          }
+          o[k] = v;
+        }
+        return o;
+      }
+      function gtag(){ if (arguments[0] === 'event' && arguments[2]) arguments[2] = vfClean(arguments[2]); dataLayer.push(arguments); }
       var vfOk = false; try { vfOk = localStorage.getItem('vf-consent') === 'yes'; } catch (e) {}
       gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: vfOk ? 'granted' : 'denied', wait_for_update: 500 });
       gtag('js', new Date());
-      var vfCfg = { content_group: 'evals' }; if (/[?&]ga_debug/.test(location.search)) vfCfg.debug_mode = true;
+      var vfLoc = location.href.replace(/([?&])(q|email|name|jd|ref_text)=[^&#]*/g, '$1$2=redacted');
+      var vfCfg = { content_group: 'evals', page_location: vfLoc }; if (/[?&]ga_debug/.test(location.search)) vfCfg.debug_mode = true;
+      dataLayer.push({ event: 'vf_context', site: 'portfolio', page_group: 'evals', consent_state: vfOk ? 'granted' : 'denied' });
       gtag('config', 'G-GTZW5NNEZ5', vfCfg);
     </script>
     <script src="assets/brand/favicon-anim.js" defer></script>

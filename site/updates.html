@@ -34,14 +34,35 @@
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5"></script>
     <script>
-      // GA4 with consent mode v2. A stored "yes" is applied here, before the first hit,
-      // so a returning visitor is not counted as new. ?ga_debug=1 opens DebugView.
+      // GA4 with consent mode v2 and a privacy guard (see ANALYTICS.md).
+      // - A stored "yes" is applied before the first hit, so returning visitors are not counted as new.
+      // - Every event passes through vfClean: emails, phone numbers and mailto/tel links are
+      //   redacted and values are capped, so no personal data reaches Google.
+      // - page_location drops ?q= (a visitor's question) and similar free-text parameters.
+      // - The page context is pushed to the dataLayer for Tag Manager, if one is ever added.
+      // ?ga_debug=1 opens DebugView.
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function vfClean(p) {
+        var o = {};
+        for (var k in p) {
+          var v = p[k];
+          if (typeof v === 'string') {
+            v = v.replace(/^(mailto|tel):.*/i, '$1:[redacted]')
+                 .replace(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g, '[email]')
+                 .replace(/\+?\d[\d\s().-]{8,}\d/g, '[number]')
+                 .slice(0, 100);
+          }
+          o[k] = v;
+        }
+        return o;
+      }
+      function gtag(){ if (arguments[0] === 'event' && arguments[2]) arguments[2] = vfClean(arguments[2]); dataLayer.push(arguments); }
       var vfOk = false; try { vfOk = localStorage.getItem('vf-consent') === 'yes'; } catch (e) {}
       gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: vfOk ? 'granted' : 'denied', wait_for_update: 500 });
       gtag('js', new Date());
-      var vfCfg = { content_group: 'updates' }; if (/[?&]ga_debug/.test(location.search)) vfCfg.debug_mode = true;
+      var vfLoc = location.href.replace(/([?&])(q|email|name|jd|ref_text)=[^&#]*/g, '$1$2=redacted');
+      var vfCfg = { content_group: 'updates', page_location: vfLoc }; if (/[?&]ga_debug/.test(location.search)) vfCfg.debug_mode = true;
+      dataLayer.push({ event: 'vf_context', site: 'portfolio', page_group: 'updates', consent_state: vfOk ? 'granted' : 'denied' });
       gtag('config', 'G-GTZW5NNEZ5', vfCfg);
     </script>
 
@@ -1151,13 +1172,13 @@
                 <li class="tl-item">
                     <span class="tl-when"><time datetime="2026-07">Jul</time></span>
                     <span class="tl-bead" aria-hidden="true"></span>
-                    <article class="news-card" id="awesome-applied-ai" data-year="2026" data-topics="launch oss">
+                    <article class="news-card" id="awesome-applied-ai" data-year="2026" data-topics="launch">
                         <div class="news-body">
-                            <div class="news-meta"><span class="news-tag">Open source</span><span class="news-date">Jul 2026</span></div>
+                            <div class="news-meta"><span class="news-tag">Launch</span><span class="news-date">Jul 2026</span></div>
                             <h3 class="news-title"><a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">awesome-applied-ai: a working map of applied AI for the enterprise</a></h3>
                             <p class="news-desc">A public taxonomy in six layers: guardrails and governance, evaluation and observability, orchestration, caching, memory and retrieval. With a live tool index, formulas, a dictionary, commands and research for enterprise AI architects.</p>
-                            <p class="news-venue">github.com/vfaraji89/awesome-applied-ai</p>
-                            <div class="news-links"><a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">Live site</a><a href="https://github.com/vfaraji89/awesome-applied-ai" target="_blank" rel="noopener">GitHub</a></div>
+                            <p class="news-venue">vfaraji89.github.io/awesome-applied-ai</p>
+                            <div class="news-links"><a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener">Live site</a></div>
                         </div>
                         <div class="news-photo"><div class="news-photo-placeholder"><svg viewBox="0 0 36 36" fill="none" aria-hidden="true"><rect x="4" y="4" width="28" height="7" rx="2" stroke="currentColor" stroke-width="1.75"/><rect x="4" y="14.5" width="28" height="7" rx="2" stroke="currentColor" stroke-width="1.75"/><rect x="4" y="25" width="28" height="7" rx="2" stroke="currentColor" stroke-width="1.75"/><circle cx="9" cy="7.5" r="1.8" fill="var(--rust)"/><circle cx="18" cy="18" r="1.8" fill="currentColor"/><circle cx="25" cy="28.5" r="1.8" fill="currentColor"/></svg><span>awesome-applied-ai</span></div></div>
                     </article>

@@ -11,3 +11,15 @@ cv/*.pdf
 cv/*.xdv
 cv/*.fls
 cv/*.fdb_latexmk
+
+# Secrets never go in the repo: they live in Cloudflare Worker secrets
+# (wrangler secret put) and GitHub Actions secrets. CI fails if one slips in.
+.env
+.env.*
+!.env.example
+.dev.vars
+**/.dev.vars
+.wrangler/
+*.pem
+credentials.json
+service-account*.json
