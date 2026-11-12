@@ -271,7 +271,7 @@
         clearTimeout(timer);
         timer = setTimeout(function () {
             var b = run(input.value);
-            if (b && b.score != null && input.value.length > 60 && lastTracked !== String(b.score)) { lastTracked = String(b.score); track('fit_brief', { mode: 'live' }); }
+            if (b && b.score != null && input.value.length > 60 && lastTracked !== String(b.score)) { lastTracked = String(b.score); track('fit_brief', { mode: 'live', score: b.score, asks: b.concepts.length, gaps: b.count.gap }); }
         }, 280);
     });
 
@@ -287,7 +287,7 @@
                 i = Math.min(text.length, i + chunk);
                 input.value = text.slice(0, i);
                 if (i % (chunk * 4) < chunk) run(input.value);
-                if (i < text.length) setTimeout(type, 28); else { run(text); track('fit_brief', { mode: 'sample' }); }
+                if (i < text.length) setTimeout(type, 28); else { var sb = run(text); track('fit_brief', { mode: 'sample', sample: s.dataset.sample, score: sb && sb.score != null ? sb.score : -1 }); }
             })();
         });
     });
