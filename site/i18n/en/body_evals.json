@@ -25,5 +25,6 @@
  "footer_5": "Evals",
  "footer_6": "Context Engineering",
  "footer_7": "CV (PDF)",
- "footer_8": "<span>Last updated <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>Istanbul, T&uuml;rkiye</span>"
+ "footer_8": "<span>Last updated <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>Istanbul, T&uuml;rkiye</span>",
+ "limits": "What it does not measure yet: how well Claude writes, since that needs the live endpoint. When it is switched on, <code>node tools/evals/run.mjs --live &lt;url&gt;</code> scores it on the same questions, with cost per answer, and the results appear below."
 }

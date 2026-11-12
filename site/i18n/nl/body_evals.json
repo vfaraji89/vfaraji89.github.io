@@ -26,5 +26,6 @@
  "footer_5": "Evals",
  "footer_6": "Contextengineering",
  "footer_7": "Cv (pdf)",
- "footer_8": "<span>Laatst bijgewerkt <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>Istanbul, Turkije</span>"
+ "footer_8": "<span>Laatst bijgewerkt <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>Istanbul, Turkije</span>",
+ "limits": "Wat het nog niet meet: hoe goed Claude schrijft, want daarvoor is het live endpoint nodig. Zodra dat aanstaat, scoort <code>node tools/evals/run.mjs --live &lt;url&gt;</code> het op dezelfde vragen, met de kosten per antwoord, en verschijnen de resultaten hieronder."
 }
