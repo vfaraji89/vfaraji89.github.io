@@ -1,0 +1,47 @@
+/* Pop: small, springy motion on every page, each move about half a second.
+   - the header's controls pop in one after another on first load
+   - cards pop up as they scroll into view
+   - buttons and chips squash when pressed and spring back when released
+   - the Fit chip nudges once per visit to draw the eye
+   All of it is off for people who ask for reduced motion. */
+:root { --pop-dur: 500ms; --pop-spring: cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+@keyframes pop-in {
+    0%   { opacity: 0; transform: translateY(14px) scale(0.92); }
+    60%  { opacity: 1; transform: translateY(-3px) scale(1.025); }
+    100% { opacity: 1; transform: none; }
+}
+@keyframes pop-head {
+    0%   { opacity: 0; transform: scale(0.6); }
+    65%  { opacity: 1; transform: scale(1.08); }
+    100% { opacity: 1; transform: none; }
+}
+@keyframes pop-press { to { transform: scale(0.94); } }
+@keyframes pop-release {
+    0%   { transform: scale(0.94); }
+    45%  { transform: scale(1.06); }
+    75%  { transform: scale(0.99); }
+    100% { transform: none; }
+}
+@keyframes pop-nudge {
+    0%   { transform: none; }
+    30%  { transform: scale(1.1) rotate(-3deg); }
+    55%  { transform: scale(0.97) rotate(2deg); }
+    80%  { transform: scale(1.02); }
+    100% { transform: none; }
+}
+@keyframes pop-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(224, 48, 30, 0.45); }
+    100% { box-shadow: 0 0 0 14px rgba(224, 48, 30, 0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .js .pop-wait { opacity: 0; }
+    .pop-in { animation: pop-in var(--pop-dur) var(--pop-spring) both; animation-delay: var(--pop-delay, 0ms); }
+    .pop-head { animation: pop-head var(--pop-dur) var(--pop-spring) both; animation-delay: var(--pop-delay, 0ms); }
+    .pop-pressing { animation: pop-press 120ms ease-out forwards; }
+    .pop-release { animation: pop-release var(--pop-dur) var(--pop-spring); }
+    .pop-nudge { animation: pop-nudge var(--pop-dur) var(--pop-spring), pop-ring 900ms ease-out; }
+    .pop-nudge .fb-1 { transform: translateX(4.5px); }
+    .pop-nudge .fb-2 { transform: translateX(2.5px); }
+}

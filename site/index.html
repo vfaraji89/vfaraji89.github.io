@@ -878,7 +878,7 @@
            with beads, and a check; the beads slide along their rods on hover. */
         .nav-fit {
             display: inline-flex; align-items: center; gap: 0.4rem; height: var(--ctl-h-sm); padding: 0 0.8rem 0 0.5rem;
-            border-radius: 999px; border: 1px solid rgba(224,48,30,0.45); background: var(--paper, #fff6f4);
+            border-radius: var(--ctl-radius, 8px); border: 1px solid rgba(224,48,30,0.45); background: var(--paper, #fff6f4);
             color: var(--ink, #1c1c1e); font-size: 0.8125rem; font-weight: 650; letter-spacing: -0.005em; white-space: nowrap; text-decoration: none;
             transition: background var(--dur-fast) var(--ease-move), border-color var(--dur-fast) var(--ease-move), box-shadow var(--dur-fast) var(--ease-move);
         }
@@ -3298,6 +3298,8 @@
 }</style>
     <link rel="stylesheet" href="assets/ask/widget.css">
     <script src="assets/ask/widget.js" defer></script>
+    <link rel="stylesheet" href="assets/brand/pop.css">
+    <script src="assets/brand/pop.js" defer></script>
 </head>
 <body>
     <!-- Abacus icon kit: one ink frame, grey rails, beads; the rust bead marks the point. Also in assets/brand/abacus-icons.svg -->
