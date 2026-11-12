@@ -29,7 +29,7 @@
             var b = document.createElement('button');
             b.type = 'button';
             b.textContent = label;
-            b.style.cssText = 'font:600 12px/1 inherit;padding:7px 12px;border-radius:999px;cursor:pointer;' +
+            b.style.cssText = 'font:600 12px/1 inherit;padding:7px 12px;border-radius:999px;cursor:pointer;white-space:nowrap;flex:none;' +
                 (primary ? 'background:#1c1c1e;color:#fff;border:1px solid #1c1c1e' : 'background:transparent;color:#55555a;border:1px solid transparent');
             return b;
         }

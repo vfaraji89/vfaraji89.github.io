@@ -5,10 +5,13 @@ One folder per language (`en`, `tr`, `es`, `nl`, `ja`), the same files and keys 
 `en` is the source; the HTML carries the same English, so a missing key falls back to English.
 Keys starting with `_` are notes and are never shown.
 
-Translated: navigation, the menu, the consent pill, the home page's hero, hiring card and section
-headings, and the whole Fit check. Case studies, papers and updates stay in English for now, and a
-note in the menu says so. The Fit check scores **English** job descriptions (its skill patterns
-are English), and each language says that where it matters.
+Translated: everything a visitor reads on the home, Fit, Updates, Evals and Context Engineering
+pages. `common.json`, `home.json` and `fit.json` hold the navigation, hero and Fit check;
+`body_<page>.json` holds each page's body (case studies, experience, story, recruiter card, news
+cards, the Context Engineering article), tagged in the HTML with `data-i18n-html`. Brand names,
+tech-stack lists and figures are left out of the language files, so they stay as they are.
+Still English by design: the agent widget (it answers from English evidence), the evals test cases
+(they are the actual inputs), the film's chapter marks, and a few labels built by scripts.
 
 ## Principle: meaning, not words
 Each string is rewritten the way a native speaker in tech would say it, not translated word for

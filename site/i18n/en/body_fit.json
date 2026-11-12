@@ -1,0 +1,17 @@
+{
+ "_note": "Source strings for this page. The HTML carries the same English (data-i18n-html=\"body_fit.<key>\"). Brand names and figures are not translated, so language files omit those keys.",
+ "site_header_1": "Vahid Faraji<span class=\"name-bead\" aria-hidden=\"true\"></span>",
+ "panel_fit_1": "Job description",
+ "fx_center_1": "paste a role",
+ "fx_dock_1": ".md",
+ "footer_mark_1": "Vahid Faraji",
+ "footer_mark_2": "Applied AI",
+ "footer_1": "Portfolio",
+ "footer_2": "Publications",
+ "footer_3": "Work",
+ "footer_4": "Fit check",
+ "footer_5": "Evals",
+ "footer_6": "Context Engineering",
+ "footer_7": "CV (PDF)",
+ "footer_8": "<span>Last updated <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>Istanbul, T&uuml;rkiye</span>"
+}
