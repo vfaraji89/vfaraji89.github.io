@@ -18,6 +18,11 @@ Where a field keeps the English word (harness, evals, embeddings, forward deploy
 it stays in English rather than being forced into a literal coinage. No em dashes, and nothing
 is added that the English does not say.
 
+## Review flags
+Each translation file has a `_review` block: the keys where a judgment call was made (a term,
+a register, an idiom), each with a one-line note. It is never shown on the site. Confirm or
+change the value, then delete that line; when the block is empty, delete it and set `_status`.
+
 ## Status
 | Language | Standard followed | Register | Review |
 | --- | --- | --- | --- |

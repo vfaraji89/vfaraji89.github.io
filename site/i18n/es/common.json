@@ -38,5 +38,10 @@
  "consent_yes": "Sí",
  "consent_no": "No",
  "consent_yes_aria": "Sí, usar una cookie de analítica",
- "consent_no_aria": "No, no usar una cookie de analítica"
+ "consent_no_aria": "No, no usar una cookie de analítica",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "fit_word": "Header chip '¿Encajo?' (Do I fit?) from the recruiter's side, informal.",
+  "nav_recruiter": "'Modo reclutador'; alternative 'Vista para selección'."
+ }
 }

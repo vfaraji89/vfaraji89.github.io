@@ -9,13 +9,13 @@
  "tray_empty": "貼り付けると、ここにスキルが表示されます",
  "tray_aria": "検出されたスキル",
  "sample_agents": "AIエンジニア",
- "sample_agents_sub": "エージェント・評価",
+ "sample_agents_sub": "エージェント・evals",
  "sample_architect": "ソリューションアーキテクト",
  "sample_architect_sub": "RAG・クラウド",
  "sample_ml": "モデル学習",
  "sample_ml_sub": "ファインチューニング・GPU",
- "legend_strong": "強い",
- "legend_partial": "部分的",
+ "legend_strong": "十分",
+ "legend_partial": "一部",
  "legend_gap": "不足",
  "write": "Claudeで要約を作成",
  "copy": "コピー",
@@ -24,11 +24,11 @@
  "badge_grounded": "公開された実績に基づく",
  "badge_gaps": "不足点も隠さず表示",
  "badge_tested": "公開のたびにテスト",
- "st_strong": "強い",
- "st_partial": "部分的",
+ "st_strong": "十分",
+ "st_partial": "一部",
  "st_gap": "不足",
  "dial_idle": "適合度ダイヤル：求人票を待っています",
- "dial_aria": "適合度ダイヤル：強い{s}件、部分的{p}件、不足{g}件",
+ "dial_aria": "適合度ダイヤル：十分{s}件、一部{p}件、不足{g}件",
  "cap_idle": "求人票を貼り付け",
  "cap_fit": "適合度",
  "cap_none": "スキル未検出",
@@ -48,5 +48,10 @@
  "sec_gaps_sub": "このサイトに根拠なし",
  "rc_rules": "ブラウザー内のルールで判定",
  "rc_calls": "モデル呼び出し0回",
- "rc_private": "貼り付けた内容はこのページの外に出ません"
+ "rc_private": "貼り付けた内容はこのページの外に出ません",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "legend_strong": "Evidence levels as 十分・一部・不足 (sufficient, partial, missing).",
+  "h1": "Ends with 。 instead of the site's red dot in Japanese."
+ }
 }

@@ -38,5 +38,10 @@
  "consent_yes": "Prima",
  "consent_no": "Nee",
  "consent_yes_aria": "Ja, gebruik een analysecookie",
- "consent_no_aria": "Nee, gebruik geen analysecookie"
+ "consent_no_aria": "Nee, gebruik geen analysecookie",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "fit_word": "Header chip reads 'Vacaturecheck'.",
+  "consent_ask": "Short form kept here; the other site now asks 'Mag ik één cookie gebruiken om bezoeken te tellen?'. Pick one for both."
+ }
 }

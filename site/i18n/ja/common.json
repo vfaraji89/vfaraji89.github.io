@@ -29,7 +29,7 @@
  "sheet_agent_sub": "何でも質問できます（出典つき）",
  "sheet_book": "面談を予約",
  "sheet_book_sub": "Googleカレンダー",
- "sheet_cv": "履歴書",
+ "sheet_cv": "レジュメ",
  "sheet_cv_sub": "PDF・英語",
  "sheet_lang": "言語",
  "lang_note": "事例・論文・最新情報は、当面は英語のままです。",
@@ -38,5 +38,11 @@
  "consent_yes": "はい",
  "consent_no": "いいえ",
  "consent_yes_aria": "はい、計測用Cookieを使用する",
- "consent_no_aria": "いいえ、計測用Cookieを使用しない"
+ "consent_no_aria": "いいえ、計測用Cookieを使用しない",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "sheet_cv": "'レジュメ' for an English CV; 履歴書 is the standard Japanese form, 職務経歴書 the Japanese work-history document.",
+  "nav_work": "'実績' (track record) for Work.",
+  "book": "'面談を予約' (book a meeting); alternative 'ミーティングを予約'."
+ }
 }

@@ -44,5 +44,12 @@
  "cta_work": "Ver trabajos",
  "cta_research": "Investigación",
  "cta_engage": "Trabajemos juntos",
- "cta_time": "Propón una hora"
+ "cta_time": "Propón una hora",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "tk9": "'valida con evals antes de lanzar' for 'ships with evals'.",
+  "tk8": "'infraestructura para agentes' for agent harnesses; the other site keeps 'harness'.",
+  "bio_three": "'costo' (neutral); Spain uses 'coste'.",
+  "sec_tools": "'De herramienta en herramienta' is a free rendering of 'Through the tools'."
+ }
 }

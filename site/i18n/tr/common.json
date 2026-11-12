@@ -38,5 +38,10 @@
  "consent_yes": "Olur",
  "consent_no": "Hayır",
  "consent_yes_aria": "Evet, analiz çerezi kullanılsın",
- "consent_no_aria": "Hayır, analiz çerezi kullanılmasın"
+ "consent_no_aria": "Hayır, analiz çerezi kullanılmasın",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "nav_recruiter": "'İK görünümü' kept short for the bar.",
+  "book": "'Görüşme planla' (plain imperative, as Turkish UI buttons usually are); siz form would be 'planlayın'."
+ }
 }
