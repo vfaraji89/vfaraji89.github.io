@@ -32,9 +32,8 @@
     <link rel="manifest" href="manifest.webmanifest">
 
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5"></script>
     <script>
-      // GA4 with consent mode v2 and a privacy guard (see ANALYTICS.md).
+      // GA4, loaded only after consent, with a privacy guard (see ANALYTICS.md).
       // - A stored "yes" is applied before the first hit, so returning visitors are not counted as new.
       // - Every event passes through vfClean: emails, phone numbers and mailto/tel links are
       //   redacted and values are capped, so no personal data reaches Google.
@@ -64,6 +63,9 @@
       var vfCfg = { content_group: 'updates', page_location: vfLoc }; if (/[?&]ga_debug/.test(location.search)) vfCfg.debug_mode = true;
       dataLayer.push({ event: 'vf_context', site: 'portfolio', page_group: 'updates', consent_state: vfOk ? 'granted' : 'denied' });
       gtag('config', 'G-GTZW5NNEZ5', vfCfg);
+      // Google is contacted only after a yes: the script itself loads after consent (see privacy.html).
+      function vfLoadGA() { if (window.vfGA) return; window.vfGA = true; var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5'; document.head.appendChild(s); }
+      if (vfOk) vfLoadGA();
     </script>
 
     <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
@@ -1342,6 +1344,7 @@
                 <span class="footer-meta-sep">&middot;</span>
                 <span>Istanbul, T&uuml;rkiye</span>
             </div>
+            <div class="footer-legal" style="display:flex;flex-wrap:wrap;gap:0.4rem 1rem;margin-top:0.6rem;font-size:0.75rem"><a href="privacy.html" style="color:inherit" data-i18n="common.legal_privacy">Privacy</a><a href="terms.html" style="color:inherit" data-i18n="common.legal_terms">Terms and disclaimer</a><a href="#" data-consent-reset style="color:inherit" data-i18n="common.legal_consent">Analytics choice</a></div>
         </footer>
     </main>
 

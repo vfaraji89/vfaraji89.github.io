@@ -5,10 +5,15 @@ Both live on `vfaraji89.github.io`, so a visit that moves from one to the other 
 journey; `content_group` tells them apart.
 
 ## Consent
-- Consent mode v2. `ad_storage`, `ad_user_data` and `ad_personalization` are always denied.
-- `analytics_storage` is denied until the visitor says yes in the consent pill. The answer is
-  stored in `localStorage['vf-consent']` and is shared with the guide (same origin).
-- A stored "yes" is applied in the page head, **before** the first hit.
+- **Nothing reaches Google before a yes.** The gtag.js script is not in the page: `vfLoadGA()`
+  (page head) injects it only for a stored yes, and `consent.js` calls it when the visitor
+  chooses "Sure". The guide does the same in `components/analytics.tsx`.
+- Consent mode v2 on top: `ad_storage`, `ad_user_data` and `ad_personalization` are always denied.
+- The answer is stored in `localStorage['vf-consent']` and shared with the guide (same origin).
+- "Analytics choice" in every footer (`data-consent-reset`) asks again; a "No" also deletes any
+  `_ga` cookies. The consent pill links to `privacy.html#analytics`.
+- The privacy notice (`site/privacy.html`) and the terms (`site/terms.html`) describe exactly
+  this; update them together with any change here.
 
 ## Privacy guard
 Every event passes through `vfClean` (inline in each page head) before it reaches Google:

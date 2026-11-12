@@ -27,6 +27,11 @@
  "consent_no": "Hayır",
  "consent_yes_aria": "Evet, analiz çerezi kullanılsın",
  "consent_no_aria": "Hayır, analiz çerezi kullanılmasın",
+ "legal_privacy": "Gizlilik",
+ "legal_terms": "Koşullar ve sorumluluk reddi",
+ "legal_consent": "Analitik tercihi",
+ "consent_more": "Gizlilik",
+ "bk_privacy": "Adınız, e-postanız ve konunuz yalnızca size cevap verebilmem için Google hesabıma gider. Ayrıntılar: <a href=\"privacy.html#contact\">Gizlilik</a>.",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "fit_long": "Chip reads 'Uyum testi' (was 'Uyum kontrolü'), two words, shorter and easier to remember.",

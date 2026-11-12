@@ -24,5 +24,10 @@
  "consent_yes": "Sure",
  "consent_no": "No",
  "consent_yes_aria": "Sure, use an analytics cookie",
- "consent_no_aria": "No, do not use an analytics cookie"
+ "consent_no_aria": "No, do not use an analytics cookie",
+ "legal_privacy": "Privacy",
+ "legal_terms": "Terms and disclaimer",
+ "legal_consent": "Analytics choice",
+ "consent_more": "Privacy",
+ "bk_privacy": "Your name, email and topic go to my Google account only so I can reply. See <a href=\"privacy.html#contact\">Privacy</a>."
 }

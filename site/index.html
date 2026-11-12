@@ -44,9 +44,8 @@
     <meta name="keywords" content="Vahid Faraji, Applied AI, Applied AI Engineer, Senior Applied AI, AI-Native, Agentic AI, Agentic Workflows, AI Architect, AI Engineer, Agentic AI Engineer, Agent Harness, LLM Agents, Tool Calling, Agent Execution Loop, Agent Memory, Context Engineering, Agent Skills, Multi-Step Execution, LLM Evals, Evaluations, Tracing, Langfuse, LLM Observability, Vercel, Failure Analysis, Observability, Production AI, Reliability, Latency, Cost Optimization, Resumable Long-Running Tasks, Human-in-the-Loop, Spec-Driven Development, Database Schema Design, Full Stack, TypeScript, Python, Backend, API Integrations, RAG, Retrieval, Orchestration, Multi-Agent Systems, MCP, Model Context Protocol, LangGraph, Claude, Claude Agent SDK, Anthropic Platform, Vercel AI SDK, Microsoft Copilot Studio, TypeScript 7, Tokalator, ACM CAIS, Istanbul, Remote">
 
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5"></script>
     <script>
-      // GA4 with consent mode v2 and a privacy guard (see ANALYTICS.md).
+      // GA4, loaded only after consent, with a privacy guard (see ANALYTICS.md).
       // - A stored "yes" is applied before the first hit, so returning visitors are not counted as new.
       // - Every event passes through vfClean: emails, phone numbers and mailto/tel links are
       //   redacted and values are capped, so no personal data reaches Google.
@@ -76,6 +75,9 @@
       var vfCfg = { content_group: 'home', page_location: vfLoc }; if (/[?&]ga_debug/.test(location.search)) vfCfg.debug_mode = true;
       dataLayer.push({ event: 'vf_context', site: 'portfolio', page_group: 'home', consent_state: vfOk ? 'granted' : 'denied' });
       gtag('config', 'G-GTZW5NNEZ5', vfCfg);
+      // Google is contacted only after a yes: the script itself loads after consent (see privacy.html).
+      function vfLoadGA() { if (window.vfGA) return; window.vfGA = true; var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5'; document.head.appendChild(s); }
+      if (vfOk) vfLoadGA();
     </script>
 
     <script type="application/ld+json">
@@ -4422,6 +4424,7 @@
                     <span class="footer-sign" title="Scorpion, in beads"><svg viewBox="0 0 24 32" fill="currentColor" role="img" aria-label="Scorpion"><circle cx="6.5" cy="5" r="2.3"/><circle cx="17.5" cy="5" r="2.3"/><circle cx="12" cy="9.5" r="2.3"/><circle cx="12" cy="14.5" r="2.3"/><circle cx="12" cy="19" r="2.3"/><circle class="t1" cx="15" cy="23" r="2"/><circle class="t2" cx="16.8" cy="27" r="1.7"/><circle class="t3" cx="14.2" cy="29.8" r="1.3"/></svg></span>
                 </span>
             </div>
+            <div class="footer-legal" style="display:flex;flex-wrap:wrap;gap:0.4rem 1rem;margin-top:0.6rem;font-size:0.75rem"><a href="privacy.html" style="color:inherit" data-i18n="common.legal_privacy">Privacy</a><a href="terms.html" style="color:inherit" data-i18n="common.legal_terms">Terms and disclaimer</a><a href="#" data-consent-reset style="color:inherit" data-i18n="common.legal_consent">Analytics choice</a></div>
         </div>
         <div class="footer-wordmark" id="footer-wordmark" aria-hidden="true">
             <div class="wm-frame">
@@ -4478,6 +4481,7 @@
                     <textarea id="bk-topic" maxlength="600" placeholder="Role, project, or question"></textarea>
                 </div>
                 <div class="bk-hp" aria-hidden="true"><label for="bk-company">Company website</label><input type="text" id="bk-company" name="company_website" tabindex="-1" autocomplete="off"></div>
+                <p class="bk-privacy" style="font-size:0.6875rem;color:var(--text-muted);margin:0" data-i18n-html="common.bk_privacy">Your name, email and topic go to my Google account only so I can reply. See <a href="privacy.html#contact">Privacy</a>.</p>
                 <div class="booking-actions">
                     <button type="submit" class="btn btn-primary" id="bk-submit">Propose this time</button>
                 </div>
