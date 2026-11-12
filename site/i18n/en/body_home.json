@@ -376,5 +376,12 @@
  "rc_suggest": "Suggest a time",
  "rc_preview": "Preview CV",
  "cv_download": "Download PDF",
- "cv_open": "Open"
+ "cv_open": "Open",
+ "aai_sec": "Open source",
+ "aai_fit": "How ready are you for the market?",
+ "pulse_k": "This week on the job tracker",
+ "pulse_open": "open AI roles",
+ "pulse_new": "new this week",
+ "pulse_remote": "remote",
+ "pulse_note": "Read from public job boards, updated weekly."
 }

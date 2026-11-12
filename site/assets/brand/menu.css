@@ -129,3 +129,7 @@ html[lang="ja"] .hero-is mark, html[lang="ja"] h1, html[lang="ja"] h2 { letter-s
 .lang-pop .sheet-lang-k { margin-bottom: 0.6rem; }
 @media (min-width: 1201px) { .nav-toggle { display: none !important; } }
 @media (prefers-reduced-motion: reduce) { .lang-pop, .lang-glyph.is-swap { animation: none; } .lang-btn { transition: none; } }
+
+/* Narrow bars: the Fit check chip keeps both words; the name beside the logo yields first, then the chip's icon (set by i18n.js) */
+.site-nav.bar-tight .brand-name { display: none; }
+.site-nav.bar-tighter .nav-fit .fit-ic { display: none; }

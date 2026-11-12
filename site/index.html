@@ -917,7 +917,7 @@
         .nav-fit:hover .fb-2, .hero-fit:hover .fb-2 { transform: translateX(2.5px); }
         .nav-sheet a.sheet-fit { color: var(--rust-deep, #b4200f); }
         .nav-sheet a.sheet-fit span { color: var(--rust, #e0301e); }
-        @media (max-width: 460px) { .nav-fit .nf-long { display: none; } .nav-fit { padding: 0 0.6rem 0 0.45rem; } }
+        @media (max-width: 460px) { .nav-fit { padding: 0 0.55rem 0 0.4rem; gap: 0.3rem; font-size: 0.75rem; } .nav-fit .fit-ic { width: 18px; height: 18px; } }
         @media (prefers-reduced-motion: reduce) { .fit-ic .fb { transition: none; } }
         /* small phones: tighter bar, CV without its arrow; the name yields to the logo below 340px */
         @media (max-width: 420px) { .site-nav { gap: 0.75rem; } .nav-actions { gap: 0.3rem; } .nav-btn-ghost { padding: 0 0.55rem; } .nav-btn-ghost svg { display: none; } }
@@ -1486,21 +1486,62 @@
         .bk-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
         @media (max-width: 640px) { .tok-panel { display: none; } .tok-logo { width: 40px; height: 40px; border-radius: 10px; } .tok-card .aai-head { align-items: flex-start; } }
         @media (prefers-reduced-motion: reduce) { .tok-meter span { transform: none; transition: none; } }
-        /* ---- awesome-applied-ai card: the logo, the line, the six steps ---- */
-        .aai-head { display: flex; align-items: center; gap: 0.875rem; }
-        .aai-logo { width: 52px; height: 52px; flex: none; display: grid; place-items: center; border-radius: 14px; background: var(--bg); border: 1px solid var(--border); }
-        .aai-card .cta-h { margin: 0.25rem 0 0; }
-        .aai-card .cta-h .dot { color: var(--rust); }
-        .aai-card > p { margin: 1rem 0 1.25rem; }
-        .aai-steps { list-style: none; margin: 0 0 1.5rem; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; position: relative; }
-        .aai-steps a { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 0.625rem; padding: 0.75rem 0.875rem; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); text-decoration: none; color: var(--ink); transition: border-color var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
-        .aai-steps a:hover { border-color: var(--rust); transform: translateY(-2px); }
+        /* ---- awesome-applied-ai, featured before the case studies ----
+           Six rods, one per step on the map. Each bead sits as far along its rod
+           as its step is in the journey and glides to the end on hover; the
+           "this week" strip reads the tracker's latest weekly snapshot. */
+        .aai-feat-wrap { scroll-margin-top: 80px; }
+        .aai-feat { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 2.75rem; align-items: center;
+            padding: 2.5rem; border-radius: 22px; border: 1px solid rgba(224,48,30,0.22); background: var(--paper, #fff6f4); overflow: hidden; isolation: isolate; }
+        .aai-feat::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+            background-image: radial-gradient(circle, rgba(224,48,30,0.16) 1.1px, transparent 1.6px); background-size: 16px 16px;
+            -webkit-mask-image: radial-gradient(120% 90% at 100% 0%, #000 0%, transparent 60%); mask-image: radial-gradient(120% 90% at 100% 0%, #000 0%, transparent 60%); }
+        .aai-head { display: flex; align-items: center; gap: 0.75rem; }
+        .aai-logo { width: 48px; height: 48px; flex: none; display: grid; place-items: center; border-radius: 14px; background: var(--bg); border: 1px solid var(--border); box-shadow: 0 6px 16px -12px rgba(158,26,12,0.6); }
+        .aai-h { font-size: clamp(1.9rem, 1.2rem + 2.4vw, 2.9rem); line-height: 1.04; letter-spacing: -0.035em; font-weight: 750; margin: 1.1rem 0 0.75rem; color: var(--ink); text-wrap: balance; }
+        .aai-h .dot { color: var(--rust); }
+        .aai-lead { font-size: 1rem; color: var(--text-secondary); margin: 0 0 1.5rem; max-width: 32rem; }
+        .aai-c { display: contents; }
+        /* this week */
+        .aai-pulse { margin: 0 0 1.5rem; padding: 1rem 1.1rem 0.9rem; border-radius: 14px; background: var(--bg); border: 1px solid var(--border); }
+        .ap-k { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem; font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-secondary); }
+        .ap-wk { margin-left: auto; white-space: nowrap; text-transform: none; letter-spacing: 0; color: var(--text-tertiary, #8e8e93); }
+        .ap-live { width: 7px; height: 7px; border-radius: 50%; background: var(--rust); box-shadow: 0 0 0 0 rgba(224,48,30,0.45); animation: ap-live 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
+        @keyframes ap-live { 0% { box-shadow: 0 0 0 0 rgba(224,48,30,0.4); } 70%, 100% { box-shadow: 0 0 0 7px rgba(224,48,30,0); } }
+        .ap-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin-top: 0.65rem; }
+        .ap-cell { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+        .ap-cell + .ap-cell { padding-left: 0.75rem; border-left: 1px solid var(--border); }
+        .ap-cell b { font-family: var(--font-mono); font-size: clamp(1.35rem, 1rem + 1.2vw, 1.75rem); font-weight: 600; letter-spacing: -0.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+        .ap-cell:first-child b { color: var(--rust-deep); }
+        .ap-cell span { font-size: 0.75rem; color: var(--text-secondary); }
+        .ap-note { margin: 0.6rem 0 0; font-size: 0.6875rem; color: var(--text-tertiary, #8e8e93); }
+        /* the six rods */
+        .aai-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+        .aai-steps a { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(70px, 34%); grid-template-rows: auto auto; column-gap: 0.75rem;
+            padding: 0.7rem 0.95rem; border-radius: 13px; border: 1px solid var(--border); background: var(--bg); text-decoration: none; color: var(--ink);
+            transition: border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+        .aai-steps a:hover, .aai-steps a:focus-visible { border-color: rgba(224,48,30,0.55); box-shadow: 0 12px 26px -20px rgba(158,26,12,0.6); transform: translateX(3px); text-decoration: none; }
         .aai-n { grid-row: 1 / span 2; align-self: center; font-family: var(--font-mono); font-size: 0.6875rem; color: #fff; background: var(--ink); border-radius: 7px; padding: 0.25rem 0.4rem; }
         .aai-steps li:first-child .aai-n { background: var(--rust); }
-        .aai-steps b { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
-        .aai-steps em { font-style: normal; font-size: 0.75rem; color: var(--text-secondary); }
-        @media (max-width: 760px) { .aai-steps { grid-template-columns: 1fr 1fr; } }
-        @media (max-width: 420px) { .aai-steps { grid-template-columns: 1fr; } }
+        .aai-steps b { grid-column: 2; font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
+        .aai-steps em { grid-column: 2; font-style: normal; font-size: 0.75rem; color: var(--text-secondary); }
+        /* rod (::before) and bead (::after) live in the third column */
+        .aai-steps a::before { content: ""; position: absolute; right: 1.1rem; top: 50%; width: calc(34% - 1.6rem); height: 2px; margin-top: -1px; border-radius: 2px;
+            background: linear-gradient(90deg, rgba(28,28,30,0.22), rgba(28,28,30,0.1)); }
+        .aai-steps a::after { content: ""; position: absolute; top: 50%; width: 13px; height: 13px; margin-top: -6.5px; border-radius: 50%;
+            right: calc(1.1rem + (34% - 1.6rem) - 6.5px); transform: translateX(0);
+            background: radial-gradient(circle at 34% 30%, #ff9d8f, #e0301e 45%, #9e1a0c); box-shadow: 0 3px 6px -2px rgba(158,26,12,0.55);
+            transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
+        .aai-steps li:not(:first-child) a::after { background: radial-gradient(circle at 34% 30%, #6b6b70, #1c1c1e 55%, #000); box-shadow: 0 3px 6px -2px rgba(0,0,0,0.45); }
+        .aai-steps li:nth-child(1) a::after { --k: 1; } .aai-steps li:nth-child(2) a::after { --k: 2; } .aai-steps li:nth-child(3) a::after { --k: 3; }
+        .aai-steps li:nth-child(4) a::after { --k: 4; } .aai-steps li:nth-child(5) a::after { --k: 5; } .aai-steps li:nth-child(6) a::after { --k: 6; }
+        .aai-feat-wrap.visible .aai-steps a::after { transform: translateX(calc(var(--rodw, 120px) * var(--k) / 7)); transition-delay: calc(var(--k) * 90ms + 250ms); }
+        .aai-feat-wrap.visible .aai-steps a:hover::after, .aai-feat-wrap.visible .aai-steps a:focus-visible::after { transform: translateX(var(--rodw, 120px)); transition-delay: 0ms; }
+        @media (max-width: 900px) { .aai-feat { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.5rem; } }
+        @media (max-width: 480px) { .aai-feat { padding: 1.5rem 1rem; border-radius: 18px; } .aai-steps a { grid-template-columns: auto minmax(0, 1fr) 64px; padding: 0.65rem 0.75rem; }
+            .aai-steps a::before { width: 44px; right: 0.75rem; } .aai-steps a::after { right: calc(0.75rem + 44px - 6.5px); }
+            .ap-cell + .ap-cell { padding-left: 0.5rem; } .aai-feat .cta-actions .btn { flex: 1 1 auto; } }
+        @media (prefers-reduced-motion: reduce) { .aai-steps a, .aai-steps a::after { transition: none; } .ap-live { animation: none; } }
         .cta-actions { display: flex; flex-wrap: wrap; gap: 0.625rem; }
         /* Buttons are the nav beads at reading size: a pill with a hairline
            edge, filled only on hover, when it also slides a few pixels along
@@ -3631,6 +3672,43 @@
 
 
 
+        <section id="applied-ai" class="reveal aai-feat-wrap">
+            <div class="section-label" data-i18n="body_home.aai_sec">Open source</div>
+            <div class="aai-feat">
+                <div class="aai-copy">
+                    <div class="aai-head">
+                        <span class="aai-logo"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><radialGradient id="aai-b" cx=".34" cy=".3" r=".75"><stop offset="0" stop-color="#ff9d8f"/><stop offset=".45" stop-color="#e0301e"/><stop offset="1" stop-color="#9e1a0c"/></radialGradient></defs><rect x="1.6" y="3.6" width="15.4" height="16.8" rx="4.6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/><path d="M12.4 12h7.4" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"/><rect x="19.2" y="9.6" width="4.2" height="4.8" rx="1.3" fill="var(--ink)"/><circle cx="9.3" cy="12" r="3.3" fill="url(#aai-b)"/></svg></span>
+                        <div class="cta-label" data-i18n-html="body_home.body_home_18">awesome-applied-ai · companion to my book</div>
+                    </div>
+                    <h2 class="aai-h" data-i18n-html="body_home.body_home_19">Applied AI, mapped<span class="dot">.</span></h2>
+                    <p class="aai-lead" data-i18n-html="body_home.body_home_20">From what the market asks for to the docs you need to build it: six steps, in order.</p>
+                    <div class="aai-pulse" id="aai-pulse" hidden>
+                        <div class="ap-k"><i class="ap-live" aria-hidden="true"></i><span data-i18n="body_home.pulse_k">This week on the job tracker</span><span class="ap-wk" id="ap-wk"></span></div>
+                        <div class="ap-row">
+                            <div class="ap-cell"><b data-n="open">0</b><span data-i18n="body_home.pulse_open">open AI roles</span></div>
+                            <div class="ap-cell"><b data-n="new">0</b><span data-i18n="body_home.pulse_new">new this week</span></div>
+                            <div class="ap-cell"><b data-n="remoteShare" data-pct="1">0</b><span data-i18n="body_home.pulse_remote">remote</span></div>
+                        </div>
+                        <p class="ap-note" data-i18n="body_home.pulse_note">Read from public job boards, updated weekly.</p>
+                    </div>
+                    <div class="cta-actions">
+                        <span class="aai-c" data-i18n-html="body_home.body_home_27"><a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener" class="btn btn-primary">Explore the map →</a></span>
+                        <a href="https://vfaraji89.github.io/awesome-applied-ai/fit/" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="body_home.aai_fit">How ready are you for the market?</a>
+                    </div>
+                </div>
+                <div class="aai-rods">
+                    <ol class="aai-steps" aria-label="Six steps">
+                    <li data-i18n-html="body_home.body_home_21"><a href="https://vfaraji89.github.io/awesome-applied-ai/market/" target="_blank" rel="noopener"><span class="aai-n">01</span><b>Market</b><em>What applied AI jobs ask for</em></a></li>
+                    <li data-i18n-html="body_home.body_home_22"><a href="https://vfaraji89.github.io/awesome-applied-ai/roles/" target="_blank" rel="noopener"><span class="aai-n">02</span><b>Roles &amp; skills</b><em>Who does the work, and the skills</em></a></li>
+                    <li data-i18n-html="body_home.body_home_23"><a href="https://vfaraji89.github.io/awesome-applied-ai/architect/" target="_blank" rel="noopener"><span class="aai-n">03</span><b>AI-native architect</b><em>Layers, stack and problems</em></a></li>
+                    <li data-i18n-html="body_home.body_home_24"><a href="https://vfaraji89.github.io/awesome-applied-ai/certificates/" target="_blank" rel="noopener"><span class="aai-n">04</span><b>Certificates</b><em>What the industry asks for</em></a></li>
+                    <li data-i18n-html="body_home.body_home_25"><a href="https://vfaraji89.github.io/awesome-applied-ai/docs/" target="_blank" rel="noopener"><span class="aai-n">05</span><b>Docs</b><em>Technical docs, in motion</em></a></li>
+                    <li data-i18n-html="body_home.body_home_26"><a href="https://vfaraji89.github.io/awesome-applied-ai/contribute/" target="_blank" rel="noopener"><span class="aai-n">06</span><b>Feedback</b><em>Corrections, credited</em></a></li>
+                </ol>
+                </div>
+            </div>
+        </section>
+
         <section id="work" class="reveal">
             <div class="section-label" data-i18n="home.sec_work">Case Studies</div>
             <p class="section-tagline" data-i18n="home.sec_work_tag">Problems I solved end to end.</p>
@@ -3819,29 +3897,6 @@
             </div>
         </section>
 
-        <section class="reveal">
-            <div class="cta-band aai-card">
-                <div class="aai-head">
-                    <span class="aai-logo"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><radialGradient id="aai-b" cx=".34" cy=".3" r=".75"><stop offset="0" stop-color="#ff9d8f"/><stop offset=".45" stop-color="#e0301e"/><stop offset="1" stop-color="#9e1a0c"/></radialGradient></defs><rect x="1.6" y="3.6" width="15.4" height="16.8" rx="4.6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/><path d="M12.4 12h7.4" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"/><rect x="19.2" y="9.6" width="4.2" height="4.8" rx="1.3" fill="var(--ink)"/><circle cx="9.3" cy="12" r="3.3" fill="url(#aai-b)"/></svg></span>
-                    <div>
-                        <div class="cta-label" data-i18n-html="body_home.body_home_18">awesome-applied-ai · companion to my book</div>
-                        <h2 class="cta-h" data-i18n-html="body_home.body_home_19">Applied AI, mapped<span class="dot">.</span></h2>
-                    </div>
-                </div>
-                <p data-i18n-html="body_home.body_home_20">From what the market asks for to the docs you need to build it: six steps, in order.</p>
-                <ol class="aai-steps">
-                    <li data-i18n-html="body_home.body_home_21"><a href="https://vfaraji89.github.io/awesome-applied-ai/market/" target="_blank" rel="noopener"><span class="aai-n">01</span><b>Market</b><em>What applied AI jobs ask for</em></a></li>
-                    <li data-i18n-html="body_home.body_home_22"><a href="https://vfaraji89.github.io/awesome-applied-ai/roles/" target="_blank" rel="noopener"><span class="aai-n">02</span><b>Roles &amp; skills</b><em>Who does the work, and the skills</em></a></li>
-                    <li data-i18n-html="body_home.body_home_23"><a href="https://vfaraji89.github.io/awesome-applied-ai/architect/" target="_blank" rel="noopener"><span class="aai-n">03</span><b>AI-native architect</b><em>Layers, stack and problems</em></a></li>
-                    <li data-i18n-html="body_home.body_home_24"><a href="https://vfaraji89.github.io/awesome-applied-ai/certificates/" target="_blank" rel="noopener"><span class="aai-n">04</span><b>Certificates</b><em>What the industry asks for</em></a></li>
-                    <li data-i18n-html="body_home.body_home_25"><a href="https://vfaraji89.github.io/awesome-applied-ai/docs/" target="_blank" rel="noopener"><span class="aai-n">05</span><b>Docs</b><em>Technical docs, in motion</em></a></li>
-                    <li data-i18n-html="body_home.body_home_26"><a href="https://vfaraji89.github.io/awesome-applied-ai/contribute/" target="_blank" rel="noopener"><span class="aai-n">06</span><b>Feedback</b><em>Corrections, credited</em></a></li>
-                </ol>
-                <div class="cta-actions bead-row" data-i18n-html="body_home.body_home_27">
-                    <a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener" class="btn btn-primary">Explore the map →</a>
-                </div>
-            </div>
-        </section>
 
         <section id="publications" class="reveal">
             <div class="section-label" data-i18n="home.sec_publications">Publications</div>
@@ -5661,5 +5716,45 @@
         window.addEventListener('pageshow', function (e) { if (e.persisted) hide(); });
     })();
     </script>
+
+<script>
+/* awesome-applied-ai feature: rod length for the beads, and the "this week" strip
+   from the tracker's weekly snapshot (same origin). The strip stays hidden if the
+   file is missing, so nothing is ever shown that the tracker did not measure. */
+(function () {
+    var steps = document.querySelector('.aai-steps');
+    function rods() { var a = steps && steps.querySelector('a'); if (!a) return; steps.style.setProperty('--rodw', parseFloat(getComputedStyle(a, '::before').width) + 'px'); }
+    rods(); var rt; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(rods, 120); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(rods);
+
+    var box = document.getElementById('aai-pulse'); if (!box || !window.fetch) return;
+    var data = null, shown = false;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function fmt(n, pct) { try { return pct ? new Intl.NumberFormat(document.documentElement.lang || 'en', { style: 'percent' }).format(n / 100) : new Intl.NumberFormat(document.documentElement.lang || 'en').format(n); } catch (e) { return n + (pct ? '%' : ''); } }
+    function week() {
+        var el = document.getElementById('ap-wk'); if (!el || !data.from || !data.to) return;
+        try { var f = new Intl.DateTimeFormat(document.documentElement.lang || 'en', { day: 'numeric', month: 'short' });
+            el.textContent = f.formatRange ? f.formatRange(new Date(data.from + 'T12:00:00Z'), new Date(data.to + 'T12:00:00Z')) : data.from + ' – ' + data.to; } catch (e) { el.textContent = data.week || ''; }
+    }
+    function count() {
+        if (shown) return; shown = true;
+        box.querySelectorAll('[data-n]').forEach(function (b) {
+            var to = +data[b.dataset.n] || 0, pct = !!b.dataset.pct;
+            if (still) { b.textContent = fmt(to, pct); return; }
+            var t0 = null, d = 1400;
+            (function step(t) { if (!t0) t0 = t; var p = Math.min(1, (t - t0) / d), e = 1 - Math.pow(1 - p, 4);
+                b.textContent = fmt(Math.round(to * e), pct); if (p < 1) requestAnimationFrame(step); })(performance.now());
+        });
+    }
+    fetch('/awesome-applied-ai/pulse.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        if (!d || !(d.open > 0)) return; data = d; box.hidden = false; week();
+        box.querySelectorAll('[data-n]').forEach(function (b) { b.textContent = fmt(0, !!b.dataset.pct); });
+        if (!('IntersectionObserver' in window)) return count();
+        var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { count(); io.disconnect(); } }); }, { threshold: 0.4 });
+        io.observe(box);
+    }).catch(function () {});
+    document.addEventListener('vf:lang', function () { if (data) { week(); if (shown) box.querySelectorAll('[data-n]').forEach(function (b) { b.textContent = fmt(+data[b.dataset.n] || 0, !!b.dataset.pct); }); } });
+})();
+</script>
 </body>
 </html>

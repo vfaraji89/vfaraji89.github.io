@@ -9,9 +9,9 @@
  "nav_updates": "Novedades",
  "nav_recruiter": "Modo reclutador",
  "fit_title": "¿Estás contratando? Pega tu oferta y ve cada requisito puntuado.",
- "fit_aria": "Comprobar encaje: pega una oferta de empleo y ve cada requisito puntuado",
- "fit_word": "¿Encajo?",
- "fit_long": "",
+ "fit_aria": "¿Hay match? Pega una oferta de empleo y ve cada requisito puntuado",
+ "fit_word": "¿Hay ",
+ "fit_long": "match?",
  "book": "Agenda una llamada",
  "menu_open": "Abrir menú",
  "menu_close": "Cerrar menú",
@@ -29,7 +29,6 @@
  "consent_no_aria": "No, no usar una cookie de analítica",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
-  "fit_word": "Header chip '¿Encajo?' (Do I fit?) from the recruiter's side, informal.",
   "nav_recruiter": "'Modo reclutador'; alternative 'Vista para selección'."
  }
 }

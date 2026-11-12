@@ -9,9 +9,9 @@
  "nav_updates": "Güncellemeler",
  "nav_recruiter": "İK görünümü",
  "fit_title": "İşe alım mı yapıyorsunuz? İş ilanınızı yapıştırın, her gerekliliğin puanını görün.",
- "fit_aria": "Uyum kontrolü: iş ilanını yapıştırın, her gerekliliğin puanını görün",
+ "fit_aria": "Uyum testi: iş ilanını yapıştırın, her gerekliliğin puanını görün",
  "fit_word": "Uyum ",
- "fit_long": "kontrolü",
+ "fit_long": "testi",
  "book": "Görüşme planla",
  "menu_open": "Menüyü aç",
  "menu_close": "Menüyü kapat",
@@ -29,6 +29,7 @@
  "consent_no_aria": "Hayır, analiz çerezi kullanılmasın",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "fit_long": "Chip reads 'Uyum testi' (was 'Uyum kontrolü'), two words, shorter and easier to remember.",
   "nav_recruiter": "'İK görünümü' kept short for the bar.",
   "book": "'Görüşme planla' (plain imperative, as Turkish UI buttons usually are); siz form would be 'planlayın'."
  }
