@@ -1,4 +1,4 @@
-# vfaraji89.github.io — crawling policy
+# vfaraji89.github.io: crawling policy
 # Search and AI answer engines are explicitly welcome: this site is a public
 # professional profile and exists to be cited.
 
