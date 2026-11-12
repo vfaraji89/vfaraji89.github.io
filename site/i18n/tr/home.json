@@ -14,8 +14,8 @@
  "tk7": "<mark>ajan tabanlı sistemler</mark> üzerinde çalışıyor.",
  "tk8": "<mark>ajan altyapıları</mark> kuruyor.",
  "tk9": "işini <mark>değerlendirmelerle (evals)</mark> doğrulayıp yayına alıyor.",
- "bio_three": "<span><b class=\"b-roi\">Getiriyi</b>&nbsp;artır<i class=\"bead-stop\">.</i></span> <span><b class=\"b-cost\">Maliyeti</b>&nbsp;azalt<i class=\"bead-stop\">.</i></span>",
- "bio_three_aria": "Getiriyi artır. Maliyeti azalt.",
+ "bio_three": "<span><b class=\"b-roi\">Getiri</b>&nbsp;yukarı<i class=\"bead-stop\">.</i></span> <span><b class=\"b-cost\">Maliyet</b>&nbsp;aşağı<i class=\"bead-stop\">.</i></span>",
+ "bio_three_aria": "Getiri yukarı. Maliyet aşağı.",
  "bio_text": "Ekiplerin günlük işlerinde kullandığı <strong>iş akışları, veri hatları ve ajanlar</strong> geliştiriyorum. Gereksinimleri yazıyor, ajanın kullanacağı araçları kuruyor ve gerçekten işe yarayıp yaramadığını ölçüyorum: <mark>demodan çok kanıt</mark>.",
  "hf_k": "İşe alım ekipleri için",
  "hf_b": "İşe alım mı yapıyorsunuz? Pozisyonunuza ne kadar uyduğumu görün",
@@ -50,7 +50,7 @@
   "tk2": "'veriye hâkim' (masters data) for 'is fluent in data'.",
   "tk3": "'yapay zekâ odaklı' for AI-native; alternative keep 'AI-native'.",
   "tk8": "'ajan altyapıları' for agent harnesses; the other site keeps 'harness' in English.",
-  "bio_three": "'Getiriyi artır. Maliyeti azalt.' uses 'getiri' for ROI; alternative keep 'ROI'.",
+  "bio_three": "Rewritten as a motto, not a command: 'Getiri yukarı. Maliyet aşağı.' Alternative: 'Daha çok getiri. Daha az maliyet.'",
   "sec_story": "'Ortak payda' (common denominator) for Through-line."
  }
 }

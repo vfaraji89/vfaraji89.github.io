@@ -14,8 +14,8 @@
  "tk7": "trabaja en <mark>sistemas de agentes</mark>.",
  "tk8": "construye <mark>infraestructura para agentes</mark>.",
  "tk9": "valida con <mark>evals</mark> antes de lanzar.",
- "bio_three": "<span>Maximiza el <b class=\"b-roi\">ROI</b><i class=\"bead-stop\">.</i></span> <span>Minimiza el <b class=\"b-cost\">costo</b><i class=\"bead-stop\">.</i></span>",
- "bio_three_aria": "Maximiza el ROI. Minimiza el costo.",
+ "bio_three": "<span>Más&nbsp;<b class=\"b-roi\">ROI</b><i class=\"bead-stop\">.</i></span> <span>Menos&nbsp;<b class=\"b-cost\">costo</b><i class=\"bead-stop\">.</i></span>",
+ "bio_three_aria": "Más ROI. Menos costo.",
  "bio_text": "Construyo <strong>flujos de trabajo, pipelines de datos y agentes</strong> que los equipos usan en su trabajo diario. Escribo la especificación, desarrollo las herramientas que usa el agente y mido si de verdad ayuda: <mark>más evidencia que demos</mark>.",
  "hf_k": "Para equipos de selección",
  "hf_b": "¿Estás contratando? Mira cómo encajo en tu puesto",
@@ -49,7 +49,7 @@
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "tk9": "'valida con evals antes de lanzar' for 'ships with evals'.",
   "tk8": "'infraestructura para agentes' for agent harnesses; the other site keeps 'harness'.",
-  "bio_three": "'costo' (neutral); Spain uses 'coste'.",
+  "bio_three": "Motto, not a command: 'Más ROI. Menos costo.' ('coste' in Spain).",
   "sec_tools": "'De herramienta en herramienta' is a free rendering of 'Through the tools'."
  }
 }
