@@ -35,6 +35,7 @@
     <link rel="preload" href="assets/fonts/VahidSora-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="assets/ask/base.css">
     <link rel="stylesheet" href="assets/ask/ask.css">
+    <link rel="stylesheet" href="assets/ask/fit.css">
     <!-- Claude endpoint (worker/). Empty: answers come from retrieval in the browser. -->
     <meta name="vf-ask-endpoint" content="">
     <link rel="stylesheet" href="assets/ask/widget.css">
@@ -84,32 +85,56 @@
     </header>
 
     <main class="container">
-        <header class="page-head">
+        <header class="fx-head">
             <p class="eyebrow">Fit check &middot; for hiring teams</p>
             <h1>Paste the role. <mark>See the fit</mark><span class="bead-stop">.</span></h1>
-            <p class="lede">Every requirement in your job description is checked against <b id="ev-count">32</b> pieces of public evidence: shipped systems, papers, roles and credentials. You get a score, the strongest proof for this role, and the gaps, named plainly.</p>
-            <p class="mode-line" id="mode-line"></p>
         </header>
 
-        <section id="panel-fit">
-            <form class="panel" id="fit-form">
-                <label class="sr-only" for="fit-input">Job description</label>
-                <textarea id="fit-input" maxlength="12000" placeholder="Paste the requirements part of a job description&hellip;"></textarea>
-                <div class="fit-bar">
-                    <button type="submit" class="btn-solid">Build the fit brief</button>
-                    <button type="button" class="btn-ghost" data-sample="agents">Sample: AI engineer</button>
-                    <button type="button" class="btn-ghost" data-sample="architect">Sample: solutions architect</button>
-                    <button type="button" class="btn-ghost" data-sample="ml">Sample: ML training</button>
-                    <span class="hint">Scores each requirement. Gaps included.</span>
+        <section class="fx" id="panel-fit" aria-label="Fit check">
+            <div class="fx-stage">
+                <div>
+                    <div class="fx-in">
+                        <label class="sr-only" for="fit-input">Job description</label>
+                        <textarea id="fit-input" maxlength="12000" placeholder="Paste a job description&hellip;" spellcheck="false"></textarea>
+                        <div class="fx-tray" id="fx-tray" aria-live="polite" aria-label="Skills found"></div>
+                    </div>
+                    <div class="fx-samples" role="group" aria-label="Try a sample role">
+                        <button type="button" class="fx-sample" data-sample="agents" aria-pressed="false"><svg viewBox="0 0 30 30" aria-hidden="true" fill="none"><rect x="1" y="1" width="28" height="28" rx="9" fill="#fff6f4"/><circle cx="10" cy="11" r="3" fill="#e0301e"/><circle cx="20" cy="11" r="3" fill="#1c1c1e"/><circle cx="15" cy="20" r="3" fill="#1c1c1e"/><path d="M10 11l5 9 5-9" stroke="#1c1c1e" stroke-opacity=".3"/></svg><span>AI engineer<small>agents · evals</small></span></button>
+                        <button type="button" class="fx-sample" data-sample="architect" aria-pressed="false"><svg viewBox="0 0 30 30" aria-hidden="true" fill="none"><rect x="1" y="1" width="28" height="28" rx="9" fill="#fff6f4"/><rect x="7" y="7" width="16" height="4" rx="2" fill="#e0301e"/><rect x="7" y="13" width="16" height="4" rx="2" fill="#1c1c1e" opacity=".6"/><rect x="7" y="19" width="16" height="4" rx="2" fill="#1c1c1e"/></svg><span>Solutions architect<small>RAG · cloud</small></span></button>
+                        <button type="button" class="fx-sample" data-sample="ml" aria-pressed="false"><svg viewBox="0 0 30 30" aria-hidden="true" fill="none"><rect x="1" y="1" width="28" height="28" rx="9" fill="#fff6f4"/><path d="M7 21c3-9 6-12 8-6s5 3 8-6" stroke="#1c1c1e" stroke-width="2" stroke-linecap="round"/><circle cx="23" cy="9" r="2.5" fill="#e0301e"/></svg><span>ML training<small>fine-tuning · GPUs</small></span></button>
+                    </div>
                 </div>
-            </form>
-            <div id="fit-out" aria-live="polite"></div>
+                <div class="fx-dialbox">
+                    <div class="fx-dialwrap">
+                        <svg class="fx-dial" id="fx-dial" viewBox="0 0 260 260" role="group" aria-label="Fit dial"></svg>
+                        <div class="fx-center" id="fx-center" aria-live="polite">
+                            <div class="fx-score"><b>0</b><span>/100</span></div>
+                            <p class="fx-cap">paste a role</p>
+                            <div class="fx-focus"></div>
+                        </div>
+                    </div>
+                    <div class="fx-legend" role="group" aria-label="Filter requirements">
+                        <button type="button" class="fx-pill s-strong" data-f="strong" aria-pressed="false" disabled><i></i><b>0</b> strong</button>
+                        <button type="button" class="fx-pill s-partial" data-f="partial" aria-pressed="false" disabled><i></i><b>0</b> partial</button>
+                        <button type="button" class="fx-pill s-gap" data-f="gap" aria-pressed="false" disabled><i></i><b>0</b> gap</button>
+                    </div>
+                    <button type="button" class="btn-ghost" id="fx-write" hidden>Write the brief with Claude</button>
+                </div>
+            </div>
+            <div class="fx-out" id="fit-out" aria-live="polite"></div>
         </section>
 
-        <ul class="how">
-            <li><b>Grounded</b><span>Scores use only <a href="data/evidence.json">a public evidence file</a>. Every match links to the case, paper or role behind it.</span></li>
-            <li><b>Honest</b><span>Gaps are listed, not hidden. Questions? <a href="#ask" data-ask="">Ask Vahid’s agent in the corner</a>; it says so when the evidence doesn&rsquo;t cover something.</span></li>
-            <li><b>Measured</b><span>6 job descriptions and 40 questions run on every deploy. <a href="evals.html">See the evals &rarr;</a></span></li>
+        <div class="fx-dock" id="fx-dock" role="toolbar" aria-label="Fit brief">
+            <span class="mini" aria-label="Fit score"><b>0</b></span>
+            <button type="button" id="fx-copy"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 11V3.5A1.5 1.5 0 014.5 2H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="lbl">Copy</span></button>
+            <a id="fx-dl" download="vahid-faraji-fit-brief.md" href="#"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg><span class="lbl">.md</span></a>
+            <a class="go" href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
+        </div>
+
+        <ul class="fx-badges">
+            <li><a href="data/evidence.json"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="3" fill="currentColor"/></svg>Grounded in public evidence</a></li>
+            <li><a href="#fx-reqs"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 3"/></svg>Gaps shown, not hidden</a></li>
+            <li><a href="evals.html"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Tested on every deploy</a></li>
         </ul>
 
         <footer class="site-foot">
@@ -149,7 +174,7 @@
     </main>
 
     <script src="assets/ask/engine.js"></script>
-    <script src="assets/ask/ask.js"></script>
+    <script src="assets/ask/fit.js"></script>
     <script>
     (function siteHeader() {
         var header = document.getElementById('site-header');
