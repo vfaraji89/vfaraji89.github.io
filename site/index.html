@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-i18n-files="home">
 <head>
     <meta charset="UTF-8">
     <script>document.documentElement.classList.add('js');</script>
@@ -3325,6 +3325,8 @@
     <script src="assets/ask/widget.js" defer></script>
     <link rel="stylesheet" href="assets/brand/pop.css">
     <script src="assets/brand/pop.js" defer></script>
+    <link rel="stylesheet" href="assets/brand/menu.css">
+    <script src="assets/brand/i18n.js" defer></script>
 </head>
 <body>
     <!-- Abacus icon kit: one ink frame, grey rails, beads; the rust bead marks the point. Also in assets/brand/abacus-icons.svg -->
@@ -3366,32 +3368,33 @@
                 <span class="brand-name">Vahid Faraji<span class="name-bead" aria-hidden="true"></span></span>
             </a>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#work">Work</a></li>
-                <li><a href="#publications">Research</a></li>
-                <li><a href="#experience" data-also="#skills #about #story #engage">About</a></li>
-                <li><a href="updates.html">Updates</a></li>
+                <li><a href="#work"><span data-i18n="common.nav_work">Work</span></a></li>
+                <li><a href="#publications"><span data-i18n="common.nav_research">Research</span></a></li>
+                <li><a href="#experience" data-also="#skills #about #story #engage"><span data-i18n="common.nav_about">About</span></a></li>
+                <li><a href="updates.html"><span data-i18n="common.nav_updates">Updates</span></a></li>
                 <li class="nav-indicator" aria-hidden="true"></li>
             </ul>
             <div class="nav-actions">
-                <button type="button" class="rec-toggle nav-rec" id="rec-toggle" aria-pressed="false" aria-controls="recruiter-card" aria-label="Recruiter view">
-                    <span class="rec-toggle-label">Recruiter view</span>
+                <button type="button" class="rec-toggle nav-rec" id="rec-toggle" aria-pressed="false" aria-controls="recruiter-card" aria-label="Recruiter view" data-i18n-attr="aria-label:common.nav_recruiter">
+                    <span class="rec-toggle-label" data-i18n="common.nav_recruiter">Recruiter view</span>
                     <span class="rec-track"><span class="rec-knob"></span></span>
                 </button>
-                <a href="fit.html" class="nav-fit" title="Hiring? Paste your job description and see every requirement scored" aria-label="Fit check: paste a job description, see every requirement scored"><svg class="fit-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5.5 2.75h9l3.75 3.75v6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 2.75v18.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8.5h7M8 12.5h7M8 16.5h3.5" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.1" stroke-linecap="round"/><circle class="fb fb-1" cx="9.25" cy="8.5" r="1.55" fill="currentColor"/><circle class="fb fb-2" cx="11.5" cy="12.5" r="1.55" fill="currentColor"/><circle cx="17.75" cy="17.75" r="4" fill="var(--rust, #e0301e)"/><path d="M15.9 17.8l1.3 1.3 2.5-2.7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nf-text"><span class="nf-word">Fit </span><span class="nf-long">check</span></span></a>
-                <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="nav-btn-ghost" aria-label="Download CV (PDF)">CV <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg></a>
-                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="nav-btn-solid"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
-                <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-sheet"><span></span><span></span></button>
+                <a href="fit.html" class="nav-fit" title="Hiring? Paste your job description and see every requirement scored" aria-label="Fit check: paste a job description, see every requirement scored" data-i18n-attr="title:common.fit_title;aria-label:common.fit_aria"><svg class="fit-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5.5 2.75h9l3.75 3.75v6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 2.75v18.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8.5h7M8 12.5h7M8 16.5h3.5" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.1" stroke-linecap="round"/><circle class="fb fb-1" cx="9.25" cy="8.5" r="1.55" fill="currentColor"/><circle class="fb fb-2" cx="11.5" cy="12.5" r="1.55" fill="currentColor"/><circle cx="17.75" cy="17.75" r="4" fill="var(--rust, #e0301e)"/><path d="M15.9 17.8l1.3 1.3 2.5-2.7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nf-text"><span class="nf-word" data-i18n="common.fit_word">Fit </span><span class="nf-long" data-i18n="common.fit_long">check</span></span></a>
+                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="nav-btn-solid"><span class="live-bead" aria-hidden="true"></span><span data-i18n="common.book">Book a call</span></a>
+                <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-sheet"><svg class="mt-ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="mt-rod r1" d="M4.5 8.5h15"/><path class="mt-rod r2" d="M4.5 15.5h15"/><circle class="mt-bead k1" cx="7.5" cy="8.5" r="2.4"/><circle class="mt-bead k2" cx="16.5" cy="15.5" r="2.4"/></svg><b class="mt-lang" aria-hidden="true">a</b></button>
             </div>
         </nav>
         <div class="nav-sheet" id="nav-sheet">
             <div class="container">
-                <a href="fit.html" class="sheet-fit">Fit check <span>Hiring? Paste your role</span></a>
-                <a href="#work">Work <span>Case studies</span></a>
-                <a href="#publications">Research <span>ACM · arXiv</span></a>
-                <a href="#experience">About <span>Experience, skills, background</span></a>
-                <a href="updates.html">Updates <span>Notes</span></a>
-                <a href="#ask" data-ask="">Vahid’s agent <span>Ask anything, sources shown</span></a>
-                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener">Book a call <span>Google Calendar</span></a>
+                <a href="fit.html" class="sheet-fit"><bdi data-i18n="common.sheet_fit">Fit check</bdi> <span data-i18n="common.sheet_fit_sub">Hiring? Paste your role</span></a>
+                <a class="sheet-dup" href="#work"><bdi data-i18n="common.sheet_work">Work</bdi> <span data-i18n="common.sheet_work_sub">Case studies</span></a>
+                <a class="sheet-dup" href="#publications"><bdi data-i18n="common.sheet_research">Research</bdi> <span data-i18n="common.sheet_research_sub">ACM · arXiv</span></a>
+                <a class="sheet-dup" href="#experience"><bdi data-i18n="common.sheet_about">About</bdi> <span data-i18n="common.sheet_about_sub">Experience, skills, background</span></a>
+                <a class="sheet-dup" href="updates.html"><bdi data-i18n="common.sheet_updates">Updates</bdi> <span data-i18n="common.sheet_updates_sub">Notes</span></a>
+                <a href="#ask" data-ask=""><bdi data-i18n="common.sheet_agent">Vahid’s agent</bdi> <span data-i18n="common.sheet_agent_sub">Ask anything, sources shown</span></a>
+                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener"><bdi data-i18n="common.sheet_book">Book a call</bdi> <span data-i18n="common.sheet_book_sub">Google Calendar</span></a>
+                <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="sheet-cv"><bdi data-i18n="common.sheet_cv">CV</bdi> <span><bdi data-i18n="common.sheet_cv_sub">PDF, in English</bdi><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg></span></a>
+                <div class="sheet-lang"><span class="sheet-lang-k" data-i18n="common.sheet_lang">Language</span><div class="lang-beads" data-lang-switch role="group" aria-label="Language"></div><p class="lang-note" hidden data-i18n="common.lang_note">Case studies, papers and updates stay in English for now.</p></div>
             </div>
         </div>
     </header>
@@ -3420,19 +3423,19 @@
 
             <div class="hero-icon-row">
                 <div>
-                    <h1 class="hero-name hero-is"><span class="sr-only">Vahid Faraji works in applied AI.</span><span aria-hidden="true"><span class="hero-is-name"><img class="hero-avatar" src="assets/foto-vahid.jpg" alt="" width="104" height="104" decoding="async">Vahid</span><br><span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on">works in <mark>applied AI</mark>.</span><span class="tk">is fluent in <mark>data</mark>.</span><span class="tk">works <mark>AI-native</mark>.</span><span class="tk">loves <mark>creative data products</mark>.</span><span class="tk">is proficient in <mark>MCP</mark>.</span><span class="tk">makes <mark>AI-native products</mark>.</span><span class="tk">works on <mark>agentic systems</mark>.</span><span class="tk">builds <mark>agent harnesses</mark>.</span><span class="tk">ships with <mark>evals</mark>.</span></span></span></h1>
+                    <h1 class="hero-name hero-is"><span class="sr-only" data-i18n="home.hero_sr">Vahid Faraji works in applied AI.</span><span aria-hidden="true"><span class="hero-is-name"><img class="hero-avatar" src="assets/foto-vahid.jpg" alt="" width="104" height="104" decoding="async"><bdi data-i18n="home.hero_name">Vahid</bdi></span><br><span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on" data-i18n-html="home.tk1">works in <mark>applied AI</mark>.</span><span class="tk" data-i18n-html="home.tk2">is fluent in <mark>data</mark>.</span><span class="tk" data-i18n-html="home.tk3">works <mark>AI-native</mark>.</span><span class="tk" data-i18n-html="home.tk4">loves <mark>creative data products</mark>.</span><span class="tk" data-i18n-html="home.tk5">is proficient in <mark>MCP</mark>.</span><span class="tk" data-i18n-html="home.tk6">makes <mark>AI-native products</mark>.</span><span class="tk" data-i18n-html="home.tk7">works on <mark>agentic systems</mark>.</span><span class="tk" data-i18n-html="home.tk8">builds <mark>agent harnesses</mark>.</span><span class="tk" data-i18n-html="home.tk9">ships with <mark>evals</mark>.</span></span></span></h1>
                 </div>
             </div>
 
             <hr class="hero-rule">
             <div class="hero-bio">
                 <div class="hero-tagline bio">
-                    <p class="bio-three" aria-label="Maximize ROI. Minimize cost."><span>Maximize&nbsp;<b class="b-roi">ROI</b><i class="bead-stop">.</i></span> <span>Minimize&nbsp;<b class="b-cost">cost</b><i class="bead-stop">.</i></span></p>
-                    <p class="bio-text">I build <strong>workflows, data pipelines and agents</strong> that teams use in their daily work. I write the spec, build the tools the agent can use, and measure whether it actually helps: <mark>evidence more than demos</mark>.</p>
+                    <p class="bio-three" aria-label="Maximize ROI. Minimize cost." data-i18n-attr="aria-label:home.bio_three_aria" data-i18n-html="home.bio_three"><span>Maximize&nbsp;<b class="b-roi">ROI</b><i class="bead-stop">.</i></span> <span>Minimize&nbsp;<b class="b-cost">cost</b><i class="bead-stop">.</i></span></p>
+                    <p class="bio-text" data-i18n-html="home.bio_text">I build <strong>workflows, data pipelines and agents</strong> that teams use in their daily work. I write the spec, build the tools the agent can use, and measure whether it actually helps: <mark>evidence more than demos</mark>.</p>
                     <div class="hero-fit-row">
                         <a class="hero-fit" href="fit.html">
                             <span class="hf-icon"><svg class="fit-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5.5 2.75h9l3.75 3.75v6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 2.75v18.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8.5h7M8 12.5h7M8 16.5h3.5" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.1" stroke-linecap="round"/><circle class="fb fb-1" cx="9.25" cy="8.5" r="1.55" fill="currentColor"/><circle class="fb fb-2" cx="11.5" cy="12.5" r="1.55" fill="currentColor"/><circle cx="17.75" cy="17.75" r="4" fill="var(--rust, #e0301e)"/><path d="M15.9 17.8l1.3 1.3 2.5-2.7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                            <span class="hf-text"><span class="hf-k">For hiring teams</span><b>Hiring? See how I fit your role</b><em>Paste the job description. Every requirement scored against real work, gaps named. Ten seconds, nothing leaves your browser.</em></span>
+                            <span class="hf-text"><span class="hf-k" data-i18n="home.hf_k">For hiring teams</span><b data-i18n="home.hf_b">Hiring? See how I fit your role</b><em data-i18n="home.hf_em">Paste the job description. Every requirement scored against real work, gaps named. Ten seconds, nothing leaves your browser.</em></span>
                             <span class="hf-go" aria-hidden="true">&rarr;</span>
                         </a>
                     </div>
@@ -3446,7 +3449,7 @@
                     <span class="reel-play" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3.2v9.6c0 .5.55.8.97.53l7.5-4.8a.63.63 0 000-1.06l-7.5-4.8A.63.63 0 005 3.2z"/></svg></span>
                     <span class="reel-time">1:30</span>
                 </span>
-                    <span class="reel-cap">Animated CV <b>1:30</b><span class="sr-only">, watch the film</span></span>
+                    <span class="reel-cap"><bdi data-i18n="home.reel_cap">Animated CV</bdi> <b>1:30</b><span class="sr-only">, watch the film</span></span>
                 </button>
                 <div class="reel-share" aria-label="Share the animated CV">
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fvfaraji89.github.io%2F%3Freel" target="_blank" rel="noopener" class="rs-li" aria-label="Share on LinkedIn" title="Share on LinkedIn"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg></a>
@@ -3455,10 +3458,10 @@
                 </div>
             </div>
             <ul class="proof-strip" aria-label="Proof">
-                <li><b>ACM CAIS &rsquo;26</b><span>peer-reviewed paper</span></li>
-                <li><b>95%</b><span>agent accuracy on 14K+ job titles</span></li>
-                <li><b>500+</b><span>Tokalator installs</span></li>
-                <li><b>3 + 1</b><span>publications + patent pending</span></li>
+                <li><b>ACM CAIS &rsquo;26</b><span data-i18n="home.stat_paper">peer-reviewed paper</span></li>
+                <li><b>95%</b><span data-i18n="home.stat_acc">agent accuracy on 14K+ job titles</span></li>
+                <li><b>500+</b><span data-i18n="home.stat_installs">Tokalator installs</span></li>
+                <li><b>3 + 1</b><span data-i18n="home.stat_pubs">publications + patent pending</span></li>
             </ul>
             <div class="hero-cards">
             <div class="hire-cta" id="hire-cta">
@@ -3598,12 +3601,12 @@
             <div class="hero-ctas" id="cta-nav">
                 <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="btn btn-primary cta-cv">
                     <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg>
-                    Download CV
+                    <span data-i18n="home.cta_cv">Download CV</span>
                 </a>
-                <a href="#work" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg>See work</a>
-                <a href="#publications" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-page"/></svg>Research</a>
-                <a href="#engage" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-advise"/></svg>Work with me</a>
-                <a href="#" class="btn btn-outline cta-go" onclick="openBooking();return false;"><svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg>Suggest a time</a>
+                <a href="#work" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg><span data-i18n="home.cta_work">See work</span></a>
+                <a href="#publications" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-page"/></svg><span data-i18n="home.cta_research">Research</span></a>
+                <a href="#engage" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-advise"/></svg><span data-i18n="home.cta_engage">Work with me</span></a>
+                <a href="#" class="btn btn-outline cta-go" onclick="openBooking();return false;"><svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg><span data-i18n="home.cta_time">Suggest a time</span></a>
             </div>
             <div class="product-badges" aria-label="Products">
                 <a class="pbadge" href="https://tokalator.ai/" target="_blank" rel="noopener">
@@ -3635,8 +3638,8 @@
 
 
         <section id="work" class="reveal">
-            <div class="section-label">Case Studies</div>
-            <p class="section-tagline">Problems I solved end to end.</p>
+            <div class="section-label" data-i18n="home.sec_work">Case Studies</div>
+            <p class="section-tagline" data-i18n="home.sec_work_tag">Problems I solved end to end.</p>
             <div class="metrics-grid">
                 <div class="metric-card hover-card" data-hover data-flip-num="2 AI · 6 data" data-flip-label="Industry years, by field"><div class="metric-num">8+4</div><div class="metric-label">Years industry + research</div></div>
                 <div class="metric-card hover-card" data-hover data-flip-num="14K+ positions" data-flip-label="MCP multi-agent"><div class="metric-num">95%</div><div class="metric-label">Agent accuracy</div></div>
@@ -3847,8 +3850,8 @@
         </section>
 
         <section id="publications" class="reveal">
-            <div class="section-label">Publications</div>
-            <p class="section-tagline">Peer-reviewed and cited.</p>
+            <div class="section-label" data-i18n="home.sec_publications">Publications</div>
+            <p class="section-tagline" data-i18n="home.sec_publications_tag">Peer-reviewed and cited.</p>
             <div class="pub-list">
                 <div class="pub-card hover-card acm" data-hover>
                     <div><span class="pub-badge acm">ACM CAIS '26</span><span class="pub-badge arxiv">peer-reviewed</span></div>
@@ -3872,8 +3875,8 @@
 
 
         <section id="experience" class="reveal">
-            <div class="section-label">Experience</div>
-            <p class="section-tagline">Eight years of turning business problems into systems people use.</p>
+            <div class="section-label" data-i18n="home.sec_experience">Experience</div>
+            <p class="section-tagline" data-i18n="home.sec_experience_tag">Eight years of turning business problems into systems people use.</p>
 
             <div class="xp-sell">
                 <div><b>Ships to production</b><span>Tools in daily use, not demos: ProjectLens, Text-to-Report, finance checks.</span></div>
@@ -3921,7 +3924,7 @@
         </section>
 
         <section id="skills" class="reveal">
-            <div class="section-label">Skills &amp; stack</div>
+            <div class="section-label" data-i18n="home.sec_skills">Skills &amp; stack</div>
             <div class="stack-abacus pop-group" aria-label="Tools I build with">
                 <p class="hero-count sa-msg"><span class="sr-only">Enterprise solutions you can count on.</span><span aria-hidden="true">You can count on <span class="ticker hero-what" id="hero-what"><span class="tk is-on">enterprise solutions<span class="bead-stop">.</span></span><span class="tk">data products<span class="bead-stop">.</span></span><span class="tk">agents<span class="bead-stop">.</span></span><span class="tk">analysis<span class="bead-stop">.</span></span><span class="tk">design<span class="bead-stop">.</span></span><span class="tk">architecture<span class="bead-stop">.</span></span><span class="tk">problem solving<span class="bead-stop">.</span></span><span class="tk">token-cost optimisation<span class="bead-stop">.</span></span><span class="tk">tracing<span class="bead-stop">.</span></span><span class="tk">failure detection<span class="bead-stop">.</span></span><span class="tk">tests<span class="bead-stop">.</span></span></span></span></p>
                 <span class="sa-label">What I bring</span>
@@ -3981,8 +3984,8 @@
 
 
         <section id="engage" class="reveal">
-            <div class="section-label">Working Together</div>
-            <p class="section-tagline">Three ways teams bring me in.</p>
+            <div class="section-label" data-i18n="home.sec_engage">Working Together</div>
+            <p class="section-tagline" data-i18n="home.sec_engage_tag">Three ways teams bring me in.</p>
             <div class="about-grid">
                 <div class="about-card hover-card" data-hover>
                     <div class="about-head">
@@ -4048,8 +4051,8 @@
 
 
         <section id="story" class="reveal">
-            <div class="section-label">Through-line</div>
-            <p class="section-tagline">8 years in industry and 4 in research, turning messy data into decisions people act on.</p>
+            <div class="section-label" data-i18n="home.sec_story">Through-line</div>
+            <p class="section-tagline" data-i18n="home.sec_story_tag">8 years in industry and 4 in research, turning messy data into decisions people act on.</p>
 
             <div class="problem">
                 <figure class="hero-art story-art">
@@ -4172,8 +4175,8 @@
         </section>
 
         <section id="about" class="reveal">
-            <div class="section-label">About</div>
-            <p class="section-tagline">The person behind the systems.</p>
+            <div class="section-label" data-i18n="home.sec_about">About</div>
+            <p class="section-tagline" data-i18n="home.sec_about_tag">The person behind the systems.</p>
             <div class="about-identity" id="about-identity" hidden></div>
             <div class="about-grid">
                 <div class="about-card hover-card" data-hover>
@@ -4291,8 +4294,8 @@
 
     <footer class="site-footer">
         <div class="footer-journey container">
-            <div class="section-label">Through the tools</div>
-            <h2 class="jr-title">From the abacus to agents.</h2>
+            <div class="section-label" data-i18n="home.sec_tools">Through the tools</div>
+            <h2 class="jr-title" data-i18n="home.jr_title">From the abacus to agents.</h2>
             <div class="jr-track" id="jr-track">
                 <span class="jr-rail" aria-hidden="true"></span>
                 <span class="jr-bead" aria-hidden="true"></span>
@@ -4928,7 +4931,7 @@
             header.classList.toggle('menu-open', open);
             if (toggle) {
                 toggle.setAttribute('aria-expanded', String(open));
-                toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+                toggle.setAttribute('aria-label', open ? (window.vfT ? vfT('common.menu_close', 'Close menu') : 'Close menu') : (window.vfT ? vfT('common.menu_open', 'Open menu') : 'Open menu'));
             }
         }
         if (toggle) toggle.addEventListener('click', function () { setMenu(!header.classList.contains('menu-open')); });

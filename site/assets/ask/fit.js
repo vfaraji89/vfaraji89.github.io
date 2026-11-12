@@ -20,7 +20,10 @@
     var input = $('#fit-input'), tray = $('#fx-tray'), dial = $('#fx-dial'), center = $('#fx-center'), out = $('#fit-out'), dock = $('#fx-dock');
     var pills = $$('.fx-pill');
     var ORDER = { strong: 0, partial: 1, gap: 2 };
-    var LABEL = { strong: 'Strong', partial: 'Partial', gap: 'Gap' };
+    var LABEL_EN = { strong: 'Strong', partial: 'Partial', gap: 'Gap' };
+    // Every word this script writes goes through T(): the active language (i18n/<lang>/fit.json), else English.
+    function T(key, en, vars) { if (window.vfT) return vfT('fit.' + key, en, vars); return vars ? en.replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; }) : en; }
+    var LABEL = { get strong() { return T('st_strong', LABEL_EN.strong); }, get partial() { return T('st_partial', LABEL_EN.partial); }, get gap() { return T('st_gap', LABEL_EN.gap); } };
     var SAMPLES = {
         agents: 'Applied AI Engineer\n- Build and ship LLM agents with tool calling (MCP) to production\n- Design evals and tracing for agent systems\n- Strong Python; TypeScript a plus\n- Work with business stakeholders end to end\n- Experience with Kubernetes',
         architect: 'AI Solutions Architect\n- Lead customer-facing discovery and turn workflows into AI systems\n- Design RAG and multi-agent architectures on Azure or Google Cloud\n- Set governance, security and guardrails\n- Enable teams through workshops\n- Measure ROI and token cost',
@@ -43,10 +46,10 @@
         g.appendChild(sv('circle', { cx: a[0], cy: a[1], r: 9 }));
         g.appendChild(sv('circle', { cx: b[0], cy: b[1], r: 6 }));
         dial.appendChild(g);
-        dial.setAttribute('aria-label', 'Fit dial: waiting for a job description');
+        dial.setAttribute('aria-label', T('dial_idle', 'Fit dial: waiting for a job description'));
         setCenter(null);
         $('.fx-score b', center).textContent = '0'; center.classList.add('is-idle');
-        $('.fx-cap', center).textContent = 'paste a role';
+        $('.fx-cap', center).textContent = T('cap_idle', 'paste a role');
     }
     function drawDial(b) {
         dial.textContent = '';
@@ -67,7 +70,7 @@
             p.dataset.key = c.key;
             dial.appendChild(p);
         });
-        dial.setAttribute('aria-label', 'Fit dial: ' + b.count.strong + ' strong, ' + b.count.partial + ' partial, ' + b.count.gap + ' gaps');
+        dial.setAttribute('aria-label', T('dial_aria', 'Fit dial: {s} strong, {p} partial, {g} gaps', { s: b.count.strong, p: b.count.partial, g: b.count.gap }));
     }
     function setCenter(c) {
         center.classList.toggle('is-focus', !!c);
@@ -75,7 +78,7 @@
         var f = $('.fx-focus', center); f.textContent = '';
         f.appendChild(el('b', null, c.label));
         f.appendChild(el('em', 's-' + c.status, LABEL[c.status]));
-        f.appendChild(el('small', null, c.evidence[0] ? c.evidence[0].title : 'No evidence on this site'));
+        f.appendChild(el('small', null, c.evidence[0] ? c.evidence[0].title : T('no_ev_site', 'No evidence on this site')));
     }
     function focus(c) {
         setCenter(c);
@@ -90,7 +93,7 @@
     var counter = null;
     function countTo(to) {
         var b = $('.fx-score b', center), from = parseInt(b.textContent, 10) || 0;
-        $('.fx-cap', center).textContent = 'fit'; center.classList.remove('is-idle');
+        $('.fx-cap', center).textContent = T('cap_fit', 'fit'); center.classList.remove('is-idle');
         if (counter) cancelAnimationFrame(counter);
         if (reduce) { b.textContent = to; return; }
         var t0 = performance.now();
@@ -142,12 +145,12 @@
     }
     function drawOut(b, ai) {
         out.textContent = '';
-        if (b.score == null) { out.appendChild(el('p', 'fx-none', 'No skills I can check in that text yet. Paste the requirements part.')); return; }
+        if (b.score == null) { out.appendChild(el('p', 'fx-none', T('none', 'No skills I can check in that text yet. Paste the requirements part.'))); return; }
         if (ai && ai.headline) out.appendChild(el('p', 'fx-says', ai.headline));
 
         // coverage: evidence cards + matrix
         if (b.topEvidence.length) {
-            var cov = section('Coverage', b.topEvidence.length + ' proofs × ' + b.concepts.length + ' asks');
+            var cov = section(T('sec_coverage', 'Coverage'), T('sec_coverage_sub', '{p} proofs × {a} asks', { p: b.topEvidence.length, a: b.concepts.length }));
             var evs = el('div', 'fx-evs');
             var max = Math.max.apply(null, b.topEvidence.map(function (e) { return e.covers.length; })) || 1;
             b.topEvidence.forEach(function (e, i) {
@@ -157,7 +160,7 @@
                 top.appendChild(el('span', 'n', String(i + 1))); top.appendChild(el('span', 'lv', e.levelLabel));
                 a.appendChild(top); a.appendChild(el('b', null, e.title));
                 var bar = el('span', 'bar'), fill = el('span'); fill.style.width = (100 * e.covers.length / max) + '%'; bar.appendChild(fill); a.appendChild(bar);
-                a.setAttribute('aria-label', e.title + ', covers ' + e.covers.length + ' of the asks');
+                a.setAttribute('aria-label', T('ev_aria', '{t}, covers {n} of the asks', { t: e.title, n: e.covers.length }));
                 a.addEventListener('mouseenter', function () { hotCol(i, true); });
                 a.addEventListener('mouseleave', function () { hotCol(i, false); });
                 evs.appendChild(a);
@@ -175,7 +178,7 @@
                     var on = e.covers.indexOf(c.label) !== -1;
                     var td = el('td', on ? 'on' : 'off'); td.dataset.col = ci;
                     td.style.setProperty('--d', (ri * 35 + ci * 50) + 'ms');
-                    td.setAttribute('aria-label', on ? e.title + ' covers ' + c.label : 'not covered');
+                    td.setAttribute('aria-label', on ? T('cell_on', '{t} covers {c}', { t: e.title, c: c.label }) : T('cell_off', 'not covered'));
                     tr.appendChild(td);
                 });
                 tr.addEventListener('mouseenter', function () { if (!state.pinned) focus(c); });
@@ -188,7 +191,7 @@
 
         // requirements as rods
         var scored = b.requirements.filter(function (r) { return r.status !== 'unscored'; });
-        var rs = section('Requirements', scored.length + ' scored', 'fx-reqs');
+        var rs = section(T('sec_reqs', 'Requirements'), T('sec_reqs_sub', '{n} scored', { n: scored.length }), 'fx-reqs');
         var ul = el('ul', 'fx-rqs');
         var DOTS = { strong: 3, partial: 2, gap: 0 };
         scored.forEach(function (r, i) {
@@ -202,7 +205,7 @@
             r.concepts.forEach(function (c) {
                 var e = c.evidence[0];
                 var chip = e ? link(e.url, 'fx-c s-' + c.status) : el('span', 'fx-c s-' + c.status);
-                chip.appendChild(el('i')); chip.appendChild(el('b', null, c.label)); chip.appendChild(el('span', null, e ? e.title : 'no evidence here'));
+                chip.appendChild(el('i')); chip.appendChild(el('b', null, c.label)); chip.appendChild(el('span', null, e ? e.title : T('no_ev_here', 'no evidence here')));
                 cs.appendChild(chip);
             });
             inner.appendChild(cs); more.appendChild(inner);
@@ -211,12 +214,12 @@
         });
         rs.appendChild(ul);
         var unscored = b.requirements.length - scored.length;
-        if (unscored) rs.appendChild(el('p', 'fx-more-n', '+ ' + unscored + (unscored === 1 ? ' line' : ' lines') + ' with no skill to check'));
+        if (unscored) rs.appendChild(el('p', 'fx-more-n', unscored === 1 ? T('unscored_one', '+ 1 line with no skill to check') : T('unscored_many', '+ {n} lines with no skill to check', { n: unscored })));
         out.appendChild(rs);
 
         // gaps
         if (b.gaps.length) {
-            var gs = section('Gaps', 'no evidence on this site');
+            var gs = section(T('sec_gaps', 'Gaps'), T('sec_gaps_sub', 'no evidence on this site'));
             var gw = el('div', 'fx-gaps');
             b.gaps.forEach(function (g, i) { var s = el('span', 'fx-gap', g); s.style.animationDelay = (i * 60) + 'ms'; gw.appendChild(s); });
             gs.appendChild(gw); out.appendChild(gs);
@@ -224,7 +227,7 @@
 
         var rc = el('p', 'fx-receipt');
         (ai && ai.receipt ? [ai.receipt.model, '$' + (ai.receipt.cost_usd || 0).toFixed(4), (ai.receipt.ms / 1000).toFixed(1) + ' s']
-            : ['Rules in your browser', '0 model calls', '$0.00', b.ms + ' ms', 'nothing you paste leaves this page']).forEach(function (x) { rc.appendChild(el('span', null, x)); });
+            : [T('rc_rules', 'Rules in your browser'), T('rc_calls', '0 model calls'), '$0.00', b.ms + ' ms', T('rc_private', 'nothing you paste leaves this page')]).forEach(function (x) { rc.appendChild(el('span', null, x)); });
         out.appendChild(rc);
         applyFilter();
     }
@@ -247,8 +250,8 @@
     }
     $('#fx-copy').addEventListener('click', function () {
         var btn = this, lbl = $('.lbl', btn);
-        (navigator.clipboard ? navigator.clipboard.writeText(md) : Promise.reject()).then(function () { lbl.textContent = 'Copied'; }, function () { lbl.textContent = 'Copy failed'; });
-        setTimeout(function () { lbl.textContent = 'Copy'; }, 1600); track('fit_brief_copy');
+        (navigator.clipboard ? navigator.clipboard.writeText(md) : Promise.reject()).then(function () { lbl.textContent = T('copied', 'Copied'); }, function () { lbl.textContent = T('copy_failed', 'Copy failed'); });
+        setTimeout(function () { lbl.textContent = T('copy', 'Copy'); }, 1600); track('fit_brief_copy');
     });
 
     // ---- run --------------------------------------------------------------------------
@@ -259,7 +262,7 @@
         var b = eng.fit(jd);
         state.b = b; state.pinned = null;
         drawTray(b); drawPills(b);
-        if (b.score == null) { idleDial(); $('.fx-cap', center).textContent = 'no skills yet'; }
+        if (b.score == null) { idleDial(); $('.fx-cap', center).textContent = T('cap_none', 'no skills yet'); }
         else { drawDial(b); countTo(b.score); }
         drawOut(b, null);
         drawDock(b);
@@ -306,6 +309,9 @@
             });
         }
     }
+
+    // a language change re-renders everything this script wrote
+    document.addEventListener('vf:lang', function () { if (eng && input.value.trim()) run(input.value); else idleDial(); });
 
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && state.pinned) { state.pinned = null; focus(null); } });
     ready.then(function () { idleDial(); if (input.value.trim()) run(input.value); });

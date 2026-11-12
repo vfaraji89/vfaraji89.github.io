@@ -8,6 +8,7 @@
     try { saved = localStorage.getItem(KEY); } catch (e) {}
     if (saved === 'yes') grant();
 
+    function t(k, en) { return window.vfT ? vfT('common.' + k, en) : en; }
     function banner() {
         // a small pill in the corner: one bead, one line, two tiny buttons
         var bar = document.createElement('div');
@@ -22,8 +23,8 @@
         bead.style.cssText = 'flex:none;width:14px;height:14px;border-radius:50%;' +
             'background:radial-gradient(circle at 34% 30%,#ff9d8f,#e0301e 45%,#9e1a0c);box-shadow:0 3px 5px -2px rgba(158,26,12,.6)';
         var text = document.createElement('span');
-        text.textContent = 'One cookie to count visits?';
-        text.title = 'Google Analytics, only to count visits. No ads, no tracking across sites.';
+        text.textContent = t('consent_ask', 'One cookie to count visits?');
+        text.title = t('consent_title', 'Google Analytics, only to count visits. No ads, no tracking across sites.');
         function btn(label, primary) {
             var b = document.createElement('button');
             b.type = 'button';
@@ -32,9 +33,9 @@
                 (primary ? 'background:#1c1c1e;color:#fff;border:1px solid #1c1c1e' : 'background:transparent;color:#55555a;border:1px solid transparent');
             return b;
         }
-        var yes = btn('Sure', true), no = btn('No', false);
-        no.setAttribute('aria-label', 'No, do not use an analytics cookie');
-        yes.setAttribute('aria-label', 'Sure, use an analytics cookie');
+        var yes = btn(t('consent_yes', 'Sure'), true), no = btn(t('consent_no', 'No'), false);
+        no.setAttribute('aria-label', t('consent_no_aria', 'No, do not use an analytics cookie'));
+        yes.setAttribute('aria-label', t('consent_yes_aria', 'Sure, use an analytics cookie'));
         function close(v) {
             try { localStorage.setItem(KEY, v); } catch (e) {}
             bar.style.opacity = '0'; bar.style.transform = 'translateY(10px)';

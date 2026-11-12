@@ -14,7 +14,7 @@
 .fx-in textarea:focus { outline: none; }
 .fx-in textarea::placeholder { color: var(--text-muted); }
 .fx-tray { display: flex; flex-wrap: wrap; gap: 0.35rem; min-height: 2.6rem; padding: 0.55rem 1rem 0.75rem; border-top: 1px dashed var(--ctl-line); align-content: flex-start; }
-.fx-tray:empty::before { content: "Skills appear here as you paste"; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; color: var(--text-muted); align-self: center; }
+.fx-tray:empty::before { content: attr(data-empty); font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; color: var(--text-muted); align-self: center; }
 .fx-chip { display: inline-flex; align-items: center; gap: 0.35rem; height: 1.7rem; padding: 0 0.6rem 0 0.45rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; color: var(--ink); background: var(--bg-subtle); border: 1px solid var(--ctl-line); }
 .fx-chip i { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--grey-300); }
 .fx-chip.s-strong { background: var(--paper); border-color: rgba(224,48,30,0.3); } .fx-chip.s-strong i { background: var(--rust); }
