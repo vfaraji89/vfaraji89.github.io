@@ -20,7 +20,7 @@
  "sheet_about": "プロフィール",
  "sheet_updates": "最新情報",
  "sheet_lang": "言語",
- "lang_note": "事例・論文・最新情報は、当面は英語のままです。",
+ "lang_note": "エージェントは英語で回答します。評価のテストケースと映像のチャプター名も英語のままです。",
  "consent_ask": "訪問数の計測にCookieを1つ使ってもよいですか？",
  "consent_title": "Google Analyticsは訪問数の計測だけに使います。広告や、サイトをまたいだ追跡はしません。",
  "consent_yes": "はい",

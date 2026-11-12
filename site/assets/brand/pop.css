@@ -1,47 +1,49 @@
-/* Pop: small, springy motion on every page, each move about half a second.
-   - the header's controls pop in one after another on first load
-   - cards pop up as they scroll into view
-   - buttons and chips squash when pressed and spring back when released
-   - the Fit chip nudges once per visit to draw the eye
+/* Bead motion: everything moves the way a bead slides along an abacus rod.
+   It glides, slows and settles; nothing bounces, squashes or overshoots.
+   - entrances: a short glide up out of a soft blur, staggered with their neighbours
+   - the header's controls glide in one after another on first load
+   - press: a quiet dip, released on the same curve
+   - the Fit chip: its two beads slide across once per visit, with a soft halo
+   - the scroll rod: a thin rod under the bar with a bead that glides as you read
    All of it is off for people who ask for reduced motion. */
-:root { --pop-dur: 500ms; --pop-spring: cubic-bezier(0.34, 1.56, 0.64, 1); }
+:root {
+    --bead-ease: cubic-bezier(0.22, 1, 0.36, 1);      /* glide, then settle */
+    --bead-glide: cubic-bezier(0.65, 0, 0.35, 1);     /* travel along the rod */
+    --bead-enter: 700ms;
+    --bead-press: 160ms;
+}
 
-@keyframes pop-in {
-    0%   { opacity: 0; transform: translateY(14px) scale(0.92); }
-    60%  { opacity: 1; transform: translateY(-3px) scale(1.025); }
-    100% { opacity: 1; transform: none; }
+@keyframes bead-settle {
+    from { opacity: 0; transform: translateY(12px); filter: blur(5px); }
+    to   { opacity: 1; transform: none; filter: none; }
 }
-@keyframes pop-head {
-    0%   { opacity: 0; transform: scale(0.6); }
-    65%  { opacity: 1; transform: scale(1.08); }
-    100% { opacity: 1; transform: none; }
+@keyframes bead-head {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: none; }
 }
-@keyframes pop-press { to { transform: scale(0.94); } }
-@keyframes pop-release {
-    0%   { transform: scale(0.94); }
-    45%  { transform: scale(1.06); }
-    75%  { transform: scale(0.99); }
-    100% { transform: none; }
+@keyframes bead-halo {
+    0%   { box-shadow: 0 0 0 0 rgba(224, 48, 30, 0.28); }
+    100% { box-shadow: 0 0 0 12px rgba(224, 48, 30, 0); }
 }
-@keyframes pop-nudge {
-    0%   { transform: none; }
-    30%  { transform: scale(1.1) rotate(-3deg); }
-    55%  { transform: scale(0.97) rotate(2deg); }
-    80%  { transform: scale(1.02); }
-    100% { transform: none; }
-}
-@keyframes pop-ring {
-    0%   { box-shadow: 0 0 0 0 rgba(224, 48, 30, 0.45); }
-    100% { box-shadow: 0 0 0 14px rgba(224, 48, 30, 0); }
-}
+@keyframes bead-slide-1 { 0%, 100% { transform: none; } 45%, 60% { transform: translateX(4.5px); } }
+@keyframes bead-slide-2 { 0%, 100% { transform: none; } 50%, 65% { transform: translateX(2.5px); } }
 
 @media (prefers-reduced-motion: no-preference) {
     .js .pop-wait { opacity: 0; }
-    .pop-in { animation: pop-in var(--pop-dur) var(--pop-spring) both; animation-delay: var(--pop-delay, 0ms); }
-    .pop-head { animation: pop-head var(--pop-dur) var(--pop-spring) both; animation-delay: var(--pop-delay, 0ms); }
-    .pop-pressing { animation: pop-press 120ms ease-out forwards; }
-    .pop-release { animation: pop-release var(--pop-dur) var(--pop-spring); }
-    .pop-nudge { animation: pop-nudge var(--pop-dur) var(--pop-spring), pop-ring 900ms ease-out; }
-    .pop-nudge .fb-1 { transform: translateX(4.5px); }
-    .pop-nudge .fb-2 { transform: translateX(2.5px); }
+    .pop-in { animation: bead-settle var(--bead-enter) var(--bead-ease) both; animation-delay: var(--pop-delay, 0ms); }
+    .pop-head { animation: bead-head 600ms var(--bead-ease) both; animation-delay: var(--pop-delay, 0ms); }
+    .pop-pressing { transform: scale(0.975); transition: transform var(--bead-press) var(--bead-ease); }
+    .pop-release { transition: transform 420ms var(--bead-ease); }
+    .pop-nudge { animation: bead-halo 1.4s var(--bead-ease); }
+    .pop-nudge .fb-1 { animation: bead-slide-1 1.4s var(--bead-glide); }
+    .pop-nudge .fb-2 { animation: bead-slide-2 1.4s var(--bead-glide); }
 }
+
+/* the scroll rod: a hairline rod under the bar; the bead rides it as you read */
+.bead-rod { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; pointer-events: none; opacity: 0; transition: opacity 0.6s var(--bead-ease); }
+.bead-rod.on { opacity: 1; }
+.bead-rod::before { content: ""; position: absolute; left: 0; top: 0; height: 2px; width: calc(var(--p, 0) * 100%); background: linear-gradient(90deg, rgba(224, 48, 30, 0), rgba(224, 48, 30, 0.55)); }
+.bead-rod i { position: absolute; top: -3px; left: calc(var(--p, 0) * 100%); width: 8px; height: 8px; margin-left: -4px; border-radius: 50%;
+    background: radial-gradient(circle at 34% 30%, #ff9d8f, #e0301e 45%, #9e1a0c); box-shadow: 0 2px 4px -1px rgba(158, 26, 12, 0.5); }
+.site-header.menu-open .bead-rod { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .bead-rod { display: none; } }

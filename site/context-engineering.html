@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-i18n-files="body_context_engineering">
 <head>
     <meta charset="UTF-8">
     <meta name="color-scheme" content="light">
@@ -130,7 +130,7 @@
             --stagger: 90ms;
             --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
             --ease-move: cubic-bezier(0.4, 0, 0.2, 1);
-            --ease-spring: var(--ease-spring);
+            --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
  --transition: var(--dur-base) var(--ease-move);
         }
         @media (prefers-reduced-motion: reduce) {
@@ -468,86 +468,86 @@
     <noscript><style>.load-bar { display: none; }</style></noscript>
     <div class="container">
         <nav class="back-nav">
-            <a href="index.html">&larr; Back to portfolio</a>
+            <a href="index.html" data-i18n-html="body_context_engineering.body_context_engineering_1">&larr; Back to portfolio</a>
         </nav>
 
         <header class="page-header">
-            <h1>How I save 38% on LLM tokens</h1>
-            <p class="subtitle">A context engineering methodology applied across 16M+ tokens of real production workloads. Not theory, measured results.</p>
+            <h1 data-i18n-html="body_context_engineering.body_context_engineering_2">How I save 38% on LLM tokens</h1>
+            <p class="subtitle" data-i18n-html="body_context_engineering.body_context_engineering_3">A context engineering methodology applied across 16M+ tokens of real production workloads. Not theory, measured results.</p>
         </header>
 
         <div class="stats-bar">
             <div class="stat">
                 <div class="stat-num" id="live-tokens">16,000,000</div>
-                <div class="stat-label">Tokens processed</div>
+                <div class="stat-label" data-i18n-html="body_context_engineering.body_context_engineering_4">Tokens processed</div>
             </div>
             <div class="stat">
                 <div class="stat-num">38%</div>
-                <div class="stat-label">Token savings</div>
+                <div class="stat-label" data-i18n-html="body_context_engineering.body_context_engineering_5">Token savings</div>
             </div>
             <div class="stat">
                 <div class="stat-num">~6.1M</div>
-                <div class="stat-label">Tokens avoided</div>
+                <div class="stat-label" data-i18n-html="body_context_engineering.body_context_engineering_6">Tokens avoided</div>
             </div>
         </div>
 
         <section>
-            <h2><span class="num">01</span> The problem</h2>
-            <p>Most LLM-powered systems treat context as unlimited. They dump full documents, conversation history, and tool outputs into prompts without measuring cost or relevance. The result: token burn, degraded accuracy from context pollution, and unpredictable latency.</p>
-            <p>Working across enterprise deployments at Kariyer.net across Sales, Finance and R&D, I needed a systematic approach to context that scales.</p>
+            <h2 data-i18n-html="body_context_engineering.body_context_engineering_7"><span class="num">01</span> The problem</h2>
+            <p data-i18n-html="body_context_engineering.body_context_engineering_8">Most LLM-powered systems treat context as unlimited. They dump full documents, conversation history, and tool outputs into prompts without measuring cost or relevance. The result: token burn, degraded accuracy from context pollution, and unpredictable latency.</p>
+            <p data-i18n-html="body_context_engineering.body_context_engineering_9">Working across enterprise deployments at Kariyer.net across Sales, Finance and R&D, I needed a systematic approach to context that scales.</p>
         </section>
 
         <section>
-            <h2><span class="num">02</span> The methodology</h2>
-            <p>Five principles, applied together as a system:</p>
+            <h2 data-i18n-html="body_context_engineering.body_context_engineering_10"><span class="num">02</span> The methodology</h2>
+            <p data-i18n-html="body_context_engineering.body_context_engineering_11">Five principles, applied together as a system:</p>
 
             <div class="principle-grid">
                 <div class="principle-card">
-                    <h3>Right context engineering</h3>
-                    <p>Select only the context that directly serves the current task. Score relevance, filter aggressively, and validate that every token in the window earns its place.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_12">Right context engineering</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_13">Select only the context that directly serves the current task. Score relevance, filter aggressively, and validate that every token in the window earns its place.</p>
                 </div>
                 <div class="principle-card">
-                    <h3>On-time compaction</h3>
-                    <p>Compress conversation history and intermediate outputs before they accumulate. Summarize completed reasoning chains. Retain decisions, discard derivations.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_14">On-time compaction</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_15">Compress conversation history and intermediate outputs before they accumulate. Summarize completed reasoning chains. Retain decisions, discard derivations.</p>
                 </div>
                 <div class="principle-card">
-                    <h3>Context pollution control</h3>
-                    <p>Prevent irrelevant tool outputs, stale cache entries, and redundant instructions from entering the context window. Gate every injection point.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_16">Context pollution control</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_17">Prevent irrelevant tool outputs, stale cache entries, and redundant instructions from entering the context window. Gate every injection point.</p>
                 </div>
                 <div class="principle-card">
-                    <h3>Incremental context management</h3>
-                    <p>Build context progressively rather than loading everything upfront. Start minimal, expand as needed, compact as you go. Match context lifecycle to task lifecycle.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_18">Incremental context management</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_19">Build context progressively rather than loading everything upfront. Start minimal, expand as needed, compact as you go. Match context lifecycle to task lifecycle.</p>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2><span class="num">03</span> The infrastructure layer</h2>
-            <p>Methodology alone isn't enough. You need supporting infrastructure that makes these principles the default, not an afterthought:</p>
+            <h2 data-i18n-html="body_context_engineering.body_context_engineering_20"><span class="num">03</span> The infrastructure layer</h2>
+            <p data-i18n-html="body_context_engineering.body_context_engineering_21">Methodology alone isn't enough. You need supporting infrastructure that makes these principles the default, not an afterthought:</p>
 
             <div class="principle-grid">
                 <div class="principle-card">
-                    <h3>Clean knowledge base</h3>
-                    <p>Curated, deduplicated, and version-controlled data sources. No stale documents. No conflicting definitions. Every fact traceable to a source.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_22">Clean knowledge base</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_23">Curated, deduplicated, and version-controlled data sources. No stale documents. No conflicting definitions. Every fact traceable to a source.</p>
                 </div>
                 <div class="principle-card">
-                    <h3>Glossary as contract</h3>
-                    <p>A shared vocabulary across agents, tools, and humans. Eliminates ambiguity in multi-agent handoffs. Reduces re-explanation tokens to near-zero.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_24">Glossary as contract</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_25">A shared vocabulary across agents, tools, and humans. Eliminates ambiguity in multi-agent handoffs. Reduces re-explanation tokens to near-zero.</p>
                 </div>
                 <div class="principle-card">
-                    <h3>Wiki as ground truth</h3>
-                    <p>Structured organizational knowledge accessible to agents via RAG. Maintained like code: PRs, reviews, deprecation cycles. Not a document dump.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_26">Wiki as ground truth</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_27">Structured organizational knowledge accessible to agents via RAG. Maintained like code: PRs, reviews, deprecation cycles. Not a document dump.</p>
                 </div>
                 <div class="principle-card">
-                    <h3>Context as graph</h3>
-                    <p>Model relationships between entities, decisions, and documents as a graph. Agents traverse edges to find relevant context instead of scanning flat text.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_28">Context as graph</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_29">Model relationships between entities, decisions, and documents as a graph. Agents traverse edges to find relevant context instead of scanning flat text.</p>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2><span class="num">04</span> Context as a graph</h2>
-            <p>The core insight: context isn't a flat window, it's a connected graph. Each node carries meaning, each edge carries relevance. Agents navigate the graph to assemble exactly the right context for each step.</p>
+            <h2 data-i18n-html="body_context_engineering.body_context_engineering_30"><span class="num">04</span> Context as a graph</h2>
+            <p data-i18n-html="body_context_engineering.body_context_engineering_31">The core insight: context isn't a flat window, it's a connected graph. Each node carries meaning, each edge carries relevance. Agents navigate the graph to assemble exactly the right context for each step.</p>
 
             <div class="graph-container">
                 <svg viewBox="0 0 560 320" fill="none">
@@ -594,37 +594,37 @@
                     <text x="170" y="240" font-size="7" fill="var(--text-muted)" font-family="monospace" opacity="0.5">summarized</text>
                 </svg>
             </div>
-            <div class="pill-row">
+            <div class="pill-row" data-i18n-html="body_context_engineering.body_context_engineering_32">
                 <span>Knowledge base</span><span>Glossary</span><span>Wiki</span><span>Tool outputs</span><span>History</span><span>Cache</span><span>Relevance scoring</span><span>Graph traversal</span>
             </div>
         </section>
 
         <section>
-            <h2><span class="num">05</span> Results</h2>
-            <p>Applied across enterprise LLM deployments at Kariyer.net (100+ internal users), this methodology delivers:</p>
+            <h2 data-i18n-html="body_context_engineering.body_context_engineering_33"><span class="num">05</span> Results</h2>
+            <p data-i18n-html="body_context_engineering.body_context_engineering_34">Applied across enterprise LLM deployments at Kariyer.net (100+ internal users), this methodology delivers:</p>
             <div class="principle-grid">
                 <div class="principle-card">
-                    <h3>38% token reduction</h3>
-                    <p>Measured across 16M+ tokens of production workloads. Not cherry-picked benchmarks. Real queries, real users, real cost savings.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_35">38% token reduction</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_36">Measured across 16M+ tokens of production workloads. Not cherry-picked benchmarks. Real queries, real users, real cost savings.</p>
                 </div>
                 <div class="principle-card">
-                    <h3>Higher factual accuracy</h3>
-                    <p>Less context pollution means fewer hallucinations. Agents work with relevant, curated context instead of noisy document dumps.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_37">Higher factual accuracy</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_38">Less context pollution means fewer hallucinations. Agents work with relevant, curated context instead of noisy document dumps.</p>
                 </div>
                 <div class="principle-card">
-                    <h3>Predictable latency</h3>
-                    <p>Smaller, targeted context windows mean faster inference. No surprises from bloated prompts hitting rate limits.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_39">Predictable latency</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_40">Smaller, targeted context windows mean faster inference. No surprises from bloated prompts hitting rate limits.</p>
                 </div>
                 <div class="principle-card">
-                    <h3>Reproducible framework</h3>
-                    <p>Adopted as organizational standard. Documented in <a href="https://tokalator.wiki">Tokalator</a> and published at <a href="https://arxiv.org/abs/2604.08290">arXiv:2604.08290</a>.</p>
+                    <h3 data-i18n-html="body_context_engineering.body_context_engineering_41">Reproducible framework</h3>
+                    <p data-i18n-html="body_context_engineering.body_context_engineering_42">Adopted as organizational standard. Documented in <a href="https://tokalator.wiki">Tokalator</a> and published at <a href="https://arxiv.org/abs/2604.08290">arXiv:2604.08290</a>.</p>
                 </div>
             </div>
         </section>
 
         <section>
-            <h2><span class="num">06</span> Try it: abacus simulator</h2>
-            <p>Paste any prompt or text below. The abacus counts tokens (estimated) and shows what context engineering saves at 38% efficiency.</p>
+            <h2 data-i18n-html="body_context_engineering.body_context_engineering_43"><span class="num">06</span> Try it: abacus simulator</h2>
+            <p data-i18n-html="body_context_engineering.body_context_engineering_44">Paste any prompt or text below. The abacus counts tokens (estimated) and shows what context engineering saves at 38% efficiency.</p>
 
             <div class="abacus-box">
                 <textarea class="abacus-input" id="abacus-input" placeholder="Paste your prompt, system message, or any text here..."></textarea>
@@ -632,25 +632,25 @@
                 <div class="abacus-readout">
                     <div class="abacus-stat">
                         <div class="abacus-stat-num accent" id="ab-raw">0</div>
-                        <div class="abacus-stat-label">Raw tokens</div>
+                        <div class="abacus-stat-label" data-i18n-html="body_context_engineering.body_context_engineering_45">Raw tokens</div>
                     </div>
                     <div class="abacus-stat">
                         <div class="abacus-stat-num green" id="ab-optimized">0</div>
-                        <div class="abacus-stat-label">After optimization</div>
+                        <div class="abacus-stat-label" data-i18n-html="body_context_engineering.body_context_engineering_46">After optimization</div>
                     </div>
                     <div class="abacus-stat">
                         <div class="abacus-stat-num green" id="ab-saved">0</div>
-                        <div class="abacus-stat-label">Tokens saved</div>
+                        <div class="abacus-stat-label" data-i18n-html="body_context_engineering.body_context_engineering_47">Tokens saved</div>
                     </div>
                     <div class="abacus-stat">
                         <div class="abacus-stat-num" id="ab-cost" style="color:var(--text-secondary)">$0.000</div>
-                        <div class="abacus-stat-label">Cost saved (GPT-4o)</div>
+                        <div class="abacus-stat-label" data-i18n-html="body_context_engineering.body_context_engineering_48">Cost saved (GPT-4o)</div>
                     </div>
                 </div>
 
                 <div class="abacus-visual" id="abacus-visual">
                     <div class="abacus-rod">
-                        <div class="abacus-rod-label">Raw</div>
+                        <div class="abacus-rod-label" data-i18n-html="body_context_engineering.abacus_visual_1">Raw</div>
                         <div class="abacus-rod-track">
                             <div class="abacus-rod-fill" id="ab-bar-raw" style="width:0%; background:var(--accent);"></div>
                             <div class="abacus-rod-beads" id="ab-beads-raw" style="left:0%;"></div>
@@ -658,7 +658,7 @@
                         </div>
                     </div>
                     <div class="abacus-rod">
-                        <div class="abacus-rod-label">Optimized</div>
+                        <div class="abacus-rod-label" data-i18n-html="body_context_engineering.abacus_visual_2">Optimized</div>
                         <div class="abacus-rod-track">
                             <div class="abacus-rod-fill" id="ab-bar-opt" style="width:0%; background:#16a34a;"></div>
                             <div class="abacus-rod-beads" id="ab-beads-opt" style="left:0%;"></div>
@@ -666,7 +666,7 @@
                         </div>
                     </div>
                     <div class="abacus-rod">
-                        <div class="abacus-rod-label">Saved</div>
+                        <div class="abacus-rod-label" data-i18n-html="body_context_engineering.abacus_visual_3">Saved</div>
                         <div class="abacus-rod-track">
                             <div class="abacus-rod-fill" id="ab-bar-saved" style="width:0%; background:var(--accent); opacity:0.3;"></div>
                             <div class="abacus-rod-beads" id="ab-beads-saved" style="left:0%;"></div>
@@ -674,15 +674,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="abacus-legend">
+                <div class="abacus-legend" data-i18n-html="body_context_engineering.body_context_engineering_49">
                     <span><span class="legend-dot" style="background:var(--accent);"></span> Raw tokens</span>
                     <span><span class="legend-dot" style="background:#16a34a;"></span> After context engineering</span>
                     <span><span class="legend-dot" style="background:var(--accent); opacity:0.3;"></span> Tokens saved</span>
                 </div>
             </div>
 
-            <p style="margin-top:1rem; font-size:0.8125rem;">For production-grade token counting, use <a href="https://tokalator.wiki">Tokalator</a>, the open-source VS Code extension with real-time budgeting, tab relevance scoring, and multi-model cost comparison. 500+ installs.</p>
-            <div class="pill-row">
+            <p style="margin-top:1rem; font-size:0.8125rem;" data-i18n-html="body_context_engineering.body_context_engineering_50">For production-grade token counting, use <a href="https://tokalator.wiki">Tokalator</a>, the open-source VS Code extension with real-time budgeting, tab relevance scoring, and multi-model cost comparison. 500+ installs.</p>
+            <div class="pill-row" data-i18n-html="body_context_engineering.body_context_engineering_51">
                 <span>VS Code</span><span>TypeScript</span><span>Token budgeting</span><span>Relevance scoring</span><span>Open source</span>
             </div>
         </section>
@@ -702,18 +702,18 @@
                     <circle class="bead bead-5" cx="34" cy="26" r="3.5" fill="var(--accent)" opacity="0.5"/>
                     <circle class="bead bead-6" cx="30" cy="36" r="3.5" fill="var(--accent)" opacity="0.6"/>
                 </svg>
-                    <span class="footer-name">Vahid Faraji</span>
+                    <span class="footer-name" data-i18n-html="body_context_engineering.footer_mark_1">Vahid Faraji</span>
                     <span class="footer-dot">/</span>
-                    <span class="footer-role">Applied AI</span>
+                    <span class="footer-role" data-i18n-html="body_context_engineering.footer_mark_2">Applied AI</span>
                 </div>
                 <nav class="footer-nav">
-                    <a href="index.html">Portfolio</a>
-                    <a href="index.html#publications">Publications</a>
-                    <a href="index.html#work">Work</a>
-                    <a href="updates.html">Updates</a>
+                    <a href="index.html" data-i18n-html="body_context_engineering.footer_1">Portfolio</a>
+                    <a href="index.html#publications" data-i18n-html="body_context_engineering.footer_2">Publications</a>
+                    <a href="index.html#work" data-i18n-html="body_context_engineering.footer_3">Work</a>
+                    <a href="updates.html" data-i18n-html="body_context_engineering.footer_4">Updates</a>
                 </nav>
             </div>
-            <div class="footer-meta">
+            <div class="footer-meta" data-i18n-html="body_context_engineering.footer_5">
                 <span>Last updated <time datetime="2026-08">2026.08</time></span>
                 <span class="footer-meta-sep">&middot;</span>
                 <span>Istanbul, T&uuml;rkiye</span>
@@ -853,5 +853,6 @@
         window.addEventListener('pageshow', function (e) { if (e.persisted) hide(); });
     })();
     </script>
+    <script src="assets/brand/i18n.js" defer></script>
 </body>
 </html>

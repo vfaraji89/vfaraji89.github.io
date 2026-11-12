@@ -18,7 +18,7 @@
  "sheet_about": "About",
  "sheet_updates": "Updates",
  "sheet_lang": "Language",
- "lang_note": "Case studies, papers and updates stay in English for now.",
+ "lang_note": "The agent answers in English, and the evals test cases and the film's chapter marks stay in English.",
  "consent_ask": "One cookie to count visits?",
  "consent_title": "Google Analytics, only to count visits. No ads, no tracking across sites.",
  "consent_yes": "Sure",

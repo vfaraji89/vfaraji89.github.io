@@ -14,8 +14,8 @@
  "tk7": "<mark>エージェント型システム</mark>に取り組んでいます。",
  "tk8": "<mark>エージェントの実行基盤</mark>を構築します。",
  "tk9": "<mark>評価（evals）</mark>で確かめてからリリースします。",
- "bio_three": "<span><b class=\"b-roi\">ROI</b>を最大に。</span><span><b class=\"b-cost\">コスト</b>を最小に。</span>",
- "bio_three_aria": "ROIを最大に。コストを最小に。",
+ "bio_three": "<span><b class=\"b-roi\">ROI</b>は最大に。</span><span><b class=\"b-cost\">コスト</b>は最小に。</span>",
+ "bio_three_aria": "ROIは最大に。コストは最小に。",
  "bio_text": "チームが日々の業務で使う<strong>ワークフロー、データパイプライン、エージェント</strong>を構築しています。仕様を書き、エージェントが使うツールをつくり、本当に役立っているかを測定します。大切にしているのは<mark>デモより証拠</mark>です。",
  "hf_k": "採用ご担当者様へ",
  "hf_b": "採用をご検討中ですか？　ポジションとの適合度をご確認ください",
@@ -51,6 +51,6 @@
   "tk8": "'エージェントの実行基盤' for agent harnesses; alternative 'エージェントハーネス'.",
   "tk9": "'評価（evals）で確かめてからリリースします' is a free rendering of 'ships with evals'.",
   "sec_story": "'一貫したテーマ' for Through-line.",
-  "bio_three": "'ROIを最大に。コストを最小に。' kept as two short noun phrases."
+  "bio_three": "'は' makes it a statement about the work ('ROI at its highest, cost at its lowest'), not an instruction."
  }
 }

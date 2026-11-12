@@ -1,6 +1,6 @@
 /* Fit check: an instrument, not a form. Live tray, a fit dial, a coverage
    matrix, requirement rods and a floating dock. Motion ~0.5s, springy. */
-:root { --fx-spring: cubic-bezier(0.34, 1.56, 0.64, 1); --fx-out: cubic-bezier(0.22, 1, 0.36, 1); --fx-partial: #6e6e73; }
+:root { --fx-spring: cubic-bezier(0.22, 1, 0.36, 1); --fx-out: cubic-bezier(0.22, 1, 0.36, 1); --fx-partial: #6e6e73; }
 
 .fx-head { padding: 2.75rem 0 1.25rem; }
 .fx-head h1 { font-family: var(--font-display); font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; color: var(--ink); }
@@ -150,7 +150,7 @@ a.fx-c:hover { background: var(--paper); text-decoration: none; }
 .fx-badges a:hover { border-color: var(--rust); text-decoration: none; }
 .fx-badges svg { width: 1.1rem; height: 1.1rem; color: var(--rust); }
 
-@keyframes fx-pop { 0% { opacity: 0; transform: scale(0.5); } 70% { opacity: 1; transform: scale(1.1); } 100% { opacity: 1; transform: none; } }
+@keyframes fx-pop { 0% { opacity: 0; transform: scale(0.9); filter: blur(3px); } 100% { opacity: 1; transform: none; filter: none; } }
 @keyframes fx-rise { 0% { opacity: 0; transform: translateY(14px) scale(0.97); } 100% { opacity: 1; transform: none; } }
 @keyframes fx-draw { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
 @keyframes fx-slide { to { opacity: 1; transform: none; } }

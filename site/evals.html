@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-i18n-files="body_evals">
 <head>
     <meta charset="UTF-8">
     <meta name="color-scheme" content="light">
@@ -80,7 +80,7 @@
                     <circle class="bead b-2" cx="15.5" cy="12" r="1.9" fill="var(--ink)"/>
                     <circle class="bead b-3" cx="9" cy="16" r="1.9" fill="var(--ink)"/>
                 </svg>
-                <span class="brand-name">Vahid Faraji<span class="name-bead" aria-hidden="true"></span></span>
+                <span class="brand-name" data-i18n-html="body_evals.site_header_1">Vahid Faraji<span class="name-bead" aria-hidden="true"></span></span>
             </a>
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html#work"><span data-i18n="common.nav_work">Work</span></a></li>
@@ -100,31 +100,31 @@
                 <a class="sheet-dup" href="index.html#publications"><bdi data-i18n="common.sheet_research">Research</bdi></a>
                 <a class="sheet-dup" href="index.html#experience"><bdi data-i18n="common.sheet_about">About</bdi></a>
                 <a class="sheet-dup" href="updates.html"><bdi data-i18n="common.sheet_updates">Updates</bdi></a>
-                <div class="sheet-lang"><span class="sheet-lang-k" data-i18n="common.sheet_lang">Language</span><div class="lang-beads" data-lang-switch role="group" aria-label="Language"></div><p class="lang-note" hidden data-i18n="common.lang_note">Case studies, papers and updates stay in English for now.</p></div>
+                <div class="sheet-lang"><span class="sheet-lang-k" data-i18n="common.sheet_lang">Language</span><div class="lang-beads" data-lang-switch role="group" aria-label="Language"></div><p class="lang-note" hidden data-i18n="common.lang_note">The agent answers in English, and the evals test cases and the film's chapter marks stay in English.</p></div>
             </div>
         </div>
     </header>
 
     <main class="container">
         <header class="page-head">
-            <p class="eyebrow">Evals &middot; run on every deploy</p>
-            <h1>The tests behind <mark>the agent</mark><span class="bead-stop">.</span></h1>
-            <p class="lede">I tell teams to ship evals with every AI feature. These are the ones for this site&rsquo;s corner agent and fit check: what they check, every case, and whether the latest run passed. The deploy stops if a score drops below its threshold.</p>
+            <p class="eyebrow" data-i18n-html="body_evals.body_evals_1">Evals &middot; run on every deploy</p>
+            <h1 data-i18n-html="body_evals.body_evals_2">The tests behind <mark>the agent</mark><span class="bead-stop">.</span></h1>
+            <p class="lede" data-i18n-html="body_evals.body_evals_3">I tell teams to ship evals with every AI feature. These are the ones for this site&rsquo;s corner agent and fit check: what they check, every case, and whether the latest run passed. The deploy stops if a score drops below its threshold.</p>
         </header>
 
         <div class="tiles" id="tiles"></div>
         <p class="runline" id="runline">Loading the latest run&hellip;</p>
         <svg class="spark" id="spark" viewBox="0 0 600 56" preserveAspectRatio="none" aria-hidden="true"></svg>
 
-        <h2 class="sec-h">What is measured</h2>
-        <p class="sec-p"><b>Answers:</b> the question must be answered and cite at least one expected piece of evidence. <b>Abstains:</b> questions the evidence cannot answer must get &ldquo;no evidence&rdquo;, not a guess. <b>Fit labels:</b> each skill in six sample job descriptions must be scored strong, partial or gap as expected. <b>Held-out:</b> ten questions written after the first tuning round. Later ranking fixes were checked against them too, so treat that score as optimistic. <b>Links:</b> every piece of evidence points at something that exists.</p>
+        <h2 class="sec-h" data-i18n-html="body_evals.body_evals_4">What is measured</h2>
+        <p class="sec-p" data-i18n-html="body_evals.body_evals_5"><b>Answers:</b> the question must be answered and cite at least one expected piece of evidence. <b>Abstains:</b> questions the evidence cannot answer must get &ldquo;no evidence&rdquo;, not a guess. <b>Fit labels:</b> each skill in six sample job descriptions must be scored strong, partial or gap as expected. <b>Held-out:</b> ten questions written after the first tuning round. Later ranking fixes were checked against them too, so treat that score as optimistic. <b>Links:</b> every piece of evidence points at something that exists.</p>
         <div class="note-box" id="limits">What it does not measure yet: how well Claude writes, since that needs the live endpoint. When it is switched on, <code>node tools/evals/run.mjs --live &lt;url&gt;</code> scores it on the same questions, with cost per answer, and the results appear below.</div>
 
-        <h2 class="sec-h">Ask: every question</h2>
-        <div class="tbl-wrap"><table class="cases" id="ask-table"><thead><tr><th>Result</th><th>Question</th><th>Why</th></tr></thead><tbody></tbody></table></div>
+        <h2 class="sec-h" data-i18n-html="body_evals.body_evals_6">Ask: every question</h2>
+        <div class="tbl-wrap"><table class="cases" id="ask-table"><thead><tr><th data-i18n-html="body_evals.body_evals_7">Result</th><th data-i18n-html="body_evals.body_evals_8">Question</th><th data-i18n-html="body_evals.body_evals_9">Why</th></tr></thead><tbody></tbody></table></div>
 
-        <h2 class="sec-h">Fit brief: every label</h2>
-        <div class="tbl-wrap"><table class="cases" id="fit-table"><thead><tr><th>Result</th><th>Job description</th><th>Skill</th><th>Expected</th><th>Got</th></tr></thead><tbody></tbody></table></div>
+        <h2 class="sec-h" data-i18n-html="body_evals.body_evals_10">Fit brief: every label</h2>
+        <div class="tbl-wrap"><table class="cases" id="fit-table"><thead><tr><th data-i18n-html="body_evals.body_evals_11">Result</th><th data-i18n-html="body_evals.body_evals_12">Job description</th><th data-i18n-html="body_evals.body_evals_13">Skill</th><th data-i18n-html="body_evals.body_evals_14">Expected</th><th data-i18n-html="body_evals.body_evals_15">Got</th></tr></thead><tbody></tbody></table></div>
 
         <h2 class="sec-h" id="live-h" hidden>Claude endpoint</h2>
         <div id="live"></div>
@@ -144,21 +144,21 @@
                     <circle class="bead bead-5" cx="34" cy="26" r="3.5" fill="var(--accent)" opacity="0.5"/>
                     <circle class="bead bead-6" cx="30" cy="36" r="3.5" fill="var(--accent)" opacity="0.6"/>
                 </svg>
-                    <span class="footer-name">Vahid Faraji</span>
+                    <span class="footer-name" data-i18n-html="body_evals.footer_mark_1">Vahid Faraji</span>
                     <span class="footer-dot">/</span>
-                    <span class="footer-role">Applied AI</span>
+                    <span class="footer-role" data-i18n-html="body_evals.footer_mark_2">Applied AI</span>
                 </div>
                 <nav class="footer-nav">
-                    <a href="index.html">Portfolio</a>
-                    <a href="index.html#publications">Publications</a>
-                    <a href="index.html#work">Work</a>
-                    <a href="fit.html">Fit check</a>
-                    <a href="evals.html">Evals</a>
-                    <a href="context-engineering.html">Context Engineering</a>
-                    <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+                    <a href="index.html" data-i18n-html="body_evals.footer_1">Portfolio</a>
+                    <a href="index.html#publications" data-i18n-html="body_evals.footer_2">Publications</a>
+                    <a href="index.html#work" data-i18n-html="body_evals.footer_3">Work</a>
+                    <a href="fit.html" data-i18n-html="body_evals.footer_4">Fit check</a>
+                    <a href="evals.html" data-i18n-html="body_evals.footer_5">Evals</a>
+                    <a href="context-engineering.html" data-i18n-html="body_evals.footer_6">Context Engineering</a>
+                    <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" data-i18n-html="body_evals.footer_7">CV (PDF)</a>
                 </nav>
             </div>
-            <div class="footer-meta">
+            <div class="footer-meta" data-i18n-html="body_evals.footer_8">
                 <span>Last updated <time datetime="2026-11">2026.11</time></span>
                 <span class="footer-meta-sep">&middot;</span>
                 <span>Istanbul, T&uuml;rkiye</span>
