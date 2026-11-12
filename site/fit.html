@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-i18n-files="fit">
 <head>
     <meta charset="UTF-8">
     <meta name="color-scheme" content="light">
@@ -67,6 +67,8 @@
     <script src="assets/ask/widget.js" defer></script>
     <link rel="stylesheet" href="assets/brand/pop.css">
     <script src="assets/brand/pop.js" defer></script>
+    <link rel="stylesheet" href="assets/brand/menu.css">
+    <script src="assets/brand/i18n.js" defer></script>
 </head>
 <body>
     <div class="load-bar" id="load-bar" aria-hidden="true"><span></span></div>
@@ -84,35 +86,36 @@
                 <span class="brand-name">Vahid Faraji<span class="name-bead" aria-hidden="true"></span></span>
             </a>
             <ul class="nav-links" id="nav-links">
-                <li><a href="index.html#work">Work</a></li>
-                <li><a href="index.html#publications">Research</a></li>
-                <li><a href="index.html#experience" data-also="#skills #about #story #engage">About</a></li>
-                <li><a href="updates.html">Updates</a></li>
+                <li><a href="index.html#work"><span data-i18n="common.nav_work">Work</span></a></li>
+                <li><a href="index.html#publications"><span data-i18n="common.nav_research">Research</span></a></li>
+                <li><a href="index.html#experience" data-also="#skills #about #story #engage"><span data-i18n="common.nav_about">About</span></a></li>
+                <li><a href="updates.html"><span data-i18n="common.nav_updates">Updates</span></a></li>
             </ul>
             <div class="nav-actions">
-                <a href="fit.html" class="nav-fit" aria-current="page" title="Hiring? Paste your job description and see every requirement scored" aria-label="Fit check: paste a job description, see every requirement scored"><svg class="fit-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5.5 2.75h9l3.75 3.75v6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 2.75v18.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8.5h7M8 12.5h7M8 16.5h3.5" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.1" stroke-linecap="round"/><circle class="fb fb-1" cx="9.25" cy="8.5" r="1.55" fill="currentColor"/><circle class="fb fb-2" cx="11.5" cy="12.5" r="1.55" fill="currentColor"/><circle cx="17.75" cy="17.75" r="4" fill="var(--rust, #e0301e)"/><path d="M15.9 17.8l1.3 1.3 2.5-2.7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nf-text"><span class="nf-word">Fit </span><span class="nf-long">check</span></span></a>
-                <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="nav-btn-ghost" aria-label="Download CV (PDF)">CV <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg></a>
-                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="nav-btn-solid"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
-                <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-sheet"><span></span><span></span></button>
+                <a href="fit.html" class="nav-fit" aria-current="page" title="Hiring? Paste your job description and see every requirement scored" aria-label="Fit check: paste a job description, see every requirement scored" data-i18n-attr="title:common.fit_title;aria-label:common.fit_aria"><svg class="fit-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5.5 2.75h9l3.75 3.75v6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 2.75v18.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8.5h7M8 12.5h7M8 16.5h3.5" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.1" stroke-linecap="round"/><circle class="fb fb-1" cx="9.25" cy="8.5" r="1.55" fill="currentColor"/><circle class="fb fb-2" cx="11.5" cy="12.5" r="1.55" fill="currentColor"/><circle cx="17.75" cy="17.75" r="4" fill="var(--rust, #e0301e)"/><path d="M15.9 17.8l1.3 1.3 2.5-2.7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nf-text"><span class="nf-word" data-i18n="common.fit_word">Fit </span><span class="nf-long" data-i18n="common.fit_long">check</span></span></a>
+                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="nav-btn-solid"><span class="live-bead" aria-hidden="true"></span><span data-i18n="common.book">Book a call</span></a>
+                <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-sheet"><svg class="mt-ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="mt-rod r1" d="M4.5 8.5h15"/><path class="mt-rod r2" d="M4.5 15.5h15"/><circle class="mt-bead k1" cx="7.5" cy="8.5" r="2.4"/><circle class="mt-bead k2" cx="16.5" cy="15.5" r="2.4"/></svg><b class="mt-lang" aria-hidden="true">a</b></button>
             </div>
         </nav>
         <div class="nav-sheet" id="nav-sheet">
             <div class="container">
-                <a href="fit.html" class="sheet-fit">Fit check <span>Hiring? Paste your role</span></a>
-                <a href="index.html#work">Work <span>Case studies</span></a>
-                <a href="index.html#publications">Research <span>ACM · arXiv</span></a>
-                <a href="index.html#experience">About <span>Experience, skills, background</span></a>
-                <a href="updates.html">Updates <span>Notes</span></a>
-                <a href="#ask" data-ask="">Vahid’s agent <span>Ask anything, sources shown</span></a>
-                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener">Book a call <span>Google Calendar</span></a>
+                <a href="fit.html" class="sheet-fit"><bdi data-i18n="common.sheet_fit">Fit check</bdi> <span data-i18n="common.sheet_fit_sub">Hiring? Paste your role</span></a>
+                <a class="sheet-dup" href="index.html#work"><bdi data-i18n="common.sheet_work">Work</bdi> <span data-i18n="common.sheet_work_sub">Case studies</span></a>
+                <a class="sheet-dup" href="index.html#publications"><bdi data-i18n="common.sheet_research">Research</bdi> <span data-i18n="common.sheet_research_sub">ACM · arXiv</span></a>
+                <a class="sheet-dup" href="index.html#experience"><bdi data-i18n="common.sheet_about">About</bdi> <span data-i18n="common.sheet_about_sub">Experience, skills, background</span></a>
+                <a class="sheet-dup" href="updates.html"><bdi data-i18n="common.sheet_updates">Updates</bdi> <span data-i18n="common.sheet_updates_sub">Notes</span></a>
+                <a href="#ask" data-ask=""><bdi data-i18n="common.sheet_agent">Vahid’s agent</bdi> <span data-i18n="common.sheet_agent_sub">Ask anything, sources shown</span></a>
+                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener"><bdi data-i18n="common.sheet_book">Book a call</bdi> <span data-i18n="common.sheet_book_sub">Google Calendar</span></a>
+                <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" class="sheet-cv"><bdi data-i18n="common.sheet_cv">CV</bdi> <span><bdi data-i18n="common.sheet_cv_sub">PDF, in English</bdi><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg></span></a>
+                <div class="sheet-lang"><span class="sheet-lang-k" data-i18n="common.sheet_lang">Language</span><div class="lang-beads" data-lang-switch role="group" aria-label="Language"></div><p class="lang-note" hidden data-i18n="common.lang_note">Case studies, papers and updates stay in English for now.</p></div>
             </div>
         </div>
     </header>
 
     <main class="container">
         <header class="fx-head">
-            <p class="eyebrow">Fit check &middot; for hiring teams</p>
-            <h1>Paste the role. <mark>See the fit</mark><span class="bead-stop">.</span></h1>
+            <p class="eyebrow" data-i18n="fit.eyebrow">Fit check · for hiring teams</p>
+            <h1 data-i18n-html="fit.h1">Paste the role. <mark>See the fit</mark><span class="bead-stop">.</span></h1>
         </header>
 
         <section class="fx" id="panel-fit" aria-label="Fit check">
@@ -120,13 +123,13 @@
                 <div>
                     <div class="fx-in">
                         <label class="sr-only" for="fit-input">Job description</label>
-                        <textarea id="fit-input" maxlength="12000" placeholder="Paste a job description&hellip;" spellcheck="false"></textarea>
-                        <div class="fx-tray" id="fx-tray" aria-live="polite" aria-label="Skills found"></div>
+                        <textarea id="fit-input" maxlength="12000" placeholder="Paste a job description…" data-i18n-attr="placeholder:fit.placeholder" spellcheck="false"></textarea>
+                        <div class="fx-tray" id="fx-tray" aria-live="polite" aria-label="Skills found" data-empty="Skills appear here as you paste" data-i18n-attr="data-empty:fit.tray_empty;aria-label:fit.tray_aria"></div>
                     </div>
                     <div class="fx-samples" role="group" aria-label="Try a sample role">
-                        <button type="button" class="fx-sample" data-sample="agents" aria-pressed="false"><svg viewBox="0 0 30 30" aria-hidden="true" fill="none"><rect x="1" y="1" width="28" height="28" rx="9" fill="#fff6f4"/><circle cx="10" cy="11" r="3" fill="#e0301e"/><circle cx="20" cy="11" r="3" fill="#1c1c1e"/><circle cx="15" cy="20" r="3" fill="#1c1c1e"/><path d="M10 11l5 9 5-9" stroke="#1c1c1e" stroke-opacity=".3"/></svg><span>AI engineer<small>agents · evals</small></span></button>
-                        <button type="button" class="fx-sample" data-sample="architect" aria-pressed="false"><svg viewBox="0 0 30 30" aria-hidden="true" fill="none"><rect x="1" y="1" width="28" height="28" rx="9" fill="#fff6f4"/><rect x="7" y="7" width="16" height="4" rx="2" fill="#e0301e"/><rect x="7" y="13" width="16" height="4" rx="2" fill="#1c1c1e" opacity=".6"/><rect x="7" y="19" width="16" height="4" rx="2" fill="#1c1c1e"/></svg><span>Solutions architect<small>RAG · cloud</small></span></button>
-                        <button type="button" class="fx-sample" data-sample="ml" aria-pressed="false"><svg viewBox="0 0 30 30" aria-hidden="true" fill="none"><rect x="1" y="1" width="28" height="28" rx="9" fill="#fff6f4"/><path d="M7 21c3-9 6-12 8-6s5 3 8-6" stroke="#1c1c1e" stroke-width="2" stroke-linecap="round"/><circle cx="23" cy="9" r="2.5" fill="#e0301e"/></svg><span>ML training<small>fine-tuning · GPUs</small></span></button>
+                        <button type="button" class="fx-sample" data-sample="agents" aria-pressed="false"><svg viewBox="0 0 30 30" aria-hidden="true" fill="none"><rect x="1" y="1" width="28" height="28" rx="9" fill="#fff6f4"/><circle cx="10" cy="11" r="3" fill="#e0301e"/><circle cx="20" cy="11" r="3" fill="#1c1c1e"/><circle cx="15" cy="20" r="3" fill="#1c1c1e"/><path d="M10 11l5 9 5-9" stroke="#1c1c1e" stroke-opacity=".3"/></svg><span><bdi data-i18n="fit.sample_agents">AI engineer</bdi><small data-i18n="fit.sample_agents_sub">agents · evals</small></span></button>
+                        <button type="button" class="fx-sample" data-sample="architect" aria-pressed="false"><svg viewBox="0 0 30 30" aria-hidden="true" fill="none"><rect x="1" y="1" width="28" height="28" rx="9" fill="#fff6f4"/><rect x="7" y="7" width="16" height="4" rx="2" fill="#e0301e"/><rect x="7" y="13" width="16" height="4" rx="2" fill="#1c1c1e" opacity=".6"/><rect x="7" y="19" width="16" height="4" rx="2" fill="#1c1c1e"/></svg><span><bdi data-i18n="fit.sample_architect">Solutions architect</bdi><small data-i18n="fit.sample_architect_sub">RAG · cloud</small></span></button>
+                        <button type="button" class="fx-sample" data-sample="ml" aria-pressed="false"><svg viewBox="0 0 30 30" aria-hidden="true" fill="none"><rect x="1" y="1" width="28" height="28" rx="9" fill="#fff6f4"/><path d="M7 21c3-9 6-12 8-6s5 3 8-6" stroke="#1c1c1e" stroke-width="2" stroke-linecap="round"/><circle cx="23" cy="9" r="2.5" fill="#e0301e"/></svg><span><bdi data-i18n="fit.sample_ml">ML training</bdi><small data-i18n="fit.sample_ml_sub">fine-tuning · GPUs</small></span></button>
                     </div>
                 </div>
                 <div class="fx-dialbox">
@@ -139,11 +142,11 @@
                         </div>
                     </div>
                     <div class="fx-legend" role="group" aria-label="Filter requirements">
-                        <button type="button" class="fx-pill s-strong" data-f="strong" aria-pressed="false" disabled><i></i><b>0</b> strong</button>
-                        <button type="button" class="fx-pill s-partial" data-f="partial" aria-pressed="false" disabled><i></i><b>0</b> partial</button>
-                        <button type="button" class="fx-pill s-gap" data-f="gap" aria-pressed="false" disabled><i></i><b>0</b> gap</button>
+                        <button type="button" class="fx-pill s-strong" data-f="strong" aria-pressed="false" disabled><i></i><b>0</b> <bdi data-i18n="fit.legend_strong">strong</bdi></button>
+                        <button type="button" class="fx-pill s-partial" data-f="partial" aria-pressed="false" disabled><i></i><b>0</b> <bdi data-i18n="fit.legend_partial">partial</bdi></button>
+                        <button type="button" class="fx-pill s-gap" data-f="gap" aria-pressed="false" disabled><i></i><b>0</b> <bdi data-i18n="fit.legend_gap">gap</bdi></button>
                     </div>
-                    <button type="button" class="btn-ghost" id="fx-write" hidden>Write the brief with Claude</button>
+                    <button type="button" class="btn-ghost" id="fx-write" hidden data-i18n="fit.write">Write the brief with Claude</button>
                 </div>
             </div>
             <div class="fx-out" id="fit-out" aria-live="polite"></div>
@@ -151,15 +154,15 @@
 
         <div class="fx-dock" id="fx-dock" role="toolbar" aria-label="Fit brief">
             <span class="mini" aria-label="Fit score"><b>0</b></span>
-            <button type="button" id="fx-copy"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 11V3.5A1.5 1.5 0 014.5 2H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="lbl">Copy</span></button>
+            <button type="button" id="fx-copy"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 11V3.5A1.5 1.5 0 014.5 2H11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span class="lbl" data-i18n="fit.copy">Copy</span></button>
             <a id="fx-dl" download="vahid-faraji-fit-brief.md" href="#"><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1a.75.75 0 01.75.75v7.69l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 011.06-1.06l2.72 2.72V1.75A.75.75 0 018 1zM2.75 13.5h10.5a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5z"/></svg><span class="lbl">.md</span></a>
-            <a class="go" href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener"><span class="live-bead" aria-hidden="true"></span>Book a call</a>
+            <a class="go" href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener"><span class="live-bead" aria-hidden="true"></span><span data-i18n="common.book">Book a call</span></a>
         </div>
 
         <ul class="fx-badges">
-            <li><a href="data/evidence.json"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="3" fill="currentColor"/></svg>Grounded in public evidence</a></li>
-            <li><a href="#fx-reqs"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 3"/></svg>Gaps shown, not hidden</a></li>
-            <li><a href="evals.html"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Tested on every deploy</a></li>
+            <li><a href="data/evidence.json"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="3" fill="currentColor"/></svg><span data-i18n="fit.badge_grounded">Grounded in public evidence</span></a></li>
+            <li><a href="#fx-reqs"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 3"/></svg><span data-i18n="fit.badge_gaps">Gaps shown, not hidden</span></a></li>
+            <li><a href="evals.html"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10.5l3.5 3.5L16 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="fit.badge_tested">Tested on every deploy</span></a></li>
         </ul>
 
         <footer class="site-foot">
@@ -216,7 +219,7 @@
         function setOpen(open) {
             header.classList.toggle('menu-open', open);
             toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-            toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            toggle.setAttribute('aria-label', open ? (window.vfT ? vfT('common.menu_close', 'Close menu') : 'Close menu') : (window.vfT ? vfT('common.menu_open', 'Open menu') : 'Open menu'));
         }
         toggle.addEventListener('click', function () { setOpen(!header.classList.contains('menu-open')); });
         document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
