@@ -44,5 +44,13 @@
  "cta_work": "Çalışmaları gör",
  "cta_research": "Araştırma",
  "cta_engage": "Birlikte çalışalım",
- "cta_time": "Zaman önerin"
+ "cta_time": "Zaman önerin",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "tk2": "'veriye hâkim' (masters data) for 'is fluent in data'.",
+  "tk3": "'yapay zekâ odaklı' for AI-native; alternative keep 'AI-native'.",
+  "tk8": "'ajan altyapıları' for agent harnesses; the other site keeps 'harness' in English.",
+  "bio_three": "'Getiriyi artır. Maliyeti azalt.' uses 'getiri' for ROI; alternative keep 'ROI'.",
+  "sec_story": "'Ortak payda' (common denominator) for Through-line."
+ }
 }

@@ -96,5 +96,17 @@
         });
     }
     function ready(fn) { if (document.readyState !== 'loading') fn(); else document.addEventListener('DOMContentLoaded', fn); }
-    ready(function () { beads(); set(pick(), false); });
+    // The phone menu: size the sheet to the screen under the bar, and hold the page still behind it.
+    function sheet() {
+        var header = document.querySelector('.site-header'), box = document.getElementById('nav-sheet');
+        if (!header || !box) return;
+        function fit() {
+            var open = header.classList.contains('menu-open') && window.innerWidth <= 1200;
+            document.documentElement.classList.toggle('menu-lock', open);
+            if (open) box.style.setProperty('--sheet-h', Math.max(240, window.innerHeight - header.getBoundingClientRect().bottom) + 'px');
+        }
+        new MutationObserver(fit).observe(header, { attributes: true, attributeFilter: ['class'] });
+        window.addEventListener('resize', fit);
+    }
+    ready(function () { beads(); sheet(); set(pick(), false); });
 })();

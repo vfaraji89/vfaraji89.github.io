@@ -9,7 +9,7 @@
  "tray_empty": "Vaardigheden verschijnen hier terwijl je plakt",
  "tray_aria": "Gevonden vaardigheden",
  "sample_agents": "AI-engineer",
- "sample_agents_sub": "agents · evaluaties",
+ "sample_agents_sub": "agents · evals",
  "sample_architect": "Solution-architect",
  "sample_architect_sub": "RAG · cloud",
  "sample_ml": "ML-training",
@@ -48,5 +48,9 @@
  "sec_gaps_sub": "geen bewijs op deze site",
  "rc_rules": "Regels in je browser",
  "rc_calls": "0 modelaanroepen",
- "rc_private": "niets wat je plakt verlaat deze pagina"
+ "rc_private": "niets wat je plakt verlaat deze pagina",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "sample_architect": "'Solution-architect' with a hyphen per Taalunie; job ads often write 'Solution Architect'."
+ }
 }

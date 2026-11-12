@@ -80,3 +80,34 @@ html[lang="ja"] .hero-is mark, html[lang="ja"] h1, html[lang="ja"] h2 { letter-s
 }
 /* Japanese labels need their own line under the number on narrow screens. */
 @media (max-width: 700px) { html[lang="ja"] .proof-strip li { flex-direction: column; align-items: flex-start; gap: 0.15rem; } }
+
+/* Phones and tablets: the menu is a full-height sheet under the bar, not a dropdown list.
+   Only the four sections and the language beads live here; Fit check, booking, the CV and
+   the agent each have their own place in the bar, the hero or the footer. */
+@media (max-width: 1200px) {
+  .site-header.menu-open .nav-sheet { position: absolute; top: 100%; left: 0; right: 0; height: var(--sheet-h, calc(100dvh - 64px)); overflow-y: auto; overscroll-behavior: contain;
+    background: var(--bg, #fff); border-top: 1px solid var(--ctl-line, rgba(28,28,30,0.1)); }
+  .nav-sheet .container { display: flex; flex-direction: column; min-height: 100%; padding-top: 0.75rem; padding-bottom: calc(1.25rem + env(safe-area-inset-bottom)); counter-reset: sheet; }
+  .nav-sheet a.sheet-dup { counter-increment: sheet; display: flex; align-items: baseline; justify-content: flex-start; gap: 0.55rem; padding: 1.05rem 0;
+    font-size: clamp(1.6rem, 7.5vw, 2.25rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1.1; color: var(--ink, #1c1c1e);
+    border-bottom: 1px solid var(--ctl-line, rgba(28,28,30,0.1)); opacity: 0; transform: translateY(10px); }
+  /* the page's link-bead hover is replaced here by a numbered index */
+  .nav-sheet a.sheet-dup::before, .nav-sheet a.sheet-dup:hover::before { content: counter(sheet, decimal-leading-zero); position: static; flex: none; width: 1.5rem; height: auto; margin: 0; border-radius: 0;
+    background: none; box-shadow: none; font: 500 0.72rem/1 var(--font-mono, ui-monospace, monospace); letter-spacing: 0.06em; color: var(--rust, #e0301e); transform: translateY(-0.35em); transition: none; }
+  .nav-sheet a.sheet-dup:hover { padding-left: 0; }
+  .nav-sheet a.sheet-dup::after { content: "\2192"; margin-left: auto; font-size: 1.1rem; font-weight: 400; color: var(--text-muted, #6e6e73); transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s; }
+  .nav-sheet a.sheet-dup:hover::after, .nav-sheet a.sheet-dup:focus-visible::after { transform: translateX(6px); color: var(--rust, #e0301e); }
+  .nav-sheet a.sheet-dup:active { color: var(--rust-deep, #b4200f); }
+  .site-header.menu-open .nav-sheet a.sheet-dup { animation: sheet-row 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+  .site-header.menu-open .nav-sheet a.sheet-dup:nth-child(2) { animation-delay: 0.05s; }
+  .site-header.menu-open .nav-sheet a.sheet-dup:nth-child(3) { animation-delay: 0.1s; }
+  .site-header.menu-open .nav-sheet a.sheet-dup:nth-child(4) { animation-delay: 0.15s; }
+  .nav-sheet .sheet-lang { margin-top: auto; padding-top: 1.75rem; }
+  html.menu-lock, html.menu-lock body { overflow: hidden; }
+  html.menu-lock .vfa, html.menu-lock [role="region"][aria-label="Analytics consent"] { display: none !important; }
+}
+@keyframes sheet-row { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .nav-sheet a.sheet-dup { opacity: 1; transform: none; } .site-header.menu-open .nav-sheet a.sheet-dup { animation: none; } }
+
+/* bar links never wrap onto two lines, whatever the language */
+.nav-links a { white-space: nowrap; }

@@ -21,7 +21,7 @@
  "copy": "Kopyala",
  "copied": "Kopyalandı",
  "copy_failed": "Kopyalanamadı",
- "badge_grounded": "Açık kanıtlara dayalı",
+ "badge_grounded": "Herkese açık kanıtlara dayanır",
  "badge_gaps": "Eksikler gizlenmez, gösterilir",
  "badge_tested": "Her yayında test edilir",
  "st_strong": "Güçlü",
@@ -34,13 +34,13 @@
  "cap_none": "henüz beceri yok",
  "no_ev_site": "Bu sitede kanıt yok",
  "no_ev_here": "burada kanıt yok",
- "none": "Bu metinde kontrol edebileceğim bir beceri bulamadım. Gereklilikler bölümünü (İngilizce) yapıştırın.",
+ "none": "Bu metinde kontrol edebileceğim bir beceri bulamadım. İlanın aranan nitelikler bölümünü (İngilizce) yapıştırın.",
  "sec_coverage": "Kapsam",
- "sec_coverage_sub": "{p} kanıt × {a} gereklilik",
- "ev_aria": "{t}, gerekliliklerden {n} tanesini karşılıyor",
- "cell_on": "{t}, {c} gerekliliğini karşılıyor",
+ "sec_coverage_sub": "{p} kanıt × {a} nitelik",
+ "ev_aria": "{t}, aranan niteliklerden {n} tanesini karşılıyor",
+ "cell_on": "{t} şunu karşılıyor: {c}",
  "cell_off": "karşılanmıyor",
- "sec_reqs": "Gereklilikler",
+ "sec_reqs": "Aranan nitelikler",
  "sec_reqs_sub": "{n} puanlandı",
  "unscored_one": "+ kontrol edilecek beceri içermeyen 1 satır",
  "unscored_many": "+ kontrol edilecek beceri içermeyen {n} satır",
@@ -48,5 +48,10 @@
  "sec_gaps_sub": "bu sitede kanıt yok",
  "rc_rules": "Kurallar tarayıcınızda çalışır",
  "rc_calls": "0 model çağrısı",
- "rc_private": "yapıştırdığınız hiçbir şey bu sayfadan çıkmaz"
+ "rc_private": "yapıştırdığınız hiçbir şey bu sayfadan çıkmaz",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "sec_reqs": "'Aranan nitelikler', the usual Turkish job-ad heading for requirements.",
+  "write": "Button verbs use the plain imperative, as Turkish UIs usually do."
+ }
 }

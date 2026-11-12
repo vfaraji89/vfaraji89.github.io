@@ -35,14 +35,22 @@
  "sec_about_tag": "システムをつくっている人について。",
  "sec_tools": "道具の歴史とともに",
  "jr_title": "そろばんからエージェントへ。",
- "reel_cap": "アニメーション履歴書",
+ "reel_cap": "アニメーションで見る経歴",
  "stat_paper": "査読付き論文",
  "stat_acc": "1万4千件超の職種名でのエージェント精度",
  "stat_installs": "Tokalatorのインストール数",
  "stat_pubs": "論文＋特許出願中",
- "cta_cv": "履歴書をダウンロード",
+ "cta_cv": "レジュメをダウンロード",
  "cta_work": "実績を見る",
  "cta_research": "研究",
  "cta_engage": "協業のご相談",
- "cta_time": "日時を提案"
+ "cta_time": "日時を提案",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "hero_name": "Japanese hero reads 'Vahidは／…しています。' so the name carries the topic particle.",
+  "tk8": "'エージェントの実行基盤' for agent harnesses; alternative 'エージェントハーネス'.",
+  "tk9": "'評価（evals）で確かめてからリリースします' is a free rendering of 'ships with evals'.",
+  "sec_story": "'一貫したテーマ' for Through-line.",
+  "bio_three": "'ROIを最大に。コストを最小に。' kept as two short noun phrases."
+ }
 }

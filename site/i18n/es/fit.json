@@ -9,7 +9,7 @@
  "tray_empty": "Las habilidades aparecen aquí al pegar",
  "tray_aria": "Habilidades encontradas",
  "sample_agents": "Ingeniería de IA",
- "sample_agents_sub": "agentes · evaluaciones",
+ "sample_agents_sub": "agentes · evals",
  "sample_architect": "Arquitectura de soluciones",
  "sample_architect_sub": "RAG · nube",
  "sample_ml": "Entrenamiento de ML",
@@ -48,5 +48,9 @@
  "sec_gaps_sub": "sin evidencia en este sitio",
  "rc_rules": "Reglas en tu navegador",
  "rc_calls": "0 llamadas al modelo",
- "rc_private": "nada de lo que pegues sale de esta página"
+ "rc_private": "nada de lo que pegues sale de esta página",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "legend_gap": "'carencia' for gap; alternative 'hueco' or 'brecha'."
+ }
 }

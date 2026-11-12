@@ -15,22 +15,10 @@
  "book": "Agenda una llamada",
  "menu_open": "Abrir menú",
  "menu_close": "Cerrar menú",
- "sheet_fit": "Comprobar encaje",
- "sheet_fit_sub": "¿Contratando? Pega el puesto",
  "sheet_work": "Trabajo",
- "sheet_work_sub": "Casos de estudio",
  "sheet_research": "Investigación",
- "sheet_research_sub": "ACM · arXiv",
  "sheet_about": "Sobre mí",
- "sheet_about_sub": "Experiencia, habilidades, trayectoria",
  "sheet_updates": "Novedades",
- "sheet_updates_sub": "Notas",
- "sheet_agent": "El agente de Vahid",
- "sheet_agent_sub": "Pregunta lo que quieras, con fuentes",
- "sheet_book": "Agenda una llamada",
- "sheet_book_sub": "Google Calendar",
- "sheet_cv": "Currículum",
- "sheet_cv_sub": "PDF, en inglés",
  "sheet_lang": "Idioma",
  "lang_note": "Los casos de estudio, los artículos y las novedades siguen en inglés por ahora.",
  "consent_ask": "¿Una cookie para contar visitas?",
@@ -38,5 +26,10 @@
  "consent_yes": "Sí",
  "consent_no": "No",
  "consent_yes_aria": "Sí, usar una cookie de analítica",
- "consent_no_aria": "No, no usar una cookie de analítica"
+ "consent_no_aria": "No, no usar una cookie de analítica",
+ "_review": {
+  "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
+  "fit_word": "Header chip '¿Encajo?' (Do I fit?) from the recruiter's side, informal.",
+  "nav_recruiter": "'Modo reclutador'; alternative 'Vista para selección'."
+ }
 }
