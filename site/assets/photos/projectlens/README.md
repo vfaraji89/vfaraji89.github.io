@@ -5,8 +5,8 @@ project filters, and the proposal summary row (total offered, converted,
 conversion rate, margin).
 
 Referenced from:
-- `site/index.html`   — gallery card (`data-lightbox="projectlens"`)
-- `site/updates.html` — the ProjectLens news card
+- `site/index.html`: gallery card (`data-lightbox="projectlens"`)
+- `site/updates.html`: the ProjectLens news card
 
 Add more views here and list them in the `data-images` array on the gallery
 card; the lightbox pages through whatever is in it. Both pages guard the image

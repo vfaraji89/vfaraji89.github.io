@@ -10,6 +10,14 @@ headings, and the whole Fit check. Case studies, papers and updates stay in Engl
 note in the menu says so. The Fit check scores **English** job descriptions (its skill patterns
 are English), and each language says that where it matters.
 
+## Principle: meaning, not words
+Each string is rewritten the way a native speaker in tech would say it, not translated word for
+word: natural collocations (TR *iş piyasası*, ES *mercado laboral*, NL *arbeidsmarkt*, JA
+*採用市場*), each language's usual headline rhythm, and the terms practitioners actually use.
+Where a field keeps the English word (harness, evals, embeddings, forward deployed engineer),
+it stays in English rather than being forced into a literal coinage. No em dashes, and nothing
+is added that the English does not say.
+
 ## Status
 | Language | Standard followed | Register | Review |
 | --- | --- | --- | --- |
