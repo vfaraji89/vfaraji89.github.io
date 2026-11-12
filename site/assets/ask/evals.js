@@ -22,8 +22,7 @@
         });
         var rl = $('#runline'); rl.textContent = '';
         rl.appendChild(document.createTextNode('Last run ' + new Date(d.latest.at).toUTCString().replace(' GMT', ' UTC') + ' · commit '));
-        var a = el('a', null, d.latest.sha); a.href = 'https://github.com/vfaraji89/vfaraji89.github.io/commit/' + d.latest.sha; a.target = '_blank'; a.rel = 'noopener';
-        rl.appendChild(a);
+        rl.appendChild(el('code', null, d.latest.sha));
         rl.appendChild(document.createTextNode(' · ' + m.cases + ' checks · MRR ' + m.mrr + ' · ' + d.history.length + ' recorded runs'));
         // history: one line per metric, oldest left
         var svg = $('#spark'), H = d.history, W = 600, h = 56;
