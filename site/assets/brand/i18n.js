@@ -62,6 +62,18 @@
         document.querySelectorAll('.lang-bead').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === current ? 'true' : 'false'); });
         document.querySelectorAll('.lang-note').forEach(function (n) { n.hidden = current === 'en'; });
         document.dispatchEvent(new CustomEvent('vf:lang', { detail: { lang: current } }));
+        bar();
+    }
+
+    /* Keep the Fit check chip whole (both words) in every language: when the bar runs
+       out of room, the name beside the logo steps aside first, then the chip's icon. */
+    function bar() {
+        var nav = document.querySelector('.site-nav'), acts = nav && nav.querySelector('.nav-actions');
+        if (!acts) return;
+        var steps = ['bar-tight', 'bar-tighter'];
+        steps.forEach(function (c) { nav.classList.remove(c); });
+        var edge = function () { var r = nav.getBoundingClientRect(); return r.right - parseFloat(getComputedStyle(nav).paddingRight || 0) + 1; };
+        for (var i = 0; i < steps.length && acts.getBoundingClientRect().right > edge(); i++) nav.classList.add(steps[i]);
     }
     function load(lang) {
         if (lang === 'en') return Promise.resolve({});
@@ -132,5 +144,9 @@
             window.addEventListener('resize', function () { if (!pop.hidden) place(); });
         });
     }
-    ready(function () { beads(); sheet(); picker(); set(pick(), false); });
+    ready(function () {
+        beads(); sheet(); picker(); set(pick(), false);
+        var t; window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(bar, 120); });
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(bar);
+    });
 })();

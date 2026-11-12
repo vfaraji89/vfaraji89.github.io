@@ -9,9 +9,9 @@
  "nav_updates": "Updates",
  "nav_recruiter": "Recruiterweergave",
  "fit_title": "Heb je een vacature? Plak de vacaturetekst en zie hoe elke eis scoort.",
- "fit_aria": "Vacaturecheck: plak een vacaturetekst en zie elke eis gescoord",
- "fit_word": "Vacature",
- "fit_long": "check",
+ "fit_aria": "Klikt het? Plak een vacaturetekst en zie elke eis gescoord",
+ "fit_word": "Klikt ",
+ "fit_long": "het?",
  "book": "Plan een gesprek",
  "menu_open": "Menu openen",
  "menu_close": "Menu sluiten",
@@ -29,7 +29,7 @@
  "consent_no_aria": "Nee, gebruik geen analysecookie",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
-  "fit_word": "Header chip reads 'Vacaturecheck'.",
+  "fit_word": "Chip reads 'Klikt het?' (does it click?), two words like the other languages. Plainer alternative: 'Vacaturecheck'.",
   "consent_ask": "Short form kept here; the other site now asks 'Mag ik één cookie gebruiken om bezoeken te tellen?'. Pick one for both."
  }
 }

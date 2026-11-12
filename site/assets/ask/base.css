@@ -285,7 +285,7 @@
         .nav-fit:hover .fb-2, .hero-fit:hover .fb-2 { transform: translateX(2.5px); }
         .nav-sheet a.sheet-fit { color: var(--rust-deep, #b4200f); }
         .nav-sheet a.sheet-fit span { color: var(--rust, #e0301e); }
-        @media (max-width: 460px) { .nav-fit .nf-long { display: none; } .nav-fit { padding: 0 0.6rem 0 0.45rem; } }
+        @media (max-width: 460px) { .nav-fit { padding: 0 0.55rem 0 0.4rem; gap: 0.3rem; font-size: 0.75rem; } .nav-fit .fit-ic { width: 18px; height: 18px; } }
         @media (prefers-reduced-motion: reduce) { .fit-ic .fb { transition: none; } }
         /* small phones: tighter bar, CV without its arrow; the name yields to the logo below 340px */
         @media (max-width: 420px) { .site-nav { gap: 0.75rem; } .nav-actions { gap: 0.3rem; } .nav-btn-ghost { padding: 0 0.55rem; } .nav-btn-ghost svg { display: none; } }
