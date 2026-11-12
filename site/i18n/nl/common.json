@@ -27,6 +27,11 @@
  "consent_no": "Nee",
  "consent_yes_aria": "Ja, gebruik een analysecookie",
  "consent_no_aria": "Nee, gebruik geen analysecookie",
+ "legal_privacy": "Privacy",
+ "legal_terms": "Voorwaarden en disclaimer",
+ "legal_consent": "Analytics-keuze",
+ "consent_more": "Privacy",
+ "bk_privacy": "Je naam, e-mail en onderwerp gaan alleen naar mijn Google-account, zodat ik kan antwoorden. Zie <a href=\"privacy.html#contact\">Privacy</a>.",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "fit_word": "Chip reads 'Klikt het?' (does it click?), two words like the other languages. Plainer alternative: 'Vacaturecheck'.",

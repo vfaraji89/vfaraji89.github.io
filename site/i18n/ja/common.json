@@ -27,6 +27,11 @@
  "consent_no": "いいえ",
  "consent_yes_aria": "はい、計測用Cookieを使用する",
  "consent_no_aria": "いいえ、計測用Cookieを使用しない",
+ "legal_privacy": "プライバシー",
+ "legal_terms": "利用規約と免責事項",
+ "legal_consent": "アナリティクスの設定",
+ "consent_more": "プライバシー",
+ "bk_privacy": "お名前、メールアドレス、ご用件は、返信のためだけに私のGoogleアカウントへ送られます。詳しくは<a href=\"privacy.html#contact\">プライバシー</a>をご覧ください。",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "nav_work": "'実績' (track record) for Work.",

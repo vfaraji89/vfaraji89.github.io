@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en" data-i18n-files="body_evals legal">
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://*.workers.dev https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; upgrade-insecure-requests">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Terms and disclaimer · Vahid Faraji</title>
+    <meta name="description" content="Independent and non-commercial: no sponsorship, how tools are chosen, trademarks, citations and the limits of the content.">
+    <link rel="canonical" href="https://vfaraji89.github.io/terms.html">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Vahid Faraji">
+    <meta property="og:title" content="Terms and disclaimer · Vahid Faraji">
+    <meta property="og:description" content="Independent and non-commercial: no sponsorship, how tools are chosen, trademarks, citations and the limits of the content.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://vfaraji89.github.io/terms.html">
+    <meta property="og:image" content="https://vfaraji89.github.io/assets/og/og-card.png">
+    <meta property="og:site_name" content="Vahid Faraji">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#e0301e">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+    <script>
+      // GA4, loaded only after consent, with a privacy guard (see ANALYTICS.md).
+      // - A stored "yes" is applied before the first hit, so returning visitors are not counted as new.
+      // - Every event passes through vfClean: emails, phone numbers and mailto/tel links are
+      //   redacted and values are capped, so no personal data reaches Google.
+      // - page_location drops ?q= (a visitor's question) and similar free-text parameters.
+      // - The page context is pushed to the dataLayer for Tag Manager, if one is ever added.
+      // ?ga_debug=1 opens DebugView.
+      window.dataLayer = window.dataLayer || [];
+      function vfClean(p) {
+        var o = {};
+        for (var k in p) {
+          var v = p[k];
+          if (typeof v === 'string') {
+            v = v.replace(/^(mailto|tel):.*/i, '$1:[redacted]')
+                 .replace(/[\w.+-]+@[\w-]+(\.[\w-]+)+/g, '[email]')
+                 .replace(/\+?\d[\d\s().-]{8,}\d/g, '[number]')
+                 .slice(0, 100);
+          }
+          o[k] = v;
+        }
+        return o;
+      }
+      function gtag(){ if (arguments[0] === 'event' && arguments[2]) arguments[2] = vfClean(arguments[2]); dataLayer.push(arguments); }
+      var vfOk = false; try { vfOk = localStorage.getItem('vf-consent') === 'yes'; } catch (e) {}
+      gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: vfOk ? 'granted' : 'denied', wait_for_update: 500 });
+      gtag('js', new Date());
+      var vfLoc = location.href.replace(/([?&])(q|email|name|jd|ref_text)=[^&#]*/g, '$1$2=redacted');
+      var vfCfg = { content_group: 'terms', page_location: vfLoc }; if (/[?&]ga_debug/.test(location.search)) vfCfg.debug_mode = true;
+      dataLayer.push({ event: 'vf_context', site: 'portfolio', page_group: 'terms', consent_state: vfOk ? 'granted' : 'denied' });
+      gtag('config', 'G-GTZW5NNEZ5', vfCfg);
+      // Google is contacted only after a yes: the script itself loads after consent (see privacy.html).
+      function vfLoadGA() { if (window.vfGA) return; window.vfGA = true; var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5'; document.head.appendChild(s); }
+      if (vfOk) vfLoadGA();
+    </script>
+    <script src="assets/brand/favicon-anim.js" defer></script>
+    <script src="assets/brand/consent.js" defer></script>
+    <link rel="preload" href="assets/fonts/VahidSora-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/ask/base.css">
+    <link rel="stylesheet" href="assets/ask/ask.css">
+    <style>
+        .lg-main { max-width: 760px; }
+        .lg-main .sec-p, .lg-main .lg-list { font-size: 0.9375rem; max-width: none; }
+        .lg-list { margin: 0 0 0.875rem; padding-left: 1.15rem; color: var(--text-secondary); line-height: 1.6; }
+        .lg-list li { margin: 0.35rem 0; } .lg-list li::marker { color: var(--rust); }
+        .lg-main a { color: var(--rust-deep); text-underline-offset: 2px; }
+        .lg-main code { font-family: var(--font-mono); font-size: 0.8125rem; background: var(--paper); padding: 0.05rem 0.3rem; border-radius: 4px; }
+        .lg-btn { display: inline-flex; align-items: center; height: 36px; padding: 0 0.9rem; border-radius: 999px; border: 1px solid var(--border-strong); color: var(--ink) !important; text-decoration: none; font-weight: 600; font-size: 0.8125rem; }
+        .lg-btn:hover { border-color: var(--rust); }
+        .lg-toc { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0 0.5rem; }
+        .lg-toc a { font-size: 0.8125rem; padding: 0.3rem 0.75rem; border-radius: 999px; border: 1px solid var(--border); text-decoration: none; color: var(--text-secondary) !important; }
+        .lg-note:empty { display: none; }
+        .lg-main > section:first-child > .sec-h { margin-top: 0.75rem; }
+        .page-head.lg-main { padding-bottom: 0.5rem; }
+    </style>
+    <link rel="stylesheet" href="assets/ask/widget.css">
+    <script src="assets/ask/widget.js" defer></script>
+    <link rel="stylesheet" href="assets/brand/pop.css">
+    <script src="assets/brand/pop.js" defer></script>
+    <link rel="stylesheet" href="assets/brand/menu.css">
+    <script src="assets/brand/i18n.js" defer></script>
+</head>
+<body>
+    <div class="load-bar" id="load-bar" aria-hidden="true"><span></span></div>
+    <noscript><style>.load-bar { display: none; }</style></noscript>
+    <header class="site-header" id="site-header">
+        <nav class="site-nav container" aria-label="Main">
+            <a href="index.html" class="brand" aria-label="Vahid Faraji, home">
+                <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+                    <rect x="1" y="1" width="22" height="22" rx="5" stroke="var(--ink)" stroke-width="1.5"/>
+                    <path d="M5 8h14M5 12h14M5 16h14" stroke="rgba(28,28,30,0.22)" stroke-width="1"/>
+                    <circle class="bead b-1" cx="7.5" cy="8" r="1.9" fill="var(--rust)"/>
+                    <circle class="bead b-2" cx="15.5" cy="12" r="1.9" fill="var(--ink)"/>
+                    <circle class="bead b-3" cx="9" cy="16" r="1.9" fill="var(--ink)"/>
+                </svg>
+                <span class="brand-name" data-i18n-html="body_evals.site_header_1">Vahid Faraji<span class="name-bead" aria-hidden="true"></span></span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#work"><span data-i18n="common.nav_work">Work</span></a></li>
+                <li><a href="index.html#publications"><span data-i18n="common.nav_research">Research</span></a></li>
+                <li><a href="index.html#experience" data-also="#skills #about #story #engage"><span data-i18n="common.nav_about">About</span></a></li>
+                <li><a href="updates.html"><span data-i18n="common.nav_updates">Updates</span></a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="fit.html" class="nav-fit" title="Hiring? Paste your job description and see every requirement scored" aria-label="Fit check: paste a job description, see every requirement scored" data-i18n-attr="title:common.fit_title;aria-label:common.fit_aria"><svg class="fit-ic" viewBox="0 0 24 24" aria-hidden="true" fill="none"><path d="M5.5 2.75h9l3.75 3.75v6.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 2.75v18.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M8 8.5h7M8 12.5h7M8 16.5h3.5" stroke="currentColor" stroke-opacity="0.32" stroke-width="1.1" stroke-linecap="round"/><circle class="fb fb-1" cx="9.25" cy="8.5" r="1.55" fill="currentColor"/><circle class="fb fb-2" cx="11.5" cy="12.5" r="1.55" fill="currentColor"/><circle cx="17.75" cy="17.75" r="4" fill="var(--rust, #e0301e)"/><path d="M15.9 17.8l1.3 1.3 2.5-2.7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="nf-text"><span class="nf-word" data-i18n="common.fit_word">Fit </span><span class="nf-long" data-i18n="common.fit_long">check</span></span></a>
+                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="nav-btn-solid"><span class="live-bead" aria-hidden="true"></span><span data-i18n="common.book">Book a call</span></a>
+                <div class="lang-pick"><button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Language" data-i18n-attr="aria-label:common.sheet_lang"><b class="lang-glyph" aria-hidden="true">a</b></button><div class="lang-pop" hidden><span class="sheet-lang-k" data-i18n="common.sheet_lang">Language</span><div class="lang-beads" data-lang-switch role="group" aria-label="Language"></div><p class="lang-note" hidden data-i18n="common.lang_note">The agent answers in English, and the evals test cases and the film's chapter marks stay in English.</p></div></div>
+                <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-sheet"><svg class="mt-ic" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path class="mt-rod r1" d="M4.5 8.5h15"/><path class="mt-rod r2" d="M4.5 15.5h15"/><circle class="mt-bead k1" cx="7.5" cy="8.5" r="2.4"/><circle class="mt-bead k2" cx="16.5" cy="15.5" r="2.4"/></svg></button>
+            </div>
+        </nav>
+        <div class="nav-sheet" id="nav-sheet">
+            <div class="container">
+                <a class="sheet-dup" href="index.html#work"><bdi data-i18n="common.sheet_work">Work</bdi></a>
+                <a class="sheet-dup" href="index.html#publications"><bdi data-i18n="common.sheet_research">Research</bdi></a>
+                <a class="sheet-dup" href="index.html#experience"><bdi data-i18n="common.sheet_about">About</bdi></a>
+                <a class="sheet-dup" href="updates.html"><bdi data-i18n="common.sheet_updates">Updates</bdi></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <header class="page-head lg-main">
+            <p class="eyebrow" data-i18n-html="legal.terms_eyebrow">Terms &middot; disclaimer</p>
+            <h1 data-i18n-html="legal.terms_h1">Terms, and <mark>what this is not</mark><span class="bead-stop">.</span></h1>
+            <p class="lede" data-i18n-html="legal.terms_lede">These sites exist to make people aware of applied AI: what the work is, what the market asks for and which tools exist. They are personal, independent and non-commercial. By using them you accept these terms. Last updated 12 November 2026.</p>
+            <p class="note-box lg-note" data-i18n="legal.only"></p>
+            <nav class="lg-toc"><a href="privacy.html" data-i18n="legal.toc_priv">Privacy</a><a href="/awesome-applied-ai/" data-i18n="legal.toc_guide">awesome-applied-ai guide</a></nav>
+        </header>
+        <div class="lg-main">
+            <section id="indep" data-i18n-html="legal.terms_indep"><h2 class="sec-h">Independent, not sponsored</h2><p class="sec-p">Neither site is affiliated with, sponsored by or endorsed by any company, product, employer or job board it names. No company pays to be listed, placed or described, and there are no affiliate links. Being on the tool map is not a recommendation, and being left off it is not a judgement. The portfolio describes my own work, including work done for my employer; it speaks for me, not for any employer.</p></section>
+            <section id="rank" data-i18n-html="legal.terms_rank"><h2 class="sec-h">How tools are chosen and ranked</h2><p class="sec-p">A tool is listed when it is used in production or clearly emerging, and when what is said about it can be checked in public sources. Star counts and the <b>Popular</b>, <b>Trending</b> and <b>New</b> badges are calculated every week from GitHub&rsquo;s public numbers and the tool&rsquo;s launch date. An <b>Emerging</b> tag always comes with a dated reason and a source. Nothing about order or badges can be bought.</p></section>
+            <section id="marks" data-i18n-html="legal.terms_marks"><h2 class="sec-h">Names, logos and trademarks</h2><p class="sec-p">All product names, logos and trademarks belong to their owners. Brand icons come from the <a href="https://simpleicons.org" target="_blank" rel="noopener">Simple Icons</a> collection and are shown only to identify the product they belong to; showing them does not mean the owner endorses this site, or that I endorse the product. If you own a mark and prefer it not to appear here, write to me and it will be removed.</p></section>
+            <section id="copy" data-i18n-html="legal.terms_copy"><h2 class="sec-h">Copyright and citations</h2><p class="sec-p">The text, data compilations, diagrams, animations and code of both sites are &copy; Vahid Faraji, all rights reserved, unless stated otherwise. Quotes from others are short, credited and linked to their source, and are used for commentary and teaching. Figures and claims from other publications are cited where they appear. You may link to any page and quote short passages with credit and a link. If you believe something here uses your work without proper credit or permission, write to <a href="mailto:vfaraji89@gmail.com">vfaraji89@gmail.com</a>; I will correct it or take it down.</p></section>
+            <section id="market" data-i18n-html="legal.terms_market"><h2 class="sec-h">Job market numbers</h2><p class="sec-p">The market pages show totals and shares from publicly listed postings on the boards the tracker reads. They describe those boards, not the whole market, and are updated weekly. No posting is republished and no company is named in the numbers.</p></section>
+            <section id="advice" data-i18n-html="legal.terms_advice"><h2 class="sec-h">Not advice; scores are indicative</h2><p class="sec-p">Everything here is general information for learning. It is not career, legal, financial or hiring advice. The Fit check and the Role check give rough, rule-based scores from the words in a text; they can be wrong, and they must not be the basis of a decision about a person, such as hiring, rejecting or ranking candidates.</p></section>
+            <section id="accuracy" data-i18n-html="legal.terms_accuracy"><h2 class="sec-h">Accuracy</h2><p class="sec-p">I check what I publish and date it, but tools, prices, postings and rules change quickly, and mistakes happen. The sites are provided as they are, without warranties of any kind.</p></section>
+            <section id="links" data-i18n-html="legal.terms_links"><h2 class="sec-h">Links to other sites</h2><p class="sec-p">Links lead to sites I do not control. Their own terms and privacy policies apply, and a link is not an endorsement.</p></section>
+            <section id="liab" data-i18n-html="legal.terms_liab"><h2 class="sec-h">Liability</h2><p class="sec-p">To the extent the law allows, I am not liable for any loss that comes from using these sites or relying on their content. Nothing here limits liability that the law does not allow to be limited.</p></section>
+            <section id="use" data-i18n-html="legal.terms_use"><h2 class="sec-h">Fair use of the sites</h2><p class="sec-p">Please do not copy the sites&rsquo; content or datasets wholesale, republish them as your own, or overload the sites with automated requests. Reading, sharing links and citing with credit are always welcome.</p></section>
+            <section id="contact" data-i18n-html="legal.terms_contact"><h2 class="sec-h">Corrections, removals and contact</h2><p class="sec-p">Spotted an error, an outdated fact, a missing credit, or something you want removed? Write to <a href="mailto:vfaraji89@gmail.com">vfaraji89@gmail.com</a>. Every message is read, and verified errors are fixed. How personal data is handled is described on the <a href="privacy.html">privacy page</a>.</p></section>
+        </div>
+
+        <footer class="site-foot">
+            <div class="site-foot-top">
+                <div class="footer-left" id="footer-mark">
+                    <svg class="footer-abacus" viewBox="0 0 48 48" aria-hidden="true" fill="none">
+                    <rect class="frame" x="4" y="4" width="40" height="40" rx="8" stroke="var(--border-strong)" stroke-width="2.5"/>
+                    <line x1="10" y1="16" x2="38" y2="16" stroke="var(--border)" stroke-width="1.5"/>
+                    <line x1="10" y1="26" x2="38" y2="26" stroke="var(--border)" stroke-width="1.5"/>
+                    <line x1="10" y1="36" x2="38" y2="36" stroke="var(--border)" stroke-width="1.5"/>
+                    <circle class="bead bead-1" cx="14" cy="16" r="3.5" fill="var(--accent)"/>
+                    <circle class="bead bead-2" cx="23" cy="16" r="3.5" fill="var(--accent)" opacity="0.7"/>
+                    <circle class="bead bead-3" cx="16" cy="26" r="3.5" fill="var(--accent)" opacity="0.8"/>
+                    <circle class="bead bead-4" cx="26" cy="26" r="3.5" fill="var(--accent)"/>
+                    <circle class="bead bead-5" cx="34" cy="26" r="3.5" fill="var(--accent)" opacity="0.5"/>
+                    <circle class="bead bead-6" cx="30" cy="36" r="3.5" fill="var(--accent)" opacity="0.6"/>
+                </svg>
+                    <span class="footer-name" data-i18n-html="body_evals.footer_mark_1">Vahid Faraji</span>
+                    <span class="footer-dot">/</span>
+                    <span class="footer-role" data-i18n-html="body_evals.footer_mark_2">Applied AI</span>
+                </div>
+                <nav class="footer-nav">
+                    <a href="index.html" data-i18n-html="body_evals.footer_1">Portfolio</a>
+                    <a href="index.html#publications" data-i18n-html="body_evals.footer_2">Publications</a>
+                    <a href="index.html#work" data-i18n-html="body_evals.footer_3">Work</a>
+                    <a href="fit.html" data-i18n-html="body_evals.footer_4">Fit check</a>
+                    <a href="evals.html" data-i18n-html="body_evals.footer_5">Evals</a>
+                    <a href="context-engineering.html" data-i18n-html="body_evals.footer_6">Context Engineering</a>
+                    <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener" data-i18n-html="body_evals.footer_7">CV (PDF)</a>
+                </nav>
+            </div>
+            <div class="footer-meta" data-i18n-html="body_evals.footer_8">
+                <span>Last updated <time datetime="2026-11">2026.11</time></span>
+                <span class="footer-meta-sep">&middot;</span>
+                <span>Istanbul, T&uuml;rkiye</span>
+            </div>
+            <div class="footer-legal" style="display:flex;flex-wrap:wrap;gap:0.4rem 1rem;margin-top:0.6rem;font-size:0.75rem"><a href="privacy.html" style="color:inherit" data-i18n="common.legal_privacy">Privacy</a><a href="terms.html" style="color:inherit" data-i18n="common.legal_terms">Terms and disclaimer</a><a href="#" data-consent-reset style="color:inherit" data-i18n="common.legal_consent">Analytics choice</a></div>
+        </footer>
+    </main>
+
+    <script>
+    (function siteHeader() {
+        var header = document.getElementById('site-header');
+        var toggle = document.getElementById('nav-toggle');
+        if (!header) return;
+        var ticking = false;
+        function onScroll() {
+            if (ticking) return; ticking = true;
+            requestAnimationFrame(function () { header.classList.toggle('is-scrolled', window.scrollY > 8); ticking = false; });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        if (!toggle) return;
+        function setOpen(open) {
+            header.classList.toggle('menu-open', open);
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            toggle.setAttribute('aria-label', open ? (window.vfT ? vfT('common.menu_close', 'Close menu') : 'Close menu') : (window.vfT ? vfT('common.menu_open', 'Open menu') : 'Open menu'));
+        }
+        toggle.addEventListener('click', function () { setOpen(!header.classList.contains('menu-open')); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+        document.getElementById('nav-sheet').addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+    })();
+    </script>
+    <script>
+    (function footerAbacus() {
+        var mark = document.getElementById('footer-mark');
+        if (!mark) return;
+        mark.addEventListener('mouseenter', function () { mark.classList.add('is-counting'); });
+        mark.addEventListener('mouseleave', function () { mark.classList.remove('is-counting'); });
+        if (!window.matchMedia('(hover: none)').matches) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (!('IntersectionObserver' in window)) return;
+        var io = new IntersectionObserver(function (entries) {
+            if (!entries[0].isIntersecting) return;
+            io.disconnect();
+            mark.classList.add('is-counting');
+            setTimeout(function () { mark.classList.remove('is-counting'); }, 1800);
+        }, { threshold: 0.6 });
+        io.observe(mark);
+    })();
+    </script>
+    <script>
+    (function loadBar() {
+        var bar = document.getElementById('load-bar');
+        if (!bar) return;
+        function show() { bar.classList.remove('done'); }
+        function hide() { bar.classList.add('done'); }
+
+        var settled = false;
+        function firstPaintDone() { if (settled) return; settled = true; hide(); }
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(firstPaintDone).catch(firstPaintDone);
+        }
+        window.addEventListener('load', firstPaintDone);
+        setTimeout(firstPaintDone, 4000);
+
+        // Leaving for another page on this site: show it for the fetch. Anything
+        // that does not actually navigate this tab is skipped, so the bar never
+        // starts a wait that is not happening.
+        document.addEventListener('click', function (e) {
+            var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+            if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
+            if (e.defaultPrevented || e.button !== 0) return;
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            var url;
+            try { url = new URL(a.getAttribute('href'), location.href); } catch (err) { return; }
+            if (url.origin !== location.origin) return;
+            if (url.href.split('#')[0] === location.href.split('#')[0]) return;
+            show();
+        });
+
+        // Restored from the back/forward cache with the bar mid-sweep.
+        window.addEventListener('pageshow', function (e) { if (e.persisted) hide(); });
+    })();
+    </script>
+    <link rel="stylesheet" href="assets/brand/abacus-frame.css">
+</body>
+</html>
