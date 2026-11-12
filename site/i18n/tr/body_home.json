@@ -307,5 +307,12 @@
  "chip_6_aria": "MCP ve ajan becerileri: Araçlar · SKILL.md",
  "chip_7_aria": "Çoklu ajan sistemleri: LangGraph · Agno · SDK'lar",
  "chip_8_aria": "Açık kaynak: Tokalator · 500+ kurulum",
- "chip_9_aria": "Yayımlanmış araştırma: ACM · arXiv"
+ "chip_9_aria": "Yayımlanmış araştırma: ACM · arXiv",
+ "aai_sec": "Açık kaynak",
+ "aai_fit": "Piyasaya ne kadar hazırsınız?",
+ "pulse_k": "Bu hafta ilan takibinde",
+ "pulse_open": "açık YZ ilanı",
+ "pulse_new": "bu hafta yeni",
+ "pulse_remote": "uzaktan",
+ "pulse_note": "Açık kariyer sayfalarından okunur, her hafta güncellenir."
 }

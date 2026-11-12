@@ -306,5 +306,12 @@
  "chip_6_aria": "MCP y habilidades de agentes: Herramientas · SKILL.md",
  "chip_7_aria": "Sistemas multiagente: LangGraph · Agno · SDK",
  "chip_8_aria": "Código abierto: Tokalator · 500+ instalaciones",
- "chip_9_aria": "Investigación publicada: ACM · arXiv"
+ "chip_9_aria": "Investigación publicada: ACM · arXiv",
+ "aai_sec": "Código abierto",
+ "aai_fit": "¿Qué tan listo estás para el mercado?",
+ "pulse_k": "Esta semana en el monitor de empleo",
+ "pulse_open": "ofertas de IA abiertas",
+ "pulse_new": "nuevas esta semana",
+ "pulse_remote": "en remoto",
+ "pulse_note": "Leído de portales de empleo públicos, actualizado cada semana."
 }
