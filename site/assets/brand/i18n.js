@@ -56,7 +56,7 @@
             });
         });
         document.documentElement.lang = current;
-        document.querySelectorAll('.mt-lang').forEach(function (b) {
+        document.querySelectorAll('.mt-lang, .lang-glyph').forEach(function (b) {
             if (b.textContent !== byId[current].glyph) { b.textContent = byId[current].glyph; b.classList.remove('is-swap'); void b.offsetWidth; b.classList.add('is-swap'); }
         });
         document.querySelectorAll('.lang-bead').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === current ? 'true' : 'false'); });
@@ -103,10 +103,34 @@
         function fit() {
             var open = header.classList.contains('menu-open') && window.innerWidth <= 1200;
             document.documentElement.classList.toggle('menu-lock', open);
-            if (open) box.style.setProperty('--sheet-h', Math.max(240, window.innerHeight - header.getBoundingClientRect().bottom) + 'px');
+            if (open) box.style.setProperty('--sheet-h', Math.max(240, (window.visualViewport ? window.visualViewport.height : window.innerHeight) - header.getBoundingClientRect().bottom) + 'px');
         }
         new MutationObserver(fit).observe(header, { attributes: true, attributeFilter: ['class'] });
         window.addEventListener('resize', fit);
     }
-    ready(function () { beads(); sheet(); set(pick(), false); });
+    // The language button: its own control in the bar, a small popover of beads under it.
+    function picker() {
+        document.querySelectorAll('.lang-pick').forEach(function (box) {
+            var btn = box.querySelector('.lang-btn'), pop = box.querySelector('.lang-pop');
+            if (!btn || !pop) return;
+            function place() {   // keep the popover inside the screen on narrow phones
+                pop.style.right = '0px';
+                var vw = document.documentElement.clientWidth, w = Math.min(320, vw - 32), r = btn.getBoundingClientRect().right;
+                pop.style.width = w + 'px';
+                var left = r - w;
+                if (left < 16) pop.style.right = (left - 16) + 'px';
+            }
+            function show(open) {
+                pop.hidden = !open; btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (open) place();
+            }
+            btn.addEventListener('click', function (e) { e.stopPropagation(); show(pop.hidden); });
+            pop.addEventListener('click', function (e) { if (e.target.closest('.lang-bead')) setTimeout(function () { show(false); }, 220); }, true);
+            pop.addEventListener('click', function (e) { e.stopPropagation(); });
+            document.addEventListener('click', function () { if (!pop.hidden) show(false); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) { show(false); btn.focus(); } });
+            window.addEventListener('resize', function () { if (!pop.hidden) place(); });
+        });
+    }
+    ready(function () { beads(); sheet(); picker(); set(pick(), false); });
 })();

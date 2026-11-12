@@ -26,5 +26,6 @@
  "footer_5": "評価",
  "footer_6": "コンテキストエンジニアリング",
  "footer_7": "レジュメ（PDF）",
- "footer_8": "<span>最終更新 <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>トルコ・イスタンブール</span>"
+ "footer_8": "<span>最終更新 <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>トルコ・イスタンブール</span>",
+ "limits": "まだ測っていないこと：Claudeの文章の質です。これにはライブのエンドポイントが必要なためです。有効になれば、<code>node tools/evals/run.mjs --live &lt;url&gt;</code>が同じ質問で採点し、回答ごとのコストとともに結果を下に表示します。"
 }

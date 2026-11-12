@@ -26,5 +26,6 @@
  "footer_5": "Evals",
  "footer_6": "Ingeniería de contexto",
  "footer_7": "Currículum (PDF)",
- "footer_8": "<span>Última actualización: <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>Estambul, Turquía</span>"
+ "footer_8": "<span>Última actualización: <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>Estambul, Turquía</span>",
+ "limits": "Lo que aún no mide: lo bien que escribe Claude, porque para eso hace falta el endpoint en vivo. Cuando se active, <code>node tools/evals/run.mjs --live &lt;url&gt;</code> lo puntúa con las mismas preguntas, con el costo por respuesta, y los resultados aparecen abajo."
 }

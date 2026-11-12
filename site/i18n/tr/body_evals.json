@@ -26,5 +26,6 @@
  "footer_5": "Değerlendirmeler",
  "footer_6": "Bağlam mühendisliği",
  "footer_7": "Özgeçmiş (PDF)",
- "footer_8": "<span>Son güncelleme <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>İstanbul, Türkiye</span>"
+ "footer_8": "<span>Son güncelleme <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>İstanbul, Türkiye</span>",
+ "limits": "Henüz ölçmediği şey: Claude'un ne kadar iyi yazdığı, çünkü bunun için canlı uç nokta gerekiyor. Uç nokta açıldığında <code>node tools/evals/run.mjs --live &lt;url&gt;</code> aynı soruları cevap başına maliyetle birlikte puanlıyor ve sonuçlar aşağıda görünüyor."
 }

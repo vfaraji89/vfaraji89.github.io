@@ -85,7 +85,7 @@ html[lang="ja"] .hero-is mark, html[lang="ja"] h1, html[lang="ja"] h2 { letter-s
    Only the four sections and the language beads live here; Fit check, booking, the CV and
    the agent each have their own place in the bar, the hero or the footer. */
 @media (max-width: 1200px) {
-  .site-header.menu-open .nav-sheet { position: absolute; top: 100%; left: 0; right: 0; height: var(--sheet-h, calc(100dvh - 64px)); overflow-y: auto; overscroll-behavior: contain;
+  .site-header.menu-open .nav-sheet { position: absolute; top: 100%; left: 0; right: 0; height: calc(var(--sheet-h, calc(100dvh - 64px)) + 40px); padding-bottom: 40px; overflow-y: auto; overscroll-behavior: contain;
     background: var(--bg, #fff); border-top: 1px solid var(--ctl-line, rgba(28,28,30,0.1)); }
   .nav-sheet .container { display: flex; flex-direction: column; min-height: 100%; padding-top: 0.75rem; padding-bottom: calc(1.25rem + env(safe-area-inset-bottom)); counter-reset: sheet; }
   .nav-sheet a.sheet-dup { counter-increment: sheet; display: flex; align-items: baseline; justify-content: flex-start; gap: 0.55rem; padding: 1.05rem 0;
@@ -111,3 +111,21 @@ html[lang="ja"] .hero-is mark, html[lang="ja"] h1, html[lang="ja"] h2 { letter-s
 
 /* bar links never wrap onto two lines, whatever the language */
 .nav-links a { white-space: nowrap; }
+
+/* The language button: its own control in the bar, with the current language's letter.
+   Tapping it opens a small popover of the five language beads right under the bar, so the
+   choice never sits behind a phone browser's toolbar. The menu keeps only the sections. */
+.lang-pick { position: relative; flex: none; }
+.lang-btn { display: grid; place-items: center; width: 38px; height: 38px; padding: 0; border-radius: 50%; border: 1px solid var(--ctl-line, rgba(28,28,30,0.14));
+  background: var(--bg, #fff); color: var(--ink, #1c1c1e); cursor: pointer; transition: border-color 0.25s, background 0.3s cubic-bezier(0.22, 1, 0.36, 1), transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.lang-btn:hover { border-color: var(--rust, #e0301e); transform: translateY(-1px); }
+.lang-btn[aria-expanded="true"] { background: var(--ink, #1c1c1e); color: #fff; border-color: var(--ink, #1c1c1e); }
+.lang-glyph { font: 600 15px/1 var(--font, system-ui), "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif; }
+.lang-glyph.is-swap { animation: mt-swap 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+.lang-pop { position: absolute; top: calc(100% + 10px); right: 0; z-index: 80; width: 320px; padding: 0.9rem 1rem 1rem; border-radius: 18px;
+  background: var(--bg, #fff); border: 1px solid var(--ctl-line, rgba(28,28,30,0.14)); box-shadow: 0 24px 48px -24px rgba(28,28,30,0.45);
+  animation: mt-drop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.lang-pop[hidden] { display: none; }
+.lang-pop .sheet-lang-k { margin-bottom: 0.6rem; }
+@media (min-width: 1201px) { .nav-toggle { display: none !important; } }
+@media (prefers-reduced-motion: reduce) { .lang-pop, .lang-glyph.is-swap { animation: none; } .lang-btn { transition: none; } }
