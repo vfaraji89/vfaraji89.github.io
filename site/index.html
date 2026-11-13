@@ -1496,7 +1496,7 @@
            of live numbers from the site's pulse.json. */
         .aai-feat-wrap { scroll-margin-top: 80px; }
         .aai-feat { position: relative; display: flex; flex-direction: column; gap: 0;
-            padding: 1.75rem 2rem 1.5rem; border-radius: 22px; border: 1px solid rgba(224,48,30,0.22); background: var(--paper, #fff6f4); overflow: hidden; isolation: isolate; }
+            padding: 1.75rem 2.25rem 1.75rem; border: 1px solid rgba(224,48,30,0.22); background-color: var(--paper, #fff6f4); overflow: hidden; isolation: isolate; }
         .aai-feat::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
             background-image: radial-gradient(circle, rgba(224,48,30,0.16) 1.1px, transparent 1.6px); background-size: 16px 16px;
             -webkit-mask-image: radial-gradient(90% 120% at 100% 0%, #000 0%, transparent 62%); mask-image: radial-gradient(90% 120% at 100% 0%, #000 0%, transparent 62%); }
@@ -1543,7 +1543,7 @@
         /* one strip of live numbers */
         /* the live numbers: same type as the case-study metric cards (site font, MONO axis,
            uppercase muted labels), one tight row */
-        .aai-pulse { order: 6; margin: 1rem 0 0; padding: 0.7rem 0.9rem 0.6rem; border-radius: var(--radius, 14px); background: var(--bg); border: 1px solid var(--ctl-line, var(--border)); }
+        .aai-pulse { order: 6; margin: 1rem 0 0; padding: 0.7rem 1rem 0.95rem; border-radius: var(--radius, 14px); background: var(--bg); border: 1px solid var(--ctl-line, var(--border)); }
         .ap-k { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem; font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted, var(--text-secondary)); font-variation-settings: "MONO" 0.8, "CASL" 0; }
         .ap-wk { margin-left: auto; white-space: nowrap; letter-spacing: 0.04em; }
         .ap-live { width: 6px; height: 6px; border-radius: 50%; background: var(--rust); box-shadow: 0 0 0 0 rgba(224,48,30,0.45); animation: ap-live 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite; }
@@ -1561,7 +1561,7 @@
         .aai-feat .cta-actions .btn-outline { background: none; border-color: transparent; box-shadow: none; padding-left: 0.25rem; padding-right: 0.25rem; color: var(--ink); text-decoration: underline; text-decoration-color: rgba(224,48,30,0.45); text-underline-offset: 4px; }
         .aai-feat .cta-actions .btn-outline:hover { color: var(--rust-deep); text-decoration-color: currentColor; transform: none; }
         @media (max-width: 760px) {
-            .aai-feat { padding: 1.4rem 1rem 1.2rem; border-radius: 18px; }
+            .aai-feat { padding: 1.4rem 1.1rem 1.4rem; }
             .aai-steps b { display: none; } .aai-steps a::before { width: 28px; height: 28px; } .aai-steps::before, .aai-steps::after { top: 12px; }
             .ap-row { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 0.6rem; }
             .aai-cap { display: block; font-size: 0.8125rem; } .aai-cap a { margin-left: 0.4rem; }
@@ -3702,7 +3702,7 @@
 
         <section id="applied-ai" class="reveal aai-feat-wrap">
             <div class="section-label" data-i18n="body_home.aai_sec">Open source</div>
-            <div class="aai-feat">
+            <div class="aai-feat abacus-frame">
                 <div class="aai-copy">
                     <div class="aai-head">
                         <span class="aai-logo"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><radialGradient id="aai-b" cx=".34" cy=".3" r=".75"><stop offset="0" stop-color="#ff9d8f"/><stop offset=".45" stop-color="#e0301e"/><stop offset="1" stop-color="#9e1a0c"/></radialGradient></defs><rect x="1.6" y="3.6" width="15.4" height="16.8" rx="4.6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/><path d="M12.4 12h7.4" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"/><rect x="19.2" y="9.6" width="4.2" height="4.8" rx="1.3" fill="var(--ink)"/><circle cx="9.3" cy="12" r="3.3" fill="url(#aai-b)"/></svg></span>
@@ -3710,7 +3710,7 @@
                     </div>
                     <h2 class="aai-h" data-i18n-html="body_home.body_home_19">Applied AI, mapped<span class="dot">.</span></h2>
                     <p class="aai-lead" data-i18n-html="body_home.body_home_20">From what the market asks for to the docs you need to build it: seven steps, in order.</p>
-                    <div class="aai-pulse" id="aai-pulse" hidden>
+                    <div class="aai-pulse abacus-frame" id="aai-pulse" hidden>
                         <div class="ap-k"><i class="ap-live" aria-hidden="true"></i><span data-i18n="body_home.pulse_k">Live from the tracker and the map</span><span class="ap-wk" id="ap-wk"></span></div>
                         <div class="ap-row">
                             <div class="ap-cell"><b data-n="open">0</b><span data-i18n="body_home.pulse_open">open AI roles</span></div>
