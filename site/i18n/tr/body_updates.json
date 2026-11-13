@@ -81,5 +81,12 @@
  "footer_4": "Bağlam mühendisliği",
  "footer_5": "Özgeçmiş (PDF)",
  "footer_6": "<span>Son güncelleme <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>İstanbul, Türkiye</span>",
- "cover_title": "ProjectLens, bir demo makalesine dönüştü<span class=\"bead-stop\">.</span>"
+ "cover_title": "ProjectLens, bir demo makalesine dönüştü<span class=\"bead-stop\">.</span>",
+ "aai_nov_when": "<time datetime=\"2026-11\">Kas</time>",
+ "aai_nov_1": "<span class=\"news-new\">Yeni</span><span class=\"news-tag\">Lansman</span><span class=\"news-date\">Kasım 2026</span>",
+ "aai_nov_4": "vfaraji89.github.io/awesome-applied-ai &middot; EN &middot; TR &middot; ES &middot; NL &middot; JA",
+ "aai_nov_6": "awesome-applied-ai",
+ "aai_nov_2": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/\" target=\"_blank\" rel=\"noopener\">awesome-applied-ai tam bir haritaya dönüştü: yedi adım, beş dil</a>",
+ "aai_nov_3": "Kitabımın eşlikçi sitesi artık bütün yolu yedi adımda anlatıyor: haftalık iş ilanı takibi, roller ve beceriler, YZ odaklı mimar, kullanım alanına göre filtrelenebilen 601 araçlık bir araç haritası, resmî bağlantılarıyla 17 sektör sertifikası, animasyonlu dokümanlar ve geri bildirim. Yükselen araçlar artık altı ay sonra kendiliğinden listeden düşüyor ve her sayfa Türkçe, İngilizce, İspanyolca, Felemenkçe ve Japonca okunabiliyor.",
+ "aai_nov_5": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/tools/\" target=\"_blank\" rel=\"noopener\">Araç haritası</a><a href=\"https://vfaraji89.github.io/awesome-applied-ai/certificates/\" target=\"_blank\" rel=\"noopener\">Sertifikalar</a><a href=\"https://vfaraji89.github.io/awesome-applied-ai/\" target=\"_blank\" rel=\"noopener\">Canlı site</a>"
 }

@@ -1516,6 +1516,7 @@
         .ap-cell b { font-family: var(--font-mono); font-size: clamp(1.35rem, 1rem + 1.2vw, 1.75rem); font-weight: 600; letter-spacing: -0.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
         .ap-cell:first-child b { color: var(--rust-deep); }
         .ap-cell span { font-size: 0.75rem; color: var(--text-secondary); }
+        .ap-k2 { margin-top: 0.9rem; } [data-map][hidden] { display: none !important; }
         .ap-note { margin: 0.6rem 0 0; font-size: 0.6875rem; color: var(--text-tertiary, #8e8e93); }
         /* the six rods */
         .aai-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
@@ -1536,8 +1537,8 @@
             transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
         .aai-steps li:not(:first-child) a::after { background: radial-gradient(circle at 34% 30%, #6b6b70, #1c1c1e 55%, #000); box-shadow: 0 3px 6px -2px rgba(0,0,0,0.45); }
         .aai-steps li:nth-child(1) a::after { --k: 1; } .aai-steps li:nth-child(2) a::after { --k: 2; } .aai-steps li:nth-child(3) a::after { --k: 3; }
-        .aai-steps li:nth-child(4) a::after { --k: 4; } .aai-steps li:nth-child(5) a::after { --k: 5; } .aai-steps li:nth-child(6) a::after { --k: 6; }
-        .aai-feat-wrap.visible .aai-steps a::after { transform: translateX(calc(var(--rodw, 120px) * var(--k) / 7)); transition-delay: calc(var(--k) * 90ms + 250ms); }
+        .aai-steps li:nth-child(4) a::after { --k: 4; } .aai-steps li:nth-child(5) a::after { --k: 5; } .aai-steps li:nth-child(6) a::after { --k: 6; } .aai-steps li:nth-child(7) a::after { --k: 7; }
+        .aai-feat-wrap.visible .aai-steps a::after { transform: translateX(calc(var(--rodw, 120px) * var(--k) / 8)); transition-delay: calc(var(--k) * 90ms + 250ms); }
         .aai-feat-wrap.visible .aai-steps a:hover::after, .aai-feat-wrap.visible .aai-steps a:focus-visible::after { transform: translateX(var(--rodw, 120px)); transition-delay: 0ms; }
         @media (max-width: 900px) { .aai-feat { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.5rem; } }
         @media (max-width: 480px) { .aai-feat { padding: 1.5rem 1rem; border-radius: 18px; } .aai-steps a { grid-template-columns: auto minmax(0, 1fr) 64px; padding: 0.65rem 0.75rem; }
@@ -3683,7 +3684,7 @@
                         <div class="cta-label" data-i18n-html="body_home.body_home_18">awesome-applied-ai · companion to my book</div>
                     </div>
                     <h2 class="aai-h" data-i18n-html="body_home.body_home_19">Applied AI, mapped<span class="dot">.</span></h2>
-                    <p class="aai-lead" data-i18n-html="body_home.body_home_20">From what the market asks for to the docs you need to build it: six steps, in order.</p>
+                    <p class="aai-lead" data-i18n-html="body_home.body_home_20">From what the market asks for to the docs you need to build it: seven steps, in order.</p>
                     <div class="aai-pulse" id="aai-pulse" hidden>
                         <div class="ap-k"><i class="ap-live" aria-hidden="true"></i><span data-i18n="body_home.pulse_k">This week on the job tracker</span><span class="ap-wk" id="ap-wk"></span></div>
                         <div class="ap-row">
@@ -3691,7 +3692,13 @@
                             <div class="ap-cell"><b data-n="new">0</b><span data-i18n="body_home.pulse_new">new this week</span></div>
                             <div class="ap-cell"><b data-n="remoteShare" data-pct="1">0</b><span data-i18n="body_home.pulse_remote">remote</span></div>
                         </div>
-                        <p class="ap-note" data-i18n="body_home.pulse_note">Read from public job boards, updated weekly.</p>
+                        <div class="ap-k ap-k2" data-map hidden><span data-i18n="body_home.pulse_map_k">On the map</span></div>
+                        <div class="ap-row" data-map hidden>
+                            <div class="ap-cell"><b data-n="tools">0</b><span data-i18n="body_home.pulse_tools">tools</span></div>
+                            <div class="ap-cell"><b data-n="emerging">0</b><span data-i18n="body_home.pulse_emerging">emerging now</span></div>
+                            <div class="ap-cell"><b data-n="certificates">0</b><span data-i18n="body_home.pulse_certs">certificates</span></div>
+                        </div>
+                        <p class="ap-note" data-i18n="body_home.pulse_note">Jobs read from public job boards; both rows update every week.</p>
                     </div>
                     <div class="cta-actions">
                         <span class="aai-c" data-i18n-html="body_home.body_home_27"><a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener" class="btn btn-primary">Explore the map →</a></span>
@@ -3699,13 +3706,14 @@
                     </div>
                 </div>
                 <div class="aai-rods">
-                    <ol class="aai-steps" aria-label="Six steps">
+                    <ol class="aai-steps" aria-label="Seven steps">
                     <li data-i18n-html="body_home.body_home_21"><a href="https://vfaraji89.github.io/awesome-applied-ai/market/" target="_blank" rel="noopener"><span class="aai-n">01</span><b>Market</b><em>What applied AI jobs ask for</em></a></li>
                     <li data-i18n-html="body_home.body_home_22"><a href="https://vfaraji89.github.io/awesome-applied-ai/roles/" target="_blank" rel="noopener"><span class="aai-n">02</span><b>Roles &amp; skills</b><em>Who does the work, and the skills</em></a></li>
                     <li data-i18n-html="body_home.body_home_23"><a href="https://vfaraji89.github.io/awesome-applied-ai/architect/" target="_blank" rel="noopener"><span class="aai-n">03</span><b>AI-native architect</b><em>Layers, stack and problems</em></a></li>
-                    <li data-i18n-html="body_home.body_home_24"><a href="https://vfaraji89.github.io/awesome-applied-ai/certificates/" target="_blank" rel="noopener"><span class="aai-n">04</span><b>Certificates</b><em>What the industry asks for</em></a></li>
-                    <li data-i18n-html="body_home.body_home_25"><a href="https://vfaraji89.github.io/awesome-applied-ai/docs/" target="_blank" rel="noopener"><span class="aai-n">05</span><b>Docs</b><em>Technical docs, in motion</em></a></li>
-                    <li data-i18n-html="body_home.body_home_26"><a href="https://vfaraji89.github.io/awesome-applied-ai/contribute/" target="_blank" rel="noopener"><span class="aai-n">06</span><b>Feedback</b><em>Corrections, credited</em></a></li>
+                    <li data-i18n-html="body_home.aai_step_tools"><a href="https://vfaraji89.github.io/awesome-applied-ai/tools/" target="_blank" rel="noopener"><span class="aai-n">04</span><b>Tools</b><em>Every tool, filtered by use case</em></a></li>
+                    <li data-i18n-html="body_home.body_home_24"><a href="https://vfaraji89.github.io/awesome-applied-ai/certificates/" target="_blank" rel="noopener"><span class="aai-n">05</span><b>Certificates</b><em>By track, with official links</em></a></li>
+                    <li data-i18n-html="body_home.body_home_25"><a href="https://vfaraji89.github.io/awesome-applied-ai/docs/" target="_blank" rel="noopener"><span class="aai-n">06</span><b>Docs</b><em>Technical docs, in motion</em></a></li>
+                    <li data-i18n-html="body_home.body_home_26"><a href="https://vfaraji89.github.io/awesome-applied-ai/contribute/" target="_blank" rel="noopener"><span class="aai-n">07</span><b>Feedback</b><em>Corrections, credited</em></a></li>
                 </ol>
                 </div>
             </div>
@@ -5752,6 +5760,7 @@
     }
     fetch('/awesome-applied-ai/pulse.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
         if (!d || !(d.open > 0)) return; data = d; box.hidden = false; week();
+        if (d.tools > 0) box.querySelectorAll('[data-map]').forEach(function (el) { el.hidden = false; });
         box.querySelectorAll('[data-n]').forEach(function (b) { b.textContent = fmt(0, !!b.dataset.pct); });
         if (!('IntersectionObserver' in window)) return count();
         var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { count(); io.disconnect(); } }); }, { threshold: 0.4 });

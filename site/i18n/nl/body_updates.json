@@ -81,5 +81,12 @@
  "footer_4": "Contextengineering",
  "footer_5": "Cv (pdf)",
  "footer_6": "<span>Laatst bijgewerkt <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>Istanbul, Turkije</span>",
- "cover_title": "ProjectLens, uitgeschreven als demopaper<span class=\"bead-stop\">.</span>"
+ "cover_title": "ProjectLens, uitgeschreven als demopaper<span class=\"bead-stop\">.</span>",
+ "aai_nov_when": "<time datetime=\"2026-11\">nov.</time>",
+ "aai_nov_1": "<span class=\"news-new\">Nieuw</span><span class=\"news-tag\">Lancering</span><span class=\"news-date\">nov. 2026</span>",
+ "aai_nov_4": "vfaraji89.github.io/awesome-applied-ai &middot; EN &middot; TR &middot; ES &middot; NL &middot; JA",
+ "aai_nov_6": "awesome-applied-ai",
+ "aai_nov_2": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/\" target=\"_blank\" rel=\"noopener\">awesome-applied-ai groeit uit tot de volledige kaart: zeven stappen, vijf talen</a>",
+ "aai_nov_3": "De begeleidende site bij mijn boek loopt nu het hele pad af in zeven stappen: een wekelijkse vacaturetracker, rollen en vaardigheden, de AI-native architect, een kaart van 601 tools die je op toepassing kunt filteren, 17 branchecertificaten met officiële links, docs in beweging en feedback. Opkomende tools vallen na zes maanden vanzelf af, en elke pagina is te lezen in het Engels, Turks, Spaans, Nederlands en Japans.",
+ "aai_nov_5": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/tools/\" target=\"_blank\" rel=\"noopener\">Toolkaart</a><a href=\"https://vfaraji89.github.io/awesome-applied-ai/certificates/\" target=\"_blank\" rel=\"noopener\">Certificaten</a><a href=\"https://vfaraji89.github.io/awesome-applied-ai/\" target=\"_blank\" rel=\"noopener\">Live site</a>"
 }
