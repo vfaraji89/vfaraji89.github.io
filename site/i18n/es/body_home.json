@@ -309,14 +309,15 @@
  "chip_9_aria": "Investigación publicada: ACM · arXiv",
  "aai_sec": "Código abierto",
  "aai_fit": "¿Qué tan listo estás para el mercado?",
- "pulse_k": "Esta semana en el monitor de empleo",
+ "pulse_k": "En directo del rastreador y del mapa",
  "pulse_open": "ofertas de IA abiertas",
  "pulse_new": "nuevas esta semana",
  "pulse_remote": "en remoto",
- "pulse_note": "Empleos leídos de portales públicos; las dos filas se actualizan cada semana.",
+ "pulse_note": "Empleos leídos de portales públicos; todas las cifras se actualizan cada semana.",
  "aai_step_tools": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/tools/\" target=\"_blank\" rel=\"noopener\"><span class=\"aai-n\">04</span><b>Herramientas</b><em>Todas, filtradas por caso de uso</em></a>",
  "pulse_map_k": "En el mapa",
  "pulse_tools": "herramientas",
  "pulse_emerging": "emergentes ahora",
- "pulse_certs": "certificados"
+ "pulse_certs": "certificados",
+ "aai_open": "Abrir"
 }

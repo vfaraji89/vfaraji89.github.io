@@ -318,14 +318,15 @@
  "chip_9_aria": "研究発表：ACM · arXiv",
  "aai_sec": "オープンソース",
  "aai_fit": "市場への準備度を確かめる",
- "pulse_k": "今週の求人トラッカー",
+ "pulse_k": "トラッカーとマップからのライブ",
  "pulse_open": "募集中のAI求人",
  "pulse_new": "今週の新着",
  "pulse_remote": "リモート可",
- "pulse_note": "求人は公開求人サイトから読み取り、2行とも毎週更新しています。",
+ "pulse_note": "求人は公開求人サイトから読み取り、すべての数字を毎週更新しています。",
  "aai_step_tools": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/tools/\" target=\"_blank\" rel=\"noopener\"><span class=\"aai-n\">04</span><b>ツール</b><em>すべてのツールを用途で絞り込み</em></a>",
  "pulse_map_k": "マップの中身",
  "pulse_tools": "ツール",
  "pulse_emerging": "注目のツール",
- "pulse_certs": "資格"
+ "pulse_certs": "資格",
+ "aai_open": "開く"
 }

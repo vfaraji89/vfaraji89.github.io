@@ -310,14 +310,15 @@
  "chip_9_aria": "Yayımlanmış araştırma: ACM · arXiv",
  "aai_sec": "Açık kaynak",
  "aai_fit": "Piyasaya ne kadar hazırsınız?",
- "pulse_k": "Bu hafta ilan takibinde",
+ "pulse_k": "Takip sisteminden ve haritadan canlı",
  "pulse_open": "açık YZ ilanı",
  "pulse_new": "bu hafta yeni",
  "pulse_remote": "uzaktan",
- "pulse_note": "İlanlar açık kariyer sayfalarından okunur; iki satır da her hafta güncellenir.",
+ "pulse_note": "İlanlar açık kariyer sayfalarından okunur; tüm sayılar her hafta güncellenir.",
  "aai_step_tools": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/tools/\" target=\"_blank\" rel=\"noopener\"><span class=\"aai-n\">04</span><b>Araçlar</b><em>Her araç, kullanım alanına göre</em></a>",
  "pulse_map_k": "Haritada",
  "pulse_tools": "araç",
  "pulse_emerging": "şu an yükselen",
- "pulse_certs": "sertifika"
+ "pulse_certs": "sertifika",
+ "aai_open": "Aç"
 }

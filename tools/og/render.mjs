@@ -35,6 +35,7 @@ function html(c) {
     : c.visual === "number"
       ? `<div class="bignum"><span class="k">${esc(c.numberLabel ?? "")}</span><b>${esc(c.number)}</b>${abacus(["wrrrw"]).replace('class="abacus"', 'class="abacus mini"')}</div>`
       : abacus(c.rows ?? ["wrrrw", "wkkww", "kwwww"]);
+  const tags = (c.tags ?? []).map((t, i) => `<span class="tg${i === 0 ? " on" : ""}">${esc(t)}</span>`).join("");
   const stats = (c.stats ?? []).slice(0, 3).map((s) => `<div class="st"><b>${esc(s.n)}</b><span>${esc(s.l)}</span></div>`).join("");
   return `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Sora;src:url(${F("VahidSora-Regular.woff2")});font-weight:400}
@@ -58,6 +59,11 @@ h1{margin-top:12px;font-weight:800;font-size:${c.titleSize ?? 68}px;line-height:
 h1 mark{background:linear-gradient(transparent 58%,rgba(224,48,30,.18) 58%);color:inherit}
 .desc{margin-top:18px;font-size:25px;line-height:1.38;color:#55555a;max-width:690px}
 .stats{margin-top:auto;display:flex;gap:0}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;margin-bottom:16px}
+.tags+.stats{margin-top:0}
+.tg{font-family:Mono;font-size:15px;letter-spacing:.06em;padding:6px 12px;border-radius:999px;border:1.5px solid rgba(28,28,30,.16);background:#fff;color:#3a3a3e}
+.tg.on{background:#e0301e;border-color:#e0301e;color:#fff;font-weight:600}
+h1 .g{color:#16a34a}h1 .r{color:#e0301e}
 .st{padding-right:30px;margin-right:30px;border-right:1.5px solid rgba(28,28,30,.14);display:flex;flex-direction:column;gap:2px}
 .st:last-child{border-right:0}
 .st b{font-weight:800;font-size:40px;letter-spacing:-.03em}
@@ -81,10 +87,21 @@ h1 mark{background:linear-gradient(transparent 58%,rgba(224,48,30,.18) 58%);colo
 .abacus.mini{position:relative;right:auto;top:auto;margin:22px 0 0 auto;width:300px;height:70px}
 .abacus.mini .rod{top:32px!important}
 </style></head><body><div class="frame"></div>
-<div class="left">${brand}<div class="kicker">${esc(c.kicker)}</div><h1>${c.title}<span class="dot">.</span></h1>${c.desc ? `<p class="desc">${esc(c.desc)}</p>` : ""}<div class="stats">${stats}</div></div>
+<div class="left">${brand}<div class="kicker">${esc(c.kicker)}</div><h1>${c.title}<span class="dot">.</span></h1>${c.desc ? `<p class="desc">${esc(c.desc)}</p>` : ""}${tags ? `<div class="tags">${tags}</div>` : ""}<div class="stats">${stats}</div></div>
 ${visual}
 <div class="foot"><span>${esc(c.url)}</span><span class="langs">${c.langs === false ? "" : "EN · TR · ES · NL · JA"}</span></div>
-</body></html>`;
+${c.gif ? `<script>
+// frame(t), t from 0 to 1: beads slide in, words and tags pop, numbers count up. Stepped, not timed.
+const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3), back = (x) => { x = Math.min(1, Math.max(0, x)); const c = 1.7; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const nums = [...document.querySelectorAll('.st b')].map((b) => { const m = b.textContent.match(/^([^0-9]*)([0-9][0-9.,]*)(.*)$/); return m ? { b, pre: m[1], n: parseFloat(m[2].replace(/,/g, '')), dec: (m[2].split('.')[1] || '').length, post: m[3] } : null; }).filter(Boolean);
+window.frame = (t) => {
+  document.querySelectorAll('.b').forEach((el, i) => { const k = ease((t - 0.04 * (i % 5) - 0.05) / 0.35); el.style.transform = 'translateX(' + ((1 - k) * -260) + 'px)'; el.style.opacity = k; });
+  document.querySelectorAll('h1 .g, h1 .r').forEach((el, i) => { const k = back((t - 0.15 - i * 0.12) / 0.3); el.style.display = 'inline-block'; el.style.transform = 'scale(' + (0.6 + 0.4 * k) + ')'; el.style.opacity = Math.min(1, k * 1.4); });
+  document.querySelectorAll('.tg').forEach((el, i) => { const k = back((t - 0.35 - i * 0.06) / 0.25); el.style.transform = 'translateY(' + ((1 - k) * 14) + 'px)'; el.style.opacity = Math.min(1, Math.max(0, k)); });
+  nums.forEach((x, i) => { const k = ease((t - 0.4 - i * 0.06) / 0.45); x.b.textContent = x.pre + (x.n * k).toFixed(x.dec) + x.post; });
+  const ph = document.querySelector('.photo'); if (ph) { const k = ease((t - 0.02) / 0.4); ph.style.transform = 'translateY(' + ((1 - k) * 30) + 'px) rotate(' + ((1 - k) * 3) + 'deg)'; ph.style.opacity = k; }
+};
+</script>` : ""}</body></html>`;
 }
 
 const browser = await chromium.launch();
@@ -97,6 +114,17 @@ for (const c of cards) {
     let px = parseFloat(getComputedStyle(h).fontSize);
     while (px > 40 && (h.scrollWidth > h.clientWidth + 2 || (s && s.getBoundingClientRect().top < (document.querySelector(".desc") ?? h).getBoundingClientRect().bottom + 16) || l.scrollHeight > l.clientHeight + 2)) { px -= 3; h.style.fontSize = px + "px"; } });
   await page.screenshot({ path: resolve(outDir, c.file), type: "png" });
+  if (c.gif) {
+    // 2.4 s of motion at 15 fps, then the finished card held for 3 s; palette per GIF for clean colour
+    const { mkdtempSync, rmSync } = await import("node:fs"); const { execFileSync } = await import("node:child_process"); const { tmpdir } = await import("node:os");
+    const dir = mkdtempSync(resolve(tmpdir(), "og-gif-")), N = 36;
+    for (let i = 0; i <= N; i++) { await page.evaluate((t) => window.frame(t), i / N); await page.screenshot({ path: resolve(dir, `f${String(i).padStart(3, "0")}.png`) }); }
+    const out = resolve(outDir, c.gif);
+    execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-framerate", "15", "-i", resolve(dir, "f%03d.png"), "-vf",
+      "tpad=stop_mode=clone:stop_duration=3,scale=1200:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=160:stats_mode=diff[p];[b][p]paletteuse=dither=sierra2_4a:diff_mode=rectangle", "-loop", "0", out]);
+    rmSync(dir, { recursive: true, force: true });
+    console.log("og gif:", c.gif);
+  }
   console.log("og:", c.file);
 }
 await browser.close();

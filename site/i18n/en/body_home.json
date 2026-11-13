@@ -379,14 +379,15 @@
  "cv_open": "Open",
  "aai_sec": "Open source",
  "aai_fit": "How ready are you for the market?",
- "pulse_k": "This week on the job tracker",
+ "pulse_k": "Live from the tracker and the map",
  "pulse_open": "open AI roles",
  "pulse_new": "new this week",
  "pulse_remote": "remote",
- "pulse_note": "Jobs read from public job boards; both rows update every week.",
+ "pulse_note": "Jobs read from public job boards; every number updates weekly.",
  "aai_step_tools": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/tools/\" target=\"_blank\" rel=\"noopener\"><span class=\"aai-n\">04</span><b>Tools</b><em>Every tool, filtered by use case</em></a>",
  "pulse_map_k": "On the map",
  "pulse_tools": "tools",
  "pulse_emerging": "emerging now",
- "pulse_certs": "certificates"
+ "pulse_certs": "certificates",
+ "aai_open": "Open"
 }

@@ -304,14 +304,15 @@
  "chip_9_aria": "Gepubliceerd onderzoek: ACM · arXiv",
  "aai_sec": "Open source",
  "aai_fit": "Hoe klaar ben jij voor de markt?",
- "pulse_k": "Deze week in de vacaturetracker",
+ "pulse_k": "Live uit de tracker en de kaart",
  "pulse_open": "open AI-vacatures",
  "pulse_new": "nieuw deze week",
  "pulse_remote": "remote",
- "pulse_note": "Vacatures uit openbare vacaturesites; beide rijen worden elke week bijgewerkt.",
+ "pulse_note": "Vacatures uit openbare vacaturesites; alle cijfers worden elke week bijgewerkt.",
  "aai_step_tools": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/tools/\" target=\"_blank\" rel=\"noopener\"><span class=\"aai-n\">04</span><b>Tools</b><em>Elke tool, te filteren op toepassing</em></a>",
  "pulse_map_k": "Op de kaart",
  "pulse_tools": "tools",
  "pulse_emerging": "nu opkomend",
- "pulse_certs": "certificaten"
+ "pulse_certs": "certificaten",
+ "aai_open": "Open"
 }
