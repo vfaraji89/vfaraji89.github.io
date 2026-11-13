@@ -5,49 +5,141 @@
       "file": "index.html",
       "url": "https://vfaraji89.github.io/",
       "meta": {
-        "title": "Vahid Faraji | Applied AI / Researcher-Builder",
-        "description": "Applied AI. Multi-agent systems, context engineering, open source.",
-        "og:title": "Vahid Faraji, Applied AI / Researcher-Builder",
-        "og:description": "Applied AI specialist. Publishes at ACM, ships production agents, builds open-source context engineering tools.",
-        "og:image:alt": "Vahid Faraji, Applied AI and Researcher-Builder",
-        "twitter:title": "Vahid Faraji, Applied AI / Researcher-Builder",
-        "twitter:description": "Applied AI specialist. Publishes at ACM, ships production agents, builds open-source context engineering tools."
+        "title": "Vahid Faraji | Applied AI: Agent Harnesses, Evals, Production LLM Agents",
+        "description": "Applied AI engineer shipping LLM agents to production: agent harnesses, tool calling, context and memory, evals, tracing and failure analysis. Full stack in TypeScript and Python. ACM-published.",
+        "og:title": "Vahid Faraji, Applied AI: Agent Harnesses, Evals, Production LLM Agents",
+        "og:description": "Applied AI engineer who builds agent harnesses end to end: execution loops, tool calling, context and memory, evals from real tasks, and production reliability, latency and cost. TypeScript and Python. Published at ACM.",
+        "og:image:alt": "Vahid Faraji, applied AI engineer: maximize ROI, minimize cost. 95% agent accuracy, 91% manual work removed, 38% fewer tokens",
+        "twitter:title": "Vahid Faraji, Applied AI: Agent Harnesses, Evals, Production LLM Agents",
+        "twitter:description": "Applied AI engineer who builds agent harnesses end to end: execution loops, tool calling, context and memory, evals from real tasks, and production reliability, latency and cost. TypeScript and Python. Published at ACM."
       },
       "sections": [
         {
           "id": "(page)",
           "heading": null,
           "blocks": [
-            "/Vahid Faraji",
-            "CV",
-            "🤗",
-            "Researcher-Builder"
+            "Vahid Faraji",
+            "Work",
+            "Research",
+            "About",
+            "Updates",
+            "Recruiter view",
+            "Fit checkBook a call",
+            "a",
+            "Language",
+            "The agent answers in English, and the evals test cases and the film's chapter marks stay in English.",
+            "🤗"
           ]
         },
         {
-          "id": "applied-ai-from-research-to-production",
-          "heading": "Applied AI from research to production",
+          "id": "vahid-faraji-works-in-applied-ai",
+          "heading": "Vahid Faraji works in applied AI.",
           "blocks": [
-            "I build the agent systems enterprises actually put into production.",
-            "Open toAI Solutions ArchitectrolesOpen to AI Solutions Architect, Data Product Engineer, AI Platform Engineer, Agentic AI Engineer and R&D Researcher roles.Book a call →",
-            "Recruiter view",
-            "the 30-second version",
-            "Role fitAI Solutions Architect · Data Product Engineer · AI Platform Engineer · Agentic AI Engineer · R&D Researcher",
-            "Delivered95% accuracy on 14K+ records · 72.5% faster classification · 60% manual workload removed · 400+ people trained",
-            "ProofACM Professional Member · peer-reviewed at ACM CAIS '26 · 2 arXiv papers · 1 patent pending · Perplexity AI Business Fellowship (programme lead) · Tokalator, 500+ installs",
-            "StrengthsSpec and solution design · agent architecture · context and token strategy · data and metadata layer for RAG · ROI framing for business stakeholders",
-            "Core stackMCP · LangGraph · Agno · Vercel AI SDK · Next.js · Python / FastAPI · Anthropic SDK · Arize · BigQuery · Azure · DataHub",
-            "SenioritySenior / Principal · 9+ years weighted to solution design and data products rather than pure software engineering",
-            "LocationIstanbul, Turkey (GMT+3) · remote-friendly, works with distributed teams",
-            "LanguagesTurkish (native) · English (C1) · Spanish (instructor) · Portuguese (basic)",
-            "Open toFull-time roles, advisory engagements, and enterprise AI training",
-            "Download CV (PDF)vfaraji89@gmail.comLinkedIn",
-            "Share this view directly: vfaraji89.github.io/?hire",
-            "Multi-Agent SystemsContext EngineeringMCP ProtocolApplied AIOpen SourceAI SDK KitsPublished Research",
-            "Published at CAIS '26/ Tokalator/ Skill Extraction",
-            "Download CV See work Portfolio Work with me Suggest a time",
-            "9+",
-            "Years shipping",
+            "Vahid",
+            "works in applied AI.is fluent in data.works AI-native.loves creative data products.is proficient in MCP.makes AI-native products.works on agentic systems.builds agent harnesses.ships with evals.",
+            "Maximize ROI.Minimize cost.",
+            "I build workflows, data pipelines and agents that teams use in their daily work. I write the spec, build the tools the agent can use, and measure whether it actually helps: evidence more than demos.",
+            "For hiring teamsHiring? See how I fit your rolePaste the job description. Every requirement scored against real work, gaps named. Ten seconds, nothing leaves your browser.→",
+            "1:30",
+            "Animated CV",
+            "1:30, watch the film",
+            "ACM CAIS ’26peer-reviewed paper",
+            "95%agent accuracy on 14K+ job titles",
+            "500+Tokalator installs",
+            "3 + 1publications + patent pending",
+            "Now building The short version →Agent harnessesEvals from real tasksTokalatorawesome-applied-aiData pipelinesNow building: agent harnesses, evals from real tasks, Tokalator, awesome-applied-ai and data pipelines.Book a call →",
+            "Checking our time zones…",
+            "Pick a slot on my calendar30 min · instant confirmationBest fit",
+            "Suggest a time that suits youAny time zone · I confirm within 24hBest fit",
+            "Istanbul --:-- · You --:--",
+            "UpdatesLaunches, papers, rolesLatest: ProjectLens demo paper submitted→",
+            "CasesSystems in productionTokalator, ProjectLens, agents→",
+            "EventsTalks and conferencesACM CAIS ’26, San Jose→",
+            "Recruiter view"
+          ]
+        },
+        {
+          "id": "applied-ai-engineer-who-ships-agent-systems-and-",
+          "heading": "Applied AI engineer who ships agent systems, and the evals that prove them.",
+          "blocks": [
+            "Senior Applied AI, R&D · 8 years in industry + 4 in research · M.A. Economics",
+            "Maximize ROI. Minimize cost. Workflows, data pipelines and agents teams use every day: evidence more than demos.",
+            "Happy to talk",
+            "95%accuracy on 14K+ job titlesMulti-agent MCP system · ACM CAIS '26",
+            "91%manual effort removedProjectLens · in production",
+            "500+installsTokalator · open source",
+            "3 + 1papers + patent pendingACM CAIS '26 · 2 arXiv",
+            "Role fit",
+            "Applied AI Engineer · Agentic AI Engineer · AI Platform Engineer",
+            "Builds",
+            "Agent harnesses (loop, tools, context, memory) · evals from real tasks · spec to production, full stack",
+            "How I work",
+            "Write the spec · build the tools the agent can use · measure whether it actually helps",
+            "Shipped",
+            "Multi-agent job classification (95% on 14K+ positions) · ProjectLens (64h of pricing work down to 5.5) · enterprise AI rollout (60% less manual work, 200+ colleagues) · metadata platform (300M+ datapoints)",
+            "Open source",
+            "Tokalator: token budgets and cost across 17 LLMs · awesome-applied-ai: applied AI, mapped",
+            "Research",
+            "ACM CAIS '26, peer-reviewed · Tokalator and Turkish skill extraction on arXiv · 1 patent pending",
+            "Stack",
+            "TypeScript 7 · Python · Next.js · Claude Agent SDK · Vercel AI SDK · Copilot Studio · MCP · LangGraph · Langfuse tracing · deploys on Vercel",
+            "Logistics",
+            "Istanbul, GMT+3 · remote-friendly · English C1",
+            "Book an interviewSuggest a timePreview CVEmailLinkedInWhatsApp",
+            "Share this view:vfaraji89.github.io/?hire",
+            "Copy link",
+            "Make a link for a company",
+            "Company",
+            "Role",
+            "Any role",
+            "Applied AI Engineer",
+            "Agentic AI Engineer",
+            "AI Platform Engineer",
+            "AI Solutions Architect",
+            "R&D Researcher",
+            "Copy",
+            "Download CVSee workResearchWork with meSuggest a time",
+            "Tokalator500+ installs↗awesome-applied-aiApplied AI, mapped↗ProjectLens91% effort cut↓Yapay Zekâ İzi23.3× GenAI in job ads↓"
+          ]
+        },
+        {
+          "id": "applied-ai",
+          "heading": "Open source",
+          "blocks": [
+            "awesome-applied-ai · companion to my book"
+          ]
+        },
+        {
+          "id": "applied-ai-mapped",
+          "heading": "Applied AI, mapped.",
+          "blocks": [
+            "From what the market asks for to the docs you need to build it: seven steps, in order.",
+            "Live from the tracker and the map",
+            "0open AI roles",
+            "0new this week",
+            "0remote",
+            "0tools",
+            "0emerging now",
+            "0certificates",
+            "Jobs read from public job boards; every number updates weekly.",
+            "Explore the map →How ready are you for the market?",
+            "01MarketWhat applied AI jobs ask for",
+            "02Roles & skillsWho does the work, and the skills",
+            "03AI-native architectLayers, stack and problems",
+            "04ToolsEvery tool, filtered by use case",
+            "05CertificatesBy track, with official links",
+            "06DocsTechnical docs, in motion",
+            "07FeedbackCorrections, credited",
+            "Open"
+          ]
+        },
+        {
+          "id": "work",
+          "heading": "Case Studies",
+          "blocks": [
+            "Problems I solved end to end.",
+            "8+4",
+            "Years industry + research",
             "95%",
             "Agent accuracy",
             "72.5%",
@@ -58,53 +150,76 @@
             "Publications + Patent",
             "400+",
             "People trained",
-            "Istanbul--:--",
-            "You--:--",
-            "awesome-applied-ai · July 2026",
-            "A working map of applied AI for the enterprise",
-            "Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, equations, dictionary, and research for enterprise AI architects.",
-            "Explore the map →GitHub"
-          ]
-        },
-        {
-          "id": "work",
-          "heading": "Case Studies",
-          "blocks": [
-            "Problems I solved end to end.",
+            "1 / 4",
             "Open SourceShipped",
-            "Tokalator: Context Engineering Toolkit",
+            "Tokalator: token budgets and cost across 17 LLMs, 500+ installs",
             "Problem, approach, result",
             "ProblemAI coding assistants burn tokens blindly. No visibility into context cost, no budget guardrails, no cross-model comparison.",
             "ApproachReal-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality models, caching break-even analysis across 17 LLMs.",
             "ResultVS Code extension + web platform shipped. arXiv paper published.",
-            "500+installs-- GitHub stars17 modelsAGPL-3.0 license",
+            "500+installs--GitHub stars17 modelsAGPL-3.0 license",
             "Next.js·TypeScript·VS Code Extension·Token Economics·MCP",
+            "Install & downloadVS Code MarketplacearXiv Paper",
+            "1 / 3",
             "ResearchACM CAIS '26",
-            "Multi-Agent Job Classification System",
+            "Multi-Agent Job Classification: 95% accuracy on 14K+ positions",
             "ProblemFree-form job titles in multiple languages can't be reliably mapped to O*NET/ESCO taxonomies at scale.",
             "ApproachMCP-based multi-agent system: planner, search, extraction, and evaluation agents with shared caching layer.",
             "Result95% accuracy on 14K+ positions. 72.5% faster classification. 41.8% fewer API calls. Accepted at ACM.",
+            "95% accuracy72.5% faster41.8% fewer API callsACM CAIS ’26",
             "MCP·LangGraph·Subagent Architecture·AI Search·Caching",
+            "Live DemoACM Paper",
+            "1 / 2",
+            "EnterpriseShippedLLM PipelineOct 2026",
+            "Yapay Zekâ İzi: AI in 1.6M Job Ads",
+            "ProblemHow fast is AI really entering Turkish job ads since the GPT moment of 2022, and which tools do employers name? Keyword counts cannot tell a requirement from boilerplate across 1.6M ads written in free Turkish text.",
+            "ApproachAn LLM pipeline over 1.6M kariyer.net ads, from 2022 to the first half of 2026: sentence-level reading of every ad, generative AI kept apart from classic AI and machine learning, tool names normalised so mentions can be counted, and an internal analysis site, Yapay Zekâ İzi (“the trace of AI”), with periods, tools, sectors, a validation page and the method. Every quote on a card is taken from the ad verbatim.",
+            "ResultA clear, period-by-period picture of how fast generative AI moved from novelty to requirement in Turkish job ads, and which tools employers actually name, with every finding traceable to the sentence it came from.",
+            "23.3× GenAI ads1.6M ads in scope2022→2026 H1",
+            "LLM Pipeline·Turkish NLP·Classification·Validation·Data Product",
             "EnterpriseShippedAug 2026",
-            "ProjectLens: Pricing Internal Tool",
+            "ProjectLens: 64 hours of pricing work down to 5.5",
             "ProblemEvery project quote started life as a fresh Excel file. Effort estimation, pricing, proposal drafting, approval and follow-up lived in spreadsheets and inboxes. No shared history, no auditable numbers, no way to ask the data a question.",
             "ApproachBuilt with the Pricing & Revenue team: one tool that runs request intake → effort calculation → pricing → proposal → approval → follow-up end to end. Wired into Microsoft Teams and Azure DevOps so requests arrive where the team already works. Ships a read-only SQL console (SELECT/WITH only, every query in a rolled-back transaction on its own connection) plus a presentation mode that masks figures during screen shares.",
             "Result91% of the manual effort eliminated. 64h of hand work reduced to 5.5h, freeing 59 hours (7.3 working days). 31 Excel files no longer created.",
+            "WorkBeforeAfter",
+            "Pricing a project2 hours10 minutes",
+            "Collecting a request30 minutes5 minutes",
+            "Arithmetic and copy errorsYesDesigned out",
+            "Waiting in an approval queueYesNo",
+            "Cycle time, conversion, marginNot measuredMeasured",
             "59h freed91% effort cut31 Excel files avoided",
             "Savings modelled as 31 pricing runs × (2h − 10min) + 4 intake requests × (30min − 5min). The 2h manual baseline is a team estimate from 2026-07-30, not a measurement.",
             "Applied AI·Microsoft Teams·Azure DevOps·SQL·Workflow Automation",
             "EnterpriseProduction",
-            "Enterprise AI Transformation",
+            "Enterprise AI Transformation: 60% less manual work for 200+ colleagues",
             "ProblemManual reporting workflows across Sales, Finance, R&D consuming analyst time with no self-service capability.",
             "ApproachMulti-agent orchestration (LangGraph, MCP, Agno) for text-to-SQL, report automation, and AI feedback loops with human checkpoints.",
             "Result60% reduction in manual workload. 200+ users served. Adopted as group-wide AI standard.",
+            "60% less manual work200+ usersGroup-wide standard",
             "FastAPI·LangGraph·Agno·Pydantic·Arize",
             "Data ProductInfrastructure",
-            "300M+ Datapoint Metadata Platform",
+            "Metadata Platform: 300M+ datapoints unified",
             "ProblemNo unified metadata layer across a live job platform. Fragmented schemas, no lineage, analytics bottlenecked by ad-hoc queries.",
             "ApproachDesigned metadata architecture with DataHub governance, real-time pipelines, and product-analytics instrumentation for strategic decisions.",
             "Result300M+ datapoints unified. Became the foundation for all later AI/LLM deployments: embedding generation, RAG retrieval, and context grounding at scale.",
-            "DataHub·Azure Synapse·BigQuery·Real-time Pipelines·Retool"
+            "300M+ datapointsFoundation for RAG and embeddings",
+            "DataHub·Azure Synapse·BigQuery·Real-time Pipelines·Retool",
+            "Tokalator · open source · AGPL-3.0"
+          ]
+        },
+        {
+          "id": "see-what-your-ai-coding-assistant-reads-and-what",
+          "heading": "See what your AI coding assistant reads, and what it costs.",
+          "blocks": [
+            "Context engineering for AI coding assistants: token budgeting in real time and cost modelling across 17 LLMs.",
+            "VS Code500+ installsarXiv2604.08290models17 LLMs",
+            "Install for VS Code →★ Star on GitHubtokalator.ai",
+            "context windowexample",
+            "Pinned fileshigh relevance",
+            "Open tabsscored",
+            "Historycache it",
+            "Low relevancedrop it"
           ]
         },
         {
@@ -124,50 +239,97 @@
           ]
         },
         {
-          "id": "gallery",
-          "heading": "Portfolio",
-          "blocks": [
-            "Live products and demos.",
-            "1 / 3",
-            "Open SourceShipped",
-            "Tokalator: Context Engineering Toolkit",
-            "VS Code extension, wiki with 58 articles, and token calculator. Real-time token budgeting, tab relevance scoring, and cost modeling across 17 LLMs.",
-            "Next.js·Scala·Python·Cobb-Douglas·VS Code Extension",
-            "Live SiteVS Code MarketplacearXiv Paper",
-            "ResearchACM CAIS '26",
-            "Multi-Agent Job Classification",
-            "MCP-based multi-agent system for cross-lingual job title normalization to O*NET and ESCO taxonomies. 95% accuracy on 14K+ positions with 72.5% faster classification.",
-            "Next.js·MCP·Gemini Agent Garden·Hooks·Vercel AI·Anthropic SDK",
-            "Live DemoACM Paper",
-            "1 / 2",
-            "EnterpriseInternalAug 2026",
-            "ProjectLens: Pricing Internal Tool",
-            "An intelligent assistant for pricing, built with the Pricing & Revenue team at Kariyer.net. Takes a project request and carries it through effort calculation, pricing, proposal preparation, approval and follow-up, replacing a per-quote Excel habit with one auditable, data-driven flow. Integrated into Microsoft Teams and Azure DevOps, with a read-only SQL console for questions the dashboards do not answer. 91% of the manual effort removed; 59 hours freed.",
-            "Applied AI·Microsoft Teams·Azure DevOps·SQL·Workflow Automation"
-          ]
-        },
-        {
           "id": "experience",
           "heading": "Experience",
           "blocks": [
-            "Where I built it.",
+            "Eight years of turning business problems into systems people use.",
+            "Ships to productionTools in daily use, not demos: ProjectLens, Text-to-Report, finance checks.",
+            "Proves the impact91% less manual work, a 40% smaller backlog, 95% accuracy, all measured.",
+            "Brings people along400+ people taught, C-level AI training, career mentoring at TEV.",
+            "Owns it end to endProblem, spec, build, evals, hand-off. Research to roadmap.",
             "2025–now",
             "Senior Applied AI Specialist",
-            "Kariyer.net (ilab group)",
-            "Specs, context and backlog delivery for applied AI transformation across Sales, Finance and R&D. Azure DevOps, Claude Code, Vercel AI SDK, LangChain, Agno, Langfuse.",
-            "Google GenAI Leader · Perplexity Fellowship",
+            "Kariyer.net (ilab group) · Istanbul",
+            "I lead applied AI across Sales, Finance and R&D: from the business problem to agents running in production.",
+            "ProjectLens: pricing moved from Excel to one tool, 91% less manual work, 31 spreadsheets retired",
+            "Text-to-Report agents answer data questions in plain language: analytics backlog down 40%",
+            "My context-engineering framework became the company standard, cutting token spend while improving accuracy",
+            "Finance exception detection across statements from 4 major Turkish banks",
+            "Secured a USD 40K Perplexity enterprise grant; certified Google Generative AI Leader",
+            "See the case studies →Read the ACM CAIS ’26 paper →",
+            "Claude CodeAgent SDKLangGraphMCPLangfuseAzure DevOps",
             "2022–2025",
             "Product Manager, Data",
-            "Kariyer.net",
-            "Metadata architecture serving 300M+ datapoints. AI strategy alignment. Pipeline infrastructure enabling later LLM deployments at scale.",
+            "Kariyer.net · Istanbul",
+            "I built the data foundation the AI work now stands on.",
+            "Metadata design for 300M+ data assets, so every number has an owner and a trail",
+            "Real-time labour-statistics pipelines with data quality, governance and executive dashboards",
+            "Led AI adoption training for C-level executives",
+            "DataHubBigQuerySynapseGovernance",
             "2021–2022",
-            "Business Analyst",
+            "Business Analyst, Data Analytics",
             "WorqCompany",
-            "Forecasting models, dashboards, and process automation for finance and operations.",
+            "I gave leadership numbers they could plan with.",
+            "Financial forecasts and revenue simulations used for mid-range planning",
+            "Dashboards and process automation for finance and operations",
+            "ForecastingSQL",
             "2019–2021",
             "Co-Founder",
-            "Defaro.io",
-            "Labour-market analytics startup for compensation intelligence and career pathway analytics. Data pipelines, benchmarking models, product strategy from scratch."
+            "Defaro.io · backed by Özyeğin University",
+            "I built a data product from zero: labour-market and compensation analytics.",
+            "Data pipelines, benchmarking models and product strategy from scratch",
+            "Full history and recommendations on LinkedIn ↗Preview the CVBook an interview →"
+          ]
+        },
+        {
+          "id": "skills",
+          "heading": "Skills & stack",
+          "blocks": [
+            "Enterprise solutions you can count on.You can count on enterprise solutions.data products.agents.analysis.design.architecture.problem solving.token-cost optimisation.tracing.failure detection.tests.",
+            "What I bring",
+            "AI-Native ArchitectureSpec → Agents → Evals",
+            "Agent HarnessesLoops · Tools · Memory",
+            "Context EngineeringToken budgets · Caching",
+            "Evals & ObservabilityLangfuse traces · Failure analysis",
+            "Agentic WorkflowsLong-running · Resumable",
+            "MCP & Agent SkillsTools · SKILL.md",
+            "Multi-Agent SystemsLangGraph · Agno · SDKs",
+            "Open SourceTokalator · 500+ installs",
+            "Published ResearchACM · arXiv",
+            "Built with, every day",
+            "Applied AI",
+            "Claude Code",
+            "Claude Agent SDK",
+            "Copilot Studio",
+            "Azure AI Foundry",
+            "Vertex AI",
+            "LangChain",
+            "LangGraph",
+            "Deep Agents",
+            "Agno",
+            "ElevenLabs",
+            "Vapi",
+            "Data & retrieval",
+            "RAG",
+            "Vector DB",
+            "BigQuery",
+            "Google Cloud",
+            "SQL",
+            "Text-to-SQL",
+            "DataHub",
+            "Hugging Face",
+            "Perplexity AI Search",
+            "Product engineering",
+            "Python",
+            "TypeScript",
+            "Next.js",
+            "Vercel AI SDK",
+            "Microsoft Agents SDK",
+            "Azure DevOps",
+            "MCP",
+            "Langfuse",
+            "Power Automate",
+            "Zapier"
           ]
         },
         {
@@ -193,7 +355,7 @@
             "AI-native development workflow adoption",
             "For Hiring Teams",
             "The short version, in numbers.",
-            "9+ years shipping · Istanbul, GMT+3 · remote-friendly",
+            "8 years in industry + 4 in research · Istanbul, GMT+3 · remote-friendly",
             "3 papers (1 peer-reviewed ACM) + 1 patent pending",
             "Perplexity AI Business Fellowship, programme lead",
             "Full CV as PDF · download"
@@ -203,7 +365,23 @@
           "id": "story",
           "heading": "Through-line",
           "blocks": [
-            "Twelve years turning messy data into decisions people act on.",
+            "8 years in industry and 4 in research, turning messy data into decisions people act on.",
+            "Fig. 1 Counting before computing. Graphite on paper by Homa Mofidian.",
+            "The problem I solve",
+            "Messy text in, decisions out.",
+            "Twelve years, eight in industry and four in research, on one problem shape. The domain keeps changing. The problem doesn’t.",
+            "Shipped inTalentPricingFinanceSalesR&DDeveloper toolsData infrastructure",
+            "How I got here",
+            "01 · Languages",
+            "Reading people",
+            "Turkish native, English C1, Spanish at teaching level, Portuguese and Japanese on the way. Living in several languages taught me that meaning sits in context, not in the words.",
+            "02 · Data products",
+            "Structuring it",
+            "Defaro.io, then Kariyer.net: 300M+ assets under one metadata layer, with governance and lineage. A number is only as good as the trail behind it, so I built the trail.",
+            "03 · Applied AI",
+            "Letting models read",
+            "Agents that map job titles in any language to O*NET and ESCO, a Turkish skill-extraction benchmark, Tokalator for the context budget. The model reads the language; the system keeps the lineage.",
+            "Same problem, a new reader. Languages taught me to read people, data products taught me to keep the evidence, and applied AI lets both run at scale.",
             "20132026",
             "2013–15",
             "Master’s, Business Administration",
@@ -216,16 +394,14 @@
             "Built a data product end to end, from raw signal to something customers paid for. Incubated at Özyeğin University.",
             "2019–23",
             "M.A. Economics, Ibn Haldun",
-            "Thesis on real-time market analysis. Teaching assistant in econometrics.",
+            "Thesis on real-time labour market analysis. Teaching assistant in econometrics.",
             "2022–25",
             "Kariyer.net, data products",
             "300M+ assets under one metadata architecture. Governance, lineage, real-time pipelines.",
             "2025–",
             "Applied AI",
             "Multi-agent systems that turn free text into structured decisions. Peer-reviewed at ACM CAIS '26.",
-            "Twelve years on one problem shape: messy text in, decisions out. The domain keeps changing. The problem doesn’t.",
-            "Shipped inTalentPricingFinanceSalesR&DDeveloper toolsData infrastructure",
-            "4Languages spokenTurkish native, English C1, Spanish at instructor level, Portuguese basic. Japanese in progress, badly.",
+            "4Languages spokenTurkish native, English C1, Spanish at instructor level, Portuguese basic, Japanese in progress.",
             "400+People taught50+ courses, an 18-hour applied AI programme, university guest lectures, and career mentoring at the TEV Foundation.",
             "3Papers, one peer-reviewedACM member. Writing is how the work gets checked by people who owe me nothing.",
             "0→1Built unaskedTokalator, awesome-applied-ai and this site all started as problems nobody assigned. The care shows in the small print: where a number is a team estimate rather than a measurement, it says so."
@@ -242,7 +418,8 @@
             "Thesis: Real-Time Labor Market Analysis",
             "Teaching Asst., Econometrics I",
             "Credentials",
-            "08",
+            "09",
+            "Claude Certified Architect, Foundations",
             "ACM Professional Member",
             "Google Generative AI Leader",
             "Anthropic: MCP, Agent Skills, Claude API, Claude Code",
@@ -257,19 +434,53 @@
             "Teaching",
             "18h Applied AI Course, Techcareer",
             "AI Career Mentor, TEV Foundation",
-            "Enterprise prompt engineering, Universities",
-            "Vahid Faraji/Applied AI12 years · 3 papers · 4 products",
-            "WorkPublicationsPortfolioThrough-lineWork With MeContext EngineeringUpdates",
-            "Last updated 2026.08·Istanbul, Türkiye",
+            "Enterprise prompt engineering, university lectures",
+            "Vahid Faraji CV2 pages · PDF · updated with every deploy",
+            "Open↗Download PDF",
+            "×",
+            "Vahid Faraji Animated CV01 Who I am",
+            "Book a call",
+            "Sound on",
+            "0:00 / 1:30",
+            "0.75×",
+            "1×",
+            "1.25×",
+            "1.5×",
+            "2×"
+          ]
+        },
+        {
+          "id": "through-the-tools",
+          "heading": "Through the tools",
+          "blocks": []
+        },
+        {
+          "id": "from-the-abacus-to-agents",
+          "heading": "From the abacus to agents.",
+          "blocks": [
+            "CountQuantities and evidenceM.A. Economics · Econometrics · Statistics",
+            "ComputeData that answers questionsSQL · BigQuery · Azure Synapse · Text-to-SQL",
+            "BuildSoftware, end to endTypeScript 7 · Python · FastAPI · Next.js",
+            "ScalePlatforms and governanceVercel · Azure · Google Cloud · DataHub · Azure DevOps",
+            "OrchestrateAgents in productionAnthropic Platform (Claude Agent SDK) · Vercel AI SDK · Microsoft Copilot Studio · MCP · LangGraph · Langfuse",
+            "Vahid FarajiApplied AI",
+            "WorkResearchThrough-lineWork with meContext EngineeringUpdatesCV (PDF)",
+            "© 2026 Vahid Faraji·Istanbul, Türkiye·Updated Nov 2026",
+            "Sound",
+            "Back to top ↑",
+            "PrivacyTerms and disclaimerAnalytics choice",
+            "vahid",
             "×",
             "Suggest a time",
-            "Pick a slot in your timezone. I'll confirm within 24h.",
+            "Pick a slot in your time zone. I'll confirm within 24h.",
             "Istanbul --:--·You --:--",
             "Date",
             "Time (your tz)",
             "Name",
             "Email",
             "Topic (optional)",
+            "Company website",
+            "Your name, email and topic go to my Google account only so I can reply. See Privacy.",
             "Propose this time",
             "✓",
             "Time proposed",
@@ -286,153 +497,166 @@
       "url": "https://vfaraji89.github.io/updates.html",
       "meta": {
         "title": "Latest Updates · Vahid Faraji",
-        "description": "Conference demos, published papers, talks, and training events. Press-style updates from Vahid Faraji's Applied AI work.",
+        "description": "Launches, papers, talks and credentials from Vahid Faraji's applied AI work: the animated CV, Claude Certified Architect, ACM CAIS '26, Tokalator and ProjectLens.",
         "og:title": "Latest Updates · Vahid Faraji",
-        "og:description": "Conference demos, published papers, talks, and training events from Vahid Faraji's Applied AI work.",
-        "og:image:alt": "Vahid Faraji, latest updates: papers, talks and demos",
+        "og:description": "Launches, papers, talks and credentials from Vahid Faraji's Applied AI work.",
+        "og:image:alt": "Vahid Faraji, updates: what I shipped, said and published",
         "twitter:title": "Latest Updates · Vahid Faraji",
-        "twitter:description": "Conference demos, published papers, talks, and training events from Vahid Faraji's Applied AI work."
+        "twitter:description": "Launches, papers, talks and credentials from Vahid Faraji's Applied AI work."
       },
       "sections": [
         {
           "id": "(page)",
           "heading": null,
           "blocks": [
-            "← Back to portfolio"
+            "Vahid Faraji",
+            "Work",
+            "Research",
+            "About",
+            "Updates",
+            "Fit checkBook a call",
+            "a",
+            "Language",
+            "The agent answers in English, and the evals test cases and the film's chapter marks stay in English.",
+            "Updates · last entry November 2026"
           ]
         },
         {
-          "id": "latest-updates",
-          "heading": "Latest Updates",
+          "id": "what-i-shipped-said-and-published",
+          "heading": "What I shipped, said and published.",
           "blocks": [
-            "Conferences, papers, talks, and events. What's happening now.",
+            "Launches, papers, talks and credentials from my applied AI work, with the links to check each one.",
+            "ACM CAIS ’26peer-reviewed demo paper",
+            "+1demo paper under review",
+            "2arXiv papers",
+            "500+Tokalator installs"
+          ]
+        },
+        {
+          "id": "projectlens-paper",
+          "heading": null,
+          "blocks": [
+            "Submitted · under reviewLatest · demo paper"
+          ]
+        },
+        {
+          "id": "projectlens-written-up-as-a-demo-paper",
+          "heading": "ProjectLens, written up as a demo paper.",
+          "blocks": [
+            "The pricing tool I built with the Pricing & Revenue team at Kariyer.net is now a submitted demo paper. It walks through how a project request moves from effort calculation to price, proposal, approval and follow-up in one auditable flow, wired into Microsoft Teams and Azure DevOps, with a read-only SQL console for the questions dashboards miss.",
+            "91%manual effort removed",
+            "64h→5.5hper pricing cycle",
+            "31spreadsheets avoided",
+            "Read the case study →In production since August",
+            "Venue and paper link go here once it is accepted.",
+            "Demo paper"
+          ]
+        },
+        {
+          "id": "everything-else-newest-first",
+          "heading": "Everything else, newest first",
+          "blocks": [
             "Year",
             "All",
             "2026",
             "2025",
             "Topic",
-            "Conference",
-            "Talk",
-            "Publish",
-            "Mentor",
-            "Award",
-            "Certificate",
-            "Enterprise",
-            "Open Source",
+            "Launches",
+            "Papers",
+            "Events",
+            "Teaching",
+            "Credentials"
+          ]
+        },
+        {
+          "id": "2026",
+          "heading": "2026",
+          "blocks": [
+            "Nov",
+            "NewLaunchNov 2026",
+            "awesome-applied-ai grows into the full map: seven steps, five languages",
+            "The companion site to my book now walks the whole path in seven steps: a weekly job tracker, roles and skills, the AI-native architect, a tool map of 601 tools you can filter by use case, 17 industry certificates with official links, docs in motion, and feedback. Emerging tools now age out on their own after six months, and every page reads in English, Turkish, Spanish, Dutch and Japanese.",
+            "vfaraji89.github.io/awesome-applied-ai · EN · TR · ES · NL · JA",
+            "Tool mapCertificatesLive site",
             "awesome-applied-ai",
-            "Open SourceJuly 2026"
-          ]
-        },
-        {
-          "id": "awesome-applied-ai-a-working-map-of-applied-ai-f",
-          "heading": "awesome-applied-ai: a working map of applied AI for the enterprise",
-          "blocks": [
-            "A public taxonomy of applied AI. Six layers: Guardrails and Governance, Evaluation and Observability, Orchestration, Caching, Memory, and Retrieval. Includes a live tool index, formulas, dictionary, commands, and research for enterprise AI architects.",
-            "vfaraji89.github.io/awesome-applied-ai · github.com/vfaraji89/awesome-applied-ai",
-            "Live siteGitHub",
-            "EnterpriseAugust 2026"
-          ]
-        },
-        {
-          "id": "projectlens-pricing-from-excel-habit-to-auditabl",
-          "heading": "ProjectLens: pricing, from Excel habit to auditable flow",
-          "blocks": [
-            "Shipped with the Pricing & Revenue team at Kariyer.net. ProjectLens takes a project request and carries it end to end: effort calculation, pricing, proposal preparation, approval and follow-up, instead of spawning a fresh Excel file per quote. It plugs into Microsoft Teams and Azure DevOps so requests arrive where the team already works, and ships a read-only SQL console for the questions the dashboards do not answer. 91% of the manual effort removed: 64 hours of hand work down to 5.5, freeing 59 hours (7.3 working days) and avoiding 31 spreadsheets.",
-            "Applied AI × Pricing & Revenue · Kariyer.net · internal tool",
-            "ConferenceDemo PaperMay 29, 2026"
-          ]
-        },
-        {
-          "id": "presenting-demo-at-acm-cais-26-san-jose",
-          "heading": "Presenting demo at ACM CAIS '26, San Jose",
-          "blocks": [
-            "Live demo of our tool-augmented multi-agent system for job position normalisation. The system uses MCP-based multi-agent coordination to map free-form job titles to O*NET and ESCO taxonomies, with a 72.5% reduction in classification time, up to 95% segment-level accuracy.",
-            "ACM Conference on AI and Agentic Systems · DoubleTree by Hilton San Jose · May 26–29, 2026",
-            "ACM Digital LibraryalphaXivCAIS '26 Website",
-            "PublishedMay 2026"
-          ]
-        },
-        {
-          "id": "multi-agent-position-classification-with-tool-or",
-          "heading": "Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping",
-          "blocks": [
-            "Accepted and published in the ACM Digital Library. DOI: 10.1145/3786335.3813207. Peer-reviewed demo paper presenting a novel MCP-based architecture for cross-lingual occupation classification at enterprise scale.",
-            "DOI: 10.1145/3786335.3813207alphaXiv",
-            "Training2026"
-          ]
-        },
-        {
-          "id": "applied-ai-course-agents-mcp-and-ai-native-devel",
-          "heading": "Applied AI Course: Agents, MCP, and AI-Native Development",
-          "blocks": [
-            "18-hour technical training program covering custom tool design, contextual system architecture, multi-agent coordination, and production tool execution. Delivered through Techcareer platform.",
-            "Techcareer · 18 hours · Istanbul",
-            "Techcareer Bootcamp",
-            "arXivOpen SourceApril 2026"
-          ]
-        },
-        {
-          "id": "tokalator-a-context-engineering-toolkit-for-ai-c",
-          "heading": "Tokalator: A Context Engineering Toolkit for AI Coding Assistants",
-          "blocks": [
-            "Technical paper on arXiv introducing an open-source toolkit for token-aware context management, cost modeling, and workflow optimization. VS Code extension with 500+ installs.",
-            "arXiv:2604.08290tokalator.ai",
-            "arXivJanuary 2026"
-          ]
-        },
-        {
-          "id": "leveraging-llms-for-turkish-skill-extraction",
-          "heading": "Leveraging LLMs For Turkish Skill Extraction",
-          "blocks": [
-            "Large-scale empirical study on extracting structured skill signals for the Turkish labor market using modern LLM-based pipelines. First systematic benchmark for Turkish NLP in workforce analytics.",
+            "A 90-second animated CV, and a portfolio rebuilt around it",
+            "My work as a short film: the tools that keep changing, the languages I work in, talking to agents, problem to data to solution, and 2026 in tokens. The portfolio around it gained a recruiter view, number-led case studies and a playable stack.",
+            "vfaraji89.github.io · 1:30",
+            "Watch the filmRecruiter view",
+            "2026",
+            "Credential2026",
+            "Claude Certified Architect, Foundations",
+            "Certified by Anthropic. Alongside it: Google Generative AI Leader, ACM Professional Membership, Anthropic courses on MCP, Agent Skills, the Claude API and Claude Code, and LangChain’s LangGraph and LangSmith.",
+            "Anthropic · Google · ACM · LangChain",
+            "All credentialsCertificates worth having",
+            "Credentials",
+            "Aug",
+            "In productionAug 2026",
+            "ProjectLens goes live: pricing, from Excel habit to an auditable flow",
+            "Shipped with the Pricing & Revenue team at Kariyer.net. A project request moves through effort, price, proposal, approval and follow-up in one tool that plugs into Microsoft Teams and Azure DevOps, with a read-only SQL console for what dashboards miss. 64 hours of hand work down to 5.5; 31 spreadsheets avoided.",
+            "Applied AI × Pricing & Revenue · Kariyer.net",
+            "Case study",
+            "Jul",
+            "LaunchJul 2026",
+            "awesome-applied-ai: a working map of applied AI for the enterprise",
+            "A public taxonomy in six layers: guardrails and governance, evaluation and observability, orchestration, caching, memory and retrieval. With a live tool index, formulas, a dictionary, commands and research for enterprise AI architects.",
+            "vfaraji89.github.io/awesome-applied-ai",
+            "Live site",
+            "May",
+            "ConferencePublishedMay 2026",
+            "ACM CAIS ’26, San Jose: demo presented, paper published",
+            "Live demo of our tool-augmented multi-agent system that maps free-form job titles to O*NET and ESCO through MCP-based coordination: 72.5% less classification time, up to 95% segment-level accuracy. The peer-reviewed demo paper is in the ACM Digital Library.",
+            "ACM Conference on AI and Agentic Systems · May 26–29, 2026",
+            "DOI 10.1145/3786335.3813207alphaXivCAIS ’26",
+            "Apr",
+            "arXivOpen sourceApr 2026",
+            "Tokalator: a context engineering toolkit for AI coding assistants",
+            "An open-source toolkit for token-aware context management, cost modelling and workflow tuning, with a VS Code extension past 500 installs.",
+            "arXiv:2604.08290",
+            "arXivtokalator.ai",
+            "Jan",
+            "arXivJan 2026",
+            "Leveraging LLMs for Turkish skill extraction",
+            "A large-scale study of extracting structured skills for the Turkish labour market with LLM pipelines: the first systematic benchmark for Turkish NLP in workforce analytics.",
             "arXiv:2601.22885",
-            "Talk2026"
-          ]
-        },
-        {
-          "id": "context-engineering-for-ai-native-dev",
-          "heading": "Context Engineering for AI-Native Dev",
-          "blocks": [
-            "Invited talk on designing context-aware systems for AI-native development workflows. Covering token budgeting, relevance scoring, and production deployment patterns.",
+            "arXiv",
+            "Teaching2026",
+            "Applied AI course: agents, MCP and AI-native development",
+            "An 18-hour technical programme on custom tool design, context architecture, multi-agent coordination and running tools in production.",
+            "Techcareer · 18 hours · Istanbul",
+            "Techcareer bootcamp",
+            "Talk2026",
+            "Context engineering for AI-native development",
+            "Invited talk on context-aware systems for AI-native workflows: token budgets, relevance scoring and production patterns.",
             "Only Builders Club · Istanbul",
-            "Mentorship2026"
+            "Context engineering notes",
+            "Mentoring2026",
+            "AI career mentor at TEV, the Turkish Education Foundation",
+            "Mentoring students on AI career paths, portfolios, and the move from traditional engineering into applied AI roles.",
+            "Türk Eğitim Vakfı",
+            "Fellowship2026",
+            "Leading the Perplexity AI Business Fellowship programme",
+            "Leading the programme behind the group-wide AI transformation at Kariyer.net (ilab group), and setting the baseline standards for agentic infrastructure.",
+            "Perplexity · Kariyer.net"
           ]
         },
         {
-          "id": "ai-career-mentor-tev-turkish-education-foundatio",
-          "heading": "AI Career Mentor, TEV (Turkish Education Foundation)",
+          "id": "2025",
+          "heading": "2025",
           "blocks": [
-            "Mentoring emerging talent on AI career paths, portfolio building, and navigating the transition from traditional engineering to applied AI roles.",
-            "Fellowship2026"
-          ]
-        },
-        {
-          "id": "leading-the-perplexity-ai-business-fellowship-pr",
-          "heading": "Leading the Perplexity AI Business Fellowship programme",
-          "blocks": [
-            "Leading the Perplexity AI Business Fellowship programme, supporting the group-wide AI transformation initiative at Kariyer.net (ilab group) and establishing baseline standards for agentic infrastructure.",
             "2025",
-            "Talk2025"
-          ]
-        },
-        {
-          "id": "deep-agent-frameworks-for-saas-bridge-summit-25",
-          "heading": "Deep Agent Frameworks for SaaS, Bridge Summit '25",
-          "blocks": [
-            "Invited speaker on building deep agent frameworks for SaaS platforms. Covering multi-agent orchestration, tool integration patterns, and production deployment of LLM-powered features.",
-            "Bridge Summit '25",
-            "University Talk2025"
-          ]
-        },
-        {
-          "id": "enterprise-prompt-engineering-and-tool-design",
-          "heading": "Enterprise Prompt Engineering and Tool Design",
-          "blocks": [
-            "Guest lectures on enterprise-grade prompt engineering, tool design patterns, and AI system architecture for graduate and undergraduate programs.",
+            "Talk2025",
+            "Deep agent frameworks for SaaS, Bridge Summit ’25",
+            "Invited speaker on deep agent frameworks for SaaS: multi-agent orchestration, tool integration and shipping LLM features to production.",
+            "Bridge Summit ’25",
+            "University talk2025",
+            "Enterprise prompt engineering and tool design",
+            "Guest lectures on enterprise prompt engineering, tool design patterns and AI system architecture for graduate and undergraduate students.",
             "Kayseri University & Van University",
             "Vahid Faraji/Applied AI",
-            "PortfolioPublicationsWorkContext Engineering",
-            "Last updated 2026.08·Istanbul, Türkiye"
+            "PortfolioPublicationsWorkContext EngineeringCV (PDF)",
+            "Last updated 2026.11·Istanbul, Türkiye",
+            "PrivacyTerms and disclaimerAnalytics choice"
           ]
         }
       ]
@@ -445,7 +669,7 @@
         "description": "How I saved 38% on LLM token spend across 16M+ tokens using context engineering: compaction, pollution control, incremental management, and knowledge graphs.",
         "og:title": "How I save 38% on LLM tokens · Context Engineering Methodology",
         "og:description": "Compaction, pollution control, incremental context management and knowledge graphs: the method behind a 38% token saving across 16M+ tokens.",
-        "og:image:alt": "Vahid Faraji, context engineering methodology",
+        "og:image:alt": "How I save 38% on LLM tokens: Vahid Faraji's context engineering method",
         "twitter:title": "How I save 38% on LLM tokens",
         "twitter:description": "The context engineering methodology behind a 38% token saving across 16M+ tokens."
       },
@@ -550,7 +774,8 @@
             "VS CodeTypeScriptToken budgetingRelevance scoringOpen source",
             "Vahid Faraji/Applied AI",
             "PortfolioPublicationsWorkUpdates",
-            "Last updated 2026.08·Istanbul, Türkiye"
+            "Last updated 2026.08·Istanbul, Türkiye",
+            "PrivacyTerms and disclaimerAnalytics choice"
           ]
         }
       ]
@@ -563,6 +788,7 @@
         "description": "Peer-reviewed ACM CAIS '26 paper: MCP-based multi-agent system for job position normalisation achieving 95% accuracy on 14K+ positions, 72.5% faster classification, 41.8% fewer API calls.",
         "og:title": "Multi-Agent Position Classification with Tool Orchestration · Vahid Faraji",
         "og:description": "Peer-reviewed ACM CAIS '26 paper: MCP-based multi-agent system for job position normalisation achieving 95% accuracy on 14K+ positions, 72.5% faster classification, 41.8% fewer API calls.",
+        "og:image:alt": "ACM CAIS '26 paper by Vahid Faraji: multi-agent position classification with tool orchestration",
         "twitter:title": "Multi-Agent Position Classification with Tool Orchestration · Vahid Faraji",
         "twitter:description": "Peer-reviewed ACM CAIS '26 paper: MCP-based multi-agent system for job position normalisation achieving 95% accuracy on 14K+ positions, 72.5% faster classification, 41.8% fewer API calls."
       },
@@ -634,7 +860,8 @@
             "@inproceedings{faraji2026multiagent, title = {Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping}, author = {Faraji, Vahid}, booktitle = {Proceedings of the ACM Conference on AI and Agentic Systems (CAIS '26)}, year = {2026}, address = {San Jose, CA, USA}, publisher = {Association for Computing Machinery}, doi = {10.1145/3786335.3813207} }",
             "Vahid Faraji/Applied AI",
             "PortfolioPublicationsUpdatesContext Engineering",
-            "Last updated 2026.08·Istanbul, Türkiye"
+            "Last updated 2026.08·Istanbul, Türkiye",
+            "PrivacyTerms and disclaimerAnalytics choice"
           ]
         }
       ]
@@ -647,6 +874,7 @@
         "description": "arXiv paper introducing Tokalator, an open-source context engineering toolkit for AI coding assistants: token-aware context management, output-quality models, and caching break-even analysis.",
         "og:title": "Tokalator: A Context Engineering Toolkit · Vahid Faraji",
         "og:description": "arXiv paper introducing Tokalator, an open-source context engineering toolkit for AI coding assistants: token-aware context management, output-quality models, and caching break-even analysis.",
+        "og:image:alt": "arXiv paper by Vahid Faraji: Tokalator, a context engineering toolkit for AI coding assistants",
         "twitter:title": "Tokalator: A Context Engineering Toolkit · Vahid Faraji",
         "twitter:description": "arXiv paper introducing Tokalator, an open-source context engineering toolkit for AI coding assistants: token-aware context management, output-quality models, and caching break-even analysis."
       },
@@ -717,7 +945,8 @@
             "@article{faraji2026tokalator, title = {Tokalator: A Context Engineering Toolkit for AI Coding Assistants}, author = {Faraji, Vahid}, journal = {arXiv preprint arXiv:2604.08290}, year = {2026} }",
             "Vahid Faraji/Applied AI",
             "PortfolioPublicationsUpdatesContext Engineering",
-            "Last updated 2026.08·Istanbul, Türkiye"
+            "Last updated 2026.08·Istanbul, Türkiye",
+            "PrivacyTerms and disclaimerAnalytics choice"
           ]
         }
       ]
@@ -730,6 +959,7 @@
         "description": "arXiv paper on LLM-based Turkish skill extraction: the first systematic LLM benchmark for Turkish NLP in workforce analytics.",
         "og:title": "Leveraging LLMs For Turkish Skill Extraction · Vahid Faraji",
         "og:description": "arXiv paper on LLM-based Turkish skill extraction: the first systematic LLM benchmark for Turkish NLP in workforce analytics.",
+        "og:image:alt": "arXiv paper by Vahid Faraji: leveraging LLMs for Turkish skill extraction",
         "twitter:title": "Leveraging LLMs For Turkish Skill Extraction · Vahid Faraji",
         "twitter:description": "arXiv paper on LLM-based Turkish skill extraction: the first systematic LLM benchmark for Turkish NLP in workforce analytics."
       },
@@ -785,7 +1015,8 @@
             "@article{faraji2026turkish, title = {Leveraging LLMs For Turkish Skill Extraction}, author = {Faraji, Vahid}, journal = {arXiv preprint arXiv:2601.22885}, year = {2026} }",
             "Vahid Faraji/Applied AI",
             "PortfolioPublicationsUpdatesContext Engineering",
-            "Last updated 2026.08·Istanbul, Türkiye"
+            "Last updated 2026.08·Istanbul, Türkiye",
+            "PrivacyTerms and disclaimerAnalytics choice"
           ]
         }
       ]

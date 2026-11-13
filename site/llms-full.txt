@@ -86,8 +86,9 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 - Metrics: 95% accuracy, 14K+ positions, 72.5% faster, 41.8% fewer API calls
 - Published: ACM CAIS '26
 
-### Yapay Zekâ İzi: AI in 1.6M Job Ads (concept)
-- Status: confidential Kariyer.net work, shown as a concept only; no data, link or product is public
+### Yapay Zekâ İzi: AI in 1.6M Job Ads
+- Type: Enterprise, Kariyer.net (analysis site, shown on the portfolio with permission)
+- Result: job ads naming generative AI up 23.3 times from H1 2022 to H1 2026; of 233,127 ads published in 2026, 3,373 mention AI, from 1,681 companies
 - Completed: October 2026
 - Scope: 1.6M job ads, 2022 (the GPT moment) to the first half of 2026
 - Approach: an LLM pipeline reads every ad sentence by sentence, separates generative AI from classic AI and machine learning, normalises tool names to count which tools employers ask for, and reports by period, tool and sector with a validation page and the method. Quotes are kept verbatim from the ads.
