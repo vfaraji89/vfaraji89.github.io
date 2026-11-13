@@ -44,7 +44,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 ## Key Projects
 
 - awesome-applied-ai (vfaraji89.github.io/awesome-applied-ai): An open, plain-language map of applied AI in six steps: the market (tracked daily from public job boards), roles, skills and tasks, the AI-native architect, industry certificates, technical docs in motion, and contributions.
-- Tokalator (tokalator.wiki): Open-source context engineering toolkit. VS Code extension with 500+ installs. Token budgeting, cost modeling across 17 LLMs. MIT license.
+- Tokalator (tokalator.ai): Open-source context engineering toolkit. VS Code extension with 500+ installs. Token budgeting, cost modeling across 17 LLMs. AGPL-3.0 license.
 - Multi-Agent Job Classification: MCP-based system achieving 95% accuracy on 14K+ positions, 72.5% faster classification. Published at ACM.
 - Yapay Zekâ İzi (concept, confidential Kariyer.net work, October 2026): an LLM pipeline over 1.6M job ads from 2022 to the first half of 2026, reading ads sentence by sentence to trace generative and classic AI demand and which AI tools employers name, with a validation and method layer. Shown on the portfolio as a concept only; no data, link or product is public.
 - ProjectLens (internal, Kariyer.net, August 2026): Pricing tool that carries a project request end to end: effort calculation, pricing, proposal preparation, approval and follow-up, replacing a per-quote Excel workflow. Integrated with Microsoft Teams and Azure DevOps, with a read-only SQL console. Removed 91% of the manual effort: 64h of hand work down to 5.5h, freeing 59 hours (7.3 working days) and avoiding 31 spreadsheets. Savings are a team-estimated model, not a measurement.
@@ -100,7 +100,7 @@ Three peer-reviewed and preprint papers. “Multi-Agent Position Classification 
 
 ### What is Tokalator?
 
-Tokalator is an open-source context engineering toolkit built by Vahid Faraji, shipped as a VS Code extension and a web platform with 500+ installs under an MIT licence. It provides real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality modelling and caching break-even analysis across 17 LLMs. It is documented at tokalator.wiki and described in arXiv paper 2604.08290.
+Tokalator is an open-source context engineering toolkit built by Vahid Faraji, shipped as a VS Code extension and a web platform with 500+ installs under an AGPL-3.0 licence. It provides real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality modelling and caching break-even analysis across 17 LLMs. It is documented at tokalator.ai and described in arXiv paper 2604.08290.
 
 ### Which technologies and frameworks does Vahid Faraji work with?
 
@@ -138,7 +138,7 @@ Istanbul, Turkey (GMT+3). He speaks Turkish natively, English at C1 level, Spani
 - Vahid's agent: an agent in the corner of every page that answers only from the evidence file and shows its pipeline (open any page with ?ask=your+question)
 - [Evidence file](https://vfaraji89.github.io/data/evidence.json): every claim with its proof level and a link to where it is shown
 - [Evals](https://vfaraji89.github.io/evals.html): the tests behind Vahid's agent and the fit check, run on every deploy
-- [Tokalator](https://tokalator.wiki)
+- [Tokalator](https://tokalator.ai)
 - [awesome-applied-ai](https://vfaraji89.github.io/awesome-applied-ai/)
 - [ACM Paper](https://dl.acm.org/doi/10.1145/3786335.3813207)
 - [Paper: Job Position Normalisation](https://vfaraji89.github.io/papers/cais-2026.html)
