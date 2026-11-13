@@ -433,10 +433,10 @@
   },
   {
    "id": "case-yzi",
-   "level": "concept",
+   "level": "shipped",
    "date": "2026-10",
-   "title": "Yapay Zekâ İzi: AI in 1.6M job ads (confidential concept)",
-   "text": "An LLM pipeline over 1.6M Turkish job ads from 2022 to the first half of 2026: sentence-level reading of every ad, generative AI kept apart from classic machine learning, tool names normalised, and an internal analysis site with a validation page. Confidential Kariyer.net work, shown on the site as a concept only.",
+   "title": "Yapay Zekâ İzi: AI in 1.6M job ads (Kariyer.net)",
+   "text": "An LLM pipeline over 1.6M Turkish job ads from 2022 to the first half of 2026: sentence-level reading of every ad, generative AI kept apart from classic machine learning, tool names normalised, and an analysis site with a validation page. Job ads naming generative AI grew 23.3 times from H1 2022 to H1 2026; of 233,127 ads published in 2026, 3,373 mention AI, from 1,681 companies.",
    "url": "index.html#yzi",
    "tags": [
     "llm",
