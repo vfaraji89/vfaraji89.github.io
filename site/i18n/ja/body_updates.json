@@ -81,5 +81,12 @@
  "footer_4": "コンテキストエンジニアリング",
  "footer_5": "レジュメ（PDF）",
  "footer_6": "<span>最終更新 <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>トルコ・イスタンブール</span>",
- "cover_title": "ProjectLensを、デモ論文にまとめました<span class=\"bead-stop\">.</span>"
+ "cover_title": "ProjectLensを、デモ論文にまとめました<span class=\"bead-stop\">.</span>",
+ "aai_nov_when": "<time datetime=\"2026-11\">11月</time>",
+ "aai_nov_1": "<span class=\"news-new\">新着</span><span class=\"news-tag\">リリース</span><span class=\"news-date\">2026年11月</span>",
+ "aai_nov_4": "vfaraji89.github.io/awesome-applied-ai &middot; EN &middot; TR &middot; ES &middot; NL &middot; JA",
+ "aai_nov_6": "awesome-applied-ai",
+ "aai_nov_2": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/\" target=\"_blank\" rel=\"noopener\">awesome-applied-aiが全体マップに:7つのステップ、5つの言語</a>",
+ "aai_nov_3": "本の連動サイトが、7つのステップで全体を案内するようになりました。毎週の求人トラッカー、役割とスキル、AIネイティブアーキテクト、用途で絞り込める601ツールのマップ、公式リンク付きの17の業界資格、動きで学ぶドキュメント、フィードバック。注目ツールは6か月たつと自動で外れ、すべてのページを英語、トルコ語、スペイン語、オランダ語、日本語で読めます。",
+ "aai_nov_5": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/tools/\" target=\"_blank\" rel=\"noopener\">ツールマップ</a><a href=\"https://vfaraji89.github.io/awesome-applied-ai/certificates/\" target=\"_blank\" rel=\"noopener\">資格</a><a href=\"https://vfaraji89.github.io/awesome-applied-ai/\" target=\"_blank\" rel=\"noopener\">公開サイト</a>"
 }

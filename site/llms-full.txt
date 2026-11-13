@@ -69,12 +69,12 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 ### awesome-applied-ai: Applied AI, mapped
 - URL: https://vfaraji89.github.io/awesome-applied-ai/
 - Type: Curated reference, the companion site to the book "Applied AI, Simplified" (in progress)
-- What it is: A plain-language map of applied AI in six steps: the market (what applied AI jobs ask for, tracked daily from public job boards), roles, skills and tasks, the AI-native architect (architecture, tools and common problems), industry certificates, technical docs in motion, and feedback.
+- What it is: A plain-language map of applied AI in seven steps, in English, Turkish, Spanish, Dutch and Japanese: the market (what applied AI jobs ask for, tracked from public job boards and summarised weekly), roles, skills and tasks, the AI-native architect (architecture and common problems), a tool map of 600+ tools in eleven areas with use-case filters and emerging tools, industry certificates by track with official links, technical docs in motion, and feedback.
 
 ### Tokalator: Context Engineering Toolkit
-- URL: https://tokalator.wiki
+- URL: https://tokalator.ai
 - GitHub: github.com/vfaraji89/tokalator
-- Type: Open source (MIT)
+- Type: Open source (AGPL-3.0)
 - Stack: Next.js, TypeScript, VS Code Extension, MCP, Token Economics
 - Metrics: 500+ VS Code installs, 17 models supported, 58 wiki articles
 - What it does: Real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality models, caching break-even analysis across 17 LLMs
@@ -192,7 +192,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 - Medium: https://medium.com/@vfaraji89
 - Hugging Face: https://huggingface.co/vfaraji89
 - Substack: https://substack.com/@vfaraji899
-- Tokalator: https://tokalator.wiki
+- Tokalator: https://tokalator.ai
 - awesome-applied-ai: https://vfaraji89.github.io/awesome-applied-ai/
 
 ## FAQ
@@ -217,7 +217,7 @@ Three peer-reviewed and preprint papers. “Multi-Agent Position Classification 
 
 ### What is Tokalator?
 
-Tokalator is an open-source context engineering toolkit built by Vahid Faraji, shipped as a VS Code extension and a web platform with 500+ installs under an MIT licence. It provides real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality modelling and caching break-even analysis across 17 LLMs. It is documented at tokalator.wiki and described in arXiv paper 2604.08290.
+Tokalator is an open-source context engineering toolkit built by Vahid Faraji, shipped as a VS Code extension and a web platform with 500+ installs under an AGPL-3.0 licence. It provides real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality modelling and caching break-even analysis across 17 LLMs. It is documented at tokalator.ai and described in arXiv paper 2604.08290.
 
 ### Which technologies and frameworks does Vahid Faraji work with?
 

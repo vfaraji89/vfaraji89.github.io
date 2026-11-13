@@ -77,7 +77,7 @@
             "ProblemAI coding assistants burn tokens blindly. No visibility into context cost, no budget guardrails, no cross-model comparison.",
             "ApproachReal-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality models, caching break-even analysis across 17 LLMs.",
             "ResultVS Code extension + web platform shipped. arXiv paper published.",
-            "500+installs-- GitHub stars17 modelsMIT license",
+            "500+installs-- GitHub stars17 modelsAGPL-3.0 license",
             "Next.js·TypeScript·VS Code Extension·Token Economics·MCP",
             "ResearchACM CAIS '26",
             "Multi-Agent Job Classification System",
@@ -376,7 +376,7 @@
           "heading": "Tokalator: A Context Engineering Toolkit for AI Coding Assistants",
           "blocks": [
             "Technical paper on arXiv introducing an open-source toolkit for token-aware context management, cost modeling, and workflow optimization. VS Code extension with 500+ installs.",
-            "arXiv:2604.08290tokalator.wiki",
+            "arXiv:2604.08290tokalator.ai",
             "arXivJanuary 2026"
           ]
         },
@@ -664,12 +664,12 @@
           "heading": "Tokalator: A Context Engineering Toolkit for AI Coding Assistants",
           "blocks": [
             "Vahid Faraji · arXiv:2604.08290 · April 2026",
-            "arXiv:2604.08290 · tokalator.wiki · GitHub",
+            "arXiv:2604.08290 · tokalator.ai · GitHub",
             "17",
             "LLMs modelled",
             "500+",
             "VS Code installs",
-            "MIT",
+            "AGPL-3.0",
             "Licence"
           ]
         },
@@ -688,7 +688,7 @@
             "Output-quality models: Cobb-Douglas style models relating context quality to output quality",
             "Caching break-even analysis: when caching pays off across 17 supported LLMs",
             "Shipped as a VS Code extension (500+ installs) and a web platform",
-            "MIT licensed, open source"
+            "AGPL-3.0 licensed, open source"
           ]
         },
         {
@@ -706,7 +706,7 @@
           "heading": "References & Links",
           "blocks": [
             "arXiv: https://arxiv.org/abs/2604.08290",
-            "Website: https://tokalator.wiki",
+            "Website: https://tokalator.ai",
             "VS Code Marketplace: vfaraji89.tokalator",
             "GitHub: github.com/vfaraji89/tokalator",
             "Author: Vahid Faraji, Applied AI Specialist",

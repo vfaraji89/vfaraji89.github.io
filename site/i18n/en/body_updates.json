@@ -54,7 +54,7 @@
  "tokalator_paper_2": "<a href=\"https://arxiv.org/abs/2604.08290\" target=\"_blank\" rel=\"noopener\">Tokalator: a context engineering toolkit for AI coding assistants</a>",
  "tokalator_paper_3": "An open-source toolkit for token-aware context management, cost modelling and workflow tuning, with a VS Code extension past 500 installs.",
  "tokalator_paper_4": "arXiv:2604.08290",
- "tokalator_paper_5": "<a href=\"https://arxiv.org/abs/2604.08290\" target=\"_blank\" rel=\"noopener\">arXiv</a><a href=\"https://tokalator.wiki\" target=\"_blank\" rel=\"noopener\">tokalator.wiki</a>",
+ "tokalator_paper_5": "<a href=\"https://arxiv.org/abs/2604.08290\" target=\"_blank\" rel=\"noopener\">arXiv</a><a href=\"https://tokalator.ai\" target=\"_blank\" rel=\"noopener\">tokalator.ai</a>",
  "news_feed_6": "<time datetime=\"2026-01\">Jan</time>",
  "skill_paper_1": "<span class=\"news-tag tag-r\">arXiv</span><span class=\"news-date\">Jan 2026</span>",
  "skill_paper_2": "<a href=\"https://arxiv.org/abs/2601.22885\" target=\"_blank\" rel=\"noopener\">Leveraging LLMs for Turkish skill extraction</a>",
@@ -95,5 +95,12 @@
  "footer_4": "Context Engineering",
  "footer_5": "CV (PDF)",
  "footer_6": "<span>Last updated <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>Istanbul, T&uuml;rkiye</span>",
- "cover_title": "ProjectLens, written up as a demo paper<span class=\"bead-stop\">.</span>"
+ "cover_title": "ProjectLens, written up as a demo paper<span class=\"bead-stop\">.</span>",
+ "aai_nov_when": "<time datetime=\"2026-11\">Nov</time>",
+ "aai_nov_1": "<span class=\"news-new\">New</span><span class=\"news-tag\">Launch</span><span class=\"news-date\">Nov 2026</span>",
+ "aai_nov_4": "vfaraji89.github.io/awesome-applied-ai &middot; EN &middot; TR &middot; ES &middot; NL &middot; JA",
+ "aai_nov_6": "awesome-applied-ai",
+ "aai_nov_2": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/\" target=\"_blank\" rel=\"noopener\">awesome-applied-ai grows into the full map: seven steps, five languages</a>",
+ "aai_nov_3": "The companion site to my book now walks the whole path in seven steps: a weekly job tracker, roles and skills, the AI-native architect, a tool map of 601 tools you can filter by use case, 17 industry certificates with official links, docs in motion, and feedback. Emerging tools now age out on their own after six months, and every page reads in English, Turkish, Spanish, Dutch and Japanese.",
+ "aai_nov_5": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/tools/\" target=\"_blank\" rel=\"noopener\">Tool map</a><a href=\"https://vfaraji89.github.io/awesome-applied-ai/certificates/\" target=\"_blank\" rel=\"noopener\">Certificates</a><a href=\"https://vfaraji89.github.io/awesome-applied-ai/\" target=\"_blank\" rel=\"noopener\">Live site</a>"
 }

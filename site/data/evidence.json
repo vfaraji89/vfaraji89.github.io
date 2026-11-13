@@ -279,7 +279,7 @@
    "level": "shipped",
    "date": "2026-04",
    "title": "Tokalator: token budgets and cost across 17 LLMs",
-   "text": "AI coding assistants burn tokens blindly, with no visibility into context cost and no budget guardrails. I built Tokalator: real-time token budgeting, tab relevance scoring, output-quality models and caching break-even analysis across 17 LLMs. Shipped as a VS Code extension and a web platform with 500+ installs, MIT licensed, built with Next.js, TypeScript and MCP.",
+   "text": "AI coding assistants burn tokens blindly, with no visibility into context cost and no budget guardrails. I built Tokalator: real-time token budgeting, tab relevance scoring, output-quality models and caching break-even analysis across 17 LLMs. Shipped as a VS Code extension and a web platform with 500+ installs, AGPL-3.0 licensed, built with Next.js, TypeScript and MCP.",
    "url": "index.html#case-tokalator",
    "tags": [
     "context",

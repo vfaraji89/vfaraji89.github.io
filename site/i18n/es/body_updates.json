@@ -81,5 +81,12 @@
  "footer_4": "Ingeniería de contexto",
  "footer_5": "Currículum (PDF)",
  "footer_6": "<span>Última actualización: <time datetime=\"2026-11\">2026.11</time></span> <span class=\"footer-meta-sep\">&middot;</span> <span>Estambul, Turquía</span>",
- "cover_title": "ProjectLens, convertido en artículo de demo<span class=\"bead-stop\">.</span>"
+ "cover_title": "ProjectLens, convertido en artículo de demo<span class=\"bead-stop\">.</span>",
+ "aai_nov_when": "<time datetime=\"2026-11\">nov.</time>",
+ "aai_nov_1": "<span class=\"news-new\">Nuevo</span><span class=\"news-tag\">Lanzamiento</span><span class=\"news-date\">nov. 2026</span>",
+ "aai_nov_4": "vfaraji89.github.io/awesome-applied-ai &middot; EN &middot; TR &middot; ES &middot; NL &middot; JA",
+ "aai_nov_6": "awesome-applied-ai",
+ "aai_nov_2": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/\" target=\"_blank\" rel=\"noopener\">awesome-applied-ai se convierte en el mapa completo: siete pasos, cinco idiomas</a>",
+ "aai_nov_3": "El sitio que acompaña a mi libro ya recorre todo el camino en siete pasos: un seguimiento semanal de ofertas de empleo, roles y habilidades, el arquitecto de IA, un mapa de 601 herramientas que puedes filtrar por caso de uso, 17 certificados del sector con enlaces oficiales, documentación en movimiento y feedback. Las herramientas emergentes dejan de serlo solas a los seis meses, y cada página se lee en inglés, turco, español, neerlandés y japonés.",
+ "aai_nov_5": "<a href=\"https://vfaraji89.github.io/awesome-applied-ai/tools/\" target=\"_blank\" rel=\"noopener\">Mapa de herramientas</a><a href=\"https://vfaraji89.github.io/awesome-applied-ai/certificates/\" target=\"_blank\" rel=\"noopener\">Certificados</a><a href=\"https://vfaraji89.github.io/awesome-applied-ai/\" target=\"_blank\" rel=\"noopener\">Sitio en vivo</a>"
 }
