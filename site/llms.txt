@@ -140,6 +140,7 @@ Istanbul, Turkey (GMT+3). He speaks Turkish natively, English at C1 level, Spani
 - [Evals](https://vfaraji89.github.io/evals.html): the tests behind Vahid's agent and the fit check, run on every deploy
 - [Tokalator](https://tokalator.ai)
 - [awesome-applied-ai](https://vfaraji89.github.io/awesome-applied-ai/)
+- [awesome-applied-ai llms.txt](https://vfaraji89.github.io/awesome-applied-ai/llms.txt): the map's own index; [full text](https://vfaraji89.github.io/awesome-applied-ai/llms-full.txt) lists every tool, certificate, role and term
 - [ACM Paper](https://dl.acm.org/doi/10.1145/3786335.3813207)
 - [Paper: Job Position Normalisation](https://vfaraji89.github.io/papers/cais-2026.html)
 - [Paper: Tokalator Toolkit](https://vfaraji89.github.io/papers/tokalator.html)
