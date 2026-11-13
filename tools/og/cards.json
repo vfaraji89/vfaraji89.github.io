@@ -1,12 +1,289 @@
 [
- {"file":"og-home.png","brand":"vf","visual":"photo","photo":"site/assets/foto-vahid.jpg","kicker":"Applied AI engineer · Istanbul","title":"Maximize <mark>ROI</mark>. Minimize cost","desc":"Workflows, data pipelines and agents teams use every day: agent harnesses, evals from real tasks, production cost and reliability.","stats":[{"n":"CAIS '26","l":"ACM, peer-reviewed"},{"n":"500+","l":"Tokalator installs"},{"n":"3","l":"papers"}],"url":"vfaraji89.github.io","alt":"Vahid Faraji, applied AI engineer: workflows, data pipelines and agents teams use every day"},
- {"file":"og-updates.png","brand":"vf","rows":["wrrww","wkkkw","rwwww"],"kicker":"Updates · November 2026","title":"What I <mark>shipped</mark>, said and published","desc":"Launches, papers, talks and credentials from my applied AI work, with the links to check each one.","stats":[{"n":"CAIS '26","l":"ACM paper"},{"n":"2","l":"arXiv papers"},{"n":"500+","l":"Tokalator installs"}],"url":"vfaraji89.github.io/updates.html","alt":"Vahid Faraji, updates: what I shipped, said and published"},
- {"file":"og-context-engineering.png","brand":"vf","rows":["rrrww","wkkww","wwwkw"],"kicker":"Method · context engineering","title":"How I save <mark>38%</mark> on LLM tokens","desc":"Compaction, pollution control, incremental context management and knowledge graphs, measured on real work.","stats":[{"n":"38%","l":"fewer tokens"},{"n":"16M+","l":"tokens measured"},{"n":"4","l":"techniques"}],"url":"vfaraji89.github.io/context-engineering.html","alt":"How I save 38% on LLM tokens: Vahid Faraji's context engineering method"},
- {"file":"og-evals.png","brand":"vf","rows":["rrrrr","rrrrw","kkkww"],"kicker":"Evals · run on every deploy","title":"The tests behind <mark>my agent</mark>","desc":"Pass rates, every case and the history of each run, for the agent on this site and the fit check.","stats":[{"n":"32/32","l":"answers"},{"n":"8/8","l":"abstains"},{"n":"33/33","l":"fit labels"}],"url":"vfaraji89.github.io/evals.html","alt":"Evals: the test suite behind Vahid Faraji's site agent and fit check"},
- {"file":"og-fit.png","brand":"vf","rows":["rrrrw","rrkww","rwwww"],"kicker":"Fit check · for hiring teams","title":"How I fit <mark>your role</mark>","desc":"Paste a job description: each requirement scored against my public work, with the strongest evidence and the honest gaps.","stats":[{"n":"Every","l":"claim linked"},{"n":"Honest","l":"gaps shown"},{"n":"Free","l":"to use"}],"url":"vfaraji89.github.io/fit.html","alt":"Fit check: a job description scored against Vahid Faraji's public work"},
- {"file":"og-privacy.png","brand":"vf","rows":["wwwww","wkwkw","wwrww"],"kicker":"Privacy","title":"What these sites <mark>collect</mark>, and why","desc":"What is collected, why, for how long, and your rights under the GDPR and KVKK.","stats":[{"n":"GDPR","l":"and KVKK"},{"n":"Opt-in","l":"analytics"},{"n":"Your","l":"rights, explained"}],"url":"vfaraji89.github.io/privacy.html","alt":"Privacy notice for vfaraji89.github.io and awesome-applied-ai"},
- {"file":"og-terms.png","brand":"vf","rows":["wwwww","wwkww","wrwrw"],"kicker":"Terms and disclaimer","title":"Independent and <mark>non-commercial</mark>","desc":"No sponsorship, how tools are chosen, trademarks, citations and the limits of the content.","stats":[{"n":"No","l":"sponsorship"},{"n":"Cited","l":"sources"},{"n":"Names","l":"belong to owners"}],"url":"vfaraji89.github.io/terms.html","alt":"Terms and disclaimer for vfaraji89.github.io and awesome-applied-ai"},
- {"file":"og-paper-cais-2026.png","brand":"vf","rows":["rrrrr","kkkkw","wwwww"],"kicker":"Paper · ACM CAIS '26 · peer-reviewed","title":"Multi-agent position classification with <mark>tool orchestration</mark>","titleSize":54,"desc":"An MCP-based multi-agent system that normalises job positions at scale.","stats":[{"n":"95%","l":"accuracy, 14K+ positions"},{"n":"72.5%","l":"faster"},{"n":"41.8%","l":"fewer API calls"}],"url":"vfaraji89.github.io/papers/cais-2026.html","alt":"ACM CAIS '26 paper by Vahid Faraji: multi-agent position classification with tool orchestration"},
- {"file":"og-paper-tokalator.png","brand":"vf","rows":["wrrrw","wkkww","kwwww"],"kicker":"Paper · arXiv 2604.08290","title":"Tokalator: a context engineering <mark>toolkit</mark>","titleSize":60,"desc":"Token-aware context management, output-quality models and caching break-even analysis for AI coding assistants.","stats":[{"n":"500+","l":"installs"},{"n":"17","l":"LLMs modelled"},{"n":"AGPL-3.0","l":"open source"}],"url":"vfaraji89.github.io/papers/tokalator.html","alt":"arXiv paper by Vahid Faraji: Tokalator, a context engineering toolkit for AI coding assistants"},
- {"file":"og-paper-skill-extraction.png","brand":"vf","rows":["rwwww","rrkww","rrrkw"],"kicker":"Paper · arXiv 2601.22885","title":"LLMs for Turkish <mark>skill extraction</mark>","desc":"The first systematic LLM benchmark for Turkish NLP in workforce analytics.","stats":[{"n":"1st","l":"Turkish benchmark"},{"n":"LLM","l":"extraction pipelines"},{"n":"Labour","l":"market analytics"}],"url":"vfaraji89.github.io/papers/skill-extraction.html","alt":"arXiv paper by Vahid Faraji: leveraging LLMs for Turkish skill extraction"}
+ {
+  "file": "og-home.png",
+  "brand": "vf",
+  "visual": "photo",
+  "photo": "site/assets/foto-vahid.jpg",
+  "kicker": "Applied AI engineer · Istanbul",
+  "title": "Maximize <span class=\"g\">ROI</span>. Minimize <span class=\"r\">cost</span>",
+  "desc": "Workflows, data pipelines and agents teams use every day: agent harnesses, evals from real tasks, production cost and reliability.",
+  "stats": [
+   {
+    "n": "95%",
+    "l": "agent accuracy"
+   },
+   {
+    "n": "91%",
+    "l": "manual work removed"
+   },
+   {
+    "n": "38%",
+    "l": "fewer tokens"
+   }
+  ],
+  "url": "vfaraji89.github.io",
+  "alt": "Vahid Faraji, applied AI engineer: maximize ROI, minimize cost. 95% agent accuracy, 91% manual work removed, 38% fewer tokens",
+  "gif": "og-home.gif",
+  "tags": [
+   "2026",
+   "ACM CAIS '26",
+   "2 arXiv papers",
+   "patent pending",
+   "500+ installs"
+  ]
+ },
+ {
+  "file": "og-updates.png",
+  "brand": "vf",
+  "rows": [
+   "wrrww",
+   "wkkkw",
+   "rwwww"
+  ],
+  "kicker": "Updates · November 2026",
+  "title": "What I <mark>shipped</mark>, said and published",
+  "desc": "Launches, papers, talks and credentials from my applied AI work, with the links to check each one.",
+  "stats": [
+   {
+    "n": "CAIS '26",
+    "l": "ACM paper"
+   },
+   {
+    "n": "2",
+    "l": "arXiv papers"
+   },
+   {
+    "n": "500+",
+    "l": "Tokalator installs"
+   }
+  ],
+  "url": "vfaraji89.github.io/updates.html",
+  "alt": "Vahid Faraji, updates: what I shipped, said and published"
+ },
+ {
+  "file": "og-context-engineering.png",
+  "brand": "vf",
+  "rows": [
+   "rrrww",
+   "wkkww",
+   "wwwkw"
+  ],
+  "kicker": "Method · context engineering",
+  "title": "How I save <mark>38%</mark> on LLM tokens",
+  "desc": "Compaction, pollution control, incremental context management and knowledge graphs, measured on real work.",
+  "stats": [
+   {
+    "n": "38%",
+    "l": "fewer tokens"
+   },
+   {
+    "n": "16M+",
+    "l": "tokens measured"
+   },
+   {
+    "n": "4",
+    "l": "techniques"
+   }
+  ],
+  "url": "vfaraji89.github.io/context-engineering.html",
+  "alt": "How I save 38% on LLM tokens: Vahid Faraji's context engineering method"
+ },
+ {
+  "file": "og-evals.png",
+  "brand": "vf",
+  "rows": [
+   "rrrrr",
+   "rrrrw",
+   "kkkww"
+  ],
+  "kicker": "Evals · run on every deploy",
+  "title": "The tests behind <mark>my agent</mark>",
+  "desc": "Pass rates, every case and the history of each run, for the agent on this site and the fit check.",
+  "stats": [
+   {
+    "n": "32/32",
+    "l": "answers"
+   },
+   {
+    "n": "8/8",
+    "l": "abstains"
+   },
+   {
+    "n": "33/33",
+    "l": "fit labels"
+   }
+  ],
+  "url": "vfaraji89.github.io/evals.html",
+  "alt": "Evals: the test suite behind Vahid Faraji's site agent and fit check"
+ },
+ {
+  "file": "og-fit.png",
+  "brand": "vf",
+  "rows": [
+   "rrrrw",
+   "rrkww",
+   "rwwww"
+  ],
+  "kicker": "Fit check · for hiring teams",
+  "title": "How I fit <mark>your role</mark>",
+  "desc": "Paste a job description: each requirement scored against my public work, with the strongest evidence and the honest gaps.",
+  "stats": [
+   {
+    "n": "Every",
+    "l": "claim linked"
+   },
+   {
+    "n": "Honest",
+    "l": "gaps shown"
+   },
+   {
+    "n": "Free",
+    "l": "to use"
+   }
+  ],
+  "url": "vfaraji89.github.io/fit.html",
+  "alt": "Fit check: a job description scored against Vahid Faraji's public work"
+ },
+ {
+  "file": "og-privacy.png",
+  "brand": "vf",
+  "rows": [
+   "wwwww",
+   "wkwkw",
+   "wwrww"
+  ],
+  "kicker": "Privacy",
+  "title": "What these sites <mark>collect</mark>, and why",
+  "desc": "What is collected, why, for how long, and your rights under the GDPR and KVKK.",
+  "stats": [
+   {
+    "n": "GDPR",
+    "l": "and KVKK"
+   },
+   {
+    "n": "Opt-in",
+    "l": "analytics"
+   },
+   {
+    "n": "Your",
+    "l": "rights, explained"
+   }
+  ],
+  "url": "vfaraji89.github.io/privacy.html",
+  "alt": "Privacy notice for vfaraji89.github.io and awesome-applied-ai"
+ },
+ {
+  "file": "og-terms.png",
+  "brand": "vf",
+  "rows": [
+   "wwwww",
+   "wwkww",
+   "wrwrw"
+  ],
+  "kicker": "Terms and disclaimer",
+  "title": "Independent and <mark>non-commercial</mark>",
+  "desc": "No sponsorship, how tools are chosen, trademarks, citations and the limits of the content.",
+  "stats": [
+   {
+    "n": "No",
+    "l": "sponsorship"
+   },
+   {
+    "n": "Cited",
+    "l": "sources"
+   },
+   {
+    "n": "Names",
+    "l": "belong to owners"
+   }
+  ],
+  "url": "vfaraji89.github.io/terms.html",
+  "alt": "Terms and disclaimer for vfaraji89.github.io and awesome-applied-ai"
+ },
+ {
+  "file": "og-paper-cais-2026.png",
+  "brand": "vf",
+  "rows": [
+   "rrrrr",
+   "kkkkw",
+   "wwwww"
+  ],
+  "kicker": "Paper · ACM CAIS '26 · peer-reviewed",
+  "title": "Multi-agent position classification with <mark>tool orchestration</mark>",
+  "titleSize": 54,
+  "desc": "An MCP-based multi-agent system that normalises job positions at scale.",
+  "stats": [
+   {
+    "n": "95%",
+    "l": "accuracy, 14K+ positions"
+   },
+   {
+    "n": "72.5%",
+    "l": "faster"
+   },
+   {
+    "n": "41.8%",
+    "l": "fewer API calls"
+   }
+  ],
+  "url": "vfaraji89.github.io/papers/cais-2026.html",
+  "alt": "ACM CAIS '26 paper by Vahid Faraji: multi-agent position classification with tool orchestration"
+ },
+ {
+  "file": "og-paper-tokalator.png",
+  "brand": "vf",
+  "rows": [
+   "wrrrw",
+   "wkkww",
+   "kwwww"
+  ],
+  "kicker": "Paper · arXiv 2604.08290",
+  "title": "Tokalator: a context engineering <mark>toolkit</mark>",
+  "titleSize": 60,
+  "desc": "Token-aware context management, output-quality models and caching break-even analysis for AI coding assistants.",
+  "stats": [
+   {
+    "n": "500+",
+    "l": "installs"
+   },
+   {
+    "n": "17",
+    "l": "LLMs modelled"
+   },
+   {
+    "n": "AGPL-3.0",
+    "l": "open source"
+   }
+  ],
+  "url": "vfaraji89.github.io/papers/tokalator.html",
+  "alt": "arXiv paper by Vahid Faraji: Tokalator, a context engineering toolkit for AI coding assistants"
+ },
+ {
+  "file": "og-paper-skill-extraction.png",
+  "brand": "vf",
+  "rows": [
+   "rwwww",
+   "rrkww",
+   "rrrkw"
+  ],
+  "kicker": "Paper · arXiv 2601.22885",
+  "title": "LLMs for Turkish <mark>skill extraction</mark>",
+  "desc": "The first systematic LLM benchmark for Turkish NLP in workforce analytics.",
+  "stats": [
+   {
+    "n": "1st",
+    "l": "Turkish benchmark"
+   },
+   {
+    "n": "LLM",
+    "l": "extraction pipelines"
+   },
+   {
+    "n": "Labour",
+    "l": "market analytics"
+   }
+  ],
+  "url": "vfaraji89.github.io/papers/skill-extraction.html",
+  "alt": "arXiv paper by Vahid Faraji: leveraging LLMs for Turkish skill extraction"
+ }
 ]
