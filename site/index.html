@@ -3713,14 +3713,14 @@
                     <div class="aai-pulse abacus-frame" id="aai-pulse" hidden>
                         <div class="ap-k"><i class="ap-live" aria-hidden="true"></i><span data-i18n="body_home.pulse_k">Live from the tracker and the map</span><span class="ap-wk" id="ap-wk"></span></div>
                         <div class="ap-row">
-                            <div class="ap-cell"><b data-n="open">0</b><span data-i18n="body_home.pulse_open">open AI roles</span></div>
+                            <div class="ap-cell"><b data-n="processed">0</b><span data-i18n="body_home.pulse_ads">AI job ads since 1 Oct 2026</span></div>
                             <div class="ap-cell"><b data-n="new">0</b><span data-i18n="body_home.pulse_new">new this week</span></div>
                             <div class="ap-cell"><b data-n="remoteShare" data-pct="1">0</b><span data-i18n="body_home.pulse_remote">remote</span></div>
                             <div class="ap-cell ap-map" data-map hidden><b data-n="tools">0</b><span data-i18n="body_home.pulse_tools">tools</span></div>
                             <div class="ap-cell ap-map" data-map hidden><b data-n="emerging">0</b><span data-i18n="body_home.pulse_emerging">emerging now</span></div>
                             <div class="ap-cell ap-map" data-map hidden><b data-n="certificates">0</b><span data-i18n="body_home.pulse_certs">certificates</span></div>
                         </div>
-                        <p class="ap-note" data-i18n="body_home.pulse_note">Jobs read from public job boards; every number updates weekly.</p>
+                        <p class="ap-note" data-i18n="body_home.pulse_note">Job ads read daily from public company career pages and job boards.</p>
                     </div>
                     <div class="cta-actions">
                         <span class="aai-c" data-i18n-html="body_home.body_home_27"><a href="https://vfaraji89.github.io/awesome-applied-ai/" target="_blank" rel="noopener" class="btn btn-primary">Explore the map →</a></span>
@@ -5809,7 +5809,7 @@
         });
     }
     fetch('/awesome-applied-ai/pulse.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
-        if (!d || !(d.open > 0)) return; data = d; box.hidden = false; week();
+        if (!d || !(d.processed > 0)) return; data = d; box.hidden = false; week();
         if (d.tools > 0) box.querySelectorAll('[data-map]').forEach(function (el) { el.hidden = false; });
         function tip() { var n = box.querySelector('.ap-note'), dot = box.querySelector('.ap-live'); if (n && dot) { dot.title = n.textContent; dot.setAttribute('aria-label', n.textContent); dot.removeAttribute('aria-hidden'); dot.setAttribute('role', 'img'); } }
         tip(); document.addEventListener('vf:lang', function () { setTimeout(tip, 0); });
