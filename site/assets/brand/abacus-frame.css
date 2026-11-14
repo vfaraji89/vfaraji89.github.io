@@ -35,3 +35,6 @@
   
   background-image: linear-gradient(var(--rod-on), var(--rod-on)), var(--rod-wood) !important;
 }
+
+/* the posts overhang a card by 4px; on a full-width card that would spill past the screen */
+html { overflow-x: clip; }
