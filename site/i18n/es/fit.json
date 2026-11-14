@@ -46,9 +46,6 @@
  "unscored_many": "+ {n} líneas sin habilidades que comprobar",
  "sec_gaps": "Carencias",
  "sec_gaps_sub": "sin evidencia en este sitio",
- "rc_rules": "Reglas en tu navegador",
- "rc_calls": "0 llamadas al modelo",
- "rc_private": "nada de lo que pegues sale de esta página",
  "cap_fit_max": "encaje · máx. {cap}",
  "score_cap_tip": "Máximo {cap}: ningún perfil encaja del todo con un puesto.",
  "loop_read": "Leer",
@@ -62,7 +59,7 @@
  "mc_must": "Imprescindibles",
  "mc_years": "Años",
  "mc_prod": "En producción",
- "mc_foot": "{u} líneas sin verificar · 0 llamadas al modelo · {ms} ms",
+ "mc_foot": "{u} líneas sin verificar · {ms} ms",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "legend_gap": "'carencia' for gap; alternative 'hueco' or 'brecha'."

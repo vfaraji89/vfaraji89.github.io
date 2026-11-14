@@ -36,13 +36,13 @@
         '<button type="button" class="vfa-launch" aria-haspopup="dialog" aria-expanded="false">' + ABACUS +
         '<span class="vfa-l-text"><b>Vahid’s agent</b><em>Ask · sources shown</em></span><span class="vfa-sr">Vahid’s agent: ask about his work, answered from public evidence</span></button>' +
         '<div class="vfa-panel" role="dialog" aria-label="Vahid’s agent">' +
-        '<div class="vfa-head">' + ABACUS + '<div class="vfa-title"><b>Vahid’s agent</b><span><i></i>' + (ENDPOINT ? 'Claude · grounded in evidence' : 'Retrieval agent · runs in your browser') + '</span></div>' +
+        '<div class="vfa-head">' + ABACUS + '<div class="vfa-title"><b>Vahid’s agent</b><span><i></i>' + (ENDPOINT ? 'Claude · evidence only' : 'Evidence only') + '</span></div>' +
         '<button type="button" class="vfa-x" aria-label="Close"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button></div>' +
         '<div class="vfa-body" aria-live="polite"></div>' +
         '<div class="vfa-foot"><form class="vfa-form"><label class="vfa-sr" for="vfa-in">Your question</label>' +
-        '<input id="vfa-in" type="text" maxlength="400" autocomplete="off" placeholder="Ask about his projects, papers, results…">' +
+        '<input id="vfa-in" type="text" maxlength="400" autocomplete="off" placeholder="Ask about his work…">' +
         '<button type="submit" aria-label="Ask"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5L13.5 8 9 12.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button></form>' +
-        '<p class="vfa-meta"><span>Only answers from public evidence</span><a href="' + BASE + 'evals.html">How it’s tested →</a></p></div></div>';
+        '<p class="vfa-meta"><span></span><a href="' + BASE + 'evals.html">How it’s tested →</a></p></div></div>';
     document.body.appendChild(root);
     var launch = root.querySelector('.vfa-launch'), panel = root.querySelector('.vfa-panel');
     // The launcher's mark plays the site's own loop, from the abacus to agents (the favicon's frames,
@@ -68,7 +68,7 @@
     var CHIPS = ['Has he shipped agents to production?', 'What did ProjectLens save?', 'How does he cut token costs?', 'Which papers are peer-reviewed?', 'Kubernetes experience?'];
     var intro = el('div');
     var ip = el('p', 'vfa-intro');
-    ip.innerHTML = 'Ask about Vahid\u2019s work. I answer only from <b>public evidence</b> on this site, show every tool call, and say so when the evidence doesn\u2019t cover it.';
+    ip.innerHTML = 'Ask about Vahid\u2019s work. Every answer cites its source.';
     intro.appendChild(ip);
     var chips = el('div', 'vfa-chips');
     CHIPS.forEach(function (c) { var b = el('button', 'vfa-chip', c); b.type = 'button'; b.addEventListener('click', function () { run(c); }); chips.appendChild(b); });
@@ -205,7 +205,7 @@
             var rc = res.receipt;
             ans.appendChild(el('p', 'vfa-rc', out.mode === 'claude' && rc
                 ? rc.model + ' · ' + rc.input_tokens + ' in / ' + rc.output_tokens + ' out · $' + (rc.cost_usd || 0).toFixed(4) + ' · ' + (rc.ms / 1000).toFixed(1) + ' s'
-                : '0 model calls · $0.00 · ' + r.ms + ' ms compute · ' + ms + ' ms shown step by step' + (out.note ? ' · ' + out.note : '')));
+                : '$0.00 · ' + r.ms + ' ms' + (out.note ? ' · ' + out.note : '')));
             runBox.appendChild(ans);
             // land on the answer, not the bottom of it
             body.scrollTop = Math.max(0, ans.offsetTop - body.offsetTop - 8);

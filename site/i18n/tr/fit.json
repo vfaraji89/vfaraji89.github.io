@@ -46,9 +46,6 @@
  "unscored_many": "+ kontrol edilecek beceri içermeyen {n} satır",
  "sec_gaps": "Eksikler",
  "sec_gaps_sub": "bu sitede kanıt yok",
- "rc_rules": "Kurallar tarayıcınızda çalışır",
- "rc_calls": "0 model çağrısı",
- "rc_private": "yapıştırdığınız hiçbir şey bu sayfadan çıkmaz",
  "cap_fit_max": "uyum · en çok {cap}",
  "score_cap_tip": "En çok {cap}: hiçbir profil bir role tam olarak uymaz.",
  "loop_read": "Oku",
@@ -62,7 +59,7 @@
  "mc_must": "Olmazsa olmazlar",
  "mc_years": "Yıl",
  "mc_prod": "Üretimde",
- "mc_foot": "{u} denetlenmeyen satır · 0 model çağrısı · {ms} ms",
+ "mc_foot": "{u} denetlenmeyen satır · {ms} ms",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "sec_reqs": "'Aranan nitelikler', the usual Turkish job-ad heading for requirements.",

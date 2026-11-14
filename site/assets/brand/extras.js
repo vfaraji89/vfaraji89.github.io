@@ -136,7 +136,7 @@
                 out.appendChild(ul);
             }
             var tokens = Math.round(jd.length / 4);
-            out.appendChild(el('p', 'fit-receipt', '~' + tokens.toLocaleString('en') + ' tokens read · 0 model calls · $0.00 · keyword match, run in your browser'));
+            out.appendChild(el('p', 'fit-receipt', '~' + tokens.toLocaleString('en') + ' tokens read'));
             if (window.gtag) gtag('event', 'role_fit_check');
         });
     })();
