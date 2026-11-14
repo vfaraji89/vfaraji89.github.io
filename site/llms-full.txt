@@ -1,6 +1,6 @@
 # Vahid Faraji, Applied AI: Agent Harnesses, Evals, Production LLM Agents (Full Context)
 
-> Applied AI engineer who builds LLM agent harnesses end to end (execution loops, tool calling, context and memory, agent skills), makes quality measurable with evals from real tasks, and owns production reliability, latency and cost. Full stack in TypeScript and Python. Published at ACM.
+> Applied AI engineer who builds LLM agent harnesses end to end (execution loops, tool calling, context and memory, agent skills), makes quality measurable with evals from real tasks, and owns production reliability, latency and cost. Full stack in TypeScript and Python. Published at ACM CAIS ’26.
 
 Last updated: 2026-11
 Canonical: https://vfaraji89.github.io/
@@ -18,7 +18,7 @@ Tagline: Enterprise solutions you can count on: data products, agents, analysis,
 
 ## Professional Summary
 
-Vahid Faraji is a Senior Applied AI Specialist with 8 years in industry (2 in applied AI, 6 in data products and business analysis) plus 4 years in research. He bridges research and production, publishing peer-reviewed papers at ACM while deploying enterprise-scale multi-agent systems. His work focuses on context engineering, MCP-based agent architectures, and open-source AI tooling.
+Vahid Faraji is a Senior Applied AI Specialist with 12 years of work: 8 in data products and 4 in an R&D team. He bridges research and production, publishing peer-reviewed papers at ACM while deploying enterprise-scale multi-agent systems. His work focuses on context engineering, MCP-based agent architectures, and open-source AI tooling.
 
 ## Agent Engineering
 
@@ -45,7 +45,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 - DOI: 10.1145/3786335.3813207
 - URL: https://dl.acm.org/doi/10.1145/3786335.3813207
 - Page: https://vfaraji89.github.io/papers/cais-2026.html
-- Key results: 95% accuracy on 14K+ positions, 72.5% faster classification, 41.8% fewer API calls
+- Key results: 95% accuracy on 14K+ job titles, 72.5% faster classification, 41.8% fewer API calls
 - Architecture: MCP-based multi-agent, planner, search, extraction, evaluation agents with shared caching
 
 ### arXiv: Tokalator
@@ -83,7 +83,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 ### Multi-Agent Job Classification System
 - Type: Research + production
 - Stack: MCP, LangGraph, Subagent Architecture, AI Search, Caching
-- Metrics: 95% accuracy, 14K+ positions, 72.5% faster, 41.8% fewer API calls
+- Metrics: 95% accuracy, 14K+ job titles, 72.5% faster, 41.8% fewer API calls
 - Published: ACM CAIS '26
 
 ### Yapay Zekâ İzi: AI in 1.6M Job Ads
@@ -112,7 +112,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 ### 300M+ Datapoint Metadata Platform
 - Type: Data infrastructure
 - Stack: DataHub, Azure Synapse, BigQuery, Real-time Pipelines, Retool
-- Metrics: 300M+ datapoints unified
+- Metrics: 300M+ data points unified
 - What it does: Metadata architecture, data governance, foundation for all AI/LLM deployments
 
 ## Experience
@@ -127,7 +127,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 - ACM Professional Member (Association for Computing Machinery)
 
 ## Certifications
-- Anthropic Claude Certified Architect, Foundations (2026)
+- Anthropic Claude Certified Architect: registered, exam on the way (2026)
 
 - Google Generative AI Leader (Dec 2025, expires Dec 2028)
 - Anthropic Model Context Protocol (Apr 2026)
@@ -163,11 +163,11 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 
 ## Key Metrics
 
-- 8 years in industry (2 in applied AI, 6 in data products and business analysis) plus 4 years in research
+- 12 years of work: 8 in data products and 4 in an R&D team
 - 95% agent accuracy (multi-agent classification)
 - 72.5% faster classification
 - 60% workload reduction (enterprise AI)
-- 300M+ datapoints unified
+- 300M+ data points unified
 - 3 publications + 1 patent pending
 - 400+ people trained
 - Perplexity AI Business Fellowship (programme lead)
@@ -178,7 +178,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 - Role fit: Applied AI Engineer, AI Engineer (Agents), Agentic AI Engineer, AI Platform Engineer, AI Solutions Architect, R&D Researcher
 - Centre of gravity: building agent harnesses and evals and shipping them to production - framing the problem, writing the spec, designing the schema, building the loop, tools, context and memory, and measuring it
 - Strengths: agent harness engineering, evals from real tasks, tracing and failure analysis, spec-driven design and implementation, database schema design, full-stack ownership, context and token strategy, production reliability, latency and cost
-- Seniority: Senior, 8 years in industry plus 4 in research, with hands-on full-stack engineering of LLM agents in production
+- Seniority: Senior, 12 years of work, 8 in data products and 4 in R&D, with hands-on full-stack engineering of LLM agents in production
 - Location: Istanbul, Turkey (GMT+3), remote-friendly with distributed teams
 - Core stack: TypeScript 7, Python/FastAPI, Next.js, Anthropic Platform (Claude Agent SDK), Vercel AI SDK, Microsoft Copilot Studio, MCP, Langfuse (tracing), Vercel (deployment), LangGraph, Agno, Langfuse, Arize, SQL, BigQuery, Azure, DataHub
 - Proof: ACM Professional Member, peer-reviewed at ACM CAIS '26, 2 arXiv papers, 1 patent pending, Perplexity AI Business Fellowship programme lead, Tokalator with 500+ installs
@@ -202,7 +202,7 @@ Published here rather than on the page. Full text of each answer.
 
 ### Who is Vahid Faraji?
 
-Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group) in Istanbul, Turkey. He has 8 years in industry (2 in applied AI, 6 in data products and business analysis) plus 4 years in research, and works at the boundary of research and production, publishing peer-reviewed work at ACM while deploying enterprise-scale multi-agent systems. His focus areas are multi-agent orchestration, the Model Context Protocol (MCP), and context engineering for large language models.
+Vahid Faraji is a Senior Applied AI Specialist at Kariyer.net (ilab group) in Istanbul, Turkey. He has 12 years of work: 8 in data products and 4 in an R&D team, and works at the boundary of research and production, publishing peer-reviewed work at ACM while deploying enterprise-scale multi-agent systems. His focus areas are multi-agent orchestration, the Model Context Protocol (MCP), and context engineering for large language models.
 
 ### What does Vahid Faraji actually build?
 

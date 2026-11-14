@@ -2,7 +2,10 @@
 # Search and AI answer engines are explicitly welcome: this site is a public
 # professional profile and exists to be cited.
 
+# Content signals (contentsignals.org): this site may be shown in search results, used as input
+# to AI answers, and used for training.
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 
 # ---- OpenAI ----
@@ -78,6 +81,25 @@ User-agent: Diffbot
 Allow: /
 User-agent: omgili
 Allow: /
+User-agent: Meta-ExternalFetcher
+Allow: /
+User-agent: AI2Bot
+Allow: /
+User-agent: Bytespider
+Allow: /
+User-agent: PetalBot
+Allow: /
+User-agent: YandexBot
+Allow: /
+User-agent: Baiduspider
+Allow: /
+User-agent: Timpibot
+Allow: /
 
 Sitemap: https://vfaraji89.github.io/sitemap.xml
 Sitemap: https://vfaraji89.github.io/applied-ai-simplified/sitemap.xml
+
+# Plain-text guides for language models: what each site is, what to cite, and where.
+# https://vfaraji89.github.io/llms.txt
+# https://vfaraji89.github.io/llms-full.txt
+# https://vfaraji89.github.io/applied-ai-simplified/llms.txt

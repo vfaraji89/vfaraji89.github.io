@@ -310,8 +310,8 @@
    "id": "case-cais",
    "level": "published",
    "date": "2026-05",
-   "title": "Multi-agent job classification: 95% accuracy on 14K+ positions",
-   "text": "Free-form job titles in several languages could not be mapped to O*NET and ESCO taxonomies at scale. I built an MCP-based multi-agent system with planner, search, extraction and evaluation agents over a shared caching layer, using LangGraph. Result: 95% accuracy on 14K+ positions, 72.5% faster classification and 41.8% fewer API calls.",
+   "title": "Multi-agent position classification: 95% accuracy on 14K+ job titles",
+   "text": "Free-form job titles in several languages could not be mapped to O*NET and ESCO taxonomies at scale. I built an MCP-based multi-agent system with planner, search, extraction and evaluation agents over a shared caching layer, using LangGraph. Result: 95% accuracy on 14K+ job titles, 72.5% faster classification and 41.8% fewer API calls.",
    "url": "index.html#case-cais",
    "tags": [
     "agents",
@@ -383,7 +383,7 @@
    "date": "2026-11",
    "title": "ProjectLens demo paper (submitted)",
    "text": "ProjectLens written up as a demo paper and submitted; it is under review. Venue and link will be added if it is accepted.",
-   "url": "updates.html#projectlens-paper",
+   "url": "index.html#case-projectlens",
    "tags": [
     "research",
     "workflow"
@@ -416,8 +416,8 @@
    "id": "case-metadata",
    "level": "production",
    "date": "2022-2025",
-   "title": "Metadata platform: 300M+ datapoints unified",
-   "text": "A live job platform had no unified metadata layer: fragmented schemas, no lineage, analytics stuck on ad-hoc queries. I designed the metadata architecture with DataHub governance, real-time pipelines and product-analytics instrumentation on Azure Synapse and BigQuery. 300M+ datapoints unified; it became the foundation for later embedding generation, RAG retrieval and context grounding.",
+   "title": "Metadata platform: 300M+ data points unified",
+   "text": "A live job platform had no unified metadata layer: fragmented schemas, no lineage, analytics stuck on ad-hoc queries. I designed the metadata architecture with DataHub governance, real-time pipelines and product-analytics instrumentation on Azure Synapse and BigQuery. 300M+ data points unified; it became the foundation for later embedding generation, RAG retrieval and context grounding.",
    "url": "index.html#case-metadata",
    "tags": [
     "governance",
@@ -515,7 +515,7 @@
    "level": "production",
    "date": "2022-2025",
    "title": "Product Manager, Data, Kariyer.net",
-   "text": "From 2022 to 2025 I built the data foundation the AI work stands on: metadata design for 300M+ data assets so every number has an owner and a trail, real-time labour-statistics pipelines with data quality, governance and executive dashboards, and AI adoption training for C-level executives.",
+   "text": "From 2022 to 2025 I built the data foundation the AI work stands on: metadata design for 300M+ data points so every number has an owner and a trail, real-time labour-statistics pipelines with data quality, governance and executive dashboards, and AI adoption training for C-level executives.",
    "url": "index.html#experience",
    "tags": [
     "product",
@@ -576,20 +576,6 @@
    ]
   },
   {
-   "id": "cred-claude-architect",
-   "level": "credential",
-   "date": "2026",
-   "title": "Claude Certified Architect, Foundations (Anthropic)",
-   "text": "Certified by Anthropic as a Claude Architect, Foundations.",
-   "url": "index.html#about",
-   "tags": [
-    "llm",
-    "agents",
-    "mcp",
-    "context"
-   ]
-  },
-  {
    "id": "cred-anthropic-courses",
    "level": "credential",
    "date": "2026",
@@ -646,7 +632,7 @@
    "date": "2026",
    "title": "Leading the Perplexity AI Business Fellowship programme",
    "text": "Leading the Perplexity AI Business Fellowship programme behind the group-wide AI transformation at Kariyer.net (ilab group), and setting baseline standards for agentic infrastructure.",
-   "url": "updates.html#perplexity-fellowship",
+   "url": "index.html#experience",
    "tags": [
     "leadership",
     "agents",
@@ -675,7 +661,7 @@
    "date": "2026",
    "title": "AI career mentor at TEV",
    "text": "Mentoring students at the Turkish Education Foundation on AI career paths, portfolios and the move into applied AI roles.",
-   "url": "updates.html#tev-mentor",
+   "url": "index.html#about",
    "tags": [
     "teaching"
    ]

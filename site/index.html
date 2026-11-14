@@ -80,6 +80,7 @@
       function vfLoadGA() { if (window.vfGA) return; window.vfGA = true; var s = document.createElement('script'); s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-GTZW5NNEZ5'; document.head.appendChild(s); }
       if (vfOk) vfLoadGA();
     </script>
+    <script src="assets/brand/ai-ref.js" defer></script>
 
     <script type="application/ld+json">
 {
@@ -209,7 +210,7 @@
                     "Applied AI research and peer-reviewed publication",
                     "Technical training for engineering and data teams"
                 ],
-                "qualifications": "8 years in industry (2 in applied AI, 6 in data products and business analysis) plus 4 years in research; M.A. Economics; peer-reviewed publication at ACM CAIS '26",
+                "qualifications": "8 years in data products and 4 in an R&D team; M.A. Economics; peer-reviewed publication at ACM CAIS '26",
                 "alternateName": [
                     "Applied AI Engineer",
                     "AI Engineer (Agents)",
@@ -266,15 +267,6 @@
                     "name": "ACM Professional Membership",
                     "recognizedBy": {
                         "@id": "https://vfaraji89.github.io/#acm"
-                    }
-                },
-                {
-                    "@type": "EducationalOccupationalCredential",
-                    "credentialCategory": "certificate",
-                    "name": "Claude Certified Architect, Foundations",
-                    "recognizedBy": {
-                        "@type": "Organization",
-                        "name": "Anthropic"
                     }
                 },
                 {
@@ -481,7 +473,7 @@
                     "name": "San Jose, California, USA"
                 }
             },
-            "abstract": "MCP-based multi-agent system for job position normalisation: 95% accuracy on 14K+ positions, 72.5% faster classification, 41.8% fewer API calls.",
+            "abstract": "MCP-based multi-agent system for job position normalisation: 95% accuracy on 14K+ job titles, 72.5% faster classification, 41.8% fewer API calls.",
             "keywords": [
                 "Multi-Agent Systems",
                 "MCP",
@@ -585,7 +577,7 @@
                         "@type": "CreativeWork",
                         "name": "Multi-Agent Job Classification System",
                         "url": "https://vfaraji89.github.io/papers/cais-2026.html",
-                        "description": "MCP-based multi-agent system mapping free-form job titles to O*NET and ESCO taxonomies. 95% accuracy on 14K+ positions, published at ACM CAIS '26."
+                        "description": "MCP-based multi-agent system mapping free-form job titles to O*NET and ESCO taxonomies. 95% accuracy on 14K+ job titles, published at ACM CAIS '26."
                     }
                 },
                 {
@@ -3152,14 +3144,14 @@
         .hire-main { cursor: pointer; border-radius: 6px; outline-offset: 4px; }
         .hire-more { margin-left: 0.5rem; color: var(--rust-deep); letter-spacing: 0.04em; opacity: 0.75; transition: opacity 0.25s; }
         .hire-main:hover .hire-more, .hire-main:focus-visible .hire-more { opacity: 1; }
-        /* four cards in one row on wide screens, two by two on tablets */
+        /* three cards in one row from tablets up */
         .hero-cards .cat-card { margin-top: 0.625rem; }
         @media (min-width: 641px) and (max-width: 1199px) {
-            .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.75rem; }
+            .hero-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 0.75rem; }
             .hero-cards .hire-cta, .hero-cards .cat-card { max-width: none; }
         }
         @media (min-width: 1200px) {
-            .hero-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .hero-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
             .hero-cards .cat-card { margin-top: 1.125rem; }
             .hero-cards .hire-cta { flex-wrap: wrap; }
             .hero-cards .hire-cta .hire-btn { margin-left: 0; }
@@ -3403,6 +3395,85 @@
     <script src="assets/brand/i18n.js" defer></script>
     <link rel="stylesheet" href="assets/brand/system.css">
     <script src="assets/brand/odometer.js" defer></script>
+    <style>
+        /* D1 the hero strip's bug */
+        .ps-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; margin-top: 1.25rem; }
+        .ps-head + .proof-strip { margin-top: 0.5rem; }
+        .ps-bug { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.25rem 0.6rem; border-radius: 5px; background: var(--ink); color: #fff; font-family: var(--font-mono, monospace); font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; }
+        .ps-bug i { width: 8px; height: 8px; border-radius: 50%; background: var(--bead-red); }
+        .ps-more { font-size: 0.75rem; font-weight: 700; color: var(--rust-deep, #b4200f); text-decoration: none; }
+        .ps-more:hover { text-decoration: underline; }
+        /* D2 cover reel: the six cases as covers; the one in view fills its rod */
+        .cover-reel { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.75rem; margin: 1.25rem 0 1.75rem; }
+        .cr { display: flex; flex-direction: column; gap: 0.4rem; text-decoration: none; color: var(--ink); min-width: 0; }
+        .cr-img { position: relative; display: block; aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden; background: #f4f1ee; outline: 1px solid var(--border); outline-offset: -1px; transition: transform 0.35s cubic-bezier(.16,1,.3,1); }
+        .cr-img img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+        .cr-num { display: grid; place-items: center; background: radial-gradient(120% 140% at 30% 0%, #fff 0%, #fbf3ef 55%, #f3e3dc 100%); }
+        .cr-num b { font-size: clamp(1.25rem, 2.4vw, 1.75rem); font-weight: 800; letter-spacing: -0.05em; color: var(--rust); }
+        .cr-t { font-size: 0.75rem; font-weight: 700; line-height: 1.25; }
+        .cr-rod { position: relative; display: block; height: 3px; border-radius: 2px; background: var(--rod-wood); overflow: hidden; }
+        .cr-rod i { position: absolute; inset: 0; background: var(--rust); transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(.16,1,.3,1); }
+        .cr.is-on .cr-rod i, .cr:hover .cr-rod i, .cr:focus-visible .cr-rod i { transform: scaleX(1); }
+        .cr:hover .cr-img { transform: translateY(-3px); }
+        .cr:focus-visible { outline: 2px solid var(--rust); outline-offset: 4px; border-radius: 6px; }
+        @media (max-width: 860px) {
+            .cover-reel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 0.5rem; }
+            .cr { flex: 0 0 42%; scroll-snap-align: start; }
+        }
+        /* D3 publications as fixtures: one framed list, one row per paper */
+        .pub-fixtures { gap: 0 !important; padding: 0.35rem 0; background-color: var(--bg, #fff); }
+        .pub-fixtures .pub-card { display: grid !important; grid-template-columns: 11.5rem minmax(0, 1fr); gap: 0.15rem 1.25rem; padding: 1rem 1.5rem !important;
+            background: none !important; background-image: none !important; border: 0 !important; border-radius: 0 !important; }
+        .pub-fixtures .pub-card + .pub-card { border-top: 1px solid var(--border) !important; }
+        .pub-fixtures .pub-card::before, .pub-fixtures .pub-card::after { display: none !important; }
+        .pub-fixtures .pub-card > :first-child { grid-row: 1 / span 3; align-self: start; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+        .pub-fixtures .pub-card > :not(:first-child) { grid-column: 2; }
+        @media (max-width: 640px) { .pub-fixtures .pub-card { grid-template-columns: minmax(0, 1fr); } .pub-fixtures .pub-card > * { grid-column: 1 !important; grid-row: auto !important; } }
+        /* D4 the skills word rolls like a counter */
+        #skills .hero-count .ticker { display: inline-grid; overflow: hidden; vertical-align: bottom; padding-bottom: 0.1em; }
+        #skills .hero-count .ticker > .tk { opacity: 1; filter: none; transform: translateY(105%); transition: transform 560ms cubic-bezier(.16,1,.3,1); }
+        #skills .hero-count .ticker > .tk.is-on { transform: none; transition-delay: 60ms; }
+        #skills .hero-count .ticker > .tk.is-off { opacity: 1; filter: none; transform: translateY(-105%); transition: transform 420ms cubic-bezier(.7,0,.84,0); }
+        @media (prefers-reduced-motion: reduce) { #skills .hero-count .ticker > .tk { transition: none; } }
+        /* D5 compact season scoreboard */
+        .sb-board { padding: 0.4rem 0 0.9rem; background-color: var(--bg, #fff); }
+        .sb-teams { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; padding: 0.8rem 1.5rem 0.4rem; }
+        .sb-team { font-size: clamp(1.25rem, 2.6vw, 1.75rem); font-weight: 800; letter-spacing: -0.05em; color: var(--text-muted); }
+        .sb-team.r { text-align: right; color: var(--rust); }
+        .sb-vs { font-family: var(--font-mono, monospace); font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 999px; background: var(--ink); color: #fff; }
+        .sb-rows { list-style: none; margin: 0; padding: 0; }
+        .sb-row { display: grid; grid-template-columns: 4rem minmax(0, 1fr) 10rem minmax(0, 1fr) 4.5rem 8.6rem; align-items: center; gap: 0.8rem; padding: 0.55rem 1.5rem; }
+        .sb-row + .sb-row { border-top: 1px solid var(--border); }
+        .sb-v { font-size: 1.125rem; font-weight: 800; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+        .sb-v.l { color: var(--text-secondary); } .sb-v.r { text-align: right; color: var(--ink); }
+        .sb-k { text-align: center; font-size: 0.78rem; font-weight: 700; line-height: 1.25; }
+        .sb-bar { display: flex; height: 7px; border-radius: 4px; background: var(--bg-muted, #f2f2f4); overflow: hidden; }
+        .sb-bar.l { justify-content: flex-end; }
+        .sb-bar i { display: block; width: 0; height: 100%; border-radius: 4px; background: var(--bead-ink); transition: width 0.9s cubic-bezier(.16,1,.3,1); }
+        .sb-bar.r i { background: var(--bead-red); }
+        .season.on .sb-bar i { width: calc(var(--w) * 100%); }
+        .sb-row:nth-child(2) .sb-bar i { transition-delay: .08s; } .sb-row:nth-child(3) .sb-bar i { transition-delay: .16s; } .sb-row:nth-child(4) .sb-bar i { transition-delay: .24s; } .sb-row:nth-child(5) .sb-bar i { transition-delay: .32s; }
+        .sb-chip { justify-self: end; font-style: normal; font-family: var(--font-mono, monospace); font-size: 0.625rem; font-weight: 600; white-space: nowrap; padding: 0.2rem 0.5rem; border-radius: 999px; color: #fff;
+            background: radial-gradient(120% 140% at 30% 0%, #ffb3a8 0%, #ff7a66 14%, #e0301e 52%, #a31b0d 100%); }
+        .sb-more { display: block; padding: 0.6rem 1.5rem 0; font-size: 0.8125rem; font-weight: 700; color: var(--rust-deep, #b4200f); text-decoration: none; }
+        .sb-more:hover { text-decoration: underline; }
+        @media (max-width: 720px) {
+            .sb-teams { padding: 0.7rem 1rem 0.3rem; }
+            .sb-row { grid-template-columns: 3.4rem minmax(0, 1fr) auto; grid-template-areas: "k k k" "l bl ." "r br chip"; gap: 0.3rem 0.6rem; padding: 0.7rem 1rem; }
+            .sb-k { grid-area: k; text-align: left; } .sb-v.l { grid-area: l; } .sb-bar.l { grid-area: bl; justify-content: flex-start; }
+            .sb-v.r { grid-area: r; text-align: left; } .sb-bar.r { grid-area: br; } .sb-chip { grid-area: chip; }
+            .sb-more { padding: 0.6rem 1rem 0; }
+        }
+        @media (prefers-reduced-motion: reduce) { .sb-bar i { transition: none; } }
+    </style>
+    <style>
+        /* scoreboard chips as an insight prompter: each fact rolls up into place, like a broadcast counter */
+        .rot { display: inline-grid !important; overflow: hidden; justify-items: center; }
+        .rot > span { grid-area: 1 / 1; white-space: nowrap; transform: translateY(115%); transition: transform 520ms cubic-bezier(.16,1,.3,1); }
+        .rot > span.on { transform: none; }
+        .rot > span.off { transform: translateY(-115%); transition: transform 380ms cubic-bezier(.7,0,.84,0); }
+        @media (prefers-reduced-motion: reduce) { .rot > span { transition: none; } }
+    </style>
 </head>
 <body>
     <!-- Abacus icon kit: one ink frame, grey rails, beads; the rust bead marks the point. Also in assets/brand/abacus-icons.svg -->
@@ -3495,14 +3566,14 @@
 
             <div class="hero-icon-row">
                 <div>
-                    <h1 class="hero-name hero-is"><span class="sr-only" data-i18n="home.hero_sr">Vahid Faraji works in applied AI.</span><span aria-hidden="true"><span class="hero-is-name"><img class="hero-avatar" src="assets/foto-vahid.jpg" alt="" width="104" height="104" decoding="async"><bdi data-i18n="home.hero_name">Vahid</bdi></span><br><span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on" data-i18n-html="home.tk1">works in <mark>applied AI</mark>.</span><span class="tk" data-i18n-html="home.tk2">is fluent in <mark>data</mark>.</span><span class="tk" data-i18n-html="home.tk3">works <mark>AI-native</mark>.</span><span class="tk" data-i18n-html="home.tk4">loves <mark>creative data products</mark>.</span><span class="tk" data-i18n-html="home.tk5">is proficient in <mark>MCP</mark>.</span><span class="tk" data-i18n-html="home.tk6">makes <mark>AI-native products</mark>.</span><span class="tk" data-i18n-html="home.tk7">works on <mark>agentic systems</mark>.</span><span class="tk" data-i18n-html="home.tk8">builds <mark>agent harnesses</mark>.</span><span class="tk" data-i18n-html="home.tk9">ships with <mark>evals</mark>.</span></span></span></h1>
+                    <h1 class="hero-name hero-is"><span class="sr-only" data-i18n="home.hero_sr">Vahid Faraji works in applied AI.</span><span aria-hidden="true"><span class="hero-is-name"><img class="hero-avatar" src="assets/foto-vahid.jpg" alt="" width="104" height="104" decoding="async"><bdi data-i18n="home.hero_name">Vahid</bdi></span><br><span class="ticker" id="hero-is-ticker" aria-hidden="true"><span class="tk is-on" data-i18n-html="home.tk1">works in <mark>applied AI</mark>.</span><span class="tk" data-i18n-html="home.tk2">is fluent in <mark>data</mark>.</span><span class="tk" data-i18n-html="home.tk3">works <mark>AI-native</mark>.</span><span class="tk" data-i18n-html="home.tk4">loves <mark>creative data products</mark>.</span><span class="tk" data-i18n-html="home.tk5">is proficient in <mark>MCP</mark>.</span><span class="tk" data-i18n-html="home.tk6">makes <mark>AI-native products</mark>.</span><span class="tk" data-i18n-html="home.tk7">works on <mark>agentic systems</mark>.</span><span class="tk" data-i18n-html="home.tk8">builds <mark>agent harnesses</mark>.</span><span class="tk" data-i18n-html="home.tk9">ships with <mark>evals</mark>.</span><span class="tk" data-i18n-html="home.tk10">loves <mark>open source</mark>.</span></span></span></h1>
                 </div>
             </div>
 
             <hr class="hero-rule">
             <div class="hero-bio">
                 <div class="hero-tagline bio">
-                    <p class="bio-three" aria-label="Maximize ROI. Minimize cost." data-i18n-attr="aria-label:home.bio_three_aria" data-i18n-html="home.bio_three"><span>Maximize&nbsp;<b class="b-roi">ROI</b><i class="bead-stop">.</i></span> <span>Minimize&nbsp;<b class="b-cost">cost</b><i class="bead-stop">.</i></span></p>
+                    <p class="bio-three" aria-label="Maximise ROI. Minimise cost." data-i18n-attr="aria-label:home.bio_three_aria" data-i18n-html="home.bio_three"><span>Maximise&nbsp;<b class="b-roi">ROI</b><i class="bead-stop">.</i></span> <span>Minimise&nbsp;<b class="b-cost">cost</b><i class="bead-stop">.</i></span></p>
                     <p class="bio-text" data-i18n-html="home.bio_text">I build <strong>workflows, data pipelines and agents</strong> that teams use in their daily work. I write the spec, build the tools the agent can use, and measure whether it actually helps: <mark>evidence more than demos</mark>.</p>
                     <div class="hero-fit-row">
                         <a class="hero-fit" href="fit.html">
@@ -3529,41 +3600,14 @@
                 </div>
                 </div>
             </div>
+            <div class="ps-head"><span class="ps-bug"><i aria-hidden="true"></i><span data-i18n-html="body_home.ps_bug">VF &middot; scoreboard</span></span><a class="ps-more" href="updates.html#year" data-i18n-html="body_home.ps_more">2025 against 2026 &rarr;</a></div>
             <ul class="proof-strip" aria-label="Proof">
                 <li><b data-i18n-html="body_home.body_home_2">ACM CAIS &rsquo;26</b><span data-i18n="home.stat_paper">peer-reviewed paper</span></li>
                 <li><b>95%</b><span data-i18n="home.stat_acc">agent accuracy on 14K+ job titles</span></li>
                 <li><b>500+</b><span data-i18n="home.stat_installs">Tokalator installs</span></li>
-                <li><b>3 + 1</b><span data-i18n="home.stat_pubs">publications + patent pending</span></li>
+                <li><b>3+1</b><span data-i18n="home.stat_pubs">papers + patent pending</span></li>
             </ul>
             <div class="hero-cards">
-            <div class="hire-cta" id="hire-cta">
-                <span class="hire-phase" aria-hidden="true">
-                    <span class="hire-ph hire-ph-1"></span>
-                    <span class="hire-ph hire-ph-2"></span>
-                    <span class="hire-ph hire-ph-3"></span>
-                    <span class="hire-ph hire-ph-4"></span>
-                </span>
-                <span class="hire-main" role="button" tabindex="0" id="hire-open" aria-controls="recruiter-card" title="Open the short version">
-                <span class="hire-lead" data-i18n-html="body_home.hire_cta_1">Now building <span class="hire-more">The short version &rarr;</span></span>
-                <span class="hire-role ticker" id="hire-role" aria-hidden="true"><span class="tk is-on">Agent harnesses</span><span class="tk">Evals from real tasks</span><span class="tk">Tokalator</span><span class="tk">Applied AI, Simplified</span><span class="tk">Data pipelines</span></span>
-                </span>
-                <span class="sr-only" data-i18n-html="body_home.hire_cta_2">Now building: agent harnesses, evals from real tasks, Tokalator, applied-ai-simplified and data pipelines.</span>
-                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="hire-btn" id="hire-book" aria-haspopup="true" aria-expanded="false" aria-controls="book-pick"><span class="live-bead"></span>Book a call <span aria-hidden="true">&rarr;</span></a>
-                <div class="book-pick" id="book-pick" role="dialog" aria-label="Choose how to book" hidden>
-                    <p class="bp-fit" id="bp-fit">Checking our time zones&hellip;</p>
-                    <a class="bp-opt" id="bp-cal" href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener">
-                        <svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg>
-                        <span class="bp-txt" data-i18n-html="body_home.book_pick_1"><b>Pick a slot on my calendar</b><em>30 min &middot; instant confirmation</em></span>
-                        <span class="bp-tag" data-i18n-html="body_home.book_pick_2">Best fit</span>
-                    </a>
-                    <button type="button" class="bp-opt" id="bp-suggest">
-                        <svg class="ab" aria-hidden="true"><use href="#ab-globe"/></svg>
-                        <span class="bp-txt" data-i18n-html="body_home.book_pick_3"><b>Suggest a time that suits you</b><em>Any time zone &middot; I confirm within 24h</em></span>
-                        <span class="bp-tag" data-i18n-html="body_home.book_pick_4">Best fit</span>
-                    </button>
-                    <p class="bp-clock"><span class="tz-dot" aria-hidden="true"></span>Istanbul <b id="bp-ist">--:--</b> &middot; You <b id="bp-you">--:--</b></p>
-                </div>
-            </div>
             <a class="upd-card cat-card" href="updates.html">
                 <span class="upd-stack" aria-hidden="true">
                     <img width="348" height="184" src="assets/photos/techcaeer-training.webp" alt="" loading="lazy">
@@ -3573,7 +3617,7 @@
                 <span class="upd-text">
                     <span class="upd-k"><svg class="ab" aria-hidden="true"><use href="#ab-board"/></svg><span data-i18n="body_home.updk_1">Updates</span></span>
                     <b data-i18n-html="body_home.body_home_3">Launches, papers, roles</b>
-                    <em data-i18n-html="body_home.body_home_4">Latest: ProjectLens demo paper submitted</em>
+                    <em data-i18n-html="body_home.body_home_4">Latest: a 90-second animated CV</em>
                 </span>
                 <span class="upd-go" aria-hidden="true">&rarr;</span>
             </a>
@@ -3581,7 +3625,7 @@
                 <span class="upd-stack" aria-hidden="true">
                     <img width="1600" height="781" src="assets/photos/pms-dashboard.webp" alt="" loading="lazy">
                     <img width="1440" height="900" src="assets/photos/projectlens/projectlens-login.webp" alt="" loading="lazy">
-                    <img width="1600" height="900" src="assets/photos/tokalator-vscode.webp" alt="" loading="lazy">
+                    <img width="760" height="420" src="assets/photos/tokalator/agents.webp" alt="" loading="lazy">
                 </span>
                 <span class="upd-text">
                     <span class="upd-k"><svg class="ab" aria-hidden="true"><use href="#ab-layers"/></svg><span data-i18n="body_home.updk_2">Cases</span></span>
@@ -3617,8 +3661,8 @@
                     <div class="rc-intro">
                         <p class="rc-eyebrow" data-i18n-html="body_home.recruiter_card_1">Recruiter view</p>
                         <h2 class="rc-title" data-i18n-html="body_home.recruiter_card_2">Applied AI engineer who ships agent systems, and the evals that prove them<span class="bead-stop">.</span></h2>
-                        <p class="rc-sub" data-i18n-html="body_home.recruiter_card_3">Senior Applied AI, R&amp;D &middot; 8 years in industry + 4 in research &middot; M.A. Economics</p>
-                        <p class="rc-line" data-i18n-html="body_home.recruiter_card_4">Maximize <b class="b-roi">ROI</b>. Minimize <b class="b-cost">cost</b>. Workflows, data pipelines and agents teams use every day: evidence more than demos.</p>
+                        <p class="rc-sub" data-i18n-html="body_home.recruiter_card_3">Senior Applied AI Specialist, R&amp;D &middot; 8 years in data products + 4 in R&amp;D &middot; M.A. Economics</p>
+                        <p class="rc-line" data-i18n-html="body_home.recruiter_card_4">Maximise <b class="b-roi">ROI</b>. Minimise <b class="b-cost">cost</b>. Workflows, data pipelines and agents teams use every day: evidence more than demos.</p>
                     </div>
                     <span class="rc-status" data-i18n-html="body_home.recruiter_card_5"><i aria-hidden="true"></i>Happy to talk</span>
                 </div>
@@ -3627,14 +3671,14 @@
                     <li data-i18n-html="body_home.recruiter_card_6"><b>95%</b><span>accuracy on 14K+ job titles</span><em>Multi-agent MCP system &middot; ACM CAIS '26</em></li>
                     <li data-i18n-html="body_home.recruiter_card_7"><b>91%</b><span>manual effort removed</span><em>ProjectLens &middot; in production</em></li>
                     <li data-i18n-html="body_home.recruiter_card_8"><b>500+</b><span>installs</span><em>Tokalator &middot; open source</em></li>
-                    <li data-i18n-html="body_home.recruiter_card_9"><b>3 + 1</b><span>papers + patent pending</span><em>ACM CAIS '26 &middot; 2 arXiv</em></li>
+                    <li data-i18n-html="body_home.recruiter_card_9"><b>3+1</b><span>papers + patent pending</span><em>ACM CAIS '26 &middot; 2 arXiv</em></li>
                 </ul>
 
                 <dl class="rc-facts">
                     <div><dt data-i18n-html="body_home.recruiter_card_10">Role fit</dt><dd data-i18n-html="body_home.recruiter_card_11">Applied AI Engineer &middot; Agentic AI Engineer &middot; AI Platform Engineer</dd></div>
                     <div><dt data-i18n-html="body_home.recruiter_card_12">Builds</dt><dd data-i18n-html="body_home.recruiter_card_13">Agent harnesses (loop, tools, context, memory) &middot; evals from real tasks &middot; spec to production, full stack</dd></div>
                     <div><dt data-i18n-html="body_home.recruiter_card_14">How I work</dt><dd data-i18n-html="body_home.recruiter_card_15">Write the spec &middot; build the tools the agent can use &middot; measure whether it actually helps</dd></div>
-                    <div><dt data-i18n-html="body_home.recruiter_card_16">Shipped</dt><dd data-i18n-html="body_home.recruiter_card_17">Multi-agent job classification (95% on 14K+ positions) &middot; ProjectLens (64h of pricing work down to 5.5) &middot; enterprise AI rollout (60% less manual work, 200+ colleagues) &middot; metadata platform (300M+ datapoints)</dd></div>
+                    <div><dt data-i18n-html="body_home.recruiter_card_16">Shipped</dt><dd data-i18n-html="body_home.recruiter_card_17">Multi-agent position classification (95% on 14K+ job titles) &middot; ProjectLens (64h of pricing work down to 5.5) &middot; enterprise AI rollout (60% less manual work, 200+ colleagues) &middot; metadata platform (300M+ data points)</dd></div>
                     <div><dt data-i18n-html="body_home.recruiter_card_18">Open source</dt><dd data-i18n-html="body_home.recruiter_card_19"><a href="https://tokalator.ai" target="_blank" rel="noopener">Tokalator</a>: token budgets and cost across 17 LLMs &middot; <a href="https://vfaraji89.github.io/applied-ai-simplified/" target="_blank" rel="noopener">Applied AI, Simplified</a>: applied AI, said plainly</dd></div>
                     <div><dt data-i18n-html="body_home.recruiter_card_20">Research</dt><dd data-i18n-html="body_home.recruiter_card_21"><a href="papers/cais-2026.html">ACM CAIS '26</a>, peer-reviewed &middot; <a href="papers/tokalator.html">Tokalator</a> and <a href="papers/skill-extraction.html">Turkish skill extraction</a> on arXiv &middot; 1 patent pending</dd></div>
                     <div><dt data-i18n-html="body_home.recruiter_card_22">Stack</dt><dd data-i18n-html="body_home.recruiter_card_23">TypeScript&nbsp;7 &middot; Python &middot; Next.js &middot; Claude Agent SDK &middot; Vercel AI SDK &middot; Copilot Studio &middot; MCP &middot; LangGraph &middot; Langfuse tracing &middot; deploys on Vercel</dd></div>
@@ -3680,28 +3724,6 @@
                 <a href="#engage" class="btn btn-outline cta-go"><svg class="ab" aria-hidden="true"><use href="#ab-advise"/></svg><span data-i18n="home.cta_engage">Work with me</span></a>
                 <a href="#" class="btn btn-outline cta-go" onclick="openBooking();return false;"><svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg><span data-i18n="home.cta_time">Suggest a time</span></a>
             </div>
-            <div class="product-badges" aria-label="Products">
-                <a class="pbadge" href="https://tokalator.ai/" target="_blank" rel="noopener">
-                    <span class="pb-mark pb-img"><img src="assets/brand/tokalator-icon.png" width="22" height="22" alt=""></span>
-                    <span class="pb-text" data-i18n-html="body_home.body_home_9"><b>Tokalator</b><em>500+ installs</em></span>
-                    <span class="pb-go" aria-hidden="true">&nearr;</span>
-                </a>
-                <a class="pbadge" href="https://vfaraji89.github.io/applied-ai-simplified/" target="_blank" rel="noopener">
-                    <span class="pb-mark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><radialGradient id="aai-b2" cx=".34" cy=".3" r=".75"><stop offset="0" stop-color="#ff9d8f"/><stop offset=".45" stop-color="#e0301e"/><stop offset="1" stop-color="#9e1a0c"/></radialGradient></defs><rect x="1.6" y="3.6" width="15.4" height="16.8" rx="4.6" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.8"/><path d="M12.4 12h7.4" stroke="var(--ink)" stroke-width="1.8" stroke-linecap="round"/><rect x="19.2" y="9.6" width="4.2" height="4.8" rx="1.3" fill="var(--ink)"/><circle cx="9.3" cy="12" r="3.3" fill="url(#aai-b2)"/></svg></span>
-                    <span class="pb-text" data-i18n-html="body_home.body_home_10"><b>Applied AI, Simplified</b><em>Applied AI, said plainly</em></span>
-                    <span class="pb-go" aria-hidden="true">&nearr;</span>
-                </a>
-                <a class="pbadge" href="#work">
-                    <span class="pb-mark pb-pl"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5" fill="#6a1b9a"/><path d="M10.5 7.25v6.5M7.25 10.5h6.5" stroke="#fff" stroke-width="1.9" stroke-linecap="round"/><path d="M16 16l4.75 4.75" stroke="#6a1b9a" stroke-width="2.6" stroke-linecap="round"/></svg></span>
-                    <span class="pb-text" data-i18n-html="body_home.body_home_11"><b>ProjectLens</b><em>91% effort cut</em></span>
-                    <span class="pb-go" aria-hidden="true">&darr;</span>
-                </a>
-                <a class="pbadge" href="#yzi">
-                    <span class="pb-mark pb-yzi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3.5L21 19.5H3z" fill="#efe7fb" stroke="#5b21b6" stroke-width="1.6" stroke-linejoin="round"/><path d="M1.5 12.5L9.6 11.4" stroke="#5b21b6" stroke-width="1.4" stroke-linecap="round"/><path d="M14.3 11.2l8 -2.2" stroke="#e0301e" stroke-width="1.3" stroke-linecap="round"/><path d="M14.6 12.4l8 0.4" stroke="#f2b134" stroke-width="1.3" stroke-linecap="round"/><path d="M14.8 13.6l7.6 2.8" stroke="#2f9e6e" stroke-width="1.3" stroke-linecap="round"/></svg></span>
-                    <span class="pb-text" data-i18n-html="body_home.body_home_12"><b>Yapay Zek&acirc; &#304;zi</b><em>23.3&times; GenAI in job ads</em></span>
-                    <span class="pb-go" aria-hidden="true">&darr;</span>
-                </a>
-            </div>
 
 
 
@@ -3740,11 +3762,11 @@
                     <ol class="aai-steps" aria-label="Seven steps">
                     <li style="--i:0" data-i18n-html="body_home.body_home_21"><a href="https://vfaraji89.github.io/applied-ai-simplified/market/" target="_blank" rel="noopener"><span class="aai-n">01</span><b>Market</b><em>What applied AI jobs ask for</em></a></li>
                     <li style="--i:1" data-i18n-html="body_home.body_home_22"><a href="https://vfaraji89.github.io/applied-ai-simplified/roles/" target="_blank" rel="noopener"><span class="aai-n">02</span><b>Roles &amp; skills</b><em>Who does the work, and the skills</em></a></li>
-                    <li style="--i:2" data-i18n-html="body_home.body_home_23"><a href="https://vfaraji89.github.io/applied-ai-simplified/architect/" target="_blank" rel="noopener"><span class="aai-n">03</span><b>AI-native architect</b><em>Layers, stack and problems</em></a></li>
-                    <li style="--i:3" data-i18n-html="body_home.aai_step_tools"><a href="https://vfaraji89.github.io/applied-ai-simplified/tools/" target="_blank" rel="noopener"><span class="aai-n">04</span><b>Tools</b><em>Every tool, filtered by use case</em></a></li>
-                    <li style="--i:4" data-i18n-html="body_home.body_home_24"><a href="https://vfaraji89.github.io/applied-ai-simplified/certificates/" target="_blank" rel="noopener"><span class="aai-n">05</span><b>Certificates</b><em>By track, with official links</em></a></li>
-                    <li style="--i:5" data-i18n-html="body_home.body_home_25"><a href="https://vfaraji89.github.io/applied-ai-simplified/docs/" target="_blank" rel="noopener"><span class="aai-n">06</span><b>Docs</b><em>Technical docs, in motion</em></a></li>
-                    <li style="--i:6" data-i18n-html="body_home.body_home_26"><a href="https://vfaraji89.github.io/applied-ai-simplified/contribute/" target="_blank" rel="noopener"><span class="aai-n">07</span><b>Feedback</b><em>Corrections, credited</em></a></li>
+                    <li style="--i:2" data-i18n-html="body_home.body_home_23"><a href="https://vfaraji89.github.io/applied-ai-simplified/people/" target="_blank" rel="noopener"><span class="aai-n">03</span><b>People</b><em>Who builds it, and where</em></a></li>
+                    <li style="--i:3" data-i18n-html="body_home.aai_step_tools"><a href="https://vfaraji89.github.io/applied-ai-simplified/events/" target="_blank" rel="noopener"><span class="aai-n">04</span><b>Events</b><em>Where applied AI meets</em></a></li>
+                    <li style="--i:4" data-i18n-html="body_home.body_home_24"><a href="https://vfaraji89.github.io/applied-ai-simplified/architect/" target="_blank" rel="noopener"><span class="aai-n">05</span><b>AI-native architect</b><em>Layers, stack and problems</em></a></li>
+                    <li style="--i:5" data-i18n-html="body_home.body_home_25"><a href="https://vfaraji89.github.io/applied-ai-simplified/tools/" target="_blank" rel="noopener"><span class="aai-n">06</span><b>Tools</b><em>Every tool, filtered by use case</em></a></li>
+                    <li style="--i:6" data-i18n-html="body_home.body_home_26"><a href="https://vfaraji89.github.io/applied-ai-simplified/docs/" target="_blank" rel="noopener"><span class="aai-n">07</span><b>Learn</b><em>Docs, jargon and certificates</em></a></li>
                 </ol>
                 <p class="aai-cap" id="aai-cap" aria-live="polite"><span></span><a href="https://vfaraji89.github.io/applied-ai-simplified/" target="_blank" rel="noopener" data-i18n="body_home.aai_open">Open</a></p>
                 </div>
@@ -3754,20 +3776,20 @@
         <section id="work" class="reveal">
             <div class="section-label" data-i18n="home.sec_work">Case Studies</div>
             <p class="section-tagline" data-i18n="home.sec_work_tag">Problems I solved end to end.</p>
-            <div class="metrics-grid">
-                <div class="metric-card hover-card" data-hover data-flip-num="2 AI · 6 data" data-flip-label="Industry years, by field"><div class="metric-num">8+4</div><div class="metric-label" data-i18n-html="body_home.work_1">Years industry + research</div></div>
-                <div class="metric-card hover-card" data-hover data-flip-num="14K+ positions" data-flip-label="MCP multi-agent"><div class="metric-num">95%</div><div class="metric-label" data-i18n-html="body_home.work_2">Agent accuracy</div></div>
-                <div class="metric-card hover-card" data-hover data-flip-num="300M+" data-flip-label="Datapoints unified"><div class="metric-num">72.5%</div><div class="metric-label" data-i18n-html="body_home.work_3">Faster classification</div></div>
-                <div class="metric-card hover-card" data-hover data-flip-num="200+ colleagues" data-flip-label="Kariyer.net"><div class="metric-num">60%</div><div class="metric-label" data-i18n-html="body_home.work_4">Workload reduction</div></div>
-                <div class="metric-card hover-card" data-hover data-flip-num="ACM · arXiv" data-flip-label="1 patent pending"><div class="metric-num">3+1</div><div class="metric-label" data-i18n-html="body_home.work_5">Publications + Patent</div></div>
-                <div class="metric-card hover-card" data-hover data-flip-num="+50" data-flip-label="Courses delivered"><div class="metric-num">400+</div><div class="metric-label" data-i18n-html="body_home.work_6">People trained</div></div>
-            </div>
+            <nav class="cover-reel" aria-label="Case studies" data-i18n-attr="aria-label:body_home.cr_aria">
+                <a class="cr" href="#case-tokalator" data-case="case-tokalator"><span class="cr-img"><img src="assets/photos/tokalator/agents.webp" alt="" width="320" height="200" loading="lazy" decoding="async"></span><span class="cr-t" data-i18n-html="body_home.cr_tokalator">Tokalator</span><span class="cr-rod" aria-hidden="true"><i></i></span></a>
+                <a class="cr" href="#case-cais" data-case="case-cais"><span class="cr-img"><img src="assets/photos/pms-dashboard.webp" alt="" width="320" height="200" loading="lazy" decoding="async"></span><span class="cr-t" data-i18n-html="body_home.cr_cais">Position classifier</span><span class="cr-rod" aria-hidden="true"><i></i></span></a>
+                <a class="cr" href="#yzi" data-case="yzi"><span class="cr-img"><img src="assets/photos/yapay-zeka-izi/yzi-home.webp" alt="" width="320" height="200" loading="lazy" decoding="async"></span><span class="cr-t" data-i18n-html="body_home.cr_yzi">Yapay Zekâ İzi</span><span class="cr-rod" aria-hidden="true"><i></i></span></a>
+                <a class="cr" href="#case-projectlens" data-case="case-projectlens"><span class="cr-img"><img src="assets/photos/projectlens/projectlens-home.webp" alt="" width="320" height="200" loading="lazy" decoding="async"></span><span class="cr-t" data-i18n-html="body_home.cr_projectlens">ProjectLens</span><span class="cr-rod" aria-hidden="true"><i></i></span></a>
+                <a class="cr" href="#case-enterprise" data-case="case-enterprise"><span class="cr-img cr-num"><b>60%</b></span><span class="cr-t" data-i18n-html="body_home.cr_enterprise">Enterprise AI</span><span class="cr-rod" aria-hidden="true"><i></i></span></a>
+                <a class="cr" href="#case-metadata" data-case="case-metadata"><span class="cr-img cr-num"><b>300M+</b></span><span class="cr-t" data-i18n-html="body_home.cr_metadata">Metadata platform</span><span class="cr-rod" aria-hidden="true"><i></i></span></a>
+            </nav>
             <div class="case-grid">
                 <div class="case-card hover-card featured" data-hover id="case-tokalator">
                     <div class="card-content">
-                        <div class="gallery-screenshot" data-lightbox="tokalator" data-images='["assets/photos/tokalator-vscode.webp","assets/photos/tokalator-dashboard.webp","assets/photos/tokalator-wiki.webp","assets/photos/tokalator-calculator.webp"]'>
-                            <img width="1600" height="900" src="assets/photos/tokalator-vscode.webp" alt="Tokalator token budget panel in VS Code: context usage, turn analytics, Claude Code session tokens and workspace tools" loading="lazy">
-                            <span class="gallery-screenshot-count">1 / 4</span>
+                        <div class="gallery-screenshot" data-lightbox="tokalator" data-images='["assets/photos/tokalator/agents.webp","assets/photos/tokalator/sidebar.webp","assets/photos/tokalator/cost.webp","assets/photos/tokalator/tools.webp","assets/photos/tokalator-vscode.webp","assets/photos/tokalator-dashboard.webp","assets/photos/tokalator-wiki.webp","assets/photos/tokalator-calculator.webp"]'>
+                            <img width="760" height="420" src="assets/photos/tokalator/agents.webp" alt="Tokalator in VS Code: today's spend across Claude Code, Copilot Chat and Codex, with context use per agent" loading="lazy">
+                            <span class="gallery-screenshot-count">1 / 8</span>
                         </div>
                         <div class="case-meta" data-i18n-html="body_home.case_tokalator_1"><span class="case-tag">Open Source</span><span class="case-tag">Shipped</span></div>
                         <div class="case-title" data-i18n-html="body_home.case_tokalator_2"><a href="https://tokalator.ai/" target="_blank" rel="noopener">Tokalator: token budgets and cost across 17 LLMs, 500+ installs</a></div>
@@ -3776,7 +3798,7 @@
                         <div class="case-body">
                             <div class="case-row" data-i18n-html="body_home.case_tokalator_4"><span class="case-row-label">Problem</span><span class="case-row-val">AI coding assistants burn tokens blindly. No visibility into context cost, no budget guardrails, no cross-model comparison.</span></div>
                             <div class="case-row" data-i18n-html="body_home.case_tokalator_5"><span class="case-row-label">Approach</span><span class="case-row-val">Real-time token budgeting, tab relevance scoring, Cobb-Douglas output-quality models, caching break-even analysis across <strong>17 LLMs</strong>.</span></div>
-                            <div class="case-row" data-i18n-html="body_home.case_tokalator_6"><span class="case-row-label">Result</span><span class="case-row-val"><strong>VS Code extension + web platform</strong> shipped. arXiv paper published.</span></div>
+                            <div class="case-row" data-i18n-html="body_home.case_tokalator_6"><span class="case-row-label">Result</span><span class="case-row-val">A <strong>VS Code extension and a web platform</strong>, installed 500+ times. The paper is on arXiv.</span></div>
                         </div>
                         </details>
                         <div class="case-stats">
@@ -3800,13 +3822,13 @@
                             <span class="gallery-screenshot-count">1 / 3</span>
                         </div>
                         <div class="case-meta" data-i18n-html="body_home.case_cais_1"><span class="case-tag">Research</span><span class="case-tag">ACM CAIS '26</span></div>
-                        <div class="case-title" data-i18n-html="body_home.case_cais_2">Multi-Agent Job Classification: 95% accuracy on 14K+ positions</div>
+                        <div class="case-title" data-i18n-html="body_home.case_cais_2">Multi-agent position classification: 95% accuracy on 14K+ job titles</div>
                         <details class="disclose case-disclose">
                             <summary data-i18n-html="body_home.case_cais_3">Problem, approach, result</summary>
                         <div class="case-body">
                             <div class="case-row" data-i18n-html="body_home.case_cais_4"><span class="case-row-label">Problem</span><span class="case-row-val">Free-form job titles in multiple languages can't be reliably mapped to O*NET/ESCO taxonomies at scale.</span></div>
                             <div class="case-row" data-i18n-html="body_home.case_cais_5"><span class="case-row-label">Approach</span><span class="case-row-val">MCP-based multi-agent system: planner, search, extraction, and evaluation agents with shared caching layer.</span></div>
-                            <div class="case-row" data-i18n-html="body_home.case_cais_6"><span class="case-row-label">Result</span><span class="case-row-val"><strong>95% accuracy</strong> on 14K+ positions. 72.5% faster classification. 41.8% fewer API calls. Accepted at ACM.</span></div>
+                            <div class="case-row" data-i18n-html="body_home.case_cais_6"><span class="case-row-label">Result</span><span class="case-row-val"><strong>95% accuracy</strong> on 14K+ job titles. 72.5% faster classification. 41.8% fewer API calls. Published at ACM CAIS ’26.</span></div>
                         </div>
                         </details>
                         <div class="case-stats" data-i18n-html="body_home.case_cais_7"><span><strong>95%</strong> accuracy</span><span><strong>72.5%</strong> faster</span><span><strong>41.8%</strong> fewer API calls</span><span><strong>ACM</strong> CAIS &rsquo;26</span></div>
@@ -3883,7 +3905,7 @@
                         <div class="case-body">
                             <div class="case-row" data-i18n-html="body_home.case_enterprise_4"><span class="case-row-label">Problem</span><span class="case-row-val">Manual reporting workflows across Sales, Finance, R&D consuming analyst time with no self-service capability.</span></div>
                             <div class="case-row" data-i18n-html="body_home.case_enterprise_5"><span class="case-row-label">Approach</span><span class="case-row-val">Multi-agent orchestration (LangGraph, MCP, Agno) for text-to-SQL, report automation, and AI feedback loops with human checkpoints.</span></div>
-                            <div class="case-row" data-i18n-html="body_home.case_enterprise_6"><span class="case-row-label">Result</span><span class="case-row-val"><strong>60% reduction</strong> in manual workload. 200+ users served. Adopted as group-wide AI standard.</span></div>
+                            <div class="case-row" data-i18n-html="body_home.case_enterprise_6"><span class="case-row-label">Result</span><span class="case-row-val"><strong>60% less manual work</strong> for 200+ colleagues. Adopted as group-wide AI standard.</span></div>
                         </div>
                         </details>
                         <div class="case-stats" data-i18n-html="body_home.case_enterprise_7"><span><strong>60%</strong> less manual work</span><span><strong>200+</strong> users</span><span><strong>Group-wide</strong> standard</span></div>
@@ -3893,60 +3915,28 @@
                 <div class="case-card hover-card" data-hover id="case-metadata">
                     <div class="card-content">
                         <div class="case-meta" data-i18n-html="body_home.case_metadata_1"><span class="case-tag">Data Product</span><span class="case-tag">Infrastructure</span></div>
-                        <div class="case-title" data-i18n-html="body_home.case_metadata_2">Metadata Platform: 300M+ datapoints unified</div>
+                        <div class="case-title" data-i18n-html="body_home.case_metadata_2">Metadata Platform: 300M+ data points unified</div>
                         <details class="disclose case-disclose">
                             <summary data-i18n-html="body_home.case_metadata_3">Problem, approach, result</summary>
                         <div class="case-body">
                             <div class="case-row" data-i18n-html="body_home.case_metadata_4"><span class="case-row-label">Problem</span><span class="case-row-val">No unified metadata layer across a live job platform. Fragmented schemas, no lineage, analytics bottlenecked by ad-hoc queries.</span></div>
                             <div class="case-row" data-i18n-html="body_home.case_metadata_5"><span class="case-row-label">Approach</span><span class="case-row-val">Designed metadata architecture with DataHub governance, real-time pipelines, and product-analytics instrumentation for strategic decisions.</span></div>
-                            <div class="case-row" data-i18n-html="body_home.case_metadata_6"><span class="case-row-label">Result</span><span class="case-row-val"><strong>300M+ datapoints</strong> unified. Became the foundation for all later AI/LLM deployments: embedding generation, RAG retrieval, and context grounding at scale.</span></div>
+                            <div class="case-row" data-i18n-html="body_home.case_metadata_6"><span class="case-row-label">Result</span><span class="case-row-val"><strong>300M+ data points</strong> unified. Became the foundation for all later AI/LLM deployments: embedding generation, RAG retrieval, and context grounding at scale.</span></div>
                         </div>
                         </details>
-                        <div class="case-stats" data-i18n-html="body_home.case_metadata_7"><span><strong>300M+</strong> datapoints</span><span><strong>Foundation</strong> for RAG and embeddings</span></div>
+                        <div class="case-stats" data-i18n-html="body_home.case_metadata_7"><span><strong>300M+</strong> data points</span><span><strong>Foundation</strong> for RAG and embeddings</span></div>
                         <div class="case-stack" data-i18n-html="body_home.case_metadata_8"><span>DataHub</span><span>·</span><span>Azure Synapse</span><span>·</span><span>BigQuery</span><span>·</span><span>Real-time Pipelines</span><span>·</span><span>Retool</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="reveal">
-            <div class="cta-band tok-card">
-                <div class="tok-grid">
-                    <div>
-                        <div class="aai-head">
-                            <img class="tok-logo" src="assets/brand/tokalator-icon.png" width="52" height="52" alt="">
-                            <div>
-                                <div class="cta-label" data-i18n-html="body_home.body_home_13">Tokalator · open source · AGPL-3.0</div>
-                                <h2 class="cta-h" data-i18n-html="body_home.body_home_14">See what your AI coding assistant <mark>reads</mark>, and what it <mark>costs</mark><span class="dot">.</span></h2>
-                            </div>
-                        </div>
-                        <p data-i18n-html="body_home.body_home_15">Context engineering for AI coding assistants: token budgeting in real time and cost modelling across 17 LLMs.</p>
-                        <div class="tok-badges" data-i18n-html="body_home.body_home_16"><span><i>VS Code</i><b>500+ installs</b></span><span class="r"><i>arXiv</i><b>2604.08290</b></span><span class="g"><i>models</i><b>17 LLMs</b></span></div>
-                        <div class="cta-actions bead-row" data-i18n-html="body_home.body_home_17">
-                            <a href="https://marketplace.visualstudio.com/items?itemName=vfaraji89.tokalator" target="_blank" rel="noopener" class="btn btn-primary">Install for VS Code →</a>
-                            <a href="https://github.com/vfaraji89/tokalator" target="_blank" rel="noopener" class="btn btn-outline">&#9733; Star on GitHub</a>
-                            <a href="https://tokalator.ai" target="_blank" rel="noopener" class="btn btn-outline">tokalator.ai</a>
-                        </div>
-                    </div>
-                    <div class="tok-panel" aria-hidden="true">
-                        <div class="tok-ph"><span>context window</span><span class="tok-pct">example</span></div>
-                        <div class="tok-meter"><span></span><span></span><span></span><span></span></div>
-                        <ul>
-                            <li><i style="background:#16a34a"></i>Pinned files<em>high relevance</em></li>
-                            <li><i style="background:#4ade80"></i>Open tabs<em>scored</em></li>
-                            <li><i style="background:#d4a017"></i>History<em>cache it</em></li>
-                            <li><i style="background:#e0301e"></i>Low relevance<em>drop it</em></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
 
 
         <section id="publications" class="reveal">
             <div class="section-label" data-i18n="home.sec_publications">Publications</div>
-            <p class="section-tagline" data-i18n="home.sec_publications_tag">Peer-reviewed and cited.</p>
-            <div class="pub-list">
+            <p class="section-tagline" data-i18n="home.sec_publications_tag">One peer-reviewed, two on arXiv.</p>
+            <div class="pub-list pub-fixtures abacus-frame">
                 <div class="pub-card hover-card acm" data-hover>
                     <div data-i18n-html="body_home.publications_1"><span class="pub-badge acm">ACM CAIS '26</span><span class="pub-badge arxiv">peer-reviewed</span></div>
                     <div class="pub-title" data-i18n-html="body_home.publications_2"><a href="papers/cais-2026.html">Multi-Agent Position Classification with Tool Orchestration: Use Case System for Occupational Taxonomy Mapping</a> · <a href="https://dl.acm.org/doi/10.1145/3786335.3813207" target="_blank" rel="noopener">ACM</a></div>
@@ -3968,6 +3958,22 @@
 
 
 
+        <section id="season" class="reveal season" aria-labelledby="season-h">
+            <div class="section-label" data-i18n="body_home.sb_label">Season review</div>
+            <p class="section-tagline" id="season-h" data-i18n-html="body_home.sb_title">2025 against 2026, as of 14 November.</p>
+            <div class="sb-board abacus-frame">
+                <div class="sb-teams" aria-hidden="true"><span class="sb-team l">2025</span><span class="sb-vs">vs</span><span class="sb-team r">2026</span></div>
+                <ul class="sb-rows">
+                <li class="sb-row"><b class="sb-v l">~1B</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.017"></i></span><span class="sb-k" data-i18n-html="body_home.sb_tokens">Tokens with Claude Code</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">58.0B</b><em class="sb-chip rot" aria-hidden="true"><span class="on">&times;58</span><span data-i18n-html="body_home.ch_tok_cache">98% from cache</span><span data-i18n-html="body_home.ch_tok_sessions">480 sessions</span><span data-i18n-html="body_home.ch_tok_longest">longest 21d 4h</span></em></li>
+                <li class="sb-row"><b class="sb-v l">83</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.073"></i></span><span class="sb-k" data-i18n-html="body_home.sb_commits">Public commits</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">1,136</b><em class="sb-chip rot" aria-hidden="true"><span class="on">&times;14</span><span data-i18n-html="body_home.ch_com_day">~3.6 a day</span></em></li>
+                <li class="sb-row"><b class="sb-v l">1</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.005"></i></span><span class="sb-k" data-i18n-html="body_home.sb_prs">Pull requests</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">198</b><em class="sb-chip rot" aria-hidden="true"><span class="on">&times;198</span><span>1 &rarr; 198</span><span data-i18n-html="body_home.ch_pr_week">~4 a week</span></em></li>
+                <li class="sb-row"><b class="sb-v l">0</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0"></i></span><span class="sb-k" data-i18n-html="body_home.sb_papers">Papers</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">3</b><em class="sb-chip rot" aria-hidden="true"><span class="on" data-i18n-html="body_home.ch_pap_patent">+1 patent</span><span data-i18n-html="body_home.ch_pap_peer">1 peer-reviewed</span><span data-i18n-html="body_home.ch_pap_arxiv">2 on arXiv</span></em></li>
+                <li class="sb-row"><b class="sb-v l">2</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.667"></i></span><span class="sb-k" data-i18n-html="body_home.sb_talks">Talks and courses</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">3</b><em class="sb-chip rot" aria-hidden="true"><span class="on">+1</span><span data-i18n-html="body_home.ch_tal_sj">San Jose</span><span data-i18n-html="body_home.ch_tal_course">18h course</span></em></li>
+                </ul>
+                <a class="sb-more" href="updates.html#year" data-i18n-html="body_home.sb_more">The full scoreboard, with the detail behind each row &rarr;</a>
+            </div>
+        </section>
+
         <section id="experience" class="reveal">
             <div class="section-label" data-i18n="home.sec_experience">Experience</div>
             <p class="section-tagline" data-i18n="home.sec_experience_tag">Eight years of turning business problems into systems people use.</p>
@@ -3983,14 +3989,14 @@
                 <div class="timeline-item"><div class="timeline-period" data-i18n-html="body_home.experience_5">2025&ndash;now</div><div class="timeline-content">
                     <div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=kariyer.net&sz=64" alt="Kariyer.net" class="timeline-logo" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'timeline-logo tl-init',textContent:this.alt.charAt(0)}))"><div><h3 data-i18n-html="body_home.experience_6">Senior Applied AI Specialist</h3><div class="org" data-i18n-html="body_home.experience_7">Kariyer.net (ilab group) &middot; Istanbul</div></div></div>
                     <p class="xp-lead" data-i18n-html="body_home.experience_8">I lead applied AI across Sales, Finance and R&amp;D: from the business problem to agents running in production.</p>
-                    <ul class="xp-points"><li data-i18n-html="body_home.experience_9"><strong>ProjectLens</strong>: pricing moved from Excel to one tool, <strong>91% less manual work</strong>, 31 spreadsheets retired</li><li data-i18n-html="body_home.experience_10"><strong>Text-to-Report</strong> agents answer data questions in plain language: analytics backlog <strong>down 40%</strong></li><li data-i18n-html="body_home.experience_11">My context-engineering framework became the <strong>company standard</strong>, cutting token spend while improving accuracy</li><li data-i18n-html="body_home.experience_12">Finance exception detection across statements from <strong>4 major Turkish banks</strong></li><li data-i18n-html="body_home.experience_13">Secured a <strong>USD 40K Perplexity</strong> enterprise grant; certified Google Generative AI Leader</li></ul>
+                    <ul class="xp-points"><li data-i18n-html="body_home.experience_9"><strong>ProjectLens</strong>: pricing moved from Excel to one tool, <strong>91% less manual work</strong>, 31 spreadsheets retired</li><li data-i18n-html="body_home.experience_10"><strong>Text-to-Report</strong> agents answer data questions in plain language: analytics backlog <strong>down 40%</strong></li><li data-i18n-html="body_home.experience_11">My context-engineering framework became the <strong>company standard</strong>, cutting token spend while improving accuracy</li><li data-i18n-html="body_home.experience_12">Finance exception detection across statements from <strong>4 major Turkish banks</strong></li><li data-i18n-html="body_home.experience_13">Secured a <strong>USD 40K Perplexity</strong> enterprise grant</li><li data-i18n-html="body_home.experience_13b">Google Generative AI Leader certification</li></ul>
                     <div class="xp-links" data-i18n-html="body_home.experience_14"><a href="#work">See the case studies &rarr;</a><a href="papers/cais-2026.html">Read the ACM CAIS &rsquo;26 paper &rarr;</a></div>
                     <div class="xp-tags" data-i18n-html="body_home.experience_15"><span>Claude Code</span><span>Agent SDK</span><span>LangGraph</span><span>MCP</span><span>Langfuse</span><span>Azure DevOps</span></div>
                 </div></div>
                 <div class="timeline-item"><div class="timeline-period" data-i18n-html="body_home.experience_16">2022&ndash;2025</div><div class="timeline-content">
                     <div class="timeline-header"><img src="https://www.google.com/s2/favicons?domain=kariyer.net&sz=64" alt="Kariyer.net" class="timeline-logo" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'timeline-logo tl-init',textContent:this.alt.charAt(0)}))"><div><h3 data-i18n-html="body_home.experience_17">Product Manager, Data</h3><div class="org" data-i18n-html="body_home.experience_18">Kariyer.net &middot; Istanbul</div></div></div>
                     <p class="xp-lead" data-i18n-html="body_home.experience_19">I built the data foundation the AI work now stands on.</p>
-                    <ul class="xp-points"><li data-i18n-html="body_home.experience_20">Metadata design for <strong>300M+ data assets</strong>, so every number has an owner and a trail</li><li data-i18n-html="body_home.experience_21">Real-time labour-statistics pipelines with data quality, governance and executive dashboards</li><li data-i18n-html="body_home.experience_22">Led <strong>AI adoption training for C-level</strong> executives</li></ul>
+                    <ul class="xp-points"><li data-i18n-html="body_home.experience_20">Metadata design for <strong>300M+ data points</strong>, so every number has an owner and a trail</li><li data-i18n-html="body_home.experience_21">Real-time labour-statistics pipelines with data quality, governance and executive dashboards</li><li data-i18n-html="body_home.experience_22">Led <strong>AI adoption training for C-level</strong> executives</li></ul>
                     
                     <div class="xp-tags" data-i18n-html="body_home.experience_23"><span>DataHub</span><span>BigQuery</span><span>Synapse</span><span>Governance</span></div>
                 </div></div>
@@ -4133,7 +4139,7 @@
                     </div>
                     <p class="engage-lede" data-i18n-html="body_home.engage_20">The short version, in numbers.</p>
                     <ul class="about-list">
-                        <li class="hl" data-i18n-html="body_home.engage_21">8 years in industry + 4 in research &middot; Istanbul, GMT+3 &middot; remote-friendly</li>
+                        <li class="hl" data-i18n-html="body_home.engage_21">8 years in data products + 4 in R&amp;D &middot; Istanbul, GMT+3 &middot; remote-friendly</li>
                         <li data-i18n-html="body_home.engage_22">3 papers (1 peer-reviewed ACM) + 1 patent pending</li>
                         <li data-i18n-html="body_home.engage_23">Perplexity AI Business Fellowship, programme lead</li>
                         <li data-i18n-html="body_home.engage_24">Full CV as PDF &middot; <a href="assets/cv/vahid-faraji-cv.pdf" target="_blank" rel="noopener">download</a></li>
@@ -4146,7 +4152,7 @@
 
         <section id="story" class="reveal">
             <div class="section-label" data-i18n="home.sec_story">Through-line</div>
-            <p class="section-tagline" data-i18n="home.sec_story_tag">8 years in industry and 4 in research, turning messy data into decisions people act on.</p>
+            <p class="section-tagline" data-i18n="home.sec_story_tag">Turning messy data into decisions people act on.</p>
 
             <div class="problem">
                 <figure class="hero-art story-art">
@@ -4158,7 +4164,7 @@
                 <div class="problem-text">
                     <span class="arc-kicker" data-i18n-html="body_home.story_2">The problem I solve</span>
                     <p class="problem-big" data-i18n-html="body_home.story_3">Messy text in,<br>decisions out<span class="bead-stop">.</span></p>
-                    <p class="problem-note" data-i18n-html="body_home.story_4">Twelve years, eight in industry and four in research, on one problem shape. The domain keeps changing. The problem doesn&rsquo;t.</p>
+                    <p class="problem-note" data-i18n-html="body_home.story_4">Twelve years, eight in data products and four in R&amp;D, on one problem shape. The domain keeps changing. The problem doesn&rsquo;t.</p>
                     <div class="story-domains" data-i18n-html="body_home.story_5">
                 <span class="domains-label">Shipped in</span>
                 <span class="domain">Talent</span>
@@ -4183,7 +4189,7 @@
                 <article class="arc-step">
                     <span class="arc-kicker" data-i18n-html="body_home.story_10">02 &middot; Data products</span>
                     <h3 data-i18n-html="body_home.story_11">Structuring it</h3>
-                    <p data-i18n-html="body_home.story_12">Defaro.io, then Kariyer.net: 300M+ assets under one metadata layer, with governance and lineage. <b>A number is only as good as the trail behind it</b>, so I built the trail.</p>
+                    <p data-i18n-html="body_home.story_12">Defaro.io, then Kariyer.net: 300M+ data points under one metadata layer, with governance and lineage. <b>A number is only as good as the trail behind it</b>, so I built the trail.</p>
                 </article>
                 <article class="arc-step">
                     <span class="arc-kicker" data-i18n-html="body_home.story_13">03 &middot; Applied AI</span>
@@ -4193,79 +4199,6 @@
             </div>
             <p class="arc-bridge" data-i18n-html="body_home.story_16"><b>Same problem, a new reader.</b> Languages taught me to read people, data products taught me to keep the evidence, and applied AI lets both run at scale.</p>
 
-            <div class="story-grid">
-                <div class="story-time">
-                    <div class="story-span" aria-hidden="true">
-                <span>2013</span><span class="story-rule"></span><span>2026</span>
-            </div>
-                    <div class="story-track pop-group">
-                <div class="story-step">
-                    <span class="story-year" data-i18n-html="body_home.story_17">2013&ndash;15<span class="story-count" aria-hidden="true"><i></i><i></i></span></span>
-                    <div class="story-body">
-                        <h3 data-i18n-html="body_home.story_18">Master&rsquo;s, Business Administration</h3>
-                        <p data-i18n-html="body_home.story_19">How organisations actually run, and where their decisions get stuck.</p>
-                    </div>
-                </div>
-                <div class="story-step">
-                    <span class="story-year" data-i18n-html="body_home.story_20">2015&ndash;18<span class="story-count" aria-hidden="true"><i></i><i></i><i></i></span></span>
-                    <div class="story-body">
-                        <h3 data-i18n-html="body_home.story_21">Research</h3>
-                        <p data-i18n-html="body_home.story_22">Measurement and evidence. What separates a defensible number from a convenient one.</p>
-                    </div>
-                </div>
-                <div class="story-step">
-                    <span class="story-year" data-i18n-html="body_home.story_23">2019&ndash;21<span class="story-count" aria-hidden="true"><i></i><i></i></span></span>
-                    <div class="story-body">
-                        <h3 data-i18n-html="body_home.story_24">Defaro.io, co-founder</h3>
-                        <p data-i18n-html="body_home.story_25">Built a data product end to end, from raw signal to something customers paid for. Incubated at &Ouml;zye&#287;in University.</p>
-                    </div>
-                </div>
-                <div class="story-step">
-                    <span class="story-year" data-i18n-html="body_home.story_26">2019&ndash;23<span class="story-count" aria-hidden="true"><i></i><i></i><i></i><i></i></span></span>
-                    <div class="story-body">
-                        <h3 data-i18n-html="body_home.story_27">M.A. Economics, Ibn Haldun</h3>
-                        <p data-i18n-html="body_home.story_28">Thesis on real-time labour market analysis. Teaching assistant in econometrics.</p>
-                    </div>
-                </div>
-                <div class="story-step">
-                    <span class="story-year" data-i18n-html="body_home.story_29">2022&ndash;25<span class="story-count" aria-hidden="true"><i></i><i></i><i></i></span></span>
-                    <div class="story-body">
-                        <h3 data-i18n-html="body_home.story_30">Kariyer.net, data products</h3>
-                        <p data-i18n-html="body_home.story_31">300M+ assets under one metadata architecture. Governance, lineage, real-time pipelines.</p>
-                    </div>
-                </div>
-                <div class="story-step">
-                    <span class="story-year" data-i18n-html="body_home.story_32">2025&ndash;<span class="story-count" aria-hidden="true"><i></i></span></span>
-                    <div class="story-body">
-                        <h3 data-i18n-html="body_home.story_33">Applied AI</h3>
-                        <p data-i18n-html="body_home.story_34">Multi-agent systems that turn free text into structured decisions. Peer-reviewed at ACM CAIS&nbsp;'26.</p>
-                    </div>
-                </div>
-            </div>
-                </div>
-                <div class="story-facets">
-                <div class="facet" data-i18n-html="body_home.story_35">
-                    <span class="facet-num">4</span>
-                    <span class="facet-label">Languages spoken</span>
-                    <span class="facet-note">Turkish native, English C1, Spanish at instructor level, Portuguese basic, Japanese in progress.</span>
-                </div>
-                <div class="facet" data-i18n-html="body_home.story_36">
-                    <span class="facet-num">400+</span>
-                    <span class="facet-label">People taught</span>
-                    <span class="facet-note">50+ courses, an 18-hour applied AI programme, university guest lectures, and career mentoring at the TEV Foundation.</span>
-                </div>
-                <div class="facet" data-i18n-html="body_home.story_37">
-                    <span class="facet-num">3</span>
-                    <span class="facet-label">Papers, one peer-reviewed</span>
-                    <span class="facet-note">ACM member. Writing is how the work gets checked by people who owe me nothing.</span>
-                </div>
-                <div class="facet" data-i18n-html="body_home.story_38">
-                    <span class="facet-num">0&rarr;1</span>
-                    <span class="facet-label">Built unasked</span>
-                    <span class="facet-note">Tokalator, applied-ai-simplified and this site all started as problems nobody assigned. The care shows in the small print: where a number is a team estimate rather than a measurement, it says so.</span>
-                </div>
-            </div>
-            </div>
         </section>
 
         <section id="about" class="reveal">
@@ -4282,7 +4215,7 @@
                     <ul class="about-list">
                         <li data-i18n-html="body_home.about_2">M.A. Economics, Ibn Haldun University</li>
                         <li data-i18n-html="body_home.about_3">Thesis: Real-Time Labor Market Analysis</li>
-                        <li data-i18n-html="body_home.about_4">Teaching Asst., Econometrics I</li>
+                        <li data-i18n-html="body_home.about_4">Teaching assistant, Econometrics I</li>
                     </ul>
                 </div>
                 <div class="about-card hover-card" data-hover>
@@ -4292,7 +4225,7 @@
                         <span class="about-count">09</span>
                     </div>
                     <ul class="about-list">
-                        <li class="hl" data-i18n-html="body_home.about_6">Claude Certified Architect, Foundations</li>
+                        <li data-i18n-html="body_home.about_6">Claude Certified Architect: registered, on the way</li>
                         <li class="hl" data-i18n-html="body_home.about_7">ACM Professional Member</li>
                         <li class="hl" data-i18n-html="body_home.about_8">Google Generative AI Leader</li>
                         <li data-i18n-html="body_home.about_9">Anthropic: MCP, Agent Skills, Claude API, Claude Code</li>
@@ -4308,7 +4241,7 @@
                     <ul class="about-list">
                         <li data-i18n-html="body_home.about_12">Turkish: Native</li>
                         <li data-i18n-html="body_home.about_13">English: C1</li>
-                        <li data-i18n-html="body_home.about_14">Spanish: Instructor</li>
+                        <li data-i18n-html="body_home.about_14">Spanish: teaching level</li>
                         <li data-i18n-html="body_home.about_15">Portuguese: Basic</li>
                         <li data-i18n-html="body_home.about_16">Japanese: Learning</li>
                     </ul>
@@ -5830,5 +5763,45 @@
     document.addEventListener('vf:lang', function () { if (data) { week(); if (shown) box.querySelectorAll('[data-n]').forEach(function (b) { b.textContent = fmt(+data[b.dataset.n] || 0, !!b.dataset.pct); }); } });
 })();
 </script>
+    <script>
+    /* D2: the cover of the case in view fills its rod. D5: the scoreboard's bars fill when it is on screen. */
+    (function () {
+        var covers = Array.prototype.slice.call(document.querySelectorAll('.cover-reel .cr'));
+        var season = document.getElementById('season');
+        if (!('IntersectionObserver' in window)) { if (season) season.classList.add('on'); return; }
+        if (covers.length) {
+            var byId = {}; covers.forEach(function (c) { byId[c.getAttribute('data-case')] = c; });
+            var io = new IntersectionObserver(function (es) {
+                es.forEach(function (e) { if (e.isIntersecting) { covers.forEach(function (c) { c.classList.toggle('is-on', c === byId[e.target.id]); }); } });
+            }, { rootMargin: '-40% 0px -50% 0px' });
+            Object.keys(byId).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+        }
+        if (season) new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { season.classList.add('on'); o.disconnect(); } }); }, { threshold: 0.3 }).observe(season);
+    })();
+    </script>
+    <script>
+    /* The scoreboard chips take turns showing their next fact, one row after another, while on screen. */
+    (function () {
+        if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var chips = Array.prototype.slice.call(document.querySelectorAll('.rot')).filter(function (c) { return c.children.length > 1; });
+        if (!chips.length) return;
+        var seen = new Set();
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); }); });
+            chips.forEach(function (c) { io.observe(c); });
+        } else chips.forEach(function (c) { seen.add(c); });
+        function step(c) {
+            var s = c.children, i = 0;
+            for (var k = 0; k < s.length; k++) if (s[k].classList.contains('on')) i = k;
+            var j = (i + 1) % s.length;
+            s[i].classList.remove('on'); s[i].classList.add('off');
+            s[j].classList.remove('off'); s[j].classList.add('on');
+            setTimeout(function () { s[i].classList.remove('off'); }, 420);
+        }
+        setInterval(function () {
+            chips.forEach(function (c, n) { if (seen.has(c)) setTimeout(function () { step(c); }, n * 260); });
+        }, 3600);
+    })();
+    </script>
 </body>
 </html>

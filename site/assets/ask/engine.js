@@ -167,9 +167,9 @@
         // FIT_CAP. Four things keep it from flattering:
         //  1 weight: a concept on a "must / required" line counts more than one on a "nice to have" line
         //  2 unchecked asks: requirement-like lines with no skill I can check pull the score down a little
-        //  3 years: "N+ years" is compared with the years on the site (8 in industry)
+        //  3 years: "N+ years" is compared with the years on the site (12: 8 in data products, 4 in R&D)
         //  4 few skills, little certainty: with only a couple of skills recognised the score leans to 50
-        var FIT_CAP = 90, YEARS_INDUSTRY = 8;
+        var FIT_CAP = 90, YEARS_INDUSTRY = 12;
         var MUST = /\b(must|required|requirement|minimum|essential|mandatory|need to have|you have|you bring)\b/i;
         var NICE = /\b(nice[- ]to[- ]have|preferred|bonus|a plus|is a plus|plus\b|ideally|desirable|optional|good to have)\b/i;
         var ASKS = /\b(experience|years?|degree|proficien\w*|knowledge|familiar\w*|ability|background|expertise|skills?|understanding|track record|hands[- ]on|fluent|certif\w*)\b/i;
@@ -241,7 +241,7 @@
             function abs(u) { return /^https?:/.test(u) ? u : base + u; }
             var o = ['# Fit brief: Vahid Faraji', '',
                 'Score: ' + (b.score == null ? 'n/a' : b.score + '/100, capped at ' + b.cap + ': no profile is a perfect fit') + ' (' + b.count.strong + ' strong, ' + b.count.partial + ' partial, ' + b.count.gap + ' gaps)', ''];
-            if (b.years) o.push('Years asked: ' + b.years.asked + '+, on the site: ' + b.years.have + ' in industry (' + b.years.status + ')', '');
+            if (b.years) o.push('Years asked: ' + b.years.asked + '+, on the site: ' + b.years.have + ' years of work, 8 in data products and 4 in R&D (' + b.years.status + ')', '');
             o.push('## Strongest evidence');
             b.topEvidence.forEach(function (e) { o.push('- ' + e.title + ' (' + e.levelLabel + '): ' + abs(e.url) + (e.covers.length ? ' | covers ' + e.covers.join(', ') : '')); });
             o.push('', '## Requirement by requirement');
