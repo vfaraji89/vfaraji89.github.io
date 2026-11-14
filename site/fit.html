@@ -192,14 +192,16 @@
                     </div>
                 </div>
                 <div class="fx-dialbox">
-                    <div class="fx-dialwrap">
-                        <svg class="fx-dial" id="fx-dial" viewBox="0 0 260 260" role="group" aria-label="Fit dial"></svg>
-                        <div class="fx-center" id="fx-center" aria-live="polite">
+                    <div class="fx-board" id="fx-center" aria-live="polite">
+                        <div class="fx-board-main">
                             <div class="fx-score"><b>0</b><span>/100</span></div>
                             <p class="fx-cap" data-i18n-html="body_fit.fx_center_1">paste a role</p>
                             <div class="fx-focus"></div>
                         </div>
+                        <ol class="fx-loop" id="fx-loop" aria-label="Agent loop"></ol>
                     </div>
+                    <div class="fx-abacus" id="fx-dial" role="group" aria-label="Fit abacus"></div>
+                    <div class="fx-mc" id="fx-mc" hidden></div>
                     <div class="fx-legend" role="group" aria-label="Filter requirements">
                         <button type="button" class="fx-pill s-strong" data-f="strong" aria-pressed="false" disabled><i></i><b>0</b> <bdi data-i18n="fit.legend_strong">strong</bdi></button>
                         <button type="button" class="fx-pill s-partial" data-f="partial" aria-pressed="false" disabled><i></i><b>0</b> <bdi data-i18n="fit.legend_partial">partial</bdi></button>

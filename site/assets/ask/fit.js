@@ -6,8 +6,6 @@
     function $(s, r) { return (r || document).querySelector(s); }
     function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
     function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
-    var NS = 'http://www.w3.org/2000/svg';
-    function sv(tag, attrs) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
     function track(name, p) { try { if (window.gtag) gtag('event', name, p || {}); } catch (e) {} }
     function link(href, cls) { var a = el('a', cls); a.href = href; if (/^https?:/.test(href)) { a.target = '_blank'; a.rel = 'noopener'; } return a; }
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -17,6 +15,7 @@
     var eng = null;
     var ready = fetch('data/evidence.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) { eng = VFEngine.create(d); return eng; });
 
+    var loop = $('#fx-loop'), mc = $('#fx-mc');
     var input = $('#fit-input'), tray = $('#fx-tray'), dial = $('#fx-dial'), center = $('#fx-center'), out = $('#fit-out'), dock = $('#fx-dock');
     var pills = $$('.fx-pill');
     var ORDER = { strong: 0, partial: 1, gap: 2 };
@@ -32,46 +31,91 @@
     };
     var state = { b: null, filter: 'all', pinned: null, seen: {} };
 
-    // ---- the dial -------------------------------------------------------------
-    var CX = 130, R = 104;
-    function pt(deg, r) { var a = (deg - 90) * Math.PI / 180; return [CX + r * Math.cos(a), CX + r * Math.sin(a)]; }
-    function arc(a0, a1) {
-        var p0 = pt(a0, R), p1 = pt(a1, R);
-        return 'M' + p0[0].toFixed(2) + ' ' + p0[1].toFixed(2) + 'A' + R + ' ' + R + ' 0 ' + (a1 - a0 > 180 ? 1 : 0) + ' 1 ' + p1[0].toFixed(2) + ' ' + p1[1].toFixed(2);
+    // ---- the abacus: an agent loop over the job description -----------------------
+    // One rod per skill the role asks for. The loop reads, matches, proves and scores; each
+    // bead slides as far as the proof goes: all the way (strong), halfway (partial) or not at all.
+    var STEPS = [['loop_read', 'Read'], ['loop_match', 'Match'], ['loop_prove', 'Prove'], ['loop_score', 'Score']];
+    var TO = { strong: 1, partial: 0.5, gap: 0 };
+    var loopTimers = [];
+    function drawLoop(active) {
+        loop.textContent = '';
+        STEPS.forEach(function (st, i) {
+            var li = el('li', i < active ? 'done' : i === active ? 'now' : '');
+            li.appendChild(el('i')); li.appendChild(el('span', null, T(st[0], st[1])));
+            loop.appendChild(li);
+        });
+    }
+    function playLoop(total) {
+        loopTimers.forEach(clearTimeout); loopTimers = [];
+        if (reduce) { drawLoop(3); return; }
+        [0, 160, 160 + total * 0.55, 160 + total].forEach(function (t, i) { loopTimers.push(setTimeout(function () { drawLoop(i); }, t)); });
+    }
+    function rodRow(c, i) {
+        var row = el('div', 'fx-row' + (c ? ' s-' + c.status : ' is-idle'));
+        row.style.setProperty('--i', i);
+        row.style.setProperty('--to', c ? TO[c.status] : 0);
+        if (c) row.appendChild(el('span', 'fx-row-l', c.label));
+        var rod = el('span', 'fx-rod'); rod.appendChild(el('i', 'fx-bead')); row.appendChild(rod);
+        return row;
     }
     function idleDial() {
-        dial.textContent = '';
-        dial.appendChild(sv('circle', { cx: CX, cy: CX, r: R, class: 'fx-track' }));
-        var g = sv('g', { class: 'fx-orbit' });
-        var a = pt(0, R), b = pt(140, R);
-        g.appendChild(sv('circle', { cx: a[0], cy: a[1], r: 9 }));
-        g.appendChild(sv('circle', { cx: b[0], cy: b[1], r: 6 }));
-        dial.appendChild(g);
-        dial.setAttribute('aria-label', T('dial_idle', 'Fit dial: waiting for a job description'));
+        dial.textContent = ''; dial.classList.remove('on', 'has-focus'); dial.classList.add('is-idle');
+        dial.appendChild(el('span', 'fx-beam'));
+        for (var i = 0; i < 4; i++) dial.appendChild(rodRow(null, i));
+        dial.setAttribute('aria-label', T('dial_idle', 'Fit abacus: waiting for a job description'));
+        loopTimers.forEach(clearTimeout); drawLoop(-1); mc.hidden = true;
         setCenter(null);
-        $('.fx-score b', center).textContent = '0'; center.classList.add('is-idle');
+        setScore(0, true); center.classList.add('is-idle');
         $('.fx-cap', center).textContent = T('cap_idle', 'paste a role');
     }
     function drawDial(b) {
-        dial.textContent = '';
-        dial.appendChild(sv('circle', { cx: CX, cy: CX, r: R, class: 'fx-track' }));
+        dial.textContent = ''; dial.classList.remove('on', 'is-idle', 'has-focus');
+        dial.appendChild(el('span', 'fx-beam'));
         var list = b.concepts.slice().sort(function (x, y) { return ORDER[x.status] - ORDER[y.status]; });
-        var n = list.length, step = 360 / n, gap = n > 1 ? Math.min(5, step * 0.22) : 0;
         list.forEach(function (c, i) {
-            var a0 = i * step + gap / 2, a1 = (i + 1) * step - gap / 2;
-            if (n === 1) { a0 = 0.5; a1 = 359.5; }
-            var p = sv('path', { d: arc(a0, a1), class: 'seg s-' + c.status, pathLength: 100, tabindex: 0, role: 'button', 'aria-label': c.label + ': ' + LABEL[c.status] });
-            p.style.animationDelay = (reduce ? 0 : i * 45) + 'ms';
-            p.addEventListener('mouseenter', function () { if (!state.pinned) focus(c); });
-            p.addEventListener('mouseleave', function () { if (!state.pinned) focus(null); });
-            p.addEventListener('focus', function () { focus(c); });
-            p.addEventListener('blur', function () { if (!state.pinned) focus(null); });
-            p.addEventListener('click', function () { state.pinned = state.pinned === c.key ? null : c.key; focus(state.pinned ? c : null); });
-            p.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); p.dispatchEvent(new Event('click')); } });
-            p.dataset.key = c.key;
-            dial.appendChild(p);
+            var row = rodRow(c, i);
+            row.tabIndex = 0; row.setAttribute('role', 'button'); row.dataset.key = c.key;
+            row.setAttribute('aria-label', c.label + ': ' + LABEL[c.status]);
+            row.addEventListener('mouseenter', function () { if (!state.pinned) focus(c); });
+            row.addEventListener('mouseleave', function () { if (!state.pinned) focus(null); });
+            row.addEventListener('focus', function () { focus(c); });
+            row.addEventListener('blur', function () { if (!state.pinned) focus(null); });
+            row.addEventListener('click', function () { state.pinned = state.pinned === c.key ? null : c.key; focus(state.pinned ? c : null); });
+            row.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); } });
+            dial.appendChild(row);
         });
-        dial.setAttribute('aria-label', T('dial_aria', 'Fit dial: {s} strong, {p} partial, {g} gaps', { s: b.count.strong, p: b.count.partial, g: b.count.gap }));
+        requestAnimationFrame(function () { requestAnimationFrame(function () { dial.classList.add('on'); }); });
+        playLoop(Math.min(list.length, 12) * 70 + 700);
+        dial.setAttribute('aria-label', T('dial_aria', 'Fit abacus: {s} strong, {p} partial, {g} gaps', { s: b.count.strong, p: b.count.partial, g: b.count.gap }));
+        drawMatch(b);
+    }
+
+    // ---- match centre: what the role asks, against what is proven -------------------
+    function drawMatch(b) {
+        mc.textContent = ''; mc.hidden = false; mc.classList.remove('on');
+        var prod = b.concepts.filter(function (c) { return c.evidence[0] && c.evidence[0].level === 'production'; }).length;
+        var rows = [[T('mc_skills', 'Strong proof'), b.concepts.length, b.count.strong]];
+        if (b.must && b.must.asked) rows.push([T('mc_must', 'Must-haves'), b.must.asked, b.must.met]);
+        if (b.years) rows.push([T('mc_years', 'Years'), b.years.asked, b.years.have]);
+        rows.push([T('mc_prod', 'In production'), b.concepts.length, prod]);
+        var head = el('div', 'fx-mc-head');
+        head.appendChild(el('span', null, T('mc_asked', 'Asked')));
+        head.appendChild(el('b', null, T('mc_title', 'Match centre')));
+        head.appendChild(el('span', 'r', T('mc_proven', 'Proven')));
+        mc.appendChild(head);
+        rows.forEach(function (r, i) {
+            var max = Math.max(r[1], r[2]) || 1;
+            var row = el('div', 'fx-mc-row' + (r[2] >= r[1] ? ' win' : ''));
+            row.style.setProperty('--i', i);
+            row.appendChild(el('b', 'v', String(r[1])));
+            var l = el('span', 'bar l'), lf = el('span'); lf.style.setProperty('--w', r[1] / max); l.appendChild(lf); row.appendChild(l);
+            row.appendChild(el('span', 'k', r[0]));
+            var rr = el('span', 'bar r'), rf = el('span'); rf.style.setProperty('--w', r[2] / max); rr.appendChild(rf); row.appendChild(rr);
+            row.appendChild(el('b', 'v r', String(r[2])));
+            mc.appendChild(row);
+        });
+        mc.appendChild(el('p', 'fx-mc-foot', T('mc_foot', '{u} unchecked lines · 0 model calls · {ms} ms', { u: b.unchecked || 0, ms: b.ms })));
+        requestAnimationFrame(function () { requestAnimationFrame(function () { mc.classList.add('on'); }); });
     }
     function setCenter(c) {
         center.classList.toggle('is-focus', !!c);
@@ -84,26 +128,42 @@
     function focus(c) {
         setCenter(c);
         dial.classList.toggle('has-focus', !!c);
-        $$('.seg', dial).forEach(function (s) { s.classList.toggle('is-focus', !!c && s.dataset.key === c.key); });
+        $$('.fx-row', dial).forEach(function (s) { s.classList.toggle('is-focus', !!c && s.dataset.key === c.key); });
         $$('.fx-rq', out).forEach(function (r) {
             var has = !!c && (r.dataset.keys || '').split(' ').indexOf(c.key) !== -1;
             r.classList.toggle('is-hot', has);
         });
         $$('.fx-mx tbody tr', out).forEach(function (r) { r.classList.toggle('is-hot', !!c && r.dataset.key === c.key); });
     }
-    var counter = null;
+    // the score rolls on reels like a broadcast counter; the last digit lands last
+    function setScore(n, still) {
+        var b = $('.fx-score b', center), str = String(n);
+        if (b.dataset.v === str) return;
+        var fresh = b.dataset.len !== String(str.length);
+        if (fresh) {
+            b.textContent = '';
+            b.appendChild(el('span', 'fx-sr', str));
+            for (var i = 0; i < str.length; i++) {
+                var reel = el('span', 'fx-reel'), col = el('span', 'fx-col');
+                reel.setAttribute('aria-hidden', 'true');
+                for (var d = 0; d < 20; d++) col.appendChild(el('span', null, String(d % 10)));
+                reel.appendChild(col); b.appendChild(reel);
+            }
+            b.dataset.len = str.length;
+        }
+        $('.fx-sr', b).textContent = str; b.dataset.v = str;
+        $$('.fx-col', b).forEach(function (col, k) {
+            var to = 'translateY(-' + (10 + Number(str[k])) + 'em)';
+            if (still || reduce) { col.style.transition = 'none'; col.style.transform = to; return; }
+            if (fresh) { col.style.transition = 'none'; col.style.transform = 'translateY(0)'; col.getBoundingClientRect(); }
+            col.style.transition = 'transform ' + (900 + k * 140) + 'ms cubic-bezier(.16,1,.3,1) ' + (k * 90) + 'ms';
+            col.style.transform = to;
+        });
+    }
     function countTo(to) {
-        var b = $('.fx-score b', center), from = parseInt(b.textContent, 10) || 0;
         $('.fx-cap', center).textContent = T('cap_fit_max', 'fit · max {cap}', { cap: CAP }); center.classList.remove('is-idle');
         $('.fx-score', center).title = T('score_cap_tip', 'Capped at {cap}: no profile is a perfect fit for a role.', { cap: CAP });
-        if (counter) cancelAnimationFrame(counter);
-        if (reduce) { b.textContent = to; return; }
-        var t0 = performance.now();
-        (function tick(t) {
-            var k = Math.min(1, (t - t0) / 600), e = 1 - Math.pow(1 - k, 3);
-            b.textContent = Math.round(from + (to - from) * e);
-            if (k < 1) counter = requestAnimationFrame(tick);
-        })(t0);
+        setScore(to);
     }
 
     // ---- the live tray ----------------------------------------------------------

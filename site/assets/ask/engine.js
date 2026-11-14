@@ -175,31 +175,33 @@
         var ASKS = /\b(experience|years?|degree|proficien\w*|knowledge|familiar\w*|ability|background|expertise|skills?|understanding|track record|hands[- ]on|fluent|certif\w*)\b/i;
         var CREDIT = { strong: 1, partial: 0.5, gap: 0 };
         function lineWeight(text) { return NICE.test(text) ? 0.5 : MUST.test(text) ? 1.25 : 1; }
-        function yearsAsked(reqs) {
+        function yearsAsked(jd) {
             var most = 0;
-            reqs.forEach(function (r) {
+            String(jd).split(/\n+/).forEach(function (line) {
                 var re = /(\d{1,2})\s*\+?\s*(?:-|to|–)?\s*(?:\d{1,2}\s*)?\+?\s*years?/gi, m;
-                while ((m = re.exec(r.text))) { var n = +m[1]; if (n > 0 && n <= 30) most = Math.max(most, n); }
+                while ((m = re.exec(line))) { var n = +m[1]; if (n > 0 && n <= 30) most = Math.max(most, n); }
             });
             if (!most) return null;
             return { asked: most, have: YEARS_INDUSTRY, status: most <= YEARS_INDUSTRY ? 'strong' : most <= YEARS_INDUSTRY + 4 ? 'partial' : 'gap' };
         }
-        function scoreOf(reqs, list) {
-            if (!list.length) return { score: null, raw: null, capped: false, years: null, unchecked: 0 };
+        function scoreOf(reqs, list, jd) {
+            if (!list.length) return { score: null, raw: null, capped: false, years: null, unchecked: 0, must: { asked: 0, met: 0 } };
             var w = {};
             reqs.forEach(function (r) { var lw = lineWeight(r.text); r.concepts.forEach(function (c) { w[c.key] = Math.max(w[c.key] || 0, lw); }); });
             var num = 0, den = 0;
             list.forEach(function (c) { num += w[c.key] * CREDIT[c.status]; den += w[c.key]; });
-            var years = yearsAsked(reqs);
+            var years = yearsAsked(jd);
             if (years) { num += 1.25 * CREDIT[years.status]; den += 1.25; }
             // requirement-like lines with nothing to check: partial credit, at most three of them
-            var unchecked = reqs.filter(function (r) { return r.status === 'unscored' && ASKS.test(r.text) && !/\d+\s*\+?\s*years?/i.test(r.text); }).length;
+            var unchecked = reqs.filter(function (r) { return r.status === 'unscored' && ASKS.test(r.text) && !/\byears?\b/i.test(r.text); }).length;
             var u = Math.min(3, unchecked);
             num += u * 0.3; den += u;
             // shrink toward 50 when there is little to go on (a prior worth two asks)
             var raw = 100 * (num + 2 * 0.5) / (den + 2);
             var score = Math.min(FIT_CAP, Math.round(raw));
-            return { score: score, raw: Math.round(raw), capped: raw > FIT_CAP, years: years, unchecked: unchecked };
+            var must = list.filter(function (c) { return w[c.key] > 1; });
+            return { score: score, raw: Math.round(raw), capped: raw > FIT_CAP, years: years, unchecked: unchecked,
+                     must: { asked: must.length, met: must.filter(function (c) { return c.status === 'strong'; }).length } };
         }
 
         function fit(jd) {
@@ -216,7 +218,7 @@
             var list = order.map(function (k) { return asked[k]; });
             var count = { strong: 0, partial: 0, gap: 0 };
             list.forEach(function (c) { count[c.status]++; });
-            var sc = scoreOf(reqs, list);
+            var sc = scoreOf(reqs, list, jd);
             var score = sc.score;
             // the evidence that covers most of what was asked
             var tally = {};
@@ -227,7 +229,7 @@
                 return { id: id, title: e.title, url: e.url, levelLabel: (LEVELS[e.level] || {}).label, covers: covers };
             });
             return {
-                score: score, raw: sc.raw, capped: sc.capped, cap: FIT_CAP, years: sc.years, unchecked: sc.unchecked, count: count, concepts: list, requirements: reqs, topEvidence: top,
+                score: score, raw: sc.raw, capped: sc.capped, cap: FIT_CAP, years: sc.years, unchecked: sc.unchecked, must: sc.must, count: count, concepts: list, requirements: reqs, topEvidence: top,
                 gaps: list.filter(function (c) { return c.status === 'gap'; }).map(function (c) { return c.label; }),
                 thin: list.filter(function (c) { return c.status === 'partial'; }).map(function (c) { return c.label; }),
                 ms: Date.now() - t0, tokensRead: Math.round(String(jd).length / 4), mode: 'rules'
