@@ -11,7 +11,7 @@
  "book_pick_3": "<b>Stel een tijd voor die jou past</b><em>Elke tijdzone &middot; ik bevestig binnen 24 uur</em>",
  "book_pick_4": "Beste keuze",
  "body_home_3": "Lanceringen, papers, rollen",
- "body_home_4": "Laatste nieuws: demopaper over ProjectLens ingediend",
+ "body_home_4": "Laatste nieuws: een geanimeerd cv van 90 seconden",
  "body_home_5": "Systemen in productie",
  "body_home_7": "Talks en congressen",
  "recruiter_card_1": "Recruiterweergave",
@@ -313,5 +313,6 @@
  "pulse_tools": "tools",
  "pulse_emerging": "nu opkomend",
  "pulse_certs": "certificaten",
- "aai_open": "Open"
+ "aai_open": "Open",
+ "about_6": "Claude Certified Architect: ingeschreven, onderweg"
 }

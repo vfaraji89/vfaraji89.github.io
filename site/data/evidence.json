@@ -383,7 +383,7 @@
    "date": "2026-11",
    "title": "ProjectLens demo paper (submitted)",
    "text": "ProjectLens written up as a demo paper and submitted; it is under review. Venue and link will be added if it is accepted.",
-   "url": "updates.html#projectlens-paper",
+   "url": "index.html#case-projectlens",
    "tags": [
     "research",
     "workflow"
@@ -573,20 +573,6 @@
     "rag",
     "cost",
     "teaching"
-   ]
-  },
-  {
-   "id": "cred-claude-architect",
-   "level": "credential",
-   "date": "2026",
-   "title": "Claude Certified Architect, Foundations (Anthropic)",
-   "text": "Certified by Anthropic as a Claude Architect, Foundations.",
-   "url": "index.html#about",
-   "tags": [
-    "llm",
-    "agents",
-    "mcp",
-    "context"
    ]
   },
   {

@@ -11,7 +11,7 @@
  "book_pick_3": "<b>Size uyan bir saat önerin</b><em>Her saat dilimi &middot; 24 saat içinde onaylarım</em>",
  "book_pick_4": "En uygunu",
  "body_home_3": "Lansmanlar, makaleler, roller",
- "body_home_4": "Son gelişme: ProjectLens demo makalesi gönderildi",
+ "body_home_4": "Son gelişme: 90 saniyelik animasyonlu CV",
  "body_home_5": "Canlıdaki sistemler",
  "body_home_7": "Konuşmalar ve konferanslar",
  "recruiter_card_1": "İK görünümü",
@@ -319,5 +319,6 @@
  "pulse_tools": "araç",
  "pulse_emerging": "şu an yükselen",
  "pulse_certs": "sertifika",
- "aai_open": "Aç"
+ "aai_open": "Aç",
+ "about_6": "Claude Certified Architect: kayıtlı, yolda"
 }

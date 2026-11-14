@@ -11,7 +11,7 @@
  "book_pick_3": "<b>Propón una hora que te venga bien</b><em>Cualquier zona horaria &middot; confirmo en 24 h</em>",
  "book_pick_4": "La mejor opción",
  "body_home_3": "Lanzamientos, artículos, roles",
- "body_home_4": "Lo último: enviado el artículo de demo de ProjectLens",
+ "body_home_4": "Lo último: un CV animado de 90 segundos",
  "body_home_5": "Sistemas en producción",
  "body_home_7": "Charlas y congresos",
  "recruiter_card_1": "Modo reclutador",
@@ -318,5 +318,6 @@
  "pulse_tools": "herramientas",
  "pulse_emerging": "emergentes ahora",
  "pulse_certs": "certificados",
- "aai_open": "Abrir"
+ "aai_open": "Abrir",
+ "about_6": "Claude Certified Architect: inscrito, en camino"
 }

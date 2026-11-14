@@ -11,7 +11,7 @@
  "book_pick_3": "<b>ご都合のよい日時を提案する</b><em>どのタイムゾーンでも可 &middot; 24時間以内に確定のご連絡</em>",
  "book_pick_4": "おすすめ",
  "body_home_3": "リリース、論文、役割",
- "body_home_4": "最新：ProjectLensのデモ論文を投稿",
+ "body_home_4": "最新：90秒のアニメーションCV",
  "body_home_5": "本番稼働中のシステム",
  "body_home_7": "講演とカンファレンス",
  "recruiter_card_1": "採用担当者向け表示",
@@ -327,5 +327,6 @@
  "pulse_tools": "ツール",
  "pulse_emerging": "注目のツール",
  "pulse_certs": "資格",
- "aai_open": "開く"
+ "aai_open": "開く",
+ "about_6": "Claude Certified Architect：登録済み、取得に向けて準備中"
 }
