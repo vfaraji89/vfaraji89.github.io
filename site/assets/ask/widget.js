@@ -20,12 +20,15 @@
     function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
     function track(n, p) { try { if (window.gtag) gtag('event', n, p || {}); } catch (e) {} }
 
-    var ABACUS = '<svg class="vfa-abacus" viewBox="0 0 40 40" aria-hidden="true" fill="none">' +
-        '<rect x="3" y="4" width="34" height="32" rx="7" fill="#fff6f4" stroke="#c9a67b" stroke-width="2"/>' +
-        '<path d="M8 13h24M8 20h24M8 27h24" stroke="rgba(28,28,30,0.25)" stroke-width="1.3"/>' +
-        '<circle class="bd bd-1" cx="11.5" cy="13" r="3" fill="#e0301e"/><circle cx="17.5" cy="13" r="3" fill="#1c1c1e" opacity="0.18"/>' +
-        '<circle class="bd bd-2" cx="26" cy="20" r="3" fill="#1c1c1e"/><circle cx="20" cy="20" r="3" fill="#1c1c1e" opacity="0.18"/>' +
-        '<circle class="bd bd-3" cx="13" cy="27" r="3" fill="#1c1c1e"/><circle cx="28.5" cy="27" r="3" fill="#1c1c1e" opacity="0.18"/></svg>';
+    // the same mark as the tab icon: beads on three rails, no box (the live canvas takes over when motion is allowed)
+    var ABACUS = '<svg class="vfa-abacus" viewBox="0 0 48 48" aria-hidden="true" fill="none">' +
+        '<defs><radialGradient id="vfa-br" cx=".38" cy=".33" r=".7"><stop offset="0" stop-color="#ffb3a8"/><stop offset=".5" stop-color="#e0301e"/><stop offset="1" stop-color="#9e1a0c"/></radialGradient>' +
+        '<radialGradient id="vfa-bk" cx=".38" cy=".33" r=".7"><stop offset="0" stop-color="#8a8a90"/><stop offset=".6" stop-color="#1c1c1e"/><stop offset="1" stop-color="#000"/></radialGradient></defs>' +
+        '<g transform="translate(24 24) scale(1.36) translate(-24 -24)">' +
+        '<path d="M11 16.5h26M11 24h26M11 31.5h26" stroke="rgba(28,28,30,0.3)" stroke-width="1.6" stroke-linecap="round"/>' +
+        '<circle cx="15.5" cy="16.5" r="3.4" fill="url(#vfa-br)"/><circle cx="22.5" cy="16.5" r="3.4" fill="url(#vfa-bk)"/>' +
+        '<circle cx="15.5" cy="24" r="3.4" fill="url(#vfa-bk)"/><circle cx="22.5" cy="24" r="3.4" fill="url(#vfa-bk)"/>' +
+        '<circle cx="29.5" cy="24" r="3.4" fill="url(#vfa-bk)"/><circle cx="32.5" cy="31.5" r="3.4" fill="url(#vfa-bk)"/></g></svg>';
 
     // ---- shell ----------------------------------------------------------------
     var root = el('div', 'vfa'); root.setAttribute('data-nosnippet', '');

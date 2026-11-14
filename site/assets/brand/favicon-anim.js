@@ -1,7 +1,7 @@
 // Animated favicon: from the abacus to agents.
 // The tab icon counts on an abacus, then its beads lift off the rails and
 // regroup as a small agent network around a red lead, then settle back.
-// Static icon (assets/icons/favicon.svg) stays for browsers without canvas
+// The still icon (assets/icons/favicon.svg, the same beads, no box) stays for browsers without canvas
 // and for anyone who prefers reduced motion.
 (function () {
   var INK = '#1c1c1e', RED = '#e0301e', S = 64, U = S / 48, LOOP = 6400;
@@ -22,9 +22,9 @@
   function frame(g, t) {
     g.clearRect(0, 0, S, S);
     g.save(); g.scale(U, U);
-    // frame
-    g.fillStyle = '#fff'; g.strokeStyle = INK; g.lineWidth = 3.5;
-    rr(g, 4.75, 4.75, 38.5, 38.5, 10); g.fill(); g.stroke();
+    // no box around it: just the beads, zoomed to fill the icon
+    g.translate(24, 24); g.scale(1.36, 1.36); g.translate(-24, -24);
+    g.strokeStyle = INK;
     var toAgents = seg(t, 0.4, 0.56) * (1 - seg(t, 0.84, 0.98));
     // rails fade as the beads leave them
     g.globalAlpha = 0.3 * (1 - toAgents); g.lineWidth = 1.6; g.lineCap = 'round';
@@ -61,10 +61,6 @@
       g.beginPath(); g.arc(p[0], p[1], r, 0, 7); g.fill();
     });
     g.restore();
-  }
-  function rr(g, x, y, w, h, r) {
-    g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r);
-    g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath();
   }
   window.vfFaviconFrame = frame;
 
