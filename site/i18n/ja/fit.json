@@ -49,6 +49,8 @@
  "rc_rules": "ブラウザー内のルールで判定",
  "rc_calls": "モデル呼び出し0回",
  "rc_private": "貼り付けた内容はこのページの外に出ません",
+ "cap_fit_max": "適合度・最大{cap}",
+ "score_cap_tip": "上限は{cap}:どのプロフィールも職務に完全には一致しません。",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "legend_strong": "Evidence levels as 十分・一部・不足 (sufficient, partial, missing).",

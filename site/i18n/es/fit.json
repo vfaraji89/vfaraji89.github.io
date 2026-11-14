@@ -49,6 +49,8 @@
  "rc_rules": "Reglas en tu navegador",
  "rc_calls": "0 llamadas al modelo",
  "rc_private": "nada de lo que pegues sale de esta página",
+ "cap_fit_max": "encaje · máx. {cap}",
+ "score_cap_tip": "Máximo {cap}: ningún perfil encaja del todo con un puesto.",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "legend_gap": "'carencia' for gap; alternative 'hueco' or 'brecha'."

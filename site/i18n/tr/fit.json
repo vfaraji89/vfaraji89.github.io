@@ -49,6 +49,8 @@
  "rc_rules": "Kurallar tarayıcınızda çalışır",
  "rc_calls": "0 model çağrısı",
  "rc_private": "yapıştırdığınız hiçbir şey bu sayfadan çıkmaz",
+ "cap_fit_max": "uyum · en çok {cap}",
+ "score_cap_tip": "En çok {cap}: hiçbir profil bir role tam olarak uymaz.",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "sec_reqs": "'Aranan nitelikler', the usual Turkish job-ad heading for requirements.",

@@ -49,6 +49,8 @@
  "rc_rules": "Regels in je browser",
  "rc_calls": "0 modelaanroepen",
  "rc_private": "niets wat je plakt verlaat deze pagina",
+ "cap_fit_max": "match · max {cap}",
+ "score_cap_tip": "Maximaal {cap}: geen profiel past perfect bij een rol.",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "sample_architect": "'Solution-architect' with a hyphen per Taalunie; job ads often write 'Solution Architect'."

@@ -22,6 +22,7 @@
     var ORDER = { strong: 0, partial: 1, gap: 2 };
     var LABEL_EN = { strong: 'Strong', partial: 'Partial', gap: 'Gap' };
     // Every word this script writes goes through T(): the active language (i18n/<lang>/fit.json), else English.
+    var CAP = 90;   // the engine never scores past this; see engine.js scoreOf
     function T(key, en, vars) { if (window.vfT) return vfT('fit.' + key, en, vars); return vars ? en.replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; }) : en; }
     var LABEL = { get strong() { return T('st_strong', LABEL_EN.strong); }, get partial() { return T('st_partial', LABEL_EN.partial); }, get gap() { return T('st_gap', LABEL_EN.gap); } };
     var SAMPLES = {
@@ -93,7 +94,8 @@
     var counter = null;
     function countTo(to) {
         var b = $('.fx-score b', center), from = parseInt(b.textContent, 10) || 0;
-        $('.fx-cap', center).textContent = T('cap_fit', 'fit'); center.classList.remove('is-idle');
+        $('.fx-cap', center).textContent = T('cap_fit_max', 'fit · max {cap}', { cap: CAP }); center.classList.remove('is-idle');
+        $('.fx-score', center).title = T('score_cap_tip', 'Capped at {cap}: no profile is a perfect fit for a role.', { cap: CAP });
         if (counter) cancelAnimationFrame(counter);
         if (reduce) { b.textContent = to; return; }
         var t0 = performance.now();
