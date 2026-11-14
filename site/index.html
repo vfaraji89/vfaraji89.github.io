@@ -1421,24 +1421,8 @@
         .case-card.is-pinged { animation: case-ping 1.4s var(--ease-out); }
         @keyframes case-ping { 0% {  } 100% { outline: 18px solid rgba(224,48,30,0); outline-offset: 0; } }
 
-        .case-story-btn { margin-left: auto; font: 600 0.6875rem/1 var(--font); padding: 0.4rem 0.7rem 0.4rem 0.6rem; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--bg); color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem; }
-        .case-story-btn::before { content: ""; border-left: 7px solid var(--rust); border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent; }
-        .case-story-btn:hover { border-color: var(--rust); }
         .case-meta { align-items: center; }
-        .story-dlg { position: fixed; inset: 0; margin: auto; height: fit-content; width: min(680px, calc(100vw - 2rem)); border: none; border-radius: 22px; padding: 1.75rem 1.75rem 1.25rem; background: var(--paper); color: var(--ink);  }
-        .story-dlg::backdrop { background: rgba(28,28,30,0.55); }
-        .story-bar { display: flex; gap: 6px; margin-bottom: 1.5rem; }
-        .story-bar i { flex: 1; height: 5px; border-radius: 5px; background: rgba(28,28,30,0.12); }
-        .story-bar i.done, .story-bar i.on { background: var(--rust); }
-        .story-beat { min-height: 15rem; display: flex; flex-direction: column; animation: story-in 0.5s var(--ease-out) both; }
-        @keyframes story-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-        .story-k { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust-deep); }
-        .story-num { margin: 0.75rem 0 0; font-size: 1.0625rem; color: var(--text-secondary); } .story-num b { font-size: clamp(2.5rem, 9vw, 4rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; color: var(--ink); margin-right: 0.35rem; }
-        .story-t { margin: 0.75rem 0 0; font-size: clamp(1.125rem, 3.4vw, 1.5rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.35; }
-        .story-nav { margin-top: auto; padding-top: 1.25rem; }
-        .story-next { font: 700 0.875rem/1 var(--font); padding: 0.7rem 1.1rem; border-radius: 999px; border: none; background: var(--ink); color: #fff; cursor: pointer; }
-        .story-close { position: absolute; top: 1.1rem; right: 1.25rem; margin-top: 1.4rem; font: 500 0.75rem/1 var(--font); background: none; border: none; color: var(--text-secondary); cursor: pointer; }
-        @media (prefers-reduced-motion: reduce) { .story-beat, .case-card.is-pinged { animation: none; } }
+        @media (prefers-reduced-motion: reduce) { .case-card.is-pinged { animation: none; } }
 
         .rc-make { margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-secondary); }
         .rc-make summary { cursor: pointer; width: fit-content; }
@@ -3473,6 +3457,49 @@
         .rot > span.on { transform: none; }
         .rot > span.off { transform: translateY(-115%); transition: transform 380ms cubic-bezier(.7,0,.84,0); }
         @media (prefers-reduced-motion: reduce) { .rot > span { transition: none; } }
+    </style>
+    <style>
+        /* case stories: Problem, Approach, Result play one beat at a time along a bead rod */
+        .case-disclose.is-story > summary { display: none; }
+        .cs-bar { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 14px; margin: 2px 0 12px; }
+        .cs-play { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(28,28,30,0.16); background: #fff; color: var(--ink); display: grid; place-items: center; cursor: pointer; padding: 0; transition: border-color .2s, color .2s; }
+        .cs-play:hover, .cs-play:focus-visible { border-color: var(--rust); color: var(--rust); }
+        .cs-play svg { width: 14px; height: 14px; fill: currentColor; }
+        .cs-play .i-pause, .cs-play.is-playing .i-play { display: none; }
+        .cs-play.is-playing .i-pause { display: inline; }
+        .cs-rail { position: relative; height: 46px; margin: 0 12px; }
+        .cs-rod { position: absolute; left: 0; right: 0; top: 15px; height: 4px; border-radius: 2px; background: var(--rod-wood); overflow: hidden; }
+        .cs-rod i { position: absolute; inset: 0; background: var(--rust); transform: scaleX(0); transform-origin: left; }
+        .cs-stop { position: absolute; top: 0; left: calc(var(--x) * 100%); transform: translateX(-50%); display: grid; justify-items: center; gap: 5px; background: none; border: 0; padding: 4px 2px; cursor: pointer; color: var(--text-secondary); }
+        .cs-bead { width: 18px; height: 18px; border-radius: 50%; background: var(--bead-white); border: 1px solid rgba(28,28,30,0.18); transition: transform .5s var(--bead-ease, ease), background .3s; }
+        .cs-stop.is-past .cs-bead { background: var(--bead-ink); border-color: transparent; }
+        .cs-stop.is-on .cs-bead { background: var(--bead-red); border-color: transparent; transform: scale(1.18); }
+        .cs-lab { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+        .cs-stop.is-on .cs-lab { color: var(--rust-deep); font-weight: 700; }
+        .cs-stop:first-of-type { transform: none; justify-items: start; }
+        .cs-stop:last-of-type { transform: translateX(-100%); justify-items: end; }
+        .cs-stop:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; border-radius: 8px; }
+        .case-body.cs-stage { display: grid; gap: 0; }
+        .case-body.cs-stage .case-row.beat { grid-area: 1 / 1; grid-template-columns: 1fr; gap: 6px; align-content: start; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(28,28,30,0.1); background: #faf7f2; opacity: 0; visibility: hidden; transform: translateX(14px); transition: opacity .45s var(--bead-ease, ease), transform .55s var(--bead-ease, ease), visibility 0s .55s; transition-delay: 0s; }
+        .case-body.cs-stage .case-row.beat.is-past { transform: translateX(-14px); }
+        .case-body.cs-stage .case-row.beat.is-on { opacity: 1; visibility: visible; transform: none; transition: opacity .45s var(--bead-ease, ease) .08s, transform .55s var(--bead-ease, ease) .08s, visibility 0s; }
+        .case-body.cs-stage .beat .case-row-label { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; }
+        .case-body.cs-stage .beat .case-row-val { font-size: .92rem; line-height: 1.65; }
+        .case-body.cs-stage .case-row.beat-0 { background: #f4f1ec; }
+        .case-body.cs-stage .beat-0 .case-row-label { color: var(--text-secondary); }
+        .case-body.cs-stage .case-row.beat-1 { background: #f8efe2; border-color: rgba(184,148,106,0.35); }
+        .case-body.cs-stage .beat-1 .case-row-label { color: #8a6a43; }
+        .case-body.cs-stage .case-row.beat-2 { background: #fff4f1; border-color: rgba(224,48,30,0.28); }
+        .case-body.cs-stage .beat-2 .case-row-label { color: var(--rust-deep); }
+        .case-body.cs-stage .beat-2 .case-row-val strong { color: var(--rust-deep); }
+        @media (max-width: 560px) {
+            .cs-bar { gap: 10px; }
+            .cs-lab { font-size: .6rem; letter-spacing: .05em; }
+            .case-body.cs-stage .beat .case-row-val { font-size: .88rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .case-body.cs-stage .case-row.beat, .cs-bead { transition: none; transform: none; }
+        }
     </style>
 </head>
 <body>
@@ -5803,5 +5830,6 @@
         }, 3600);
     })();
     </script>
+    <script src="assets/brand/case-story.js" defer></script>
 </body>
 </html>
