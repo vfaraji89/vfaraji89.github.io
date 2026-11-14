@@ -71,7 +71,7 @@
  "yr_p_tokens_2": "<b>56.7B</b>leídos de caché, no recomprados",
  "yr_p_tokens_3": "<b>217.3M</b>tokens de salida",
  "yr_p_tokens_4": "<b>21d 4h</b>sesión más larga",
- "yr_p_tokens_n": "Claude Code, cuentas de trabajo y personal. Medido con <a href=\"https://tokalator.ai\" target=\"_blank\" rel=\"noopener\">Tokalator</a>.",
+ "yr_p_tokens_n": "En 2025 fueron unos 1000 millones. Claude Code, cuentas de trabajo y personal. Medido con <a href=\"https://tokalator.ai\" target=\"_blank\" rel=\"noopener\">Tokalator</a>.",
  "yr_p_commits_k": "Publicar en abierto",
  "yr_p_commits_h": "83 commits, luego 1136",
  "yr_p_commits_n": "Una cuenta son diez commits: blancas, 2025; rojas, 2026. Los pull requests pasaron de 1 a 198. <a href=\"https://github.com/vfaraji89\" target=\"_blank\" rel=\"noopener\">github.com/vfaraji89</a>",
@@ -85,12 +85,10 @@
  "pill_case": "Casos",
  "pill_paper": "Artículos",
  "pill_talk": "Charlas",
- "yr_na": "sin medir",
  "yr_r_tokens": "Tokens con Claude Code",
  "yr_r_commits": "Commits públicos",
  "yr_r_prs": "Pull requests",
  "yr_r_papers": "Artículos",
  "yr_r_talks": "Charlas y cursos",
- "yr_chip_new": "nuevo",
  "yr_chip_patent": "+1 patente"
 }

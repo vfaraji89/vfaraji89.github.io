@@ -71,7 +71,7 @@
  "yr_p_tokens_2": "<b>56.7B</b>önbellekten okundu, yeniden satın alınmadı",
  "yr_p_tokens_3": "<b>217.3M</b>çıktı tokenı",
  "yr_p_tokens_4": "<b>21d 4h</b>en uzun oturum",
- "yr_p_tokens_n": "Claude Code, iş ve kişisel hesaplar. <a href=\"https://tokalator.ai\" target=\"_blank\" rel=\"noopener\">Tokalator</a> ile ölçüldü.",
+ "yr_p_tokens_n": "2025 yaklaşık 1 milyardı. Claude Code, iş ve kişisel hesaplar. <a href=\"https://tokalator.ai\" target=\"_blank\" rel=\"noopener\">Tokalator</a> ile ölçüldü.",
  "yr_p_commits_k": "Açıkta geliştirmek",
  "yr_p_commits_h": "83 commit, sonra 1.136",
  "yr_p_commits_n": "Bir boncuk on commit: beyazlar 2025, kırmızılar 2026. Pull request sayısı 1’den 198’e çıktı. <a href=\"https://github.com/vfaraji89\" target=\"_blank\" rel=\"noopener\">github.com/vfaraji89</a>",
@@ -85,12 +85,10 @@
  "pill_case": "Vakalar",
  "pill_paper": "Makaleler",
  "pill_talk": "Konuşmalar",
- "yr_na": "ölçülmedi",
  "yr_r_tokens": "Claude Code ile token",
  "yr_r_commits": "Açık commit",
  "yr_r_prs": "Pull request",
  "yr_r_papers": "Makale",
  "yr_r_talks": "Konuşma ve kurs",
- "yr_chip_new": "yeni",
  "yr_chip_patent": "+1 patent"
 }

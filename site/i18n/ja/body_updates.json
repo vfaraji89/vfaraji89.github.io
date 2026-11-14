@@ -71,7 +71,7 @@
  "yr_p_tokens_2": "<b>56.7B</b>キャッシュから読み込み（再購入なし）",
  "yr_p_tokens_3": "<b>217.3M</b>出力トークン",
  "yr_p_tokens_4": "<b>21d 4h</b>最長セッション",
- "yr_p_tokens_n": "Claude Code、仕事用と個人用アカウント。<a href=\"https://tokalator.ai\" target=\"_blank\" rel=\"noopener\">Tokalator</a>で計測。",
+ "yr_p_tokens_n": "2025年は約10億。Claude Code、仕事用と個人用アカウント。 <a href=\"https://tokalator.ai\" target=\"_blank\" rel=\"noopener\">Tokalator</a>で計測。",
  "yr_p_commits_k": "公開で開発",
  "yr_p_commits_h": "83コミットから1,136へ",
  "yr_p_commits_n": "ビーズ1つが10コミット。白が2025年、赤が2026年です。プルリクエストは1件から198件に。<a href=\"https://github.com/vfaraji89\" target=\"_blank\" rel=\"noopener\">github.com/vfaraji89</a>",
@@ -85,12 +85,10 @@
  "pill_case": "事例",
  "pill_paper": "論文",
  "pill_talk": "講演",
- "yr_na": "未計測",
  "yr_r_tokens": "Claude Codeのトークン",
  "yr_r_commits": "公開コミット",
  "yr_r_prs": "プルリクエスト",
  "yr_r_papers": "論文",
  "yr_r_talks": "講演・講座",
- "yr_chip_new": "新規",
  "yr_chip_patent": "+特許1件"
 }

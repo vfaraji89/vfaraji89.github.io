@@ -71,7 +71,7 @@
  "yr_p_tokens_2": "<b>56.7B</b>uit de cache gelezen, niet opnieuw gekocht",
  "yr_p_tokens_3": "<b>217.3M</b>tokens output",
  "yr_p_tokens_4": "<b>21d 4h</b>langste sessie",
- "yr_p_tokens_n": "Claude Code, werk- en privéaccounts. Gemeten met <a href=\"https://tokalator.ai\" target=\"_blank\" rel=\"noopener\">Tokalator</a>.",
+ "yr_p_tokens_n": "In 2025 was het ongeveer 1 miljard. Claude Code, werk- en privéaccounts. Gemeten met <a href=\"https://tokalator.ai\" target=\"_blank\" rel=\"noopener\">Tokalator</a>.",
  "yr_p_commits_k": "Openbaar bouwen",
  "yr_p_commits_h": "83 commits, daarna 1.136",
  "yr_p_commits_n": "Eén kraal is tien commits: wit voor 2025, rood voor 2026. Pull requests gingen van 1 naar 198. <a href=\"https://github.com/vfaraji89\" target=\"_blank\" rel=\"noopener\">github.com/vfaraji89</a>",
@@ -85,12 +85,10 @@
  "pill_case": "Cases",
  "pill_paper": "Papers",
  "pill_talk": "Talks",
- "yr_na": "niet gemeten",
  "yr_r_tokens": "Tokens met Claude Code",
  "yr_r_commits": "Openbare commits",
  "yr_r_prs": "Pull requests",
  "yr_r_papers": "Papers",
  "yr_r_talks": "Talks en cursussen",
- "yr_chip_new": "nieuw",
  "yr_chip_patent": "+1 octrooi"
 }
