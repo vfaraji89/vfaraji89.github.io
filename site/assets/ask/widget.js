@@ -42,6 +42,24 @@
         '<p class="vfa-meta"><span>Only answers from public evidence</span><a href="' + BASE + 'evals.html">How it’s tested →</a></p></div></div>';
     document.body.appendChild(root);
     var launch = root.querySelector('.vfa-launch'), panel = root.querySelector('.vfa-panel');
+    // The launcher's mark plays the site's own loop, from the abacus to agents (the favicon's frames,
+    // assets/brand/favicon-anim.js), all the time. Reduced motion keeps the still abacus.
+    (function liveMark() {
+        if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var still = launch.querySelector('.vfa-abacus');
+        var cv = document.createElement('canvas'); if (!cv.getContext || !still) return;
+        var css = 38, px = Math.round(css * Math.min(3, window.devicePixelRatio || 1));
+        cv.width = cv.height = px; cv.className = 'vfa-abacus vfa-live'; cv.setAttribute('aria-hidden', 'true');
+        var g = cv.getContext('2d'), LOOP = 6400, t0 = performance.now(), swapped = false;
+        function draw(now) {
+            requestAnimationFrame(draw);
+            if (!window.vfFaviconFrame || document.hidden || root.classList.contains('is-open')) return;
+            if (!swapped) { still.replaceWith(cv); swapped = true; }
+            g.setTransform(px / 64, 0, 0, px / 64, 0, 0);
+            window.vfFaviconFrame(g, ((now - t0) % LOOP) / LOOP);
+        }
+        requestAnimationFrame(draw);
+    })();
     var body = root.querySelector('.vfa-body'), form = root.querySelector('.vfa-form'), input = root.querySelector('#vfa-in');
 
     var CHIPS = ['Has he shipped agents to production?', 'What did ProjectLens save?', 'How does he cut token costs?', 'Which papers are peer-reviewed?', 'Kubernetes experience?'];

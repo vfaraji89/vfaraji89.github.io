@@ -53,7 +53,11 @@
     // beads: the first one is the red lead
     pos.forEach(function (p, i) {
       var r = 3.4 + (i === 0 ? 0.9 * toAgents + 0.5 * toAgents * Math.sin(t * Math.PI * 18) : 0);
-      g.fillStyle = i === 0 ? RED : INK;
+      // a bead, not a dot: lit from the top left, darker at the rim (the site's bead gradient)
+      var hl = g.createRadialGradient(p[0] - r * 0.32, p[1] - r * 0.4, 0, p[0], p[1], r);
+      if (i === 0) { hl.addColorStop(0, '#ffb3a8'); hl.addColorStop(0.12, '#ff8f80'); hl.addColorStop(0.5, RED); hl.addColorStop(1, '#9e1a0c'); }
+      else { hl.addColorStop(0, '#8a8a90'); hl.addColorStop(0.2, '#4a4a50'); hl.addColorStop(0.6, INK); hl.addColorStop(1, '#000'); }
+      g.fillStyle = hl;
       g.beginPath(); g.arc(p[0], p[1], r, 0, 7); g.fill();
     });
     g.restore();
