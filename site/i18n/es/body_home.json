@@ -320,5 +320,22 @@
  "pulse_certs": "certificados",
  "aai_open": "Abrir",
  "about_6": "Claude Certified Architect: inscrito, en camino",
- "experience_13b": "Certificación Google Generative AI Leader"
+ "experience_13b": "Certificación Google Generative AI Leader",
+ "ps_bug": "VF &middot; marcador",
+ "ps_more": "2025 frente a 2026 &rarr;",
+ "cr_aria": "Casos de estudio",
+ "cr_tokalator": "Tokalator",
+ "cr_cais": "Clasificador de puestos",
+ "cr_yzi": "Yapay Zekâ İzi",
+ "cr_projectlens": "ProjectLens",
+ "cr_enterprise": "IA en la empresa",
+ "cr_metadata": "Plataforma de metadatos",
+ "sb_label": "Resumen de temporada",
+ "sb_title": "2025 frente a 2026, a 14 de noviembre.",
+ "sb_tokens": "Tokens con Claude Code",
+ "sb_commits": "Commits públicos",
+ "sb_prs": "Pull requests",
+ "sb_papers": "Artículos",
+ "sb_talks": "Charlas y cursos",
+ "sb_more": "El marcador completo, con el detalle de cada fila &rarr;"
 }

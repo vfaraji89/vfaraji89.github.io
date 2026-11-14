@@ -329,5 +329,22 @@
  "pulse_certs": "資格",
  "aai_open": "開く",
  "about_6": "Claude Certified Architect：登録済み、取得に向けて準備中",
- "experience_13b": "Google Generative AI Leader認定"
+ "experience_13b": "Google Generative AI Leader認定",
+ "ps_bug": "VF &middot; スコアボード",
+ "ps_more": "2025年と2026年の比較 &rarr;",
+ "cr_aria": "事例",
+ "cr_tokalator": "Tokalator",
+ "cr_cais": "職種分類",
+ "cr_yzi": "Yapay Zekâ İzi",
+ "cr_projectlens": "ProjectLens",
+ "cr_enterprise": "全社AI導入",
+ "cr_metadata": "メタデータ基盤",
+ "sb_label": "シーズン総括",
+ "sb_title": "2025年と2026年の比較（11月14日時点）。",
+ "sb_tokens": "Claude Codeのトークン",
+ "sb_commits": "公開コミット",
+ "sb_prs": "プルリクエスト",
+ "sb_papers": "論文",
+ "sb_talks": "講演・講座",
+ "sb_more": "各行の詳細つきの完全なスコアボード &rarr;"
 }

@@ -389,5 +389,22 @@
  "pulse_emerging": "emerging now",
  "pulse_certs": "certificates",
  "aai_open": "Open",
- "experience_13b": "Google Generative AI Leader certification"
+ "experience_13b": "Google Generative AI Leader certification",
+ "ps_bug": "VF &middot; scoreboard",
+ "ps_more": "2025 against 2026 &rarr;",
+ "cr_aria": "Case studies",
+ "cr_tokalator": "Tokalator",
+ "cr_cais": "Position classifier",
+ "cr_yzi": "Yapay Zekâ İzi",
+ "cr_projectlens": "ProjectLens",
+ "cr_enterprise": "Enterprise AI",
+ "cr_metadata": "Metadata platform",
+ "sb_label": "Season review",
+ "sb_title": "2025 against 2026, as of 14 November.",
+ "sb_tokens": "Tokens with Claude Code",
+ "sb_commits": "Public commits",
+ "sb_prs": "Pull requests",
+ "sb_papers": "Papers",
+ "sb_talks": "Talks and courses",
+ "sb_more": "The full scoreboard, with the detail behind each row &rarr;"
 }
