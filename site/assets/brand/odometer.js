@@ -5,7 +5,7 @@
 (function () {
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var SEL = '.metric-num, .proof-strip li > b';
+  var SEL = '.metric-num, .proof-strip li > b, .yr-n';
   function roll(el) {
     var text = el.textContent;
     if (!/\d/.test(text) || el.dataset.odo) return;
