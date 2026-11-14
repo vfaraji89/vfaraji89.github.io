@@ -12,6 +12,7 @@
  "tk7": "works on <mark>agentic systems</mark>.",
  "tk8": "builds <mark>agent harnesses</mark>.",
  "tk9": "ships with <mark>evals</mark>.",
+ "tk10": "loves <mark>open source</mark>.",
  "bio_three": "<span>Maximize&nbsp;<b class=\"b-roi\">ROI</b><i class=\"bead-stop\">.</i></span> <span>Minimize&nbsp;<b class=\"b-cost\">cost</b><i class=\"bead-stop\">.</i></span>",
  "bio_three_aria": "Maximize ROI. Minimize cost.",
  "bio_text": "I build <strong>workflows, data pipelines and agents</strong> that teams use in their daily work. I write the spec, build the tools the agent can use, and measure whether it actually helps: <mark>evidence more than demos</mark>.",
