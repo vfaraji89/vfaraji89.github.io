@@ -68,7 +68,7 @@
     var CHIPS = ['Has he shipped agents to production?', 'What did ProjectLens save?', 'How does he cut token costs?', 'Which papers are peer-reviewed?', 'Kubernetes experience?'];
     var intro = el('div');
     var ip = el('p', 'vfa-intro');
-    ip.innerHTML = 'I\u2019m Vahid\u2019s agent. I answer questions about his work only from <b>public evidence</b> on this site, show each step I take, and say so when the evidence doesn\u2019t cover something.';
+    ip.innerHTML = 'Ask about Vahid\u2019s work. I answer only from <b>public evidence</b> on this site, show every tool call, and say so when the evidence doesn\u2019t cover it.';
     intro.appendChild(ip);
     var chips = el('div', 'vfa-chips');
     CHIPS.forEach(function (c) { var b = el('button', 'vfa-chip', c); b.type = 'button'; b.addEventListener('click', function () { run(c); }); chips.appendChild(b); });
@@ -119,13 +119,20 @@
     var busy = false;
     form.addEventListener('submit', function (e) { e.preventDefault(); run(input.value); });
 
-    function step(list, title) {
-        var li = el('li', 'vfa-step'); li.appendChild(el('span', 'dot'));
-        var box = el('div'); box.appendChild(el('b', null, title)); li.appendChild(box); list.appendChild(li);
-        return { li: li, box: box, on: function () { li.classList.add('on'); }, done: function (det) {
-            li.classList.remove('on'); li.classList.add('done'); if (det) box.appendChild(det); body.scrollTop = body.scrollHeight;
+    // each step is a tool call, the way an agent shows them: name, arguments, a short result; tap to see the output
+    function step(list, fn, args) {
+        var li = el('li', 'vfa-step'), d = el('details', 'vfa-call'), sm = el('summary');
+        sm.appendChild(el('span', 'st'));
+        var sig = el('code', 'sig'); sig.appendChild(el('b', null, fn)); sig.appendChild(el('span', null, '(' + args + ')')); sm.appendChild(sig);
+        var res = el('span', 'res', ''); sm.appendChild(res);
+        d.appendChild(sm); var box = el('div', 'out'); d.appendChild(box); li.appendChild(d); list.appendChild(li);
+        return { li: li, box: box, d: d, on: function () { li.classList.add('on'); res.textContent = 'running'; body.scrollTop = body.scrollHeight; }, done: function (det, short) {
+            li.classList.remove('on'); li.classList.add('done'); res.textContent = short || 'done';
+            if (det) box.appendChild(det); else li.classList.add('empty');
+            body.scrollTop = body.scrollHeight;
         } };
     }
+    function q1(x) { x = String(x); return '"' + (x.length > 28 ? x.slice(0, 27) + '\u2026' : x) + '"'; }
     function det(text) { return el('div', 'det', text); }
 
     function run(q) {
@@ -135,7 +142,7 @@
         body.appendChild(el('div', 'vfa-q', q));
         var runBox = el('div', 'vfa-run'), list = el('ol', 'vfa-steps');
         runBox.appendChild(list); body.appendChild(runBox); body.scrollTop = body.scrollHeight;
-        var s1 = step(list, 'Read the question'), s2 = step(list, 'Search the evidence'), s3 = step(list, 'Weigh the proof'), s4 = step(list, 'Decide'), s5 = step(list, ENDPOINT ? 'Write with Claude, cite sources' : 'Answer from quotes, cite sources');
+        var s1 = step(list, 'read_question', q1(q)), s2 = step(list, 'search_evidence', 'k: 5'), s3 = step(list, 'weigh_proof', 'top: 4'), s4 = step(list, 'decide', 'abstain_if: weak'), s5 = step(list, ENDPOINT ? 'claude.write' : 'quote_sources', 'cite: true');
         var t0 = performance.now(), r, sr;
         s1.on();
         load().then(function () {
@@ -146,13 +153,13 @@
             });
             var concepts = (r.concepts || []).map(function (k) { var c = eng.concepts.filter(function (x) { return x.key === k; })[0]; return c ? c.label : k; });
             return wait(STEP_MS).then(function () {
-                s1.done(det(words.length + ' key terms: ' + words.slice(0, 6).join(', ') + (concepts.length ? ' · skills: ' + concepts.join(', ') : '')));
+                s1.done(det(words.length + ' key terms: ' + words.slice(0, 6).join(', ') + (concepts.length ? ' · skills: ' + concepts.join(', ') : '')), words.length + ' terms' + (concepts.length ? ' · ' + concepts.length + ' skill' + (concepts.length > 1 ? 's' : '') : ''));
                 s2.on(); return wait(STEP_MS);
             });
         }).then(function () {
             var bars = el('div', 'vfa-bars'), top = sr.results.slice(0, 4), max = top.length ? top[0].score : 1;
             var picked = r.sources.map(function (s) { return s.id; });
-            s2.done(det('BM25 over ' + eng.evidence.length + ' items · ' + sr.results.length + ' matched, ranked by relevance × proof'));
+            s2.done(det('BM25 over ' + eng.evidence.length + ' items · ' + sr.results.length + ' matched, ranked by relevance × proof'), sr.results.length + ' / ' + eng.evidence.length + ' hits');
             top.forEach(function (x) {
                 var b = el('div', 'vfa-bar' + (picked.indexOf(x.e.id) !== -1 ? ' pick' : '')), s = el('span'), i = el('i');
                 i.style.width = Math.max(6, Math.round(100 * x.score / max)) + '%';
@@ -163,7 +170,7 @@
             s3.on(); return wait(STEP_MS);
         }).then(function () {
             var lv = {}; sr.results.slice(0, 4).forEach(function (x) { var L = eng.levels[x.e.level] || {}; lv[L.label || x.e.level] = 1; });
-            s3.done(det(Object.keys(lv).length ? 'Proof levels: ' + Object.keys(lv).join(' · ') + '. In-production and published work rank first.' : 'Nothing to weigh.'));
+            s3.done(det(Object.keys(lv).length ? 'Proof levels: ' + Object.keys(lv).join(' · ') + '. In-production and published work rank first.' : 'Nothing to weigh.'), Object.keys(lv).length + ' proof level' + (Object.keys(lv).length === 1 ? '' : 's'));
             s4.on(); return wait(STEP_MS);
         }).then(function () {
             var best = sr.results.slice().sort(function (a, b) { return (b.raw || 0) - (a.raw || 0); })[0];
@@ -171,13 +178,13 @@
             var d = det(best ? 'Best match covers ' + cov + '% of the question' + (best.tagged ? ' and carries the skill asked about' : best.named ? ' and names it directly' : '') + '.' : 'No relevant evidence found.');
             d.appendChild(document.createElement('br'));
             d.appendChild(el('span', 'vfa-verdict' + (r.abstain ? ' no' : ''), r.abstain ? 'Not enough evidence → say so' : 'Enough evidence → answer'));
-            s4.done(d); s5.on();
+            s4.done(d, r.abstain ? 'abstain' : 'answer'); if (r.abstain) s4.li.classList.add('no'); s5.on();
             if (!ENDPOINT || r.abstain) return wait(STEP_MS).then(function () { return { mode: 'retrieval', r: r }; });
             return remote(q).then(function (j) { return j.mode === 'claude' ? { mode: 'claude', r: j } : { mode: 'retrieval', r: r }; },
                 function () { return { mode: 'retrieval', r: r, note: 'Claude unavailable, answered from quotes.' }; });
         }).then(function (out) {
             var res = out.r, ms = Math.round(performance.now() - t0);
-            s5.li.classList.add('final'); s5.done(det(res.abstain ? 'No answer written: nothing here backs one.' : (out.mode === 'claude' ? 'Claude wrote from ' : 'Quoted ') + res.sources.length + ' source' + (res.sources.length === 1 ? '' : 's') + '.'));
+            s5.li.classList.add('final'); s5.done(det(res.abstain ? 'No answer written: nothing here backs one.' : (out.mode === 'claude' ? 'Claude wrote from ' : 'Quoted ') + res.sources.length + ' source' + (res.sources.length === 1 ? '' : 's') + '.'), res.abstain ? 'skipped' : res.sources.length + ' cited');
             var ans = el('div', 'vfa-ans');
             if (res.abstain) {
                 ans.appendChild(el('p', 'none', 'The evidence on this site doesn’t cover that.'));
@@ -199,7 +206,9 @@
             ans.appendChild(el('p', 'vfa-rc', out.mode === 'claude' && rc
                 ? rc.model + ' · ' + rc.input_tokens + ' in / ' + rc.output_tokens + ' out · $' + (rc.cost_usd || 0).toFixed(4) + ' · ' + (rc.ms / 1000).toFixed(1) + ' s'
                 : '0 model calls · $0.00 · ' + r.ms + ' ms compute · ' + ms + ' ms shown step by step' + (out.note ? ' · ' + out.note : '')));
-            runBox.appendChild(ans); body.scrollTop = body.scrollHeight;
+            runBox.appendChild(ans);
+            // land on the answer, not the bottom of it
+            body.scrollTop = Math.max(0, ans.offsetTop - body.offsetTop - 8);
             track('ask_widget', { mode: out.mode, abstain: !!res.abstain });
         }).catch(function () {
             runBox.appendChild(el('div', 'vfa-ans', 'The evidence file did not load. Try again in a moment.'));
