@@ -156,6 +156,7 @@
         var sc = el('div', 'fit-score');
         sc.appendChild(el('b', null, b.score == null ? '–' : String(b.score)));
         sc.appendChild(el('span', null, '/100'));
+        if (b.cap) sc.title = 'Capped at ' + b.cap + ': no profile is a perfect fit for a role.';
         head.appendChild(sc);
         var sum = el('div', 'fit-sum');
         sum.appendChild(el('p', 'fit-headline', ai && ai.headline ? ai.headline :

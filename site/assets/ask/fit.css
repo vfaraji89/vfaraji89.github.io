@@ -29,34 +29,81 @@
 .fx-sample:hover { border-color: var(--rust); transform: translateY(-2px);  }
 .fx-sample[aria-pressed="true"] { border-color: var(--rust); background: var(--paper); }
 
-/* ---- the dial --------------------------------------------------------------- */
-.fx-dialbox { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.9rem; padding: 1.25rem; border-radius: 20px; background: radial-gradient(120% 90% at 50% 0%, var(--paper) 0%, var(--bg) 70%); border: 1px solid rgba(224,48,30,0.14); }
-.fx-dialwrap { position: relative; width: min(100%, 300px); aspect-ratio: 1; }
-.fx-dial { width: 100%; height: 100%; overflow: visible; }
-.fx-track { fill: none; stroke: var(--bg-muted); stroke-width: 20; }
-.fx-ticks line { stroke: var(--ctl-line); stroke-width: 1; }
-.seg { fill: none; stroke-linecap: butt; cursor: pointer; transition: stroke-width 0.35s var(--fx-spring), opacity 0.3s; stroke-dasharray: 100; animation: fx-draw 0.6s var(--fx-out) both; }
-.seg.s-strong { stroke: var(--rust); stroke-width: 18; }
-.seg.s-partial { stroke: var(--fx-partial); stroke-width: 12; }
-.seg.s-gap { stroke: var(--grey-300); stroke-width: 6; }
-.fx-dial.has-focus .seg { opacity: 0.28; }
-.fx-dial.has-focus .seg.is-focus { opacity: 1; stroke-width: 24; }
-.seg:focus-visible { outline: none; stroke-width: 24; }
-.fx-orbit { transform-origin: 130px 130px; animation: fx-spin 7s linear infinite; }
-.fx-orbit circle { fill: var(--rust); }
-.fx-orbit circle + circle { fill: var(--ink); opacity: 0.6; }
-.fx-center { position: absolute; inset: 22%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; pointer-events: none; }
-.fx-score { display: flex; align-items: baseline; gap: 0.15rem; }
-.fx-score b { font-size: clamp(3rem, 12vw, 4.25rem); line-height: 1; font-weight: 700; letter-spacing: -0.06em; color: var(--ink); font-variant-numeric: tabular-nums; }
-.fx-score span { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
-.fx-cap { margin-top: 0.3rem; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust-deep); }
-.fx-focus { display: none; }
-.fx-center.is-focus .fx-score, .fx-center.is-focus .fx-cap { display: none; }
-.fx-center.is-focus .fx-focus { display: block; animation: fx-pop 0.35s var(--fx-spring) both; }
-.fx-focus b { display: block; font-size: 1rem; line-height: 1.2; color: var(--ink); }
+/* ---- the board: score on reels, the agent loop beside it -------------------- */
+.fx-dialbox { position: relative; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 1rem; padding: 1.25rem 1.4rem 1.1rem; border-radius: 20px; background: radial-gradient(120% 90% at 50% 0%, var(--paper) 0%, var(--bg) 70%); border: 1px solid rgba(224,48,30,0.14); }
+.fx-board { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 5.6rem; }
+.fx-board-main { min-width: 0; }
+.fx-score { display: flex; align-items: baseline; gap: 0.2rem; }
+.fx-score b { display: inline-flex; font-size: clamp(3rem, 9vw, 4rem); line-height: 1; font-weight: 800; letter-spacing: -0.05em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.fx-score > span { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
+.fx-reel { display: inline-block; height: 1em; overflow: hidden; }
+.fx-col { display: block; will-change: transform; }
+.fx-col > span { display: block; height: 1em; }
+.fx-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.fx-cap { margin-top: 0.35rem; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust-deep); }
+.fx-board.is-idle .fx-score b { color: var(--grey-300); }
+.fx-focus { display: none; max-width: 15rem; }
+.fx-board.is-focus .fx-score, .fx-board.is-focus .fx-cap { display: none; }
+.fx-board.is-focus .fx-focus { display: block; animation: fx-pop 0.35s var(--fx-spring) both; }
+.fx-focus b { display: block; font-size: 1.05rem; line-height: 1.2; color: var(--ink); }
 .fx-focus em { display: inline-block; margin-top: 0.35rem; padding: 0.1rem 0.5rem; border-radius: 999px; font-style: normal; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.06em; text-transform: uppercase; }
 .fx-focus em.s-strong { background: var(--rust); color: #fff; } .fx-focus em.s-partial { background: var(--fx-partial); color: #fff; } .fx-focus em.s-gap { border: 1px dashed var(--grey-300); color: var(--text-muted); }
 .fx-focus small { display: block; margin-top: 0.4rem; font-size: 0.72rem; line-height: 1.3; color: var(--text-secondary); }
+
+/* the agent loop: four beads on a short rod, lit in turn */
+.fx-loop { position: relative; display: grid; grid-template-columns: repeat(4, auto); gap: 0 0.55rem; margin: 0; padding: 0; list-style: none; }
+.fx-loop::before { content: ""; position: absolute; left: 6px; right: 6px; top: 6px; height: 2px; border-radius: 2px; background: var(--rod-wood); }
+.fx-loop li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.3rem; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.fx-loop i { width: 14px; height: 14px; border-radius: 50%; background: var(--bead-white); outline: 1px solid rgba(0,0,0,.1); outline-offset: -1px; transition: transform 0.4s var(--fx-spring); }
+.fx-loop li.done i { background: var(--bead-ink); outline: 0; }
+.fx-loop li.now i { background: var(--bead-red); outline: 0; transform: scale(1.25); }
+.fx-loop li.now, .fx-loop li.done { color: var(--ink); }
+
+/* ---- the abacus: one rod per skill, in a wooden frame -------------------------- */
+.fx-abacus { position: relative; display: grid; gap: 0.15rem; padding: 0.55rem 0; border-radius: 4px; background:
+    var(--rod-wood) center top / 100% 3px no-repeat, var(--rod-wood) center bottom / 100% 3px no-repeat, var(--bg); }
+.fx-abacus::before, .fx-abacus::after { content: ""; position: absolute; top: -5px; bottom: -5px; width: 7px; border-radius: 4px; background: var(--dowel); z-index: 1; pointer-events: none; }
+.fx-abacus::before { left: -4px; } .fx-abacus::after { right: -4px; }
+.fx-abacus { --lab: 9.6rem; }
+.fx-abacus.is-idle { --lab: 0px; }
+/* the beam: a dowel between the names and the rods, as on a real abacus */
+.fx-abacus:not(.is-idle) > .fx-beam { position: absolute; top: 0; bottom: 0; left: var(--lab); width: 5px; border-radius: 3px; background: var(--dowel); z-index: 1; }
+.fx-row { --to: 0; position: relative; display: grid; grid-template-columns: var(--lab) minmax(0, 1fr); align-items: center; min-height: 28px; cursor: pointer; outline: none; transition: opacity 0.3s; }
+.fx-row.is-idle { cursor: default; min-height: 30px; }
+.fx-row.is-idle .fx-rod { grid-column: 1 / -1; }
+.fx-row-l { padding: 0 0.7rem 0 0.95rem; text-align: right; font-size: 0.72rem; font-weight: 600; line-height: 1.15; color: var(--text-secondary); overflow-wrap: anywhere; padding-block: 0.2rem; }
+.fx-row.s-strong .fx-row-l { color: var(--ink); }
+.fx-rod { position: relative; display: block; height: 16px; }
+.fx-rod::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: var(--rod-wood); }
+.fx-bead { position: absolute; top: 0; left: 10px; width: 16px; height: 16px; border-radius: 50%; background: var(--bead-white); outline: 1px solid rgba(0,0,0,.12); outline-offset: -1px;
+    transition: left 0.9s cubic-bezier(.16,1,.3,1), transform 0.3s var(--fx-spring); transition-delay: calc(var(--i) * 70ms + 260ms), 0s; }
+.fx-row.s-strong .fx-bead { background: var(--bead-red); outline: 0; }
+.fx-row.s-partial .fx-bead { background: var(--bead-ink); outline: 0; }
+.fx-abacus.on .fx-bead { left: calc(10px + (100% - 36px) * var(--to)); }
+@media (max-width: 520px) { .fx-abacus { --lab: 7.6rem; } .fx-row-l { font-size: 0.68rem; } }
+.fx-abacus.has-focus .fx-row { opacity: 0.35; }
+.fx-abacus.has-focus .fx-row.is-focus { opacity: 1; }
+.fx-row.is-focus .fx-bead, .fx-row:focus-visible .fx-bead { transform: scale(1.3); }
+.fx-row:focus-visible .fx-row-l { color: var(--rust-deep); }
+.fx-abacus.is-idle .fx-row:first-child .fx-bead { background: var(--bead-red); outline: 0; animation: fx-idle-slide 3.2s cubic-bezier(.77,0,.18,1) infinite alternate; }
+@keyframes fx-idle-slide { from { left: 10px; } to { left: calc(100% - 26px); } }
+
+/* ---- match centre: asked against proven ---------------------------------------- */
+.fx-mc { display: grid; gap: 0.45rem; }
+.fx-mc[hidden] { display: none; }
+.fx-mc-head { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+.fx-mc-head b { padding: 0.15rem 0.6rem; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; }
+.fx-mc-head .r { text-align: right; color: var(--rust-deep); }
+.fx-mc-row { display: grid; grid-template-columns: 1.8rem minmax(0, 1fr) 7.2rem minmax(0, 1fr) 1.8rem; align-items: center; gap: 0.45rem; }
+.fx-mc-row .v { font-size: 0.95rem; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--ink); }
+.fx-mc-row .v.r { text-align: right; color: var(--rust); }
+.fx-mc-row .k { font-size: 0.68rem; font-weight: 600; text-align: center; color: var(--text-secondary); line-height: 1.2; }
+.fx-mc-row .bar { display: flex; height: 6px; border-radius: 4px; background: var(--bg-muted); overflow: hidden; }
+.fx-mc-row .bar.l { justify-content: flex-end; }
+.fx-mc-row .bar span { width: 0; height: 100%; border-radius: 4px; background: var(--ink); transition: width 0.8s cubic-bezier(.16,1,.3,1); transition-delay: calc(var(--i) * 90ms + 500ms); }
+.fx-mc-row .bar.r span { background: var(--rust); }
+.fx-mc.on .fx-mc-row .bar span { width: calc(var(--w) * 100%); }
+.fx-mc-foot { margin: 0.15rem 0 0; text-align: center; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.04em; color: var(--text-muted); }
 
 .fx-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.35rem; }
 .fx-pill { display: inline-flex; align-items: center; gap: 0.4rem; height: 2rem; padding: 0 0.75rem 0 0.55rem; border-radius: 999px; border: 1px solid var(--ctl-line); background: var(--bg); color: var(--ink); font: inherit; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
@@ -171,10 +218,9 @@ a.fx-c:hover { background: var(--paper); text-decoration: none; }
     .fx-mx tbody th { white-space: normal; min-width: 8rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-    .fx-chip.is-new, .seg, .fx-ev, .fx-ev .bar span, .fx-mx td.on::after, .fx-rq, .rod i, .fx-gap, .fx-center.is-focus .fx-focus { animation: none; opacity: 1; transform: none; }
-    .fx-orbit { animation: none; }
+    .fx-chip.is-new, .fx-ev, .fx-ev .bar span, .fx-mx td.on::after, .fx-rq, .rod i, .fx-gap, .fx-board.is-focus .fx-focus { animation: none; opacity: 1; transform: none; }
+    .fx-abacus .fx-row .fx-bead, .fx-mc-row .bar span, .fx-loop i { transition: none; animation: none; }
     .fx-dock, .fx-rq-more, .fx-sample, .fx-ev { transition: none; }
 }
 
 #fx-write[hidden] { display: none; }
-.fx-center.is-idle .fx-score b { color: var(--grey-300); }
