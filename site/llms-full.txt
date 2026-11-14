@@ -1,6 +1,6 @@
 # Vahid Faraji, Applied AI: Agent Harnesses, Evals, Production LLM Agents (Full Context)
 
-> Applied AI engineer who builds LLM agent harnesses end to end (execution loops, tool calling, context and memory, agent skills), makes quality measurable with evals from real tasks, and owns production reliability, latency and cost. Full stack in TypeScript and Python. Published at ACM.
+> Applied AI engineer who builds LLM agent harnesses end to end (execution loops, tool calling, context and memory, agent skills), makes quality measurable with evals from real tasks, and owns production reliability, latency and cost. Full stack in TypeScript and Python. Published at ACM CAIS ’26.
 
 Last updated: 2026-11
 Canonical: https://vfaraji89.github.io/
@@ -45,7 +45,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 - DOI: 10.1145/3786335.3813207
 - URL: https://dl.acm.org/doi/10.1145/3786335.3813207
 - Page: https://vfaraji89.github.io/papers/cais-2026.html
-- Key results: 95% accuracy on 14K+ positions, 72.5% faster classification, 41.8% fewer API calls
+- Key results: 95% accuracy on 14K+ job titles, 72.5% faster classification, 41.8% fewer API calls
 - Architecture: MCP-based multi-agent, planner, search, extraction, evaluation agents with shared caching
 
 ### arXiv: Tokalator
@@ -83,7 +83,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 ### Multi-Agent Job Classification System
 - Type: Research + production
 - Stack: MCP, LangGraph, Subagent Architecture, AI Search, Caching
-- Metrics: 95% accuracy, 14K+ positions, 72.5% faster, 41.8% fewer API calls
+- Metrics: 95% accuracy, 14K+ job titles, 72.5% faster, 41.8% fewer API calls
 - Published: ACM CAIS '26
 
 ### Yapay Zekâ İzi: AI in 1.6M Job Ads
@@ -112,7 +112,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 ### 300M+ Datapoint Metadata Platform
 - Type: Data infrastructure
 - Stack: DataHub, Azure Synapse, BigQuery, Real-time Pipelines, Retool
-- Metrics: 300M+ datapoints unified
+- Metrics: 300M+ data points unified
 - What it does: Metadata architecture, data governance, foundation for all AI/LLM deployments
 
 ## Experience
@@ -167,7 +167,7 @@ Product engineering: Python, TypeScript, Next.js, Vercel AI SDK, Microsoft Agent
 - 95% agent accuracy (multi-agent classification)
 - 72.5% faster classification
 - 60% workload reduction (enterprise AI)
-- 300M+ datapoints unified
+- 300M+ data points unified
 - 3 publications + 1 patent pending
 - 400+ people trained
 - Perplexity AI Business Fellowship (programme lead)
