@@ -1,4 +1,4 @@
-/* Broadcast reveal, shared with awesome-applied-ai's insight bar.
+/* Broadcast reveal, shared with Applied AI, Simplified's insight bar.
    Panels open like a score graphic on match night: from a thin line at the centre out to both
    edges, then their content rises in. Chips pop in from the middle of their row outwards.
    broadcast.js adds the classes; without it (or with reduced motion) nothing is hidden. */

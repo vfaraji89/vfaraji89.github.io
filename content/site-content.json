@@ -47,7 +47,7 @@
             "95%agent accuracy on 14K+ job titles",
             "500+Tokalator installs",
             "3 + 1publications + patent pending",
-            "Now building The short version →Agent harnessesEvals from real tasksTokalatorawesome-applied-aiData pipelinesNow building: agent harnesses, evals from real tasks, Tokalator, awesome-applied-ai and data pipelines.Book a call →",
+            "Now building The short version →Agent harnessesEvals from real tasksTokalatorApplied AI, SimplifiedData pipelinesNow building: agent harnesses, evals from real tasks, Tokalator, applied-ai-simplified and data pipelines.Book a call →",
             "Checking our time zones…",
             "Pick a slot on my calendar30 min · instant confirmationBest fit",
             "Suggest a time that suits youAny time zone · I confirm within 24hBest fit",
@@ -78,7 +78,7 @@
             "Shipped",
             "Multi-agent job classification (95% on 14K+ positions) · ProjectLens (64h of pricing work down to 5.5) · enterprise AI rollout (60% less manual work, 200+ colleagues) · metadata platform (300M+ datapoints)",
             "Open source",
-            "Tokalator: token budgets and cost across 17 LLMs · awesome-applied-ai: applied AI, mapped",
+            "Tokalator: token budgets and cost across 17 LLMs · Applied AI, Simplified: applied AI, said plainly",
             "Research",
             "ACM CAIS '26, peer-reviewed · Tokalator and Turkish skill extraction on arXiv · 1 patent pending",
             "Stack",
@@ -99,19 +99,19 @@
             "R&D Researcher",
             "Copy",
             "Download CVSee workResearchWork with meSuggest a time",
-            "Tokalator500+ installs↗awesome-applied-aiApplied AI, mapped↗ProjectLens91% effort cut↓Yapay Zekâ İzi23.3× GenAI in job ads↓"
+            "Tokalator500+ installs↗Applied AI, SimplifiedApplied AI, said plainly↗ProjectLens91% effort cut↓Yapay Zekâ İzi23.3× GenAI in job ads↓"
           ]
         },
         {
           "id": "applied-ai",
           "heading": "Open source",
           "blocks": [
-            "awesome-applied-ai · companion to my book"
+            "Applied AI, Simplified · companion to my book"
           ]
         },
         {
           "id": "applied-ai-mapped",
-          "heading": "Applied AI, mapped.",
+          "heading": "Applied AI, simplified.",
           "blocks": [
             "From what the market asks for to the docs you need to build it: seven steps, in order.",
             "Live from the tracker and the map",
@@ -404,7 +404,7 @@
             "4Languages spokenTurkish native, English C1, Spanish at instructor level, Portuguese basic, Japanese in progress.",
             "400+People taught50+ courses, an 18-hour applied AI programme, university guest lectures, and career mentoring at the TEV Foundation.",
             "3Papers, one peer-reviewedACM member. Writing is how the work gets checked by people who owe me nothing.",
-            "0→1Built unaskedTokalator, awesome-applied-ai and this site all started as problems nobody assigned. The care shows in the small print: where a number is a team estimate rather than a measurement, it says so."
+            "0→1Built unaskedTokalator, applied-ai-simplified and this site all started as problems nobody assigned. The care shows in the small print: where a number is a team estimate rather than a measurement, it says so."
           ]
         },
         {
@@ -574,11 +574,11 @@
           "blocks": [
             "Nov",
             "NewLaunchNov 2026",
-            "awesome-applied-ai grows into the full map: seven steps, five languages",
+            "Applied AI, Simplified grows into the full map: seven steps, five languages",
             "The companion site to my book now walks the whole path in seven steps: a weekly job tracker, roles and skills, the AI-native architect, a tool map of 601 tools you can filter by use case, 17 industry certificates with official links, docs in motion, and feedback. Emerging tools now age out on their own after six months, and every page reads in English, Turkish, Spanish, Dutch and Japanese.",
-            "vfaraji89.github.io/awesome-applied-ai · EN · TR · ES · NL · JA",
+            "vfaraji89.github.io/applied-ai-simplified · EN · TR · ES · NL · JA",
             "Tool mapCertificatesLive site",
-            "awesome-applied-ai",
+            "Applied AI, Simplified",
             "A 90-second animated CV, and a portfolio rebuilt around it",
             "My work as a short film: the tools that keep changing, the languages I work in, talking to agents, problem to data to solution, and 2026 in tokens. The portfolio around it gained a recruiter view, number-led case studies and a playable stack.",
             "vfaraji89.github.io · 1:30",
@@ -598,9 +598,9 @@
             "Case study",
             "Jul",
             "LaunchJul 2026",
-            "awesome-applied-ai: a working map of applied AI for the enterprise",
+            "Applied AI, Simplified: a working map of applied AI for the enterprise",
             "A public taxonomy in six layers: guardrails and governance, evaluation and observability, orchestration, caching, memory and retrieval. With a live tool index, formulas, a dictionary, commands and research for enterprise AI architects.",
-            "vfaraji89.github.io/awesome-applied-ai",
+            "vfaraji89.github.io/applied-ai-simplified",
             "Live site",
             "May",
             "ConferencePublishedMay 2026",

@@ -1,10 +1,10 @@
 {
- "toc_guide": "awesome-applied-ai guide",
+ "toc_guide": "Applied AI, Simplified guide",
  "toc_terms": "Terms and disclaimer",
  "toc_priv": "Privacy",
  "priv_eyebrow": "Privacy &middot; both sites",
  "priv_h1": "Privacy, <mark>in plain words</mark><span class=\"bead-stop\">.</span>",
- "priv_lede": "This notice covers this site and the awesome-applied-ai guide at <a href=\"/awesome-applied-ai/\">/awesome-applied-ai/</a>. Both are personal, non-commercial projects that help people understand applied AI. Last updated 12 November 2026.",
+ "priv_lede": "This notice covers this site and the Applied AI, Simplified guide at <a href=\"/applied-ai-simplified/\">/applied-ai-simplified/</a>. Both are personal, non-commercial projects that help people understand applied AI. Last updated 12 November 2026.",
  "priv_short": "<h2 class=\"sec-h\">In short</h2><ul class=\"lg-list\"><li>No ads, no selling or sharing of data, no tracking across other sites.</li><li>Google Analytics runs only if you say yes. Before that, nothing is sent to Google. You can change your answer at any time with <b>Analytics choice</b> at the bottom of every page.</li><li>The Fit check, the Role check and the corner agent run in your browser. What you paste is never sent anywhere.</li><li>If you write to me or propose a call, I use your details only to answer you.</li></ul>",
  "priv_who": "<h2 class=\"sec-h\">Who is responsible</h2><p class=\"sec-p\">Vahid Faraji, Istanbul, T&uuml;rkiye, is responsible for the personal data described here (the &ldquo;controller&rdquo; under the GDPR, the &ldquo;veri sorumlusu&rdquo; under T&uuml;rkiye&rsquo;s KVKK, Law No. 6698). Contact: <a href=\"mailto:vfaraji89@gmail.com\">vfaraji89@gmail.com</a>.</p>",
  "priv_host": "<h2 class=\"sec-h\">Hosting</h2><p class=\"sec-p\">Both sites are static pages served by GitHub Pages (GitHub, Inc., USA). Like any web server, GitHub receives your IP address and browser details when you open a page and may keep them in its logs for security. I have no access to those logs. See <a href=\"https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement\" target=\"_blank\" rel=\"noopener\">GitHub&rsquo;s privacy statement</a>.</p>",

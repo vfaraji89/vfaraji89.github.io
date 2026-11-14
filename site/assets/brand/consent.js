@@ -84,7 +84,7 @@
         if (/vahid-faraji-cv\.pdf/.test(href)) name = 'cv_download';
         else if (/calendar\.app\.google/.test(href) || a.id === 'hire-book' || /openBooking/.test(a.getAttribute('onclick') || '')) name = 'book_call';
         else if (/marketplace\.visualstudio\.com/.test(href)) name = 'tokalator_install';
-        else if (/github\.com\/vfaraji89\/(tokalator|awesome-applied-ai)\/?$/.test(href)) name = 'github_repo';
+        else if (/github\.com\/vfaraji89\/(tokalator|applied-ai-simplified|awesome-applied-ai)\/?$/.test(href)) name = 'github_repo';
         else if (/^mailto:/.test(href)) name = 'email_click';
         if (name) gtag('event', name, { link_url: href, link_text: (a.textContent || '').trim().slice(0, 80), page_group: document.body.dataset.group || location.pathname });
     }, true);

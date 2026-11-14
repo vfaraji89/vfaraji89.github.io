@@ -561,9 +561,9 @@
    "id": "oss-aai",
    "level": "shipped",
    "date": "2026-07",
-   "title": "awesome-applied-ai: a working map of applied AI",
+   "title": "Applied AI, Simplified: a working map of applied AI",
    "text": "A public, open-source taxonomy of applied AI for enterprise architects in six layers: guardrails and governance, evaluation and observability, orchestration, caching, memory and retrieval, with a live tool index, formulas, a dictionary and research notes.",
-   "url": "https://vfaraji89.github.io/awesome-applied-ai/",
+   "url": "https://vfaraji89.github.io/applied-ai-simplified/",
    "tags": [
     "oss",
     "security",
