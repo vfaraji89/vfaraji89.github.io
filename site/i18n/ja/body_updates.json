@@ -90,5 +90,14 @@
  "yr_r_prs": "プルリクエスト",
  "yr_r_papers": "論文",
  "yr_r_talks": "講演・講座",
- "yr_chip_patent": "+特許1件"
+ "ch_tok_cache": "98%キャッシュ",
+ "ch_tok_sessions": "480セッション",
+ "ch_tok_longest": "最長21日4時間",
+ "ch_com_day": "1日約3.6",
+ "ch_pr_week": "週約4",
+ "ch_pap_patent": "+特許1件",
+ "ch_pap_peer": "査読付き1本",
+ "ch_pap_arxiv": "arXiv 2本",
+ "ch_tal_sj": "サンノゼ",
+ "ch_tal_course": "18時間の講座"
 }

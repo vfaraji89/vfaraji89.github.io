@@ -338,5 +338,15 @@
  "sb_prs": "Pull request",
  "sb_papers": "Makale",
  "sb_talks": "Konuşma ve kurs",
- "sb_more": "Her satırın ayrıntısıyla tam skor tablosu &rarr;"
+ "sb_more": "Her satırın ayrıntısıyla tam skor tablosu &rarr;",
+ "ch_tok_cache": "%98 önbellekten",
+ "ch_tok_sessions": "480 oturum",
+ "ch_tok_longest": "en uzun 21g 4s",
+ "ch_com_day": "günde ~3,6",
+ "ch_pr_week": "haftada ~4",
+ "ch_pap_patent": "+1 patent",
+ "ch_pap_peer": "1 hakemli",
+ "ch_pap_arxiv": "2’si arXiv’de",
+ "ch_tal_sj": "San Jose",
+ "ch_tal_course": "18 saatlik kurs"
 }

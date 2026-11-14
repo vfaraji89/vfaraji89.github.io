@@ -3144,14 +3144,14 @@
         .hire-main { cursor: pointer; border-radius: 6px; outline-offset: 4px; }
         .hire-more { margin-left: 0.5rem; color: var(--rust-deep); letter-spacing: 0.04em; opacity: 0.75; transition: opacity 0.25s; }
         .hire-main:hover .hire-more, .hire-main:focus-visible .hire-more { opacity: 1; }
-        /* four cards in one row on wide screens, two by two on tablets */
+        /* three cards in one row from tablets up */
         .hero-cards .cat-card { margin-top: 0.625rem; }
         @media (min-width: 641px) and (max-width: 1199px) {
-            .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.75rem; }
+            .hero-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 0.75rem; }
             .hero-cards .hire-cta, .hero-cards .cat-card { max-width: none; }
         }
         @media (min-width: 1200px) {
-            .hero-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+            .hero-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
             .hero-cards .cat-card { margin-top: 1.125rem; }
             .hero-cards .hire-cta { flex-wrap: wrap; }
             .hero-cards .hire-cta .hire-btn { margin-left: 0; }
@@ -3442,7 +3442,7 @@
         .sb-team.r { text-align: right; color: var(--rust); }
         .sb-vs { font-family: var(--font-mono, monospace); font-size: 0.625rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 999px; background: var(--ink); color: #fff; }
         .sb-rows { list-style: none; margin: 0; padding: 0; }
-        .sb-row { display: grid; grid-template-columns: 4rem minmax(0, 1fr) 10rem minmax(0, 1fr) 4.5rem 4.2rem; align-items: center; gap: 0.8rem; padding: 0.55rem 1.5rem; }
+        .sb-row { display: grid; grid-template-columns: 4rem minmax(0, 1fr) 10rem minmax(0, 1fr) 4.5rem 8.6rem; align-items: center; gap: 0.8rem; padding: 0.55rem 1.5rem; }
         .sb-row + .sb-row { border-top: 1px solid var(--border); }
         .sb-v { font-size: 1.125rem; font-weight: 800; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
         .sb-v.l { color: var(--text-secondary); } .sb-v.r { text-align: right; color: var(--ink); }
@@ -3459,12 +3459,20 @@
         .sb-more:hover { text-decoration: underline; }
         @media (max-width: 720px) {
             .sb-teams { padding: 0.7rem 1rem 0.3rem; }
-            .sb-row { grid-template-columns: 3.4rem minmax(0, 1fr) 3.8rem; grid-template-areas: "k k k" "l bl ." "r br chip"; gap: 0.3rem 0.6rem; padding: 0.7rem 1rem; }
+            .sb-row { grid-template-columns: 3.4rem minmax(0, 1fr) auto; grid-template-areas: "k k k" "l bl ." "r br chip"; gap: 0.3rem 0.6rem; padding: 0.7rem 1rem; }
             .sb-k { grid-area: k; text-align: left; } .sb-v.l { grid-area: l; } .sb-bar.l { grid-area: bl; justify-content: flex-start; }
             .sb-v.r { grid-area: r; text-align: left; } .sb-bar.r { grid-area: br; } .sb-chip { grid-area: chip; }
             .sb-more { padding: 0.6rem 1rem 0; }
         }
         @media (prefers-reduced-motion: reduce) { .sb-bar i { transition: none; } }
+    </style>
+    <style>
+        /* scoreboard chips as an insight prompter: each fact rolls up into place, like a broadcast counter */
+        .rot { display: inline-grid !important; overflow: hidden; justify-items: center; }
+        .rot > span { grid-area: 1 / 1; white-space: nowrap; transform: translateY(115%); transition: transform 520ms cubic-bezier(.16,1,.3,1); }
+        .rot > span.on { transform: none; }
+        .rot > span.off { transform: translateY(-115%); transition: transform 380ms cubic-bezier(.7,0,.84,0); }
+        @media (prefers-reduced-motion: reduce) { .rot > span { transition: none; } }
     </style>
 </head>
 <body>
@@ -3600,34 +3608,6 @@
                 <li><b>3+1</b><span data-i18n="home.stat_pubs">papers + patent pending</span></li>
             </ul>
             <div class="hero-cards">
-            <div class="hire-cta" id="hire-cta">
-                <span class="hire-phase" aria-hidden="true">
-                    <span class="hire-ph hire-ph-1"></span>
-                    <span class="hire-ph hire-ph-2"></span>
-                    <span class="hire-ph hire-ph-3"></span>
-                    <span class="hire-ph hire-ph-4"></span>
-                </span>
-                <span class="hire-main" role="button" tabindex="0" id="hire-open" aria-controls="recruiter-card" title="Open the short version">
-                <span class="hire-lead" data-i18n-html="body_home.hire_cta_1">Now building <span class="hire-more">The short version &rarr;</span></span>
-                <span class="hire-role ticker" id="hire-role" aria-hidden="true"><span class="tk is-on">Agent harnesses</span><span class="tk">Evals from real tasks</span><span class="tk">Tokalator</span><span class="tk">Applied AI, Simplified</span><span class="tk">Data pipelines</span></span>
-                </span>
-                <span class="sr-only" data-i18n-html="body_home.hire_cta_2">Now building: agent harnesses, evals from real tasks, Tokalator, applied-ai-simplified and data pipelines.</span>
-                <a href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener" class="hire-btn" id="hire-book" aria-haspopup="true" aria-expanded="false" aria-controls="book-pick"><span class="live-bead"></span>Book a call <span aria-hidden="true">&rarr;</span></a>
-                <div class="book-pick" id="book-pick" role="dialog" aria-label="Choose how to book" hidden>
-                    <p class="bp-fit" id="bp-fit">Checking our time zones&hellip;</p>
-                    <a class="bp-opt" id="bp-cal" href="https://calendar.app.google/KWQg6gBjXetC4ofp9" target="_blank" rel="noopener">
-                        <svg class="ab" aria-hidden="true"><use href="#ab-cal"/></svg>
-                        <span class="bp-txt" data-i18n-html="body_home.book_pick_1"><b>Pick a slot on my calendar</b><em>30 min &middot; instant confirmation</em></span>
-                        <span class="bp-tag" data-i18n-html="body_home.book_pick_2">Best fit</span>
-                    </a>
-                    <button type="button" class="bp-opt" id="bp-suggest">
-                        <svg class="ab" aria-hidden="true"><use href="#ab-globe"/></svg>
-                        <span class="bp-txt" data-i18n-html="body_home.book_pick_3"><b>Suggest a time that suits you</b><em>Any time zone &middot; I confirm within 24h</em></span>
-                        <span class="bp-tag" data-i18n-html="body_home.book_pick_4">Best fit</span>
-                    </button>
-                    <p class="bp-clock"><span class="tz-dot" aria-hidden="true"></span>Istanbul <b id="bp-ist">--:--</b> &middot; You <b id="bp-you">--:--</b></p>
-                </div>
-            </div>
             <a class="upd-card cat-card" href="updates.html">
                 <span class="upd-stack" aria-hidden="true">
                     <img width="348" height="184" src="assets/photos/techcaeer-training.webp" alt="" loading="lazy">
@@ -3984,11 +3964,11 @@
             <div class="sb-board abacus-frame">
                 <div class="sb-teams" aria-hidden="true"><span class="sb-team l">2025</span><span class="sb-vs">vs</span><span class="sb-team r">2026</span></div>
                 <ul class="sb-rows">
-                <li class="sb-row"><b class="sb-v l">~1B</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.017"></i></span><span class="sb-k" data-i18n-html="body_home.sb_tokens">Tokens with Claude Code</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">58.0B</b><em class="sb-chip">&times;58</em></li>
-                <li class="sb-row"><b class="sb-v l">83</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.073"></i></span><span class="sb-k" data-i18n-html="body_home.sb_commits">Public commits</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">1,136</b><em class="sb-chip">&times;14</em></li>
-                <li class="sb-row"><b class="sb-v l">1</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.005"></i></span><span class="sb-k" data-i18n-html="body_home.sb_prs">Pull requests</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">198</b><em class="sb-chip">&times;198</em></li>
-                <li class="sb-row"><b class="sb-v l">0</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0"></i></span><span class="sb-k" data-i18n-html="body_home.sb_papers">Papers</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">3</b><em class="sb-chip">+1 patent</em></li>
-                <li class="sb-row"><b class="sb-v l">2</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.667"></i></span><span class="sb-k" data-i18n-html="body_home.sb_talks">Talks and courses</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">3</b><em class="sb-chip">+1</em></li>
+                <li class="sb-row"><b class="sb-v l">~1B</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.017"></i></span><span class="sb-k" data-i18n-html="body_home.sb_tokens">Tokens with Claude Code</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">58.0B</b><em class="sb-chip rot" aria-hidden="true"><span class="on">&times;58</span><span data-i18n-html="body_home.ch_tok_cache">98% from cache</span><span data-i18n-html="body_home.ch_tok_sessions">480 sessions</span><span data-i18n-html="body_home.ch_tok_longest">longest 21d 4h</span></em></li>
+                <li class="sb-row"><b class="sb-v l">83</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.073"></i></span><span class="sb-k" data-i18n-html="body_home.sb_commits">Public commits</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">1,136</b><em class="sb-chip rot" aria-hidden="true"><span class="on">&times;14</span><span data-i18n-html="body_home.ch_com_day">~3.6 a day</span></em></li>
+                <li class="sb-row"><b class="sb-v l">1</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.005"></i></span><span class="sb-k" data-i18n-html="body_home.sb_prs">Pull requests</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">198</b><em class="sb-chip rot" aria-hidden="true"><span class="on">&times;198</span><span>1 &rarr; 198</span><span data-i18n-html="body_home.ch_pr_week">~4 a week</span></em></li>
+                <li class="sb-row"><b class="sb-v l">0</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0"></i></span><span class="sb-k" data-i18n-html="body_home.sb_papers">Papers</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">3</b><em class="sb-chip rot" aria-hidden="true"><span class="on" data-i18n-html="body_home.ch_pap_patent">+1 patent</span><span data-i18n-html="body_home.ch_pap_peer">1 peer-reviewed</span><span data-i18n-html="body_home.ch_pap_arxiv">2 on arXiv</span></em></li>
+                <li class="sb-row"><b class="sb-v l">2</b><span class="sb-bar l" aria-hidden="true"><i style="--w:0.667"></i></span><span class="sb-k" data-i18n-html="body_home.sb_talks">Talks and courses</span><span class="sb-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="sb-v r">3</b><em class="sb-chip rot" aria-hidden="true"><span class="on">+1</span><span data-i18n-html="body_home.ch_tal_sj">San Jose</span><span data-i18n-html="body_home.ch_tal_course">18h course</span></em></li>
                 </ul>
                 <a class="sb-more" href="updates.html#year" data-i18n-html="body_home.sb_more">The full scoreboard, with the detail behind each row &rarr;</a>
             </div>
@@ -5797,6 +5777,30 @@
             Object.keys(byId).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
         }
         if (season) new IntersectionObserver(function (es, o) { es.forEach(function (e) { if (e.isIntersecting) { season.classList.add('on'); o.disconnect(); } }); }, { threshold: 0.3 }).observe(season);
+    })();
+    </script>
+    <script>
+    /* The scoreboard chips take turns showing their next fact, one row after another, while on screen. */
+    (function () {
+        if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var chips = Array.prototype.slice.call(document.querySelectorAll('.rot')).filter(function (c) { return c.children.length > 1; });
+        if (!chips.length) return;
+        var seen = new Set();
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); }); });
+            chips.forEach(function (c) { io.observe(c); });
+        } else chips.forEach(function (c) { seen.add(c); });
+        function step(c) {
+            var s = c.children, i = 0;
+            for (var k = 0; k < s.length; k++) if (s[k].classList.contains('on')) i = k;
+            var j = (i + 1) % s.length;
+            s[i].classList.remove('on'); s[i].classList.add('off');
+            s[j].classList.remove('off'); s[j].classList.add('on');
+            setTimeout(function () { s[i].classList.remove('off'); }, 420);
+        }
+        setInterval(function () {
+            chips.forEach(function (c, n) { if (seen.has(c)) setTimeout(function () { step(c); }, n * 260); });
+        }, 3600);
     })();
     </script>
 </body>

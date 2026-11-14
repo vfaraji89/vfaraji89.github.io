@@ -90,5 +90,14 @@
  "yr_r_prs": "Pull requests",
  "yr_r_papers": "Papers",
  "yr_r_talks": "Talks en cursussen",
- "yr_chip_patent": "+1 octrooi"
+ "ch_tok_cache": "98% uit cache",
+ "ch_tok_sessions": "480 sessies",
+ "ch_tok_longest": "langste 21d 4u",
+ "ch_com_day": "~3,6 per dag",
+ "ch_pr_week": "~4 per week",
+ "ch_pap_patent": "+1 octrooi",
+ "ch_pap_peer": "1 peer-reviewed",
+ "ch_pap_arxiv": "2 op arXiv",
+ "ch_tal_sj": "San Jose",
+ "ch_tal_course": "cursus van 18 uur"
 }

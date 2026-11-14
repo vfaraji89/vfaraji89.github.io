@@ -90,5 +90,14 @@
  "yr_r_prs": "Pull requests",
  "yr_r_papers": "Artículos",
  "yr_r_talks": "Charlas y cursos",
- "yr_chip_patent": "+1 patente"
+ "ch_tok_cache": "98 % de caché",
+ "ch_tok_sessions": "480 sesiones",
+ "ch_tok_longest": "la más larga 21 d 4 h",
+ "ch_com_day": "~3,6 al día",
+ "ch_pr_week": "~4 por semana",
+ "ch_pap_patent": "+1 patente",
+ "ch_pap_peer": "1 revisado por pares",
+ "ch_pap_arxiv": "2 en arXiv",
+ "ch_tal_sj": "San José",
+ "ch_tal_course": "curso de 18 h"
 }

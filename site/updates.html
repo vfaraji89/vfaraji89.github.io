@@ -977,7 +977,7 @@
         .yr-team.r { text-align: right; color: var(--rust, #e0301e); }
         .yr-vs { font-family: var(--font-mono, monospace); font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.25rem 0.7rem; border-radius: 999px; background: var(--ink, #1c1c1e); color: #fff; }
         .yr-tiles { display: grid; }
-        .yr-tile { position: relative; display: grid; grid-template-columns: 5.5rem minmax(0, 1fr) 11rem minmax(0, 1fr) 5.5rem 4.6rem; align-items: center; gap: 0.9rem;
+        .yr-tile { position: relative; display: grid; grid-template-columns: 5.5rem minmax(0, 1fr) 11rem minmax(0, 1fr) 5.5rem 9rem; align-items: center; gap: 0.9rem;
             width: 100%; padding: 0.7rem 1.6rem; border: 0; background: none; font: inherit; color: var(--ink, #1c1c1e); text-align: left; cursor: pointer; transition: background 0.25s; }
         .yr-tile + .yr-tile { border-top: 1px solid var(--ctl-line, #ececef); }
         .yr-tile:hover { background: #fdf8f6; }
@@ -1033,7 +1033,7 @@
         .yr-list b { display: inline-block; min-width: 2.6rem; color: var(--ink, #1c1c1e); font-variant-numeric: tabular-nums; }
         @media (max-width: 860px) {
             .yr-teams { padding: 0.8rem 1rem 0.4rem; }
-            .yr-tile { grid-template-columns: 3.4rem minmax(0, 1fr) 3.8rem; grid-template-areas: "k k k" "l bl ." "r br chip"; gap: 0.35rem 0.6rem; padding: 0.75rem 1rem; }
+            .yr-tile { grid-template-columns: 3.4rem minmax(0, 1fr) auto; grid-template-areas: "k k k" "l bl ." "r br chip"; gap: 0.35rem 0.6rem; padding: 0.75rem 1rem; }
             .yr-tile .yr-k { grid-area: k; text-align: left; }
             .yr-tile .yr-v.l { grid-area: l; } .yr-tile .yr-bar.l { grid-area: bl; justify-content: flex-start; }
             .yr-tile .yr-v.r { grid-area: r; text-align: left; } .yr-tile .yr-bar.r { grid-area: br; } .yr-tile .yr-chip { grid-area: chip; }
@@ -1047,6 +1047,14 @@
         }
     </style>
     <script src="assets/brand/odometer.js" defer></script>
+    <style>
+        /* scoreboard chips as an insight prompter: each fact rolls up into place, like a broadcast counter */
+        .rot { display: inline-grid !important; overflow: hidden; justify-items: center; }
+        .rot > span { grid-area: 1 / 1; white-space: nowrap; transform: translateY(115%); transition: transform 520ms cubic-bezier(.16,1,.3,1); }
+        .rot > span.on { transform: none; }
+        .rot > span.off { transform: translateY(-115%); transition: transform 380ms cubic-bezier(.7,0,.84,0); }
+        @media (prefers-reduced-motion: reduce) { .rot > span { transition: none; } }
+    </style>
 </head>
 <body>
     <div class="load-bar" id="load-bar" aria-hidden="true"><span></span></div>
@@ -1101,11 +1109,11 @@
             <div class="yr-board">
                 <div class="yr-teams" aria-hidden="true"><span class="yr-team l">2025</span><span class="yr-vs">vs</span><span class="yr-team r">2026</span></div>
             <div class="yr-tiles" role="tablist" aria-label="2025 against 2026">
-                <button type="button" class="yr-tile" role="tab" id="yr-t-tokens" aria-controls="yr-p-tokens" aria-selected="true" data-k="tokens"><b class="yr-v l">~1B</b><span class="yr-bar l" aria-hidden="true"><i style="--w:0.017"></i></span><span class="yr-k" data-i18n-html="body_updates.yr_r_tokens">Tokens with Claude Code</span><span class="yr-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="yr-v r yr-n">58.0B</b><em class="yr-chip">&times;58</em><em class="yr-run" aria-hidden="true"></em></button>
-                <button type="button" class="yr-tile" role="tab" id="yr-t-commits" aria-controls="yr-p-commits" aria-selected="false" data-k="commits"><b class="yr-v l">83</b><span class="yr-bar l" aria-hidden="true"><i style="--w:0.073"></i></span><span class="yr-k" data-i18n-html="body_updates.yr_r_commits">Public commits</span><span class="yr-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="yr-v r yr-n">1,136</b><em class="yr-chip">&times;14</em><em class="yr-run" aria-hidden="true"></em></button>
-                <button type="button" class="yr-tile" role="tab" id="yr-t-prs" aria-controls="yr-p-commits" aria-selected="false" data-k="prs"><b class="yr-v l">1</b><span class="yr-bar l" aria-hidden="true"><i style="--w:0.005"></i></span><span class="yr-k" data-i18n-html="body_updates.yr_r_prs">Pull requests</span><span class="yr-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="yr-v r yr-n">198</b><em class="yr-chip">&times;198</em><em class="yr-run" aria-hidden="true"></em></button>
-                <button type="button" class="yr-tile" role="tab" id="yr-t-papers" aria-controls="yr-p-papers" aria-selected="false" data-k="papers"><b class="yr-v l">0</b><span class="yr-bar l" aria-hidden="true"><i style="--w:0"></i></span><span class="yr-k" data-i18n-html="body_updates.yr_r_papers">Papers</span><span class="yr-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="yr-v r yr-n">3</b><em class="yr-chip" data-i18n-html="body_updates.yr_chip_patent">+1 patent</em><em class="yr-run" aria-hidden="true"></em></button>
-                <button type="button" class="yr-tile" role="tab" id="yr-t-talks" aria-controls="yr-p-talks" aria-selected="false" data-k="talks"><b class="yr-v l">2</b><span class="yr-bar l" aria-hidden="true"><i style="--w:0.667"></i></span><span class="yr-k" data-i18n-html="body_updates.yr_r_talks">Talks and courses</span><span class="yr-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="yr-v r yr-n">3</b><em class="yr-chip">+1</em><em class="yr-run" aria-hidden="true"></em></button>
+                <button type="button" class="yr-tile" role="tab" id="yr-t-tokens" aria-controls="yr-p-tokens" aria-selected="true" data-k="tokens"><b class="yr-v l">~1B</b><span class="yr-bar l" aria-hidden="true"><i style="--w:0.017"></i></span><span class="yr-k" data-i18n-html="body_updates.yr_r_tokens">Tokens with Claude Code</span><span class="yr-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="yr-v r yr-n">58.0B</b><em class="yr-chip rot" aria-hidden="true"><span class="on">&times;58</span><span data-i18n-html="body_updates.ch_tok_cache">98% from cache</span><span data-i18n-html="body_updates.ch_tok_sessions">480 sessions</span><span data-i18n-html="body_updates.ch_tok_longest">longest 21d 4h</span></em><em class="yr-run" aria-hidden="true"></em></button>
+                <button type="button" class="yr-tile" role="tab" id="yr-t-commits" aria-controls="yr-p-commits" aria-selected="false" data-k="commits"><b class="yr-v l">83</b><span class="yr-bar l" aria-hidden="true"><i style="--w:0.073"></i></span><span class="yr-k" data-i18n-html="body_updates.yr_r_commits">Public commits</span><span class="yr-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="yr-v r yr-n">1,136</b><em class="yr-chip rot" aria-hidden="true"><span class="on">&times;14</span><span data-i18n-html="body_updates.ch_com_day">~3.6 a day</span></em><em class="yr-run" aria-hidden="true"></em></button>
+                <button type="button" class="yr-tile" role="tab" id="yr-t-prs" aria-controls="yr-p-commits" aria-selected="false" data-k="prs"><b class="yr-v l">1</b><span class="yr-bar l" aria-hidden="true"><i style="--w:0.005"></i></span><span class="yr-k" data-i18n-html="body_updates.yr_r_prs">Pull requests</span><span class="yr-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="yr-v r yr-n">198</b><em class="yr-chip rot" aria-hidden="true"><span class="on">&times;198</span><span>1 &rarr; 198</span><span data-i18n-html="body_updates.ch_pr_week">~4 a week</span></em><em class="yr-run" aria-hidden="true"></em></button>
+                <button type="button" class="yr-tile" role="tab" id="yr-t-papers" aria-controls="yr-p-papers" aria-selected="false" data-k="papers"><b class="yr-v l">0</b><span class="yr-bar l" aria-hidden="true"><i style="--w:0"></i></span><span class="yr-k" data-i18n-html="body_updates.yr_r_papers">Papers</span><span class="yr-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="yr-v r yr-n">3</b><em class="yr-chip rot" aria-hidden="true"><span class="on" data-i18n-html="body_updates.ch_pap_patent">+1 patent</span><span data-i18n-html="body_updates.ch_pap_peer">1 peer-reviewed</span><span data-i18n-html="body_updates.ch_pap_arxiv">2 on arXiv</span></em><em class="yr-run" aria-hidden="true"></em></button>
+                <button type="button" class="yr-tile" role="tab" id="yr-t-talks" aria-controls="yr-p-talks" aria-selected="false" data-k="talks"><b class="yr-v l">2</b><span class="yr-bar l" aria-hidden="true"><i style="--w:0.667"></i></span><span class="yr-k" data-i18n-html="body_updates.yr_r_talks">Talks and courses</span><span class="yr-bar r" aria-hidden="true"><i style="--w:1"></i></span><b class="yr-v r yr-n">3</b><em class="yr-chip rot" aria-hidden="true"><span class="on">+1</span><span data-i18n-html="body_updates.ch_tal_sj">San Jose</span><span data-i18n-html="body_updates.ch_tal_course">18h course</span></em><em class="yr-run" aria-hidden="true"></em></button>
             </div>
             </div>
             <div class="yr-lt">
@@ -1543,6 +1551,30 @@
             new IntersectionObserver(function (es) { es.forEach(function (e) { seen = e.isIntersecting; if (seen) { root.classList.add('on'); next(); } else clearTimeout(timer); }); }, { threshold: 0.3 }).observe(root);
         } else { root.classList.add('on');
         }
+    })();
+    </script>
+    <script>
+    /* The scoreboard chips take turns showing their next fact, one row after another, while on screen. */
+    (function () {
+        if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var chips = Array.prototype.slice.call(document.querySelectorAll('.rot')).filter(function (c) { return c.children.length > 1; });
+        if (!chips.length) return;
+        var seen = new Set();
+        if ('IntersectionObserver' in window) {
+            var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); }); });
+            chips.forEach(function (c) { io.observe(c); });
+        } else chips.forEach(function (c) { seen.add(c); });
+        function step(c) {
+            var s = c.children, i = 0;
+            for (var k = 0; k < s.length; k++) if (s[k].classList.contains('on')) i = k;
+            var j = (i + 1) % s.length;
+            s[i].classList.remove('on'); s[i].classList.add('off');
+            s[j].classList.remove('off'); s[j].classList.add('on');
+            setTimeout(function () { s[i].classList.remove('off'); }, 420);
+        }
+        setInterval(function () {
+            chips.forEach(function (c, n) { if (seen.has(c)) setTimeout(function () { step(c); }, n * 260); });
+        }, 3600);
     })();
     </script>
 </body>
