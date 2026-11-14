@@ -5810,7 +5810,7 @@
                 b.textContent = fmt(Math.round(to * e), pct); if (p < 1) requestAnimationFrame(step); })(performance.now());
         });
     }
-    fetch('/awesome-applied-ai/pulse.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+    fetch('/applied-ai-simplified/pulse.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
         if (!d || !(d.processed > 0)) return; data = d; box.hidden = false; week();
         if (d.tools > 0) box.querySelectorAll('[data-map]').forEach(function (el) { el.hidden = false; });
         function tip() { var n = box.querySelector('.ap-note'), dot = box.querySelector('.ap-live'); if (n && dot) { dot.title = n.textContent; dot.setAttribute('aria-label', n.textContent); dot.removeAttribute('aria-hidden'); dot.setAttribute('role', 'img'); } }
