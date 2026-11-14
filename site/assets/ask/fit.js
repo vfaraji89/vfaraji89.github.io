@@ -114,7 +114,7 @@
             row.appendChild(el('b', 'v r', String(r[2])));
             mc.appendChild(row);
         });
-        mc.appendChild(el('p', 'fx-mc-foot', T('mc_foot', '{u} unchecked lines · 0 model calls · {ms} ms', { u: b.unchecked || 0, ms: b.ms })));
+        mc.appendChild(el('p', 'fx-mc-foot', T('mc_foot', '{u} unchecked lines · {ms} ms', { u: b.unchecked || 0, ms: b.ms })));
         requestAnimationFrame(function () { requestAnimationFrame(function () { mc.classList.add('on'); }); });
     }
     function setCenter(c) {
@@ -289,7 +289,7 @@
 
         var rc = el('p', 'fx-receipt');
         (ai && ai.receipt ? [ai.receipt.model, '$' + (ai.receipt.cost_usd || 0).toFixed(4), (ai.receipt.ms / 1000).toFixed(1) + ' s']
-            : [T('rc_rules', 'Rules in your browser'), T('rc_calls', '0 model calls'), '$0.00', b.ms + ' ms', T('rc_private', 'nothing you paste leaves this page')]).forEach(function (x) { rc.appendChild(el('span', null, x)); });
+            : ['$0.00', b.ms + ' ms']).forEach(function (x) { rc.appendChild(el('span', null, x)); });
         out.appendChild(rc);
         applyFilter();
     }

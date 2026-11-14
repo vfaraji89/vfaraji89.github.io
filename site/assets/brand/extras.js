@@ -136,60 +136,12 @@
                 out.appendChild(ul);
             }
             var tokens = Math.round(jd.length / 4);
-            out.appendChild(el('p', 'fit-receipt', '~' + tokens.toLocaleString('en') + ' tokens read · 0 model calls · $0.00 · keyword match, run in your browser'));
+            out.appendChild(el('p', 'fit-receipt', '~' + tokens.toLocaleString('en') + ' tokens read'));
             if (window.gtag) gtag('event', 'role_fit_check');
         });
     })();
 
-    // ---- 3. case stories -----------------------------------------------------
-    (function stories() {
-        var withRows = cases.filter(function (c) { return c.rows.problem && c.rows.result; });
-        if (!withRows.length || typeof HTMLDialogElement === 'undefined') return;
-        var dlg = el('dialog', 'story-dlg'); dlg.setAttribute('aria-label', 'Case story');
-        var stage = el('div', 'story-stage'), bar = el('div', 'story-bar'), close = el('button', 'story-close', 'Close');
-        close.type = 'button'; dlg.appendChild(bar); dlg.appendChild(stage); dlg.appendChild(close);
-        document.body.appendChild(dlg);
-        var timer = 0;
-        function stop() { clearTimeout(timer); }
-        close.addEventListener('click', function () { dlg.close(); });
-        dlg.addEventListener('close', stop);
-        dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
-        function play(c) {
-            var beats = [
-                ['The problem', c.rows.problem],
-                ['What I built', c.rows.approach || ''],
-                ['The result', c.rows.result, c.stat]
-            ].filter(function (b) { return b[1]; });
-            bar.textContent = ''; beats.forEach(function () { bar.appendChild(el('i')); });
-            var i = -1;
-            function next() {
-                i++;
-                if (i >= beats.length) { return; }
-                $$('i', bar).forEach(function (d, k) { d.className = k < i ? 'done' : k === i ? 'on' : ''; });
-                stage.textContent = '';
-                var beat = el('div', 'story-beat');
-                beat.appendChild(el('span', 'story-k', c.short + ' · ' + beats[i][0]));
-                if (beats[i][2]) { var big = el('p', 'story-num'); big.appendChild(el('b', null, beats[i][2].n)); big.appendChild(document.createTextNode(' ' + beats[i][2].l)); beat.appendChild(big); }
-                beat.appendChild(el('p', 'story-t', beats[i][1]));
-                var nav = el('div', 'story-nav');
-                if (i < beats.length - 1) { var nx = el('button', 'story-next', 'Next'); nx.type = 'button'; nx.addEventListener('click', function () { stop(); next(); }); nav.appendChild(nx); }
-                else { var go = el('button', 'story-next', 'Open the case'); go.type = 'button'; go.addEventListener('click', function () { dlg.close(); goCase(c.id); }); nav.appendChild(go); }
-                beat.appendChild(nav);
-                stage.appendChild(beat);
-                stop();
-                if (!reduce && i < beats.length - 1) timer = setTimeout(next, Math.min(9000, 2600 + beats[i][1].length * 38));
-            }
-            dlg.showModal(); next();
-            if (window.gtag) gtag('event', 'case_story');
-        }
-        withRows.forEach(function (c) {
-            var meta = $('.case-meta', c.el); if (!meta) return;
-            var b = el('button', 'case-story-btn', 'Play story'); b.type = 'button';
-            b.setAttribute('aria-label', 'Play the story of ' + c.short);
-            b.addEventListener('click', function () { play(c); });
-            meta.appendChild(b);
-        });
-    })();
+    // ---- 3. case stories: now played inline on each card (assets/brand/case-story.js)
 
     // ---- 4. tailored links: ?hire=Company&role=agentic ------------------------
     (function tailored() {

@@ -106,7 +106,7 @@
             var rc = r.receipt;
             card.appendChild(receipt([rc.model + (rc.fallback_model ? ' (fallback)' : ''), rc.input_tokens.toLocaleString('en') + ' in / ' + rc.output_tokens.toLocaleString('en') + ' out', money(rc.cost_usd), (rc.ms / 1000).toFixed(1) + ' s', r.sources.length + ' cited'], note));
         } else {
-            card.appendChild(receipt(['Retrieval in your browser', '0 model calls', '$0.00', r.ms + ' ms', '~' + (r.tokensRead || 0).toLocaleString('en') + ' tokens read', r.sources.length + ' sources'], note));
+            card.appendChild(receipt(['$0.00', r.ms + ' ms', r.sources.length + ' sources'], note));
         }
         askOut.appendChild(card);
     }
@@ -246,7 +246,7 @@
             var rc = ai.receipt;
             fitOut.appendChild(receipt([rc.model, rc.input_tokens.toLocaleString('en') + ' in / ' + rc.output_tokens.toLocaleString('en') + ' out', money(rc.cost_usd), (rc.ms / 1000).toFixed(1) + ' s', (ai.grounding ? ai.grounding.invented_ids_dropped : 0) + ' invented sources dropped'], note));
         } else {
-            fitOut.appendChild(receipt(['Rules in your browser', '0 model calls', '$0.00', b.ms + ' ms', '~' + b.tokensRead.toLocaleString('en') + ' tokens read'], note || 'Nothing you paste leaves this page.'));
+            fitOut.appendChild(receipt(['$0.00', b.ms + ' ms'], note));
         }
     }
 
@@ -281,6 +281,6 @@
     else if (q && window.vfAsk) window.vfAsk(q);
     var mode = $('#mode-line');
     if (mode) mode.textContent = askForm
-        ? (ENDPOINT ? 'Answers are written by Claude from the evidence, with a cost receipt. If Claude is unavailable, retrieval answers instead.' : 'Answers are quoted from the evidence in your browser: no model, no cost, nothing sent anywhere.')
-        : (ENDPOINT ? 'Scored by rules over the evidence; Claude adds a written brief. Nothing is stored.' : 'Scored in your browser by rules over the evidence. Nothing you paste leaves this page.');
+        ? (ENDPOINT ? 'Written by Claude from the evidence, with sources.' : 'Quoted from the evidence, with sources.')
+        : (ENDPOINT ? 'Scored against the evidence, with a written brief.' : 'Scored against the evidence.');
 })();

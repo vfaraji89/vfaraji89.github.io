@@ -44,9 +44,6 @@
  "unscored_many": "+ {n} lines with no skill to check",
  "sec_gaps": "Gaps",
  "sec_gaps_sub": "no evidence on this site",
- "rc_rules": "Rules in your browser",
- "rc_calls": "0 model calls",
- "rc_private": "nothing you paste leaves this page",
  "cap_fit_max": "fit · max {cap}",
  "score_cap_tip": "Capped at {cap}: no profile is a perfect fit for a role.",
  "loop_read": "Read",
@@ -60,5 +57,5 @@
  "mc_must": "Must-haves",
  "mc_years": "Years",
  "mc_prod": "In production",
- "mc_foot": "{u} unchecked lines · 0 model calls · {ms} ms"
+ "mc_foot": "{u} unchecked lines · {ms} ms"
 }

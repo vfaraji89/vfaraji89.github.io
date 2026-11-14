@@ -46,9 +46,6 @@
  "unscored_many": "＋確認できるスキルのない行が{n}行",
  "sec_gaps": "不足点",
  "sec_gaps_sub": "このサイトに根拠なし",
- "rc_rules": "ブラウザー内のルールで判定",
- "rc_calls": "モデル呼び出し0回",
- "rc_private": "貼り付けた内容はこのページの外に出ません",
  "cap_fit_max": "適合度・最大{cap}",
  "score_cap_tip": "上限は{cap}:どのプロフィールも職務に完全には一致しません。",
  "loop_read": "読む",
@@ -62,7 +59,7 @@
  "mc_must": "必須要件",
  "mc_years": "年数",
  "mc_prod": "本番運用",
- "mc_foot": "未確認の行 {u} · モデル呼び出し 0 · {ms} ms",
+ "mc_foot": "未確認の行 {u} · {ms} ms",
  "_review": {
   "_how": "Vahid: judgment calls to confirm. Delete a line once you agree, or change the value it names.",
   "legend_strong": "Evidence levels as 十分・一部・不足 (sufficient, partial, missing).",

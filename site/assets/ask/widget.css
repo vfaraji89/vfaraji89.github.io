@@ -37,16 +37,24 @@
 
 /* panel */
 .vfa-panel {
-    display: none; flex-direction: column; width: 380px; height: min(600px, calc(100vh - 40px));
+    display: none; flex-direction: column; width: 360px; height: auto; max-height: min(560px, calc(100vh - 40px));
     border-radius: 18px; background: #fff; border: 1px solid var(--a-line); overflow: hidden;
-    
     transform-origin: bottom right; animation: vfa-in 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .vfa.is-open .vfa-panel { display: flex; }
 @keyframes vfa-in { from { opacity: 0; transform: translateY(10px) scale(0.97); } to { opacity: 1; transform: none; } }
+/* phones: a floating card that leaves the page in sight, not a full-screen sheet */
 @media (max-width: 640px) {
-    .vfa.is-open { left: 0; right: 0; bottom: 0; }
-    .vfa-panel { width: 100%; height: 88vh; border-radius: 18px 18px 0 0; transform-origin: bottom center; }
+    .vfa.is-open { left: 10px; right: 10px; bottom: 10px; }
+    .vfa-panel { width: 100%; max-height: min(520px, 66vh); max-height: min(520px, 66dvh); border-radius: 16px; transform-origin: bottom right; }
+    .vfa .vfa-head { padding: 0.5rem 0.5rem 0.5rem 0.7rem; }
+    .vfa .vfa-body { padding: 0.7rem; gap: 0.7rem; }
+    .vfa .vfa-chips { flex-wrap: nowrap; overflow-x: auto; margin-right: -0.7rem; padding-right: 0.7rem; scrollbar-width: none; }
+    .vfa .vfa-chips::-webkit-scrollbar { display: none; }
+    .vfa .vfa-chip { flex: none; white-space: nowrap; }
+    .vfa .vfa-foot { padding: 0.5rem; }
+    .vfa .vfa-meta { display: none; }
+    .vfa .vfa-form input { font-size: 16px; }   /* 16px stops iOS zooming into the field */
 }
 .vfa-head { display: flex; align-items: center; gap: 0.6rem; padding: 0.75rem 0.75rem 0.75rem 0.9rem; border-bottom: 1px solid var(--a-line); background: var(--a-paper); }
 .vfa-head .vfa-abacus { width: 30px; height: 30px; }
@@ -70,19 +78,31 @@
 
 .vfa-q { align-self: flex-end; max-width: 85%; padding: 0.5rem 0.75rem; border-radius: 14px 14px 4px 14px; background: var(--a-ink); color: #fff; font-size: 0.8125rem; line-height: 1.45; }
 
-/* the pipeline: one row per step, a bead on a rod marks progress */
-.vfa-run { border: 1px solid var(--a-line); border-radius: 14px; overflow: hidden; }
-.vfa-steps { list-style: none; margin: 0; padding: 0.6rem 0.75rem 0.4rem; position: relative; }
-.vfa-steps::before { content: ""; position: absolute; left: 1.15rem; top: 0.9rem; bottom: 0.9rem; width: 1.5px; background: var(--a-line); }
-.vfa-step { position: relative; display: grid; grid-template-columns: 0.8rem 1fr; gap: 0.6rem; padding: 0.3rem 0; opacity: 0.35; transition: opacity 0.25s; }
+/* the run: one tool call per step, as an agent shows them; tap a call to see its output */
+.vfa-run { border: 1px solid var(--a-line); border-radius: 12px; overflow: hidden; }
+.vfa-steps { list-style: none; margin: 0; padding: 0.25rem 0; }
+.vfa-step { opacity: 0.4; transition: opacity 0.25s; }
 .vfa-step.on, .vfa-step.done { opacity: 1; }
-.vfa-step .dot { margin-top: 0.3rem; width: 0.8rem; height: 0.8rem; border-radius: 50%; border: 1.5px solid rgba(28,28,30,0.35); background: #fff; position: relative; z-index: 1; }
-.vfa-step.on .dot { border-color: var(--a-rust); animation: vfa-pulse 0.9s ease-in-out infinite alternate; }
-.vfa-step.done .dot { background: var(--a-ink); border-color: var(--a-ink); }
-.vfa-step.done.final .dot { background: var(--a-rust); border-color: var(--a-rust); }
-@keyframes vfa-pulse { from {  } to { outline: 5px solid rgba(224,48,30,0); outline-offset: 0; } }
-.vfa-step b { display: block; font-size: 0.75rem; font-weight: 650; }
-.vfa-step .det { font-family: var(--a-mono); font-size: 0.625rem; line-height: 1.5; color: var(--a-muted); }
+.vfa-step + .vfa-step { border-top: 1px dashed rgba(28,28,30,0.1); }
+.vfa-call > summary { list-style: none; display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; align-items: center; gap: 0.5rem; padding: 0.4rem 0.7rem; cursor: pointer; font-family: var(--a-mono); font-size: 0.65rem; }
+.vfa-call > summary::-webkit-details-marker { display: none; }
+.vfa-call > summary:focus-visible { outline: 2px solid var(--a-rust); outline-offset: -2px; }
+.vfa-step.empty .vfa-call > summary { cursor: default; }
+.vfa-call .sig { background: none; border: 0; padding: 0; border-radius: 0; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--a-muted); font: inherit; }
+.vfa-call .sig b { color: var(--a-ink); font-weight: 600; }
+.vfa-call .res { padding: 1px 6px; border-radius: 4px; background: #f3f3f4; color: #3a3a3c; white-space: nowrap; }
+.vfa-step.on .res { background: var(--a-paper); color: var(--a-deep); }
+.vfa-step.done.final .res { background: var(--a-mark); color: var(--a-deep); }
+.vfa-step.no .res { background: #fff; color: var(--a-deep); border: 1px dashed var(--a-deep); }
+/* status: a bead, white while waiting, red while running, ink when done */
+.vfa-call .st { width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(circle at 34% 30%, #fff 0%, #f6f2ee 40%, #ddd5cd 100%); border: 1px solid rgba(28,28,30,0.18); }
+.vfa-step.on .st { border: 0; background: radial-gradient(circle at 34% 30%, #ffb3a8 0%, #ff8f80 12%, #e0301e 48%, #9e1a0c 100%); animation: vfa-run 0.8s ease-in-out infinite alternate; }
+.vfa-step.done .st { border: 0; background: radial-gradient(circle at 34% 30%, #8a8a90 0%, #4a4a50 18%, #1c1c1e 55%, #000 100%); }
+.vfa-step.done.final .st { background: radial-gradient(circle at 34% 30%, #ffb3a8 0%, #ff8f80 12%, #e0301e 48%, #9e1a0c 100%); }
+@keyframes vfa-run { from { transform: scale(0.8); } to { transform: scale(1.1); } }
+.vfa-call .out { padding: 0 0.7rem 0.5rem calc(0.7rem + 10px + 0.5rem); }
+.vfa-call .out:empty { display: none; }
+.vfa-step .det { font-family: var(--a-mono); font-size: 0.6rem; line-height: 1.5; color: var(--a-muted); }
 .vfa-bars { display: flex; flex-direction: column; gap: 3px; margin-top: 0.3rem; }
 .vfa-bar { display: grid; grid-template-columns: 1fr 2.2rem; gap: 0.4rem; align-items: center; font-family: var(--a-mono); font-size: 0.5625rem; color: #3a3a3c; }
 .vfa-bar span { position: relative; display: block; padding: 2px 6px; border-radius: 4px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; background: #f3f3f4; }
@@ -123,5 +143,5 @@
 @media (prefers-reduced-motion: reduce) {
     .vfa-panel { animation: none; }
     .vfa-abacus .bd, .vfa-launch { transition: none; }
-    .vfa-step.on .dot { animation: none; }
+    .vfa-step.on .st { animation: none; }
 }
