@@ -24,7 +24,7 @@
 /* the language bead on the menu's corner */
 .mt-lang { position: absolute; top: -7px; right: -7px; display: grid; place-items: center; min-width: 19px; height: 19px; padding: 0 4px; border-radius: 999px;
   background: var(--ink, #1c1c1e); color: #fff; font: 600 11px/1 var(--font, system-ui), "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif; letter-spacing: 0;
-  box-shadow: 0 0 0 2px var(--bg, #fff), inset -1px -1px 0 rgba(0,0,0,0.25); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s; pointer-events: none; }
+  outline: 2px solid var(--bg, #fff); outline-offset: 0; transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s; pointer-events: none; }
 .nav-toggle:hover .mt-lang { transform: translateY(-1px); }
 .site-header.menu-open .mt-lang { background: var(--rust, #e0301e); }
 .mt-lang.is-swap { animation: mt-swap 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
@@ -38,18 +38,18 @@
 .lang-bead { display: inline-flex; align-items: center; gap: 0.5rem; height: 2.4rem; padding: 0 0.85rem 0 0.35rem; border-radius: 999px; border: 1px solid var(--ctl-line, rgba(28,28,30,0.14));
   background: var(--bg, #fff); color: var(--ink, #1c1c1e); font: 600 0.82rem/1 var(--font, system-ui), sans-serif; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
 .lang-bead i { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; border-radius: 50%; font-style: normal; font: 600 0.95rem/1 var(--font, system-ui), "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
-  background: var(--bg-subtle, #f8f8f8); box-shadow: inset -2px -2px 0 rgba(0,0,0,0.08); transition: background 0.25s, color 0.25s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+  background: var(--bg-subtle, #f8f8f8);  transition: background 0.25s, color 0.25s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
 .lang-bead:hover { border-color: var(--rust, #e0301e); transform: translateY(-1px); }
 .lang-bead:hover i { transform: translateX(2px); }
 .lang-bead[aria-pressed="true"] { border-color: var(--ink, #1c1c1e); background: var(--ink, #1c1c1e); color: #fff; }
-.lang-bead[aria-pressed="true"] i { background: var(--rust, #e0301e); color: #fff; box-shadow: inset -2px -2px 0 rgba(0,0,0,0.25); }
+.lang-bead[aria-pressed="true"] i { background: var(--rust, #e0301e); color: #fff;  }
 .lang-bead small { font-weight: 500; opacity: 0.6; font-size: 0.7rem; }
 .lang-note { margin-top: 0.6rem; font-size: 0.72rem; color: var(--text-muted, #6e6e73); }
 
 /* desktop: the sheet is a dropdown under the menu button; page links stay in the bar */
 @media (min-width: 1201px) {
   .site-header.menu-open .nav-sheet { display: block; position: absolute; top: calc(100% + 6px); right: max(16px, calc((100vw - 1240px) / 2)); width: 360px;
-    border: 1px solid var(--ctl-line, rgba(28,28,30,0.14)); border-radius: 18px; box-shadow: 0 24px 48px -24px rgba(28,28,30,0.45); animation: mt-drop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    border: 1px solid var(--ctl-line, rgba(28,28,30,0.14)); border-radius: 18px;  animation: mt-drop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
   .site-header.menu-open .nav-sheet .container { padding: 0.4rem 1.1rem 1rem; max-width: none; }
   .nav-sheet a.sheet-dup { display: none; }
 }
@@ -93,7 +93,7 @@ html[lang="ja"] .hero-is mark, html[lang="ja"] h1, html[lang="ja"] h2 { letter-s
     border-bottom: 1px solid var(--ctl-line, rgba(28,28,30,0.1)); opacity: 0; transform: translateY(10px); }
   /* the page's link-bead hover is replaced here by a numbered index */
   .nav-sheet a.sheet-dup::before, .nav-sheet a.sheet-dup:hover::before { content: counter(sheet, decimal-leading-zero); position: static; flex: none; width: 1.5rem; height: auto; margin: 0; border-radius: 0;
-    background: none; box-shadow: none; font: 500 0.72rem/1 var(--font-mono, ui-monospace, monospace); letter-spacing: 0.06em; color: var(--rust, #e0301e); transform: translateY(-0.35em); transition: none; }
+    background: none;  font: 500 0.72rem/1 var(--font-mono, ui-monospace, monospace); letter-spacing: 0.06em; color: var(--rust, #e0301e); transform: translateY(-0.35em); transition: none; }
   .nav-sheet a.sheet-dup:hover { padding-left: 0; }
   .nav-sheet a.sheet-dup::after { content: "\2192"; margin-left: auto; font-size: 1.1rem; font-weight: 400; color: var(--text-muted, #6e6e73); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s; }
   .nav-sheet a.sheet-dup:hover::after, .nav-sheet a.sheet-dup:focus-visible::after { transform: translateX(6px); color: var(--rust, #e0301e); }
@@ -123,7 +123,7 @@ html[lang="ja"] .hero-is mark, html[lang="ja"] h1, html[lang="ja"] h2 { letter-s
 .lang-glyph { font: 600 15px/1 var(--font, system-ui), "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif; }
 .lang-glyph.is-swap { animation: mt-swap 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
 .lang-pop { position: absolute; top: calc(100% + 10px); right: 0; z-index: 80; width: 320px; padding: 0.9rem 1rem 1rem; border-radius: 18px;
-  background: var(--bg, #fff); border: 1px solid var(--ctl-line, rgba(28,28,30,0.14)); box-shadow: 0 24px 48px -24px rgba(28,28,30,0.45);
+  background: var(--bg, #fff); border: 1px solid var(--ctl-line, rgba(28,28,30,0.14)); 
   animation: mt-drop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .lang-pop[hidden] { display: none; }
 .lang-pop .sheet-lang-k { margin-bottom: 0.6rem; }

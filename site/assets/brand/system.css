@@ -1,0 +1,59 @@
+/* The brand system, shared with Applied AI, Simplified: wood, beads and one rust red; never a
+   shadow, never a flat dot. Loaded last on every page, so it settles what the pages left open.
+   1 tokens · 2 the red label · 3 bead chips · 4 every dot a bead */
+
+/* 1 tokens */
+:root {
+  --bead-red: radial-gradient(circle at 34% 30%, #ffb3a8 0%, #ff8f80 12%, #e0301e 48%, #9e1a0c 100%);
+  --bead-ink: radial-gradient(circle at 34% 30%, #8a8a90 0%, #4a4a50 18%, #1c1c1e 55%, #000 100%);
+  --bead-white: radial-gradient(circle at 34% 30%, #fff 0%, #f6f2ee 40%, #ddd5cd 100%);
+  /* laid over any flat colour, these two turn a dot into a bead: a highlight and a soft rim */
+  --bead-shine: radial-gradient(circle at 34% 30%, rgba(255,255,255,.7) 0%, rgba(255,255,255,0) 46%), radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 52%, rgba(0,0,0,.28) 100%);
+}
+
+/* 2 the red label: one pill, a soft rust wash, a hairline, led by the bead */
+.section-label, .eyebrow {
+  display: inline-flex !important; align-items: center; gap: 7px; width: fit-content; max-width: 100%;
+  padding: 4px 11px 4px 9px; border-radius: 999px; line-height: 1.3;
+  background: color-mix(in srgb, #e0301e 7%, #fff); border: 1px solid color-mix(in srgb, #e0301e 22%, transparent);
+  color: #b4200f !important;
+}
+.section-label::before, .eyebrow::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--bead-red) !important; }
+
+/* 3 bead chips: the chip is a bead. Polished white for a tag; red for the one that matters. */
+.case-tag, .gallery-tag, .xp-tags span, .pub-badge, .news-tag {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px !important; border: 0 !important; border-radius: 999px !important;
+  font-family: inherit !important; font-size: 0.75rem !important; font-weight: 600 !important; letter-spacing: 0 !important; text-transform: none !important;
+  color: #1c1c1e !important; white-space: nowrap;
+  background: radial-gradient(120% 140% at 30% 0%, #fff 0%, #fbf8f5 45%, #e9e1d9 100%) !important;
+  outline: 1px solid rgba(28, 28, 30, 0.07); outline-offset: -1px;
+}
+.case-card.featured .case-tag:first-child, .pub-badge.acm, .case-tag-concept {
+  color: #fff !important; outline: 0;
+  background: radial-gradient(120% 140% at 30% 0%, #ffb3a8 0%, #ff7a66 14%, #e0301e 52%, #a31b0d 100%) !important;
+}
+
+/* 3b the hero's cards: the same abacus frame. One layer draws both posts, overhanging the card */
+.hire-cta, .reel, .upd-card, .cat-card, .arc-step, .hero-fit {
+  position: relative; overflow: visible !important; border: 0 !important; border-radius: 4px !important; box-shadow: none !important;
+  background-image: var(--rod-wood), var(--rod-wood) !important; background-size: 100% 3px, 100% 3px !important;
+  background-position: center top, center bottom !important; background-repeat: no-repeat !important;
+}
+.hire-cta::before, .reel::before, .upd-card::before, .cat-card::before, .arc-step::before, .hero-fit::before {
+  content: ""; position: absolute; top: -5px; bottom: -5px; left: -4px; right: -4px; pointer-events: none; z-index: 1;
+  background: var(--dowel) left center / 7px 100% no-repeat, var(--dowel) right center / 7px 100% no-repeat; border-radius: 4px;
+}
+
+/* 4 every dot a bead */
+.bp-clock .tz-dot, .booking-tz .tz-dot, .rc-status i, .thinking::before { width: 9px !important; height: 9px !important; background: var(--bead-red) !important; }
+.ap-live { width: 9px !important; height: 9px !important; background: var(--bead-red) !important; animation: none !important; }
+.xp-sell b::before { width: 10px !important; height: 10px !important; background: var(--bead-red) !important; }
+.xp-points li::before { width: 8px !important; height: 8px !important; background: var(--bead-white) !important; outline: 1px solid rgba(0,0,0,.1); outline-offset: -1px; }
+.hire-ph { background-image: var(--bead-shine) !important; }
+.beads i { border: 0 !important; background: var(--bead-white) !important; outline: 1px solid rgba(0,0,0,.1); outline-offset: -1px; }
+.beads i.on, .beads i.done { background: var(--bead-red) !important; outline: 0; }
+.pf::before { background: var(--bead-ink) !important; }
+.fx-mx td.off::after { width: 7px !important; height: 7px !important; background: var(--bead-white) !important; outline: 1px solid rgba(0,0,0,.1); outline-offset: -1px; }
+.tok-panel li i, .vfa-title span i { background-image: var(--bead-shine) !important; }
+.vfa-title span i { width: 8px !important; height: 8px !important; }
+@media (prefers-reduced-motion: reduce) { .thinking::before { animation: none !important; } }

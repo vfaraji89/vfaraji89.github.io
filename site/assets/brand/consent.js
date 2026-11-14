@@ -28,12 +28,12 @@
         bar.setAttribute('aria-label', 'Analytics consent');
         bar.style.cssText = 'position:fixed;left:16px;bottom:16px;z-index:90;max-width:calc(100vw - 32px);' +
             'display:flex;align-items:center;gap:10px;padding:7px 8px 7px 12px;border-radius:999px;' +
-            'background:#fff6f4;color:#1c1c1e;border:1px solid rgba(180,138,92,.45);box-shadow:0 12px 26px -16px rgba(60,30,10,.55);' +
+            'background:#fff6f4;color:#1c1c1e;border:1px solid rgba(180,138,92,.45);' +
             'font:500 12.5px/1.3 inherit;opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s cubic-bezier(.22,1,.36,1)';
         var bead = document.createElement('span');
         bead.setAttribute('aria-hidden', 'true');
         bead.style.cssText = 'flex:none;width:14px;height:14px;border-radius:50%;' +
-            'background:radial-gradient(circle at 34% 30%,#ff9d8f,#e0301e 45%,#9e1a0c);box-shadow:0 3px 5px -2px rgba(158,26,12,.6)';
+            'background:radial-gradient(circle at 34% 30%,#ff9d8f,#e0301e 45%,#9e1a0c)';
         var text = document.createElement('span');
         text.textContent = t('consent_ask', 'One cookie to count visits?');
         text.title = t('consent_title', 'Google Analytics, only to count visits. No ads, no tracking across sites.');
