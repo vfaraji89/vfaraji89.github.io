@@ -265,7 +265,7 @@ const WORKS: Work[] = [
   { tag: 'OPEN SOURCE · TOKALATOR.AI', name: 'Tokalator', line: 'Context engineering toolkit for AI coding assistants.', stats: [[500, '+', 'installs'], [17, '', 'models'], [1, '', 'arXiv paper']], img: 'img/tokalator-vscode.png', fit: 'cover' },
   { tag: 'RESEARCH · ACM CAIS ’26', name: 'Multi-agent classification', line: 'MCP agents that map free-text job titles to O*NET / ESCO.', stats: [[95, '%', 'accuracy'], [14, 'K+', 'positions'], [72.5, '%', 'faster']], img: 'img/pms-dashboard.png', fit: 'cover' },
   { tag: 'IN PRODUCTION · KARIYER.NET', name: 'ProjectLens', line: 'Pricing, end to end: request, effort, price, proposal.', stats: [[91, '%', 'effort removed'], [59, 'h', 'freed'], [31, '', 'spreadsheets retired']], img: 'img/projectlens-login.jpg', fit: 'cover' },
-  { tag: 'OPEN SOURCE · MAP', name: 'awesome-applied-ai', line: 'A working map of applied AI for the enterprise.', stats: [[6, '', 'layers'], [1, '', 'live tool index'], [0, '', '']], img: '', fit: 'cover' },
+  { tag: 'OPEN SOURCE · MAP', name: 'Applied AI, Simplified', line: 'A working map of applied AI for the enterprise.', stats: [[6, '', 'layers'], [1, '', 'live tool index'], [0, '', '']], img: '', fit: 'cover' },
 ];
 const Layers: React.FC<{ f: number }> = ({ f }) => {
   const names = ['Guardrails & Governance', 'Evaluation & Observability', 'Orchestration', 'Caching', 'Memory', 'Retrieval'];

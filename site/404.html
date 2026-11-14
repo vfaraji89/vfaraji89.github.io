@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Not found · Vahid Faraji</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg">
+    <script>
+      /* The applied AI guide moved from /awesome-applied-ai/ to /applied-ai-simplified/ when it was
+         renamed Applied AI, Simplified. GitHub Pages serves this page for the old paths: send each one
+         to the same page at the new address, keeping the query and the anchor. */
+      (function () {
+        var OLD = "/awesome-applied-ai", NEW = "/applied-ai-simplified";
+        var p = location.pathname;
+        if (p === OLD || p.indexOf(OLD + "/") === 0) {
+          location.replace(NEW + p.slice(OLD.length) + location.search + location.hash);
+        }
+      })();
+    </script>
+    <style>
+      :root { --ink: #1c1c1e; --muted: #6b6b70; --rust: #e0301e; --line: rgba(0,0,0,.1); }
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #fff; color: var(--ink);
+        font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; padding: 0 16px; }
+      main { max-width: 34rem; }
+      h1 { font-size: clamp(2rem, 6vw, 3rem); letter-spacing: -.03em; margin: 0 0 12px; }
+      h1 span { color: var(--rust); }
+      p { color: var(--muted); margin: 0 0 22px; }
+      nav { display: flex; flex-wrap: wrap; gap: 10px; }
+      a { color: var(--ink); text-decoration: none; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); }
+      a:hover { border-color: var(--rust); color: var(--rust); }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Page not found<span>.</span></h1>
+        <p>This page does not exist, or it moved. The applied AI guide now lives at Applied AI, Simplified.</p>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/applied-ai-simplified/">Applied AI, Simplified</a>
+        </nav>
+    </main>
+</body>
+</html>

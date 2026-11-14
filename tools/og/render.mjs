@@ -29,7 +29,7 @@ function abacus(rows) {
 function html(c) {
   const brand = c.brand === "vf"
     ? `<div class="brand"><span class="vf">Vahid Faraji<span class="dot">.</span></span><span class="sub">Applied AI</span></div>`
-    : `<div class="brand">${MARK}<span class="aai">Applied AI<span class="dot">.</span></span><span class="sub">awesome-applied-ai</span></div>`;
+    : `<div class="brand">${MARK}<span class="aai">Applied AI<span class="dot">.</span></span><span class="sub">simplified</span></div>`;
   const visual = c.visual === "photo"
     ? `<div class="photo"><img src="${IMG(c.photo)}"></div>`
     : c.visual === "number"

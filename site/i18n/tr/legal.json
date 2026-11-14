@@ -1,10 +1,10 @@
 {
- "toc_guide": "awesome-applied-ai rehberi",
+ "toc_guide": "Applied AI, Simplified rehberi",
  "toc_terms": "Koşullar ve sorumluluk reddi",
  "toc_priv": "Gizlilik",
  "priv_eyebrow": "Gizlilik &middot; iki site",
  "priv_h1": "Gizlilik, <mark>sade bir dille</mark><span class=\"bead-stop\">.</span>",
- "priv_lede": "Bu metin bu siteyi ve <a href=\"/awesome-applied-ai/\">/awesome-applied-ai/</a> adresindeki awesome-applied-ai rehberini kapsar. İkisi de insanların uygulamalı yapay zekâyı anlamasına yardım eden kişisel, ticari olmayan projelerdir. Son güncelleme: 12 Kasım 2026.",
+ "priv_lede": "Bu metin bu siteyi ve <a href=\"/applied-ai-simplified/\">/applied-ai-simplified/</a> adresindeki Applied AI, Simplified rehberini kapsar. İkisi de insanların uygulamalı yapay zekâyı anlamasına yardım eden kişisel, ticari olmayan projelerdir. Son güncelleme: 12 Kasım 2026.",
  "priv_short": "<h2 class=\"sec-h\">Kısaca</h2><ul class=\"lg-list\"><li>Reklam yok; veri satılmaz, paylaşılmaz; başka sitelerde takip yok.</li><li>Google Analytics yalnızca siz onay verirseniz çalışır. Öncesinde Google’a hiçbir şey gönderilmez. Kararınızı her sayfanın altındaki <b>Analitik tercihi</b> bağlantısıyla istediğiniz zaman değiştirebilirsiniz.</li><li>Uyum testi, Rol uyumu ve köşedeki ajan tarayıcınızda çalışır. Yapıştırdığınız metin hiçbir yere gönderilmez.</li><li>Bana yazar ya da görüşme önerirseniz bilgilerinizi yalnızca size cevap vermek için kullanırım.</li></ul>",
  "priv_who": "<h2 class=\"sec-h\">Sorumlu kişi</h2><p class=\"sec-p\">Burada anlatılan kişisel verilerden İstanbul, Türkiye’de yaşayan Vahid Faraji sorumludur (6698 sayılı KVKK’ya göre &ldquo;veri sorumlusu&rdquo;, GDPR’a göre &ldquo;controller&rdquo;). İletişim: <a href=\"mailto:vfaraji89@gmail.com\">vfaraji89@gmail.com</a>.</p>",
  "priv_host": "<h2 class=\"sec-h\">Barındırma</h2><p class=\"sec-p\">İki site de GitHub Pages (GitHub, Inc., ABD) üzerinden yayınlanan statik sayfalardır. Her web sunucusu gibi GitHub da bir sayfayı açtığınızda IP adresinizi ve tarayıcı bilgilerinizi alır ve güvenlik amacıyla kayıtlarında tutabilir. Bu kayıtlara erişimim yok. Ayrıntılar için <a href=\"https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement\" target=\"_blank\" rel=\"noopener\">GitHub’ın gizlilik bildirimine</a> bakın.</p>",

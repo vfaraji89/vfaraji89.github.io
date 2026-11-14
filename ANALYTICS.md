@@ -1,6 +1,6 @@
 # Analytics, data layer and secrets
 
-One GA4 property (`G-GTZW5NNEZ5`) covers this portfolio and the awesome-applied-ai guide.
+One GA4 property (`G-GTZW5NNEZ5`) covers this portfolio and the Applied AI, Simplified guide.
 Both live on `vfaraji89.github.io`, so a visit that moves from one to the other is one
 journey; `content_group` tells them apart.
 

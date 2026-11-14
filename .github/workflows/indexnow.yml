@@ -3,7 +3,7 @@ name: IndexNow ping
 # Tells IndexNow search engines (Bing, which feeds Copilot and ChatGPT search, plus Yandex, Seznam,
 # Naver and others) which pages changed, so they recrawl them soon instead of on their own schedule.
 # The key below is public by design: it is the file site/499c30459ae68ddbeabb51eca981bf84.txt, which proves the host is ours.
-# Runs after each deploy of this site, and every Monday for awesome-applied-ai, which is served from
+# Runs after each deploy of this site, and every Monday for Applied AI, Simplified, which is served from
 # the same host but deployed from its own repository.
 on:
   workflow_run:
@@ -26,7 +26,7 @@ jobs:
           KEY: "499c30459ae68ddbeabb51eca981bf84"
         run: |
           set -euo pipefail
-          urls=$( { curl -fsS https://vfaraji89.github.io/sitemap.xml; curl -fsS https://vfaraji89.github.io/awesome-applied-ai/sitemap.xml || true; } \
+          urls=$( { curl -fsS https://vfaraji89.github.io/sitemap.xml; curl -fsS https://vfaraji89.github.io/applied-ai-simplified/sitemap.xml || true; } \
             | grep -o '<loc>[^<]*</loc>' | sed 's/<[^>]*>//g' | sort -u )
           n=$(printf '%s\n' "$urls" | grep -c . || true)
           body=$(printf '%s\n' "$urls" | jq -R . | jq -s --arg k "$KEY" '{host: "vfaraji89.github.io", key: $k, keyLocation: ("https://vfaraji89.github.io/" + $k + ".txt"), urlList: .}')

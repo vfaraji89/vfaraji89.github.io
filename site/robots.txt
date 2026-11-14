@@ -80,4 +80,4 @@ User-agent: omgili
 Allow: /
 
 Sitemap: https://vfaraji89.github.io/sitemap.xml
-Sitemap: https://vfaraji89.github.io/awesome-applied-ai/sitemap.xml
+Sitemap: https://vfaraji89.github.io/applied-ai-simplified/sitemap.xml
