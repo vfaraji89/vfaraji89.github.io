@@ -1,33 +1,37 @@
-/* Abacus frames for cards, shared by every page.
-   A card is held like a minimal wooden abacus: a beech dowel at each side
-   (three inset shades read as a turned cylinder) and a thin rod near the
-   foot that fills red on hover. Buttons and calls to action keep their own
-   look; this is for things you read. */
+/* Abacus frames for cards, shared by every page and with Applied AI, Simplified.
+   A card is a small wooden abacus: two rounded dowels standing just outside it and overhanging
+   it, joined by a thin wooden rod top and bottom. The wood is the frame; never a shadow, never
+   a field of dots. Hovering a card turns its top rod rust. */
 :root {
-  --dowel-l: inset 1.5px 0 0 #ad8456, inset 3.5px 0 0 #eedfc6, inset 5px 0 0 #c9a67b;
-  --dowel-r: inset -1.5px 0 0 #ad8456, inset -3.5px 0 0 #eedfc6, inset -5px 0 0 #c9a67b;
-  --rod: rgba(28, 28, 30, 0.14);
+  --dowel: linear-gradient(90deg, #b48a5c 0%, #d8bb94 24%, #f1e3cc 48%, #dcc29e 70%, #ad8455 100%);
+  --rod-wood: linear-gradient(180deg, #e9d8bd 0%, #f4eadb 35%, #d2b48d 75%, #b8946a 100%);
   --rod-on: #e0301e;
 }
 .case-card, .pub-card, .about-card, .metric-card, .recruiter-card, .gallery-card,
 .news-card, .principle-card, .abacus-box, .result, .cite, .frame, .abacus-frame {
-  border-left-color: transparent !important;
-  border-right-color: transparent !important;
-  border-radius: 6px !important;
-  box-shadow: var(--dowel-l), var(--dowel-r) !important;
-  background-image:
-    linear-gradient(var(--rod-on), var(--rod-on)),
-    linear-gradient(var(--rod), var(--rod));
-  background-size: 0% 1px, calc(100% - 10px) 1px;
-  background-position: 5px calc(100% - 6px), 5px calc(100% - 6px);
-  background-repeat: no-repeat;
-  transition: background-size 0.7s cubic-bezier(0.65, 0, 0.25, 1), border-color 0.3s, transform 0.4s;
+  position: relative; overflow: visible !important;
+  border-color: transparent !important;
+  border-radius: 4px !important;
+  
+  background-image: var(--rod-wood), var(--rod-wood) !important;
+  background-size: 100% 3px, 100% 3px !important;
+  background-position: center top, center bottom !important;
+  background-repeat: no-repeat !important;
 }
+.case-card::before, .pub-card::before, .about-card::before, .metric-card::before, .recruiter-card::before, .gallery-card::before,
+.news-card::before, .principle-card::before, .abacus-box::before, .result::before, .cite::before, .frame::before, .abacus-frame::before,
+.case-card::after, .pub-card::after, .about-card::after, .metric-card::after, .recruiter-card::after, .gallery-card::after,
+.news-card::after, .principle-card::after, .abacus-box::after, .result::after, .cite::after, .frame::after, .abacus-frame::after {
+  content: "" !important; position: absolute !important; top: -5px !important; bottom: -5px !important; inset-inline: auto !important;
+  width: 7px !important; height: auto !important; border-radius: 4px !important; pointer-events: none;
+  background: var(--dowel) !important; opacity: 1 !important; -webkit-mask-image: none !important; mask-image: none !important; z-index: 1;
+}
+.case-card::before, .pub-card::before, .about-card::before, .metric-card::before, .recruiter-card::before, .gallery-card::before,
+.news-card::before, .principle-card::before, .abacus-box::before, .result::before, .cite::before, .frame::before, .abacus-frame::before { left: -4px !important; right: auto !important; }
+.case-card::after, .pub-card::after, .about-card::after, .metric-card::after, .recruiter-card::after, .gallery-card::after,
+.news-card::after, .principle-card::after, .abacus-box::after, .result::after, .cite::after, .frame::after, .abacus-frame::after { right: -4px !important; left: auto !important; }
 .case-card:hover, .pub-card:hover, .about-card:hover, .metric-card:hover, .gallery-card:hover,
 .news-card:hover, .principle-card:hover, .abacus-box:hover, .result:hover, .cite:hover, .abacus-frame:hover {
-  box-shadow: var(--dowel-l), var(--dowel-r), 0 14px 30px -24px rgba(28, 28, 30, 0.45) !important;
-  background-size: calc(100% - 10px) 1px, calc(100% - 10px) 1px;
-}
-@media (prefers-reduced-motion: reduce) {
-  .case-card, .pub-card, .about-card, .metric-card, .gallery-card, .news-card, .principle-card, .abacus-box, .result, .cite, .frame, .abacus-frame { transition: none; }
+  
+  background-image: linear-gradient(var(--rod-on), var(--rod-on)), var(--rod-wood) !important;
 }

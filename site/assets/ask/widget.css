@@ -15,10 +15,10 @@
 .vfa-launch {
     display: inline-flex; align-items: center; gap: 0.6rem; height: 52px; padding: 0 1rem 0 0.5rem;
     border-radius: 999px; border: 1px solid var(--a-line); background: #fff; cursor: pointer; font: inherit; color: var(--a-ink);
-    box-shadow: 0 10px 30px -12px rgba(28,28,30,0.45), 0 1px 0 rgba(255,255,255,0.9) inset;
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.2s;
+    
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.vfa-launch:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -12px rgba(28,28,30,0.5); }
+.vfa-launch:hover { transform: translateY(-2px);  }
 .vfa-launch:focus-visible { outline: 2px solid var(--a-rust); outline-offset: 3px; }
 .vfa-abacus { width: 38px; height: 38px; flex: none; }
 .vfa-abacus .bd { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); transform-box: view-box; }
@@ -39,7 +39,7 @@
 .vfa-panel {
     display: none; flex-direction: column; width: 380px; height: min(600px, calc(100vh - 40px));
     border-radius: 18px; background: #fff; border: 1px solid var(--a-line); overflow: hidden;
-    box-shadow: 0 30px 70px -24px rgba(28,28,30,0.5), 0 2px 6px rgba(28,28,30,0.06);
+    
     transform-origin: bottom right; animation: vfa-in 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .vfa.is-open .vfa-panel { display: flex; }
@@ -80,7 +80,7 @@
 .vfa-step.on .dot { border-color: var(--a-rust); animation: vfa-pulse 0.9s ease-in-out infinite alternate; }
 .vfa-step.done .dot { background: var(--a-ink); border-color: var(--a-ink); }
 .vfa-step.done.final .dot { background: var(--a-rust); border-color: var(--a-rust); }
-@keyframes vfa-pulse { from { box-shadow: 0 0 0 0 rgba(224,48,30,0.35); } to { box-shadow: 0 0 0 5px rgba(224,48,30,0); } }
+@keyframes vfa-pulse { from {  } to { outline: 5px solid rgba(224,48,30,0); outline-offset: 0; } }
 .vfa-step b { display: block; font-size: 0.75rem; font-weight: 650; }
 .vfa-step .det { font-family: var(--a-mono); font-size: 0.625rem; line-height: 1.5; color: var(--a-muted); }
 .vfa-bars { display: flex; flex-direction: column; gap: 3px; margin-top: 0.3rem; }

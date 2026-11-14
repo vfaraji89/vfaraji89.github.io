@@ -8,8 +8,8 @@
 
 /* ---- stage: input on the left, dial on the right -------------------------- */
 .fx-stage { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 1.25rem; align-items: stretch; }
-.fx-in { position: relative; display: flex; flex-direction: column; border-radius: 20px; border: 1px solid var(--ctl-line); background: var(--bg); box-shadow: 0 1px 0 rgba(28,28,30,0.04), 0 18px 40px -28px rgba(28,28,30,0.35); overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s; }
-.fx-in:focus-within { border-color: rgba(224,48,30,0.5); box-shadow: 0 0 0 4px rgba(224,48,30,0.08), 0 18px 40px -28px rgba(28,28,30,0.35); }
+.fx-in { position: relative; display: flex; flex-direction: column; border-radius: 20px; border: 1px solid var(--ctl-line); background: var(--bg);  overflow: hidden; transition: border-color 0.3s; }
+.fx-in:focus-within { border-color: rgba(224,48,30,0.5); outline: 4px solid rgba(224,48,30,0.08); outline-offset: 0; }
 .fx-in textarea { flex: 1; min-height: 11rem; width: 100%; padding: 1.1rem 1.2rem 0.6rem; border: 0; resize: none; background: transparent; color: var(--ink); font: inherit; font-size: 0.95rem; line-height: 1.55; }
 .fx-in textarea:focus { outline: none; }
 .fx-in textarea::placeholder { color: var(--text-muted); }
@@ -23,10 +23,10 @@
 .fx-chip.is-new { animation: fx-pop 0.5s var(--fx-spring) both; }
 
 .fx-samples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.5rem; margin-top: 0.75rem; }
-.fx-sample { display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.75rem; border-radius: 14px; border: 1px solid var(--ctl-line); background: var(--bg); color: var(--ink); font: inherit; font-size: 0.8rem; font-weight: 600; text-align: left; cursor: pointer; transition: border-color 0.25s, transform 0.5s var(--fx-spring), box-shadow 0.25s; }
+.fx-sample { display: flex; align-items: center; gap: 0.6rem; padding: 0.6rem 0.75rem; border-radius: 14px; border: 1px solid var(--ctl-line); background: var(--bg); color: var(--ink); font: inherit; font-size: 0.8rem; font-weight: 600; text-align: left; cursor: pointer; transition: border-color 0.25s, transform 0.5s var(--fx-spring); }
 .fx-sample svg { flex: none; width: 30px; height: 30px; }
 .fx-sample small { display: block; font-family: var(--font-mono); font-size: 0.62rem; font-weight: 400; color: var(--text-muted); letter-spacing: 0.04em; }
-.fx-sample:hover { border-color: var(--rust); transform: translateY(-2px); box-shadow: 0 10px 20px -14px rgba(224,48,30,0.6); }
+.fx-sample:hover { border-color: var(--rust); transform: translateY(-2px);  }
 .fx-sample[aria-pressed="true"] { border-color: var(--rust); background: var(--paper); }
 
 /* ---- the dial --------------------------------------------------------------- */
@@ -75,8 +75,8 @@
 
 /* coverage: numbered evidence cards over a matrix */
 .fx-evs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.6rem; }
-.fx-ev { position: relative; display: flex; flex-direction: column; gap: 0.35rem; padding: 0.85rem 0.9rem 0.9rem; border-radius: 16px; border: 1px solid var(--ctl-line); background: var(--bg); color: var(--ink); text-decoration: none; transition: border-color 0.25s, transform 0.5s var(--fx-spring), box-shadow 0.25s; animation: fx-rise 0.5s var(--fx-spring) both; }
-.fx-ev:hover, .fx-ev.is-hot { border-color: var(--rust); transform: translateY(-3px); box-shadow: 0 14px 26px -18px rgba(224,48,30,0.7); text-decoration: none; }
+.fx-ev { position: relative; display: flex; flex-direction: column; gap: 0.35rem; padding: 0.85rem 0.9rem 0.9rem; border-radius: 16px; border: 1px solid var(--ctl-line); background: var(--bg); color: var(--ink); text-decoration: none; transition: border-color 0.25s, transform 0.5s var(--fx-spring); animation: fx-rise 0.5s var(--fx-spring) both; }
+.fx-ev:hover, .fx-ev.is-hot { border-color: var(--rust); transform: translateY(-3px);  text-decoration: none; }
 .fx-ev .n { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 50%; background: var(--ink); color: #fff; font-family: var(--font-mono); font-size: 0.7rem; }
 .fx-ev .lv { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rust-deep); }
 .fx-ev b { font-size: 0.82rem; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
@@ -92,7 +92,7 @@
 .fx-mx tbody th i { display: inline-block; width: 0.55rem; height: 0.55rem; margin-right: 0.45rem; border-radius: 50%; vertical-align: 0.05em; }
 .fx-mx tbody th i.s-strong { background: var(--rust); } .fx-mx tbody th i.s-partial { background: var(--fx-partial); } .fx-mx tbody th i.s-gap { border: 1.5px dashed var(--grey-300); }
 .fx-mx td { text-align: center; transition: background 0.2s; }
-.fx-mx td.on::after { content: ""; display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: var(--rust); box-shadow: inset -2px -2px 0 rgba(0,0,0,0.18); animation: fx-pop 0.45s var(--fx-spring) both; animation-delay: var(--d, 0ms); }
+.fx-mx td.on::after { content: ""; display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 50%; background: var(--rust);  animation: fx-pop 0.45s var(--fx-spring) both; animation-delay: var(--d, 0ms); }
 .fx-mx td.off::after { content: ""; display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--grey-200); }
 .fx-mx td.is-hot { background: var(--paper); }
 .fx-mx tr.is-hot th, .fx-mx tr.is-hot td { background: var(--paper); }
@@ -111,7 +111,7 @@
 .rod { position: relative; height: 1.1rem; display: flex; align-items: center; gap: 4px; padding: 0 2px; }
 .rod::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; border-radius: 2px; background: var(--grey-200); }
 .rod i { position: relative; width: 0.85rem; height: 0.85rem; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--grey-200); transform: translateX(1.6rem); opacity: 0; animation: fx-slide 0.5s var(--fx-spring) forwards; }
-.rod i.on { border: 0; box-shadow: inset -2px -2px 0 rgba(0,0,0,0.2); }
+.rod i.on { border: 0;  }
 .fx-rq.s-strong .rod i.on { background: var(--rust); }
 .fx-rq.s-partial .rod i.on { background: var(--fx-partial); }
 .fx-rq-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s var(--fx-out); }
@@ -134,7 +134,7 @@ a.fx-c:hover { background: var(--paper); text-decoration: none; }
 .fx-receipt { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.35rem 0.8rem; font-family: var(--font-mono); font-size: 0.66rem; color: var(--text-muted); }
 
 /* the dock */
-.fx-dock { position: fixed; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom)); z-index: 60; display: flex; align-items: center; gap: 0.4rem; padding: 0.4rem; border-radius: 18px; background: rgba(28,28,30,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 20px 40px -18px rgba(0,0,0,0.6); transform: translate(-50%, 140%); transition: transform 0.5s var(--fx-spring); }
+.fx-dock { position: fixed; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom)); z-index: 60; display: flex; align-items: center; gap: 0.4rem; padding: 0.4rem; border-radius: 18px; background: rgba(28,28,30,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);  transform: translate(-50%, 140%); transition: transform 0.5s var(--fx-spring); }
 .fx-dock.show { transform: translate(-50%, 0); }
 .fx-dock .mini { position: relative; width: 2.6rem; height: 2.6rem; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--rust) calc(var(--p, 0) * 1%), rgba(255,255,255,0.14) 0); }
 .fx-dock .mini::before { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: #1c1c1e; }
